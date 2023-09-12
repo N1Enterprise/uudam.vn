@@ -167,9 +167,9 @@
 											</a>
 										</li>
 										<li class="k-nav__item k-nav__item--custom k-margin-t-15">
-                                            <form method="post" action="" class="inline">
+                                            <form method="post" action="{{ route('logout') }}" class="inline">
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold">{{__('Sign Out')}}</button>
+                                                <button type="submit" class="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold">{{ __('Sign Out') }}</button>
                                             </form>
 										</li>
 									</ul>

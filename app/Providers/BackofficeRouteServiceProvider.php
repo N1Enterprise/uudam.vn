@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 class BackofficeRouteServiceProvider extends ServiceProvider
 {
+    public const HOME = '/backoffice';
+
     /**
      * The module namespace to assume when generating URLs to actions.
      *
@@ -21,7 +23,7 @@ class BackofficeRouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes()
     {
-        Route::middleware(['web'])
+        Route::middleware(['web', 'auth:admin'])
             ->prefix('backoffice')
             ->namespace($this->namespace)
             ->as('bo.web.')

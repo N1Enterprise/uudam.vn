@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerUtils();
+    }
+
+    public function registerUtils()
+    {
+        if (file_exists($file = app_path('Utils/Helpers.php'))) {
+            require $file;
+        }
     }
 }
