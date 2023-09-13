@@ -13,5 +13,7 @@ class FormRequestServiceProvider extends ServiceProvider
         BackofficeContracts\UpdateAdminRequestContract::class => BackofficeRequests\UpdateAdminRequest::class,
         BackofficeContracts\UpdateAdminProfileRequestContract::class => BackofficeRequests\UpdateAdminProfileRequest::class,
         BackofficeContracts\UpdateAdminPasswordRequestContract::class => BackofficeRequests\UpdateAdminPasswordRequest::class,
+        BackofficeContracts\StoreRoleRequestContract::class => BackofficeRequests\StoreRoleRequest::class,
+        BackofficeContracts\UpdateRoleRequestContract::class => BackofficeRequests\UpdateRoleRequest::class,
     ];
 }
