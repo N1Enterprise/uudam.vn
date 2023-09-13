@@ -181,6 +181,7 @@ return [
         App\Providers\FormRequestServiceProvider::class,
         App\Providers\ResponseServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
+        App\Providers\BackofficeServiceProvider::class,
     ],
 
     /*
