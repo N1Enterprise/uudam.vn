@@ -18,6 +18,10 @@ class RoleService extends BaseService
             'label_users_detail' => [
                 'users.show',
                 'users.update',
+                'label_users_detail_action' => [
+                    'users.set-test-user',
+                    'users.action',
+                ],
             ],
         ],
         'systems' => [

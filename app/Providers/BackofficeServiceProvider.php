@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
 
 class BackofficeServiceProvider extends ServiceProvider
@@ -19,7 +21,6 @@ class BackofficeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerLangs();
-        $this->registerViews();
     }
 
     /**
@@ -33,23 +34,10 @@ class BackofficeServiceProvider extends ServiceProvider
 
     protected function registerLangs()
     {
-        $langPath = resource_path($this->moduleNameLower . '/lang');
+        $langPath = resource_path('lang/' . $this->moduleNameLower);
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
         }
-    }
-
-    protected function registerViews()
-    {
-        $paths = [];
-        foreach (\Config::get('view.paths') as $path) {
-            dd($path);
-            dd($path . '/modules/' . $this->moduleNameLower);
-            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
-                $paths[] = $path . '/modules/' . $this->moduleNameLower;
-            }
-        }
-        return $paths;
     }
 }

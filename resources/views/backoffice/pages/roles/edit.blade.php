@@ -94,7 +94,7 @@
                                                         <input class="collapser-input" type="checkbox" parent-key="checkable_checkall" id="{{ $key1 }}" />
                                                     </span>
                                                     <a href="#co_{{ $idKey1 }}" class="k-nav__link permission-navlink collapsed" data-toggle="collapse">
-                                                        <span class="k-nav__link-text">{{ __("backoffice.permissions.{$key1}") }}</span>
+                                                        <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key1}") }}</span>
                                                         <span class="k-nav__link-arrow"></span>
                                                     </a>
                                                     <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey1 }}" role="tabpanel">
@@ -109,7 +109,7 @@
                                                                         <input class="collapser-input" type="checkbox" parent-key="{{ $key1 }}" id="{{ $key2 }}" />
                                                                     </span>
                                                                     <a href="#co_{{ $idKey2 }}" class="k-nav__link permission-navlink collapsed" data-toggle="collapse">
-                                                                        <span class="k-nav__link-text">{{ __("backoffice.permissions.{$key2}") }}</span>
+                                                                        <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key2}") }}</span>
                                                                         <span class="k-nav__link-arrow"></span>
                                                                     </a>
                                                                     <ul class="k-nav__sub collapse mt-2" role="tabpanel" id="co_{{ $idKey2 }}">
@@ -124,7 +124,7 @@
                                                                                         <input class="collapser-input" type="checkbox" parent-key="{{ $key2 }}" id="{{ $key3 }}" />
                                                                                     </span>
                                                                                     <a href="#co_{{ $idKey3 }}" class="k-nav__link permission-navlink collapsed" data-toggle="collapse">
-                                                                                        <span class="k-nav__link-text">{{ __("backoffice.permissions.{$key3}") }}</span>
+                                                                                        <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key3}") }}</span>
                                                                                         <span class="k-nav__link-arrow"></span>
                                                                                     </a>
                                                                                     <ul class="k-nav__sub collapse mt-2" role="tabpanel" id="co_{{ $idKey3 }}">
@@ -132,7 +132,7 @@
                                                                                         <li class="custom k-nav__item">
                                                                                             <input class="permission-checkbox" {{ $role->checkPermissionTo($group4) ? 'checked' : ''}} parent-key="{{ $key3 }}" name="permissions[{{ $group4 }}]" type="checkbox" id="{{ $group4 }}" />
                                                                                             <label class="k-nav__link permission-navlink" style="cursor: pointer" for="{{ $group4 }}">
-                                                                                                <span class="k-nav__link-text">{{ __("backoffice.permissions.{$group4}") }}</span>
+                                                                                                <span class="k-nav__link-text">{{ __("backoffice::permissions.{$group4}") }}</span>
                                                                                             </label>
                                                                                         </li>
                                                                                         @endforeach
@@ -142,7 +142,7 @@
                                                                             <li class="custom k-nav__item">
                                                                                 <input class="permission-checkbox" {{ $role->checkPermissionTo($group3) ? 'checked' : ''}} parent-key="{{ $key2 }}" name="permissions[{{ $group3 }}]" type="checkbox" id="{{ $group3 }}" />
                                                                                 <label class="k-nav__link permission-navlink" style="cursor: pointer" for="{{ $group3 }}">
-                                                                                    <span class="k-nav__link-text">{{ __("backoffice.permissions.{$group3}") }}</span>
+                                                                                    <span class="k-nav__link-text">{{ __("backoffice::permissions.{$group3}") }}</span>
                                                                                 </label>
                                                                             </li>
                                                                             @endif
@@ -155,7 +155,7 @@
                                                                     <input class="permission-checkbox" {{ $role->checkPermissionTo($group2) ? 'checked' : ''}} name="permissions[{{ $group2 }}]" parent-key="{{ $key1 }}" type="checkbox" id="{{ $group2 }}" />
                                                                 </span>
                                                                 <label for="{{ $group2 }}" class="k-nav__link permission-navlink">
-                                                                    <span class="k-nav__link-text">{{ __("backoffice.permissions.{$group2}") }}</span>
+                                                                    <span class="k-nav__link-text">{{ __("backoffice::permissions.{$group2}") }}</span>
                                                                 </label>
                                                             </li>
                                                             @endif
@@ -168,7 +168,7 @@
                                                     <input class="permission-checkbox" {{ $role->checkPermissionTo($group1) ? 'checked' : ''}} name="permissions[{{ $group1 }}]" parent-key="checkable_checkall" type="checkbox" id="{{ $group1 }}" />
                                                 </span>
                                                 <label for="{{ $group1 }}" class="k-nav__link permission-navlink">
-                                                    <span class="k-nav__link-text">{{ __("backoffice.permissions.{$group1}") }}</span>
+                                                    <span class="k-nav__link-text">{{ __("backoffice::permissions.{$group1}") }}</span>
                                                 </label>
                                             </li>
                                             @endif
