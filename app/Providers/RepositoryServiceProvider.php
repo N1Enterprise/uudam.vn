@@ -12,5 +12,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\BaseRepositoryContract::class => Repositories\BaseRepository::class,
         Contracts\RoleRepositoryContract::class => Repositories\RoleRepository::class,
         Contracts\AdminRepositoryContract::class => Repositories\AdminRepository::class,
+        Contracts\UserRepositoryContract::class => Repositories\UserRepository::class,
+        Contracts\UserDetailRepositoryContract::class => Repositories\UserDetailRepository::class,
     ];
 }

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Classes\AdminAuth;
 use App\Services\MenuService;
+use App\View\Components\Backoffice\PhoneInput;
+use App\View\Components\Backoffice\SearchUsernameInput;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +23,24 @@ class ViewServiceProvider extends ServiceProvider
             return new MenuService;
         });
 
+        $this->registerViewComposer();
+        $this->registerBladeComponent();
+        $this->registerDirectives();
+    }
+
+    private function getMenuConfig()
+    {
+        return app(MenuService::class)->getMenus();
+    }
+
+    private function registerBladeComponent()
+    {
+        Blade::component('search-username-input', SearchUsernameInput::class);
+        Blade::component('phone-input', PhoneInput::class);
+    }
+
+    private function registerViewComposer()
+    {
         View::composer('backoffice.*', function ($view) {
             $view->with('APP_NAME', config('name'));
             $view->with('AUTHENTICATED_USER',  AdminAuth::user());
@@ -29,13 +49,6 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('backoffice.includes.left_menu', function($view) {
             $view->with('LEFT_MENU', $this->getMenuConfig());
         });
-
-        $this->registerDirectives();
-    }
-
-    private function getMenuConfig()
-    {
-        return app(MenuService::class)->getMenus();
     }
 
     private function registerDirectives()
