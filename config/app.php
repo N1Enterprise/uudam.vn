@@ -177,6 +177,10 @@ return [
         App\Providers\FrontendRouteServiceProvider::class,
         App\Providers\BackofficeRouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
+        App\Providers\FormRequestServiceProvider::class,
+        App\Providers\ResponseServiceProvider::class,
+        App\Providers\MacroServiceProvider::class,
     ],
 
     /*

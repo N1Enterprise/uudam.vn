@@ -1,6 +1,32 @@
 <?php
 
-use App\Http\Controllers\Backoffice\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backoffice as Controllers;
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [Controllers\DashboardController::class, 'home'])->name('dashboard');
+
+Route::get('users', [Controllers\UserController::class, 'index'])->name('users.index')->middleware(['can:users.index']);
+Route::get('users/{id}', [Controllers\UserController::class, 'edit'])->name('users.edit')->middleware(['can:users.show']);
+Route::put('users/{id}', [Controllers\UserController::class, 'update'])->name('users.update')->middleware(['can:users.update']);
+Route::post('users/{id}/actions/deactivate', [Controllers\UserController::class, 'updateUserAction'])->name('users.action.deactivate')->middleware(['can:users.action']);
+Route::post('users/{id}/actions/active', [Controllers\UserController::class, 'updateUserAction'])->name('users.action.active')->middleware(['can:users.action']);
+
+/* ======================== ADMIN USER ======================== */
+Route::get('admins', [Controllers\AdminController::class, 'index'])->name('admins.index')->middleware(['can:admins.index']);
+Route::get('admins/create', [Controllers\AdminController::class, 'create'])->name('admins.create')->middleware(['can:admins.store']);
+Route::post('admins', [Controllers\AdminController::class, 'store'])->name('admins.store')->middleware(['can:admins.store']);
+Route::get('admins/{id}', [Controllers\AdminController::class, 'edit'])->name('admins.edit')->middleware(['can:admins.update']);
+Route::put('admins/{id}', [Controllers\AdminController::class, 'update'])->name('admins.update')->middleware(['can:admins.update']);
+Route::put('admins/{id}/active', [Controllers\AdminController::class, 'active'])->name('admins.active')->middleware(['can:admins.update']);
+Route::put('admins/{id}/deactivate', [Controllers\AdminController::class, 'deactivate'])->name('admins.deactivate')->middleware(['can:admins.update']);
+
+Route::get('roles', [Controllers\RoleController::class, 'index'])->name('roles.index')->middleware(['can:roles.index']);
+Route::get('roles/create', [Controllers\RoleController::class, 'create'])->name('roles.create')->middleware(['can:roles.store']);
+Route::post('roles', [Controllers\RoleController::class, 'store'])->name('roles.store')->middleware(['can:roles.store']);
+Route::get('roles/{id}', [Controllers\RoleController::class, 'edit'])->name('roles.edit')->middleware(['can:roles.update']);
+Route::put('roles/{id}', [Controllers\RoleController::class, 'update'])->name('roles.update')->middleware(['can:roles.update']);
+
+/* ======================== SYSTEM ======================== */
+Route::get('system-settings', [Controllers\SystemSettingController::class, 'index'])->name('system-settings.index')->middleware(['can:system-settings.index']);
+Route::get('system-settings/{id}/edit', [Controllers\SystemSettingController::class, 'edit'])->name('system-settings.edit')->middleware(['can:system-settings.update']);
+Route::post('system-settings/{id}/update', [Controllers\SystemSettingController::class, 'update'])->name('system-settings.update')->middleware(['can:system-settings.update']);

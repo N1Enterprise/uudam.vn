@@ -142,9 +142,9 @@
                 })
             }
 
-            menuActiveLinkEl.closest('li').addClass('k-menu__item--active')
-            menuActiveLinkEl.closest('li.k-menu__item--submenu').addClass('k-menu__item--open')
-            menuActiveLinkEl.closest('li.k-menu__item--submenu').parent().closest('li.k-menu__item--submenu').addClass('k-menu__item--open')
+            menuActiveLinkEl.closest('li').addClass('k-menu__item--active');
+            menuActiveLinkEl.closest('li.k-menu__item--submenu').addClass('k-menu__item--open');
+            menuActiveLinkEl.closest('li.k-menu__item--submenu').parent().closest('li.k-menu__item--submenu').addClass('k-menu__item--open');
         },
         renderCountingMenuItemSubtext: () => {
             //

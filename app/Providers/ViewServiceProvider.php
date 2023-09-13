@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
+use App\Classes\AdminAuth;
+use App\Services\MenuService;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -16,9 +17,13 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->singleton(MenuService::class, function() {
+            return new MenuService;
+        });
+
         View::composer('backoffice.*', function ($view) {
             $view->with('APP_NAME', config('name'));
-            $view->with('AUTHENTICATED_USER', new User());
+            $view->with('AUTHENTICATED_USER',  AdminAuth::user());
         });
 
         View::composer('backoffice.includes.left_menu', function($view) {
@@ -30,7 +35,7 @@ class ViewServiceProvider extends ServiceProvider
 
     private function getMenuConfig()
     {
-        return [];
+        return app(MenuService::class)->getMenus();
     }
 
     private function registerDirectives()

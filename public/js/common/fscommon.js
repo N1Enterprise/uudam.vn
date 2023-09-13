@@ -388,7 +388,7 @@ const currentUtcOffset = {
         });
 	},
 	get: function() {
-        return UTC_OFFSET;
+        // return UTC_OFFSET;
 	},
 	label: function() {
 		return APP_CONSTANT.UTC_OFFSETS[this.get()];
@@ -867,12 +867,12 @@ const inputFormatter = {
 }
 var utcOffset = currentUtcOffset.get();
 var datepickerRanges = {
-	'Today': [moment().utcOffset(utcOffset).startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
-	'Yesterday': [moment().utcOffset(utcOffset).subtract(1, 'days').startOf('day'), moment().utcOffset(utcOffset).subtract(1, 'days').endOf('day')],
-	'Last 7 Days': [moment().utcOffset(utcOffset).subtract(6, 'days').startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
-	'Last 30 Days': [moment().utcOffset(utcOffset).subtract(29, 'days').startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
-	'This Month': [moment().utcOffset(utcOffset).startOf('month'), moment().utcOffset(utcOffset).endOf('month')],
-	'Last Month': [moment().utcOffset(utcOffset).subtract(1, 'month').startOf('month'), moment().utcOffset(utcOffset).subtract(1, 'month').endOf('month')]
+	// 'Today': [moment().utcOffset(utcOffset).startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
+	// 'Yesterday': [moment().utcOffset(utcOffset).subtract(1, 'days').startOf('day'), moment().utcOffset(utcOffset).subtract(1, 'days').endOf('day')],
+	// 'Last 7 Days': [moment().utcOffset(utcOffset).subtract(6, 'days').startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
+	// 'Last 30 Days': [moment().utcOffset(utcOffset).subtract(29, 'days').startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
+	// 'This Month': [moment().utcOffset(utcOffset).startOf('month'), moment().utcOffset(utcOffset).endOf('month')],
+	// 'Last Month': [moment().utcOffset(utcOffset).subtract(1, 'month').startOf('month'), moment().utcOffset(utcOffset).subtract(1, 'month').endOf('month')]
 };
 
 function preventFormDuplicateSubmit(form, prevent = true) {
