@@ -24,6 +24,20 @@ class RoleService extends BaseService
                 ],
             ],
         ],
+        'catalogs' => [
+            'category-groups' => [
+                'category-groups.index',
+                'category-groups.store',
+                'category-groups.update',
+                'category-groups.delete',
+            ],
+            'categories' => [
+                'categories.index',
+                'categories.store',
+                'categories.update',
+                'categories.delete',
+            ]
+        ],
         'systems' => [
             'system-settings' => [
                 'system-settings.index',

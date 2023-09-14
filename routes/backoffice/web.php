@@ -30,3 +30,16 @@ Route::put('roles/{id}', [Controllers\RoleController::class, 'update'])->name('r
 Route::get('system-settings', [Controllers\SystemSettingController::class, 'index'])->name('system-settings.index')->middleware(['can:system-settings.index']);
 Route::get('system-settings/{id}/edit', [Controllers\SystemSettingController::class, 'edit'])->name('system-settings.edit')->middleware(['can:system-settings.update']);
 Route::post('system-settings/{id}/update', [Controllers\SystemSettingController::class, 'update'])->name('system-settings.update')->middleware(['can:system-settings.update']);
+
+/* ======================== CATALOG ======================== */
+Route::get('category-groups', [Controllers\CategoryGroupController::class, 'index'])->name('category-groups.index')->middleware(['can:category-groups.index']);
+Route::get('category-groups/create', [Controllers\CategoryGroupController::class, 'create'])->name('category-groups.create')->middleware(['can:category-groups.store']);
+Route::post('category-groups', [Controllers\CategoryGroupController::class, 'store'])->name('category-groups.store')->middleware(['can:category-groups.store']);
+Route::get('category-groups/{id}', [Controllers\CategoryGroupController::class, 'edit'])->name('category-groups.edit')->middleware(['can:category-groups.update']);
+Route::put('category-groups/{id}', [Controllers\CategoryGroupController::class, 'update'])->name('category-groups.update')->middleware(['can:category-groups.update']);
+
+Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index')->middleware(['can:categories.index']);
+Route::get('categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create')->middleware(['can:categories.store']);
+Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store')->middleware(['can:categories.store']);
+Route::get('categories/{id}', [Controllers\CategoryController::class, 'edit'])->name('categories.edit')->middleware(['can:categories.update']);
+Route::put('categories/{id}', [Controllers\CategoryController::class, 'update'])->name('categories.update')->middleware(['can:categories.update']);

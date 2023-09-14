@@ -50,6 +50,16 @@ class PermissionSeeder extends Seeder
             'system-settings.clear-cache',
             'system-settings.import',
             'system-settings.export',
+
+            'category-groups.index',
+            'category-groups.store',
+            'category-groups.update',
+            'category-groups.delete',
+
+            'categories.index',
+            'categories.store',
+            'categories.update',
+            'categories.delete',
         ];
 
 
