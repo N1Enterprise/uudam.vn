@@ -37,6 +37,27 @@ class MenuService extends BaseService
                 ]),
             ],
             [
+                'name' => 'Catalogs',
+                'icon' => 'fa fa-tags',
+                'subs' => [
+                    [
+                        'name' => 'Categories',
+                        'subs' => [
+                            [
+                                'name' => 'Group',
+                                'link' => route('bo.web.category-groups.index'),
+                                'permissions' => ['category-groups.index']
+                            ],
+                            [
+                                'name' => 'Categories',
+                                'link' => route('bo.web.categories.index'),
+                                'permissions' => ['categories.index']
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Systems',
                 'icon' => 'flaticon2-settings',
                 'subs' => [

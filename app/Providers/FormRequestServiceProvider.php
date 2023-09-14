@@ -22,5 +22,9 @@ class FormRequestServiceProvider extends ServiceProvider
         BackofficeContracts\UpdateSystemSettingKeyRequestContract::class => BackofficeRequests\UpdateSystemSettingKeyRequest::class,
         BackofficeContracts\ImportSystemSettingRequestContract::class => BackofficeRequests\ImportSystemSettingRequest::class,
         BackofficeContracts\UpdateSystemSettingGroupRequestContract::class => BackofficeRequests\UpdateSystemSettingGroupRequest::class,
+        BackofficeContracts\StoreCategoryGroupRequestContract::class => BackofficeRequests\StoreCategoryGroupRequest::class,
+        BackofficeContracts\UpdateCategoryGroupRequestContract::class => BackofficeRequests\UpdateCategoryGroupRequest::class,
+        BackofficeContracts\StoreCategoryRequestContract::class => BackofficeRequests\StoreCategoryRequest::class,
+        BackofficeContracts\UpdateCategoryRequestContract::class => BackofficeRequests\UpdateCategoryRequest::class,
     ];
 }

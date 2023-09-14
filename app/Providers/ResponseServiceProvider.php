@@ -27,5 +27,11 @@ class ResponseServiceProvider extends ServiceProvider
         BackofficeContracts\DeleteSystemSettingKeyResponseContract::class => BackofficeResponses\DeleteSystemSettingKeyResponse::class,
         BackofficeContracts\ImportSystemSettingResponseContract::class => BackofficeResponses\ImportSystemSettingResponse::class,
         BackofficeContracts\UpdateSystemSettingGroupResponseContract::class => BackofficeResponses\UpdateSystemSettingGroupResponse::class,
+        BackofficeContracts\ListCategoryGroupResponseContract::class => BackofficeResponses\ListCategoryGroupResponse::class,
+        BackofficeContracts\ListCategoryResponseContract::class => BackofficeResponses\ListCategoryResponse::class,
+        BackofficeContracts\StoreCategoryGroupResponseContract::class => BackofficeResponses\StoreCategoryGroupResponse::class,
+        BackofficeContracts\UpdateCategoryGroupResponseContract::class => BackofficeResponses\UpdateCategoryGroupResponse::class,
+        BackofficeContracts\StoreCategoryResponseContract::class => BackofficeResponses\StoreCategoryResponse::class,
+        BackofficeContracts\UpdateCategoryResponseContract::class => BackofficeResponses\UpdateCategoryResponse::class,
     ];
 }

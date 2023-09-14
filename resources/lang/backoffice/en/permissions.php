@@ -35,4 +35,16 @@ return [
     'roles.index' => 'View Roles',
     'roles.store' => 'Create Role',
     'roles.update' => 'Update Role',
+
+    'catalogs' => 'Catalogs',
+    'category-groups' => 'Category Groups',
+    'category-groups.index' => 'View Category Group List',
+    'category-groups.store' => 'Create Category Group',
+    'category-groups.update' => 'Update Category Group',
+    'category-groups.delete' => 'Delete Category Group',
+    'categories' => 'Categories',
+    'categories.index' => 'View Category List',
+    'categories.store' => 'Create Category',
+    'categories.update' => 'Update Category',
+    'categories.delete' => 'Delete Category',
 ];

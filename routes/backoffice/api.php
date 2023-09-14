@@ -23,4 +23,8 @@ Route::prefix('v1')->group(function () {
     Route::delete('system-settings/{id}', [Api\SystemSettingController::class, 'deleteSettingKey'])->name('system-settings.delete')->middleware(['can:system-settings.delete']);
     Route::delete('system-settings/{id}/group', [Api\SystemSettingController::class, 'deleteGroup'])->name('system-settings.delete.group')->middleware(['can:system-settings.delete']);
     Route::post('system-settings/{id}/group', [Api\SystemSettingController::class, 'updateGroup'])->name('system-settings.group.update')->middleware(['can:system-settings.update']);
+
+    /* ======================== CATALOG ======================== */
+    Route::get('category-groups', [Api\CategoryGroupController::class, 'index'])->name('category-groups.index')->middleware(['can:category-groups.index']);
+    Route::get('categories', [Api\CategoryController::class, 'index'])->name('categories.index')->middleware(['can:categories.index']);
 });
