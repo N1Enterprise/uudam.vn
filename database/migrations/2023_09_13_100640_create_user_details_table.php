@@ -15,7 +15,17 @@ class CreateUserDetailsTable extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('contact_number')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('address')->nullable();
+            $table->tinyInteger('gender')->nullable();
+            $table->foreignId('country_id')->nullable();
+            $table->foreignId('state_id')->nullable();
+            $table->foreignId('city_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->index('user_id', 'user_id_index');
         });
     }
 
