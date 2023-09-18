@@ -26,5 +26,7 @@ class FormRequestServiceProvider extends ServiceProvider
         BackofficeContracts\UpdateCategoryGroupRequestContract::class => BackofficeRequests\UpdateCategoryGroupRequest::class,
         BackofficeContracts\StoreCategoryRequestContract::class => BackofficeRequests\StoreCategoryRequest::class,
         BackofficeContracts\UpdateCategoryRequestContract::class => BackofficeRequests\UpdateCategoryRequest::class,
+        BackofficeContracts\StoreProductRequestContract::class => BackofficeRequests\StoreProductRequest::class,
+        BackofficeContracts\UpdateProductRequestContract::class => BackofficeRequests\UpdateProductRequest::class,
     ];
 }

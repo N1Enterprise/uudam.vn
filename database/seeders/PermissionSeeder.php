@@ -60,6 +60,11 @@ class PermissionSeeder extends Seeder
             'categories.store',
             'categories.update',
             'categories.delete',
+
+            'products.index',
+            'products.store',
+            'products.update',
+            'products.delete',
         ];
 
 

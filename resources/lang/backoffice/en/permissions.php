@@ -47,4 +47,9 @@ return [
     'categories.store' => 'Create Category',
     'categories.update' => 'Update Category',
     'categories.delete' => 'Delete Category',
+    'products' => 'Products',
+    'products.index' => 'View Product List',
+    'products.store' => 'Create Product',
+    'products.update' => 'Update Product',
+    'products.delete' => 'Delete Product',
 ];

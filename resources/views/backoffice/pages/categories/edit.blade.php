@@ -62,8 +62,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Category Group') }} *</label>
-                                    <select name="category_group_id" placeholder="{{ __('Category Group') }}" data-original-title="{{ __('Category Group') }}" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker" required>
-                                        <option value="">--{{ __('Select Category Group') }}--</option>
+                                    <select name="category_group_id" title="{{ __('Select Category Group') }}" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker" required>
                                         @foreach($categoryGroups as $cat)
                                         <option value="{{ $cat->id }}" {{ old('category_group_id', $category->category_group_id) == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                         @endforeach
@@ -104,7 +103,7 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('featured', boolean($category->featured) ? 1 : 0) == '1'  ? 'checked' : ''}} value="1" name="featured"/>
+												<input type="checkbox" {{ old('featured', boolean($category->featured) ? 1 : 0) == '1'  ? 'checked' : '' }} value="1" name="featured"/>
 												<span></span>
 											</label>
 										</span>
@@ -116,7 +115,7 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', boolean($category->status) ? 1 : 0) == '1'  ? 'checked' : ''}} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', boolean($category->status) ? 1 : 0) == '1'  ? 'checked' : '' }} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>

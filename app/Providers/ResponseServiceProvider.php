@@ -33,5 +33,8 @@ class ResponseServiceProvider extends ServiceProvider
         BackofficeContracts\UpdateCategoryGroupResponseContract::class => BackofficeResponses\UpdateCategoryGroupResponse::class,
         BackofficeContracts\StoreCategoryResponseContract::class => BackofficeResponses\StoreCategoryResponse::class,
         BackofficeContracts\UpdateCategoryResponseContract::class => BackofficeResponses\UpdateCategoryResponse::class,
+        BackofficeContracts\ListProductResponseContract::class => BackofficeResponses\ListProductResponse::class,
+        BackofficeContracts\StoreProductResponseContract::class => BackofficeResponses\StoreProductResponse::class,
+        BackofficeContracts\UpdateProductResponseContract::class => BackofficeResponses\UpdateProductResponse::class,
     ];
 }

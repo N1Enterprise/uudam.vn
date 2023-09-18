@@ -51,47 +51,70 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
+                                    @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group">
 									<label>{{ __('Slug') }} *</label>
-									<input type="text" class="form-control" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug') }}" required>
+									<input type="text" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug') }}" required>
+                                    @error('slug')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group">
                                     <label>{{ __('Category Group') }} *</label>
-                                    <select name="category_group_id" placeholder="{{ __('Category Group') }}" data-original-title="{{ __('Category Group') }}" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker" required>
-                                        <option value="">--{{ __('Select Category Group') }}--</option>
+                                    <select name="category_group_id" title="--{{ __('Select Category Group') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($categoryGroups as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('category_group_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
 									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+                                    @error('order')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group">
 									<label>{{ __('Icon Image') }}</label>
-									<input type="file" class="form-control" name="icon_image" placeholder="{{ __('Enter Icon Image') }}" value="{{ old('icon_image') }}">
+									<input type="file" class="form-control {{ $errors->has('icon_image') ? 'is-invalid' : '' }}" name="icon_image" placeholder="{{ __('Enter Icon Image') }}" value="{{ old('icon_image') }}">
+                                    @error('icon_image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group">
 									<label>{{ __('Description') }}</label>
-                                    <textarea unselectable="on" name="description" rows="3" class="form-control">{{ old('description') }}</textarea>
+                                    <textarea unselectable="on" name="description" rows="3" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}">{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group">
 									<label>{{ __('Meta Title') }}</label>
-									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title') }}">
+									<input type="text" class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title') }}">
+                                    @error('meta_title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group">
 									<label>{{ __('Meta Description') }}</label>
-									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description') }}">
+									<input type="text" class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description') }}">
+                                    @error('meta_description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 								</div>
 
                                 <div class="form-group row">

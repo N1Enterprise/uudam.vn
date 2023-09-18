@@ -43,3 +43,9 @@ Route::get('categories/create', [Controllers\CategoryController::class, 'create'
 Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store')->middleware(['can:categories.store']);
 Route::get('categories/{id}', [Controllers\CategoryController::class, 'edit'])->name('categories.edit')->middleware(['can:categories.update']);
 Route::put('categories/{id}', [Controllers\CategoryController::class, 'update'])->name('categories.update')->middleware(['can:categories.update']);
+
+Route::get('products', [Controllers\ProductController::class, 'index'])->name('products.index')->middleware(['can:products.index']);
+Route::get('products/create', [Controllers\ProductController::class, 'create'])->name('products.create')->middleware(['can:products.store']);
+Route::post('products', [Controllers\ProductController::class, 'store'])->name('products.store')->middleware(['can:products.store']);
+Route::get('products/{id}', [Controllers\ProductController::class, 'edit'])->name('products.edit')->middleware(['can:products.update']);
+Route::put('products/{id}', [Controllers\ProductController::class, 'update'])->name('products.update')->middleware(['can:products.update']);

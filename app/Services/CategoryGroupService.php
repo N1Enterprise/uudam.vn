@@ -26,10 +26,11 @@ class CategoryGroupService extends BaseService
         return $result;
     }
 
-    public function allAvailable($columns = ['*'])
+    public function allAvailable($data = [])
     {
         return $this->categoryGroupRepository->modelScopes(['active'])
-            ->all($columns);
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
     }
 
     public function create($attributes = [])
