@@ -16,6 +16,18 @@ class CategoryGroup extends BaseModel
         'order',
         'status',
         'meta_title',
-        'meta_description'
+        'meta_description',
+        'primary_image',
+        'media'
     ];
+
+    protected $casts = [
+        'description' => 'json',
+        'media' => 'json'
+    ];
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

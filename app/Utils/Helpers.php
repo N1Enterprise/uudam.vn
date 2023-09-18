@@ -1,5 +1,6 @@
 <?php
 
+use App\Common\Money;
 use App\Enum\BaseEnum;
 use App\Enum\TimeZoneEnum;
 use Illuminate\Support\Carbon;
@@ -125,7 +126,7 @@ if (! function_exists('float_to_string')) {
     }
 }
 
-if (!function_exists('get_utc_offset')) {
+if (! function_exists('get_utc_offset')) {
     function get_utc_offset($decryptCookie = false)
     {
         $utcOffset = Request::header('X-Timezone-Offset');
@@ -139,5 +140,12 @@ if (!function_exists('get_utc_offset')) {
         }
 
         return $utcOffset ?? 0;
+    }
+}
+
+if (! function_exists('round_money')) {
+    function round_money($money, $currency = null, $round = Money::ROUND_UP)
+    {
+        return Money::roundMoney($money, $currency, $round);
     }
 }

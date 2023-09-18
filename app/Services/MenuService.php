@@ -54,7 +54,12 @@ class MenuService extends BaseService
                                 'permissions' => ['categories.index']
                             ],
                         ]
-                    ]
+                    ],
+                    [
+                        'name' => 'Products',
+                        'link' => route('bo.web.products.index'),
+                        'permissions' => ['products.index']
+                    ],
                 ],
             ],
             [

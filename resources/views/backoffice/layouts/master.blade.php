@@ -149,7 +149,7 @@
 									</div>
 								</div>
 								<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-md">
-									<div class="k-user-card k-margin-b-50 k-margin-b-30-tablet-and-mobile" style="background-image: url({{ asset('assets/media/misc/head_bg_sm.jpg') }})">
+									<div class="k-user-card k-margin-b-50 k-margin-b-30-tablet-and-mobile" style="">
 										<div class="k-user-card__wrapper">
 											<div class="k-user-card__pic">
 												<img alt="Pic" src="{{ asset('assets/img/users/ninja.png') }}" />
@@ -287,12 +287,6 @@
         <script src="{{ asset('js/common/fscommon.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('js/common/main.js') }}" type="text/javascript"></script>
 		<!--end::Page Vendors -->
-
-        <script>
-			const CURRENCY_INPUT_MASK_ALIASES = JSON.parse($('#currencies_input_mask_aliases').val());
-
-			Inputmask.extendAliases(CURRENCY_INPUT_MASK_ALIASES);
-        </script>
 
         @yield('js_datatable')
 		@yield('js_script')

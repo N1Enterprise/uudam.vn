@@ -6,6 +6,7 @@ use App\Classes\AdminAuth;
 use App\Services\MenuService;
 use App\View\Components\Backoffice\PhoneInput;
 use App\View\Components\Backoffice\SearchUsernameInput;
+use App\View\Components\Backoffice\NumberInput;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -37,6 +38,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         Blade::component('search-username-input', SearchUsernameInput::class);
         Blade::component('phone-input', PhoneInput::class);
+        Blade::component('number-input', NumberInput::class);
     }
 
     private function registerViewComposer()
