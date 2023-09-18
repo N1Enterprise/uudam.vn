@@ -70,10 +70,10 @@ class PermissionSeeder extends Seeder
             'attributes.store',
             'attributes.update',
             'attributes.delete',
-            'attribute_values.index',
-            'attribute_values.store',
-            'attribute_values.update',
-            'attribute_values.delete',
+            'attribute-values.index',
+            'attribute-values.store',
+            'attribute-values.update',
+            'attribute-values.delete',
         ];
 
 

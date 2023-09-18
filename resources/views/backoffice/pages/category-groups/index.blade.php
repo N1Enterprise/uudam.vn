@@ -43,6 +43,7 @@
                 <table id="table_category_groups_index" data-searching="true" data-request-url="{{ route('bo.api.category-groups.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
+                            <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Name') }}</th>
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>

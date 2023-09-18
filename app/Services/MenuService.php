@@ -65,8 +65,8 @@ class MenuService extends BaseService
                             ],
                             [
                                 'name' => 'Attribute Values',
-                                'link' => '/',
-                                'permissions' => ['attribute_values.index']
+                                'link' => route('bo.web.attribute-values.index'),
+                                'permissions' => ['attribute-values.index']
                             ],
                         ],
                     ],

@@ -55,3 +55,9 @@ Route::get('attributes/create', [Controllers\AttributeController::class, 'create
 Route::post('attributes', [Controllers\AttributeController::class, 'store'])->name('attributes.store')->middleware(['can:attributes.store']);
 Route::get('attributes/{id}', [Controllers\AttributeController::class, 'edit'])->name('attributes.edit')->middleware(['can:attributes.update']);
 Route::put('attributes/{id}', [Controllers\AttributeController::class, 'update'])->name('attributes.update')->middleware(['can:attributes.update']);
+
+Route::get('attribute-values', [Controllers\AttributeValueController::class, 'index'])->name('attribute-values.index')->middleware(['can:attribute-values.index']);
+Route::get('attribute-values/create', [Controllers\AttributeValueController::class, 'create'])->name('attribute-values.create')->middleware(['can:attribute-values.store']);
+Route::post('attribute-values', [Controllers\AttributeValueController::class, 'store'])->name('attribute-values.store')->middleware(['can:attribute-values.store']);
+Route::get('attribute-values/{id}', [Controllers\AttributeValueController::class, 'edit'])->name('attribute-values.edit')->middleware(['can:attribute-values.update']);
+Route::put('attribute-values/{id}', [Controllers\AttributeValueController::class, 'update'])->name('attribute-values.update')->middleware(['can:attribute-values.update']);

@@ -25,6 +25,13 @@ class AttributeService extends BaseService
         return $result;
     }
 
+    public function allAvailable($data = [])
+    {
+        return $this->attributeRepository
+            ->modelScopes(['active'])
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function show($id, $data = [])
     {
         return $this->attributeRepository

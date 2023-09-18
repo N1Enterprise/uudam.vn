@@ -17,8 +17,8 @@ class AttributeController extends BaseApiController
 
     public function index(Request $request)
     {
-        $categories = $this->attributeService->searchByAdmin($request->all());
+        $attributes = $this->attributeService->searchByAdmin($request->all());
 
-        return $this->response(ListAttributeResponseContract::class, $categories);
+        return $this->response(ListAttributeResponseContract::class, $attributes);
     }
 }

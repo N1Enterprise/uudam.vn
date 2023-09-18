@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Admin Manage';
+	$title = __('Attribute Value');
 
 	$breadcrumbs = [
 		[
@@ -23,16 +23,16 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Admins') }}
+                        {{ __('Attribute Value') }}
                     </h3>
                 </div>
-                @canAny(['admins.store'])
+                @canAny(['attribute-values.store'])
                 <div class="k-portlet__head-toolbar">
                     <div class="k-portlet__head-toolbar-wrapper">
-                        @can('admins.store')
-                        <a href="{{ route('bo.web.admins.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
+                        @can('attribute-values.store')
+                        <a href="{{ route('bo.web.attribute-values.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Admin') }}
+                            {{ __('Create Attribute Value') }}
                         </a>
                         @endcan
                     </div>
@@ -40,16 +40,16 @@
                 @endcan
             </div>
             <div class="k-portlet__body">
-                <table id="table_roles_index" data-searching="true" data-request-url="{{ route('bo.api.admins.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+                <table id="table_attribute_values_index" data-searching="true" data-request-url="{{ route('bo.api.attribute-values.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-property="email">{{ __('Email') }}</th>
-                            <th data-property="name">{{ __('Name') }}</th>
-                            <th data-orderable="false" data-property="role" data-render-callback="tableCallbackFnRenderRole">{{ __('Role_Label') }}</th>
+                            <th data-property="value">{{ __('Value') }}</th>
+                            <th data-property="order">{{ __('Order') }}</th>
+                            <th data-orderable="false" data-property="attribute.name">{{ __('Attribute Name') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="last_login_at">{{ __('Last Login At') }}</th>
+                            <th data-property="updated_at">{{ __('Updated At') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
                         </tr>
                     </thead>
@@ -65,6 +65,22 @@
 @component('backoffice.partials.datatable') @endcomponent
 
 @section('js_script')
-@include('backoffice.pages.admins.js-pages.index-script')
-@endsection
+<script>
+    function renderCallbackCategories(data, type, full) {
+        const count = data?.length || 0;
 
+        if (! count) {
+            return;
+        }
+
+        const categoriesBadge = data.map((category, index) => {
+            return $('<span>', { class: `mr-1 mt-1` })
+                    .append(`<span class="k-badge k-badge--brand k-badge--inline k-badge--outline k-badge--pill">${data_get(category, 'name')}</span>`).prop('outerHTML');
+        });
+
+        const container = $('<div>', { class: 'category-see-more' }).append(categoriesBadge.join(''));
+
+        return container.prop('outerHTML');
+    }
+</script>
+@endsection

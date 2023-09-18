@@ -10,9 +10,13 @@ class AttributeValue extends BaseModel
 
     protected $fillable = [
         'value',
-        'color',
         'attribute_id',
         'order',
         'status'
     ];
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 }
