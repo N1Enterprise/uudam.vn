@@ -52,4 +52,16 @@ return [
     'products.store' => 'Create Product',
     'products.update' => 'Update Product',
     'products.delete' => 'Delete Product',
+
+    'attributes' => 'Attributes',
+    'attribute_values' => 'Attribute Values',
+
+    'attributes.index' => 'View Attribute List',
+    'attributes.store' => 'Create Attribute',
+    'attributes.update' => 'Update Attribute',
+    'attributes.delete' => 'Delete Attribute',
+    'attribute_values.index' => 'View Attribute Value List',
+    'attribute_values.store' => 'Create Attribute Value',
+    'attribute_values.update' => 'Update Attribute Value',
+    'attribute_values.delete' => 'Delete Attribute Value',
 ];

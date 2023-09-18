@@ -9,6 +9,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MAINTENANCE_START_DATE = 'maintenance_start_date';
     public const MAINTENANCE_END_DATE = 'maintenance_end_date';
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
+    public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
 
     public static function all(): array
     {
@@ -18,6 +19,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::MAINTENANCE_START_DATE,
             self::MAINTENANCE_END_DATE,
             self::MAINTENANCE_MESSAGE,
+            self::PRODUCT_ATTRIBUTE_TYPES,
         ];
     }
 }

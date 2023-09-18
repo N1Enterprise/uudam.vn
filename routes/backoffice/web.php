@@ -49,3 +49,9 @@ Route::get('products/create', [Controllers\ProductController::class, 'create'])-
 Route::post('products', [Controllers\ProductController::class, 'store'])->name('products.store')->middleware(['can:products.store']);
 Route::get('products/{id}', [Controllers\ProductController::class, 'edit'])->name('products.edit')->middleware(['can:products.update']);
 Route::put('products/{id}', [Controllers\ProductController::class, 'update'])->name('products.update')->middleware(['can:products.update']);
+
+Route::get('attributes', [Controllers\AttributeController::class, 'index'])->name('attributes.index')->middleware(['can:attributes.index']);
+Route::get('attributes/create', [Controllers\AttributeController::class, 'create'])->name('attributes.create')->middleware(['can:attributes.store']);
+Route::post('attributes', [Controllers\AttributeController::class, 'store'])->name('attributes.store')->middleware(['can:attributes.store']);
+Route::get('attributes/{id}', [Controllers\AttributeController::class, 'edit'])->name('attributes.edit')->middleware(['can:attributes.update']);
+Route::put('attributes/{id}', [Controllers\AttributeController::class, 'update'])->name('attributes.update')->middleware(['can:attributes.update']);

@@ -43,6 +43,20 @@ class RoleService extends BaseService
                 'products.update',
                 'products.delete',
             ],
+            'attributes' => [
+                'attributes' => [
+                    'attributes.index',
+                    'attributes.store',
+                    'attributes.update',
+                    'attributes.delete',
+                ],
+                'attribute_values' => [
+                    'attribute_values.index',
+                    'attribute_values.store',
+                    'attribute_values.update',
+                    'attribute_values.delete',
+                ],
+            ],
         ],
         'systems' => [
             'system-settings' => [

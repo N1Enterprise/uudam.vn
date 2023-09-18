@@ -28,4 +28,5 @@ Route::prefix('v1')->group(function () {
     Route::get('category-groups', [Api\CategoryGroupController::class, 'index'])->name('category-groups.index')->middleware(['can:category-groups.index']);
     Route::get('categories', [Api\CategoryController::class, 'index'])->name('categories.index')->middleware(['can:categories.index']);
     Route::get('products', [Api\ProductController::class, 'index'])->name('products.index')->middleware(['can:products.index']);
+    Route::get('attributes', [Api\AttributeController::class, 'index'])->name('attributes.index')->middleware(['can:attributes.index']);
 });
