@@ -35,6 +35,9 @@ class CreateProductsTable extends Migration
              * ]
              */
             $table->json('media')->nullable();
+            $table->morphs('created_by');
+            $table->morphs('updated_by');
+
             $table->timestamps();
             $table->softDeletes();
         });

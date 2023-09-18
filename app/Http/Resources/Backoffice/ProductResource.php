@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Backoffice;
 
-use App\Enum\ActivationStatusEnum;
 use Illuminate\Support\Facades\Route;
 
 class ProductResource extends BaseJsonResource
@@ -12,6 +11,19 @@ class ProductResource extends BaseJsonResource
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
+            'code' => $this->code,
+            'slug' => $this->slug,
+            'branch' => $this->branch,
+            'min_amount' => $this->min_amount,
+            'min_amount' => $this->max_amount,
+            'type' => $this->type,
+            'type_name' => $this->type_name,
+            'status' => $this->status,
+            'status_name' => $this->status_name,
+            'primary_image' => $this->primary_image,
+            'media' => $this->media,
+            'created_by' => new CreatedByResource($this->createdBy),
+            'updated_by' => new UpdatedByResource($this->updatedBy),
         ], $this->generateActionPermissions());
     }
 

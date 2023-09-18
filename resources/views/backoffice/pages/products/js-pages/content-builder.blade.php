@@ -17,10 +17,7 @@
 <script src="{{ asset('assets/vendors/custom/bootstrap3-editable/js/bootstrap-editable.js') }}" type="text/javascript"></script>
 
 <script>
-    // Modules\Messaging\Enum\MessageContentBuilderType
     const MESSAGE_CONTENT_BUILDER_TYPE = {
-        TEXTAREA_EDITOR: 'textarea_editor',
-        HTML_EDITOR: 'html_editor',
         BLOCK_EDITOR: 'block_editor',
     }
 
@@ -82,8 +79,7 @@
             }
 
             api?.saver?.save()?.then((content) => {
-                PLUGIN_BUILDER.setValue(content);
-                CONTENT_REVIEW.buildHTML(PLUGIN_BUILDER_EDITORJS.toHTML(content));
+                PLUGIN_BUILDER.appendTo(content);
             });
         },
         setValue: (content) => {
@@ -93,7 +89,6 @@
                         ? PLUGIN_BUILDER_EDITORJS.plugin.render(content)
                         : PLUGIN_BUILDER_EDITORJS.plugin.clear();
 
-                    CONTENT_REVIEW.buildHTML(PLUGIN_BUILDER_EDITORJS.toHTML(content));
                 });
         },
         toHTML: (content) => {
@@ -108,15 +103,19 @@
         },
         toRawContent: (content) => {
             return JSON.stringify(content);
-        }
+        },
+        appendTo: (content) => {
+            $(`[data-builder-ref="form_builder_dom"]`).val(PLUGIN_BUILDER_EDITORJS.toRawContent(content));
+        },
     };
 
     var PLUGIN_BUILDER = {
         plugin: null,
         value: {},
         builder_type: null,
-        language: null,
+        builder: null,
         build: (builder, plugin) => {
+            PLUGIN_BUILDER.builder = builder;
             switch (plugin) {
                 case 'editorjs':
                     PLUGIN_BUILDER.plugin = PLUGIN_BUILDER_EDITORJS.make(builder);
@@ -128,41 +127,11 @@
         },
 
         setValue: (value) => {
-            if (PLUGIN_BUILDER?.language) {
-                PLUGIN_BUILDER.values[PLUGIN_BUILDER?.language] = value;
-            }
+            PLUGIN_BUILDER.plugin.setValue(value);
         },
 
-        setValues: (values) => {
-            PLUGIN_BUILDER.values = values;
-        },
-
-        getValueFormByLanguage: (languageCode) => {
-            return PLUGIN_BUILDER?.plugin?.toRawContent(PLUGIN_BUILDER.values?.[languageCode] || '');
-        },
-
-        setPlaceholder: (value) => {},
-
-        setLanguage: (languageCode) => {
-            PLUGIN_BUILDER.language = languageCode;
-        },
-
-        setPluginValueByLanguage: (languageCode, builderType = null) => {
-            const pluginContent = builderType && PLUGIN_BUILDER.builder_type && builderType !== PLUGIN_BUILDER.builder_type
-                ? ''
-                : PLUGIN_BUILDER.values?.[languageCode] || '';
-
-            PLUGIN_BUILDER?.plugin?.setValue(pluginContent);
-        },
-
-        getBuilderType: () => {
-            return PLUGIN_BUILDER.builder_type;
-        },
-
-        setBuilderType: (type) => {
-            PLUGIN_BUILDER.builder_type = type;
+        appendTo: (content) => {
+            PLUGIN_BUILDER.plugin.appendTo(content);
         },
     }
-
-    PLUGIN_BUILDER.build('block_editor', 'editorjs');
 </script>
