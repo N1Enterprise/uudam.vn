@@ -8,26 +8,31 @@ use App\Contracts\Responses\Backoffice\DeleteInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\StoreInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
 use App\Services\InventoryService;
+use App\Services\ProductService;
 
 class InventoryController extends BaseController
 {
     public $inventoryService;
+    public $productService;
 
-    public function __construct(InventoryService $inventoryService)
+    public function __construct(InventoryService $inventoryService, ProductService $productService)
     {
         $this->inventoryService = $inventoryService;
+        $this->productService = $productService;
     }
 
     public function index()
     {
+        // $products = $this->productService->allAvailable(['with' => 'categories']);
+
+        // dd($products);
         return view('backoffice.pages.inventories.index');
     }
 
     public function create()
     {
-        $inventory = $this->attributeService->allAvailable();
 
-        return view('backoffice.pages.inventories.create', compact('inventory'));
+        return view('backoffice.pages.inventories.create');
     }
 
     public function edit($id)

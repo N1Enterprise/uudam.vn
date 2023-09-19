@@ -83,8 +83,8 @@ class MenuService extends BaseService
                 'subs' => [
                     [
                         'name' => 'Inventories',
-                        'link' => '/',
-                        'permissions' => [],
+                        'link' => route('bo.web.inventories.index'),
+                        'permissions' => ['inventories.index'],
                     ],
                 ],
             ],

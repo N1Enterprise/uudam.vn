@@ -12,7 +12,7 @@ class CategoryGroup extends BaseModel
         'name',
         'slug',
         'description',
-        'icon_image',
+        'primary_image',
         'order',
         'status',
         'meta_title',
