@@ -69,11 +69,14 @@ class PermissionSeeder extends Seeder
             'attributes.index',
             'attributes.store',
             'attributes.update',
-            'attributes.delete',
             'attribute-values.index',
             'attribute-values.store',
             'attribute-values.update',
             'attribute-values.delete',
+            'inventories.index',
+            'inventories.store',
+            'inventories.update',
+            'inventories.delete',
         ];
 
 

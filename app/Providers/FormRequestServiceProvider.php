@@ -32,5 +32,7 @@ class FormRequestServiceProvider extends ServiceProvider
         BackofficeContracts\UpdateAttributeRequestContract::class => BackofficeRequests\UpdateAttributeRequest::class,
         BackofficeContracts\StoreAttributeValueRequestContract::class => BackofficeRequests\StoreAttributeValueRequest::class,
         BackofficeContracts\UpdateAttributeValueRequestContract::class => BackofficeRequests\UpdateAttributeValueRequest::class,
+        BackofficeContracts\StoreInventoryRequestContract::class => BackofficeRequests\StoreInventoryRequest::class,
+        BackofficeContracts\UpdateInventoryRequestContract::class => BackofficeRequests\UpdateInventoryRequest::class,
     ];
 }

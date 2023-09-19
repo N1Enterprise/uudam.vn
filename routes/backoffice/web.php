@@ -62,3 +62,10 @@ Route::post('attribute-values', [Controllers\AttributeValueController::class, 's
 Route::get('attribute-values/{id}', [Controllers\AttributeValueController::class, 'edit'])->name('attribute-values.edit')->middleware(['can:attribute-values.update']);
 Route::put('attribute-values/{id}', [Controllers\AttributeValueController::class, 'update'])->name('attribute-values.update')->middleware(['can:attribute-values.update']);
 Route::delete('attribute-values/{id}', [Controllers\AttributeValueController::class, 'destroy'])->name('attribute-values.delete')->middleware(['can:attribute-values.delete']);
+
+Route::get('inventories', [Controllers\AttributeValueController::class, 'index'])->name('inventories.index')->middleware(['can:inventories.index']);
+Route::get('inventories/create', [Controllers\AttributeValueController::class, 'create'])->name('inventories.create')->middleware(['can:inventories.store']);
+Route::post('inventories', [Controllers\AttributeValueController::class, 'store'])->name('inventories.store')->middleware(['can:inventories.store']);
+Route::get('inventories/{id}', [Controllers\AttributeValueController::class, 'edit'])->name('inventories.edit')->middleware(['can:inventories.update']);
+Route::put('inventories/{id}', [Controllers\AttributeValueController::class, 'update'])->name('inventories.update')->middleware(['can:inventories.update']);
+Route::delete('inventories/{id}', [Controllers\AttributeValueController::class, 'destroy'])->name('inventories.delete')->middleware(['can:inventories.delete']);

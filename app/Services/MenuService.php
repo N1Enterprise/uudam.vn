@@ -78,6 +78,17 @@ class MenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Stock',
+                'icon' => 'fa fa-cubes',
+                'subs' => [
+                    [
+                        'name' => 'Inventories',
+                        'link' => '/',
+                        'permissions' => [],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'Systems',
                 'icon' => 'flaticon2-settings',
                 'subs' => [

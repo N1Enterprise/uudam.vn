@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Attribute;
+use App\Models\Inventory;
 use App\Repositories\BaseRepository;
 use App\Repositories\Contracts\AttributeRepositoryContract;
 
@@ -10,6 +10,6 @@ class AttributeRepository extends BaseRepository implements AttributeRepositoryC
 {
     public function model()
     {
-        return Attribute::class;
+        return Inventory::class;
     }
 }
