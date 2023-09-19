@@ -19,7 +19,6 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
-
 @section('style')
 <style>
     .upload_image_custom_append_icon {
@@ -170,7 +169,6 @@
 	</div>
 </div>
 @endsection
-
 
 @section('js_script')
 @include('backoffice.pages.category-groups.js-pages.content-builder')

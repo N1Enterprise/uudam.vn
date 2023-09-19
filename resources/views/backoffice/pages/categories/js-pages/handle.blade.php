@@ -35,7 +35,7 @@
     };
 
     var FORM_SLUG = {
-        element: $('#form_category_group').find('[name="slug"]'),
+        element: $('#form_category').find('[name="slug"]'),
         onChange: () => {
 
         },
@@ -46,7 +46,7 @@
     };
 
     var FORM_NAME = {
-        element: $('#form_category_group').find('[name="name"]'),
+        element: $('#form_category').find('[name="name"]'),
         onChange: () => {
             FORM_NAME.element.on('change', function() {
                 const name = $(this).val();
@@ -57,7 +57,7 @@
     };
 
     var FORM_DESCRIPTION = {
-        element: $('#form_category_group').find('[name="description"]'),
+        element: $('#form_category').find('[name="description"]'),
         setup: () => {
             FORM_DESCRIPTION.onChange();
             FORM_DESCRIPTION.pluginBuilderSetup();

@@ -19,8 +19,36 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
-@section('content_body')
 
+@section('style')
+<style>
+    .upload_image_custom_append_icon {
+        top: 50%;
+        right: 0;
+        transform: translate(-6%, -50%);
+        color: #4346ce!important;
+        border: 1px solid #4346ce!important;
+    }
+    .note-toolbar-wrapper.panel-default {
+        margin-bottom: 10px!important;
+    }
+    #form_builder_dom.styled {
+        padding: 10px 35px;
+        border: 1px solid #ebedf2;
+        border-radius: 3px;
+    }
+    .ce-block__content,
+    .ce-toolbar__content {
+        max-width: unset!important;
+    }
+    .codex-editor__redactor {
+        padding-bottom: 0px!important;
+        min-height: 200px;
+    }
+</style>
+@endsection
+
+@section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
 		<div class="col-md-6">
@@ -43,7 +71,7 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="store_category" id="store_category" method="post" action="{{ route('bo.web.categories.store') }}" enctype="multipart/form-data">
+				<form class="k-form" name="form_category" id="form_category" method="post" action="{{ route('bo.web.categories.store') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
@@ -86,20 +114,43 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Icon Image') }}</label>
-									<input type="file" class="form-control {{ $errors->has('icon_image') ? 'is-invalid' : '' }}" name="icon_image" placeholder="{{ __('Enter Icon Image') }}" value="{{ old('icon_image') }}">
-                                    @error('icon_image')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-								</div>
+                                    <label>{{ __('Primary Image') }} *</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="upload_image_custom position-relative">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <div data-image-ref-wapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                    <div class="d-flex align-items-center h-100">
+                                                        <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
+                                                        <span data-image-ref-delete="primary" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                    </div>
+                                                </div>
+                                                <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
+                                                    <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
+                                                    <i class="flaticon2-image-file"></i>
+                                                    <span>{{ __('Upload') }}</span>
+                                                </label>
+                                            </div>
+                                            <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
+                                            @anyerror('primary_image, primary_image.file, primary_image.path')
+                                            {{ $displayMessages() }}
+                                            @endanyerror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="image_primary_image_review">
+                                                <div data-image-ref-review-wapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                    <img data-image-ref-review-img="primary" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
-									<label>{{ __('Description') }}</label>
-                                    <textarea unselectable="on" name="description" rows="3" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}">{{ old('description') }}</textarea>
-                                    @error('description')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-								</div>
+                                    <label for="">{{ __('Description') }}</label>
+                                    <div id="form_builder_dom" class="styled"></div>
+                                    <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description') }}">
+                                </div>
 
                                 <div class="form-group">
 									<label>{{ __('Meta Title') }}</label>
@@ -150,7 +201,6 @@
 						</div>
 					</div>
 				</form>
-
 				<!--end::Form-->
 			</div>
 		</div>
@@ -159,6 +209,6 @@
 @endsection
 
 @section('js_script')
-
+@include('backoffice.pages.categories.js-pages.content-builder')
+@include('backoffice.pages.categories.js-pages.handle')
 @endsection
-

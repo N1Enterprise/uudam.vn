@@ -19,8 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->foreignId('category_group_id')->index();
             $table->string('slug')->unique()->index();
-            $table->string('icon_image')->nullable();
-            $table->text('description')->nullable();
+            $table->text('primary_image')->nullable();
+            $table->json('description')->nullable();
             $table->tinyInteger('status')->default(1)->comment(ActivationStatusEnum::class);
             $table->integer('order')->nullable();
             $table->tinyInteger('featured')->default(0)->comment(ActivationStatusEnum::class);

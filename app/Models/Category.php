@@ -14,12 +14,16 @@ class Category extends BaseModel
         'slug',
         'category_group_id',
         'description',
-        'icon_image',
+        'primary_image',
         'status',
         'order',
         'featured',
         'meta_title',
         'meta_description',
+    ];
+
+    protected $casts = [
+        'description' => 'json',
     ];
 
     public function categoryGroup()
