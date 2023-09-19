@@ -61,3 +61,4 @@ Route::get('attribute-values/create', [Controllers\AttributeValueController::cla
 Route::post('attribute-values', [Controllers\AttributeValueController::class, 'store'])->name('attribute-values.store')->middleware(['can:attribute-values.store']);
 Route::get('attribute-values/{id}', [Controllers\AttributeValueController::class, 'edit'])->name('attribute-values.edit')->middleware(['can:attribute-values.update']);
 Route::put('attribute-values/{id}', [Controllers\AttributeValueController::class, 'update'])->name('attribute-values.update')->middleware(['can:attribute-values.update']);
+Route::delete('attribute-values/{id}', [Controllers\AttributeValueController::class, 'destroy'])->name('attribute-values.delete')->middleware(['can:attribute-values.delete']);

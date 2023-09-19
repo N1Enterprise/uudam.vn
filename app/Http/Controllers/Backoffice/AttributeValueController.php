@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Contracts\Requests\Backoffice\StoreAttributeValueRequestContract;
 use App\Contracts\Requests\Backoffice\UpdateAttributeValueRequestContract;
+use App\Contracts\Responses\Backoffice\DeleteAttributeValueResponseContract;
 use App\Contracts\Responses\Backoffice\StoreAttributeValueResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateAttributeValueResponseContract;
 use App\Services\AttributeService;
@@ -52,5 +53,12 @@ class AttributeValueController extends BaseController
         $attributeValue = $this->attributeValueService->update($request->validated(), $id);
 
         return $this->response(UpdateAttributeValueResponseContract::class, $attributeValue);
+    }
+
+    public function destroy($id)
+    {
+        $status = $this->attributeValueService->delete($id);
+
+        return $this->response(DeleteAttributeValueResponseContract::class, ['status' => $status]);
     }
 }

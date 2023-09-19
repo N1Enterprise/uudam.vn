@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\DB;
 class AttributeService extends BaseService
 {
     public $attributeRepository;
+    public $attributeValueService;
 
-    public function __construct(AttributeRepositoryContract $attributeRepository)
+    public function __construct(AttributeRepositoryContract $attributeRepository, AttributeValueService $attributeValueService)
     {
         $this->attributeRepository = $attributeRepository;
+        $this->attributeValueService = $attributeValueService;
     }
 
     public function searchByAdmin($data = [])

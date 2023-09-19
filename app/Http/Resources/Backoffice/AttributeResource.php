@@ -19,7 +19,9 @@ class AttributeResource extends BaseJsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'categories' => $this->whenLoaded('categories', function() {
-                return CategoryResource::collection($this->categories);
+                return optional($this->categories)->map(function($category) {
+                    return $category->only(['id', 'name']);
+                });
             }, []),
         ], $this->generateActionPermissions());
     }

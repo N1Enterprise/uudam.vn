@@ -48,4 +48,13 @@ class AttributeValueService extends BaseService
             return $attributeValue;
         });
     }
+
+    public function delete($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $status = $this->attributeValueRepository->delete($id);
+
+            return $status;
+        });
+    }
 }

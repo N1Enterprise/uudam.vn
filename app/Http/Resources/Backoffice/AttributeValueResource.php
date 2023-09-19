@@ -25,10 +25,12 @@ class AttributeValueResource extends BaseJsonResource
     public function generateActionPermissions()
     {
         $updatePermission = $this->getPermissionByAction('update');
+        $deletePermission = $this->getPermissionByAction('delete');
 
         return array_filter([
             'actions' => array_filter([
                 'update' => $updatePermission ? Route::findByName('bo.web.attribute-values.edit', ['id' => $this->getKey()]) : null,
+                'delete' => $deletePermission ? Route::findByName('bo.web.attribute-values.delete', ['id' => $this->getKey()]) : null,
             ]),
         ]);
     }
