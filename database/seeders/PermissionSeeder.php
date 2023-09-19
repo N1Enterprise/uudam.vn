@@ -65,6 +65,15 @@ class PermissionSeeder extends Seeder
             'products.store',
             'products.update',
             'products.delete',
+
+            'attributes.index',
+            'attributes.store',
+            'attributes.update',
+            'attributes.delete',
+            'attribute-values.index',
+            'attribute-values.store',
+            'attribute-values.update',
+            'attribute-values.delete',
         ];
 
 

@@ -45,6 +45,7 @@
                 <table data-searching="true" data-request-url="{{ route('bo.api.roles.index') }}" class="datatable table table-striped- table-bordered table-hover table-checkable fs-table-object roleTable" id="k_table_1">
                     <thead>
                         <tr>
+                            <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Role_Label') }}</th>
                             <th data-property="users_count">{{ __('Number Of Users') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>
