@@ -27,6 +27,13 @@ class CategoryService extends BaseService
         return $result;
     }
 
+    public function allAvailable($data = [])
+    {
+        return $this->categoryRepository->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {

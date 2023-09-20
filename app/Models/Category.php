@@ -26,13 +26,18 @@ class Category extends BaseModel
         'description' => 'json',
     ];
 
+    public function getFeaturedNameAttribute()
+    {
+        return ActivationStatusEnum::findConstantLabel($this->featured);
+    }
+
     public function categoryGroup()
     {
         return $this->belongsTo(CategoryGroup::class, 'category_group_id');
     }
 
-    public function getFeaturedNameAttribute()
+    public function products()
     {
-        return ActivationStatusEnum::findConstantLabel($this->featured);
+        return $this->belongsToMany(Product::class, 'category_products');
     }
 }

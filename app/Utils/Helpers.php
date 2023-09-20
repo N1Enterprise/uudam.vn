@@ -149,3 +149,48 @@ if (! function_exists('round_money')) {
         return Money::roundMoney($money, $currency, $round);
     }
 }
+
+
+if (! function_exists('generate_combinations'))
+{
+    /**
+     * Generate all the possible combinations among a set of nested arrays.
+     *
+     * @param  array   $data  The entrypoint array container.
+     * @param  array   &$all  The final container (used internally).
+     * @param  array   $group The sub container (used internally).
+     * @param  int     $k     The actual key for value to append (used internally).
+     * @param  string  $value The value to append (used internally).
+     * @param  integer $i     The key index (used internally).
+     * @param  int     $key   The kay of parent array (used internally).
+     * @return array          The result array with all posible combinations.
+     */
+    function generate_combinations(array $data, array &$all = [], array $group = [], $k = null, $value = null, $i = 0, $key = null)
+    {
+        $keys = array_keys($data);
+
+        if ((isset($value) === true) && (isset($k) === true)) {
+            $group[$key][$k] = $value;
+        }
+
+        if ($i >= count($data)){
+            array_push($all, $group);
+        }
+        else {
+            $currentKey = $keys[$i];
+
+            $currentElement = $data[$currentKey];
+
+            if(count($currentElement) <= 0){
+                generate_combinations($data, $all, $group, null, null, $i + 1, $currentKey);
+            }
+            else{
+                foreach ($currentElement as $k => $val){
+                    generate_combinations($data, $all, $group, $k, $val, $i + 1, $currentKey);
+                }
+            }
+        }
+
+        return $all;
+    }
+}

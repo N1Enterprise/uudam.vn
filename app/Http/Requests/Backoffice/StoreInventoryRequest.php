@@ -10,8 +10,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
 {
     public function rules(): array
     {
+        dd($this->all());
         return [
-
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }

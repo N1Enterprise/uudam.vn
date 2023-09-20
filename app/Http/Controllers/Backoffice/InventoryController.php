@@ -7,32 +7,54 @@ use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Contracts\Responses\Backoffice\DeleteInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\StoreInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
+use App\Enum\InventoryConditionEnum;
+use App\Services\AttributeService;
+use App\Services\CategoryService;
 use App\Services\InventoryService;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
 
 class InventoryController extends BaseController
 {
     public $inventoryService;
+    public $categoryService;
     public $productService;
+    public $attributeService;
 
-    public function __construct(InventoryService $inventoryService, ProductService $productService)
-    {
+    public function __construct(
+        InventoryService $inventoryService,
+        CategoryService $categoryService,
+        ProductService $productService,
+        AttributeService $attributeService
+    ) {
         $this->inventoryService = $inventoryService;
+        $this->categoryService = $categoryService;
         $this->productService = $productService;
+        $this->attributeService = $attributeService;
     }
 
     public function index()
     {
-        // $products = $this->productService->allAvailable(['with' => 'categories']);
+        $categories = $this->categoryService
+            ->allAvailable(['with' => 'products', 'columns' => ['id', 'name']])
+            ->filter(fn($category) => !$category->products->isEmpty());
 
-        // dd($products);
-        return view('backoffice.pages.inventories.index');
+        $attributes = $this->attributeService
+            ->allAvailable(['with' => 'attributeValues', 'columns' => ['id', 'name']])
+            ->filter(fn($attribute) => !$attribute->attributeValues->isEmpty());
+
+        return view('backoffice.pages.inventories.index', compact('categories', 'attributes'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $variants = $this->attributeService->confirmAttributes($request->input('attribute_values'));
+        $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
+        $product = $this->productService->show($request->input('product_id'));
+        $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
+        $combinations = generate_combinations($variants);
 
-        return view('backoffice.pages.inventories.create');
+        return view('backoffice.pages.inventories.create', compact('attributes', 'product', 'combinations', 'inventoryConditionEnumLabels'));
     }
 
     public function edit($id)
