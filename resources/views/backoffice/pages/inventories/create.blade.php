@@ -59,6 +59,7 @@
                             <div class="col-md-10">
                                 <div class="row">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="product_slug" value="{{ $product->slug }}">
 
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -108,7 +109,7 @@
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label for="">{{ __('Title') }} *</label>
-                            <input type="text" class="form-control" value="{{ old('title') }}" required>
+                            <input type="text" class="form-control" value="{{ old('title', $product->name) }}" required>
                         </div>
 
                         <div class="row">
@@ -121,7 +122,7 @@
                                             data-title="The date when the stock will be available. Default = immediately"
                                         ></i>
                                     </label>
-                                    <input type="datetimepicker" required class="form-control @error('available_from') is-invalid @enderror" name="available_from" value="{{ old('available_from') }}">
+                                    <input type="datetimepicker" class="form-control @error('available_from') is-invalid @enderror" name="available_from" value="{{ old('available_from', date('Y-m-d h:i:s', strtotime(now()))) }}">
                                 </div>
                             </div>
 
@@ -134,7 +135,7 @@
                                             data-title="The quantity allowed to take orders. Must be an integer value. Default = 1"
                                         ></i>
                                     </label>
-                                    <input type="number" class="form-control" value="{{ old('min_order_quantity') }}">
+                                    <input type="number" class="form-control" name="min_order_quantity" value="{{ old('min_order_quantity') }}">
                                 </div>
                             </div>
                         </div>
@@ -147,7 +148,34 @@
                                     data-title="Input more details about the item condition. This will help customers to understand the item."
                                 ></i>
                             </label>
-                            <input type="text" class="form-control" value="{{ old('condition_note') }}">
+                            <input type="text" class="form-control" name="condition_note" value="{{ old('condition_note') }}">
+                        </div>
+
+                        <div class="row d-none" data-toggle-reference="offer_date_setup">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">{{ __('Offer Start Date ') }}
+                                        <i
+                                            data-toggle="tooltip"
+                                            class="flaticon-questions-circular-button"
+                                            data-title="An offer must have a start date. Required if offer price field is given"
+                                        ></i>
+                                    </label>
+                                    <input type="datetimepicker" class="form-control @error('offer_start') is-invalid @enderror" name="offer_start" value="{{ old('offer_start') }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">{{ __('Offer End Date ') }}
+                                        <i
+                                            data-toggle="tooltip"
+                                            class="flaticon-questions-circular-button"
+                                            data-title="An offer must have a start date. Required if offer price field is given"
+                                        ></i>
+                                    </label>
+                                    <input type="datetimepicker" class="form-control @error('offer_end') is-invalid @enderror" name="offer_end" value="{{ old('offer_end') }}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

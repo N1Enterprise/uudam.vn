@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\InventoryRepositoryContract;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class InventoryService extends BaseService
 {
@@ -30,12 +32,30 @@ class InventoryService extends BaseService
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
 
-    public function create($attributes = [])
+    public function create()
+    {
+
+    }
+
+    public function createWithVariants($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $inventory = $this->inventoryRepository->create($attributes);
+            $variants = data_get($attributes, 'variants', []);
+            $skus = array_filter(Arr::wrap(data_get($variants, 'sku', [])));
 
-            return $inventory;
+            foreach ($skus as $index => $sku) {
+                $variant['sku']            = $sku;
+                $variant['condition']      = data_get($variants, ['condition', $index]);
+                $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
+                $variant['purchase_price'] = data_get($variants, ['purchase_price', $index]);
+                $variant['sale_price']     = data_get($variants, ['sale_price', $index]);
+                $variant['offer_price']    = data_get($variants, ['offer_price', $index]);
+                $variant['offer_start']    = $variant['offer_price'] ? data_get($attributes, 'offer_start') : null;
+                $variant['offer_end']      = $variant['offer_price'] ? data_get($attributes, 'offer_end') : null;
+                $variant['slug']           = Str::slug(data_get($attributes, 'product_slug') . ' ' . $sku, '-');
+
+                dd($variant);
+            }
         });
     }
 

@@ -153,4 +153,32 @@
 
         FORM_MASTER.init();
     });
+
+    $(document).ready(function() {
+        $('[data-repeater-delete-custom]').on('click', function() {
+            if (confirm("{{ __('Confirm delete this variant?') }}")) {
+                $(this).parents('[data-repeater-item-custom]').remove();
+            }
+        });
+
+        $('.variant_offer_price [data-type="inputmask_numeric"]').on('change', function() {
+            let hasOfferPrice = false;
+
+            $.each($('.variant_offer_price [data-type="inputmask_numeric"]'), function(index, element) {
+                const price = $(element).val();
+
+                if (!!price) {
+                    hasOfferPrice = true;
+                    return;
+                }
+            });
+
+            if (! hasOfferPrice) {
+                $('[name="offer_start"]').val('');
+                $('[name="offer_end"]').val('');
+            }
+
+            $('[data-toggle-reference="offer_date_setup"]').toggleClass('d-none', !hasOfferPrice);
+        });
+    });
 </script>

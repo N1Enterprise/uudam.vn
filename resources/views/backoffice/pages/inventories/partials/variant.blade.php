@@ -1,14 +1,14 @@
 <div class="variants">
     <div class="variants_repeater">
-        <div data-repeater-list="variants">
+        <div data-repeater-list-custom="variants">
             @foreach($combinations as $combination)
-            <div data-repeater-item class="k-repeater__item" data-repeater-index="{{ $loop->index }}">
+            <div data-repeater-item-custom class="k-repeater__item" data-repeater-index="{{ $loop->index }}">
                 <div class="repeater-wrapper">
                     <div class="repeater-head position-relative">
-                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" aria-expanded="true" aria-controls="variant_{{ $loop->index }}">
+                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" aria-expanded="{{ $errors->isEmpty() ? 'false' : 'true' }}" aria-controls="variant_{{ $loop->index }}">
                             <b>
                                 @foreach($combination as $attrId => $attrValue)
-                                    <input type="hidden" name="variants[{{ $loop->index }}][{{ $attrId }}]" value="{{ key($attrValue) }}">
+                                    <input type="hidden" name="variants[attribute][{{ $loop->index }}][{{ $attrId }}]" value="{{ key($attrValue) }}">
                                     {{ $attributes[$attrId] .' : '. current($attrValue) }}
                                     {{ ($attrValue !== end($combination))?'; ':'' }}
                                 @endforeach
@@ -16,13 +16,13 @@
                         </div>
 
                         <div class="repeater-control">
-                            <button type="button" data-repeater-delete class="btn btn-secondary btn-icon" style="width: 30px!important; height: 30px!important;">
+                            <button type="button" data-repeater-delete-custom class="btn btn-secondary btn-icon" style="width: 30px!important; height: 30px!important;">
                                 <i class="la la-close"></i>
                             </button>
                         </div>
                     </div>
 
-                    <div class="collapse repeater-body" id="variant_{{ $loop->index }}">
+                    <div class="{{ $errors->isEmpty() ? 'collapse' : 'collapsed' }} repeater-body" id="variant_{{ $loop->index }}">
                         <div class="form-group">
                             <label>{{ __('Image') }}
                                 <i
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="upload_image_custom position-relative">
-                                        <input type="text" data-image-ref-path="variant" data-image-ref-index="{{ $loop->index }}" class="form-control variant_image_path" name="path" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;" value="{{ old('primary_image.path') }}">
+                                        <input type="text" data-image-ref-path="variant" data-image-ref-index="{{ $loop->index }}" class="form-control variant_image_path" name="variants[image][{{ $loop->index }}][path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;" value="{{ old("variants.image.$loop->index.path") }}">
                                         <div data-image-ref-wapper="variant" data-image-ref-index="{{ $loop->index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                             <div class="d-flex align-items-center h-100">
                                                 <img data-image-ref-img="variant" data-image-ref-index="{{ $loop->index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -42,7 +42,7 @@
                                             </div>
                                         </div>
                                         <label for="variant_image_file_{{ $loop->index }}" class="variant_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
-                                            <input type="file" name="file" data-image-ref-file="variant" data-image-ref-index="{{ $loop->index }}" id="variant_image_file_{{ $loop->index }}" class="d-none variant_image_file">
+                                            <input type="file" name="variants[image][{{ $loop->index }}][file]" data-image-ref-file="variant" data-image-ref-index="{{ $loop->index }}" id="variant_image_file_{{ $loop->index }}" class="d-none variant_image_file">
                                             <i class="flaticon2-image-file"></i>
                                             <span>{{ __('Upload') }}</span>
                                         </label>
@@ -70,7 +70,16 @@
                                             data-title="SKU (Stock Keeping Unit) is the seller specific identifier. It will help to manage your inventory"
                                         ></i>
                                     </label>
-                                    <input type="text" name="sku" value="{{ old('sku') }}" class="form-control {{ $errors->has('sku') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter sku') }}" >
+                                    <input
+                                        type="text"
+                                        name="variants[sku][{{ $loop->index }}]"
+                                        value="{{ old("variants.sku.$loop->index") }}"
+                                        class="form-control {{ $errors->has("variants.sku.$loop->index") ? 'is-invalid' : '' }}"
+                                        placeholder="{{ __('Enter sku') }}"
+                                    >
+                                    @error("variants.sku.{{ $loop->index }}")
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -83,11 +92,14 @@
                                             data-title="What is the current condition of the product?"
                                         ></i>
                                     </label>
-                                    <select name="condition" class="form-control k_selectpicker">
+                                    <select name="variants[condition][{{ $loop->index }}]" class="form-control k_selectpicker {{ $errors->has("variants.condition.$loop->index") }}">
                                         @foreach($inventoryConditionEnumLabels as $key => $label)
-                                        <option value="{{ $key }}" {{ old('condition') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                                        <option value="{{ $key }}" {{ old("variants[condition][$loop->index]") == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
                                     </select>
+                                    @error("variants.condition.{{ $loop->index }}")
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -102,7 +114,16 @@
                                             data-title="Number of items you have on your warehouse"
                                         ></i>
                                     </label>
-                                    <input type="text" name="stock_quantity" value="{{ old('stock_quantity') }}" class="form-control {{ $errors->has('stock_quantity') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter stock quantity') }}" >
+                                    <input
+                                        type="text"
+                                        name="variants[stock_quantity][{{ $loop->index }}]"
+                                        value="{{ old("variants.stock_quantity.$loop->index") }}"
+                                        class="form-control {{ $errors->has("variants.stock_quantity.$loop->index") ? 'is-invalid' : '' }}"
+                                        placeholder="{{ __('Enter stock quantity') }}"
+                                    >
+                                    @error("variants.stock_quantity.{{ $loop->index }}")
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -116,13 +137,13 @@
                                         ></i>
                                     </label>
                                     <x-number-input
-                                        key="purchase_price"
-                                        name="purchase_price"
-                                        class="form-control {{ $errors->has('purchase_price') ? 'is-invalid' : '' }}"
                                         allow-minus="false"
-                                        value="{{ old('purchase_price') }}"
+                                        key="purchase_price_{{ $loop->index }}"
+                                        name="variants[purchase_price][{{ $loop->index }}]"
+                                        class="form-control {{ $errors->has('variants.purchase_price.'.$loop->index) ? 'is-invalid' : '' }}"
+                                        value='{{ old("variants.purchase_price.$loop->index") }}'
                                     />
-                                    @error('purchase_price')
+                                    @error("variants.purchase_price.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -140,21 +161,21 @@
                                         ></i>
                                     </label>
                                     <x-number-input
-                                        key="sale_price"
-                                        name="sale_price"
-                                        class="form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}"
                                         allow-minus="false"
-                                        value="{{ old('sale_price') }}"
+                                        key="sale_price_{{ $loop->index }}"
+                                        name="variants[sale_price][{{ $loop->index }}]"
+                                        class="form-control {{ $errors->has('variants.sale_price.'.$loop->index) ? 'is-invalid' : '' }}"
+                                        value='{{ old("variants.sale_price.$loop->index") }}'
 
                                     />
-                                    @error('sale_price')
+                                    @error("variants.sale_price.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group variant_offer_price">
                                     <label>{{ __('Offer price') }}
                                         <i
                                             data-toggle="tooltip"
@@ -163,13 +184,13 @@
                                         ></i>
                                     </label>
                                     <x-number-input
-                                        key="offer_price"
-                                        name="offer_price"
-                                        class="form-control {{ $errors->has('offer_price') ? 'is-invalid' : '' }}"
                                         allow-minus="false"
-                                        value="{{ old('offer_price') }}"
+                                        key="offer_price_{{ $loop->index }}"
+                                        name="variants[offer_price][{{ $loop->index }}]"
+                                        class="form-control {{ $errors->has('variants.offer_price.'.$loop->index) ? 'is-invalid' : '' }}"
+                                        value='{{ old("variants.offer_price.$loop->index") }}'
                                     />
-                                    @error('offer_price')
+                                    @error("variants.offer_price.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

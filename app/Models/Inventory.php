@@ -35,4 +35,9 @@ class Inventory extends BaseModel
         'description' => 'json',
         'key_features' => 'json',
     ];
+
+    public function variants()
+    {
+        // return
+    }
 }

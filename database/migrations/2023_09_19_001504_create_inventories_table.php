@@ -20,7 +20,8 @@ class CreateInventoriesTable extends Migration
             $table->foreignId('product_id')->index();
             $table->tinyInteger('condition')->comment(InventoryConditionEnum::class);
             $table->string('condition_note')->nullable();
-            $table->string('sku')->nullable();
+            $table->string('slug')->unique();
+            $table->string('sku')->unique()->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
             $table->json('description')->nullable();
             $table->json('key_features')->nullable();

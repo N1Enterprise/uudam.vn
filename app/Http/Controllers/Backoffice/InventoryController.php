@@ -66,7 +66,7 @@ class InventoryController extends BaseController
 
     public function store(StoreInventoryRequestContract $request)
     {
-        $inventory = $this->inventoryService->create($request->validated());
+        $inventory = $this->inventoryService->createWithVariants($request->validated());
 
         return $this->response(StoreInventoryResponseContract::class, $inventory);
     }
