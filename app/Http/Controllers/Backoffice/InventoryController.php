@@ -8,6 +8,7 @@ use App\Contracts\Responses\Backoffice\DeleteInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\StoreInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
 use App\Enum\InventoryConditionEnum;
+use App\Enum\ProductTypeEnum;
 use App\Services\AttributeService;
 use App\Services\CategoryService;
 use App\Services\InventoryService;
@@ -66,7 +67,13 @@ class InventoryController extends BaseController
 
     public function store(StoreInventoryRequestContract $request)
     {
-        $inventory = $this->inventoryService->createWithVariants($request->validated());
+        dd($request->validated());
+        $product = $this->productService->show($request->product_id);
+        dd($product);
+
+        if ($product->type == ProductTypeEnum::VARIABLE) {
+            $inventory = $this->inventoryService->createWithVariants($request->validated());
+        }
 
         return $this->response(StoreInventoryResponseContract::class, $inventory);
     }
