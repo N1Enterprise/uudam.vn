@@ -9,6 +9,7 @@ use App\Contracts\Responses\Backoffice\StoreInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
 use App\Enum\InventoryConditionEnum;
 use App\Enum\ProductTypeEnum;
+use App\Models\Inventory;
 use App\Services\AttributeService;
 use App\Services\CategoryService;
 use App\Services\InventoryService;
@@ -49,20 +50,71 @@ class InventoryController extends BaseController
 
     public function create(Request $request)
     {
-        $variants = $this->attributeService->confirmAttributes($request->input('attribute_values'));
-        $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
         $product = $this->productService->show($request->input('product_id'));
-        $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
-        $combinations = generate_combinations($variants);
+        $inventory = new Inventory();
 
-        return view('backoffice.pages.inventories.create', compact('attributes', 'product', 'combinations', 'inventoryConditionEnumLabels'));
+        $attributes = [];
+        $combinations = [];
+
+        $hasVariant = $product->type == ProductTypeEnum::VARIABLE;
+
+        if ($hasVariant) {
+            $variants = $this->attributeService->confirmAttributes($request->input('attribute_values'));
+            $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
+            $combinations = generate_combinations($variants);
+        }
+
+        $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
+
+        return view('backoffice.pages.inventories.create', compact(
+            'inventory',
+            'product',
+            'hasVariant',
+            'attributes',
+            'combinations',
+            'inventoryConditionEnumLabels'
+        ));
     }
 
     public function edit($id)
     {
-        $inventory = $this->inventoryService->show($id);
+        $inventory = $this->inventoryService->show($id, ['with' => 'attributes', 'attributeValues']);
+        $product = $this->productService->show($inventory->product_id);
 
-        return view('backoffice.pages.inventories.edit', compact('inventory', 'inventory'));
+        $hasVariant = $product->type == ProductTypeEnum::VARIABLE;
+        $attributes = [];
+        $combinations = [];
+
+        if ($hasVariant) {
+            $attributes = $inventory->attributes;
+            $attributeValues = $inventory->attributeValues;
+
+            $attributeValues = collect($attributes)
+                ->mapWithKeys(function($attribute) use ($attributeValues) {
+                    return [
+                        $attribute->id => $attributeValues
+                            ->where('attribute_id', $attribute->id)
+                            ->pluck('id')
+                            ->toArray()
+                    ];
+                })
+                ->toArray();
+
+            $variants = $this->attributeService->confirmAttributes($attributeValues);
+            $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
+            $combinations = generate_combinations($variants);
+        }
+
+        $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
+
+        return view('backoffice.pages.inventories.create', compact(
+            'inventory',
+            'product',
+            'hasVariant',
+            'attributes',
+            'combinations',
+            'inventoryConditionEnumLabels'
+        ));
     }
 
     public function store(StoreInventoryRequestContract $request)
@@ -71,6 +123,8 @@ class InventoryController extends BaseController
 
         if ($product->type == ProductTypeEnum::VARIABLE) {
             $inventory = $this->inventoryService->createWithVariants($request->validated());
+        } else {
+            $inventory = $this->inventoryService->create($request->validated());
         }
 
         return $this->response(StoreInventoryResponseContract::class, $inventory);

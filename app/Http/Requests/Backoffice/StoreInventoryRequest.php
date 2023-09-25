@@ -90,7 +90,6 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants.sale_price.*' => ['required', 'numeric', 'gt:0'],
             'variants.offer_price' => ['nullable', 'array'],
             'variants.offer_price.*' => ['nullable', 'numeric', 'gt:0'],
-            'variants.offer_price' => [],
             'variants.condition' => ['required', 'array'],
             'variants.condition.*' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
         ];
@@ -105,6 +104,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'offer_price' => ['nullable', 'numeric', 'gt:0'],
             'stock_quantity' => ['required', 'integer'],
+            'image.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'image.path' => ['nullable', 'string'],
         ];
     }
 }

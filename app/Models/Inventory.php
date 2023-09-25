@@ -57,8 +57,15 @@ class Inventory extends BaseModel
 
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class, 'attribute_inventories', 'attribute_id', 'inventory_id', 'id', 'id')
+        return $this->belongsToMany(Attribute::class, 'attribute_inventories')
             ->withPivot('attribute_value_id')
+            ->withTimestamps();
+    }
+
+    public function attributeValues()
+    {
+        return $this->belongsToMany(AttributeValue::class, 'attribute_inventories')
+            ->withPivot('attribute_id')
             ->withTimestamps();
     }
 }

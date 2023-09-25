@@ -1,7 +1,7 @@
 
 <div class="key_features_repeater">
     <div data-repeater-list="key_features">
-        @if(empty(old('key_features', [])))
+        @if(empty(old('key_features', [])) && empty($inventory->key_features))
         <div data-repeater-item class="k-repeater__item">
             <div class="form-group">
                 <div class="input-group">
@@ -15,7 +15,7 @@
             </div>
         </div>
         @else
-            @foreach (old('key_features') as $keyFeature)
+            @foreach (old('key_features', $inventory->key_features) as $keyFeature)
             <div data-repeater-item class="k-repeater__item">
                 <div class="form-group">
                     <div class="input-group">

@@ -36,9 +36,16 @@ class InventoryService extends BaseService
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
 
-    public function create()
+    public function create($attributes = [])
     {
+        return DB::transaction(function() use ($attributes) {
+            $attributes['image'] = $this->convertImage(data_get($attributes, ['image']));
+            $attributes['slug'] = Str::slug($attributes['product_slug'] . ' ' . $attributes['sku'], '-');
 
+            $inventory = $this->inventoryRepository->create($attributes);
+
+            return $inventory;
+        });
     }
 
     public function createWithVariants($attributes = [])
@@ -89,6 +96,28 @@ class InventoryService extends BaseService
         });
     }
 
+    public function update($attributes = [], $id)
+    {
+        return DB::transaction(function () use ($attributes, $id) {
+            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+
+            $inventory = $this->inventoryRepository->update($attributes, $id);
+
+            $this->setAttributes($inventory, data_get($attributes, ['variants', 'attribute'], []));
+
+            return $inventory;
+        });
+    }
+
+    public function delete($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $status = $this->inventoryRepository->delete($id);
+
+            return $status;
+        });
+    }
+
     protected function setAttributes(Inventory $inventory, $attributes = [])
     {
         $data = [];
@@ -117,24 +146,6 @@ class InventoryService extends BaseService
         }
 
         return null;
-    }
-
-    public function update($attributes = [], $id)
-    {
-        return DB::transaction(function () use ($attributes, $id) {
-            $inventory = $this->inventoryRepository->update($attributes, $id);
-
-            return $inventory;
-        });
-    }
-
-    public function delete($id)
-    {
-        return DB::transaction(function() use ($id) {
-            $status = $this->inventoryRepository->delete($id);
-
-            return $status;
-        });
     }
 
     protected function catalogDisk()
