@@ -63,6 +63,23 @@ class AttributeService extends BaseService
         });
     }
 
+    public function confirmAttributes($attributeValues = [])
+    {
+        $results = array();
+
+        foreach ($attributeValues as $attributeId => $valueIds){
+            foreach ($valueIds as $valueId){
+                $oldValue = $this->attributeValueService->show($valueId);
+
+                if ($oldValue){
+                    $results[$attributeId][$oldValue->id] = $oldValue->value;
+                }
+            }
+        }
+
+        return $results;
+    }
+
     protected function syncCategories(Attribute $attribute, $categories = [])
     {
         return $attribute->categories()->sync($categories);

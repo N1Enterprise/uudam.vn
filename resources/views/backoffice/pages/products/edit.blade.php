@@ -325,6 +325,18 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">{{ __('Active') }}</label>
+                            <div class="col-3">
+                                <span class="k-switch">
+                                    <label>
+                                        <input type="checkbox" {{ old('status', boolean($product->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

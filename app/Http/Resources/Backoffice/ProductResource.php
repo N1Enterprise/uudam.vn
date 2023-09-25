@@ -15,7 +15,7 @@ class ProductResource extends BaseJsonResource
             'slug' => $this->slug,
             'branch' => $this->branch,
             'min_amount' => $this->min_amount,
-            'min_amount' => $this->max_amount,
+            'max_amount' => $this->max_amount,
             'type' => $this->type,
             'type_name' => $this->type_name,
             'status' => $this->status,
@@ -24,6 +24,8 @@ class ProductResource extends BaseJsonResource
             'media' => $this->media,
             'created_by' => new CreatedByResource($this->createdBy),
             'updated_by' => new UpdatedByResource($this->updatedBy),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ], $this->generateActionPermissions());
     }
 

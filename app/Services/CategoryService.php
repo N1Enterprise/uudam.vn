@@ -27,13 +27,17 @@ class CategoryService extends BaseService
         return $result;
     }
 
+    public function allAvailable($data = [])
+    {
+        return $this->categoryRepository->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            if (! empty($attributes['icon_image']) && $attributes['icon_image'] instanceof UploadedFile) {
-                $iconImageFile = $this->bankSlipDisk()->putFile('/', $attributes['icon_image']);
-                $attributes['icon_image'] = $this->bankSlipDisk()->url($iconImageFile);
-            }
+            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryRepository->create($attributes);
         });
@@ -47,16 +51,28 @@ class CategoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            if (! empty($attributes['icon_image']) && $attributes['icon_image'] instanceof UploadedFile) {
-                $iconImageFile = $this->bankSlipDisk()->putFile('/', $attributes['icon_image']);
-                $attributes['icon_image'] = $this->bankSlipDisk()->url($iconImageFile);
-            }
+            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryRepository->update($attributes, $id);
         });
     }
 
-    protected function bankSlipDisk()
+    protected function convertImage($image)
+    {
+        if ($imageUrl = data_get($image, 'path')) {
+            return $imageUrl;
+        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
+            $imageFile = data_get($image, 'file');
+            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
+            $imageUrl = $this->catalogDisk()->url($filename);
+
+            return $imageUrl;
+        }
+
+        return null;
+    }
+
+    protected function catalogDisk()
     {
         return Storage::disk('catalog');
     }

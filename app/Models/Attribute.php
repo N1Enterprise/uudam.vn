@@ -25,4 +25,9 @@ class Attribute extends BaseModel
     {
         return $this->belongsToMany(Category::class, 'attribute_categories');
     }
+
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
 }

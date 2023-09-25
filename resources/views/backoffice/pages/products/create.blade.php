@@ -21,15 +21,6 @@
 
 @section('style')
 <style>
-    .languages_selection {
-        width: 50rem;
-        flex-wrap: wrap;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 1.5rem;
-        max-height: 400px;
-    }
     .upload_image_custom_append_icon {
         top: 50%;
         right: 0;
@@ -39,38 +30,6 @@
     }
     .note-toolbar-wrapper.panel-default {
         margin-bottom: 10px!important;
-    }
-    #campaign_message_review .campaign_message_review__title {
-        font-size: 2rem;
-        line-height: 30px;
-        font-weight: 600;
-        color: #3d4465;
-        margin-bottom: 20px;
-    }
-
-    #campaign_message_review .campaign_message_review__content {
-        width: 100%;
-        margin-top: 0.75rem;
-        position: relative;
-    }
-
-    #campaign_message_review .campaign_message_review__content {
-        font-size: .875rem;
-        line-height: 1.25rem;
-        all: initial;
-    }
-
-    #campaign_message_review .campaign_message_review__content .content__image {
-        width: 100%;
-        height: auto;
-        border-radius: 0.25rem;
-        margin-bottom: 20px;
-    }
-    .campaign_message_review_wrapper {
-        cursor: pointer;
-        background: #fafafa;
-        padding: 20px;
-        border-radius: 5px;
     }
     #form_builder_dom.styled {
         padding: 10px 35px;
@@ -84,14 +43,6 @@
     .codex-editor__redactor {
         padding-bottom: 0px!important;
         min-height: 200px;
-    }
-    .form_builder_card {
-        min-height: 110px;
-    }
-    .builder_html_iframe {
-        height: 100%;
-        width: 100%;
-        top: 0px;
     }
 </style>
 @endsection
@@ -321,6 +272,18 @@
                             @error('branch')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">{{ __('Active') }}</label>
+                            <div class="col-3">
+                                <span class="k-switch">
+                                    <label>
+                                        <input type="checkbox" {{ old('status', '1') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

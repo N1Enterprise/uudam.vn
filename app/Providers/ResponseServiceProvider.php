@@ -43,5 +43,9 @@ class ResponseServiceProvider extends ServiceProvider
         BackofficeContracts\StoreAttributeValueResponseContract::class => BackofficeResponses\StoreAttributeValueResponse::class,
         BackofficeContracts\UpdateAttributeValueResponseContract::class => BackofficeResponses\UpdateAttributeValueResponse::class,
         BackofficeContracts\DeleteAttributeValueResponseContract::class => BackofficeResponses\DeleteAttributeValueResponse::class,
+        BackofficeContracts\ListInventoryResponseContract::class => BackofficeResponses\ListInventoryResponse::class,
+        BackofficeContracts\StoreInventoryResponseContract::class => BackofficeResponses\StoreInventoryResponse::class,
+        BackofficeContracts\UpdateInventoryResponseContract::class => BackofficeResponses\UpdateInventoryResponse::class,
+        BackofficeContracts\DeleteInventoryResponseContract::class => BackofficeResponses\DeleteInventoryResponse::class,
     ];
 }

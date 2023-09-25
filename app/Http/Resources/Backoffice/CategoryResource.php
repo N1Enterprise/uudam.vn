@@ -13,7 +13,7 @@ class CategoryResource extends BaseJsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'category_group_id' => $this->category_group_id,
-            'icon_image' => $this->icon_image,
+            'primary_image' => $this->primary_image,
             'status' => $this->status,
             'status_name' => $this->status_name,
             'order' => $this->order,

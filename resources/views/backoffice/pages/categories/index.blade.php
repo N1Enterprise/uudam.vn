@@ -45,6 +45,7 @@
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Name') }}</th>
+                            <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackPrimaryImage">{{ __('Primary Image') }}</th>
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-property="category_group.name">{{ __('Group') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
@@ -66,5 +67,15 @@
 @component('backoffice.partials.datatable') @endcomponent
 
 @section('js_script')
-@endsection
+<script>
+    function renderCallbackPrimaryImage(data, type, full) {
+        const image = $('<img>', {
+            src: data,
+            width: 80,
+            height: 80,
+        });
 
+        return image.prop('outerHTML');
+    }
+</script>
+@endsection

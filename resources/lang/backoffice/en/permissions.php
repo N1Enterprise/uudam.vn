@@ -59,9 +59,15 @@ return [
     'attributes.index' => 'View Attribute List',
     'attributes.store' => 'Create Attribute',
     'attributes.update' => 'Update Attribute',
-    'attributes.delete' => 'Delete Attribute',
     'attribute-values.index' => 'View Attribute Value List',
     'attribute-values.store' => 'Create Attribute Value',
     'attribute-values.update' => 'Update Attribute Value',
     'attribute-values.delete' => 'Delete Attribute Value',
+
+    'stocks' => 'Stocks',
+    'inventories' => 'Inventories',
+    'inventories.index' => 'View Inventory List',
+    'inventories.store' => 'Create Inventory',
+    'inventories.update' => 'Update Inventory',
+    'inventories.delete' => 'Delete Inventory',
 ];

@@ -16,7 +16,9 @@ class StoreCategoryRequest extends BaseFormRequest implements StoreCategoryReque
             'slug' => ['required', 'alpha-dash', 'max:255', Rule::unique(Category::class, 'slug')],
             'category_group_id' => ['required', 'integer'],
             'description' => ['nullable'],
-            'icon_image' => ['nullable', 'file', 'image', 'max:5200'],
+            'primary_image' => ['required', 'array'],
+            'primary_image.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'primary_image.path' => ['nullable', 'string'],
             'order' => ['nullable', 'integer', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
@@ -31,6 +33,8 @@ class StoreCategoryRequest extends BaseFormRequest implements StoreCategoryReque
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
+            'description' => $this->description ? json_decode($this->description, true) : null
         ]);
     }
 }

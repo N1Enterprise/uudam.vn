@@ -14,7 +14,7 @@ class Category extends BaseModel
         'slug',
         'category_group_id',
         'description',
-        'icon_image',
+        'primary_image',
         'status',
         'order',
         'featured',
@@ -22,13 +22,22 @@ class Category extends BaseModel
         'meta_description',
     ];
 
+    protected $casts = [
+        'description' => 'json',
+    ];
+
+    public function getFeaturedNameAttribute()
+    {
+        return ActivationStatusEnum::findConstantLabel($this->featured);
+    }
+
     public function categoryGroup()
     {
         return $this->belongsTo(CategoryGroup::class, 'category_group_id');
     }
 
-    public function getFeaturedNameAttribute()
+    public function products()
     {
-        return ActivationStatusEnum::findConstantLabel($this->featured);
+        return $this->belongsToMany(Product::class, 'category_products');
     }
 }

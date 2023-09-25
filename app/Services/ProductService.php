@@ -28,6 +28,13 @@ class ProductService extends BaseService
         return $result;
     }
 
+    public function allAvailable($data = [])
+    {
+        return $this->productRepository->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
@@ -77,8 +84,8 @@ class ProductService extends BaseService
             return $imageUrl;
         } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
             $imageFile = data_get($image, 'file');
-            $filename  = $this->bankSlipDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->bankSlipDisk()->url($filename);
+            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
+            $imageUrl = $this->catalogDisk()->url($filename);
 
             return $imageUrl;
         }
@@ -98,7 +105,7 @@ class ProductService extends BaseService
         }, $mediaImages);
     }
 
-    protected function bankSlipDisk()
+    protected function catalogDisk()
     {
         return Storage::disk('catalog');
     }

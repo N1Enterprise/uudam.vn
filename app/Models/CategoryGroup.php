@@ -12,18 +12,16 @@ class CategoryGroup extends BaseModel
         'name',
         'slug',
         'description',
-        'icon_image',
+        'primary_image',
         'order',
         'status',
         'meta_title',
         'meta_description',
         'primary_image',
-        'media'
     ];
 
     protected $casts = [
         'description' => 'json',
-        'media' => 'json'
     ];
 
     public function categories()
