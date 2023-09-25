@@ -18,17 +18,6 @@ class CreateAttributeInventoriesTable extends Migration
             $table->foreignId('attribute_id')->index();
             $table->foreignId('inventory_id')->index();
             $table->foreignId('attribute_value_id')->index();
-            $table->string('sku')->nullable();
-            $table->integer('stock_quantity')->default(0);
-
-            $table->decimal('purchase_price', 27, 8)->nullable();
-            $table->decimal('sale_price', 27, 8)->nullable();
-
-            $table->decimal('offer_price', 27, 8)->nullable();
-            $table->dateTime('offer_start')->nullable();
-            $table->dateTime('offer_end')->nullable();
-            $table->json('description')->nullable();
-
             $table->timestamps();
         });
     }

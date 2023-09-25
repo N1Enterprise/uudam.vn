@@ -20,6 +20,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
 
         $rules = array_merge(
             [
+                'title' => ['nullable', 'max:255'],
                 'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
                 'product_slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')],
                 'available_from' => ['nullable', 'date'],
@@ -32,6 +33,25 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'description' => ['nullable'],
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
+                'offer_start' => [
+                    Rule::requiredIf(function() {
+                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
+
+                        return boolean(count($offerPrices));
+                    }),
+                    'nullable',
+                    'date'
+                ],
+                'offer_end' => [
+                    Rule::requiredIf(function() {
+                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
+
+                        return boolean(count($offerPrices));
+                    }),
+                    'nullable',
+                    'date',
+                    'after:offer_start'
+                ],
             ],
             $product->type == ProductTypeEnum::VARIABLE
                 ? $this->defineVariantRules() ?? []

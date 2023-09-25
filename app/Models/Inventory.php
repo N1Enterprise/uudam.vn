@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
+use App\Enum\InventoryConditionEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends BaseModel
 {
     use Activatable;
     use SoftDeletes;
+    use HasImpactor;
 
     protected $fillable = [
         'title',
+        'slug',
         'product_id',
         'condition',
         'condition_note',
@@ -28,16 +32,33 @@ class Inventory extends BaseModel
         'min_order_quantity',
         'available_from',
         'meta_title',
-        'meta_description'
+        'meta_description',
+        'image',
+        'created_by_type',
+        'created_by_id',
+        'updated_by_type',
+        'updated_by_id',
     ];
 
-    protected $cats = [
+    protected $casts = [
         'description' => 'json',
         'key_features' => 'json',
     ];
 
-    public function variants()
+    public function getConditionNameAttribute()
     {
-        // return
+        return InventoryConditionEnum::findConstantLabel($this->condition);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'attribute_inventories', 'attribute_id', 'inventory_id', 'id', 'id')
+            ->withPivot('attribute_value_id')
+            ->withTimestamps();
     }
 }

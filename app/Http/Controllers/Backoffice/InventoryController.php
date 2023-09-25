@@ -67,9 +67,7 @@ class InventoryController extends BaseController
 
     public function store(StoreInventoryRequestContract $request)
     {
-        dd($request->validated());
         $product = $this->productService->show($request->product_id);
-        dd($product);
 
         if ($product->type == ProductTypeEnum::VARIABLE) {
             $inventory = $this->inventoryService->createWithVariants($request->validated());

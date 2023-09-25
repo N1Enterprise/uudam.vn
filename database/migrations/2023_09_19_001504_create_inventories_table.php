@@ -35,6 +35,9 @@ class CreateInventoriesTable extends Migration
             $table->dateTime('available_from')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->text('image')->nullable();
+            $table->morphs('created_by');
+            $table->morphs('updated_by');
 
             $table->softDeletes();
             $table->timestamps();

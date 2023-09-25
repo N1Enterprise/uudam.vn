@@ -44,7 +44,24 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="name">{{ __('Title') }}</th>
+                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
+                        <th data-property="product" data-render-callback="renderCallbackProduct">{{ __('Product') }}</th>
+                        <th data-property="title">{{ __('Title') }}</th>
+                        <th data-property="sku">{{ __('Sku') }}</th>
+                        <th data-property="slug">{{ __('Slug') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                        <th data-orderable="false" data-badge data-name="condition" data-property="condition_name">{{ __('Condition') }}</th>
+                        <th data-property="purchase_price">{{ __('Purchase Price') }}</th>
+                        <th data-property="sale_price">{{ __('Sale Price') }}</th>
+                        <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Offer Price') }}</th>
+                        <th data-property="stock_quantity">{{ __('Stock Quantity') }}</th>
+                        <th data-property="min_order_quantity">{{ __('Min Order Quantity') }}</th>
+                        <th data-property="available_from">{{ __('Available From') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
+                        <th data-property="created_at">{{ __('Created At') }}</th>
+                        <th data-property="updated_at">{{ __('Updated At') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,6 +145,65 @@
 
             $('#form_create_inventory').find('.has_attributes').toggleClass('d-none', productType != PRODUCT_TYPE_ENUM.VARIABLE);
         });
+    }
+
+    function renderCallbackImage(data) {
+        const image = $('<img>', {
+            src: data,
+            width: 80,
+            height: 80,
+        });
+
+        return image.prop('outerHTML');
+    }
+
+    function renderCallbackProduct(data, type, full) {
+        if (! data) {
+            return '';
+        }
+
+        const productRoute = "{{ route('bo.web.products.edit', ':id') }}".replace(':id', data?.id);
+
+        const wrapper = $(`
+            <div style="width: 200px;">
+                <div class="offer_price d-flex align-items-center">
+                    <img src="${data.primary_image}" width="30" height="30" />
+                </div>
+                <small>--------------</small>
+                <div class="d-flex align-items-center">
+                    <small style="display: block; width: 40px;">ID:</small>
+                    <b><a href="${productRoute}" target="_blank">${data.id ? data.id : 'N/A'}</a></b>
+                </div>
+                <div class="d-flex align-items-center">
+                    <small style="display: block; width: 40px;">Name:</small>
+                    <b><a href="${productRoute}" target="_blank">${data.name ? data.name : 'N/A'}</a></b>
+                </div>
+            </div>
+        `);
+
+        return wrapper.prop('outerHTML');
+    }
+
+    function renderCallbackOfferPrice(data, type, full) {
+        if (! data) {
+            return '';
+        }
+
+        const wrapper = $(`
+            <div style="width: 200px;">
+                <div class="offer_price d-flex align-items-center">
+                    <small style="display: block; width: 30px;">Price:</small> <b>${data ? data: 'N/A'}</b>
+                </div>
+                <div class="offer_start d-flex align-items-center">
+                    <small style="display: block; width: 30px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
+                </div>
+                <div class="offer_end d-flex align-items-center">
+                    <small style="display: block; width: 30px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
+                </div>
+            </div>
+        `);
+
+        return wrapper.prop('outerHTML');
     }
 </script>
 @endsection

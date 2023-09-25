@@ -29,6 +29,7 @@
     <form id="form_inventory" method="POST" action="{{ route('bo.web.inventories.store') }}" enctype="multipart/form-data">
         @csrf
         @error('*')
+        {{-- @dd($errors) --}}
         <div class="alert alert-danger fade show" role="alert">
             <div class="alert-text">
                 {{ __('Submit failed. Please check the error below.') }}
@@ -109,7 +110,7 @@
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label for="">{{ __('Title') }} *</label>
-                            <input type="text" class="form-control" value="{{ old('title', $product->name) }}" required>
+                            <input type="text" name="title" class="form-control" value="{{ old('title', $product->name) }}" required>
                         </div>
 
                         <div class="row">
@@ -161,7 +162,10 @@
                                             data-title="An offer must have a start date. Required if offer price field is given"
                                         ></i>
                                     </label>
-                                    <input type="datetimepicker" class="form-control @error('offer_start') is-invalid @enderror" name="offer_start" value="{{ old('offer_start') }}">
+                                    <input type="datetimepicker" class="form-control @error('offer_start') is-invalid @enderror" name="offer_start" value="{{ old('offer_start') }}" required>
+                                    @error('offer_start')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -173,7 +177,10 @@
                                             data-title="An offer must have a start date. Required if offer price field is given"
                                         ></i>
                                     </label>
-                                    <input type="datetimepicker" class="form-control @error('offer_end') is-invalid @enderror" name="offer_end" value="{{ old('offer_end') }}">
+                                    <input type="datetimepicker" class="form-control @error('offer_end') is-invalid @enderror" name="offer_end" value="{{ old('offer_end') }}" required>
+                                    @error('offer_end')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -241,6 +248,18 @@
                             @error('meta_description')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">{{ __('Active') }}</label>
+                            <div class="col-3">
+                                <span class="k-switch">
+                                    <label>
+                                        <input type="checkbox" {{ old('status', '1') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
