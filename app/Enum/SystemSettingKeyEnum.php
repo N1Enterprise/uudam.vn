@@ -11,6 +11,9 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
 
+    // Shop Setting
+    public const BRANCH_LOGO = 'branch_logo';
+
     public static function all(): array
     {
         return [
@@ -20,6 +23,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::MAINTENANCE_END_DATE,
             self::MAINTENANCE_MESSAGE,
             self::PRODUCT_ATTRIBUTE_TYPES,
+            self::BRANCH_LOGO,
         ];
     }
 }

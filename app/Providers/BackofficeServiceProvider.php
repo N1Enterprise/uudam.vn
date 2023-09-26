@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
 
 class BackofficeServiceProvider extends ServiceProvider

@@ -25,50 +25,50 @@
         @stack('style_pages')
 
         <!--begin::Page Vendors Styles -->
-		<link href="{{ asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
         <!--end::Page Vendors Styles -->
 
         <!--begin:: Global Mandatory Vendors -->
-		<link href="{{ asset('assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
 		<!--end:: Global Mandatory Vendors -->
 
         <!--begin:: Global Optional Vendors -->
-		<link href="{{ asset('assets/vendors/general/tether/dist/css/tether.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/custom/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/nouislider/distribute/nouislider.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/dropzone/dist/dropzone.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/summernote/dist/summernote.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/animate.css/animate.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/morris.js/morris.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/general/socicon/css/socicon.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/custom/vendors/line-awesome/css/line-awesome.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/custom/vendors/flaticon/flaticon.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/custom/vendors/flaticon2/flaticon.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/vendors/custom/vendors/fontawesome5/css/all.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/tether/dist/css/tether.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/custom/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/nouislider/distribute/nouislider.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/dropzone/dist/dropzone.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/summernote/dist/summernote.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/animate.css/animate.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/morris.js/morris.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/general/socicon/css/socicon.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/flaticon/flaticon.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/flaticon2/flaticon.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/fontawesome5/css/all.min.css') }}" rel="stylesheet" type="text/css" />
 		<!--end:: Global Optional Vendors -->
 
         <!--begin::Global Theme Styles -->
-		<link href="{{ asset('assets/demo/default/base/style.bundle.css?v=4195752989') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/demo/default/base/style.bundle.css?v=4195752989') }}" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles -->
 
 		<!--begin::Layout Skins -->
-		<link href="{{ asset('assets/demo/default/skins/header/base/light.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/demo/default/skins/header/menu/light.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/demo/default/skins/brand/navy.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/demo/default/skins/aside/navy.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/demo/default/skins/header/base/light.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/demo/default/skins/header/menu/light.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/demo/default/skins/brand/navy.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('backoffice/assets/demo/default/skins/aside/navy.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Skins -->
-		<link rel="shortcut icon" href="{{ asset('assets/img/logos/stevephamhi_favicon.png') }}" />
+		<link rel="shortcut icon" href="{{ asset('backoffice/assets/img/logos/stevephamhi_favicon.png') }}" />
     </head>
 
     <body class="k-header--fixed k-header-mobile--fixed k-aside--enabled k-aside--fixed">
@@ -76,7 +76,7 @@
 		<div id="k_header_mobile" class="k-header-mobile  k-header-mobile--fixed ">
 			<div class="k-header-mobile__logo">
 				<a href="{{ route('bo.web.dashboard') }}">
-					<img alt="Logo" src="{{ asset('assets/img/logos/stevephamhi_logo.png') }}" style="max-width: 100%; padding-right: 8px; max-height:50px" />
+					<img alt="Logo" src="{{ asset('backoffice/assets/img/logos/stevephamhi_logo.png') }}" style="max-width: 100%; padding-right: 8px; max-height:50px" />
 				</a>
 			</div>
 			<div class="k-header-mobile__toolbar">
@@ -97,7 +97,7 @@
 					<div class="k-aside__brand	k-grid__item " id="k_aside_brand">
 						<div class="k-aside__brand-logo">
 							<a href="{{ route('bo.web.dashboard') }}">
-								<img alt="Logo" src="{{ asset('assets/img/logos/stevephamhi_login_logo.png') }}" style="max-width: 100%; padding-right: 8px" />
+								<img alt="Logo" src="{{ asset('backoffice/assets/img/logos/stevephamhi_login_logo.png') }}" style="max-width: 100%; padding-right: 8px" />
 							</a>
 						</div>
 						<div class="k-aside__brand-tools">
@@ -145,14 +145,14 @@
 									<div class="k-header__topbar-user">
 										<span class="k-header__topbar-welcome k-hidden-mobile">{{__('Hi')}},</span>
 										<span class="k-header__topbar-username k-hidden-mobile">{{ $AUTHENTICATED_USER->name }}</span>
-										<img alt="Pic" src="{{ asset('assets/img/users/ninja.png') }}" />
+										<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
 									</div>
 								</div>
 								<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-md">
 									<div class="k-user-card k-margin-b-50 k-margin-b-30-tablet-and-mobile" style="">
 										<div class="k-user-card__wrapper">
 											<div class="k-user-card__pic">
-												<img alt="Pic" src="{{ asset('assets/img/users/ninja.png') }}" />
+												<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
 											</div>
 											<div class="k-user-card__details">
 												<div class="k-user-card__name">{{ $AUTHENTICATED_USER->name }}</div>
@@ -220,72 +220,72 @@
         @include('backoffice.layouts.js.master-script')
 
         <!--begin:: Global Mandatory Vendors -->
-        <script src="{{ asset('js/vendors/jquery.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/popper.js/dist/umd/popper.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('js/vendors/bootstrap.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('assets/vendors/general/js-cookie/src/js.cookie.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/sticky-js/dist/sticky.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/wnumb/wNumb.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/popper.js/dist/umd/popper.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/js/vendors/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('backoffice/assets/vendors/general/js-cookie/src/js.cookie.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/sticky-js/dist/sticky.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/wnumb/wNumb.js') }}" type="text/javascript"></script>
         <!--end:: Global Mandatory Vendors -->
 
         <!--begin:: Global Optional Vendors -->
-        <script src="{{ asset('assets/vendors/general/jquery-form/dist/jquery.form.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/block-ui/jquery.blockUI.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/theme/framework/vendors/bootstrap-datepicker/init.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/theme/framework/vendors/bootstrap-timepicker/init.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-maxlength/src/bootstrap-maxlength.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-select/dist/js/bootstrap-select.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/typeahead.js/dist/typeahead.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/inputmask/dist/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/inputmask/dist/inputmask/inputmask.date.extensions.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/inputmask/dist/inputmask/inputmask.numeric.extensions.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/inputmask/dist/inputmask/inputmask.phone.extensions.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/nouislider/distribute/nouislider.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/owl.carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/autosize/dist/autosize.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/clipboard/dist/clipboard.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/dropzone/dist/dropzone.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/summernote/dist/summernote.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/markdown/lib/markdown.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/theme/framework/vendors/bootstrap-markdown/init.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/jquery-validation/dist/jquery.validate.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/jquery-validation/dist/additional-methods.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/theme/framework/vendors/jquery-validation/init.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/raphael/raphael.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/morris.js/morris.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/chart.js/dist/Chart.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/waypoints/lib/jquery.waypoints.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/counterup/jquery.counterup.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/es6-promise-polyfill/promise.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/jquery.repeater/src/lib.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('backoffice/assets/vendors/general/jquery-form/dist/jquery.form.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/block-ui/jquery.blockUI.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/bootstrap-datepicker/init.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/bootstrap-timepicker/init.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-maxlength/src/bootstrap-maxlength.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-select/dist/js/bootstrap-select.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/typeahead.js/dist/typeahead.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/inputmask/dist/jquery.inputmask.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/inputmask/dist/inputmask/inputmask.date.extensions.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/inputmask/dist/inputmask/inputmask.numeric.extensions.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/inputmask/dist/inputmask/inputmask.phone.extensions.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/nouislider/distribute/nouislider.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/owl.carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/autosize/dist/autosize.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/clipboard/dist/clipboard.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/dropzone/dist/dropzone.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/summernote/dist/summernote.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/markdown/lib/markdown.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/bootstrap-markdown/init.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/jquery-validation/dist/jquery.validate.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/jquery-validation/dist/additional-methods.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/jquery-validation/init.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/raphael/raphael.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/morris.js/morris.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/chart.js/dist/Chart.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/waypoints/lib/jquery.waypoints.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/counterup/jquery.counterup.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/es6-promise-polyfill/promise.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/lib.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
         <!--end:: Global Optional Vendors -->
 
         <!--begin::Global Theme Bundle -->
-		<script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 		<!--end::Global Theme Bundle -->
 
         <!--begin::Page Vendors -->
-		<script src="{{ asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('js/common/constant.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/common/fscommon.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('js/common/main.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/js/common/constant.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('backoffice/js/common/fscommon.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('backoffice/js/common/main.js') }}" type="text/javascript"></script>
 		<!--end::Page Vendors -->
 
         @yield('js_datatable')

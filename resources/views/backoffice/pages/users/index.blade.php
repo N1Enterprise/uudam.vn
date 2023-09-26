@@ -138,7 +138,7 @@
 @component('backoffice.partials.datatable') @endcomponent
 
 @section('js_script')
-<script src="{{ asset('js/common/fs_date_range_picker.js') }}?v={{ config('parameter.static_version') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/js/common/fs_date_range_picker.js') }}?v={{ config('parameter.static_version') }}" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
         fsDateRangePicker.init();

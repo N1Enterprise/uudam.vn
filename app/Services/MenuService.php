@@ -100,6 +100,17 @@ class MenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'CMS',
+                'icon' => 'flaticon2-contract',
+                'subs' => [
+                    [
+                        'name' => 'Shop Setting',
+                        'link' => '/',
+                        'permissions' => [],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'Admin Users',
                 'icon' => 'flaticon-user-settings',
                 'subs' => [
