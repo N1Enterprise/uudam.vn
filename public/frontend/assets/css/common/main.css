@@ -171,21 +171,3 @@ body {
 .header__heading-logo {
     max-width: 180px;
 }
-
-@media screen and (min-width: 750px) {
-    .page-width {
-        padding: 0 5rem;
-    }
-}
-
-.page-width {
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.slideshow-component {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
