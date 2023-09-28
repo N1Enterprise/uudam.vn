@@ -1,0 +1,151 @@
+.ls-recommendation-box[data-box-type=Upsell] {
+    margin: 10px 0 20px!important
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-li-container {
+    display: table;
+    width: 100%
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-ul {
+    display: inline-block!important;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-ul li {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    display: none!important;
+    float: left;
+    opacity: 0;
+    padding: 3px!important;
+    transition: opacity .2s ease-in;
+    -ms-transition: opacity .2s ease-in;
+    -moz-transition: opacity .2s ease-in;
+    -webkit-transition: opacity .2s ease-in;
+    width: 100%!important
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-ul li.ls-show {
+    display: block!important;
+    opacity: 1;
+    transition: opacity .3s ease-out;
+    -ms-transition: opacity .3s ease-out;
+    -moz-transition: opacity .3s ease-out;
+    -webkit-transition: opacity .3s ease-out
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-message-param {
+    font-weight: 600
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-message-param.ls-original-price-upsell-text {
+    margin: auto 3px;
+    text-decoration: line-through
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-image {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 3px;
+    display: inline-block;
+    height: 120px;
+    max-height: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    min-width: 120px;
+    vertical-align: middle;
+    width: 120px
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 25px!important
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-add-to-cart-button,.ls-recommendation-box[data-box-type=Upsell] .ls-add-to-cart-dropdown {
+    width: 150px!important
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-message {
+    margin-bottom: 10px
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-add-to-cart-container {
+    display: table;
+    margin: 0 auto
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-next,.ls-recommendation-box[data-box-type=Upsell] .limespot-prev {
+    cursor: pointer;
+    display: table-cell;
+    line-height: 1;
+    min-width: 25px;
+    vertical-align: middle;
+    width: 25px
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-next svg path,.ls-recommendation-box[data-box-type=Upsell] .limespot-prev svg path {
+    fill: gray
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-prev svg {
+    transform: rotate(180deg)
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-prev svg path {
+    fill: gray
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .ls-ul li:only-of-type .limespot-next,.ls-recommendation-box[data-box-type=Upsell] .ls-ul li:only-of-type .limespot-prev {
+    display: none
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-item-ul {
+    display: table
+}
+
+.ls-recommendation-box[data-box-type=Upsell] .limespot-message-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%
+}
+
+@media(max-device-width: 1024px),(max-width:768px) {
+    .ls-recommendation-box[data-box-type=Upsell] .ls-ul li {
+        min-height:120px
+    }
+
+    .ls-recommendation-box[data-box-type=Upsell] .limespot-message {
+        display: table;
+        margin-top: 10px
+    }
+
+    .ls-recommendation-box[data-box-type=Upsell] .limespot-image {
+        height: 80px;
+        max-height: 80px;
+        max-width: 80px;
+        min-height: 80px;
+        min-width: 80px;
+        width: 80px
+    }
+
+    .ls-recommendation-box[data-box-type=Upsell] .ls-add-to-cart-button,.ls-recommendation-box[data-box-type=Upsell] .ls-add-to-cart-dropdown {
+        padding: 5px;
+        width: 130px
+    }
+}
+
+.ajaxcart .ls-recommendation-box[data-box-type=Upsell] .ls-ul li {
+    background-color: #888!important
+}
+
+.ajaxcart .ls-recommendation-box[data-box-type=Upsell] .ls-add-to-cart-button,.ajaxcart .ls-recommendation-box[data-box-type=Upsell] .ls-add-to-cart-dropdown {
+    background-color: hsla(0,0%,43%,.9)!important
+}

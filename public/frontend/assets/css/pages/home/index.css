@@ -195,11 +195,6 @@ div.ls-recommendation-box
     letter-spacing: 1px;
 }
 
-.section-template-padding {
-    padding-top: 16px!important;
-    padding-bottom: 16px!important;
-}
-
 .slider-mobile-gutter {
     --desktop-margin-left-first-item: max(5rem, calc((100vw - var(--page-width) + 10rem - var(--grid-desktop-horizontal-spacing)) / 2));
     position: relative;

@@ -1,7 +1,7 @@
 <div class="blog color-background-1 gradient">
-    <div class="page-width-desktop isolate section-template--16599720624378__1659377328e5ac4a0e-padding">
+    <div class="page-width-desktop isolate section-template-padding">
         <div class="title-wrapper-with-link title-wrapper--self-padded-tablet-down title-wrapper--no-top-margin">
-            <h2 id="SectionHeading-template--16599720624378__1659377328e5ac4a0e" class="blog__title h2">Weekly Teachings</h2>
+            <h2 id="SectionHeading-template--16599720624378__1659377328e5ac4a0e" class="blog__title h2">Bài Viết Hàng Tuần</h2>
         </div>
         <div class="slider-mobile-gutter">
             <ul class="blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet">

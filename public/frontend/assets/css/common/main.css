@@ -171,3 +171,72 @@ body {
 .header__heading-logo {
     max-width: 180px;
 }
+
+.footer {
+    margin-top: 36px;
+}
+
+.section-footer-padding {
+    padding-top: 27px;
+    padding-bottom: 27px;
+}
+
+@media screen and (min-width: 750px) {
+    .footer {
+        margin-top: 48px;
+    }
+}
+
+
+@media screen and (min-width: 750px) {
+    .section-footer-padding {
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+}
+
+.section-template-padding {
+    padding-top: 16px!important;
+    padding-bottom: 16px!important;
+}
+
+
+@media screen and (min-width: 750px) {
+    .section-template-padding {
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+}
+
+.ls-title {
+    color: #121212;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: Poppins, sans-serif;
+}
+
+.ls-original-price {
+    letter-spacing: 1px;
+    color: #121212bf!important;
+    font-size: 13px!important;
+}
+
+.ls-price, .ls-sale-price, .ls-original-price {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Assistant, sans-serif;
+}
+
+.ls-price {
+    letter-spacing: 1px;
+}
+
+.ls-price {
+    color: #121212;
+}
+
+.ls-price, .ls-sale-price, .ls-original-price {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Assistant, sans-serif;
+}

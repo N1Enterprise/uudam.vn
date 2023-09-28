@@ -23,25 +23,29 @@
     </script>
     <!--end::Web font -->
 
+    <!--begin::Page Vendors Styles -->
+    <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendors Styles -->
+
     @yield('style_datatable')
     @yield('style')
     @stack('style_pages')
     <!--end::Layout Skins -->
-
-    <!--begin::Page Vendors Styles -->
-    <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Page Vendors Styles -->
 </head>
 
 <body class="gradient swym-ready swym-buttons-loaded">
     @include('frontend.layouts.parials.master-header')
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         @yield('content_body')
     </main>
+
+    @include('frontend.layouts.parials.master-footer')
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     @yield('js_script')

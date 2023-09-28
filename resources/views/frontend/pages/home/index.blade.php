@@ -3,8 +3,12 @@
 @push('style_pages')
 <link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick.css') }}">
 <link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick-theme.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-1.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/home/index.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-featured-blog.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-multicolumn.css') }}">
 @endpush
 
 @section('content_body')
@@ -33,6 +37,10 @@
 
     <section class="shopify-section section">
         @include('frontend.pages.home.partials.section-blogs')
+    </section>
+
+    <section class="shopify-section section">
+        @include('frontend.pages.home.partials.section-our-highlights')
     </section>
 @endsection
 

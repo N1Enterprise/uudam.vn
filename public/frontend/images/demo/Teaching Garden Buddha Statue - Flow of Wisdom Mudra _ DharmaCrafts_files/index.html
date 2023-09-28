@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://cdn.routeapp.io/route-analytics/index.html -->
+<html lang="en"><script type="text/javascript" async="" src="./analytics.js"></script><script type="text/javascript" async="" src="./js"></script><script data-timezone-ext-el="[&quot;Etc/GMT&quot;,0,-420,&quot;London Daylight Time&quot;]" src="chrome-extension://cejckpjfigehbeecbbfhangbknpidcnh/data/inject-content.js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+<body>
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async="" src="./js(1)"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-148920417-1');
+   </script>
+   <script type="text/javascript">
+      function displayMessage (event) {
+         if (event && event.data) {
+            var data = event.data;
+
+            gtag('event', data.action , {
+               'event_category': data.event_category,
+               'event_label': data.event_label,
+               'value': data.value
+            });
+         }
+      }
+
+      if (window.addEventListener) {
+         window.addEventListener("message", displayMessage, false);
+      }
+      else {
+         window.attachEvent("onmessage", displayMessage);
+      }
+   </script>
+
+
+</body></html>
