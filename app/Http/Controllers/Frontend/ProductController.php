@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends BaseController
 {
-    public function showBySlug(Request $request, $slug)
+    public function index(Request $request, $slug)
     {
-        return $this->view('frontend.pages.product.show');
+        return $this->view('frontend.pages.product.index');
     }
 }

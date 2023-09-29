@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-multicolumn.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
 @endpush
 
 @section('content_body')
@@ -28,7 +29,8 @@
     </section>
 
     <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-you-may-like')
+        {{-- @include('frontend.pages.home.partials.section-you-may-like') --}}
+        @include('frontend.pages.home.partials.section-you-may-like-2')
     </section>
 
     <section class="shopify-section section">
@@ -68,20 +70,7 @@
             },
         };
 
-        const SLICK_MOST_POPULAR_ITEMS = {
-            init: () => {
-                $('.most-popular-items__slick').slick({
-                    infinite: true,
-                    autoplay: false,
-                    slidesToShow: 5,
-                    slidesToScroll: 3,
-                    centerMode: true,
-                });
-            },
-        };
-
         SLICK_BANNER.init();
-        SLICK_MOST_POPULAR_ITEMS.init();
     });
 </script>
 @endpush

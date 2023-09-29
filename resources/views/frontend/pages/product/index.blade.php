@@ -14,7 +14,7 @@
         }
     }
 </style>
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/product/show.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/product/index.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">

@@ -240,3 +240,27 @@ body {
     font-weight: 400;
     font-family: Assistant, sans-serif;
 }
+
+.text-left {
+    text-align: left!important;
+}
+
+.ls-ul.limespot-recommendation-box-carousel-shelf.view-list-mode {
+    flex-wrap: wrap;
+    margin: 0 -15px!important;
+}
+
+.view-list-mode .limespot-recommendation-box-item {
+    flex: 0 0 calc(100%/4);
+    max-width: calc(100%/4)!important;
+    margin-right: 0!important;
+    padding: 15px;
+}
+
+.view-list-mode .limespot-recommendation-box-item img {
+    border-radius: 0!important;
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    -ms-border-radius: 0!important;
+    -o-border-radius: 0!important;
+}
