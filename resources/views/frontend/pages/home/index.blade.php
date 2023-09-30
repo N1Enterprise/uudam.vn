@@ -17,13 +17,15 @@
 
 @section('content_body')
     <section class="shopify-section section">
-        {{-- @include('frontend.pages.home.partials.section-banner') --}}
         @include('frontend.pages.home.partials.section-banner-2')
     </section>
 
     <section class="shopify-section section">
+        @include('frontend.pages.home.partials.section-most-popular-items')
+    </section>
+
+    <section class="shopify-section section">
         <div class="multicolumn color-background-1 gradient background-primary no-heading">
-            @include('frontend.pages.home.partials.section-most-popular-items')
             @include('frontend.pages.home.partials.section-catalog-collection')
         </div>
     </section>
@@ -33,8 +35,7 @@
     </section>
 
     <section class="shopify-section section">
-        {{-- @include('frontend.pages.home.partials.section-you-may-like') --}}
-        @include('frontend.pages.home.partials.section-you-may-like-2')
+        @include('frontend.pages.home.partials.section-you-may-like')
     </section>
 
     <section class="shopify-section section">

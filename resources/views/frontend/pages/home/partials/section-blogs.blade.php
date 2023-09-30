@@ -17,9 +17,7 @@
                                 <div class="card__content">
                                     <div class="card__information">
                                         <h3 class="card__heading h2">
-                                            <a href="/blogs/news/what-do-you-think-about-all-day-koun-franz" class="full-unstyled-link">
-                                                What Do You Think About All Day? - Koun Franz
-                                            </a>
+                                            <a href="/blogs/news/what-do-you-think-about-all-day-koun-franz" class="full-unstyled-link"> What Do You Think About All Day? - Koun Franz </a>
                                         </h3>
                                         <div class="article-card__info caption-with-letter-spacing h5">
                                             <span class="circle-divider">
@@ -48,7 +46,6 @@
                         </div>
                     </div>
                 </li>
-
                 <li id="Slide-template--16599720624378__1659377328e5ac4a0e-1" class="blog__post grid__item article slider__slide slider__slide--full-width">
                     <div class="card-wrapper underline-links-hover">
                         <div class="card article-card card--standard card--media" style="--ratio-percent: 60.24096385542169%;">
@@ -61,9 +58,7 @@
                                 <div class="card__content">
                                     <div class="card__information">
                                         <h3 class="card__heading h2">
-                                            <a href="/blogs/news/what-do-you-think-about-all-day-koun-franz" class="full-unstyled-link">
-                                                What Do You Think About All Day? - Koun Franz
-                                            </a>
+                                            <a href="/blogs/news/what-do-you-think-about-all-day-koun-franz" class="full-unstyled-link"> What Do You Think About All Day? - Koun Franz </a>
                                         </h3>
                                         <div class="article-card__info caption-with-letter-spacing h5">
                                             <span class="circle-divider">
@@ -92,7 +87,6 @@
                         </div>
                     </div>
                 </li>
-
                 <li id="Slide-template--16599720624378__1659377328e5ac4a0e-1" class="blog__post grid__item article slider__slide slider__slide--full-width">
                     <div class="card-wrapper underline-links-hover">
                         <div class="card article-card card--standard card--media" style="--ratio-percent: 60.24096385542169%;">
@@ -105,9 +99,7 @@
                                 <div class="card__content">
                                     <div class="card__information">
                                         <h3 class="card__heading h2">
-                                            <a href="/blogs/news/what-do-you-think-about-all-day-koun-franz" class="full-unstyled-link">
-                                                What Do You Think About All Day? - Koun Franz
-                                            </a>
+                                            <a href="/blogs/news/what-do-you-think-about-all-day-koun-franz" class="full-unstyled-link"> What Do You Think About All Day? - Koun Franz </a>
                                         </h3>
                                         <div class="article-card__info caption-with-letter-spacing h5">
                                             <span class="circle-divider">

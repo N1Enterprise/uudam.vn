@@ -1,7 +1,7 @@
-<div class="section-template-padding page-width section-template-padding isolate">
+<div class="section-template-padding page-width isolate">
     <div class="slider-mobile-gutter">
-        <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list">
-            <li id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center">
+        <div class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-slick-config='{"id": "catalog_collection", "speed": 300, "slidesToShow": 3, "slidesToScroll": 3, "infinite": true, "lazyLoad": "ondemand"}'>
+            <div id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center" style="padding: 0 5px;">
                 <div class="multicolumn-card content-container">
                     <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width multicolumn-card-spacing">
                         <div class="media media--transparent media--adapt" style="padding-bottom: 59.78043912175649%;">
@@ -12,17 +12,15 @@
                         <h3>NEW ARRIVALS</h3>
                         <a class="link animate-arrow" href="/collections/newest-products">
                             <span>KHÁM PHÁ</span>
-                            <span class="icon-wrap">&nbsp;
-                                <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                            <span class="icon-wrap">&nbsp; <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
                                 </svg>
                             </span>
                         </a>
                     </div>
                 </div>
-            </li>
-
-            <li id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center">
+            </div>
+            <div id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center" style="padding: 0 5px;">
                 <div class="multicolumn-card content-container">
                     <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width multicolumn-card-spacing">
                         <div class="media media--transparent media--adapt" style="padding-bottom: 59.78043912175649%;">
@@ -33,17 +31,15 @@
                         <h3>NEW ARRIVALS</h3>
                         <a class="link animate-arrow" href="/collections/newest-products">
                             <span>KHÁM PHÁ</span>
-                            <span class="icon-wrap">&nbsp;
-                                <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                            <span class="icon-wrap">&nbsp; <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
                                 </svg>
                             </span>
                         </a>
                     </div>
                 </div>
-            </li>
-
-            <li id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center">
+            </div>
+            <div id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center" style="padding: 0 5px;">
                 <div class="multicolumn-card content-container">
                     <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width multicolumn-card-spacing">
                         <div class="media media--transparent media--adapt" style="padding-bottom: 59.78043912175649%;">
@@ -54,15 +50,26 @@
                         <h3>NEW ARRIVALS</h3>
                         <a class="link animate-arrow" href="/collections/newest-products">
                             <span>KHÁM PHÁ</span>
-                            <span class="icon-wrap">&nbsp;
-                                <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                            <span class="icon-wrap">&nbsp; <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
                                 </svg>
                             </span>
                         </a>
                     </div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
+        <div class="slider-buttons no-js-hidden medium-hide">
+            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left" data-slick-id="catalog_collection" data-slick-button-prev>
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                </svg>
+            </button>
+            <button type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right" data-slick-id="catalog_collection" data-slick-button-next>
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 </div>

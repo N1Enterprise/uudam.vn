@@ -9,7 +9,7 @@
 
 @section('content_body')
     <div class="shopify-section">
-        @include('frontend.pages.cart.partials.cart-items')
-        @include('frontend.pages.cart.partials.cart-footer')
+        @include('frontend.pages.carts.partials.cart-items')
+        @include('frontend.pages.carts.partials.cart-footer')
     </div>
 @endsection

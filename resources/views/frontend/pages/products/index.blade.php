@@ -14,7 +14,9 @@
         }
     }
 </style>
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/product/index.css') }}">
+<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick.css') }}">
+<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick-theme.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/products/index.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
@@ -28,12 +30,12 @@
             <div class="media-gallery grid__item product__media-wrapper">
                 <div class="product__media-gallery" aria-label="Gallery Viewer">
                     <div class="visually-hidden"></div>
-                    @include('frontend.pages.product.partials.gallery-viewer')
-                    @include('frontend.pages.product.partials.gallery-thumbnails')
+                    @include('frontend.pages.products.partials.gallery-viewer')
+                    @include('frontend.pages.products.partials.gallery-thumbnails')
                 </div>
             </div>
             <div class="product__info-wrapper grid__item">
-                @include('frontend.pages.product.partials.product-info')
+                @include('frontend.pages.products.partials.product-info')
             </div>
         </div>
     </section>
@@ -57,18 +59,16 @@
 </section>
 
 <section class="shopify-section section">
-    @include('frontend.pages.product.partials.product-review')
+    @include('frontend.pages.products.partials.product-review')
 </section>
 
 <limespot>
     <limespot-container>
-        @include('frontend.pages.product.partials.related-items')
+        @include('frontend.pages.products.partials.related-items')
     </limespot-container>
 </limespot>
 @endsection
 
 @push('js_pages')
-<script>
-
-</script>
+<script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
 @endpush

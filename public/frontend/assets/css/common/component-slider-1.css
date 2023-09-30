@@ -1,4 +1,3 @@
-
 .slideshow-component {
     position: relative;
     display: flex;
@@ -22,7 +21,7 @@
     flex-direction: column;
 }
 
-.slideshow-component  .slider-button {
+.slideshow-component .slider-button {
     background: none;
     border: none;
     cursor: pointer;

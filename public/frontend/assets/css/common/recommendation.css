@@ -39,6 +39,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item,limespot-box .limesp
     margin-left: 0;
     margin-top: 0;
     max-width: 200px;
+    /* padding: 0 5px; */
     padding: 0;
     position: relative;
     transition: transform .5s;
@@ -337,7 +338,6 @@ limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
 
 .ls-box-title {
     margin: 10px auto 0;
-    text-align: center
 }
 
 .ls-vendor {
@@ -576,4 +576,24 @@ img[data-lazy-src] {
 .ls-animate-hide {
     opacity: 0;
     visibility: hidden
+}
+
+limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list {
+    margin: 0 -15px;
+}
+
+@media screen and (max-width: 749px) {
+    div.ls-recommendation-box .limespot-recommendation-box-item, limespot-box .limespot-recommendation-box-item {
+        padding: 0 5px;
+    }
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
+        padding: 0 6px;
+    }
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-price-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+    .ls-original-price.ls-original-price {
+        order: 1;
+    }
 }

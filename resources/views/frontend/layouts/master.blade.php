@@ -50,7 +50,7 @@
     @include('frontend.layouts.parials.footer.index')
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('frontend/assets/js/common/my-slick.js') }}" type="text/javascript"></script>
     @yield('js_script')
     @stack('js_pages')
 </body>

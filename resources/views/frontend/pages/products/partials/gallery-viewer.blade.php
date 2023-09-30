@@ -1,7 +1,5 @@
 <div id="GalleryViewer-template--16599720820986__main" class="slider-component slider-mobile-gutter">
-    <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-template--16599720820986__main">
-        Skip to product information
-    </a>
+    <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-template--16599720820986__main"> Skip to product information </a>
     <ul id="Slider-Gallery-template--16599720820986__main" class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile" role="presentation">
         <li id="Slide-template--16599720820986__main-23233169457304" class="product__media-item grid__item slider__slide is-active" data-media-id="template--16599720820986__main-23233169457304" role="presentation">
             <div class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden" data-modal="#ProductModal-template--16599720820986__main">
@@ -12,17 +10,11 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8324 3.03011C10.1255 0.323296 5.73693 0.323296 3.03011 3.03011C0.323296 5.73693 0.323296 10.1256 3.03011 12.8324C5.73693 15.5392 10.1255 15.5392 12.8324 12.8324C15.5392 10.1256 15.5392 5.73693 12.8324 3.03011ZM2.32301 2.32301C5.42035 -0.774336 10.4421 -0.774336 13.5395 2.32301C16.6101 5.39361 16.6366 10.3556 13.619 13.4588L18.2473 18.0871C18.4426 18.2824 18.4426 18.599 18.2473 18.7943C18.0521 18.9895 17.7355 18.9895 17.5402 18.7943L12.8778 14.1318C9.76383 16.6223 5.20839 16.4249 2.32301 13.5395C-0.774335 10.4421 -0.774335 5.42035 2.32301 2.32301Z" fill="currentColor"></path>
                     </svg>
                 </span>
-
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img srcset="{{ asset('frontend/images/demo/product-1.webp') }}"
-                        src="{{ asset('frontend/images/demo/product-1.webp') }}"
-                        sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                        width="973" height="973" alt="">
+                    <img srcset="{{ asset('frontend/images/demo/product-1.webp') }}" src="{{ asset('frontend/images/demo/product-1.webp') }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" width="973" height="973" alt="">
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog" data-media-id="23233169457304">
-                    <span class="visually-hidden">
-                        Open media 1 in modal
-                    </span>
+                    <span class="visually-hidden"> Open media 1 in modal </span>
                 </button>
             </div>
         </li>
@@ -35,17 +27,11 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8324 3.03011C10.1255 0.323296 5.73693 0.323296 3.03011 3.03011C0.323296 5.73693 0.323296 10.1256 3.03011 12.8324C5.73693 15.5392 10.1255 15.5392 12.8324 12.8324C15.5392 10.1256 15.5392 5.73693 12.8324 3.03011ZM2.32301 2.32301C5.42035 -0.774336 10.4421 -0.774336 13.5395 2.32301C16.6101 5.39361 16.6366 10.3556 13.619 13.4588L18.2473 18.0871C18.4426 18.2824 18.4426 18.599 18.2473 18.7943C18.0521 18.9895 17.7355 18.9895 17.5402 18.7943L12.8778 14.1318C9.76383 16.6223 5.20839 16.4249 2.32301 13.5395C-0.774335 10.4421 -0.774335 5.42035 2.32301 2.32301Z" fill="currentColor"></path>
                     </svg>
                 </span>
-
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img srcset="{{ asset('frontend/images/demo/product-2.webp') }}"
-                        src="{{ asset('frontend/images/demo/product-2.webp') }}"
-                        sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                        loading="lazy" width="973" height="973" alt="">
+                    <img srcset="{{ asset('frontend/images/demo/product-2.webp') }}" src="{{ asset('frontend/images/demo/product-2.webp') }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="973" height="973" alt="">
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog" data-media-id="23233169391768">
-                    <span class="visually-hidden">
-                        Open media 2 in modal
-                    </span>
+                    <span class="visually-hidden"> Open media 2 in modal </span>
                 </button>
             </div>
         </li>
@@ -58,17 +44,11 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8324 3.03011C10.1255 0.323296 5.73693 0.323296 3.03011 3.03011C0.323296 5.73693 0.323296 10.1256 3.03011 12.8324C5.73693 15.5392 10.1255 15.5392 12.8324 12.8324C15.5392 10.1256 15.5392 5.73693 12.8324 3.03011ZM2.32301 2.32301C5.42035 -0.774336 10.4421 -0.774336 13.5395 2.32301C16.6101 5.39361 16.6366 10.3556 13.619 13.4588L18.2473 18.0871C18.4426 18.2824 18.4426 18.599 18.2473 18.7943C18.0521 18.9895 17.7355 18.9895 17.5402 18.7943L12.8778 14.1318C9.76383 16.6223 5.20839 16.4249 2.32301 13.5395C-0.774335 10.4421 -0.774335 5.42035 2.32301 2.32301Z" fill="currentColor"></path>
                     </svg>
                 </span>
-
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img srcset="{{ asset('frontend/images/demo/product-3.webp') }}"
-                        src="{{ asset('frontend/images/demo/product-3.webp') }}"
-                        sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                        loading="lazy" width="973" height="973" alt="">
+                    <img srcset="{{ asset('frontend/images/demo/product-3.webp') }}" src="{{ asset('frontend/images/demo/product-3.webp') }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="973" height="973" alt="">
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog" data-media-id="23233169490072">
-                    <span class="visually-hidden">
-                        Open media 3 in modal
-                    </span>
+                    <span class="visually-hidden"> Open media 3 in modal </span>
                 </button>
             </div>
         </li>
@@ -81,17 +61,11 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8324 3.03011C10.1255 0.323296 5.73693 0.323296 3.03011 3.03011C0.323296 5.73693 0.323296 10.1256 3.03011 12.8324C5.73693 15.5392 10.1255 15.5392 12.8324 12.8324C15.5392 10.1256 15.5392 5.73693 12.8324 3.03011ZM2.32301 2.32301C5.42035 -0.774336 10.4421 -0.774336 13.5395 2.32301C16.6101 5.39361 16.6366 10.3556 13.619 13.4588L18.2473 18.0871C18.4426 18.2824 18.4426 18.599 18.2473 18.7943C18.0521 18.9895 17.7355 18.9895 17.5402 18.7943L12.8778 14.1318C9.76383 16.6223 5.20839 16.4249 2.32301 13.5395C-0.774335 10.4421 -0.774335 5.42035 2.32301 2.32301Z" fill="currentColor"></path>
                     </svg>
                 </span>
-
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img srcset="{{ asset('frontend/images/demo/product-4.webp') }}"
-                        src="{{ asset('frontend/images/demo/product-4.webp') }}"
-                        sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                        loading="lazy" width="973" height="973" alt="">
+                    <img srcset="{{ asset('frontend/images/demo/product-4.webp') }}" src="{{ asset('frontend/images/demo/product-4.webp') }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="973" height="973" alt="">
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog" data-media-id="16538655490200">
-                    <span class="visually-hidden">
-                        Open media 4 in modal
-                    </span>
+                    <span class="visually-hidden"> Open media 4 in modal </span>
                 </button>
             </div>
         </li>
@@ -104,17 +78,11 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8324 3.03011C10.1255 0.323296 5.73693 0.323296 3.03011 3.03011C0.323296 5.73693 0.323296 10.1256 3.03011 12.8324C5.73693 15.5392 10.1255 15.5392 12.8324 12.8324C15.5392 10.1256 15.5392 5.73693 12.8324 3.03011ZM2.32301 2.32301C5.42035 -0.774336 10.4421 -0.774336 13.5395 2.32301C16.6101 5.39361 16.6366 10.3556 13.619 13.4588L18.2473 18.0871C18.4426 18.2824 18.4426 18.599 18.2473 18.7943C18.0521 18.9895 17.7355 18.9895 17.5402 18.7943L12.8778 14.1318C9.76383 16.6223 5.20839 16.4249 2.32301 13.5395C-0.774335 10.4421 -0.774335 5.42035 2.32301 2.32301Z" fill="currentColor"></path>
                     </svg>
                 </span>
-
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img srcset="{{ asset('frontend/images/demo/product-5.webp') }}"
-                        src="{{ asset('frontend/images/demo/product-5.webp') }}"
-                        sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                        loading="lazy" width="973" height="973" alt="">
+                    <img srcset="{{ asset('frontend/images/demo/product-5.webp') }}" src="{{ asset('frontend/images/demo/product-5.webp') }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="973" height="973" alt="">
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog" data-media-id="23233169424536">
-                    <span class="visually-hidden">
-                        Open media 5 in modal
-                    </span>
+                    <span class="visually-hidden"> Open media 5 in modal </span>
                 </button>
             </div>
         </li>
