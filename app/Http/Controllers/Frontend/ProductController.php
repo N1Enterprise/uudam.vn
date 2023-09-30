@@ -8,6 +8,6 @@ class ProductController extends BaseController
 {
     public function index(Request $request, $slug)
     {
-        return $this->view('frontend.pages.product.index');
+        return $this->view('frontend.pages.products.index');
     }
 }

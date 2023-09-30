@@ -3,10 +3,10 @@
     data-placement-sibling="#shopify-section-template--16599720788218__166329174764a5c7e2"
     data-placement-disposition="0" data-placement-method="before" data-reference-id="6138916339864"
     data-box-style="carousel" data-recommendation-reference-id="214411739" style="display: block;">
-    <h3 class="ls-box-title text-left">Mặt hàng phổ biến nhất</h3>
+    <h3 class="ls-box-title">Mặt hàng phổ biến nhất</h3>
     <div class="limespot-recommendation-box-carousel-container">
         <div class="ls-ul-container limespot-recommendation-box-carousel ls-drag-scroll v-align">
-            <ul class="ls-ul limespot-recommendation-box-carousel-shelf">
+            <ul class="ls-ul limespot-recommendation-box-carousel-shelf" data-slick-config='{"id": "most_popular_items", "speed": 300, "slidesToShow": 5, "slidesToScroll": 5, "infinite": true, "lazyLoad": "ondemand"}'>
                 <li class="limespot-recommendation-box-item" data-product-identifier="6138904674456"
                     data-product-title="Calming Garden Buddha Statue" data-price="76.5" data-original-price="90"
                     data-display-url="https://dharmacrafts.com/products/calming-garden-buddha-statue?lssrc=related&amp;lshst=product"
@@ -542,7 +542,9 @@
             </ul>
         </div>
         <div
-            class="ls-left-arrow limespot-recommendation-box-carousel-indicator indicator-left static-arrow ls-animate ls-animate-hide">
+            data-slick-id="most_popular_items"
+            data-slick-button-prev
+            class="ls-left-arrow limespot-recommendation-box-carousel-indicator indicator-left static-arrow ls-animate">
             <div class="recomm-arrow arrow-left ls-svg-arrow" style="margin-top: 115px; max-width: 50px;"><svg
                     xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                     <path
@@ -551,6 +553,8 @@
                 </svg></div>
         </div>
         <div
+            data-slick-id="most_popular_items"
+            data-slick-button-next
             class="ls-right-arrow limespot-recommendation-box-carousel-indicator indicator-right static-arrow ls-animate">
             <div class="recomm-arrow arrow-right ls-svg-arrow" style="margin-top: 115px; max-width: 50px;"><svg
                     xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">

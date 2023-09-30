@@ -6,6 +6,6 @@ class CheckoutController extends BaseController
 {
     public function index()
     {
-        return $this->view('frontend.pages.checkout.index');
+        return $this->view('frontend.pages.checkouts.index');
     }
 }

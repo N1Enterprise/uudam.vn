@@ -25,11 +25,13 @@
 
     <!--begin::Page Vendors Styles -->
     <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles -->
 
     @yield('style_datatable')
@@ -39,15 +41,16 @@
 </head>
 
 <body class="gradient swym-ready swym-buttons-loaded">
-    @include('frontend.layouts.parials.master-header')
+    @include('frontend.layouts.parials.header.index')
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         @yield('content_body')
     </main>
 
-    @include('frontend.layouts.parials.master-footer')
+    @include('frontend.layouts.parials.footer.index')
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     @yield('js_script')
     @stack('js_pages')
 </body>

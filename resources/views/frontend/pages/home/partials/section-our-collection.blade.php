@@ -1,7 +1,7 @@
 <div class="multicolumn color-background-1 gradient background-none">
     <div class="page-width section-template-padding isolate">
         <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
-            <h2 class="title h2">Bộ sưu tập của chúng tôi</h2>
+            <h2 class="ls-box-title">Bộ sưu tập của chúng tôi</h2>
         </div>
         <div class="slider-mobile-gutter">
             <ul class="multicolumn-list contains-content-container grid grid--2-col-tablet-down grid--6-col-desktop">

@@ -5,7 +5,7 @@
 * Browsers: last 4 version
 */
 
-html,
+/* html,
 body,
 div,
 span,
@@ -73,7 +73,7 @@ td {
     outline: 0;
     vertical-align: baseline;
     background: transparent
-}
+} */
 
 ol,
 ul {
@@ -138,10 +138,10 @@ html[xmlns] .clearfix {
     box-sizing: border-box
 }
 
-img,
+/* img,
 a {
     display: block
-}
+} */
 
 button {
     outline: none!important

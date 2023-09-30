@@ -10,11 +10,15 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-multicolumn.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slideshow.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-image-banner.css') }}">
 @endpush
 
 @section('content_body')
     <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-banner')
+        {{-- @include('frontend.pages.home.partials.section-banner') --}}
+        @include('frontend.pages.home.partials.section-banner-2')
     </section>
 
     <section class="shopify-section section">
@@ -48,29 +52,4 @@
 
 @push('js_pages')
 <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
-<script>
-    $(document).ready(function() {
-        const SLICK_BANNER = {
-            element: $('.home-banner__slick'),
-            init: () => {
-                SLICK_BANNER.element.slick({ autoplay: true });
-
-                SLICK_BANNER.onPrev();
-                SLICK_BANNER.onNext();
-            },
-            onPrev: () => {
-                $('.home-banner__slick-control').find('.slider-button.slider-button--prev').on('click', function() {
-                    SLICK_BANNER.element.find('.slick-prev.slick-arrow').trigger('click');
-                });
-            },
-            onNext: () => {
-                $('.home-banner__slick-control').find('.slider-button.slider-button--next').on('click', function() {
-                    SLICK_BANNER.element.find('.slick-next.slick-arrow').trigger('click');
-                });
-            },
-        };
-
-        SLICK_BANNER.init();
-    });
-</script>
 @endpush

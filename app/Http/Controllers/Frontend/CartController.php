@@ -11,6 +11,6 @@ class CartController extends BaseController
 
     public function index()
     {
-        return $this->view('frontend.pages.cart.index');
+        return $this->view('frontend.pages.carts.index');
     }
 }
