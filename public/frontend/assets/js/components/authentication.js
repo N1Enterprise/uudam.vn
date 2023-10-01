@@ -1,29 +1,26 @@
 const AUTHENTICATION = {
     actions: ['signin', 'signup', 'forgot-password'],
     elements: {
-        wrapper: (() => {
-            return $('[data-overlay-wrapper]');
-        })(),
-        action_wrapper: (() => {
-            return $('[data-overlay-action-wrapper]');
-        })(),
-        action_signin_wrapper: (() => {
-            return $('[data-overlay-action-wrapper="signin"]');
-        })(),
-        action_signup_wrapper: (() => {
-            return $('[data-overlay-action-wrapper="signup"]');
-        })(),
-        btn_signin: (() => {
-            return $('[data-overlay-action-button="signin"]');
-        })(),
-        btn_signup: (() => {
-            return $('[data-overlay-action-button="signup"]');
-        })(),
+        close: $('[data-overlay-close]'),
+        wrapper: $('[data-overlay-wrapper]'),
+        action_wrapper: $('[data-overlay-action-wrapper]'),
+        action_signin_wrapper: $('[data-overlay-action-wrapper="signin"]'),
+        action_signup_wrapper: $('[data-overlay-action-wrapper="signup"]'),
+        btn_signin: $('[data-overlay-action-button="signin"]'),
+        btn_signup: $('[data-overlay-action-button="signup"]'),
     },
     init: () => {
-        console.log(1);
-        AUTHENTICATION.detectOverlay();
+        AUTHENTICATION.onClose();
         AUTHENTICATION.onGoPage();
+        AUTHENTICATION.detectOverlay();
+    },
+    onClose: () => {
+        AUTHENTICATION.elements.close.on('click', function() {
+            AUTHENTICATION.elements.wrapper.hide();
+            AUTHENTICATION.elements.action_wrapper.hide();
+
+            __HELPER__.urlParams('overlay').del();
+        });
     },
     onGoPage: () => {
         $('[data-overlay-action-button]').on('click', function(e) {
@@ -32,24 +29,22 @@ const AUTHENTICATION = {
             const overlay = $(this).attr('data-overlay-action-button');
 
             if (overlay && AUTHENTICATION.actions.includes(overlay)) {
+                AUTHENTICATION.elements.wrapper.show();
                 AUTHENTICATION.elements.action_wrapper.hide();
 
-                __HELPER__.setURLParam('overlay', overlay);
+                __HELPER__.urlParams('overlay').set(overlay);
                 $(`[data-overlay-action-wrapper="${overlay}"]`).show();
             } else {
-                AUTHENTICATION.elements.action_wrapper.hide();
+                AUTHENTICATION.elements.wrapper.hide();
                 AUTHENTICATION.elements.action_wrapper.hide();
             }
         });
     },
     detectOverlay: () => {
-        console.log(1);
-        const overlay = __HELPER__.getURLParam('overlay');
+        const overlay = __HELPER__.urlParams('overlay').get();
 
         AUTHENTICATION.elements.wrapper.hide();
         AUTHENTICATION.elements.action_wrapper.hide();
-
-        console.log({ overlay });
 
         if (overlay && AUTHENTICATION.actions.includes(overlay)) {
             AUTHENTICATION.elements.wrapper.show();
