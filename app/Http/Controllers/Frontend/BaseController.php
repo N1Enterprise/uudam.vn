@@ -13,6 +13,11 @@ class BaseController extends Controller
     use DispatchesJobs;
     use ValidatesRequests;
 
+    public function __construct()
+    {
+        $this->userAuth = app();
+    }
+
     public function view($view, $data = [], $mergeData = [])
     {
         $viewPath = $view;

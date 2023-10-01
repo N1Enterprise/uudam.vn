@@ -62,6 +62,23 @@ class FortifyServiceProvider extends ServiceProvider
             'expire' => 60,
             'throttle' => 1,
         ]);
+
+        Config::set('auth.guards.user', [
+            'driver' => 'session',
+            'provider' => 'users'
+        ]);
+
+        Config::set('auth.providers.users', [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Admin::class
+        ]);
+
+        Config::set('auth.passwords.users', [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 1,
+        ]);
     }
 
     protected function configureRateLimiting()
