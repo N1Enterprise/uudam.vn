@@ -270,17 +270,6 @@ body {
     -o-border-radius: 0 !important;
 }
 
-header-drawer {
-    justify-self: start;
-    margin-left: -1.2rem;
-}
-
-@media screen and (min-width: 990px) {
-    header-drawer {
-        display: none;
-    }
-}
-
 .menu-drawer-container {
     display: flex;
 }
@@ -294,4 +283,8 @@ header-drawer {
 
 .ls-box-title {
     margin: 20px auto 0;
+}
+
+.slick-prev.slick-arrow {
+    display: none!important;
 }

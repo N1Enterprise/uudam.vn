@@ -164,7 +164,7 @@
             <div id="Product-share-template--16599720820986__main" class="share-button__fallback motion-reduce">
                 <div class="field">
                     <span id="ShareMessage-template--16599720820986__main" class="share-button__message hidden" role="status"></span>
-                    <input type="text" class="field__input" id="url" value="https://dharmacrafts.com/products/teaching-garden-buddha-statue" placeholder="Link" onclick="" readonly="">
+                    <input type="text" class="field__input" id="url" value="http://uudam.vn.test/products/teaching-garden-buddha-statue" placeholder="Link" onclick="" readonly="">
                     <label class="field__label" for="url">Link</label>
                 </div>
                 <button class="share-button__close hidden no-js-hidden">

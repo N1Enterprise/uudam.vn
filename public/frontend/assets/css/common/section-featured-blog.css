@@ -85,3 +85,9 @@
         }
     }
 }
+
+@media screen and (max-width: 989px) {
+    .blog__posts.articles-wrapper {
+        padding: 0 15px;
+    }
+}

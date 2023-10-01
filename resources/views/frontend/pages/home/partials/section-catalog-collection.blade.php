@@ -1,6 +1,6 @@
 <div class="section-template-padding page-width isolate">
     <div class="slider-mobile-gutter">
-        <div class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-slick-config='{"id": "catalog_collection", "speed": 300, "slidesToShow": 3, "slidesToScroll": 3, "infinite": true, "lazyLoad": "ondemand"}'>
+        <div class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-slick-config='{"id": "catalog_collection", "speed": 300, "slidesToShow": 3, "slidesToScroll": 3, "infinite": true, "lazyLoad": "ondemand"}' style="margin: 0 -5px;">
             <div id="Slide-template--16599720624378__1ed1a7d3-1880-4943-a8e3-e2fdcd404014-1" class="multicolumn-list__item grid__item slider__slide center" style="padding: 0 5px;">
                 <div class="multicolumn-card content-container">
                     <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width multicolumn-card-spacing">

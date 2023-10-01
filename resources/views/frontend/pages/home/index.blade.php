@@ -17,15 +17,12 @@
 
 @section('content_body')
     <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-banner-2')
-    </section>
-
-    <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-most-popular-items')
+        @include('frontend.pages.home.partials.section-banner')
     </section>
 
     <section class="shopify-section section">
         <div class="multicolumn color-background-1 gradient background-primary no-heading">
+            @include('frontend.pages.home.partials.section-most-popular-items')
             @include('frontend.pages.home.partials.section-catalog-collection')
         </div>
     </section>

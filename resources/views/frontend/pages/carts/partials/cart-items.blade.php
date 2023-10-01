@@ -11,18 +11,18 @@
         <limespot-box data-owner="LimeSpot" data-box-type="Upsell" data-dynamic="true" data-host-page="Cart" data-placement-order="3" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom" data-reference-id="6138916339864" data-placement-sibling="" data-placement-disposition="0" data-placement-method="" data-box-style="upsell" data-keep-hidden-after-load="true" data-bypass-standard-appearance="true" data-bypass-lazy-images="true" data-recommendation-reference-id="214411739" style="display: block;">
             <div class="ls-ul-container">
                 <ul class="ls-ul">
-                    <li class="ls-li ls-no-overlay ls-show" data-product-identifier="4441601441925" data-product-title="Zafu Zabuton Set, Organic" data-price="255" data-original-price="" data-display-url="https://dharmacrafts.com/products/zafu-zabuton-set-organic?lssrc=upsell&amp;lshst=cart">
+                    <li class="ls-li ls-no-overlay ls-show" data-product-identifier="4441601441925" data-product-title="Zafu Zabuton Set, Organic" data-price="255" data-original-price="" data-display-url="http://uudam.vn.test/products/zafu-zabuton-set-organic?lssrc=upsell&amp;lshst=cart">
                         <div class="limespot-li-container">
                             <div class="ls-prev limespot-prev" role="button" tabindex="0" style="width: 25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>
                                 </svg>
                             </div>
-                            <a class="ls-link" data-product-identifier="4441601441925" href="https://dharmacrafts.com/products/zafu-zabuton-set-organic?lssrc=upsell&amp;lshst=cart">
+                            <a class="ls-link" data-product-identifier="4441601441925" href="http://uudam.vn.test/products/zafu-zabuton-set-organic?lssrc=upsell&amp;lshst=cart">
                                 <div class="ls-image limespot-image" title="Zafu Zabuton Set, Organic" style="background-image: url(&quot;https://cdn.shopify.com/s/files/1/0298/7753/4853/products/zzsetorg42_1_270x270.jpg?v=1586873810&quot;);"></div>
                             </a>
                             <div class="limespot-message-container ls-message-container">
-                                <a class="ls-link" data-product-identifier="4441601441925" href="https://dharmacrafts.com/products/zafu-zabuton-set-organic?lssrc=upsell&amp;lshst=cart">
+                                <a class="ls-link" data-product-identifier="4441601441925" href="http://uudam.vn.test/products/zafu-zabuton-set-organic?lssrc=upsell&amp;lshst=cart">
                                     <div style="display: none">
                                         <span class="ls-title">Zafu Zabuton Set, Organic</span>
                                         <span class="ls-vendor">DC</span>
@@ -48,18 +48,18 @@
                             </div>
                         </div>
                     </li>
-                    <li class="ls-li ls-no-overlay" data-product-identifier="4441621692549" data-product-title="'May All Beings Be Free' Garden Monk Statue, Small" data-price="267" data-original-price="" data-display-url="https://dharmacrafts.com/products/may-all-beings-be-free-garden-monk-statue-small?lssrc=upsell&amp;lshst=cart">
+                    <li class="ls-li ls-no-overlay" data-product-identifier="4441621692549" data-product-title="'May All Beings Be Free' Garden Monk Statue, Small" data-price="267" data-original-price="" data-display-url="http://uudam.vn.test/products/may-all-beings-be-free-garden-monk-statue-small?lssrc=upsell&amp;lshst=cart">
                         <div class="limespot-li-container">
                             <div class="ls-prev limespot-prev" role="button" tabindex="0" style="width: 25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>
                                 </svg>
                             </div>
-                            <a class="ls-link" data-product-identifier="4441621692549" href="https://dharmacrafts.com/products/may-all-beings-be-free-garden-monk-statue-small?lssrc=upsell&amp;lshst=cart">
+                            <a class="ls-link" data-product-identifier="4441621692549" href="http://uudam.vn.test/products/may-all-beings-be-free-garden-monk-statue-small?lssrc=upsell&amp;lshst=cart">
                                 <div class="ls-image limespot-image" title="'May All Beings Be Free' Garden Monk Statue, Small" style="background-image: url(&quot;https://cdn.shopify.com/s/files/1/0298/7753/4853/products/st044_270x270.jpg?v=1578512600&quot;);"></div>
                             </a>
                             <div class="limespot-message-container ls-message-container">
-                                <a class="ls-link" data-product-identifier="4441621692549" href="https://dharmacrafts.com/products/may-all-beings-be-free-garden-monk-statue-small?lssrc=upsell&amp;lshst=cart">
+                                <a class="ls-link" data-product-identifier="4441621692549" href="http://uudam.vn.test/products/may-all-beings-be-free-garden-monk-statue-small?lssrc=upsell&amp;lshst=cart">
                                     <div style="display: none">
                                         <span class="ls-title">'May All Beings Be Free' Garden Monk Statue, Small</span>
                                         <span class="ls-vendor">DC</span>
@@ -85,18 +85,18 @@
                             </div>
                         </div>
                     </li>
-                    <li class="ls-li ls-no-overlay" data-product-identifier="4441688113285" data-product-title="Buddha on Lotus Throne Statue, Green" data-price="84.15" data-original-price="99" data-display-url="https://dharmacrafts.com/products/buddha-on-lotus-throne-statue-green?lssrc=upsell&amp;lshst=cart">
+                    <li class="ls-li ls-no-overlay" data-product-identifier="4441688113285" data-product-title="Buddha on Lotus Throne Statue, Green" data-price="84.15" data-original-price="99" data-display-url="http://uudam.vn.test/products/buddha-on-lotus-throne-statue-green?lssrc=upsell&amp;lshst=cart">
                         <div class="limespot-li-container">
                             <div class="ls-prev limespot-prev" role="button" tabindex="0" style="width: 25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>
                                 </svg>
                             </div>
-                            <a class="ls-link" data-product-identifier="4441688113285" href="https://dharmacrafts.com/products/buddha-on-lotus-throne-statue-green?lssrc=upsell&amp;lshst=cart">
+                            <a class="ls-link" data-product-identifier="4441688113285" href="http://uudam.vn.test/products/buddha-on-lotus-throne-statue-green?lssrc=upsell&amp;lshst=cart">
                                 <div class="ls-image limespot-image" title="Buddha on Lotus Throne Statue, Green" style="background-image: url(&quot;https://cdn.shopify.com/s/files/1/0298/7753/4853/products/LCPDDCBuddha352Gr094_270x270.jpg?v=1659609241&quot;);"></div>
                             </a>
                             <div class="limespot-message-container ls-message-container">
-                                <a class="ls-link" data-product-identifier="4441688113285" href="https://dharmacrafts.com/products/buddha-on-lotus-throne-statue-green?lssrc=upsell&amp;lshst=cart">
+                                <a class="ls-link" data-product-identifier="4441688113285" href="http://uudam.vn.test/products/buddha-on-lotus-throne-statue-green?lssrc=upsell&amp;lshst=cart">
                                     <div style="display: none">
                                         <span class="ls-title">Buddha on Lotus Throne Statue, Green</span>
                                         <span class="ls-vendor">DC</span>
@@ -122,18 +122,18 @@
                             </div>
                         </div>
                     </li>
-                    <li class="ls-li ls-no-overlay" data-product-identifier="5681391108248" data-product-title="Lotus Love Body Oil" data-price="32" data-original-price="" data-display-url="https://dharmacrafts.com/products/lotus-love-body-oil?lssrc=upsell&amp;lshst=cart">
+                    <li class="ls-li ls-no-overlay" data-product-identifier="5681391108248" data-product-title="Lotus Love Body Oil" data-price="32" data-original-price="" data-display-url="http://uudam.vn.test/products/lotus-love-body-oil?lssrc=upsell&amp;lshst=cart">
                         <div class="limespot-li-container">
                             <div class="ls-prev limespot-prev" role="button" tabindex="0" style="width: 25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>
                                 </svg>
                             </div>
-                            <a class="ls-link" data-product-identifier="5681391108248" href="https://dharmacrafts.com/products/lotus-love-body-oil?lssrc=upsell&amp;lshst=cart">
+                            <a class="ls-link" data-product-identifier="5681391108248" href="http://uudam.vn.test/products/lotus-love-body-oil?lssrc=upsell&amp;lshst=cart">
                                 <div class="ls-image limespot-image" title="Lotus Love Body Oil" style="background-image: url(&quot;https://cdn.shopify.com/s/files/1/0298/7753/4853/products/LLbodyoil_dharmacrafts_270x270.jpg?v=1598371716&quot;);"></div>
                             </a>
                             <div class="limespot-message-container ls-message-container">
-                                <a class="ls-link" data-product-identifier="5681391108248" href="https://dharmacrafts.com/products/lotus-love-body-oil?lssrc=upsell&amp;lshst=cart">
+                                <a class="ls-link" data-product-identifier="5681391108248" href="http://uudam.vn.test/products/lotus-love-body-oil?lssrc=upsell&amp;lshst=cart">
                                     <div style="display: none">
                                         <span class="ls-title">Lotus Love Body Oil</span>
                                         <span class="ls-vendor">DharmaCrafts</span>
@@ -159,18 +159,18 @@
                             </div>
                         </div>
                     </li>
-                    <li class="ls-li ls-no-overlay" data-product-identifier="4441625362565" data-product-title="Buddha on Lotus Throne, Bronze Finish" data-price="99" data-original-price="" data-display-url="https://dharmacrafts.com/products/buddha-on-lotus-throne-bronze-finish?lssrc=upsell&amp;lshst=cart">
+                    <li class="ls-li ls-no-overlay" data-product-identifier="4441625362565" data-product-title="Buddha on Lotus Throne, Bronze Finish" data-price="99" data-original-price="" data-display-url="http://uudam.vn.test/products/buddha-on-lotus-throne-bronze-finish?lssrc=upsell&amp;lshst=cart">
                         <div class="limespot-li-container">
                             <div class="ls-prev limespot-prev" role="button" tabindex="0" style="width: 25px">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>
                                 </svg>
                             </div>
-                            <a class="ls-link" data-product-identifier="4441625362565" href="https://dharmacrafts.com/products/buddha-on-lotus-throne-bronze-finish?lssrc=upsell&amp;lshst=cart">
+                            <a class="ls-link" data-product-identifier="4441625362565" href="http://uudam.vn.test/products/buddha-on-lotus-throne-bronze-finish?lssrc=upsell&amp;lshst=cart">
                                 <div class="ls-image limespot-image" title="Buddha on Lotus Throne, Bronze Finish" style="background-image: url(&quot;https://cdn.shopify.com/s/files/1/0298/7753/4853/products/st379_270x270.jpg?v=1578512688&quot;);"></div>
                             </a>
                             <div class="limespot-message-container ls-message-container">
-                                <a class="ls-link" data-product-identifier="4441625362565" href="https://dharmacrafts.com/products/buddha-on-lotus-throne-bronze-finish?lssrc=upsell&amp;lshst=cart">
+                                <a class="ls-link" data-product-identifier="4441625362565" href="http://uudam.vn.test/products/buddha-on-lotus-throne-bronze-finish?lssrc=upsell&amp;lshst=cart">
                                     <div style="display: none">
                                         <span class="ls-title">Buddha on Lotus Throne, Bronze Finish</span>
                                         <span class="ls-vendor">DC</span>

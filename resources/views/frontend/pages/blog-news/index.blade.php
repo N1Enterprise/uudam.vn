@@ -12,7 +12,7 @@
     <article class="article-template" itemscope="" itemtype="http://schema.org/BlogPosting">
         <div class="article-template__hero-container">
             <div class="article-template__hero-large media" itemprop="image">
-                <img srcset="https://dharmacrafts.com/cdn/shop/articles/custom_resized_7e58797c-3196-4b22-abdc-d6036927629e.jpg?v=1685632619&width=3000" src="https://dharmacrafts.com/cdn/shop/articles/custom_resized_7e58797c-3196-4b22-abdc-d6036927629e.jpg?v=1685632619&width=3000" loading="lazy" width="4472" height="3578" alt="What an Eye Pillow is &amp; How to Use One">
+                <img srcset="http://uudam.vn.test/cdn/shop/articles/custom_resized_7e58797c-3196-4b22-abdc-d6036927629e.jpg?v=1685632619&width=3000" src="http://uudam.vn.test/cdn/shop/articles/custom_resized_7e58797c-3196-4b22-abdc-d6036927629e.jpg?v=1685632619&width=3000" loading="lazy" width="4472" height="3578" alt="What an Eye Pillow is &amp; How to Use One">
             </div>
         </div>
         <header class="page-width page-width--narrow">
@@ -40,7 +40,7 @@
                     <div id="Article-share-template--16599720231162__main" class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span id="ShareMessage-template--16599720231162__main" class="share-button__message hidden" role="status"></span>
-                            <input type="text" class="field__input" id="url" value="https://dharmacrafts.com/blogs/news/what-is-an-eye-pillow-how-to-use-one" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="http://uudam.vn.test/blogs/news/what-is-an-eye-pillow-how-to-use-one" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
@@ -66,7 +66,7 @@
             </h3>
             <p>
                 <span style="font-weight: 400;">These small but mighty </span>
-                <a href="https://dharmacrafts.com/collections/yoga-supplies" target="_blank" title="Yoga Supplies | DharmaCrafts" rel="noopener noreferrer">
+                <a href="http://uudam.vn.test/collections/yoga-supplies" target="_blank" title="Yoga Supplies | DharmaCrafts" rel="noopener noreferrer">
                     <span style="font-weight: 400;">yoga tools</span>
                 </a>&nbsp; <span style="font-weight: 400;">are exactly what the name implies: a tiny pillow for your eyes! Not to be confused with an eye mask for sleeping, eye pillows typically do not have straps and are designed to rest freely on the face so as to not create excess pressure or discomfort.</span>
             </p>
@@ -76,7 +76,7 @@
                 <span style="font-weight: 400;">is individually handmade in the USA by our team of talented craftspeople. We use the same fabrics to craft our </span>
                 <span style="font-weight: 400;">eye cushions</span>
                 <span style="font-weight: 400;"> that we use for the rest of our </span>
-                <a href="https://dharmacrafts.com/collections/cushions-and-benches" target="_blank" title="Meditation Cushions | DharmaCrafts" rel="noopener noreferrer">
+                <a href="http://uudam.vn.test/collections/cushions-and-benches" target="_blank" title="Meditation Cushions | DharmaCrafts" rel="noopener noreferrer">
                     <span style="font-weight: 400;">meditation cushion</span>
                 </a>
                 <span style="font-weight: 400;"> collections, so you can mix and match your new eye pillows with other DharmaCrafts </span>
@@ -85,7 +85,7 @@
             </p>
             <p>
                 <span style="font-weight: 400;">Our eye pillows are filled with 100% natural flax seed to create a beanbag-like filling that is free from chemicals, dyes, and plastics. We also offer the option to add dried lavender flower buds to your pillow to transform it into an </span>
-                <a href="https://dharmacrafts.com/blogs/news/aromatherapy-therapeutic-smells-with-roots-in-ancient-history" target="_blank" title="&quot;Aromatherapy – Therapeutic Smells With Roots in Ancient History&quot; Blog" rel="noopener noreferrer">
+                <a href="http://uudam.vn.test/blogs/news/aromatherapy-therapeutic-smells-with-roots-in-ancient-history" target="_blank" title="&quot;Aromatherapy – Therapeutic Smells With Roots in Ancient History&quot; Blog" rel="noopener noreferrer">
                     <span style="font-weight: 400;">aromatherapy</span>
                 </a>
                 <span style="font-weight: 400;"> eye pillow</span>
@@ -110,7 +110,7 @@
                 <img src="https://cdn.shopify.com/s/files/1/0298/7753/4853/files/DC_EyePillow_Lifestyle1_86cddb7a-b5d9-413b-b674-fc6c30adea2e_480x480.jpg?v=1685631347" alt="Unscented Eye Pillows | DharmaCrafts" style="float: none;">
             </div>
             <p style="text-align: center;">
-                <em>Pictured: DharmaCrafts Eye Pillows in&nbsp; <a href="https://dharmacrafts.com/products/eco-organic-eye-pillow-in-sweet-grass" target="_blank" title="DharmaCrafts Eco Organic Eye Pillow in Sweet Grass" rel="noopener noreferrer">Sweet Grass</a>, <a href="https://dharmacrafts.com/products/studio-eye-pillow-in-black" target="_blank" title="DharmaCrafts Studio Eye Pillow in Black" rel="noopener noreferrer">Black</a>, <a href="https://dharmacrafts.com/products/eco-organic-eye-pillow-in-sunshine" target="_blank" title="DharmaCrafts Eco Organic Eye Pillow in Sunshine" rel="noopener noreferrer">Sunshine</a>, &amp; <a href="https://dharmacrafts.com/products/studio-eye-pillow-in-deep-purple" target="_blank" title="DharmaCrafts Studio Eye Pillow in Deep Purple" rel="noopener noreferrer">Deep Purple</a>
+                <em>Pictured: DharmaCrafts Eye Pillows in&nbsp; <a href="http://uudam.vn.test/products/eco-organic-eye-pillow-in-sweet-grass" target="_blank" title="DharmaCrafts Eco Organic Eye Pillow in Sweet Grass" rel="noopener noreferrer">Sweet Grass</a>, <a href="http://uudam.vn.test/products/studio-eye-pillow-in-black" target="_blank" title="DharmaCrafts Studio Eye Pillow in Black" rel="noopener noreferrer">Black</a>, <a href="http://uudam.vn.test/products/eco-organic-eye-pillow-in-sunshine" target="_blank" title="DharmaCrafts Eco Organic Eye Pillow in Sunshine" rel="noopener noreferrer">Sunshine</a>, &amp; <a href="http://uudam.vn.test/products/studio-eye-pillow-in-deep-purple" target="_blank" title="DharmaCrafts Studio Eye Pillow in Deep Purple" rel="noopener noreferrer">Deep Purple</a>
                 </em>
             </p>
             <p style="text-align: center;">&nbsp;</p>
@@ -152,7 +152,7 @@
             <p>
                 <span style="font-weight: 400;">Similarly to corpse pose yoga, </span>
                 <span style="font-weight: 400;">supine meditation</span>
-                <span style="font-weight: 400;"> (meditation performed while lying on the back) can also be equally difficult to retain a level of focus and ease without becoming distracted. Use a meditation eye pillow to encourage your body and mind to release itself into a meditative state. We also offer a variety of guided <a href="https://dharmacrafts.com/search?q=guided+meditation+scripts&amp;options%5Bprefix%5D=last" target="_blank" title="Guided Meditation Scripts | DharmaCrafts" rel="noopener noreferrer">meditation scripts</a> for different purposes that you can use to aid in your </span>
+                <span style="font-weight: 400;"> (meditation performed while lying on the back) can also be equally difficult to retain a level of focus and ease without becoming distracted. Use a meditation eye pillow to encourage your body and mind to release itself into a meditative state. We also offer a variety of guided <a href="http://uudam.vn.test/search?q=guided+meditation+scripts&amp;options%5Bprefix%5D=last" target="_blank" title="Guided Meditation Scripts | DharmaCrafts" rel="noopener noreferrer">meditation scripts</a> for different purposes that you can use to aid in your </span>
                 <span style="font-weight: 400;"> meditation practice</span>
                 <span style="font-weight: 400;">.</span>
             </p>
@@ -160,7 +160,7 @@
                 <li>For Anxiety, Stress, and General Relaxation</li>
             </b>
             <p>
-                <span style="font-weight: 400;">Whether you’re someone who meditates every day right after a rigorous yoga routine, or only dabbles in each on occasion, feeling <a href="https://dharmacrafts.com/blogs/news/benefits-of-body-scan-meditation?_pos=39&amp;_sid=5c042bf84&amp;_ss=r" target="_blank" title="&quot;Benefits of Body Scan Meditation&quot; Blog" rel="noopener noreferrer">stressed</a> and overwhelmed are emotions we’re all familiar with. </span>
+                <span style="font-weight: 400;">Whether you’re someone who meditates every day right after a rigorous yoga routine, or only dabbles in each on occasion, feeling <a href="http://uudam.vn.test/blogs/news/benefits-of-body-scan-meditation?_pos=39&amp;_sid=5c042bf84&amp;_ss=r" target="_blank" title="&quot;Benefits of Body Scan Meditation&quot; Blog" rel="noopener noreferrer">stressed</a> and overwhelmed are emotions we’re all familiar with. </span>
             </p>
             <p>
                 <span style="font-weight: 400;">A </span>
@@ -194,7 +194,7 @@
                 <img src="https://cdn.shopify.com/s/files/1/0298/7753/4853/files/DC_EyePillow_Tombo1_89dae52e-ab2f-4f25-9609-ed9e03b83464_480x480.jpg?v=1685631880" alt="DharmaCrafts Yoga Eye Pillow in Navy Dragonfly">
             </div>
             <p style="text-align: center;">
-                <em>Pictured: <a href="https://dharmacrafts.com/products/yoga-eye-pillow-in-navy-dragonfly" target="_blank" title="DharmaCrafts Yoga Eye Pillow in Navy Dragonfly" rel="noopener noreferrer">DharmaCrafts Eye Pillow in&nbsp;Navy Dragonfly</a>
+                <em>Pictured: <a href="http://uudam.vn.test/products/yoga-eye-pillow-in-navy-dragonfly" target="_blank" title="DharmaCrafts Yoga Eye Pillow in Navy Dragonfly" rel="noopener noreferrer">DharmaCrafts Eye Pillow in&nbsp;Navy Dragonfly</a>
                 </em>
             </p>
             <p style="text-align: center;">&nbsp;</p>
@@ -204,11 +204,11 @@
             </p>
             <br>
             <span style="font-weight: 400;">Adding an eye pillow to your yoga or meditation routine may not seem as directly impactful as something like a </span>
-            <a href="https://dharmacrafts.com/collections/zafu-zabuton-set" target="_blank" title="Zafu Zabuton Meditation Cushion Sets | DharmaCrafts" rel="noopener noreferrer">
+            <a href="http://uudam.vn.test/collections/zafu-zabuton-set" target="_blank" title="Zafu Zabuton Meditation Cushion Sets | DharmaCrafts" rel="noopener noreferrer">
                 <span style="font-weight: 400;">zafu zabuton set</span>
             </a>
             <span style="font-weight: 400;"> or </span>
-            <a href="https://dharmacrafts.com/collections/yoga-mat" target="_blank" title="Yoga Mats | DharmaCrafts" rel="noopener noreferrer">
+            <a href="http://uudam.vn.test/collections/yoga-mat" target="_blank" title="Yoga Mats | DharmaCrafts" rel="noopener noreferrer">
                 <span style="font-weight: 400;">yoga mat</span>
             </a>
             <span style="font-weight: 400;">, but these little pillows still carry a number of benefits that can be utilized by novices and experts alike.</span>

@@ -4,10 +4,10 @@
             <h2 id="SectionHeading-template--16599720624378__1659377328e5ac4a0e" class="blog__title h2">Bài Viết Hàng Tuần</h2>
         </div>
         <div class="slider-mobile-gutter">
-            <ul class="blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet">
-                <li id="Slide-template--16599720624378__1659377328e5ac4a0e-1" class="blog__post grid__item article slider__slide slider__slide--full-width">
+            <div class="blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" data-slick-config='{"id": "blogs", "speed": 300, "slidesToShow": 3, "slidesToScroll": 3, "infinite": true, "lazyLoad": "ondemand"}' style="margin: 0 -5px;">
+                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
                     <div class="card-wrapper underline-links-hover">
-                        <div class="card article-card card--standard card--media" style="--ratio-percent: 60.24096385542169%;">
+                        <div class="card article-card card--standard card--media">
                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
                                 <div class="article-card__image-wrapper card__media">
                                     <div class="article-card__image media media--hover-effect">
@@ -45,10 +45,10 @@
                             </div>
                         </div>
                     </div>
-                </li>
-                <li id="Slide-template--16599720624378__1659377328e5ac4a0e-1" class="blog__post grid__item article slider__slide slider__slide--full-width">
+                </div>
+                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
                     <div class="card-wrapper underline-links-hover">
-                        <div class="card article-card card--standard card--media" style="--ratio-percent: 60.24096385542169%;">
+                        <div class="card article-card card--standard card--media">
                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
                                 <div class="article-card__image-wrapper card__media">
                                     <div class="article-card__image media media--hover-effect">
@@ -86,10 +86,10 @@
                             </div>
                         </div>
                     </div>
-                </li>
-                <li id="Slide-template--16599720624378__1659377328e5ac4a0e-1" class="blog__post grid__item article slider__slide slider__slide--full-width">
+                </div>
+                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
                     <div class="card-wrapper underline-links-hover">
-                        <div class="card article-card card--standard card--media" style="--ratio-percent: 60.24096385542169%;">
+                        <div class="card article-card card--standard card--media">
                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
                                 <div class="article-card__image-wrapper card__media">
                                     <div class="article-card__image media media--hover-effect">
@@ -127,8 +127,20 @@
                             </div>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
+            <div class="slider-buttons no-js-hidden medium-hide">
+                <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left" data-slick-id="blogs" data-slick-button-prev>
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                    </svg>
+                </button>
+                <button type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right" data-slick-id="blogs" data-slick-button-next>
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 </div>

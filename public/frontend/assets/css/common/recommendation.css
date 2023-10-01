@@ -579,7 +579,7 @@ img[data-lazy-src] {
 }
 
 limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list {
-    margin: 0 -15px;
+    margin: 0 -16px;
 }
 
 @media screen and (max-width: 749px) {
@@ -587,7 +587,7 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         padding: 0 5px;
     }
     limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
-        padding: 0 6px;
+        padding: 0 10px;
     }
     limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-price-wrap {
         display: flex;

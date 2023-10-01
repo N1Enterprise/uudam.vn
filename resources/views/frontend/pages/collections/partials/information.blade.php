@@ -55,23 +55,23 @@
                     </li>
                     <li style="font-weight: 400;">
                         <strong>
-                            <a href="https://dharmacrafts.com/collections/yoga-mats-cushioned-roll-up-and-go-yoga-mats" target="_blank">Yoga Mats</a>
+                            <a href="http://uudam.vn.test/collections/yoga-mats-cushioned-roll-up-and-go-yoga-mats" target="_blank">Yoga Mats</a>
                         </strong>
                         <span style="font-weight: 400;">: A step above your usual foam yoga mat, this cotton filled mat is plush and comfortable- plus it’s portable! Available in 2 inclusive lengths and a variety of colors.</span>
                     </li>
                     <li style="font-weight: 400;">
                         <strong>
-                            <a href="https://dharmacrafts.com/collections/support-cushions-meditation-mats-and-meditation-cushions" target="_blank">Support Cushions</a>
+                            <a href="http://uudam.vn.test/collections/support-cushions-meditation-mats-and-meditation-cushions" target="_blank">Support Cushions</a>
                         </strong>
                         <span style="font-weight: 400;">: Customize your yoga or meditation set up with the exact pillows and cushions to suit your needs.</span>
                     </li>
                     <li style="font-weight: 400;">
                         <strong>
-                            <a href="https://dharmacrafts.com/collections/meditation-bolsters" target="_blank">Bolsters</a>
+                            <a href="http://uudam.vn.test/collections/meditation-bolsters" target="_blank">Bolsters</a>
                         </strong>
                         <span style="font-weight: 400;">: A popular choice for increased comfort and posture support during meditative and yoga practices. Available in two different shapes (round or rectangular), and a wide variety of color and fabric options to match your Zafu &amp; Zabuton, or to stand out on its own.</span>
                     </li>
-                    <li style="font-weight: 400;">View our meditation cushion <a href="https://dharmacrafts.com/pages/meditation-cushions-faq?_pos=1&amp;_sid=7c0355f39&amp;_ss=r" target="_blank">FAQ</a> for care instructions &amp; more. <br>
+                    <li style="font-weight: 400;">View our meditation cushion <a href="http://uudam.vn.test/pages/meditation-cushions-faq?_pos=1&amp;_sid=7c0355f39&amp;_ss=r" target="_blank">FAQ</a> for care instructions &amp; more. <br>
                     </li>
                 </ul>
                 <span style="font-size: 1.4em;">
