@@ -31,7 +31,9 @@
     <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
+
     <!--end::Page Vendors Styles -->
 
     @yield('style_datatable')
@@ -120,12 +122,18 @@
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         @yield('content_body')
+        @stack('modals')
     </main>
 
     @include('frontend.layouts.parials.footer.index')
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/common/my-slick.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('frontend/assets/js/components/slick.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
+
     @yield('js_script')
     @stack('js_pages')
 </body>
