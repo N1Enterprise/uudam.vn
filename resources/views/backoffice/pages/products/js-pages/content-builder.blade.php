@@ -1,20 +1,20 @@
-<script src="{{ asset('assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/embed/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/table/dist/table.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/list/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/paragraph/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/warning/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/code/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/link/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/raw/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/header/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/quote/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/marker/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/checklist/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/delimiter/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/plugins/inline-code/dist/bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/general/editorjs/dist/editorjs.umd.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/custom/bootstrap3-editable/js/bootstrap-editable.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/embed/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/table/dist/table.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/list/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/paragraph/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/warning/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/code/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/link/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/raw/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/header/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/quote/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/marker/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/checklist/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/delimiter/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/inline-code/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/dist/editorjs.umd.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/custom/bootstrap3-editable/js/bootstrap-editable.js') }}" type="text/javascript"></script>
 
 <script>
     const MESSAGE_CONTENT_BUILDER_TYPE = {

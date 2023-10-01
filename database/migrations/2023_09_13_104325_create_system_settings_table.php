@@ -20,7 +20,7 @@ class CreateSystemSettingsTable extends Migration
             $table->string('label');
             $table->string('key');
             $table->json('value')->nullable();
-            $table->enum('value_type', SystemSettingValueTypeEnum::all());
+            $table->string('value_type')->comment(SystemSettingValueTypeEnum::class);
             $table->integer('order')->nullable();
 
             $table->timestamps();

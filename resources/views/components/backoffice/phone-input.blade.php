@@ -9,7 +9,7 @@
 </div>
 
 @push('js_pages')
-<script src="{{ asset('js/common/libphonenumber.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/js/common/libphonenumber.min.js') }}" type="text/javascript"></script>
 <script>
     $("input[name='{{ $phoneInputName }}']").inputmask({
         'mask': '9999999999999',

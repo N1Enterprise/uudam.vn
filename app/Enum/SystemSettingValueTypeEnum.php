@@ -9,6 +9,7 @@ class SystemSettingValueTypeEnum extends BaseEnum
     public const STRING_TYPE = 'string';
     public const NUMBER_TYPE = 'number';
     public const DATE_TIME_TYPE = 'datetime';
+    public const IMAGE = 'image';
 
     public static function all(): array
     {
@@ -18,6 +19,7 @@ class SystemSettingValueTypeEnum extends BaseEnum
             self::STRING_TYPE,
             self::NUMBER_TYPE,
             self::DATE_TIME_TYPE,
+            self::IMAGE,
         ];
     }
 
@@ -26,6 +28,7 @@ class SystemSettingValueTypeEnum extends BaseEnum
         self::JSON_TYPE => 'Json',
         self::STRING_TYPE => 'String',
         self::NUMBER_TYPE => 'Number',
-        self::DATE_TIME_TYPE => 'DateTime'
+        self::DATE_TIME_TYPE => 'DateTime',
+        self::IMAGE => 'Image',
     ];
 }

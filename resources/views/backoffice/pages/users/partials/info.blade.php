@@ -238,7 +238,7 @@
 </div>
 
 @push('js_pages')
-<script src="{{ asset('js/common/libphonenumber.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/js/common/libphonenumber.min.js') }}" type="text/javascript"></script>
 <script>
     function initCallingCountryCodes() {
         let phonesPrefix = $('#callingCode');
