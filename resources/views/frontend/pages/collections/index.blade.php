@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-rte.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-facets.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/quick-add.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
 <style>
