@@ -56,8 +56,6 @@ class UserService extends BaseService
         $user = DB::transaction(function() use ($attributes) {
             $user = $this->userRepository->create($attributes);
 
-            $user->userDetail()->create(Arr::except($attributes, ['state_id', 'city_id', 'address', 'post_code']));
-
             UserCreating::dispatch($user);
 
             return $user;

@@ -144,7 +144,7 @@
 								<div class="k-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px -2px">
 									<div class="k-header__topbar-user">
 										<span class="k-header__topbar-welcome k-hidden-mobile">{{__('Hi')}},</span>
-										<span class="k-header__topbar-username k-hidden-mobile">{{ $AUTHENTICATED_USER->name }}</span>
+										<span class="k-header__topbar-username k-hidden-mobile">{{ $AUTHENTICATED_ADMIN->name }}</span>
 										<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
 									</div>
 								</div>
@@ -155,7 +155,7 @@
 												<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
 											</div>
 											<div class="k-user-card__details">
-												<div class="k-user-card__name">{{ $AUTHENTICATED_USER->name }}</div>
+												<div class="k-user-card__name">{{ $AUTHENTICATED_ADMIN->name }}</div>
 											</div>
 										</div>
 									</div>

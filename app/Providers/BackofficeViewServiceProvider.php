@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ViewServiceProvider extends ServiceProvider
+class BackofficeViewServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -45,7 +45,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer('backoffice.*', function ($view) {
             $view->with('APP_NAME', config('name'));
-            $view->with('AUTHENTICATED_USER',  AdminAuth::user());
+            $view->with('AUTHENTICATED_ADMIN',  AdminAuth::user());
         });
 
         View::composer('backoffice.includes.left_menu', function($view) {

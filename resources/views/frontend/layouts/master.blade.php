@@ -23,7 +23,7 @@
     </script>
     <!--end::Web font -->
 
-    <!--begin::Page Vendors Styles -->
+    <!--begin::Components Styles -->
     <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
@@ -33,8 +33,11 @@
     <link href="{{ asset('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Components Styles -->
 
-    <!--end::Page Vendors Styles -->
+    <!--begin:: Global Optional Vendors -->
+    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
+    <!--end:: Global Optional Vendors -->
 
     @yield('style_datatable')
     @yield('style')
@@ -135,10 +138,12 @@
 
     @include('frontend.layouts.parials.footer.index')
 
+    <!--begin:: Global Optional Vendors -->
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
+    <!--end:: Global Optional Vendors -->
 
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
-
     <script src="{{ asset('frontend/assets/js/components/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
 

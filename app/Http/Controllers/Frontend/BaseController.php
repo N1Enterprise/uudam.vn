@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Classes\Contracts\UserAuthContract;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,9 +14,14 @@ class BaseController extends Controller
     use DispatchesJobs;
     use ValidatesRequests;
 
+    /**
+     * @var UserAuthContract
+     */
+    public $userAuth;
+
     public function __construct()
     {
-        $this->userAuth = app();
+        $this->userAuth = app(UserAuthContract::class);
     }
 
     public function view($view, $data = [], $mergeData = [])
@@ -28,5 +34,10 @@ class BaseController extends Controller
     public function response($responseClass, $resource = null)
     {
         return app($responseClass, ['resource' => $resource]);
+    }
+
+    public function responseNoContent($status = 204, array $headers = [])
+    {
+        return response()->noContent($status, $headers);
     }
 }

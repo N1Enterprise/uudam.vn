@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\User\Classes\Contracts;
+namespace App\Classes\Contracts;
 
 interface UserAuthContract
 {

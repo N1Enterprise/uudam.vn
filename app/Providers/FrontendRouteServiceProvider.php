@@ -26,15 +26,14 @@ class FrontendRouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['web'])
             ->namespace($this->namespace)
-            ->as('fe.web.')
+            ->as('fe.user.web.')
             ->group(base_path('routes/frontend/web.php'));
     }
 
     protected function mapApiRoutes()
     {
-        Route::middleware(['web', 'auth:admin'])
-            ->as('bo.api.')
-            ->prefix('fe/api')
+        Route::as('fe.user.api.')
+            ->prefix('fe/user/api')
             ->group(base_path('routes/frontend/api.php'));
     }
 }

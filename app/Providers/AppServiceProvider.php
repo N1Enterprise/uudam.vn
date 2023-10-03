@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(ViewServiceProvider::class);
+        $this->app->register(BackofficeViewServiceProvider::class);
+        $this->app->register(FrontendViewServiceProvider::class);
     }
 
     /**

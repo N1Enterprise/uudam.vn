@@ -174,14 +174,18 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         // App\Providers\RouteServiceProvider::class,
-        App\Providers\FrontendRouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
-        App\Providers\ResponseServiceProvider::class,
+        App\Providers\BackofficeResponseServiceProvider::class,
         App\Providers\BackofficeServiceProvider::class,
         App\Providers\BackofficeRouteServiceProvider::class,
         App\Providers\BackofficeFormRequestServiceProvider::class,
+
+        App\Providers\FrontendResponseServiceProvider::class,
+        App\Providers\FrontendRouteServiceProvider::class,
+        App\Providers\FrontendFormRequestServiceProvider::class,
+        App\Providers\FrontendServiceProvider::class,
     ],
 
     /*

@@ -10,5 +10,6 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
 {
     public $singletons = [
         Contracts\SignupRequestContract::class => Requests\SignupRequest::class,
+        Contracts\SigninRequestContract::class => Requests\SigninRequest::class,
     ];
 }

@@ -11,8 +11,8 @@ class SignupRequest extends BaseFormRequest implements SignupRequestContract
     {
         return [
             'email' => ['required', 'string', 'max:255', 'email', Rule::unique('users', 'email')],
-            'phone_number' => ['required', 'phone:auto', Rule::unique('users', 'phone_number')],
-            'confirm_password' => ['required', 'same:password', 'string', 'min:6'],
+            'phone_number' => ['required', 'regex:/^0[3-9]\d{8}$/', Rule::unique('users', 'phone_number')],
+            'password' => ['required', 'string', 'min:6'],
         ];
     }
 }

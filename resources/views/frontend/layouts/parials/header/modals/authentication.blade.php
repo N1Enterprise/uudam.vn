@@ -35,14 +35,15 @@
                 </div>
                 <div class="quick-add-modal__content-content">
                     <div class="form-basic-signin customer">
-                        <form method="POST" action="" id="signin_form" accept-charset="UTF-8" class="signin-form">
+                        <form method="POST" action="{{ route('fe.user.api.signin') }}" id="signin_form" accept-charset="UTF-8" class="signin-form">
+                            @csrf
                             <div class="form-fields">
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="text" name="phone" id="signin-phone" class="field__input" autocomplete="phone" value="" aria-required="true" required="" placeholder="Số Điện Thoại">
-                                    <label class="field__label" for="signin-phone">Số Điện Thoại / E-mail <span aria-hidden="true">*</span></label>
+                                    <input type="text" name="phone_number" id="signin-phone" class="field__input" autocomplete="phone" value="" aria-required="true" required="" placeholder="Số Điện Thoại">
+                                    <label class="field__label" for="signin-phone">Số Điện Thoại<span aria-hidden="true">*</span></label>
                                 </div>
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="password" name="passowrd" id="signin-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập">
+                                    <input type="password" name="password" id="signin-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập">
                                     <label class="field__label" for="signin-password">Mật Khẩu <span aria-hidden="true">*</span></label>
                                 </div>
                             </div>
@@ -63,18 +64,19 @@
                 </div>
                 <div class="quick-add-modal__content-content">
                     <div class="form-basic-signup customer">
-                        <form method="POST" action="" id="signup_form" accept-charset="UTF-8" class="signup-form">
+                        <form method="POST" action="{{ route('fe.user.api.signup') }}" id="signup_form" accept-charset="UTF-8" class="signup-form">
+                            @csrf
                             <div class="form-fields">
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="text" name="phone" id="signup-phone" class="field__input" autocomplete="phone" value="" aria-required="true" required="" placeholder="Số Điện Thoại">
+                                    <input type="text" name="phone_number" id="signup-phone" class="field__input" autocomplete="phone" value="" aria-required="true" required="" placeholder="Số Điện Thoại">
                                     <label class="field__label" for="signup-phone">Số Điện Thoại<span aria-hidden="true">*</span></label>
                                 </div>
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="text" name="phone" id="signup-email" class="field__input" autocomplete="phone" value="" aria-required="true" required="" placeholder="E-mail">
+                                    <input type="text" name="email" id="signup-email" class="field__input" autocomplete="email" value="" aria-required="true" required="" placeholder="E-mail">
                                     <label class="field__label" for="signup-phone">E-mail<span aria-hidden="true">*</span></label>
                                 </div>
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="password" name="passowrd" id="signup-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập">
+                                    <input type="password" name="password" id="signup-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập">
                                     <label class="field__label" for="signup-password">Mật Khẩu <span aria-hidden="true">*</span></label>
                                 </div>
                             </div>

@@ -353,28 +353,7 @@ const fsDateHelper = {
 	}
 }
 
-const fstoast = {
-	options: {
-		closeButton: true
-	},
-	success: function(message, title = '') {
-		toastr.options = this.options;
-		toastr.success(message, title);
-	},
 
-	error: function(message, title = '') {
-		toastr.options = this.options;
-		toastr.error(message, title);
-	},
-	info: function(message, title = '') {
-		toastr.options = this.options;
-		toastr.info(message, title);
-	},
-	warning: function(message, title = '') {
-		toastr.options = this.options;
-		toastr.warning(message, title);
-	}
-}
 
 const currentUtcOffset = {
 	utcOffsetStorageKey: 'fs_stevephamhi_offset_utc',
