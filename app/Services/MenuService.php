@@ -100,13 +100,18 @@ class MenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'CMS',
+                'name' => 'Appearance',
                 'icon' => 'flaticon2-contract',
                 'subs' => [
                     [
-                        'name' => 'Shop Setting',
-                        'link' => '/',
-                        'permissions' => [],
+                        'name' => 'Display Inventories',
+                        'link' => route('bo.web.display-inventories.index'),
+                        'permissions' => ['display-inventories.index'],
+                    ],
+                    [
+                        'name' => 'Banners',
+                        'link' => route('bo.web.banners.index'),
+                        'permissions' => ['banners.index'],
                     ],
                 ],
             ],

@@ -70,4 +70,16 @@ return [
     'inventories.store' => 'Create Inventory',
     'inventories.update' => 'Update Inventory',
     'inventories.delete' => 'Delete Inventory',
+
+    'appearances' => 'Appearances',
+    'display-inventories' => 'Display Inventories',
+    'display-inventories.index' => 'View Display Inventory List',
+    'display-inventories.store' => 'Create Display Inventory',
+    'display-inventories.update' => 'Update Display Inventory',
+    'display-inventories.delete' => 'Delete Display Inventory',
+    'banners' => 'Banners',
+    'banners.index' => 'View Banner List',
+    'banners.store' => 'Create Banner',
+    'banners.update' => 'Update Banner',
+    'banners.delete' => 'Delete Banner',
 ];

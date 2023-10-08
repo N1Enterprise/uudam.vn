@@ -69,3 +69,17 @@ Route::post('inventories', [Controllers\InventoryController::class, 'store'])->n
 Route::get('inventories/{id}', [Controllers\InventoryController::class, 'edit'])->name('inventories.edit')->middleware(['can:inventories.update']);
 Route::put('inventories/{id}', [Controllers\InventoryController::class, 'update'])->name('inventories.update')->middleware(['can:inventories.update']);
 Route::delete('inventories/{id}', [Controllers\InventoryController::class, 'destroy'])->name('inventories.delete')->middleware(['can:inventories.delete']);
+
+Route::get('display-inventories', [Controllers\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
+Route::get('display-inventories/create/{type}', [Controllers\DisplayInventoryController::class, 'create'])->name('display-inventories.create')->middleware(['can:display-inventories.store']);
+Route::post('display-inventories', [Controllers\DisplayInventoryController::class, 'store'])->name('display-inventories.store')->middleware(['can:display-inventories.store']);
+Route::get('display-inventories/{id}/{type}', [Controllers\DisplayInventoryController::class, 'edit'])->name('display-inventories.edit')->middleware(['can:display-inventories.update']);
+Route::put('display-inventories/{id}', [Controllers\DisplayInventoryController::class, 'update'])->name('display-inventories.update')->middleware(['can:display-inventories.update']);
+Route::delete('display-inventories/{id}', [Controllers\DisplayInventoryController::class, 'destroy'])->name('display-inventories.delete')->middleware(['can:display-inventories.delete']);
+
+Route::get('banners', [Controllers\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
+Route::get('banners/create', [Controllers\BannerController::class, 'create'])->name('banners.create')->middleware(['can:banners.store']);
+Route::post('banners', [Controllers\BannerController::class, 'store'])->name('banners.store')->middleware(['can:banners.store']);
+Route::get('banners/{id}', [Controllers\BannerController::class, 'edit'])->name('banners.edit')->middleware(['can:banners.update']);
+Route::put('banners/{id}', [Controllers\BannerController::class, 'update'])->name('banners.update')->middleware(['can:banners.update']);
+Route::delete('banners/{id}', [Controllers\BannerController::class, 'destroy'])->name('banners.delete')->middleware(['can:banners.delete']);
