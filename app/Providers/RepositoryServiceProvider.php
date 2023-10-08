@@ -22,5 +22,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\AttributeRepositoryContract::class => Repositories\AttributeRepository::class,
         Contracts\AttributeValueRepositoryContract::class => Repositories\AttributeValueRepository::class,
         Contracts\InventoryRepositoryContract::class => Repositories\InventoryRepository::class,
+        Contracts\DisplayInventoryRepositoryContract::class => Repositories\DisplayInventoryRepository::class,
+        Contracts\BannerRepositoryContract::class => Repositories\BannerRepository::class,
     ];
 }

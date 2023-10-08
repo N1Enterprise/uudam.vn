@@ -33,4 +33,8 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== STOCK ======================== */
     Route::get('inventories', [Api\InventoryController::class, 'index'])->name('inventories.index')->middleware(['can:inventories.index']);
+
+    /* ======================== APPEARANCE ======================== */
+    Route::get('display-inventories', [Api\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
+    Route::get('banners', [Api\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
 });

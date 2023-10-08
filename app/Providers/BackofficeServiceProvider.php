@@ -19,6 +19,10 @@ class BackofficeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerLangs();
+
+        $this->app->register(BackofficeRouteServiceProvider::class);
+        $this->app->register(BackofficeFormRequestServiceProvider::class);
+        $this->app->register(BackofficeResponseServiceProvider::class);
     }
 
     /**

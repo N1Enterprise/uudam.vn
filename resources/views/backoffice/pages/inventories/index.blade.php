@@ -26,7 +26,6 @@
                     {{ __('Inventory') }}
                 </h3>
             </div>
-            @canAny(['inventories.store'])
             <div class="k-portlet__head-toolbar">
                 <div class="k-portlet__head-toolbar-wrapper">
                     @can('inventories.store')
@@ -37,7 +36,6 @@
                     @endcan
                 </div>
             </div>
-            @endcan
         </div>
         <div class="k-portlet__body">
             <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
@@ -75,20 +73,21 @@
 
 @component('backoffice.partials.datatable') @endcomponent
 
+@can('inventories.store')
 @push('modals')
 <div class="modal fade" id="modal_create_inventory" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border:none;">
             <form id="form_create_inventory" method="GET" action="{{ route('bo.web.inventories.create') }}">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="selectGamesModal">
+                    <h5 class="modal-title">
                         {{ __('Create Inventory') }}
                     </h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label>{{ __('Product') }} *</label>
-                        <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5">
+                        <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                             @foreach($categories as $category)
                             <optgroup label="{{ $category->name }}">
                                 @foreach($category->products as $product)
@@ -127,6 +126,7 @@
     </div>
 </div>
 @endpush
+@endcan
 
 @section('js_script')
 <script>

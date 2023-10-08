@@ -3,7 +3,7 @@
 @php
 	$title = __('Inventory');
 
-    $action = empty($inventory) ? 'Add' : 'Edit';
+    $action = empty($inventory->id) ? 'Add' : 'Edit';
 
 	$breadcrumbs = [
 		[
@@ -19,7 +19,6 @@
 	{{ __($title) }}
 @endsection
 
-
 @section('style')
 @include('backoffice.pages.inventories.style-pages.common')
 @endsection
@@ -28,9 +27,10 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
-    <form id="form_inventory" method="POST" action="{{ empty($inventory) ? route('bo.web.inventories.store') : route('bo.web.inventories.update', $inventory->id) }}" enctype="multipart/form-data">
+    <form id="form_inventory" method="POST" action="{{ empty($inventory->id) ? route('bo.web.inventories.store') : route('bo.web.inventories.update', $inventory->id) }}" enctype="multipart/form-data">
         @csrf
         @error('*')
+        {{-- @dd($errors) --}}
         <div class="alert alert-danger fade show" role="alert">
             <div class="alert-text">
                 {{ __('Submit failed. Please check the error below.') }}
@@ -42,8 +42,8 @@
             </div>
         </div>
         @enderror
-        @if(! empty($inventory)) @method('PUT') @endif
-        <input type="hidden" id="INVENTORY_DATA" value='@json($inventory)' data-is-edit="{{ boolean(! empty($inventory)) }}">
+        @if(! empty($inventory->id)) @method('PUT') @endif
+        <input type="hidden" id="INVENTORY_DATA" value='@json($inventory)' data-is-edit="{{ boolean(! empty($inventory->id)) }}">
         <input type="hidden" name="slug" value="{{ $inventory->slug }}">
 
         <div class="row">
@@ -189,10 +189,11 @@
                                     </label>
                                     <input
                                         type="datetimepicker"
-                                        class="form-control @error('offer_start') is-invalid @enderror"
+                                        class="form-control d-none @error('offer_start') is-invalid @enderror"
                                         name="offer_start"
                                         value="{{ old('offer_start', $inventory->offer_start) }}"
                                         required
+                                        disabled
                                     >
                                     @error('offer_start')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -210,10 +211,11 @@
                                     </label>
                                     <input
                                         type="datetimepicker"
-                                        class="form-control @error('offer_end') is-invalid @enderror"
+                                        class="form-control d-none @error('offer_end') is-invalid @enderror"
                                         name="offer_end"
                                         value="{{ old('offer_end', $inventory->offer_end) }}"
                                         required
+                                        disabled
                                     >
                                     @error('offer_end')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -226,7 +228,7 @@
             </div>
         </div>
 
-        @if($hasVariant)
+        {{-- @if($hasVariant)
             <div class="d-none">
                 @foreach($combinations as $combination)
                     @php $parentIndex = $loop->index; @endphp
@@ -238,9 +240,9 @@
                     @endforeach
                 @endforeach
             </div>
-        @endif
+        @endif --}}
 
-        @if($hasVariant && empty($inventory))
+        @if($hasVariant && empty($inventory->id))
         <div class="row">
             <div class="col-md-12">
                 <div class="k-portlet">

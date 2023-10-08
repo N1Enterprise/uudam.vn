@@ -284,6 +284,7 @@
         <!--begin::Page Vendors -->
 		<script src="{{ asset('backoffice/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/js/common/constant.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('backoffice/js/common/main.js') }}" type="text/javascript"></script>
         <script src="{{ asset('backoffice/js/common/fscommon.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/js/components/slick.js') }}" type="text/javascript"></script>
 		<!--end::Page Vendors -->

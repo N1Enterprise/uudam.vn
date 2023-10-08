@@ -179,6 +179,8 @@
             }
 
             $('[data-toggle-reference="offer_date_setup"]').toggleClass('d-none', !hasOfferPrice);
+            $('[data-toggle-reference="offer_date_setup"] input').toggleClass('d-none', !hasOfferPrice);
+            $('[data-toggle-reference="offer_date_setup"] input').prop('disabled', !hasOfferPrice);
         });
     });
 </script>

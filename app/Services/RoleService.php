@@ -89,6 +89,20 @@ class RoleService extends BaseService
                 'roles.update'
             ],
         ],
+        'appearances' => [
+            'display-inventories' => [
+                'display-inventories.index',
+                'display-inventories.store',
+                'display-inventories.update',
+                'display-inventories.delete',
+            ],
+            'banners' => [
+                'banners.index',
+                'banners.store',
+                'banners.update',
+                'banners.delete',
+            ],
+        ],
     ];
 
     public function __construct(RoleRepositoryContract $roleRepository)

@@ -25,7 +25,7 @@
                         </div>
                     </div>
 
-                    <div class="{{ $errors->isEmpty() && empty($inventory) ? 'collapse' : 'collapsed' }} repeater-body" id="variant_{{ $loop->index }}">
+                    <div class="collapse {{ $errors->isEmpty() && empty($inventory) ? '' : 'show' }} repeater-body" id="variant_{{ $loop->index }}">
                         <div class="form-group">
                             <label>{{ __('Image') }}
                                 <i

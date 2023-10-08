@@ -29,6 +29,13 @@ class InventoryService extends BaseService
         return $result;
     }
 
+    public function allAvailable($data = [])
+    {
+        return $this->inventoryRepository->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function show($id, $data = [])
     {
         return $this->inventoryRepository
@@ -111,11 +118,7 @@ class InventoryService extends BaseService
 
     public function delete($id)
     {
-        return DB::transaction(function() use ($id) {
-            $status = $this->inventoryRepository->delete($id);
-
-            return $status;
-        });
+        return $this->inventoryRepository->delete($id);
     }
 
     protected function setAttributes(Inventory $inventory, $attributes = [])

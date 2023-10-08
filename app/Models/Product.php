@@ -36,13 +36,18 @@ class Product extends BaseModel
         'media' => 'json',
     ];
 
+    public function getTypeNameAttribute()
+    {
+        return ProductTypeEnum::findConstantLabel($this->type);
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_products');
     }
 
-    public function getTypeNameAttribute()
+    public function inventories()
     {
-        return ProductTypeEnum::findConstantLabel($this->type);
+        return $this->hasMany(Inventory::class);
     }
 }

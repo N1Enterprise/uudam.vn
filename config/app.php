@@ -171,17 +171,12 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        // App\Providers\RouteServiceProvider::class,
-        App\Providers\FrontendRouteServiceProvider::class,
-        App\Providers\BackofficeRouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
-        App\Providers\FormRequestServiceProvider::class,
-        App\Providers\ResponseServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
         App\Providers\BackofficeServiceProvider::class,
+        App\Providers\FrontendServiceProvider::class,
     ],
 
     /*

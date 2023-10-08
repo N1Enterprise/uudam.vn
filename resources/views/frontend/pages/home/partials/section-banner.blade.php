@@ -11,67 +11,26 @@
             </svg>
         </button>
     </div>
-    <div class="slideshow banner banner--medium grid grid--1-col slider slider--everywhere" id="Slider-template--16599720624378__1655078171bc129901" aria-live="off" aria-atomic="true" data-autoplay="true" data-speed="9" data-slick-config='{"id": "home_banner", "slidesToShow": 1, "slidesToScroll": 1, "dots": true, "lazyLoad": "ondemand", "infinite": true }'>
-        <div class="slideshow__slide grid__item grid--1-col slider__slide" id="Slide-template--16599720624378__1655078171bc129901-1" role="group" aria-roledescription="Slide" aria-label="1 of 4" aria-hidden="true" tabindex="-1">
+    <div class="slideshow banner banner--medium grid grid--1-col slider slider--everywhere" aria-live="off" aria-atomic="true" data-autoplay="true" data-speed="9" data-slick-config='{"id": "home_banner", "slidesToShow": 1, "slidesToScroll": 1, "dots": true, "lazyLoad": "ondemand", "infinite": true }'>
+        @foreach ($homeBanners as $banner)
+        <div class="slideshow__slide grid__item grid--1-col slider__slide" id="{{ $banner->id }}" role="group" aria-roledescription="Slide" aria-label="1 of 4" aria-hidden="true" tabindex="-1">
             <div class="slideshow__media banner__media media">
-                <img srcset="//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=375 375w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=550 550w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=750 750w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=1100 1100w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=1500 1500w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=1780 1780w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=2000 2000w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=3000 3000w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=3840 3840w,//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660 4472w" sizes="100vw" src="//dharmacrafts.com/cdn/shop/files/custom_resized_38b76b2c-37b4-46db-8237-12375589313c.jpg?v=1691169660&amp;width=1500" loading="lazy" alt="" width="4472" height="2982">
+                <img srcset="{{ $banner->mobile_image }}&amp;width=375 375w,{{ $banner->mobile_image }}&amp;width=550 550w,{{ $banner->mobile_image }}&amp;width=750 750w,{{ $banner->desktop_image }}&amp;width=1100 1100w,{{ $banner->desktop_image }}&amp;width=1500 1500w,{{ $banner->desktop_image }}&amp;width=1780 1780w,{{ $banner->desktop_image }}&amp;width=2000 2000w,{{ $banner->desktop_image }}&amp;width=3000 3000w,{{ $banner->desktop_image }}&amp;width=3840 3840w,{{ $banner->desktop_image }} 4472w" sizes="100vw" src="{{ $banner->desktop_image }}&amp;width=1500" loading="lazy" alt="" width="4472" height="2982">
             </div>
             <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
                 <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-accent-1 gradient slideshow__text--center slideshow__text-mobile--center">
-                    <h2 class="banner__heading h1">MEDITATION CUSHIONS</h2>
-                    <div class="banner__buttons">
-                        <a href="/collections/cushions-and-benches" class="button button--primary" tabindex="-1">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slideshow__slide grid__item grid--1-col slider__slide" id="Slide-template--16599720624378__1655078171bc129901-2" role="group" aria-roledescription="Slide" aria-label="2 of 4" aria-hidden="false">
-            <div class="slideshow__media banner__media media">
-                <img srcset="//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=375 375w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=550 550w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=750 750w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=1100 1100w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=1500 1500w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=1780 1780w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=2000 2000w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=3000 3000w,//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168 3167w" sizes="100vw" src="//dharmacrafts.com/cdn/shop/files/Screen_Shot_2022-03-04_at_10.18.22_AM.png?v=1646407168&amp;width=1500" loading="lazy" alt="" width="3167" height="2117">
-            </div>
-            <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
-                <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-background-1 gradient slideshow__text--center slideshow__text-mobile--center">
-                    <h2 class="banner__heading h1">HOME &amp; GARDEN</h2>
+                    <h2 class="banner__heading h1">{{ $banner->name }}</h2>
+                    @if(! empty($banner->description))
                     <div class="banner__text">
-                        <span>Customize the meditation space you’ve always dreamed of</span>
+                        <span>{{ $banner->description }}</span>
                     </div>
+                    @endif
                     <div class="banner__buttons">
-                        <a href="/collections/meditation-supplies-home-garden" class="button button--primary">SHOP NOW</a>
+                        <a href="{{ $banner->redirect_url }}" class="button button--primary" tabindex="-1">{{ $banner->cta_label }}</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="slideshow__slide grid__item grid--1-col slider__slide" id="Slide-template--16599720624378__1655078171bc129901-3" role="group" aria-roledescription="Slide" aria-label="3 of 4" aria-hidden="true" tabindex="-1">
-            <div class="slideshow__media banner__media media">
-                <img srcset="//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=375 375w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=550 550w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=750 750w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=1100 1100w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=1500 1500w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=1780 1780w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=2000 2000w,//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183 2800w" sizes="100vw" src="//dharmacrafts.com/cdn/shop/files/DC_EyePillow_Slide_7f5215ec-1565-4060-aa09-fcb3461e417e.jpg?v=1685719183&amp;width=1500" loading="lazy" alt="" width="2800" height="1170">
-            </div>
-            <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
-                <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-background-1 gradient slideshow__text--center slideshow__text-mobile--center">
-                    <h2 class="banner__heading h1">EYE PILLOWS</h2>
-                    <div class="banner__text">
-                        <span>Introducing our NEW Yoga Eye Pillows!</span>
-                    </div>
-                    <div class="banner__buttons">
-                        <a href="/collections/yoga-eye-pillows" class="button button--primary" tabindex="-1">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slideshow__slide grid__item grid--1-col slider__slide" id="Slide-template--16599720624378__1655078171bc129901-4" role="group" aria-roledescription="Slide" aria-label="4 of 4" aria-hidden="true" tabindex="-1">
-            <div class="slideshow__media banner__media media">
-                <img srcset="//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=375 375w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=550 550w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=750 750w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=1100 1100w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=1500 1500w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=1780 1780w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=2000 2000w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=3000 3000w,//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280 3000w" sizes="100vw" src="//dharmacrafts.com/cdn/shop/files/Dharma_ColoradoGRigg_2023_LieslClarkPhoto088.jpg?v=1677774280&amp;width=1500" loading="lazy" alt="" width="3000" height="2000">
-            </div>
-            <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
-                <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-accent-1 gradient slideshow__text--center slideshow__text-mobile--center">
-                    <h2 class="banner__heading h1">YOGA SUPPLIES</h2>
-                    <div class="banner__text">
-                        <span>Introducing Cork Yoga Mats, Blocks, and Straps</span>
-                    </div>
-                    <div class="banner__buttons">
-                        <a href="/collections/yoga-supplies" class="button button--primary" tabindex="-1">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </slideshow-component>
