@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Classes\AdminAuth;
-use App\Services\MenuService;
+use App\Services\BackofficeMenuService;
 use App\View\Components\Backoffice\PhoneInput;
 use App\View\Components\Backoffice\SearchUsernameInput;
 use App\View\Components\Backoffice\NumberInput;
@@ -20,8 +20,8 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(MenuService::class, function() {
-            return new MenuService;
+        $this->app->singleton(BackofficeMenuService::class, function() {
+            return new BackofficeMenuService;
         });
 
         $this->registerViewComposer();
@@ -31,7 +31,7 @@ class ViewServiceProvider extends ServiceProvider
 
     private function getMenuConfig()
     {
-        return app(MenuService::class)->getMenus();
+        return app(BackofficeMenuService::class)->getMenus();
     }
 
     private function registerBladeComponent()

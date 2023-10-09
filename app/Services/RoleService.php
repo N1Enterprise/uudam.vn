@@ -102,6 +102,24 @@ class RoleService extends BaseService
                 'banners.update',
                 'banners.delete',
             ],
+            'menus' => [
+                'menus.index',
+                'menus.store',
+                'menus.update',
+                'menus.delete',
+                'menu-groups' => [
+                    'menu-groups.index',
+                    'menu-groups.store',
+                    'menu-groups.update',
+                    'menu-groups.delete',
+                ],
+                'menu-sub-groups' => [
+                    'menu-sub-groups.index',
+                    'menu-sub-groups.store',
+                    'menu-sub-groups.update',
+                    'menu-sub-groups.delete',
+                ],
+            ],
         ],
     ];
 
