@@ -2,25 +2,24 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\PostRepositoryContract;
+use App\Repositories\Contracts\PostCategoryRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class PostService extends BaseService
+class PostCategoryService extends BaseService
 {
-    public $postService;
+    public $postCategoryService;
 
-    public function __construct(PostRepositoryContract $postService)
+    public function __construct(PostCategoryRepositoryContract $postCategoryService)
     {
-        $this->postService = $postService;
+        $this->postCategoryService = $postCategoryService;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->postService
-            ->with(['postCategory', 'createdBy', 'updatedBy'])
+        $result = $this->postCategoryService
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -29,7 +28,7 @@ class PostService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->postService->modelScopes(['active'])
+        return $this->postCategoryService->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -39,13 +38,13 @@ class PostService extends BaseService
         return DB::transaction(function () use ($attributes) {
             $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
 
-            return $this->postService->create($attributes);
+            return $this->postCategoryService->create($attributes);
         });
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->postService->findOrFail($id, $columns);
+        return $this->postCategoryService->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
@@ -53,8 +52,13 @@ class PostService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
 
-            return $this->postService->update($attributes, $id);
+            return $this->postCategoryService->update($attributes, $id);
         });
+    }
+
+    public function delete($id)
+    {
+        return $this->postCategoryService->delete($id);
     }
 
     protected function convertImage($image)
@@ -70,11 +74,6 @@ class PostService extends BaseService
         }
 
         return null;
-    }
-
-    public function delete($id)
-    {
-        return $this->postService->delete($id);
     }
 
     protected function utilityDisk()

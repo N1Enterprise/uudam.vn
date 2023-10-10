@@ -127,8 +127,8 @@
                                                         <span>{{ __('Upload') }}</span>
                                                     </label>
                                                 </div>
-                                                <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
-                                                @anyerror('primary_image, primary_image.file, primary_image.path')
+                                                <input type="hidden" class="form-control @anyerror('image, image.file, image.path') is-invalid @endanyerror">
+                                                @anyerror('image, image.file, image.path')
                                                 {{ $displayMessages() }}
                                                 @endanyerror
                                             </div>

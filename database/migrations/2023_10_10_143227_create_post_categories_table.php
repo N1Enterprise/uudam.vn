@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreatePostCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,20 +14,15 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('post_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('image')->nullable();
             $table->json('description')->nullable();
-            $table->dateTime('post_at');
-            $table->foreignId('post_category_id');
-            $table->morphs('created_by');
-            $table->morphs('updated_by');
-            $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->tinyInteger('featured')->comment(ActivationStatusEnum::class);
-            $table->json('meta')->nullable();
             $table->integer('order')->nullable();
+            $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
+            $table->tinyInteger('featured')->default(0);
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->timestamps();
@@ -42,6 +37,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('post_categories');
     }
 }
