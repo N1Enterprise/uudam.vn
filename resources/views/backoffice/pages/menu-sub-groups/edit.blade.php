@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Display Inventory');
+	$title = __('Menu Group');
 
 	$breadcrumbs = [
 		[
 			'label' => $title,
 		],
 		[
-			'label' => __('Add Display Inventory'),
+			'label' => __('Edit Menu Group'),
 		]
 	];
 @endphp
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Display Inventory') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Edit Menu Group') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -42,36 +42,38 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="form_display_inventories" id="form_display_inventories" method="post" action="{{ route('bo.web.display-inventories.store') }}">
+				<form class="k-form" name="form_menu_groups" id="form_menu_groups" method="post" action="{{ route('bo.web.menu-sub-groups.update', $menuSubGroup->id) }}">
 					@csrf
-                    <input type="hidden" name="type" value="{{ $type }}">
+                    @method('PUT')
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+								<div class="form-group">
+									<label>{{ __('Name') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $menuSubGroup->name) }}" required>
+								</div>
+
                                 <div class="form-group">
-                                    <label>{{ __('Inventory') }} *</label>
-                                    <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker" data-live-search="true">
-                                        @foreach($inventories as $inventory)
-                                        <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id') == $inventory->id ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                    <label>{{ __('Group') }} *</label>
+                                    <select name="menu_group_id" title="--{{ __('Select Group') }}--" class="form-control k_selectpicker">
+                                        @foreach($menuGroups as $group)
+                                        <option value="{{ $group->id }}" {{ old('menu_group_id', $menuSubGroup->menu_group_id) == $group->id ? 'selected' : '' }}>{{ $group->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('inventory_id')
+                                    @error('group_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-									<label>
-                                        {{ __('Redirect URL') }}
-                                        <small>({{ __('Default used default product url') }})</small>
-                                    </label>
-									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Redirect URL') }}" value="{{ old('redirect_url') }}" required>
+									<label>{{ __('Redirect Url') }}</label>
+									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Redirect Url') }}" value="{{ old('redirect_url', $menuSubGroup->redirect_url) }}">
 								</div>
 
                                 <div class="form-group">
 									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order', $menuSubGroup->order) }}">
 								</div>
 
 								<div class="form-group row">
@@ -79,7 +81,7 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', '1') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', boolean($menuSubGroup->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>
@@ -100,19 +102,4 @@
 		</div>
 	</div>
 </div>
-@endsection
-
-@section('js_script')
-<script>
-    onInventoryChange();
-
-    function onInventoryChange() {
-        $('[name="inventory_id"]').on('change', function() {
-            const slug = $(this).find(`option[value="${$(this).val()}"]`).attr('data-slug');
-            const productRoute = "{{ route('fe.web.products.show', ':slug') }}".replace(':slug', slug);
-
-            $('[name="redirect_url"]').val(slug ? productRoute : '');
-        });
-    }
-</script>
 @endsection

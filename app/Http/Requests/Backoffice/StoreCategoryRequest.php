@@ -6,6 +6,7 @@ use Illuminate\Validation\Rule;
 use App\Contracts\Requests\Backoffice\StoreCategoryRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Models\Category;
+use App\Models\CategoryGroup;
 
 class StoreCategoryRequest extends BaseFormRequest implements StoreCategoryRequestContract
 {
@@ -14,7 +15,7 @@ class StoreCategoryRequest extends BaseFormRequest implements StoreCategoryReque
         return [
             'name' => ['required', 'max:255', Rule::unique(Category::class, 'name')],
             'slug' => ['required', 'alpha-dash', 'max:255', Rule::unique(Category::class, 'slug')],
-            'category_group_id' => ['required', 'integer'],
+            'category_group_id' => ['required', 'integer', Rule::exists(CategoryGroup::class, 'id')],
             'description' => ['nullable'],
             'primary_image' => ['required', 'array'],
             'primary_image.file' => ['nullable', 'file', 'image', 'max:5200'],

@@ -2,10 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Enum\MenuTypeEnum;
+use App\Models\Traits\Activatable;
 
-class Menu extends Model
+class Menu extends BaseModel
 {
-    use HasFactory;
+    use Activatable;
+
+    protected $fillable = [
+        'name',
+        'image',
+        'is_new',
+        'type',
+        'inventory_id',
+        'post_id',
+        'order',
+        'meta',
+        'status',
+    ];
+
+    public function getTypeNameAttribute()
+    {
+        return MenuTypeEnum::findConstantLabel($this->type);
+    }
+
+    public function inventory()
+    {
+        return $this->belongsTo(Inventory::class, 'inventory_');
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'post_id');
+    }
+
+    public function menuSubGroup()
+    {
+        return $this->belongsToMany(MenuSubGroup::class, 'menu_sub_groups');
+    }
 }

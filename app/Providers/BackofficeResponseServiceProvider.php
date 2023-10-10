@@ -57,5 +57,20 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StoreBannerResponseContract::class => Responses\StoreBannerResponse::class,
         Contracts\UpdateBannerResponseContract::class => Responses\UpdateBannerResponse::class,
         Contracts\DeleteBannerResponseContract::class => Responses\DeleteBannerResponse::class,
+
+        Contracts\ListMenuGroupResponseContract::class => Responses\ListMenuGroupResponse::class,
+        Contracts\StoreMenuGroupResponseContract::class => Responses\StoreMenuGroupResponse::class,
+        Contracts\UpdateMenuGroupResponseContract::class => Responses\UpdateMenuGroupResponse::class,
+        Contracts\DeleteMenuGroupResponseContract::class => Responses\DeleteMenuGroupResponse::class,
+
+        Contracts\ListMenuSubGroupResponseContract::class => Responses\ListMenuSubGroupResponse::class,
+        Contracts\StoreMenuSubGroupResponseContract::class => Responses\StoreMenuSubGroupResponse::class,
+        Contracts\UpdateMenuSubGroupResponseContract::class => Responses\UpdateMenuSubGroupResponse::class,
+        Contracts\DeleteMenuSubGroupResponseContract::class => Responses\DeleteMenuSubGroupResponse::class,
+
+        Contracts\ListMenuResponseContract::class => Responses\ListMenuResponse::class,
+        Contracts\StoreMenuResponseContract::class => Responses\StoreMenuResponse::class,
+        Contracts\UpdateMenuResponseContract::class => Responses\UpdateMenuResponse::class,
+        Contracts\DeleteMenuResponseContract::class => Responses\DeleteMenuResponse::class,
     ];
 }

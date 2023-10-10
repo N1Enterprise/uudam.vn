@@ -37,4 +37,7 @@ Route::prefix('v1')->group(function () {
     /* ======================== APPEARANCE ======================== */
     Route::get('display-inventories', [Api\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
     Route::get('banners', [Api\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
+    Route::get('menu-groups', [Api\MenuGroupController::class, 'index'])->name('menu-groups.index')->middleware(['can:menu-groups.index']);
+    Route::get('menu-sub-groups', [Api\MenuSubGroupController::class, 'index'])->name('menu-sub-groups.index')->middleware(['can:menu-sub-groups.index']);
+    Route::get('menus', [Api\MenuController::class, 'index'])->name('menus.index')->middleware(['can:menus.index']);
 });

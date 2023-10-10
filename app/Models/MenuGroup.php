@@ -14,4 +14,9 @@ class MenuGroup extends BaseModel
         'order',
         'status',
     ];
+
+    public function menuSubGroups()
+    {
+        return $this->hasMany(MenuSubGroup::class);
+    }
 }

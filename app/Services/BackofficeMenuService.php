@@ -118,17 +118,17 @@ class BackofficeMenuService extends BaseService
                         'subs' => [
                             [
                                 'name' => 'Groups',
-                                'link' => '/',
+                                'link' => route('bo.web.menu-groups.index'),
                                 'permissions' => ['menu-groups.index'],
                             ],
                             [
                                 'name' => 'Sub Groups',
-                                'link' => '/',
+                                'link' => route('bo.web.menu-sub-groups.index'),
                                 'permissions' => ['menu-sub-groups.index'],
                             ],
                             [
                                 'name' => 'Menus',
-                                'link' => '/',
+                                'link' => route('bo.web.menus.index'),
                                 'permissions' => ['menus.index'],
                             ],
                         ],

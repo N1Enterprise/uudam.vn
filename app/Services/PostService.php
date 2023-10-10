@@ -2,22 +2,21 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\MenuRepositoryContract;
+use App\Repositories\Contracts\PostRepositoryContract;
 use App\Services\BaseService;
 
-class MenuService extends BaseService
+class PostService extends BaseService
 {
-    public $menuService;
+    public $postService;
 
-    public function __construct(MenuRepositoryContract $menuService)
+    public function __construct(PostRepositoryContract $postService)
     {
-        $this->menuService = $menuService;
+        $this->postService = $postService;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->menuService
-            ->with(['menuSubGroups'])
+        $result = $this->postService
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -26,28 +25,28 @@ class MenuService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->menuService->modelScopes(['active'])
+        return $this->postService->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
 
     public function create($attributes = [])
     {
-        return $this->menuService->create($attributes);
+        return $this->postService->create($attributes);
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->menuService->findOrFail($id, $columns);
+        return $this->postService->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
     {
-        return $this->menuService->update($attributes, $id);
+        return $this->postService->update($attributes, $id);
     }
 
     public function delete($id)
     {
-        return $this->menuService->delete($id);
+        return $this->postService->delete($id);
     }
 }

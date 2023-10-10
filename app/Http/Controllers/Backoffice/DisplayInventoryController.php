@@ -25,11 +25,9 @@ class DisplayInventoryController extends BaseController
 
     public function index()
     {
-        $inventories = $this->inventoryService->allAvailable();
-
         $displayInventoryTypeEnumLabels = DisplayInventoryTypeEnum::labels();
 
-        return view('backoffice.pages.display-inventories.index', compact('inventories', 'displayInventoryTypeEnumLabels'));
+        return view('backoffice.pages.display-inventories.index', compact('displayInventoryTypeEnumLabels'));
     }
 
     public function create(Request $request, $type)

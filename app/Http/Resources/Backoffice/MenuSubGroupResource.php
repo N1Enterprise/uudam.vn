@@ -10,6 +10,17 @@ class MenuSubGroupResource extends BaseJsonResource
     {
         return array_merge([
             'id' => $this->id,
+            'name' => $this->name,
+            'redirect_url' => $this->redirect_url,
+            'order' => $this->order,
+            'status' => $this->status,
+            'status_name' => $this->status_name,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'menu_group_id' => $this->menu_group_id,
+            'menu_group' => $this->whenLoaded('menuGroup', function() {
+                return optional($this->menuGroup)->only(['id', 'name']);
+            })
         ], $this->generateActionPermissions());
     }
 
@@ -20,8 +31,8 @@ class MenuSubGroupResource extends BaseJsonResource
 
         return array_filter([
             'actions' => array_filter([
-                'update' => $updatePermission ? Route::findByName('bo.web.menu-groups.edit', ['id' => $this->getKey()]) : null,
-                'delete' => $deletePermission ? Route::findByName('bo.web.menu-groups.destroy', ['id' => $this->getKey()]) : null,
+                'update' => $updatePermission ? Route::findByName('bo.web.menu-sub-groups.edit', ['id' => $this->getKey()]) : null,
+                'delete' => $deletePermission ? Route::findByName('bo.web.menu-sub-groups.delete', ['id' => $this->getKey()]) : null,
             ]),
         ]);
     }

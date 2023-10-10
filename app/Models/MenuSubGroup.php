@@ -11,8 +11,13 @@ class MenuSubGroup extends BaseModel
     protected $fillable = [
         'name',
         'redirect_url',
-        'menu_category_id',
+        'menu_group_id',
         'order',
         'status',
     ];
+
+    public function menuGroup()
+    {
+        return $this->belongsTo(MenuGroup::class, 'menu_group_id');
+    }
 }
