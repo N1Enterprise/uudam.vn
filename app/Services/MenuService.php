@@ -2,137 +2,103 @@
 
 namespace App\Services;
 
+use App\Models\Menu;
+use App\Repositories\Contracts\MenuRepositoryContract;
+use App\Services\BaseService;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 class MenuService extends BaseService
 {
-    public static $menus = [];
+    public $menuService;
 
-    public function __construct()
+    public function __construct(MenuRepositoryContract $menuService)
     {
-        $this->setMenus();
+        $this->menuService = $menuService;
     }
 
-    public function getMenus()
+    public function searchByAdmin($data = [])
     {
-        return static::$menus;
+        $result = $this->menuService
+            ->with(['menuCatalogs', 'inventory', 'post'])
+            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->search([]);
+
+        return $result;
     }
 
-    public function setMenus()
+    public function allAvailable($data = [])
     {
-        $menus = [
-            [
-                'name' => 'Dashboard',
-                'link' => route('bo.web.dashboard'),
-                'icon' => 'flaticon2-graphic',
-                'permissions' => [],
-            ],
-            [
-                'name' => 'Users',
-                'icon' => 'flaticon-users',
-                'subs' => array_filter([
-                    [
-                        'name' => 'User List',
-                        'link' => route('bo.web.users.index'),
-                        'permissions' => ['users.index'],
-                    ],
-                ]),
-            ],
-            [
-                'name' => 'Catalogs',
-                'icon' => 'fa fa-tags',
-                'subs' => [
-                    [
-                        'name' => 'Categories',
-                        'subs' => [
-                            [
-                                'name' => 'Group',
-                                'link' => route('bo.web.category-groups.index'),
-                                'permissions' => ['category-groups.index']
-                            ],
-                            [
-                                'name' => 'Categories',
-                                'link' => route('bo.web.categories.index'),
-                                'permissions' => ['categories.index']
-                            ],
-                        ]
-                    ],
-                    [
-                        'name' => 'Attributes',
-                        'subs' => [
-                            [
-                                'name' => 'Attributes',
-                                'link' => route('bo.web.attributes.index'),
-                                'permissions' => ['attributes.index']
-                            ],
-                            [
-                                'name' => 'Attribute Values',
-                                'link' => route('bo.web.attribute-values.index'),
-                                'permissions' => ['attribute-values.index']
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => 'Products',
-                        'link' => route('bo.web.products.index'),
-                        'permissions' => ['products.index']
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Stock',
-                'icon' => 'fa fa-cubes',
-                'subs' => [
-                    [
-                        'name' => 'Inventories',
-                        'link' => route('bo.web.inventories.index'),
-                        'permissions' => ['inventories.index'],
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Systems',
-                'icon' => 'flaticon2-settings',
-                'subs' => [
-                    [
-                        'name' => 'System Setting',
-                        'link' => route('bo.web.system-settings.index'),
-                        'permissions' => ['system-settings.index'],
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Appearance',
-                'icon' => 'flaticon2-contract',
-                'subs' => [
-                    [
-                        'name' => 'Display Inventories',
-                        'link' => route('bo.web.display-inventories.index'),
-                        'permissions' => ['display-inventories.index'],
-                    ],
-                    [
-                        'name' => 'Banners',
-                        'link' => route('bo.web.banners.index'),
-                        'permissions' => ['banners.index'],
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Admin Users',
-                'icon' => 'flaticon-user-settings',
-                'subs' => [
-                    [
-                        'name' => 'Admin',
-                        'link' => route('bo.web.admins.index'),
-                        'permissions' => ['admins.index'],
-                    ],
-                    [
-                        'name' => 'Roles',
-                        'link' => route('bo.web.roles.index'),
-                        'permissions' => ['roles.index'],
-                    ],
-                ],
-            ],
-        ];
+        return $this->menuService->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
 
-        static::$menus = $menus;
+    public function create($attributes = [])
+    {
+        return DB::transaction(function() use ($attributes) {
+            if ($image = data_get($attributes, 'meta.image')) {
+                $attributes['meta']['image'] = $this->convertImage($image);
+            }
+
+            $menu = $this->menuService->create($attributes);
+
+            $this->syncMenuCatalogs($menu, data_get($attributes, 'menu_catalogs', []));
+
+            return $menu;
+        });
+    }
+
+    public function update($attributes = [], $id)
+    {
+        return DB::transaction(function() use ($attributes, $id) {
+            if ($image = data_get($attributes, 'meta.image')) {
+                $attributes['meta']['image'] = $this->convertImage($image);
+            }
+
+            $menu = $this->menuService->update($attributes, $id);
+
+            $this->syncMenuCatalogs($menu, data_get($attributes, 'menu_catalogs', []));
+
+            return $menu;
+        });
+    }
+
+    protected function syncMenuCatalogs(Menu $menu, $menuCatalogs = [])
+    {
+        return $menu->menuCatalogs()->sync($menuCatalogs);
+    }
+
+    protected function convertImage($image)
+    {
+        if ($imageUrl = data_get($image, 'path')) {
+            return $imageUrl;
+        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
+            $imageFile = data_get($image, 'file');
+            $filename  = $this->appearanceDisk()->putFile('/', $imageFile);
+            $imageUrl = $this->appearanceDisk()->url($filename);
+
+            return $imageUrl;
+        }
+
+        return null;
+    }
+
+    public function show($id, $data = [])
+    {
+        return $this->menuService
+            ->with(data_get($data, 'with', []))
+            ->findOrFail($id, data_get($data, 'columns', ['*']));
+    }
+
+    public function delete($id)
+    {
+        return $this->menuService->delete($id);
+    }
+
+    protected function appearanceDisk()
+    {
+        return Storage::disk('appearance');
     }
 }

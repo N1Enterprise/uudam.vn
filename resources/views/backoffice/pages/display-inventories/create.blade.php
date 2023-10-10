@@ -51,7 +51,7 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
                                 <div class="form-group">
                                     <label>{{ __('Inventory') }} *</label>
-                                    <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker">
+                                    <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker" data-live-search="true">
                                         @foreach($inventories as $inventory)
                                         <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id') == $inventory->id ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
                                         @endforeach

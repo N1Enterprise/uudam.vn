@@ -83,3 +83,24 @@ Route::post('banners', [Controllers\BannerController::class, 'store'])->name('ba
 Route::get('banners/{id}', [Controllers\BannerController::class, 'edit'])->name('banners.edit')->middleware(['can:banners.update']);
 Route::put('banners/{id}', [Controllers\BannerController::class, 'update'])->name('banners.update')->middleware(['can:banners.update']);
 Route::delete('banners/{id}', [Controllers\BannerController::class, 'destroy'])->name('banners.delete')->middleware(['can:banners.delete']);
+
+Route::get('menu-groups', [Controllers\MenuGroupController::class, 'index'])->name('menu-groups.index')->middleware(['can:menu-groups.index']);
+Route::get('menu-groups/create', [Controllers\MenuGroupController::class, 'create'])->name('menu-groups.create')->middleware(['can:menu-groups.store']);
+Route::post('menu-groups', [Controllers\MenuGroupController::class, 'store'])->name('menu-groups.store')->middleware(['can:menu-groups.store']);
+Route::get('menu-groups/{id}', [Controllers\MenuGroupController::class, 'edit'])->name('menu-groups.edit')->middleware(['can:menu-groups.update']);
+Route::put('menu-groups/{id}', [Controllers\MenuGroupController::class, 'update'])->name('menu-groups.update')->middleware(['can:menu-groups.update']);
+Route::delete('menu-groups/{id}', [Controllers\MenuGroupController::class, 'destroy'])->name('menu-groups.delete')->middleware(['can:menu-groups.delete']);
+
+Route::get('menu-sub-groups', [Controllers\MenuSubGroupController::class, 'index'])->name('menu-sub-groups.index')->middleware(['can:menu-sub-groups.index']);
+Route::get('menu-sub-groups/create', [Controllers\MenuSubGroupController::class, 'create'])->name('menu-sub-groups.create')->middleware(['can:menu-sub-groups.store']);
+Route::post('menu-sub-groups', [Controllers\MenuSubGroupController::class, 'store'])->name('menu-sub-groups.store')->middleware(['can:menu-sub-groups.store']);
+Route::get('menu-sub-groups/{id}', [Controllers\MenuSubGroupController::class, 'edit'])->name('menu-sub-groups.edit')->middleware(['can:menu-sub-groups.update']);
+Route::put('menu-sub-groups/{id}', [Controllers\MenuSubGroupController::class, 'update'])->name('menu-sub-groups.update')->middleware(['can:menu-sub-groups.update']);
+Route::delete('menu-sub-groups/{id}', [Controllers\MenuSubGroupController::class, 'destroy'])->name('menu-sub-groups.delete')->middleware(['can:menu-sub-groups.delete']);
+
+Route::get('menus', [Controllers\MenuController::class, 'index'])->name('menus.index')->middleware(['can:menus.index']);
+Route::get('menus/create', [Controllers\MenuController::class, 'create'])->name('menus.create')->middleware(['can:menus.store']);
+Route::post('menus', [Controllers\MenuController::class, 'store'])->name('menus.store')->middleware(['can:menus.store']);
+Route::get('menus/{id}', [Controllers\MenuController::class, 'edit'])->name('menus.edit')->middleware(['can:menus.update']);
+Route::put('menus/{id}', [Controllers\MenuController::class, 'update'])->name('menus.update')->middleware(['can:menus.update']);
+Route::delete('menus/{id}', [Controllers\MenuController::class, 'destroy'])->name('menus.delete')->middleware(['can:menus.delete']);
