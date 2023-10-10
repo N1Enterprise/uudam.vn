@@ -136,6 +136,27 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Utilities',
+                'icon' => 'fa fa-asterisk',
+                'subs' => [
+                    [
+                        'name' => 'Blogs',
+                        'subs' => [
+                            [
+                                'name' => 'Categories',
+                                'link' => route('bo.web.post-categories.index'),
+                                'permissions' => ['post-categories.index'],
+                            ],
+                            [
+                                'name' => 'Posts',
+                                'link' => route('bo.web.posts.index'),
+                                'permissions' => ['posts.index'],
+                            ],
+                        ],
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Admin Users',
                 'icon' => 'flaticon-user-settings',
                 'subs' => [

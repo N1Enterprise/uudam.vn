@@ -98,4 +98,17 @@ return [
     'menus.store' => 'Create Menu',
     'menus.update' => 'Update Menu',
     'menus.delete' => 'Delete Menu',
+
+    'utilities' => 'Utilities',
+    'blogs' => 'blogs',
+    'post-categories' => 'Post Categories',
+    'post-categories.index' => 'View Post Category List',
+    'post-categories.store' => 'Create Post Category',
+    'post-categories.update' => 'Update Post Category',
+    'post-categories.delete' => 'Delete Post Category',
+    'posts' => 'Posts',
+    'posts.index' => 'View Post List',
+    'posts.store' => 'Create Post',
+    'posts.update' => 'Update Post',
+    'posts.delete' => 'Delete Post',
 ];

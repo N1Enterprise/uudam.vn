@@ -121,6 +121,22 @@ class RoleService extends BaseService
                 ],
             ],
         ],
+        'utilities' => [
+            'blogs' => [
+                'post-categories' => [
+                    'post-categories.index',
+                    'post-categories.store',
+                    'post-categories.update',
+                    'post-categories.delete',
+                ],
+                'posts' => [
+                    'posts.index',
+                    'posts.store',
+                    'posts.update',
+                    'posts.delete',
+                ],
+            ],
+        ],
     ];
 
     public function __construct(RoleRepositoryContract $roleRepository)

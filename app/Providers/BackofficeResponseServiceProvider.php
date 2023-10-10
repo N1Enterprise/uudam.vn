@@ -72,5 +72,15 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StoreMenuResponseContract::class => Responses\StoreMenuResponse::class,
         Contracts\UpdateMenuResponseContract::class => Responses\UpdateMenuResponse::class,
         Contracts\DeleteMenuResponseContract::class => Responses\DeleteMenuResponse::class,
+
+        Contracts\ListPostCategoryResponseContract::class => Responses\ListPostCategoryResponse::class,
+        Contracts\StorePostCategoryResponseContract::class => Responses\StorePostCategoryResponse::class,
+        Contracts\UpdatePostCategoryResponseContract::class => Responses\UpdatePostCategoryResponse::class,
+        Contracts\DeletePostCategoryResponseContract::class => Responses\DeletePostCategoryResponse::class,
+
+        Contracts\ListPostResponseContract::class => Responses\ListPostResponse::class,
+        Contracts\StorePostResponseContract::class => Responses\StorePostResponse::class,
+        Contracts\UpdatePostResponseContract::class => Responses\UpdatePostResponse::class,
+        Contracts\DeletePostResponseContract::class => Responses\DeletePostResponse::class,
     ];
 }

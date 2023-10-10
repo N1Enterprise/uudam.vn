@@ -104,3 +104,17 @@ Route::post('menus', [Controllers\MenuController::class, 'store'])->name('menus.
 Route::get('menus/{id}', [Controllers\MenuController::class, 'edit'])->name('menus.edit')->middleware(['can:menus.update']);
 Route::put('menus/{id}', [Controllers\MenuController::class, 'update'])->name('menus.update')->middleware(['can:menus.update']);
 Route::delete('menus/{id}', [Controllers\MenuController::class, 'destroy'])->name('menus.delete')->middleware(['can:menus.delete']);
+
+Route::get('post-categories', [Controllers\PostCategoryController::class, 'index'])->name('post-categories.index')->middleware(['can:post-categories.index']);
+Route::get('post-categories/create', [Controllers\PostCategoryController::class, 'create'])->name('post-categories.create')->middleware(['can:post-categories.store']);
+Route::post('post-categories', [Controllers\PostCategoryController::class, 'store'])->name('post-categories.store')->middleware(['can:post-categories.store']);
+Route::get('post-categories/{id}', [Controllers\PostCategoryController::class, 'edit'])->name('post-categories.edit')->middleware(['can:post-categories.update']);
+Route::put('post-categories/{id}', [Controllers\PostCategoryController::class, 'update'])->name('post-categories.update')->middleware(['can:post-categories.update']);
+Route::delete('post-categories/{id}', [Controllers\PostCategoryController::class, 'destroy'])->name('post-categories.delete')->middleware(['can:post-categories.delete']);
+
+Route::get('posts', [Controllers\PostController::class, 'index'])->name('posts.index')->middleware(['can:posts.index']);
+Route::get('posts/create', [Controllers\PostController::class, 'create'])->name('posts.create')->middleware(['can:posts.store']);
+Route::post('posts', [Controllers\PostController::class, 'store'])->name('posts.store')->middleware(['can:posts.store']);
+Route::get('posts/{id}', [Controllers\PostController::class, 'edit'])->name('posts.edit')->middleware(['can:posts.update']);
+Route::put('posts/{id}', [Controllers\PostController::class, 'update'])->name('posts.update')->middleware(['can:posts.update']);
+Route::delete('posts/{id}', [Controllers\PostController::class, 'destroy'])->name('posts.delete')->middleware(['can:posts.delete']);
