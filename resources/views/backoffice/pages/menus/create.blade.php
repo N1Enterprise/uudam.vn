@@ -70,7 +70,7 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="form_menu_groups" id="form_menu_groups" method="post" action="{{ route('bo.web.menu-groups.store') }}">
+				<form class="k-form" name="form_menus" id="form_menus" method="post" action="{{ route('bo.web.menus.store') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')

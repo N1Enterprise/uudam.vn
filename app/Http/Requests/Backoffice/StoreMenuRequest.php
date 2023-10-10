@@ -18,8 +18,8 @@ class StoreMenuRequest extends BaseFormRequest implements StoreMenuRequestContra
             'name' => ['required', 'max:255'],
             'order' => ['nullable', 'integer'],
             'type' => ['required', 'integer', Rule::in(MenuTypeEnum::all())],
-            'menu_catalog' => ['required', 'array'],
-            'menu_catalog.*' => ['required', 'integer', Rule::exists(MenuSubGroup::class, 'id')],
+            'menu_catalogs' => ['required', 'array'],
+            'menu_catalogs.*' => ['required', 'integer', Rule::exists(MenuSubGroup::class, 'id')],
             'is_new' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta' => ['required', 'array']
@@ -48,10 +48,15 @@ class StoreMenuRequest extends BaseFormRequest implements StoreMenuRequestContra
 
     public function prepareForValidation()
     {
-        $this->merge([
+        $payload = $this->all();
+
+        if (! empty(data_get($payload, 'meta.image'))) {
+            $payload['meta']['image'] = empty(array_filter(data_get($this->all(), 'meta.image'))) ? null : array_filter(data_get($this->all(), 'meta.image'));
+        }
+
+        $this->merge(array_merge($payload, [
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'is_new' => boolean($this->is_new) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
-        ]);
+        ]));
     }
 }

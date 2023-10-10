@@ -11,7 +11,7 @@ class Menu extends BaseModel
 
     protected $fillable = [
         'name',
-        'image',
+        'slug',
         'is_new',
         'type',
         'inventory_id',
@@ -19,6 +19,10 @@ class Menu extends BaseModel
         'order',
         'meta',
         'status',
+    ];
+
+    protected $casts = [
+        'meta' => 'json'
     ];
 
     public function getTypeNameAttribute()
@@ -36,8 +40,8 @@ class Menu extends BaseModel
         return $this->belongsTo(Post::class, 'post_id');
     }
 
-    public function menuSubGroup()
+    public function menuCatalogs()
     {
-        return $this->belongsToMany(MenuSubGroup::class, 'menu_sub_groups');
+        return $this->belongsToMany(MenuSubGroup::class, 'menu_sub_group_menus');
     }
 }

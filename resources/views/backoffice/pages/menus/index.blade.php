@@ -45,7 +45,7 @@
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Name') }}</th>
-                            <th data-link="redirect_url" data-link-target="_blank" data-property="redirect_url">{{ __('Redirect Url') }}</th>
+                            <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>

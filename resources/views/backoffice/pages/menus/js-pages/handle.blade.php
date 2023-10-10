@@ -35,7 +35,7 @@
     };
 
     var FORM_PRIMARY_IMAGE_FILE = {
-        element: $('[name="image[file]"]'),
+        element: $('.image_primary_image_file'),
         elemen_del: $('[data-image-ref-delete="primary"]'),
 
         onChange: () => {
@@ -51,7 +51,7 @@
     };
 
     var FORM_PRIMARY_IMAGE_PATH = {
-        element: $('[name="image[path]"]'),
+        element: $('.image_primary_image_url'),
         onChange: () => {
             FORM_PRIMARY_IMAGE_PATH.element.on('change', function() {
                 __IMAGE_MANAGER__.reviewPathOn($(this).val(), 'primary', 0);

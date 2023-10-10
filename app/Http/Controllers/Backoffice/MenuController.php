@@ -53,9 +53,16 @@ class MenuController extends BaseController
 
     public function edit($id)
     {
-        $menu = $this->menuService->show($id);
+        $menu = $this->menuService->show($id, ['with' => 'menuCatalogs']);
+        $inventories = $this->inventoryService->allAvailable();
+        $posts = $this->postService->allAvailable();
+        $menuGroups = $this->menuGroupService
+            ->allAvailable(['with' => 'menuSubGroups', 'columns' => ['id', 'name']])
+            ->filter(fn($item) => !$item->menuSubGroups->isEmpty());
 
-        return view('backoffice.pages.menus.edit', compact('menu'));
+        $menuTypeEnumLabels = MenuTypeEnum::labels();
+
+        return view('backoffice.pages.menus.edit', compact('menu', 'menuTypeEnumLabels', 'inventories', 'posts', 'menuGroups'));
     }
 
     public function store(StoreMenuRequestContract $request)
