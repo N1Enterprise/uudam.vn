@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class PostService extends BaseService
 {
-    public $postService;
+    public $postRepository;
 
-    public function __construct(PostRepositoryContract $postService)
+    public function __construct(PostRepositoryContract $postRepository)
     {
-        $this->postService = $postService;
+        $this->postRepository = $postRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->postService
+        $result = $this->postRepository
             ->with(['postCategory', 'createdBy', 'updatedBy'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
@@ -29,7 +29,7 @@ class PostService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->postService->modelScopes(['active'])
+        return $this->postRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -39,13 +39,13 @@ class PostService extends BaseService
         return DB::transaction(function () use ($attributes) {
             $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
 
-            return $this->postService->create($attributes);
+            return $this->postRepository->create($attributes);
         });
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->postService->findOrFail($id, $columns);
+        return $this->postRepository->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
@@ -53,7 +53,7 @@ class PostService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
 
-            return $this->postService->update($attributes, $id);
+            return $this->postRepository->update($attributes, $id);
         });
     }
 
@@ -74,7 +74,7 @@ class PostService extends BaseService
 
     public function delete($id)
     {
-        return $this->postService->delete($id);
+        return $this->postRepository->delete($id);
     }
 
     protected function utilityDisk()

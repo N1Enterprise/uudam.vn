@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Storage;
 
 class MenuService extends BaseService
 {
-    public $menuService;
+    public $menuRepository;
 
-    public function __construct(MenuRepositoryContract $menuService)
+    public function __construct(MenuRepositoryContract $menuRepository)
     {
-        $this->menuService = $menuService;
+        $this->menuRepository = $menuRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->menuService
+        $result = $this->menuRepository
             ->with(['menuCatalogs', 'inventory', 'post'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
@@ -30,7 +30,7 @@ class MenuService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->menuService->modelScopes(['active'])
+        return $this->menuRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -42,7 +42,7 @@ class MenuService extends BaseService
                 $attributes['meta']['image'] = $this->convertImage($image);
             }
 
-            $menu = $this->menuService->create($attributes);
+            $menu = $this->menuRepository->create($attributes);
 
             $this->syncMenuCatalogs($menu, data_get($attributes, 'menu_catalogs', []));
 
@@ -57,7 +57,7 @@ class MenuService extends BaseService
                 $attributes['meta']['image'] = $this->convertImage($image);
             }
 
-            $menu = $this->menuService->update($attributes, $id);
+            $menu = $this->menuRepository->update($attributes, $id);
 
             $this->syncMenuCatalogs($menu, data_get($attributes, 'menu_catalogs', []));
 
@@ -87,14 +87,14 @@ class MenuService extends BaseService
 
     public function show($id, $data = [])
     {
-        return $this->menuService
+        return $this->menuRepository
             ->with(data_get($data, 'with', []))
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
 
     public function delete($id)
     {
-        return $this->menuService->delete($id);
+        return $this->menuRepository->delete($id);
     }
 
     protected function appearanceDisk()

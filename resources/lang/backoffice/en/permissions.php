@@ -122,4 +122,16 @@ return [
     'pages.store' => 'Create Page',
     'pages.update' => 'Update Page',
     'pages.delete' => 'Delete Page',
+
+    'faqs' => 'Faqs',
+    'faqs.index' => 'View Faq List',
+    'faqs.store' => 'Create Faq',
+    'faqs.update' => 'Update Faq',
+    'faqs.delete' => 'Delete Faq',
+
+    'topics' => 'Topics',
+    'faq-topics.index' => 'View Faq Topic List',
+    'faq-topics.store' => 'Create Faq Topic',
+    'faq-topics.update' => 'Update Faq Topic',
+    'faq-topics.delete' => 'Delete Faq Topic',
 ];

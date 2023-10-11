@@ -19,7 +19,6 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
-
 @section('style')
 <style>
     .upload_image_custom_append_icon {

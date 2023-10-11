@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Storage;
 
 class CollectionService extends BaseService
 {
-    public $collectionService;
+    public $collectionRepository;
 
-    public function __construct(CollectionRepositoryContract $collectionService)
+    public function __construct(CollectionRepositoryContract $collectionRepository)
     {
-        $this->collectionService = $collectionService;
+        $this->collectionRepository = $collectionRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->collectionService
+        $result = $this->collectionRepository
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -29,7 +29,7 @@ class CollectionService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->collectionService->modelScopes(['active'])
+        return $this->collectionRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -40,7 +40,7 @@ class CollectionService extends BaseService
             $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
             $attributes['cover_image'] = $this->convertImage(data_get($attributes, 'cover_image'));
 
-            $collection = $this->collectionService->create($attributes);
+            $collection = $this->collectionRepository->create($attributes);
 
             $this->syncInventories($collection, data_get($attributes, 'inventories', []));
 
@@ -50,7 +50,7 @@ class CollectionService extends BaseService
 
     public function show($id, $data = [])
     {
-        return $this->collectionService
+        return $this->collectionRepository
             ->with(data_get($data, 'with', []))
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
@@ -63,7 +63,7 @@ class CollectionService extends BaseService
             $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
             $attributes['cover_image'] = $this->convertImage(data_get($attributes, 'cover_image'));
 
-            $collection = $this->collectionService->update($attributes, $collection->getKey());
+            $collection = $this->collectionRepository->update($attributes, $collection->getKey());
 
             $this->syncInventories($collection, data_get($attributes, 'inventories', []));
 
@@ -73,7 +73,7 @@ class CollectionService extends BaseService
 
     public function delete($id)
     {
-        return $this->collectionService->delete($id);
+        return $this->collectionRepository->delete($id);
     }
 
     protected function syncInventories(Collection $collection, $inventories = [])

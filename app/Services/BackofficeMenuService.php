@@ -164,6 +164,21 @@ class BackofficeMenuService extends BaseService
                         'link' => route('bo.web.pages.index'),
                         'permissions' => ['pages.index'],
                     ],
+                    [
+                        'name' => 'Faqs',
+                        'subs' => [
+                            [
+                                'name' => 'Topics',
+                                'link' => route('bo.web.faq-topics.index'),
+                                'permissions' => ['faq-topics.index'],
+                            ],
+                            [
+                                'name' => 'Faqs',
+                                'link' => route('bo.web.faqs.index'),
+                                'permissions' => ['faqs.index'],
+                            ]
+                        ],
+                    ],
                 ],
             ],
             [

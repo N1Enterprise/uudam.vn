@@ -132,3 +132,17 @@ Route::post('pages', [Controllers\PageController::class, 'store'])->name('pages.
 Route::get('pages/{id}', [Controllers\PageController::class, 'edit'])->name('pages.edit')->middleware(['can:pages.update']);
 Route::put('pages/{id}', [Controllers\PageController::class, 'update'])->name('pages.update')->middleware(['can:pages.update']);
 Route::delete('pages/{id}', [Controllers\PageController::class, 'destroy'])->name('pages.delete')->middleware(['can:pages.delete']);
+
+Route::get('faq-topics', [Controllers\FaqTopicController::class, 'index'])->name('faq-topics.index')->middleware(['can:faq-topics.index']);
+Route::get('faq-topics/create', [Controllers\FaqTopicController::class, 'create'])->name('faq-topics.create')->middleware(['can:faq-topics.store']);
+Route::post('faq-topics', [Controllers\FaqTopicController::class, 'store'])->name('faq-topics.store')->middleware(['can:faq-topics.store']);
+Route::get('faq-topics/{id}', [Controllers\FaqTopicController::class, 'edit'])->name('faq-topics.edit')->middleware(['can:faq-topics.update']);
+Route::put('faq-topics/{id}', [Controllers\FaqTopicController::class, 'update'])->name('faq-topics.update')->middleware(['can:faq-topics.update']);
+Route::delete('faq-topics/{id}', [Controllers\FaqTopicController::class, 'destroy'])->name('faq-topics.delete')->middleware(['can:faq-topics.delete']);
+
+Route::get('faqs', [Controllers\FaqController::class, 'index'])->name('faqs.index')->middleware(['can:faqs.index']);
+Route::get('faqs/create', [Controllers\FaqController::class, 'create'])->name('faqs.create')->middleware(['can:faqs.store']);
+Route::post('faqs', [Controllers\FaqController::class, 'store'])->name('faqs.store')->middleware(['can:faqs.store']);
+Route::get('faqs/{id}', [Controllers\FaqController::class, 'edit'])->name('faqs.edit')->middleware(['can:faqs.update']);
+Route::put('faqs/{id}', [Controllers\FaqController::class, 'update'])->name('faqs.update')->middleware(['can:faqs.update']);
+Route::delete('faqs/{id}', [Controllers\FaqController::class, 'destroy'])->name('faqs.delete')->middleware(['can:faqs.delete']);

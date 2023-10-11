@@ -148,6 +148,18 @@ class RoleService extends BaseService
                 'pages.update',
                 'pages.delete',
             ],
+            'faqs' => [
+                'faqs.index',
+                'faqs.store',
+                'faqs.update',
+                'faqs.delete',
+                'topics' => [
+                    'faq-topics.index',
+                    'faq-topics.store',
+                    'faq-topics.update',
+                    'faq-topics.delete',
+                ],
+            ],
         ],
     ];
 

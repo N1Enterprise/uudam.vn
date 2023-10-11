@@ -71,5 +71,11 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         Contracts\StorePageRequestContract::class => Requests\StorePageRequest::class,
         Contracts\UpdatePageRequestContract::class => Requests\UpdatePageRequest::class,
+
+        Contracts\StoreFaqTopicRequestContract::class => Requests\StoreFaqTopicRequest::class,
+        Contracts\UpdateFaqTopicRequestContract::class => Requests\UpdateFaqTopicRequest::class,
+
+        Contracts\StoreFaqRequestContract::class => Requests\StoreFaqRequest::class,
+        Contracts\UpdateFaqRequestContract::class => Requests\UpdateFaqRequest::class,
     ];
 }

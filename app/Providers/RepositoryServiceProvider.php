@@ -31,5 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\PostRepositoryContract::class => Repositories\PostRepository::class,
         Contracts\CollectionRepositoryContract::class => Repositories\CollectionRepository::class,
         Contracts\PageRepositoryContract::class => Repositories\PageRepository::class,
+        Contracts\FaqTopicRepositoryContract::class => Repositories\FaqTopicRepository::class,
+        Contracts\FaqRepositoryContract::class => Repositories\FaqRepository::class,
     ];
 }
