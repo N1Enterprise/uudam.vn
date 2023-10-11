@@ -125,3 +125,10 @@ Route::post('collections', [Controllers\CollectionController::class, 'store'])->
 Route::get('collections/{id}', [Controllers\CollectionController::class, 'edit'])->name('collections.edit')->middleware(['can:collections.update']);
 Route::put('collections/{id}', [Controllers\CollectionController::class, 'update'])->name('collections.update')->middleware(['can:collections.update']);
 Route::delete('collections/{id}', [Controllers\CollectionController::class, 'destroy'])->name('collections.delete')->middleware(['can:collections.delete']);
+
+Route::get('pages', [Controllers\PageController::class, 'index'])->name('pages.index')->middleware(['can:pages.index']);
+Route::get('pages/create', [Controllers\PageController::class, 'create'])->name('pages.create')->middleware(['can:pages.store']);
+Route::post('pages', [Controllers\PageController::class, 'store'])->name('pages.store')->middleware(['can:pages.store']);
+Route::get('pages/{id}', [Controllers\PageController::class, 'edit'])->name('pages.edit')->middleware(['can:pages.update']);
+Route::put('pages/{id}', [Controllers\PageController::class, 'update'])->name('pages.update')->middleware(['can:pages.update']);
+Route::delete('pages/{id}', [Controllers\PageController::class, 'destroy'])->name('pages.delete')->middleware(['can:pages.delete']);
