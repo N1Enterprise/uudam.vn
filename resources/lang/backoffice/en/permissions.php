@@ -99,6 +99,12 @@ return [
     'menus.update' => 'Update Menu',
     'menus.delete' => 'Delete Menu',
 
+    'collections' => 'Collections',
+    'collections.index' => 'View Collection List',
+    'collections.store' => 'Create Collection',
+    'collections.update' => 'Update Collection',
+    'collections.delete' => 'Delete Collection',
+
     'utilities' => 'Utilities',
     'blogs' => 'blogs',
     'post-categories' => 'Post Categories',

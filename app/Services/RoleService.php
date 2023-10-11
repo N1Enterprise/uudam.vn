@@ -119,6 +119,12 @@ class RoleService extends BaseService
                     'menu-sub-groups.update',
                     'menu-sub-groups.delete',
                 ],
+                'collections' => [
+                    'collections.index',
+                    'collections.store',
+                    'collections.update',
+                    'collections.delete',
+                ],
             ],
         ],
         'utilities' => [

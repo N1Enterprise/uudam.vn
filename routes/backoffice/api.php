@@ -44,4 +44,5 @@ Route::prefix('v1')->group(function () {
     /* ======================== UTILITIES ======================== */
     Route::get('post-categories', [Api\PostCategoryController::class, 'index'])->name('post-categories.index')->middleware(['can:post-categories.index']);
     Route::get('posts', [Api\PostController::class, 'index'])->name('posts.index')->middleware(['can:posts.index']);
+    Route::get('collections', [Api\CollectionController::class, 'index'])->name('collections.index')->middleware(['can:collections.index']);
 });
