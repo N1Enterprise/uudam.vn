@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Category');
+	$title = __('Collection');
 
 	$breadcrumbs = [
 		[
 			'label' => $title,
 		],
 		[
-			'label' => __('Add Category'),
+			'label' => __('Add Collection'),
 		]
 	];
 @endphp
@@ -51,13 +51,13 @@
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 
 			<!--begin::Portlet-->
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Category') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Add Collection') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -71,7 +71,7 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="form_category" id="form_category" method="post" action="{{ route('bo.web.categories.store') }}" enctype="multipart/form-data">
+				<form class="k-form" name="form_collections" id="form_collections" method="post" action="{{ route('bo.web.collections.store') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
@@ -94,18 +94,6 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Category Group') }} *</label>
-                                    <select name="category_group_id" title="--{{ __('Select Category Group') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
-                                        @foreach($categoryGroups as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('category_group_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
 									<label>{{ __('Order') }}</label>
 									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
                                     @error('order')
@@ -118,7 +106,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -147,6 +135,47 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>{{ __('Cover Image') }} *</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="upload_image_custom position-relative">
+                                                <input type="text" data-image-ref-path="cover" data-image-ref-index="0" class="form-control image_cover_image_url" name="cover_image[path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <div data-image-ref-wapper="cover" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                    <div class="d-flex align-items-center h-100">
+                                                        <img data-image-ref-img="cover" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
+                                                        <span data-image-ref-delete="cover" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                    </div>
+                                                </div>
+                                                <label for="image_cover_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
+                                                    <input type="file" id="image_cover_image" data-image-ref-path="file" data-image-ref-index="0" name="cover_image[file]" class="d-none image_cover_image_file">
+                                                    <i class="flaticon2-image-file"></i>
+                                                    <span>{{ __('Upload') }}</span>
+                                                </label>
+                                            </div>
+                                            <input type="hidden" class="form-control @anyerror('cover_image, cover_image.file, cover_image.path') is-invalid @endanyerror">
+                                            @anyerror('cover_image, cover_image.file, cover_image.path')
+                                            {{ $displayMessages() }}
+                                            @endanyerror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="image_cover_image_review">
+                                                <div data-image-ref-review-wapper="cover" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                    <img data-image-ref-review-img="cover" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+									<label>{{ __('Cta Label') }}</label>
+									<input type="text" class="form-control {{ $errors->has('cta_label') ? 'is-invalid' : '' }}" name="cta_label" placeholder="{{ __('Enter Order') }}" value="{{ old('cta_label') }}">
+                                    @error('cta_label')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
+
+                                <div class="form-group">
                                     <label for="">{{ __('Description') }}</label>
                                     <div id="form_builder_dom" class="styled"></div>
                                     <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description') }}">
@@ -168,12 +197,36 @@
                                     @enderror
 								</div>
 
+                                <div class="form-group">
+                                    <label>{{ __('Inventory') }} *</label>
+                                    <select name="inventories[]" title="--{{ __('Select Inventories') }}--" class="form-control k_selectpicker" data-live-search="true" multiple>
+                                        @foreach($inventories as $inventory)
+                                        <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ in_array($inventory->id, old('inventories', [])) ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                        @endforeach
+                                    </select>
+                                    @error('inventories')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
 												<input type="checkbox" {{ old('featured', '0') == '1'  ? 'checked' : ''}} value="1" name="featured"/>
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+                                <div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Display On Front End') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend"/>
 												<span></span>
 											</label>
 										</span>
@@ -209,6 +262,6 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.categories.js-pages.content-builder')
-@include('backoffice.pages.categories.js-pages.handle')
+@include('backoffice.pages.collections.js-pages.content-builder')
+@include('backoffice.pages.collections.js-pages.handle')
 @endsection

@@ -118,3 +118,10 @@ Route::post('posts', [Controllers\PostController::class, 'store'])->name('posts.
 Route::get('posts/{id}', [Controllers\PostController::class, 'edit'])->name('posts.edit')->middleware(['can:posts.update']);
 Route::put('posts/{id}', [Controllers\PostController::class, 'update'])->name('posts.update')->middleware(['can:posts.update']);
 Route::delete('posts/{id}', [Controllers\PostController::class, 'destroy'])->name('posts.delete')->middleware(['can:posts.delete']);
+
+Route::get('collections', [Controllers\CollectionController::class, 'index'])->name('collections.index')->middleware(['can:collections.index']);
+Route::get('collections/create', [Controllers\CollectionController::class, 'create'])->name('collections.create')->middleware(['can:collections.store']);
+Route::post('collections', [Controllers\CollectionController::class, 'store'])->name('collections.store')->middleware(['can:collections.store']);
+Route::get('collections/{id}', [Controllers\CollectionController::class, 'edit'])->name('collections.edit')->middleware(['can:collections.update']);
+Route::put('collections/{id}', [Controllers\CollectionController::class, 'update'])->name('collections.update')->middleware(['can:collections.update']);
+Route::delete('collections/{id}', [Controllers\CollectionController::class, 'destroy'])->name('collections.delete')->middleware(['can:collections.delete']);

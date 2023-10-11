@@ -133,6 +133,11 @@ class BackofficeMenuService extends BaseService
                             ],
                         ],
                     ],
+                    [
+                        'name' => 'Collections',
+                        'link' => route('bo.web.collections.index'),
+                        'permissions' => ['collections.index'],
+                    ],
                 ],
             ],
             [
@@ -153,7 +158,7 @@ class BackofficeMenuService extends BaseService
                                 'permissions' => ['posts.index'],
                             ],
                         ],
-                    ]
+                    ],
                 ],
             ],
             [

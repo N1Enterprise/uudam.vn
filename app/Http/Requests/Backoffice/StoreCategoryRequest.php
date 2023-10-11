@@ -20,7 +20,7 @@ class StoreCategoryRequest extends BaseFormRequest implements StoreCategoryReque
             'primary_image' => ['required', 'array'],
             'primary_image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'primary_image.path' => ['nullable', 'string'],
-            'order' => ['nullable', 'integer', 'gt:0'],
+            'order' => ['nullable', 'integer'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta_title' => ['nullable', 'max:255'],

@@ -82,5 +82,10 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StorePostResponseContract::class => Responses\StorePostResponse::class,
         Contracts\UpdatePostResponseContract::class => Responses\UpdatePostResponse::class,
         Contracts\DeletePostResponseContract::class => Responses\DeletePostResponse::class,
+
+        Contracts\ListCollectionResponseContract::class => Responses\ListCollectionResponse::class,
+        Contracts\StoreCollectionResponseContract::class => Responses\StoreCollectionResponse::class,
+        Contracts\UpdateCollectionResponseContract::class => Responses\UpdateCollectionResponse::class,
+        Contracts\DeleteCollectionResponseContract::class => Responses\DeleteCollectionResponse::class,
     ];
 }
