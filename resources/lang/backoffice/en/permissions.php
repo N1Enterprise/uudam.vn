@@ -106,7 +106,7 @@ return [
     'collections.delete' => 'Delete Collection',
 
     'utilities' => 'Utilities',
-    'blogs' => 'blogs',
+    'blogs' => 'Blogs',
     'post-categories' => 'Post Categories',
     'post-categories.index' => 'View Post Category List',
     'post-categories.store' => 'Create Post Category',
@@ -117,4 +117,9 @@ return [
     'posts.store' => 'Create Post',
     'posts.update' => 'Update Post',
     'posts.delete' => 'Delete Post',
+    'pages' => 'Pages',
+    'pages.index' => 'View Page List',
+    'pages.store' => 'Create Page',
+    'pages.update' => 'Update Page',
+    'pages.delete' => 'Delete Page',
 ];

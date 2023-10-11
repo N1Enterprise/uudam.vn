@@ -159,6 +159,11 @@ class BackofficeMenuService extends BaseService
                             ],
                         ],
                     ],
+                    [
+                        'name' => 'Pages',
+                        'link' => route('bo.web.pages.index'),
+                        'permissions' => ['pages.index'],
+                    ],
                 ],
             ],
             [
