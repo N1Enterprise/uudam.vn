@@ -14,11 +14,14 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\ActiveAdminResponseContract::class => Responses\ActiveAdminResponse::class,
         Contracts\DeactivateAdminResponseContract::class => Responses\DeactivateAdminResponse::class,
         Contracts\ListAdminResponseContract::class => Responses\ListAdminResponse::class,
+
         Contracts\StoreRoleResponseContract::class => Responses\StoreRoleResponse::class,
         Contracts\UpdateRoleResponseContract::class => Responses\UpdateRoleResponse::class,
         Contracts\ListRoleResponseContract::class => Responses\ListRoleResponse::class,
+
         Contracts\UpdateUserResponseContract::class => Responses\UpdateUserResponse::class,
         Contracts\ListUserResponseContract::class => Responses\ListUserResponse::class,
+
         Contracts\UpdateSystemSettingResponseContract::class => Responses\UpdateSystemSettingResponse::class,
         Contracts\ClearCacheSystemSettingResponseContract::class => Responses\ClearCacheSystemSettingResponse::class,
         Contracts\StoreSystemSettingGroupResponseContract::class => Responses\StoreSystemSettingGroupResponse::class,
@@ -27,15 +30,18 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\DeleteSystemSettingKeyResponseContract::class => Responses\DeleteSystemSettingKeyResponse::class,
         Contracts\ImportSystemSettingResponseContract::class => Responses\ImportSystemSettingResponse::class,
         Contracts\UpdateSystemSettingGroupResponseContract::class => Responses\UpdateSystemSettingGroupResponse::class,
+
         Contracts\ListCategoryGroupResponseContract::class => Responses\ListCategoryGroupResponse::class,
         Contracts\ListCategoryResponseContract::class => Responses\ListCategoryResponse::class,
         Contracts\StoreCategoryGroupResponseContract::class => Responses\StoreCategoryGroupResponse::class,
         Contracts\UpdateCategoryGroupResponseContract::class => Responses\UpdateCategoryGroupResponse::class,
         Contracts\StoreCategoryResponseContract::class => Responses\StoreCategoryResponse::class,
         Contracts\UpdateCategoryResponseContract::class => Responses\UpdateCategoryResponse::class,
+
         Contracts\ListProductResponseContract::class => Responses\ListProductResponse::class,
         Contracts\StoreProductResponseContract::class => Responses\StoreProductResponse::class,
         Contracts\UpdateProductResponseContract::class => Responses\UpdateProductResponse::class,
+
         Contracts\ListAttributeResponseContract::class => Responses\ListAttributeResponse::class,
         Contracts\StoreAttributeResponseContract::class => Responses\StoreAttributeResponse::class,
         Contracts\UpdateAttributeResponseContract::class => Responses\UpdateAttributeResponse::class,
@@ -43,6 +49,7 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StoreAttributeValueResponseContract::class => Responses\StoreAttributeValueResponse::class,
         Contracts\UpdateAttributeValueResponseContract::class => Responses\UpdateAttributeValueResponse::class,
         Contracts\DeleteAttributeValueResponseContract::class => Responses\DeleteAttributeValueResponse::class,
+
         Contracts\ListInventoryResponseContract::class => Responses\ListInventoryResponse::class,
         Contracts\StoreInventoryResponseContract::class => Responses\StoreInventoryResponse::class,
         Contracts\UpdateInventoryResponseContract::class => Responses\UpdateInventoryResponse::class,
@@ -92,5 +99,15 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StorePageResponseContract::class => Responses\StorePageResponse::class,
         Contracts\UpdatePageResponseContract::class => Responses\UpdatePageResponse::class,
         Contracts\DeletePageResponseContract::class => Responses\DeletePageResponse::class,
+
+        Contracts\ListFaqTopicResponseContract::class => Responses\ListFaqTopicResponse::class,
+        Contracts\StoreFaqTopicResponseContract::class => Responses\StoreFaqTopicResponse::class,
+        Contracts\UpdateFaqTopicResponseContract::class => Responses\UpdateFaqTopicResponse::class,
+        Contracts\DeleteFaqTopicResponseContract::class => Responses\DeleteFaqTopicResponse::class,
+
+        Contracts\ListFaqResponseContract::class => Responses\ListFaqResponse::class,
+        Contracts\StoreFaqResponseContract::class => Responses\StoreFaqResponse::class,
+        Contracts\UpdateFaqResponseContract::class => Responses\UpdateFaqResponse::class,
+        Contracts\DeleteFaqResponseContract::class => Responses\DeleteFaqResponse::class,
     ];
 }

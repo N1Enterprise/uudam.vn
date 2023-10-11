@@ -7,16 +7,16 @@ use App\Services\BaseService;
 
 class MenuSubGroupService extends BaseService
 {
-    public $menuSubGroupService;
+    public $menuSubGroupRepository;
 
-    public function __construct(MenuSubGroupRepositoryContract $menuSubGroupService)
+    public function __construct(MenuSubGroupRepositoryContract $menuSubGroupRepository)
     {
-        $this->menuSubGroupService = $menuSubGroupService;
+        $this->menuSubGroupRepository = $menuSubGroupRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->menuSubGroupService
+        $result = $this->menuSubGroupRepository
             ->with(['menuGroup'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
@@ -26,28 +26,28 @@ class MenuSubGroupService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->menuSubGroupService->modelScopes(['active'])
+        return $this->menuSubGroupRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
 
     public function create($attributes = [])
     {
-        return $this->menuSubGroupService->create($attributes);
+        return $this->menuSubGroupRepository->create($attributes);
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->menuSubGroupService->findOrFail($id, $columns);
+        return $this->menuSubGroupRepository->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
     {
-        return $this->menuSubGroupService->update($attributes, $id);
+        return $this->menuSubGroupRepository->update($attributes, $id);
     }
 
     public function delete($id)
     {
-        return $this->menuSubGroupService->delete($id);
+        return $this->menuSubGroupRepository->delete($id);
     }
 }

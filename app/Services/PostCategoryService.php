@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class PostCategoryService extends BaseService
 {
-    public $postCategoryService;
+    public $postCategoryRepository;
 
-    public function __construct(PostCategoryRepositoryContract $postCategoryService)
+    public function __construct(PostCategoryRepositoryContract $postCategoryRepository)
     {
-        $this->postCategoryService = $postCategoryService;
+        $this->postCategoryRepository = $postCategoryRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->postCategoryService
+        $result = $this->postCategoryRepository
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -28,7 +28,7 @@ class PostCategoryService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->postCategoryService->modelScopes(['active'])
+        return $this->postCategoryRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -38,13 +38,13 @@ class PostCategoryService extends BaseService
         return DB::transaction(function () use ($attributes) {
             $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
 
-            return $this->postCategoryService->create($attributes);
+            return $this->postCategoryRepository->create($attributes);
         });
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->postCategoryService->findOrFail($id, $columns);
+        return $this->postCategoryRepository->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
@@ -52,13 +52,13 @@ class PostCategoryService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
 
-            return $this->postCategoryService->update($attributes, $id);
+            return $this->postCategoryRepository->update($attributes, $id);
         });
     }
 
     public function delete($id)
     {
-        return $this->postCategoryService->delete($id);
+        return $this->postCategoryRepository->delete($id);
     }
 
     protected function convertImage($image)

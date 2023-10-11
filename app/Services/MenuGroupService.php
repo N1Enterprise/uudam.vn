@@ -7,16 +7,16 @@ use App\Services\BaseService;
 
 class MenuGroupService extends BaseService
 {
-    public $menuGroupService;
+    public $menuGroupRepository;
 
-    public function __construct(MenuGroupRepositoryContract $menuGroupService)
+    public function __construct(MenuGroupRepositoryContract $menuGroupRepository)
     {
-        $this->menuGroupService = $menuGroupService;
+        $this->menuGroupRepository = $menuGroupRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->menuGroupService
+        $result = $this->menuGroupRepository
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -25,28 +25,28 @@ class MenuGroupService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->menuGroupService->modelScopes(['active'])
+        return $this->menuGroupRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
 
     public function create($attributes = [])
     {
-        return $this->menuGroupService->create($attributes);
+        return $this->menuGroupRepository->create($attributes);
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->menuGroupService->findOrFail($id, $columns);
+        return $this->menuGroupRepository->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
     {
-        return $this->menuGroupService->update($attributes, $id);
+        return $this->menuGroupRepository->update($attributes, $id);
     }
 
     public function delete($id)
     {
-        return $this->menuGroupService->delete($id);
+        return $this->menuGroupRepository->delete($id);
     }
 }
