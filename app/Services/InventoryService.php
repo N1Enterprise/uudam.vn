@@ -43,6 +43,14 @@ class InventoryService extends BaseService
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
 
+    public function findBySlug($slug, $data = [])
+    {
+        return $this->inventoryRepository
+            ->modelScopes(data_get($data, 'scopes', []))
+            ->with(data_get($data, 'with', []))
+            ->firstByField('slug', $slug, data_get($data, 'columns', ['*']));
+    }
+
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {

@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\StoreFront;
 
 use App\Enum\ActivationStatusEnum;
+use App\Services\BaseService;
+use App\Services\DisplayInventoryService;
+use App\Services\InventoryService;
 use Illuminate\Support\Facades\DB;
 
 class StoreFrontProductDisplayService extends BaseService

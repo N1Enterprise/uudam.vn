@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\StoreFront;
+
+use App\Services\BannerService;
+use App\Services\BaseService;
 
 class StoreFrontBannerService extends BaseService
 {

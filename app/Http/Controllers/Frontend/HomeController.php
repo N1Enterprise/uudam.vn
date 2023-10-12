@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Enum\BannerTypeEnum;
 use App\Enum\DisplayInventoryTypeEnum;
-use App\Services\StoreFrontBannerService;
-use App\Services\StoreFrontProductDisplayService;
+use App\Services\StoreFront\StoreFrontBannerService;
+use App\Services\StoreFront\StoreFrontProductDisplayService;
 
 class HomeController extends BaseController
 {
