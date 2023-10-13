@@ -18,6 +18,23 @@ const __HELPER__ = {
                 window.history.replaceState({}, '', url.toString());
             },
         }
-    }
+    },
+    copyClipBoard: (text) => {
+        var $temp = $("<input>");
+
+        if ($('.modal.show').length) {
+            fscommon.unblockUI('.modal.show');
+            $(".modal.show").append($temp);
+            $temp.val(text).select();
+            document.execCommand("copy");
+            $temp.remove();
+            return;
+        }
+
+        $("body").append($temp);
+        $temp.val(text).select();
+        document.execCommand("copy");
+        $temp.remove();
+    },
 };
 

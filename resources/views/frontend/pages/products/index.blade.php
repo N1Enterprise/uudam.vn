@@ -30,8 +30,10 @@
             <div class="media-gallery grid__item product__media-wrapper">
                 <div class="product__media-gallery" aria-label="Gallery Viewer">
                     <div class="visually-hidden"></div>
+                    @if(! empty($imageGalleries))
                     @include('frontend.pages.products.partials.gallery-viewer')
                     @include('frontend.pages.products.partials.gallery-thumbnails')
+                    @endif
                 </div>
             </div>
             <div class="product__info-wrapper grid__item">
@@ -71,4 +73,13 @@
 
 @push('js_pages')
 <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/assets/js/components/editorjs-parser.js') }}" type="text/javascript"></script>
+<script>
+    $('.share-button__copy').on('click', function() {
+        const text = $('#url.field__input').val();
+
+        __HELPER__.copyClipBoard(text);
+    });
+</script>
 @endpush

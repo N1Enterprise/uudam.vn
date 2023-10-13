@@ -150,6 +150,12 @@ if (! function_exists('round_money')) {
     }
 }
 
+if (! function_exists('format_price')) {
+    function format_price($money, $currency = null, $symbol = 'VND', $round = Money::ROUND_UP)
+    {
+        return Money::roundMoney($money, $currency, $round) . ' '. $symbol;
+    }
+}
 
 if (! function_exists('generate_combinations'))
 {

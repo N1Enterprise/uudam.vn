@@ -34,4 +34,30 @@ class StoreFrontProductDisplayService extends BaseService
 
         return $inventories;
     }
+
+    public function showBySlug($slug)
+    {
+        $inventory = $this->inventoryService->inventoryRepository
+            ->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($slug) {
+                $q->where('slug', $slug);
+            })
+            ->first();
+
+        $inventory->load([
+            'product' => function($q) use ($inventory) {
+                $q->select(['id', 'code', 'branch', 'description', 'media', 'created_at'])
+                    ->withCount('inventories');
+            },
+            'attributeValues' => function($q) {
+                $q->select(['attribute_values.id', 'attribute_values.attribute_id', 'attribute_values.value', 'attribute_values.order'])
+                    ->with('attribute:id,name,attribute_type,order');
+            },
+            'attributes' => function($q) {
+                $q->select('attributes.id', 'attributes.name', 'attributes.attribute_type', 'attributes.order');
+            }
+        ]);
+
+        return $inventory;
+    }
 }
