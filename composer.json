@@ -11,6 +11,7 @@
         "laravel/fortify": "^1.17",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/telescope": "^4.10",
         "laravel/tinker": "^2.5",
         "propaganistas/laravel-phone": "^4.4",
         "spatie/laravel-permission": "^5.11",
@@ -53,7 +54,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {
