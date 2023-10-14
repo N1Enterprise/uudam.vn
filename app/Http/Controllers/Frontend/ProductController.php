@@ -18,10 +18,6 @@ class ProductController extends BaseController
     {
         $inventory = $this->storeFrontProductService->findInventoryBySlug($slug);
 
-        dd(
-            $inventory
-        );
-
         return $this->view('frontend.pages.products.index');
     }
 }
