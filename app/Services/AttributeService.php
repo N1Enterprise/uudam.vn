@@ -84,4 +84,23 @@ class AttributeService extends BaseService
     {
         return $attribute->categories()->sync($categories);
     }
+
+    public function getAttributesByInventories($inventoryIds = [])
+    {
+        $attrInventorySubQuery = DB::table('attribute_inventories')
+            ->whereIn('inventory_id', $inventoryIds);
+
+        $attributes = $this->attributeRepository
+            ->with(['attributeValues' => function($q) use ($attrInventorySubQuery) {
+                $q->whereIn('id', $attrInventorySubQuery->select('attribute_value_id'))
+                    ->orderBy('order');
+            }])
+            ->scopeQuery(function($q) use ($attrInventorySubQuery) {
+                $q->whereIn('id', $attrInventorySubQuery->select('attribute_id'));
+            })
+            ->orderBy('order')
+            ->all(['id', 'name', 'attribute_type', 'order']);
+
+        return $attributes;
+    }
 }

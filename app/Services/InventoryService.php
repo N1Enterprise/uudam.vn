@@ -178,6 +178,11 @@ class InventoryService extends BaseService
         return $inventories;
     }
 
+    public function inventoriesAttributes($inventoryIds = [])
+    {
+
+    }
+
     public function getInventoryAttributesByVariants($inventory, $variants)
     {
         $attrPivots = DB::table('attribute_inventories')
@@ -189,5 +194,6 @@ class InventoryService extends BaseService
             ->pluck('attribute_value_id')
             ->toArray();
 
+        dd($inventoryAttributes);
     }
 }

@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
 @endpush
 
 @section('content_body')
@@ -81,5 +82,73 @@
 
         __HELPER__.copyClipBoard(text);
     });
+
+    const PRODUCT_VARIANTS = {
+        init: () => {
+            PRODUCT_VARIANTS.onChange();
+        },
+        variant_resources: (() => {
+            const data = $('#inventory_variants').attr('data-variants') || '{}';
+
+            return JSON.parse(data);
+        })(),
+        onChange: () => {
+            $('[name="attribute_value"]').on('change', function() {
+                const value = $(this).val();
+                const parent = $(this).parents('.attributes-item');
+
+                parent.find('[name="attribute_value"]').prop('checked', false);
+                parent.find('[name="attribute_value"]').parents('.label').removeClass('active');
+
+                $(this).prop('checked', true);
+                $(this).parents('.label').addClass('active');
+
+                const product = PRODUCT_VARIANTS.findProductByAttribute();
+            });
+        },
+        findProductByAttribute: () => {
+            const conditions = {};
+
+            $.each($('.label.active'), function(index, element) {
+                conditions[ + ($(element).find('input').attr('data-attribute-id')) ] = + ($(element).find('input').val());
+            });
+
+            const product = PRODUCT_VARIANTS.variant_resources.find(function(item) {
+                const attributes = item.attributes.map((item) => item.id);
+                const attrValues = item.attribute_values.map((item) => item.id);
+
+                const matches = (() => {
+                    if (
+                        Object.keys(conditions).length == attributes.length
+                        && Object.keys(conditions).every((id) => attributes.includes(+id))
+                    ) {
+                        if (
+                            Object.values(conditions).length == attrValues.length
+                            && Object.values(conditions).every((id) => attrValues.includes(+id))
+                        ) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                })();
+
+                return matches;
+            });
+
+            if (product) {
+                PRODUCT_VARIANTS.previewProduct(product);
+            }
+        },
+        previewProduct: (product) => {
+            const { title, sku, sale_price } = product;
+
+            $('[data-title]').text(title);
+            $('[data-sku]').text(sku);
+            $('[data-sale-price]').text(sale_price);
+        },
+    };
+
+    PRODUCT_VARIANTS.init();
 </script>
 @endpush

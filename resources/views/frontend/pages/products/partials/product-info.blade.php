@@ -1,12 +1,12 @@
 <div id="ProductInfo-template--16599720820986__main" class="product__info-container product__info-container--sticky">
     <div class="product__title">
-        <h1>{{ $inventory->title }}</h1>
+        <h1 data-title>{{ $inventory->title }}</h1>
         <a href="/products/teaching-garden-buddha-statue" class="product__title">
-            <h2 class="h1">{{ $inventory->title }}</h2>
+            <h2 class="h1" data-title>{{ $inventory->title }}</h2>
         </a>
     </div>
     <div id="sku-template--16599720820986__main" style="margin-top: -15px;">
-        <p>SKU: {{ $inventory->sku }}</p>
+        <p>SKU: <span data-sku>{{ $inventory->sku }}</span></p>
     </div>
     <p class="product__text subtitle"></p>
     <div class="no-js-hidden" id="price-template--16599720820986__main" role="status">
@@ -14,7 +14,7 @@
             <div class="price__container">
                 <div class="price__regular">
                     <span class="visually-hidden visually-hidden--inline">Giá Bán</span>
-                    <span class="price-item price-item--regular">{{ format_price($inventory->sale_price) }}</span>
+                    <span class="price-item price-item--regular" data-sale-price>{{ format_price($inventory->sale_price) }}</span>
                 </div>
             </div>
             <span class="badge price__badge-sale color-accent-2">Giảm Giá</span>
@@ -25,7 +25,7 @@
         <form method="post" action="/cart/add" accept-charset="UTF-8" class="installment caption-large">
             <input type="hidden" name="form_type" value="product">
             <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="id" value="{{ $inventory->id }}">
+            <input type="hidden" name="id"  data-inventory-id value="{{ $inventory->id }}">
             <input type="hidden" name="product-id" value="{{ optional($inventory->product)->id }}">
         </form>
     </div>
@@ -38,7 +38,7 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
                 </svg>
             </button>
-            <input class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}" form="product-form-template--16599720820986__main">
+            <input data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}" form="product-form-template--16599720820986__main">
             <button class="quantity__button no-js-hidden" name="plus" type="button">
                 <span class="visually-hidden">Increase quantity for Teaching Garden Buddha Statue</span>
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
@@ -49,6 +49,7 @@
     </div>
     <div>
         <product-form class="product-form">
+            <div id="inventory_variants" data-variants='@json($variants)'></div>
             <div class="product-form__error-message-wrapper" role="alert" hidden="">
                 <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
                     <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
@@ -57,6 +58,34 @@
                     <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7"></path>
                 </svg>
                 <span class="product-form__error-message"></span>
+            </div>
+            <div class="product-attributes">
+                @foreach ($attributes as $attribute)
+                <div class="attributes-item">
+                    <label for="attribute_{{ $attribute->id }}">
+                        <span class="attributes-item__name">{{ $attribute->name }}</span>
+                        <input type="radio" name="attribute" id="attribute_{{ $attribute->id }}" class="d-none" value="{{ $attribute->id }}">
+                    </label>
+                    <div class="attributes-values">
+                        @foreach ($attribute->attributeValues as $value)
+                        <div class="attributes-values-item">
+                            <label class="label {{ in_array($value->id, $inventoryAttributes) ? 'active' : '' }}">
+                                <span>{{ $value->value }}</span>
+                                <input
+                                    type="radio"
+                                    {{ in_array($value->id, $inventoryAttributes) ? 'checked' : '' }}
+                                    data-attribute-id="{{ $attribute->id }}"
+                                    data-order="{{ $value->order }}"
+                                    name="attribute_value"
+                                    class="d-none"
+                                    value="{{ $value->id }}"
+                                >
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endforeach
             </div>
             <form method="post" action="/cart/add" id="product-form-template--16599720820986__main" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
                 <input type="hidden" name="form_type" value="product">

@@ -26,15 +26,31 @@ class ProductController extends BaseController
     public function index(Request $request, $slug)
     {
         $inventory = $this->storeFrontProductDisplayService->showBySlug($slug);
-        $variants  = $this->inventoryService->listAvailableByProduct($inventory->product_id, ['with' => [
-            'attributeValues:id,value,color',
-            'attributes:id,name,attribute_type,order',
-        ]]);
+        $variants  = $this->inventoryService->listAvailableByProduct(
+            $inventory->product_id,
+            [
+                'with' => [
+                    'attributeValues:id,value,color',
+                    'attributes:id,name,attribute_type,order',
+                ],
+                'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
+            ]
+        );
 
         $imageGalleries = collect([$inventory->image])
             ->merge(collect(data_get($inventory, 'product.media', []))->map(fn($item) => data_get($item, 'path')))
             ->toArray();
 
-        return $this->view('frontend.pages.products.index', compact('inventory', 'imageGalleries'));
+        $inventoryAttributes = $inventory->attributeValues->pluck('id')->toArray();
+
+        $attributes = $this->attributeService->getAttributesByInventories($variants->pluck('id')->toArray());
+
+        return $this->view('frontend.pages.products.index', compact(
+            'inventory',
+            'variants',
+            'imageGalleries',
+            'attributes',
+            'inventoryAttributes',
+        ));
     }
 }
