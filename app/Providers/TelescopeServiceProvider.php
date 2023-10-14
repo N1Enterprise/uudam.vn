@@ -65,7 +65,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             try {
                 $adminEmail = optional(Auth::guard('admin')->user())->email;
 
-                return in_array($adminEmail, SystemSetting::from(SystemSettingKeyEnum::TELESCOPE_ACCESS)->get('access_list', []));
+                return in_array($adminEmail, SystemSetting::from(SystemSettingKeyEnum::TELESCOPE)->get('access_list', []));
             } catch (\Exception $ex) {
                 $message = $ex->getMessage();
                 $url = $request->url();

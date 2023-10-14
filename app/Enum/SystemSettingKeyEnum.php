@@ -10,7 +10,6 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MAINTENANCE_END_DATE = 'maintenance_end_date';
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
-    public const TELESCOPE_ACCESS = 'telescope_access';
 
     // Shop Setting
     public const BRANCH_LOGO = 'branch_logo';
@@ -25,7 +24,6 @@ class SystemSettingKeyEnum extends BaseEnum
             self::MAINTENANCE_MESSAGE,
             self::PRODUCT_ATTRIBUTE_TYPES,
             self::BRANCH_LOGO,
-            self::TELESCOPE_ACCESS,
         ];
     }
 }
