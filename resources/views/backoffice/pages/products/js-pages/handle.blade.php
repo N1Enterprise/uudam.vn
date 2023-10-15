@@ -164,7 +164,7 @@
 
     $(document).ready(function() {
         $('.media_image_repeater').repeater({
-            initEmpty: false,
+            initEmpty: true,
             show: function() {
                 $(this).slideDown();
 

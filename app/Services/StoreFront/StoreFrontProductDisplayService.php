@@ -46,7 +46,7 @@ class StoreFrontProductDisplayService extends BaseService
 
         $inventory->load([
             'product' => function($q) use ($inventory) {
-                $q->select(['id', 'code', 'branch', 'description', 'media', 'created_at'])
+                $q->select(['id', 'code', 'branch', 'description', 'media', 'created_at', 'suggested_relationships'])
                     ->withCount('inventories');
             },
             'attributeValues' => function($q) {

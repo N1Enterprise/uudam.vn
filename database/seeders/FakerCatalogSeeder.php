@@ -44,7 +44,6 @@ class FakerCatalogSeeder extends Seeder
 
             DB::commit();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             DB::rollBack();
         }
     }
@@ -74,10 +73,12 @@ class FakerCatalogSeeder extends Seeder
                 'status' => 1,
                 'primary_image' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg',
                 'media' => json_encode([
-                    ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg'],
-                    ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg'],
-                    ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg'],
-                    ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg'],
+                    'image' => [
+                        ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg', 'order' => 1],
+                        ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg', 'order' => 2],
+                        ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg', 'order' => 3],
+                        ['path' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg', 'order' => 4],
+                    ]
                 ]),
                 'created_at' => now(),
                 'updated_at' => now()

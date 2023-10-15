@@ -19,12 +19,11 @@ class Product extends BaseModel
         'slug',
         'branch',
         'description',
-        'min_amount',
-        'max_amount',
         'type',
         'status',
         'primary_image',
         'media',
+        'suggested_relationships',
         'created_by_type',
         'created_by_id',
         'updated_by_type',
@@ -32,8 +31,9 @@ class Product extends BaseModel
     ];
 
     protected $casts = [
-        'description' => 'json',
         'media' => 'json',
+        'description' => 'json',
+        'suggested_relationships' => 'json'
     ];
 
     public function getTypeNameAttribute()
@@ -51,3 +51,4 @@ class Product extends BaseModel
         return $this->hasMany(Inventory::class);
     }
 }
+

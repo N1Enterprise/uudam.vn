@@ -135,7 +135,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">{{ __('Media') }}</label>
+                            <label for="">{{ __('Image Media') }}</label>
                             <div class="media_image_repeater">
                                 <div data-repeater-list="media[image]">
                                     <div data-repeater-item class="k-repeater__item">
@@ -158,14 +158,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="d-flex align-items-start">
-                                                    <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
-                                                        <i class="la la-close"></i>
-                                                    </button>
-                                                    <div class="image_media_image_review">
+                                                    <div class="image_media_image_review mr-1">
                                                         <div data-image-ref-review-wapper="media" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
                                                             <img data-image-ref-review-img="media" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
                                                         </div>
                                                     </div>
+                                                    <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
+                                                        <i class="la la-close"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,16 +181,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="">{{ __('Video Media') }}</label>
+                            <input type="text" name="media[video][0][path]" value="{{ old('media.video.0.path') }}" class="form-control {{ $errors->has('media.video.0.path') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Video URL') }}">
+                            <input type="hidden" name="media[video][0][order]" value="1">
+                        </div>
+
+                        <div class="form-group">
                             <label for="">{{ __('Description') }}</label>
                             <div id="form_builder_dom" class="styled"></div>
                             <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description') }}">
-                        </div>
-                    </div>
-
-                    <div class="k-portlet__foot">
-                        <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Cancel') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                         </div>
                     </div>
                 </div>
@@ -231,41 +230,6 @@
                             @enderror
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>{{ __('Min Amount') }} *</label>
-                                    <x-number-input
-                                        key="min_amount"
-                                        name="min_amount"
-                                        class="form-control {{ $errors->has('min_amount') ? 'is-invalid' : '' }}"
-                                        allow-minus="false"
-                                        value="{{ old('min_amount') }}"
-                                        required
-                                    />
-                                    @error('min_amount')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>{{ __('Max Amount') }}</label>
-                                    <x-number-input
-                                        key="max_amount"
-                                        name="max_amount"
-                                        class="form-control {{ $errors->has('max_amount') ? 'is-invalid' : '' }}"
-                                        allow-minus="false"
-                                        value="{{ old('max_amount') }}"
-                                    />
-                                    @error('max_amount')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label>{{ __('Branch') }}</label>
                             <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Enter branch') }}" value="{{ old('branch') }}">
@@ -288,6 +252,66 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-8">
+                <div class="k-portlet">
+                    <div class="k-portlet__head">
+                        <div class="k-portlet__head-label">
+                            <h3 class="k-portlet__head-title">{{ __('ADDITIONS') }}</h3>
+                        </div>
+                    </div>
+                    <div class="k-portlet__body">
+                        <div class="form-group">
+                            <label>{{ __('Products Suggested') }}</label>
+                            <select data-actions-box="true" name="suggested_relationships[inventories][]" title="--{{ __('Select Related Products') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Selector" multiple data-selected-text-format="count > 5">
+                                @foreach($relatedInventories as $inventory)
+                                <option
+                                    {{ in_array($inventory->id, old('suggested_relationships.inventories', [])) ? 'selected' : '' }}
+                                    data-tokens="{{ $inventory->id }} | {{ $inventory->title }}"
+                                    data-subtext="{{ $inventory->id }}"
+                                    data-product-id="{{ $inventory->id }}"
+                                    data-product-name="{{ $inventory->title }}"
+                                    value="{{ $inventory->id }}"
+                                >{{ $inventory->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group Related_Product_Allowed_Holder mb-0">
+                            <div class="Related_Product_Holder_Content">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ __('Posts Suggested') }}</label>
+                            <select data-actions-box="true" name="suggested_relationships[posts][]" title="--{{ __('Select Related Posts') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
+                                @foreach($categoryRelatedPosts as $category)
+                                <optgroup label="{{ $category->name }}">
+                                    @foreach($category->posts as $post)
+                                    <option
+                                        {{ in_array($post->id, old("suggested_relationships.posts", [])) ? 'selected' : '' }}
+                                        data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $category->name }}"
+                                        data-subtext="{{ $post->id }}"
+                                        data-post-id="{{ $post->id }}"
+                                        data-post-name="{{ $post->name }}"
+                                        value="{{ $post->id }}">{{ $post->name }}</option>
+                                    @endforeach
+                                </optgroup>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group Related_Post_Allowed_Holder mb-0">
+                            <div class="Related_Post_Holder_Content">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="k-portlet__foot">
+                        <div class="k-form__actions d-flex justify-content-end">
+                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Cancel') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -300,4 +324,6 @@
 <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script>
 @include('backoffice.pages.products.js-pages.content-builder')
 @include('backoffice.pages.products.js-pages.handle')
+@include('backoffice.pages.products.js-pages.products-suggested')
+@include('backoffice.pages.products.js-pages.posts-suggested')
 @endsection

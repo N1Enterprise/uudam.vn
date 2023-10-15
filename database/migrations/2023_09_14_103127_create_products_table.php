@@ -22,18 +22,9 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique()->index();
             $table->string('branch')->nullable();
             $table->json('description')->nullable();
-            $table->decimal('min_amount', 27, 8)->nullable();
-            $table->decimal('max_amount', 27, 8)->nullable();
             $table->tinyInteger('status')->default(1)->comment(ActivationStatusEnum::class);
             $table->tinyInteger('type')->comment(ProductTypeEnum::class);
             $table->text('primary_image')->nullable();
-            /**
-             * images: [
-             *  { path: '', order: '' },
-             *  { path: '', order: '' },
-             *  { path: '', order: '' },
-             * ]
-             */
             $table->json('media')->nullable();
             $table->morphs('created_by');
             $table->morphs('updated_by');

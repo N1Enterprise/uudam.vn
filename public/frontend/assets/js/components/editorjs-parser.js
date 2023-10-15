@@ -5,11 +5,13 @@ const EDITORJS_PARSER = {
         $.each(EDITORJS_PARSER.elements, function(_, element) {
             const content = JSON.parse($(element).attr('data-editorjs-content') || '{}');
 
-            const parser = new edjsParser();
+            if (content) {
+                const parser = new edjsParser();
 
-            const htmlContent = parser.parse(content);
+                const htmlContent = parser.parse(content);
 
-            $(this).html(htmlContent);
+                $(this).html(htmlContent);
+            }
         });
     },
 

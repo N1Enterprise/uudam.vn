@@ -25,7 +25,7 @@
         <form method="post" action="/cart/add" accept-charset="UTF-8" class="installment caption-large">
             <input type="hidden" name="form_type" value="product">
             <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="id"  data-inventory-id value="{{ $inventory->id }}">
+            <input type="hidden" name="id" data-inventory-id value="{{ $inventory->id }}">
             <input type="hidden" name="product-id" value="{{ optional($inventory->product)->id }}">
         </form>
     </div>
@@ -120,7 +120,7 @@
             <div id="Product-share-template--16599720820986__main" class="share-button__fallback motion-reduce">
                 <div class="field">
                     <span id="ShareMessage-template--16599720820986__main" class="share-button__message hidden" role="status"></span>
-                    <input type="text" class="field__input" id="url" value="http://uudam.vn.test/products/teaching-garden-buddha-statue" placeholder="Link" onclick="" readonly="">
+                    <input data-url type="text" class="field__input" id="url" value="{{ route('fe.web.products.show', $inventory->slug) }}" placeholder="Link" onclick="" readonly="">
                     <label class="field__label" for="url">Link</label>
                 </div>
                 <button class="share-button__close hidden no-js-hidden">

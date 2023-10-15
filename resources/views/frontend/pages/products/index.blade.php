@@ -22,7 +22,30 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
 @endpush
+
+@section('page_title')
+{{ $inventory->title }}
+@endsection
+
+@section('page_seo')
+<meta name="description" content="{{ $inventory->meta_description }}">
+<meta property="og:url" content="{{ route('fe.web.products.show', $inventory->slug) }}">
+<meta property="og:title" content="{{ $inventory->meta_title }}">
+<meta property="og:type" content="product">
+<meta property="og:description" content="{{ $inventory->meta_description }}">
+<meta property="og:image" content="{{ $inventory->product_image }}">
+<meta property="og:image:secure_url" content="{{ $inventory->product_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
+<meta property="og:price:currency" content="VND">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $inventory->meta_title }}">
+<meta name="twitter:description" content="{{ $inventory->meta_description }}">
+@endsection
 
 @section('content_body')
 <section class="shopify-section section">
@@ -61,94 +84,54 @@
     </div>
 </section>
 
-<section class="shopify-section section">
+<section class="shopify-section section review-section">
     @include('frontend.pages.products.partials.product-review')
 </section>
 
+@if(! empty($suggestedInventories))
 <limespot>
     <limespot-container>
-        @include('frontend.pages.products.partials.related-items')
+        @include('frontend.pages.products.partials.suggested-products')
     </limespot-container>
 </limespot>
+@endif
+
+@if(! empty($suggestedPosts))
+<section class="shopify-section section">
+    @include('frontend.pages.products.partials.suggested-posts')
+</section>
+@endif
+
+@include('frontend.pages.products.partials.gallery-image-modal')
 @endsection
 
 @push('js_pages')
 <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/assets/js/components/editorjs-parser.js') }}" type="text/javascript"></script>
-<script>
-    $('.share-button__copy').on('click', function() {
-        const text = $('#url.field__input').val();
+@include('frontend.pages.products.js-pages.index')
 
-        __HELPER__.copyClipBoard(text);
+<script>
+    $('.gallery-viewer__slider-for').slick({
+        id: "product_gallery_viewer",
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        dots: false,
+        arrow: false,
+        lazyLoad: "ondemand",
+        asNavFor: ".gallery-thumbnails__slider-nav"
     });
 
-    const PRODUCT_VARIANTS = {
-        init: () => {
-            PRODUCT_VARIANTS.onChange();
-        },
-        variant_resources: (() => {
-            const data = $('#inventory_variants').attr('data-variants') || '{}';
-
-            return JSON.parse(data);
-        })(),
-        onChange: () => {
-            $('[name="attribute_value"]').on('change', function() {
-                const value = $(this).val();
-                const parent = $(this).parents('.attributes-item');
-
-                parent.find('[name="attribute_value"]').prop('checked', false);
-                parent.find('[name="attribute_value"]').parents('.label').removeClass('active');
-
-                $(this).prop('checked', true);
-                $(this).parents('.label').addClass('active');
-
-                const product = PRODUCT_VARIANTS.findProductByAttribute();
-            });
-        },
-        findProductByAttribute: () => {
-            const conditions = {};
-
-            $.each($('.label.active'), function(index, element) {
-                conditions[ + ($(element).find('input').attr('data-attribute-id')) ] = + ($(element).find('input').val());
-            });
-
-            const product = PRODUCT_VARIANTS.variant_resources.find(function(item) {
-                const attributes = item.attributes.map((item) => item.id);
-                const attrValues = item.attribute_values.map((item) => item.id);
-
-                const matches = (() => {
-                    if (
-                        Object.keys(conditions).length == attributes.length
-                        && Object.keys(conditions).every((id) => attributes.includes(+id))
-                    ) {
-                        if (
-                            Object.values(conditions).length == attrValues.length
-                            && Object.values(conditions).every((id) => attrValues.includes(+id))
-                        ) {
-                            return true;
-                        }
-                    }
-
-                    return false;
-                })();
-
-                return matches;
-            });
-
-            if (product) {
-                PRODUCT_VARIANTS.previewProduct(product);
-            }
-        },
-        previewProduct: (product) => {
-            const { title, sku, sale_price } = product;
-
-            $('[data-title]').text(title);
-            $('[data-sku]').text(sku);
-            $('[data-sale-price]').text(sale_price);
-        },
-    };
-
-    PRODUCT_VARIANTS.init();
+    $('.gallery-thumbnails__slider-nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-viewer__slider-for',
+        dots: false,
+        arrow: false,
+        infinite: false,
+        focusOnSelect: true
+    });
 </script>
 @endpush

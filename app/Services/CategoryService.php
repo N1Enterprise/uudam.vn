@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enum\ActivationStatusEnum;
 use App\Repositories\Contracts\CategoryRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
@@ -29,6 +30,12 @@ class CategoryService extends BaseService
 
     public function allAvailable($data = [])
     {
+        if (data_get($data, 'with.products')) {
+            $data['with']['products'] = ['products' => function($q) {
+                $q->where('status', ActivationStatusEnum::ACTIVE);
+            }];
+        }
+
         return $this->categoryRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
