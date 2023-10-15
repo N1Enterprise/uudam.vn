@@ -21,7 +21,31 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
 @endpush
+
+@section('page_title')
+{{ $inventory->title }}
+@endsection
+
+@section('page_seo')
+<meta name="description" content="{{ $inventory->meta_description }}">
+<meta property="og:url" content="{{ route('fe.web.products.show', $inventory->slug) }}">
+<meta property="og:title" content="{{ $inventory->meta_title }}">
+<meta property="og:type" content="product">
+<meta property="og:description" content="{{ $inventory->meta_description }}">
+<meta property="og:image" content="{{ $inventory->product_image }}">
+<meta property="og:image:secure_url" content="{{ $inventory->product_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
+<meta property="og:price:currency" content="VND">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $inventory->meta_title }}">
+<meta name="twitter:description" content="{{ $inventory->meta_description }}">
+@endsection
 
 @section('content_body')
 <section class="shopify-section section">
@@ -30,8 +54,10 @@
             <div class="media-gallery grid__item product__media-wrapper">
                 <div class="product__media-gallery" aria-label="Gallery Viewer">
                     <div class="visually-hidden"></div>
+                    @if(! empty($imageGalleries))
                     @include('frontend.pages.products.partials.gallery-viewer')
                     @include('frontend.pages.products.partials.gallery-thumbnails')
+                    @endif
                 </div>
             </div>
             <div class="product__info-wrapper grid__item">
@@ -58,17 +84,54 @@
     </div>
 </section>
 
-<section class="shopify-section section">
+<section class="shopify-section section review-section">
     @include('frontend.pages.products.partials.product-review')
 </section>
 
+@if(! empty($suggestedInventories))
 <limespot>
     <limespot-container>
-        @include('frontend.pages.products.partials.related-items')
+        @include('frontend.pages.products.partials.suggested-products')
     </limespot-container>
 </limespot>
+@endif
+
+@if(! empty($suggestedPosts))
+<section class="shopify-section section">
+    @include('frontend.pages.products.partials.suggested-posts')
+</section>
+@endif
+
+@include('frontend.pages.products.partials.gallery-image-modal')
 @endsection
 
 @push('js_pages')
 <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/assets/js/components/editorjs-parser.js') }}" type="text/javascript"></script>
+@include('frontend.pages.products.js-pages.index')
+
+<script>
+    $('.gallery-viewer__slider-for').slick({
+        id: "product_gallery_viewer",
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        dots: false,
+        arrow: false,
+        lazyLoad: "ondemand",
+        asNavFor: ".gallery-thumbnails__slider-nav"
+    });
+
+    $('.gallery-thumbnails__slider-nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-viewer__slider-for',
+        dots: false,
+        arrow: false,
+        infinite: false,
+        focusOnSelect: true
+    });
+</script>
 @endpush

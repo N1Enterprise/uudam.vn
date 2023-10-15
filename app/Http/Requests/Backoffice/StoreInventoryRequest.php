@@ -30,7 +30,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'key_features' => ['nullable', 'array'],
                 'key_features.*' => ['nullable', 'array'],
                 'key_features.*.title' => ['required', 'string'],
-                'description' => ['nullable'],
+                // 'description' => ['nullable'],
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
                 'offer_start' => [
@@ -65,7 +65,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'description' => $this->description ? json_decode($this->description, true) : null,
+            // 'description' => $this->description ? json_decode($this->description, true) : null,
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray()

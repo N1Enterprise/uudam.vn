@@ -18,6 +18,46 @@ const __HELPER__ = {
                 window.history.replaceState({}, '', url.toString());
             },
         }
-    }
-};
+    },
+    copyClipBoard: (text) => {
+        var $temp = $("<input>");
 
+        if ($('.modal.show').length) {
+            fscommon.unblockUI('.modal.show');
+            $(".modal.show").append($temp);
+            $temp.val(text).select();
+            document.execCommand("copy");
+            $temp.remove();
+            return;
+        }
+
+        $("body").append($temp);
+        $temp.val(text).select();
+        document.execCommand("copy");
+        $temp.remove();
+    },
+    formatNumber: function(number, dec_point = ',', thousands_sep = '.', decimals = 2, minDecimals = null) {
+		if(!number) number = 0;
+        var nstr = number.toString();
+        nstr += '';
+        x = nstr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? x[1] : '0';
+        var rgx = /(\d+)(\d{3})/;
+
+        while (rgx.test(x1))
+            x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+            x2 = x2.toString().replace(/\.?0+$/, '')
+
+            if (decimals > 0) {
+                x2 = x2.slice(0, decimals)
+            }
+
+            if (minDecimals > 0) {
+                x2 = x2.length < minDecimals ? x2.padEnd(minDecimals, '0') : x2;
+            }
+
+            return x1 + (! !Object.keys(x2).length ? dec_point + x2 : '');
+    },
+};

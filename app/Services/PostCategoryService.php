@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enum\ActivationStatusEnum;
 use App\Repositories\Contracts\PostCategoryRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
@@ -28,6 +29,12 @@ class PostCategoryService extends BaseService
 
     public function allAvailable($data = [])
     {
+        if (data_get($data, 'with.posts')) {
+            $data['with']['posts'] = ['posts' => function($q) {
+                $q->where('status', ActivationStatusEnum::ACTIVE);
+            }];
+        }
+
         return $this->postCategoryRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));

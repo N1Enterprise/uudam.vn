@@ -21,7 +21,7 @@ class Inventory extends BaseModel
         'condition_note',
         'sku',
         'status',
-        'description',
+        // 'description',
         'key_features',
         'purchase_price',
         'sale_price',

@@ -7,6 +7,7 @@ use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
 
 class PostService extends BaseService
 {
@@ -80,5 +81,16 @@ class PostService extends BaseService
     protected function utilityDisk()
     {
         return Storage::disk('utility');
+    }
+
+    public function getAvailableBySuggested($suggested, $data = [])
+    {
+        return $this->postRepository
+            ->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->scopeQuery(function($q) use ($suggested) {
+                $q->whereIn('id', Arr::wrap($suggested));
+            })
+            ->all(data_get($data, 'columns'));
     }
 }

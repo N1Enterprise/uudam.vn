@@ -43,6 +43,10 @@ class ViewServiceProvider extends ServiceProvider
 
     private function registerViewComposer()
     {
+        View::composer('frontend.*', function ($view) {
+            $view->with('APP_NAME', config('name'));
+        });
+
         View::composer('backoffice.*', function ($view) {
             $view->with('APP_NAME', config('name'));
             $view->with('AUTHENTICATED_USER',  AdminAuth::user());

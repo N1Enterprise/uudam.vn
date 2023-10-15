@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\BaseModel;
 use App\Models\Inventory;
 use App\Repositories\Contracts\InventoryRepositoryContract;
 use Illuminate\Http\UploadedFile;
@@ -41,6 +42,17 @@ class InventoryService extends BaseService
         return $this->inventoryRepository
             ->with(data_get($data, 'with', []))
             ->findOrFail($id, data_get($data, 'columns', ['*']));
+    }
+
+    public function getAvailableBySuggested($suggested, $data = [])
+    {
+        return $this->inventoryRepository
+            ->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->scopeQuery(function($q) use ($suggested) {
+                $q->whereIn('id', Arr::wrap($suggested));
+            })
+            ->all(data_get($data, 'columns'));
     }
 
     public function findBySlug($slug, $data = [])
@@ -162,5 +174,37 @@ class InventoryService extends BaseService
     protected function catalogDisk()
     {
         return Storage::disk('catalog');
+    }
+
+    public function listAvailableByProduct($product, $data = [])
+    {
+        $inventories = $this->inventoryRepository
+            ->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->scopeQuery(function($q) use ($product) {
+                $q->where('product_id', BaseModel::getModelKey($product));
+            })
+            ->all(data_get($data, 'columns', ['*']));
+
+        return $inventories;
+    }
+
+    public function inventoriesAttributes($inventoryIds = [])
+    {
+
+    }
+
+    public function getInventoryAttributesByVariants($inventory, $variants)
+    {
+        $attrPivots = DB::table('attribute_inventories')
+            ->select('attribute_id','inventory_id','attribute_value_id')
+            ->whereIn('inventory_id', $variants->pluck('id'))->get();
+
+        $inventoryAttributes = $attrPivots
+            ->where('inventory_id', $inventory->id)
+            ->pluck('attribute_value_id')
+            ->toArray();
+
+        dd($inventoryAttributes);
     }
 }

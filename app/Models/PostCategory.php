@@ -31,4 +31,9 @@ class PostCategory extends BaseModel
     {
         return ActivationStatusEnum::findConstantLabel($this->featured);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

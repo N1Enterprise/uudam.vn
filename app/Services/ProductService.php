@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Repositories\Contracts\ProductRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 

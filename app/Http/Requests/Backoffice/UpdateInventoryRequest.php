@@ -38,7 +38,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'key_features' => ['nullable', 'array'],
                 'key_features.*' => ['required', 'array'],
                 'key_features.*.title' => ['required', 'string'],
-                'description' => ['nullable'],
+                // 'description' => ['nullable'],
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
                 'offer_start' => [
@@ -72,7 +72,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'description' => $this->description ? json_decode($this->description, true) : null,
+            // 'description' => $this->description ? json_decode($this->description, true) : null,
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1
         ]);

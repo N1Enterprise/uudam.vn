@@ -209,14 +209,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="d-flex align-items-start">
-                                                    <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
-                                                        <i class="la la-close"></i>
-                                                    </button>
-                                                    <div class="image_media_image_review">
+                                                    <div class="image_media_image_review mr-1">
                                                         <div data-image-ref-review-wapper="media" data-image-ref-index="{{ $index }}" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
                                                             <img data-image-ref-review-img="media" data-image-ref-index="{{ $index }}" style="width: 100%; height: 100%;" src="" alt="">
                                                         </div>
                                                     </div>
+                                                    <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
+                                                        <i class="la la-close"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
