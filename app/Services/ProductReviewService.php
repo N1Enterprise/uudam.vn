@@ -84,7 +84,7 @@ class ProductReviewService extends BaseService
         return $this->productReviewRepository
             ->modelScopes(['approved'])
             ->with(data_get($data, 'with', []))
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->all(data_get($data, 'columns', ['*']));
     }
 }

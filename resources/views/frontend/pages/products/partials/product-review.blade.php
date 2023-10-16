@@ -65,7 +65,7 @@
                             @foreach ($productReviews as $review)
                             <div class="spr-review" data-status="{{ $review->status }}" data-status-name="{{ $review->status_name }}">
                                 <div class="spr-review-header">
-                                    <span class="spr-starratings spr-review-header-starratings">{{ $review->rating_type_name }}</span>
+                                    <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, $review->rating_type, $review->rating_type_name) }}</span>
                                     <h3 class="spr-review-header-title">{{ $review->user_name }}</h3>
                                     <span class="spr-review-header-byline">
                                         <strong>{{ date('d/m/Y H:i', strtotime($review->created_at)) }}</strong>
