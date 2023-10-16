@@ -71,6 +71,13 @@ return [
     'inventories.update' => 'Update Inventory',
     'inventories.delete' => 'Delete Inventory',
 
+    'support-desks' => 'Support Desks',
+    'product-reviews' => 'Product Reviews',
+    'product-reviews.index' => 'View Product Review List',
+    'product-reviews.store' => 'Create Product Review',
+    'product-reviews.update' => 'Update Product Review',
+    'product-reviews.delete' => 'Delete Product Review',
+
     'appearances' => 'Appearances',
     'display-inventories' => 'Display Inventories',
     'display-inventories.index' => 'View Display Inventory List',

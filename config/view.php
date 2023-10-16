@@ -33,4 +33,9 @@ return [
         realpath(storage_path('framework/views'))
     ),
 
+    'views' => [
+        'errors' => [
+            '404' => 'backoffice.errors.404',
+        ],
+    ],
 ];

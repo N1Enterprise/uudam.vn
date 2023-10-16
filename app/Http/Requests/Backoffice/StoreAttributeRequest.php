@@ -21,7 +21,6 @@ class StoreAttributeRequest extends BaseFormRequest implements StoreAttributeReq
         ];
     }
 
-
     public function prepareForValidation()
     {
         $this->merge([

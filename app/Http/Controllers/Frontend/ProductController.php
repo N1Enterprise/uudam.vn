@@ -6,6 +6,7 @@ use App\Enum\ProductReviewRatingEnum;
 use App\Services\AttributeService;
 use App\Services\InventoryService;
 use App\Services\PostService;
+use App\Services\ProductReviewService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use App\Services\StoreFront\StoreFrontProductDisplayService;
@@ -16,17 +17,20 @@ class ProductController extends BaseController
     public $inventoryService;
     public $attributeService;
     public $postService;
+    public $productReviewService;
 
     public function __construct(
         StoreFrontProductDisplayService $storeFrontProductDisplayService,
         InventoryService $inventoryService,
         AttributeService $attributeService,
-        PostService $postService
+        PostService $postService,
+        ProductReviewService $productReviewService
     ) {
         $this->storeFrontProductDisplayService = $storeFrontProductDisplayService;
         $this->inventoryService = $inventoryService;
         $this->attributeService = $attributeService;
         $this->postService = $postService;
+        $this->productReviewService = $productReviewService;
     }
 
     public function index(Request $request, $slug)
@@ -54,6 +58,8 @@ class ProductController extends BaseController
 
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
+        $productReviews = $this->productReviewService->allAvailable(['columns' => ['id', 'user_name', 'rating_type', 'status', 'created_at', 'content']]);
+
         return $this->view('frontend.pages.products.index', compact(
             'inventory',
             'variants',
@@ -64,6 +70,7 @@ class ProductController extends BaseController
             'suggestedPosts',
             'suggestedInventories',
             'productReviewRatingEnumLabels',
+            'productReviews',
         ));
     }
 }
