@@ -116,6 +116,10 @@ const PRODUCT_REVIEW = {
         });
     },
     onKeyDownContent: () => {
+		const maxLength = 1000;
+
+        $('.charactersremaining-count').text(maxLength);
+
         $('#Review_Product_Content').on('keydown', function() {
             count($(this).val());
         });
@@ -126,13 +130,11 @@ const PRODUCT_REVIEW = {
 
         function count(value) {
             const length = value.length;
-            const charactersremaining = 1500 - length;
+            const charactersremaining = maxLength - length;
 
-            if (charactersremaining <= 0) {
-
+            if (charactersremaining >= 0) {
+                $('.charactersremaining-count').text(charactersremaining);
             }
-
-            $('.charactersremaining-count').text(charactersremaining);
         }
     },
     onReview: () => {

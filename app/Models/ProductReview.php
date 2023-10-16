@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductReviewRatingEnum;
 use App\Enum\ProductReviewStatusEnum;
 use App\Models\Traits\HasImpactor;
@@ -17,7 +18,9 @@ class ProductReview extends BaseModel
         'rating_type',
         'content',
         'status',
+        'is_real_user',
         'product_id',
+        'note',
         'created_by_id',
         'created_by_type',
         'updated_by_type',
@@ -37,5 +40,10 @@ class ProductReview extends BaseModel
     public function scopeApproved($query)
     {
         return $query->where('status', ProductReviewStatusEnum::APPROVED);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

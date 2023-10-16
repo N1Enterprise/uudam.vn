@@ -146,3 +146,10 @@ Route::post('faqs', [Controllers\FaqController::class, 'store'])->name('faqs.sto
 Route::get('faqs/{id}', [Controllers\FaqController::class, 'edit'])->name('faqs.edit')->middleware(['can:faqs.update']);
 Route::put('faqs/{id}', [Controllers\FaqController::class, 'update'])->name('faqs.update')->middleware(['can:faqs.update']);
 Route::delete('faqs/{id}', [Controllers\FaqController::class, 'destroy'])->name('faqs.delete')->middleware(['can:faqs.delete']);
+
+Route::get('product-reviews', [Controllers\ProductReviewController::class, 'index'])->name('product-reviews.index')->middleware(['can:product-reviews.index']);
+Route::get('product-reviews/create', [Controllers\ProductReviewController::class, 'create'])->name('product-reviews.create')->middleware(['can:product-reviews.store']);
+Route::post('product-reviews', [Controllers\ProductReviewController::class, 'store'])->name('product-reviews.store')->middleware(['can:product-reviews.store']);
+Route::get('product-reviews/{id}', [Controllers\ProductReviewController::class, 'edit'])->name('product-reviews.edit')->middleware(['can:product-reviews.update']);
+Route::put('product-reviews/{id}', [Controllers\ProductReviewController::class, 'update'])->name('product-reviews.update')->middleware(['can:product-reviews.update']);
+Route::delete('product-reviews/{id}', [Controllers\ProductReviewController::class, 'destroy'])->name('product-reviews.delete')->middleware(['can:product-reviews.delete']);

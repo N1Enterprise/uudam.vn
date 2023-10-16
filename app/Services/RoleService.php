@@ -89,6 +89,14 @@ class RoleService extends BaseService
                 'roles.update'
             ],
         ],
+        'support-desks' => [
+            'product-reviews' => [
+                'product-reviews.index',
+                'product-reviews.store',
+                'product-reviews.update',
+                'product-reviews.delete',
+            ],
+        ],
         'appearances' => [
             'display-inventories' => [
                 'display-inventories.index',

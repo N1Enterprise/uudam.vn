@@ -46,12 +46,12 @@
                                 <div class="spr-form-review-body">
                                     <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *
                                         <span role="status" aria-live="polite" aria-atomic="true">
-                                            <span class="spr-form-review-body-charactersremaining">(<span class="charactersremaining-count">1500</span>)</span>
+                                            <span class="spr-form-review-body-charactersremaining">(<span class="charactersremaining-count">1000</span>)</span>
                                             <span class="visuallyhidden">ký tự còn lại</span>
                                         </span>
                                     </label>
                                     <div class="spr-form-input">
-                                        <textarea class="spr-form-input spr-form-input-textarea" id="Review_Product_Content" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây" style="padding: 5px;" required></textarea>
+                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây" style="padding: 5px;" required></textarea>
                                     </div>
                                 </div>
                             </fieldset>

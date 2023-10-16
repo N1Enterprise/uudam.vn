@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductReviewRatingEnum;
 use App\Enum\ProductReviewStatusEnum;
 use Illuminate\Database\Migrations\Migration;
@@ -23,7 +24,9 @@ class CreateProductReviewsTable extends Migration
             $table->foreignId('product_id');
             $table->tinyInteger('rating_type')->comment(ProductReviewRatingEnum::class);
             $table->text('content')->nullable();
+            $table->text('note')->nullable();
             $table->tinyInteger('status')->comment(ProductReviewStatusEnum::class);
+            $table->tinyInteger('is_real_user')->comment(ActivationStatusEnum::class)->default(ActivationStatusEnum::INACTIVE);
             $table->nullableMorphs('created_by');
             $table->nullableMorphs('updated_by');
             $table->timestamps();

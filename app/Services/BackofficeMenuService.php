@@ -100,6 +100,17 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Support Desks',
+                'icon' => 'flaticon-technology-1',
+                'subs' => [
+                    [
+                        'name' => 'Product Reviews',
+                        'link' => route('bo.web.product-reviews.index'),
+                        'permissions' => ['product-reviews.index'],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'Appearance',
                 'icon' => 'flaticon2-contract',
                 'subs' => [
