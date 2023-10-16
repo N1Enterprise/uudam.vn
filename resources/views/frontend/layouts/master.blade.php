@@ -140,9 +140,11 @@
     @include('frontend.layouts.parials.footer.index')
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/components/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
 
     @yield('js_script')
     @stack('js_pages')

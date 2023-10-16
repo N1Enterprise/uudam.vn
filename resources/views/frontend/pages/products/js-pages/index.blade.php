@@ -107,12 +107,85 @@ const PRODUCT_OPEN_IMAGE_GALERIES = {
 const PRODUCT_REVIEW = {
     init: () => {
         PRODUCT_REVIEW.onToggle();
+        PRODUCT_REVIEW.onReview();
+        PRODUCT_REVIEW.onKeyDownContent();
     },
     onToggle: () => {
         $('.spr-summary-actions-newreview').on('click', function() {
             $('[data-product-review]').toggleClass('d-none');
         });
     },
+    onKeyDownContent: () => {
+        $('#Review_Product_Content').on('keydown', function() {
+            count($(this).val());
+        });
+
+        $('#Review_Product_Content').on('paste', function() {
+            count($(this).val());
+        });
+
+        function count(value) {
+            const length = value.length;
+            const charactersremaining = 1500 - length;
+
+            if (charactersremaining <= 0) {
+
+            }
+
+            $('.charactersremaining-count').text(charactersremaining);
+        }
+    },
+    onReview: () => {
+        $('#User_Product_Review').on('submit', function(e) {
+            e.preventDefault();
+
+            const formData = $(this).serializeArray();
+            const button = $('#User_Product_Review').find('button[type="submit"]');
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: formData,
+                beforeSend: () => {
+                    $(button).prop('disabled', true);
+                },
+                success: (response) => {
+                    $(button).prop('disabled', false);
+                    $('#User_Product_Review').trigger("reset");
+                    $('.spr-summary-actions-newreview').trigger('click');
+                    $('.product-review-empty').remove();
+
+                    PRODUCT_REVIEW.makeReviewHTML(response);
+                },
+                error: () => {
+                    $(button).prop('disabled', false);
+                },
+            });
+        });
+    },
+    makeReviewHTML: (response) => {
+        const html = `
+            <div class="spr-reviews" data-status="${response.status}" data-status-name="${response.status_name}">
+                <div>Đánh giá của bạn đang được người quản lí kiểm tra để tránh spam. Xin lỗi vì sự bất tiện này. Mong quý khách hàng thông cảm!</div>
+                <div class="spr-review">
+                    <div class="spr-review-header">
+                        <span class="spr-starratings spr-review-header-starratings" aria-label="4 of 5 stars" role="img">
+                            ${response.rating_type_name}
+                        </span>
+                        <h3 class="spr-review-header-title">${response.user_name}</h3>
+                        <span class="spr-review-header-byline">
+                            <strong>${moment(response.created_at).format("DD/MM/YYYY")}</strong>
+                        </span>
+                    </div>
+                    <div class="spr-review-content">
+                        <p class="spr-review-content-body">${response.content}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('#shopify-product-reviews').find('.spr-content').append(html);
+    }
 };
 
 PRODUCT_VARIANTS.init();

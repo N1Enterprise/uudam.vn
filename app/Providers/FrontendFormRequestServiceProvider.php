@@ -9,6 +9,6 @@ use App\Http\Requests\Frontend as Requests;
 class FrontendFormRequestServiceProvider extends ServiceProvider
 {
     public $singletons = [
-
+        Contracts\StoreUserProductReviewRequestContract::class => Requests\StoreUserProductReviewRequest::class,
     ];
 }

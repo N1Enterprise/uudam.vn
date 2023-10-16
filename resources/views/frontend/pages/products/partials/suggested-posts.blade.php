@@ -22,7 +22,7 @@
                                         </h3>
                                         <div class="article-card__info caption-with-letter-spacing h5">
                                             <span class="circle-divider">
-                                                <time datetime="2023-09-25T16:33:08Z">{{ date('d/m/Y', strtotime($post->post_at)) }}</time>
+                                                <time datetime="{{ $post->post_at }}">{{ date('d/m/Y', strtotime($post->post_at)) }}</time>
                                             </span>
                                         </div>
                                         <p class="article-card__excerpt rte-width">
@@ -39,7 +39,7 @@
                                     </h3>
                                     <div class="article-card__info caption-with-letter-spacing h5">
                                         <span class="circle-divider">
-                                            <time datetime="2023-09-25T16:33:08Z">{{ date('d/m/Y', strtotime($post->post_at)) }}</time>
+                                            <time datetime="{{ $post->post_at }}">{{ date('d/m/Y', strtotime($post->post_at)) }}</time>
                                         </span>
                                     </div>
                                     <p class="article-card__excerpt rte-width">
