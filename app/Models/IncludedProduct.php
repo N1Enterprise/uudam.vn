@@ -18,6 +18,7 @@ class IncludedProduct extends BaseModel
 
     public function inventory()
     {
-        return $this->belongsToMany(Inventory::class, 'included_product_products');
+        return $this->belongsToMany(Inventory::class, 'included_product_inventories')
+            ->withTimestamps();
     }
 }

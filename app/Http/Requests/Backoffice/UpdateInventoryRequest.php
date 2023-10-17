@@ -5,20 +5,16 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
-use App\Enum\ProductTypeEnum;
+use App\Models\IncludedProduct;
 use App\Models\Inventory;
 use App\Models\Product;
 use App\Services\InventoryService;
-use App\Services\ProductService;
 use Illuminate\Validation\Rule;
 
 class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryRequestContract
 {
     public function rules(): array
     {
-        /** @var Product */
-        $product = app(ProductService::class)->show($this->product_id);
-
         /** @var Inventory */
         $inventory = app(InventoryService::class)->show($this->id);
 
@@ -31,14 +27,9 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
                 'min_order_quantity' => ['required', 'integer', 'gt:0'],
                 'condition_note' => ['nullable'],
-                'variants' => [
-                    $product->type == ProductTypeEnum::VARIABLE ? 'required' : 'nullable',
-                    'array'
-                ],
                 'key_features' => ['nullable', 'array'],
                 'key_features.*' => ['required', 'array'],
                 'key_features.*.title' => ['required', 'string'],
-                // 'description' => ['nullable'],
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
                 'offer_start' => [
@@ -60,6 +51,8 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                     'date',
                     'after:offer_start'
                 ],
+                'included_products' => ['nullable', 'array'],
+                'included_products.*' => ['required', 'integer', Rule::exists(IncludedProduct::class, 'id')],
             ],
             $this->defineSimpleRules($inventory) ?? []
         );
@@ -72,9 +65,10 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            // 'description' => $this->description ? json_decode($this->description, true) : null,
             'available_from' => $this->available_from ? $this->available_from : now(),
-            'min_order_quantity' => $this->min_order_quantity ?? 1
+            'min_order_quantity' => $this->min_order_quantity ?? 1,
+            'included_products' => array_filter(array_map('intval', $this->included_products ?? [])),
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray(),
         ]);
     }
 

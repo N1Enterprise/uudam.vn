@@ -17,7 +17,6 @@
 	{{ __($title) }}
 @endsection
 
-
 @section('style')
 @include('backoffice.pages.inventories.style-pages.common')
 @endsection
@@ -29,7 +28,6 @@
     <form id="form_inventory" method="POST" action="{{ route('bo.web.inventories.store') }}" enctype="multipart/form-data">
         @csrf
         @error('*')
-        {{-- @dd($errors) --}}
         <div class="alert alert-danger fade show" role="alert">
             <div class="alert-text">
                 {{ __('Submit failed. Please check the error below.') }}

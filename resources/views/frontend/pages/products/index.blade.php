@@ -71,8 +71,8 @@
     <div class="multicolumn color-background-1 gradient background-primary no-heading">
         <div class="page-width section-template-padding isolate">
             <div class="slider-component slider-mobile-gutter">
-                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" id="Slider-template--16599720820986__1658169167404dabb0" role="list">
-                    <li id="Slide-template--16599720820986__1658169167404dabb0-1" class="multicolumn-list__item grid__item multicolumn-list__item--empty">
+                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" role="list">
+                    <li class="multicolumn-list__item grid__item multicolumn-list__item--empty">
                         <div class="multicolumn-card content-container">
                             <div class="multicolumn-card__info"></div>
                         </div>
@@ -80,6 +80,14 @@
                 </ul>
             </div>
             <div class="center"></div>
+        </div>
+    </div>
+</section>
+
+<section class="shopify-section section review-section">
+    <div class="page-width">
+        <div class="product__description rte quick-add-hidden">
+            <div class="editorjs-parser" data-editorjs-content='@json(data_get($inventory, 'product.description'))'></div>
         </div>
     </div>
 </section>

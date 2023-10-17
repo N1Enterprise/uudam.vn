@@ -32,7 +32,7 @@ class Menu extends BaseModel
 
     public function inventory()
     {
-        return $this->belongsTo(Inventory::class, 'inventory_');
+        return $this->belongsTo(Inventory::class, 'inventory_id');
     }
 
     public function post()

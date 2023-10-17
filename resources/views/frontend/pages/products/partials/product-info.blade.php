@@ -1,15 +1,15 @@
-<div id="ProductInfo-template--16599720820986__main" class="product__info-container product__info-container--sticky">
+<div class="product__info-container product__info-container--sticky">
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
         <a href="/products/teaching-garden-buddha-statue" class="product__title">
             <h2 class="h1" data-title>{{ $inventory->title }}</h2>
         </a>
     </div>
-    <div id="sku-template--16599720820986__main" style="margin-top: -15px;">
+    <div style="margin-top: -15px;">
         <p>SKU: <span data-sku>{{ $inventory->sku }}</span></p>
     </div>
     <p class="product__text subtitle"></p>
-    <div class="no-js-hidden" id="price-template--16599720820986__main" role="status">
+    <div class="no-js-hidden" role="status">
         <div class="price price--large price--show-badge">
             <div class="price__container">
                 <div class="price__regular">
@@ -30,7 +30,7 @@
         </form>
     </div>
     <div class="product-form__input product-form__quantity">
-        <label class="form__label" for="Quantity-template--16599720820986__main">{{ __('Số Lượng') }}</label>
+        <label class="form__label">{{ __('Số Lượng') }}</label>
         <quantity-input class="quantity">
             <button class="quantity__button no-js-hidden" name="minus" type="button">
                 <span class="visually-hidden">Decrease quantity for Teaching Garden Buddha Statue</span>
@@ -38,7 +38,7 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
                 </svg>
             </button>
-            <input data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}" form="product-form-template--16599720820986__main">
+            <input data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
             <button class="quantity__button no-js-hidden" name="plus" type="button">
                 <span class="visually-hidden">Increase quantity for Teaching Garden Buddha Statue</span>
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
@@ -87,13 +87,16 @@
                 </div>
                 @endforeach
             </div>
-            <form method="post" action="/cart/add" id="product-form-template--16599720820986__main" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+
+            @include('frontend.pages.products.partials.included-products')
+
+            <form method="post" action="/cart/add" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="id" value="37577162096792">
+                <input type="hidden" name="id" value="{{ data_get($inventory, 'product.id') }}">
                 <div class="product-form__buttons">
                     <button type="submit" name="add" class="product-form__submit button button--full-width button--primary">
-                        <span>{{ __('Thêm Vào Giỏ Hàng') }}</span>
+                        <span>Thêm Vào Giỏ Hàng</span>
                         <div class="loading-overlay__spinner hidden">
                             <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                                 <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
@@ -105,19 +108,19 @@
             </form>
         </product-form>
     </div>
-    <div class="product__description rte quick-add-hidden">
+    {{-- <div class="product__description rte quick-add-hidden">
         <div class="editorjs-parser" data-editorjs-content='@json(data_get($inventory, 'product.description'))'></div>
-    </div>
-    <share-button id="Share-template--16599720820986__main" class="share-button quick-add-hidden">
-        <details id="Details-share-template--16599720820986__main">
-            <summary class="share-button__button" role="button" aria-expanded="false" aria-controls="Product-share-template--16599720820986__main">
+    </div> --}}
+    <share-button class="share-button quick-add-hidden">
+        <details>
+            <summary class="share-button__button" role="button" aria-expanded="false">
                 <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                     <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"></path>
-                </svg> Share
+                </svg>Share
             </summary>
-            <div id="Product-share-template--16599720820986__main" class="share-button__fallback motion-reduce">
+            <div class="share-button__fallback motion-reduce">
                 <div class="field">
                     <span id="ShareMessage-template--16599720820986__main" class="share-button__message hidden" role="status"></span>
                     <input data-url type="text" class="field__input" id="url" value="{{ route('fe.web.products.show', $inventory->slug) }}" placeholder="Link" onclick="" readonly="">

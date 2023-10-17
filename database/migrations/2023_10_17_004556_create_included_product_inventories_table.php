@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncludedProductProductsTable extends Migration
+class CreateIncludedProductInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateIncludedProductProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('included_product_products', function (Blueprint $table) {
+        Schema::create('included_product_inventories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('included_product_id')->index();
-            $table->foreignId('product_id')->index();
+            $table->foreignId('inventory_id')->index();
             $table->timestamps();
         });
     }

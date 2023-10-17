@@ -59,10 +59,10 @@ const PRODUCT_VARIANTS = {
         });
 
         if (product) {
-            PRODUCT_VARIANTS.previewProduct(product);
+            PRODUCT_VARIANTS.renderProduct(product);
         }
     },
-    previewProduct: (product) => {
+    renderProduct: (product) => {
         const { id, title, sku, sale_price, stock_quantity, image, slug } = product;
 
         const newHref = "{{ route('fe.web.products.show', ':slug') }}".replace(':slug', slug);
@@ -78,7 +78,32 @@ const PRODUCT_VARIANTS = {
 
         $(document).prop('title', title);
 
+        PRODUCT_VARIANTS.renderIncludedProducts(product?.included_products || []);
+
         window.history.pushState('', '', newHref);
+    },
+    renderIncludedProducts: (includedProducts) => {
+        const html = includedProducts?.map(function(item) {
+            return `
+            <div class="included-products__item">
+                <div class="included-products__item-image" title="${item.description}">
+                    <img src="${item.image}" alt="${item.name}" width="40" height="40">
+                </div>
+
+                <div class="included-products__item-info">
+                    <div>
+                        <h3 class="included-products-info-name" style="margin: 0">${item.name}</h3>
+                        <span class="included-products-info-price">${__HELPER__.formatNumber(item.sale_price)+' VND'}</span>
+                    </div>
+                    <div>
+                        <button type="button" class="included-products-info-order">Mua Kèm</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }).join('');
+
+        $('.included-products').html(html);
     },
 };
 

@@ -12,6 +12,7 @@ class StoreIncludedProductRequest extends BaseFormRequest implements StoreInclud
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'image' => ['required', 'array'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
             'sale_price' => ['required', 'numeric', 'gt:0'],

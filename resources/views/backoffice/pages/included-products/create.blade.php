@@ -70,7 +70,7 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="form_category" id="form_category" method="post" action="{{ route('bo.web.categories.store') }}" enctype="multipart/form-data">
+				<form class="k-form" name="form_included_products" id="form_included_products" method="post" action="{{ route('bo.web.included-products.store') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
@@ -85,39 +85,11 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Slug') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug') }}" required>
-                                    @error('slug')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-								</div>
-
-                                <div class="form-group">
-                                    <label>{{ __('Included Product Group') }} *</label>
-                                    <select name="category_group_id" title="--{{ __('Select Included Product Group') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
-                                        @foreach($categoryGroups as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('category_group_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
-                                    @error('order')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-								</div>
-
-                                <div class="form-group">
                                     <label>{{ __('Primary Image') }} *</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="image[path]" value="{{ old('image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -125,13 +97,13 @@
                                                     </div>
                                                 </div>
                                                 <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
-                                                    <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
+                                                    <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="image[file]" class="d-none image_primary_image_file">
                                                     <i class="flaticon2-image-file"></i>
                                                     <span>{{ __('Upload') }}</span>
                                                 </label>
                                             </div>
-                                            <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
-                                            @anyerror('primary_image, primary_image.file, primary_image.path')
+                                            <input type="hidden" class="form-control @anyerror('image, image.file, image.path') is-invalid @endanyerror">
+                                            @anyerror('image, image.file, image.path')
                                             {{ $displayMessages() }}
                                             @endanyerror
                                         </div>
@@ -146,38 +118,23 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Description') }}</label>
-                                    <div id="form_builder_dom" class="styled"></div>
-                                    <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description') }}">
+                                    <label for="">{{ __('Sale Price') }} *</label>
+                                    <x-number-input
+                                        allow-minus="false"
+                                        key="sale_price"
+                                        name="sale_price"
+                                        class="form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}"
+                                        value='{{ old("sale_price") }}'
+                                    />
+                                    @error("sale_price")
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Title') }}</label>
-									<input type="text" class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title') }}">
-                                    @error('meta_title')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-								</div>
-
-                                <div class="form-group">
-									<label>{{ __('Meta Description') }}</label>
-									<input type="text" class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description') }}">
-                                    @error('meta_description')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
-									<div class="col-3">
-										<span class="k-switch">
-											<label>
-												<input type="checkbox" {{ old('featured', '0') == '1'  ? 'checked' : ''}} value="1" name="featured"/>
-												<span></span>
-											</label>
-										</span>
-									</div>
-								</div>
+                                    <label for="">{{ __('Description') }}</label>
+                                    <textarea name="description" id="" rows="3" class="form-control">{{ old('description') }}</textarea>
+                                </div>
 
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
@@ -208,6 +165,5 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.categories.js-pages.content-builder')
-@include('backoffice.pages.categories.js-pages.handle')
+@include('backoffice.pages.included-products.js-pages.handle')
 @endsection

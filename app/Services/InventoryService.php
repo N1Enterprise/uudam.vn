@@ -24,7 +24,7 @@ class InventoryService extends BaseService
     {
         $result = $this->inventoryRepository
             ->with(['product', 'createdBy', 'updatedBy'])
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['id', 'slug', 'sku'])
             ->search([]);
 
         return $result;
@@ -95,7 +95,6 @@ class InventoryService extends BaseService
             $variant['offer_start'] = data_get($attributes, 'offer_start');
             $variant['offer_end'] = data_get($attributes, 'offer_end');
 
-
             $variantsCreated = [];
 
             foreach ($skus as $index => $sku) {
@@ -131,9 +130,15 @@ class InventoryService extends BaseService
             $inventory = $this->inventoryRepository->update($attributes, $id);
 
             $this->setAttributes($inventory, data_get($attributes, ['variants', 'attribute'], []));
+            $this->syncIncludedProducts($inventory, data_get($attributes, 'included_products', []));
 
             return $inventory;
         });
+    }
+
+    public function syncIncludedProducts(Inventory $inventory, array $includedProducts = [])
+    {
+        return $inventory->includedProducts()->syncWithPivotValues($includedProducts, ['created_at' => now(), 'updated_at' => now()]);
     }
 
     public function delete($id)

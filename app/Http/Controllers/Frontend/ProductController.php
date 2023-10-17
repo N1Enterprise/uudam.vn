@@ -7,7 +7,6 @@ use App\Services\AttributeService;
 use App\Services\InventoryService;
 use App\Services\PostService;
 use App\Services\ProductReviewService;
-use App\Services\ProductService;
 use Illuminate\Http\Request;
 use App\Services\StoreFront\StoreFrontProductDisplayService;
 
@@ -37,7 +36,7 @@ class ProductController extends BaseController
     {
         $inventory = $this->storeFrontProductDisplayService->showBySlug($slug);
         $variants  = $this->inventoryService->listAvailableByProduct($inventory->product_id, [
-            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order'],
+            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order', 'includedProducts:id,name,image,sale_price,description'],
             'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
         ]);
 
