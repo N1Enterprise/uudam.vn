@@ -72,8 +72,18 @@ class BackofficeMenuService extends BaseService
                     ],
                     [
                         'name' => 'Products',
-                        'link' => route('bo.web.products.index'),
-                        'permissions' => ['products.index']
+                        'subs' => [
+                            [
+                                'name' => 'Main Product',
+                                'link' => route('bo.web.products.index'),
+                                'permissions' => ['products.index']
+                            ],
+                            [
+                                'name' => 'Included Product',
+                                'link' => route('bo.web.included-products.index'),
+                                'permissions' => ['included-products.index']
+                            ],
+                        ]
                     ],
                 ],
             ],

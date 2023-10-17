@@ -52,6 +52,11 @@ return [
     'products.store' => 'Create Product',
     'products.update' => 'Update Product',
     'products.delete' => 'Delete Product',
+    'included-products' => 'Included Products',
+    'included-products.index' => 'View Included Product List',
+    'included-products.store' => 'Create Included Product',
+    'included-products.update' => 'Update Included Product',
+    'included-products.delete' => 'Delete Included Product',
 
     'attributes' => 'Attributes',
     'attribute-values' => 'Attribute Values',

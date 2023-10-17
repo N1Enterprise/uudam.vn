@@ -73,4 +73,9 @@ class Inventory extends BaseModel
             ->withPivot('attribute_id')
             ->withTimestamps();
     }
+
+    public function includedProducts()
+    {
+        return $this->belongsToMany(IncludedProduct::class, 'included_product_products');
+    }
 }
