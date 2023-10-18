@@ -28,6 +28,6 @@ class CreateIncludedProductInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('included_product_products');
+        Schema::dropIfExists('included_product_inventories');
     }
 }

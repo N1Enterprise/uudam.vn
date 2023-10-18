@@ -20,6 +20,7 @@ class CreateIncludedProductsTable extends Migration
             $table->decimal('sale_price', 27, 8)->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
             $table->text('description')->nullable();
+            $table->integer('stock_quantity')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateIncludedProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accompanying_products');
+        Schema::dropIfExists('included_products');
     }
 }

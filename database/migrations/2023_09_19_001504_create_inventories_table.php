@@ -23,7 +23,6 @@ class CreateInventoriesTable extends Migration
             $table->string('slug')->unique();
             $table->string('sku')->unique()->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            // $table->json('description')->nullable();
             $table->json('key_features')->nullable();
             $table->decimal('purchase_price', 27, 8)->nullable();
             $table->decimal('sale_price', 27, 8)->nullable();

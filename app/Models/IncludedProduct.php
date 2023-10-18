@@ -13,7 +13,8 @@ class IncludedProduct extends BaseModel
         'image',
         'sale_price',
         'status',
-        'description'
+        'description',
+        'stock_quantity',
     ];
 
     public function inventory()

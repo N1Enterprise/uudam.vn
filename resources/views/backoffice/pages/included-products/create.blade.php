@@ -132,6 +132,21 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="">{{ __('Stock Quantity') }}</label>
+                                    <input
+                                        type="number"
+                                        name="stock_quantity"
+                                        value="{{ old('stock_quantity') }}"
+                                        class="form-control {{ $errors->has('stock_quantity') ? 'is-invalid' : '' }}"
+                                        placeholder="{{ __('Enter stock quantity') }}"
+                                        min="0"
+                                    >
+                                    @error('stock_quantity')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
                                     <label for="">{{ __('Description') }}</label>
                                     <textarea name="description" id="" rows="3" class="form-control">{{ old('description') }}</textarea>
                                 </div>

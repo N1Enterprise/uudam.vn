@@ -14,6 +14,7 @@
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/delimiter/dist/bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/inline-code/dist/bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/simple-image/dist/bundle.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/general/editorjs/plugins/image/dist/bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs/dist/editorjs.umd.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/custom/bootstrap3-editable/js/bootstrap-editable.js') }}" type="text/javascript"></script>
 
@@ -24,7 +25,16 @@
 
     const EDITORJS_TOOLS = {
         embed: Embed,
-        image: SimpleImage,
+        // image: SimpleImage,
+        image: {
+            class: SimpleImage,
+            config: {
+                endpoints: {
+                    byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
+                    byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+                }
+            }
+        },
         table: {
             class: Table,
             inlineToolbar: true,
@@ -61,6 +71,8 @@
         delimiter: Delimiter,
         inlineCode: InlineCode,
     };
+
+    console.log({ EDITORJS_TOOLS });
 
     var PLUGIN_BUILDER_EDITORJS = {
         plugin: null,

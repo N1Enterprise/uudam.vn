@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/editorjs-custom.css') }}">
 @endpush
 
 @section('page_title')
@@ -87,7 +88,7 @@
 <section class="shopify-section section review-section">
     <div class="page-width">
         <div class="product__description rte quick-add-hidden">
-            <div class="editorjs-parser" data-editorjs-content='@json(data_get($inventory, 'product.description'))'></div>
+            <div class="editorjs-content editorjs-parser"></div>
         </div>
     </div>
 </section>
@@ -116,7 +117,6 @@
 @push('js_pages')
 <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/editorjs-parser.js') }}" type="text/javascript"></script>
 @include('frontend.pages.products.js-pages.index')
 
 <script>
@@ -141,5 +141,7 @@
         infinite: false,
         focusOnSelect: true
     });
+
+    $('.editorjs-parser').html((new edjsParser()).parse(@json(data_get($inventory, 'product.description'))));
 </script>
 @endpush

@@ -18,6 +18,7 @@ class StoreIncludedProductRequest extends BaseFormRequest implements StoreInclud
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'description' => ['nullable'],
+            'stock_quantity' => ['required', 'integer'],
         ];
     }
 

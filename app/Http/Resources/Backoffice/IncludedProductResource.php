@@ -16,6 +16,7 @@ class IncludedProductResource extends BaseJsonResource
             'image' => $this->image,
             'status' => $this->status,
             'status_name' => $this->status_name,
+            'stock_quantity' => $this->stock_quantity,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ], $this->generateActionPermissions());

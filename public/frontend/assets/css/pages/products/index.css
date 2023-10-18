@@ -1345,4 +1345,34 @@ a.product__text {
     transition: box-shadow var(--duration-short) ease;
     appearance: none;
     border: 1px solid #000;
+    height: 32px;
+    margin-left: 10px;
+}
+
+.included-products__item-sale {
+    display: flex;
+    align-items: flex-end;
+}
+
+.included-products__item-sale .product-form__input.product-form__quantity {
+    margin-bottom: 0;
+}
+
+.included-products__item-sale .quantity {
+    color: rgba(var(--color-foreground));
+    position: relative;
+    width: 118px;
+    display: flex;
+    border-radius: var(--inputs-radius);
+    min-height: 32px;
+}
+
+.included-products__item-image {
+    width: 60px;
+    height: 60px;
+}
+
+.included-products__item-image img {
+    width: 100%;
+    height: 100%;
 }

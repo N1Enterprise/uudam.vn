@@ -168,6 +168,7 @@ const PRODUCT_REVIEW = {
 
             const formData = $(this).serializeArray();
             const button = $('#User_Product_Review').find('button[type="submit"]');
+            const ratingName = $('[name="rating_type"]').find(`option[value="${$('[name="rating_type"]').val()}"]`).text();
 
             $.ajax({
                 url: $(this).attr('action'),
@@ -182,6 +183,8 @@ const PRODUCT_REVIEW = {
                     $('.spr-summary-actions-newreview').trigger('click');
                     $('.product-review-empty').remove();
 
+                    response.rating_type_name = ratingName;
+
                     PRODUCT_REVIEW.makeReviewHTML(response);
                 },
                 error: () => {
@@ -193,10 +196,10 @@ const PRODUCT_REVIEW = {
     makeReviewHTML: (response) => {
         const html = `
             <div class="spr-reviews" data-status="${response.status}" data-status-name="${response.status_name}">
-                <div>Đánh giá của bạn đang được người quản lí kiểm tra để tránh spam. Xin lỗi vì sự bất tiện này. Mong quý khách hàng thông cảm!</div>
+                <div>Đánh giá của bạn đang được duyệt. Xin lỗi vì sự bất tiện này!</div>
                 <div class="spr-review">
                     <div class="spr-review-header">
-                        <span class="spr-starratings spr-review-header-starratings" aria-label="4 of 5 stars" role="img">
+                        <span class="spr-starratings spr-review-header-starratings" role="img">
                             ${response.rating_type_name}
                         </span>
                         <h3 class="spr-review-header-title">${response.user_name}</h3>
