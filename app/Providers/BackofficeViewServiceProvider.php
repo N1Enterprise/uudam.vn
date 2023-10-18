@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ViewServiceProvider extends ServiceProvider
+class BackofficeViewServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.

@@ -89,6 +89,15 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>{{ __('Display Type') }} *</label>
+                                    <select data-actions-box="true" name="display_type" title="--{{ __('Select Display Type') }}--"  class="form-control k_selectpicker" required>
+                                        @foreach($pageDisplayPositionEnumLabels as $key => $lable)
+                                        <option value="{{ $key }}" {{ old('display_type', $page->display_type) == $key ? 'selected' : '' }}>{{  $lable }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="form-group" data-url-type-tab-key="0">
 									<label>{{ __('Slug') }} *</label>
 									<input type="text" class="form-control" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug', $page->slug) }}" required>

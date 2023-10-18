@@ -145,6 +145,7 @@
     <script src="{{ asset('frontend/assets/js/components/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
 
     @yield('js_script')
     @stack('js_pages')

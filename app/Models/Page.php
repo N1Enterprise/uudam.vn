@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\ActivationStatusEnum;
+use App\Enum\PageDisplayTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,6 +19,7 @@ class Page extends BaseModel
         'slug',
         'custom_redirect_url',
         'title',
+        'display_type',
         'order',
         'status',
         'has_contact_form',
@@ -37,5 +39,10 @@ class Page extends BaseModel
     public function getHasContactFormNameAttribute()
     {
         return ActivationStatusEnum::findConstantLabel($this->has_contact_form);
+    }
+
+    public function getDisplayTypeNameAttribute()
+    {
+        return PageDisplayTypeEnum::findConstantLabel($this->display_type);
     }
 }

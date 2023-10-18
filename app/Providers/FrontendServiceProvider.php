@@ -18,6 +18,7 @@ class FrontendServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(FrontendViewServiceProvider::class);
         $this->app->register(FrontendRouteServiceProvider::class);
         $this->app->register(FrontendResponseServiceProvider::class);
         $this->app->register(FrontendFormRequestServiceProvider::class);

@@ -4,6 +4,7 @@ namespace App\Http\Requests\Backoffice;
 
 use App\Contracts\Requests\Backoffice\UpdatePageRequestContract;
 use App\Enum\ActivationStatusEnum;
+use App\Enum\PageDisplayTypeEnum;
 use App\Models\Page;
 use Illuminate\Validation\Rule;
 
@@ -13,9 +14,10 @@ class UpdatePageRequest extends BaseFormRequest implements UpdatePageRequestCont
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'slug' => [Rule::requiredIf(!$this->has_custom_redirect_url), 'string', 'max:255', Rule::unique(Page::class, 'slug')],
+            'slug' => [Rule::requiredIf(!$this->has_custom_redirect_url), 'string', 'max:255', Rule::unique(Page::class, 'slug')->ignore($this->id)],
             'custom_redirect_url' => [Rule::requiredIf($this->has_custom_redirect_url), 'string', 'url', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
+            'display_type' => ['required', 'integer', Rule::in(PageDisplayTypeEnum::all())],
             'order' => ['nullable', 'integer'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'has_contact_form' => ['required', Rule::in(ActivationStatusEnum::all())],

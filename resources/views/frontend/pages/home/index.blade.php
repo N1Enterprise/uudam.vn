@@ -43,9 +43,11 @@
         @include('frontend.pages.home.partials.section-blogs')
     </section>
 
+    @if(!empty($PAGE_HIGHLIGHT_INFORMATION))
     <section class="shopify-section section">
         @include('frontend.pages.home.partials.section-our-highlights')
     </section>
+    @endif
 @endsection
 
 @push('js_pages')

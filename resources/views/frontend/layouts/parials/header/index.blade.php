@@ -1276,11 +1276,19 @@
                     </div>
                 </details>
             </header-drawer>
+
             <h1 class="header__heading">
-                <a href="/" class="header__heading-link link link--text focus-inset">
-                    <img src="{{ asset('frontend/images/demo/main-logo.png') }}" alt="DharmaCrafts | Meditation Supplis Since 1979" srcset="{{ asset('frontend/images/demo/main-logo.png') }}" width="180" height="38.89447236180904" class="header__heading-logo">
+                <a href="{{ route('fe.web.home') }}" class="header__heading-link link link--text focus-inset">
+                    <img
+                        src="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
+                        srcset="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
+                        alt="{{ data_get($PAGE_SETTINGS, 'title') }}"
+                        style="width: {{ data_get($PAGE_SETTINGS, 'logo.width', '180px') }}; height: {{ data_get($PAGE_SETTINGS, 'logo.height', '38.89447236180904px') }}"
+                        class="header__heading-logo"
+                    >
                 </a>
             </h1>
+
             <nav class="header__inline-menu">
                 <ul class="list-menu list-menu--inline horizontal-mega-menu" role="list">
                     <li class="buddha-menu-item" itemid="PMu22">

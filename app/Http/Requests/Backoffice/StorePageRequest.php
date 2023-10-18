@@ -4,6 +4,7 @@ namespace App\Http\Requests\Backoffice;
 
 use App\Contracts\Requests\Backoffice\StorePageRequestContract;
 use App\Enum\ActivationStatusEnum;
+use App\Enum\PageDisplayTypeEnum;
 use App\Models\Page;
 use Illuminate\Validation\Rule;
 
@@ -16,6 +17,7 @@ class StorePageRequest extends BaseFormRequest implements StorePageRequestContra
             'slug' => [Rule::requiredIf(!$this->has_custom_redirect_url), 'string', 'max:255', Rule::unique(Page::class, 'slug')],
             'custom_redirect_url' => [Rule::requiredIf($this->has_custom_redirect_url), 'string', 'url', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
+            'display_type' => ['required', 'integer', Rule::in(PageDisplayTypeEnum::class)],
             'order' => ['nullable', 'integer'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'has_contact_form' => ['required', Rule::in(ActivationStatusEnum::all())],

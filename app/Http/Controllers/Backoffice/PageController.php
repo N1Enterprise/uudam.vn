@@ -7,6 +7,7 @@ use App\Contracts\Requests\Backoffice\UpdatePageRequestContract;
 use App\Contracts\Responses\Backoffice\DeletePageResponseContract;
 use App\Contracts\Responses\Backoffice\StorePageResponseContract;
 use App\Contracts\Responses\Backoffice\UpdatePageResponseContract;
+use App\Enum\PageDisplayTypeEnum;
 use App\Services\PageService;
 
 class PageController extends BaseController
@@ -25,14 +26,17 @@ class PageController extends BaseController
 
     public function create()
     {
-        return view('backoffice.pages.pages.create');
+        $pageDisplayPositionEnumLabels = PageDisplayTypeEnum::labels();
+
+        return view('backoffice.pages.pages.create', compact('pageDisplayPositionEnumLabels'));
     }
 
     public function edit($id)
     {
         $page = $this->pageService->show($id);
+        $pageDisplayPositionEnumLabels = PageDisplayTypeEnum::labels();
 
-        return view('backoffice.pages.pages.edit', compact('page'));
+        return view('backoffice.pages.pages.edit', compact('page', 'pageDisplayPositionEnumLabels'));
     }
 
     public function store(StorePageRequestContract $request)

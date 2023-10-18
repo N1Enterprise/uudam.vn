@@ -14,6 +14,8 @@ class PageResource extends BaseJsonResource
             'slug' => $this->slug,
             'custom_redirect_url' => $this->custom_redirect_url,
             'title' => $this->title,
+            'display_type' => $this->display_type,
+            'display_type_name' => $this->display_type_name,
             'order' => $this->order,
             'status' => $this->status,
             'status_name' => $this->status_name,

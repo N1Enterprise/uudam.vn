@@ -28,6 +28,7 @@ class PageService extends BaseService
     {
         return $this->pageRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
+            ->addSort('order', 'desc')
             ->all(data_get($data, 'columns', ['*']));
     }
 

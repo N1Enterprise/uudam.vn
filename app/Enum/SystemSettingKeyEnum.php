@@ -12,7 +12,11 @@ class SystemSettingKeyEnum extends BaseEnum
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
 
     // Shop Setting
-    public const BRANCH_LOGO = 'branch_logo';
+    public const PAGE_SETTINGS = 'page_settings';
+    public const SOCIAL_NETWORKS = 'social_networks';
+    public const RECEIVE_NEW_POST_SETTING = 'receive_new_post_setting';
+    public const PAGE_HIGHLIGHT_INFORMATION = 'page_highlight_information';
+    public const FOOTER_CONTENTS = 'footer_contents';
 
     public static function all(): array
     {
@@ -23,7 +27,11 @@ class SystemSettingKeyEnum extends BaseEnum
             self::MAINTENANCE_END_DATE,
             self::MAINTENANCE_MESSAGE,
             self::PRODUCT_ATTRIBUTE_TYPES,
-            self::BRANCH_LOGO,
+            self::PAGE_SETTINGS,
+            self::SOCIAL_NETWORKS,
+            self::RECEIVE_NEW_POST_SETTING,
+            self::PAGE_HIGHLIGHT_INFORMATION,
+            self::FOOTER_CONTENTS,
         ];
     }
 }
