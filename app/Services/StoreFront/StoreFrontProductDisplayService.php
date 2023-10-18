@@ -55,6 +55,9 @@ class StoreFrontProductDisplayService extends BaseService
             },
             'attributes' => function($q) {
                 $q->select('attributes.id', 'attributes.name', 'attributes.attribute_type', 'attributes.order');
+            },
+            'includedProducts' => function($q) {
+                $q->select('included_products.id', 'included_products.name', 'included_products.image', 'included_products.sale_price', 'included_products.description');
             }
         ]);
 

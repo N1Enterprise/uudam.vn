@@ -21,7 +21,6 @@ class Inventory extends BaseModel
         'condition_note',
         'sku',
         'status',
-        // 'description',
         'key_features',
         'purchase_price',
         'sale_price',
@@ -72,5 +71,10 @@ class Inventory extends BaseModel
         return $this->belongsToMany(AttributeValue::class, 'attribute_inventories')
             ->withPivot('attribute_id')
             ->withTimestamps();
+    }
+
+    public function includedProducts()
+    {
+        return $this->belongsToMany(IncludedProduct::class, 'included_product_inventories');
     }
 }

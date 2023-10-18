@@ -59,10 +59,10 @@ const PRODUCT_VARIANTS = {
         });
 
         if (product) {
-            PRODUCT_VARIANTS.previewProduct(product);
+            PRODUCT_VARIANTS.renderProduct(product);
         }
     },
-    previewProduct: (product) => {
+    renderProduct: (product) => {
         const { id, title, sku, sale_price, stock_quantity, image, slug } = product;
 
         const newHref = "{{ route('fe.web.products.show', ':slug') }}".replace(':slug', slug);
@@ -78,7 +78,32 @@ const PRODUCT_VARIANTS = {
 
         $(document).prop('title', title);
 
+        PRODUCT_VARIANTS.renderIncludedProducts(product?.included_products || []);
+
         window.history.pushState('', '', newHref);
+    },
+    renderIncludedProducts: (includedProducts) => {
+        const html = includedProducts?.map(function(item) {
+            return `
+            <div class="included-products__item">
+                <div class="included-products__item-image" title="${item.description}">
+                    <img src="${item.image}" alt="${item.name}" width="40" height="40">
+                </div>
+
+                <div class="included-products__item-info">
+                    <div>
+                        <h3 class="included-products-info-name" style="margin: 0">${item.name}</h3>
+                        <span class="included-products-info-price">${__HELPER__.formatNumber(item.sale_price)+' VND'}</span>
+                    </div>
+                    <div>
+                        <button type="button" class="included-products-info-order">Mua Kèm</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }).join('');
+
+        $('.included-products').html(html);
     },
 };
 
@@ -143,6 +168,7 @@ const PRODUCT_REVIEW = {
 
             const formData = $(this).serializeArray();
             const button = $('#User_Product_Review').find('button[type="submit"]');
+            const ratingName = $('[name="rating_type"]').find(`option[value="${$('[name="rating_type"]').val()}"]`).text();
 
             $.ajax({
                 url: $(this).attr('action'),
@@ -157,6 +183,8 @@ const PRODUCT_REVIEW = {
                     $('.spr-summary-actions-newreview').trigger('click');
                     $('.product-review-empty').remove();
 
+                    response.rating_type_name = ratingName;
+
                     PRODUCT_REVIEW.makeReviewHTML(response);
                 },
                 error: () => {
@@ -168,10 +196,10 @@ const PRODUCT_REVIEW = {
     makeReviewHTML: (response) => {
         const html = `
             <div class="spr-reviews" data-status="${response.status}" data-status-name="${response.status_name}">
-                <div>Đánh giá của bạn đang được người quản lí kiểm tra để tránh spam. Xin lỗi vì sự bất tiện này. Mong quý khách hàng thông cảm!</div>
+                <div>Đánh giá của bạn đang được duyệt. Xin lỗi vì sự bất tiện này!</div>
                 <div class="spr-review">
                     <div class="spr-review-header">
-                        <span class="spr-starratings spr-review-header-starratings" aria-label="4 of 5 stars" role="img">
+                        <span class="spr-starratings spr-review-header-starratings" role="img">
                             ${response.rating_type_name}
                         </span>
                         <h3 class="spr-review-header-title">${response.user_name}</h3>

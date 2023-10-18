@@ -12,6 +12,7 @@ use App\Enum\ProductTypeEnum;
 use App\Models\Inventory;
 use App\Services\AttributeService;
 use App\Services\CategoryService;
+use App\Services\IncludedProductService;
 use App\Services\InventoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -22,17 +23,20 @@ class InventoryController extends BaseController
     public $categoryService;
     public $productService;
     public $attributeService;
+    public $includedProductService;
 
     public function __construct(
         InventoryService $inventoryService,
         CategoryService $categoryService,
         ProductService $productService,
-        AttributeService $attributeService
+        AttributeService $attributeService,
+        IncludedProductService $includedProductService
     ) {
         $this->inventoryService = $inventoryService;
         $this->categoryService = $categoryService;
         $this->productService = $productService;
         $this->attributeService = $attributeService;
+        $this->includedProductService = $includedProductService;
     }
 
     public function index()
@@ -78,7 +82,7 @@ class InventoryController extends BaseController
 
     public function edit($id)
     {
-        $inventory = $this->inventoryService->show($id, ['with' => 'attributes', 'attributeValues']);
+        $inventory = $this->inventoryService->show($id, ['with' => 'attributes', 'attributeValues', 'includedProducts']);
         $product = $this->productService->show($inventory->product_id);
 
         $hasVariant = $product->type == ProductTypeEnum::VARIABLE;
@@ -106,6 +110,7 @@ class InventoryController extends BaseController
         }
 
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
+        $includedProducts = $this->includedProductService->allAvailable(['columns' => ['id', 'name']]);
 
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
@@ -113,7 +118,8 @@ class InventoryController extends BaseController
             'hasVariant',
             'attributes',
             'combinations',
-            'inventoryConditionEnumLabels'
+            'inventoryConditionEnumLabels',
+            'includedProducts',
         ));
     }
 

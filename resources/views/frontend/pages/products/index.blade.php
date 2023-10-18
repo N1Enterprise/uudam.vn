@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/editorjs-custom.css') }}">
 @endpush
 
 @section('page_title')
@@ -71,8 +72,8 @@
     <div class="multicolumn color-background-1 gradient background-primary no-heading">
         <div class="page-width section-template-padding isolate">
             <div class="slider-component slider-mobile-gutter">
-                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" id="Slider-template--16599720820986__1658169167404dabb0" role="list">
-                    <li id="Slide-template--16599720820986__1658169167404dabb0-1" class="multicolumn-list__item grid__item multicolumn-list__item--empty">
+                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" role="list">
+                    <li class="multicolumn-list__item grid__item multicolumn-list__item--empty">
                         <div class="multicolumn-card content-container">
                             <div class="multicolumn-card__info"></div>
                         </div>
@@ -80,6 +81,14 @@
                 </ul>
             </div>
             <div class="center"></div>
+        </div>
+    </div>
+</section>
+
+<section class="shopify-section section review-section">
+    <div class="page-width">
+        <div class="product__description rte quick-add-hidden">
+            <div class="editorjs-content editorjs-parser"></div>
         </div>
     </div>
 </section>
@@ -108,7 +117,6 @@
 @push('js_pages')
 <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/editorjs-parser.js') }}" type="text/javascript"></script>
 @include('frontend.pages.products.js-pages.index')
 
 <script>
@@ -133,5 +141,7 @@
         infinite: false,
         focusOnSelect: true
     });
+
+    $('.editorjs-parser').html((new edjsParser()).parse(@json(data_get($inventory, 'product.description'))));
 </script>
 @endpush

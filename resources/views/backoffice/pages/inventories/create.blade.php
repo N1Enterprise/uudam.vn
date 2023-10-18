@@ -30,7 +30,6 @@
     <form id="form_inventory" method="POST" action="{{ empty($inventory->id) ? route('bo.web.inventories.store') : route('bo.web.inventories.update', $inventory->id) }}" enctype="multipart/form-data">
         @csrf
         @error('*')
-        {{-- @dd($errors) --}}
         <div class="alert alert-danger fade show" role="alert">
             <div class="alert-text">
                 {{ __('Submit failed. Please check the error below.') }}
@@ -344,6 +343,39 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="k-portlet">
+                    <div class="k-portlet__head">
+                        <div class="k-portlet__head-label">
+                            <h3 class="k-portlet__head-title">{{ __('INCLUDED PRODUCTS') }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="k-portlet__body">
+                        <div class="form-group">
+                            <label>{{ __('Included Products') }}</label>
+                            <select data-actions-box="true" name="included_products[]" title="--{{ __('Select Included Products') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Included_Product_Selector" multiple data-selected-text-format="count > 5">
+                                @foreach($includedProducts as $product)
+                                <option
+                                    {{ in_array($product->id, old('included_products', optional(optional($inventory->includedProducts)->pluck('id'))->toArray() ?? [])) ? 'selected' : '' }}
+                                    data-tokens="{{ $product->id }} | {{ $product->name }}"
+                                    data-subtext="{{ $product->id }}"
+                                    data-included-product-id="{{ $product->id }}"
+                                    data-included-product-name="{{ $product->name }}"
+                                    value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group Included_Product_Allowed_Holder mb-0">
+                            <div class="Included_Product_Holder_Content">
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="k-portlet__foot">
                         <div class="k-form__actions d-flex justify-content-end">
@@ -365,6 +397,7 @@
 <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script>
 @include('backoffice.pages.inventories.js-pages.content-builder')
 @include('backoffice.pages.inventories.js-pages.handle')
+@include('backoffice.pages.inventories.js-pages.included-products')
 <script>
     $(document).ready(function() {
         FORM_MEDIA_IMAGE_PATH.triggerChange();
