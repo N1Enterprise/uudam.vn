@@ -43,6 +43,7 @@
                 <table id="table_roles_index" data-searching="true" data-request-url="{{ route('bo.api.admins.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
+                            <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="email">{{ __('Email') }}</th>
                             <th data-property="name">{{ __('Name') }}</th>
                             <th data-orderable="false" data-property="role" data-render-callback="tableCallbackFnRenderRole">{{ __('Role_Label') }}</th>

@@ -19,7 +19,7 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 @section('style')
-<link href="{{ asset('assets/vendors/custom/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backoffice/assets/vendors/custom/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css" />
 <style>
     .k-nav__link-text,
     .k-portlet__head-title,
@@ -67,6 +67,29 @@
         border-radius: 0.25rem;
         padding: 0.25rem;
     }
+    .upload_image_custom_append_icon {
+        top: 50%;
+        right: 0;
+        transform: translate(-6%, -50%);
+        color: #4346ce!important;
+        border: 1px solid #4346ce!important;
+    }
+    .note-toolbar-wrapper.panel-default {
+        margin-bottom: 10px!important;
+    }
+    #form_builder_dom.styled {
+        padding: 10px 35px;
+        border: 1px solid #ebedf2;
+        border-radius: 3px;
+    }
+    .ce-block__content,
+    .ce-toolbar__content {
+        max-width: unset!important;
+    }
+    .codex-editor__redactor {
+        padding-bottom: 0px!important;
+        min-height: 200px;
+    }
 </style>
 @endsection
 
@@ -87,7 +110,7 @@
 @endcan
 
 @section('js_script')
-<script src="{{ asset('assets/vendors/custom/bootstrap3-editable/js/bootstrap-editable.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backoffice/assets/vendors/custom/bootstrap3-editable/js/bootstrap-editable.js') }}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.22.0/ace.js" type="text/javascript"></script>
 @include('backoffice.pages.system-settings.js-pages.index-script')
 @endsection

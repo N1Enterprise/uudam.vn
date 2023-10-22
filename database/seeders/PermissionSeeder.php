@@ -23,19 +23,60 @@ class PermissionSeeder extends Seeder
         Permission::truncate();
 
         $permissionNames = [
+            // User
             'users.index',
             'users.show',
             'users.update',
             'users.action',
 
+            // Admin
             'admins.index',
             'admins.store',
             'admins.update',
             'admins.export',
 
+            // Role
             'roles.index',
             'roles.store',
             'roles.update',
+
+            // System setting
+            'system-settings.index',
+            'system-settings.store',
+            'system-settings.update',
+            'system-settings.create-group',
+            'system-settings.create-key',
+            'system-settings.delete',
+            'system-settings.clear-cache',
+            'system-settings.import',
+            'system-settings.export',
+
+            'category-groups.index',
+            'category-groups.store',
+            'category-groups.update',
+            'category-groups.delete',
+
+            'categories.index',
+            'categories.store',
+            'categories.update',
+            'categories.delete',
+
+            'products.index',
+            'products.store',
+            'products.update',
+            'products.delete',
+
+            'attributes.index',
+            'attributes.store',
+            'attributes.update',
+            'attribute-values.index',
+            'attribute-values.store',
+            'attribute-values.update',
+            'attribute-values.delete',
+            'inventories.index',
+            'inventories.store',
+            'inventories.update',
+            'inventories.delete',
         ];
 
 

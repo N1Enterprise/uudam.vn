@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Http\Requests\Backoffice;
+
+use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
+use App\Enum\ActivationStatusEnum;
+use App\Enum\InventoryConditionEnum;
+use App\Models\IncludedProduct;
+use App\Models\Inventory;
+use App\Models\Product;
+use App\Services\InventoryService;
+use Illuminate\Validation\Rule;
+
+class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryRequestContract
+{
+    public function rules(): array
+    {
+        /** @var Inventory */
+        $inventory = app(InventoryService::class)->show($this->id);
+
+        $rules = array_merge(
+            [
+                'title' => ['nullable', 'max:255'],
+                'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
+                'slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')->ignore($inventory->getKey())],
+                'available_from' => ['nullable', 'date'],
+                'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+                'min_order_quantity' => ['required', 'integer', 'gt:0'],
+                'condition_note' => ['nullable'],
+                'key_features' => ['nullable', 'array'],
+                'key_features.*' => ['required', 'array'],
+                'key_features.*.title' => ['required', 'string'],
+                'meta_title' => ['nullable'],
+                'meta_description' => ['nullable'],
+                'offer_start' => [
+                    Rule::requiredIf(function() {
+                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
+
+                        return boolean(count($offerPrices));
+                    }),
+                    'nullable',
+                    'date'
+                ],
+                'offer_end' => [
+                    Rule::requiredIf(function() {
+                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
+
+                        return boolean(count($offerPrices));
+                    }),
+                    'nullable',
+                    'date',
+                    'after:offer_start'
+                ],
+                'included_products' => ['nullable', 'array'],
+                'included_products.*' => ['required', 'integer', Rule::exists(IncludedProduct::class, 'id')],
+            ],
+            $this->defineSimpleRules($inventory) ?? []
+        );
+
+        return $rules;
+    }
+
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'available_from' => $this->available_from ? $this->available_from : now(),
+            'min_order_quantity' => $this->min_order_quantity ?? 1,
+            'included_products' => array_filter(array_map('intval', $this->included_products ?? [])),
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray(),
+        ]);
+    }
+
+    protected function defineSimpleRules(Inventory $inventory)
+    {
+        return [
+            'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
+            'sku' => ['required', 'distinct', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
+            'purchase_price' => ['nullable', 'numeric', 'gt:0'],
+            'sale_price' => ['required', 'numeric', 'gt:0'],
+            'offer_price' => ['nullable', 'numeric', 'gt:0'],
+            'stock_quantity' => ['required', 'integer'],
+            'image.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'image.path' => ['nullable', 'string'],
+        ];
+    }
+}

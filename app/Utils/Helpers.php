@@ -1,12 +1,12 @@
 <?php
 
+use App\Common\Money;
+use App\Enum\BaseEnum;
+use App\Enum\TimeZoneEnum;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Request;
-use Modules\Core\Enum\TimeZoneEnum;
 use Illuminate\Support\Str;
-use Modules\Core\Common\Money;
-use Modules\Core\Enum\BaseEnum;
 
 if (! function_exists('get_utc_offset')) {
     function getUtcOffset($decryptCookie = false)
@@ -126,7 +126,7 @@ if (! function_exists('float_to_string')) {
     }
 }
 
-if (!function_exists('get_utc_offset')) {
+if (! function_exists('get_utc_offset')) {
     function get_utc_offset($decryptCookie = false)
     {
         $utcOffset = Request::header('X-Timezone-Offset');
@@ -147,5 +147,63 @@ if (! function_exists('round_money')) {
     function round_money($money, $currency = null, $round = Money::ROUND_UP)
     {
         return Money::roundMoney($money, $currency, $round);
+    }
+}
+
+if (! function_exists('format_price')) {
+    function format_price($money, $currency = null, $symbol = 'VND', $round = Money::ROUND_UP)
+    {
+        return Money::roundMoney($money, $currency, $round) . ' '. $symbol;
+    }
+}
+
+if (! function_exists('generate_combinations'))
+{
+    /**
+     * Generate all the possible combinations among a set of nested arrays.
+     *
+     * @param  array   $data  The entrypoint array container.
+     * @param  array   &$all  The final container (used internally).
+     * @param  array   $group The sub container (used internally).
+     * @param  int     $k     The actual key for value to append (used internally).
+     * @param  string  $value The value to append (used internally).
+     * @param  integer $i     The key index (used internally).
+     * @param  int     $key   The kay of parent array (used internally).
+     * @return array          The result array with all posible combinations.
+     */
+    function generate_combinations(array $data, array &$all = [], array $group = [], $k = null, $value = null, $i = 0, $key = null)
+    {
+        $keys = array_keys($data);
+
+        if ((isset($value) === true) && (isset($k) === true)) {
+            $group[$key][$k] = $value;
+        }
+
+        if ($i >= count($data)){
+            array_push($all, $group);
+        }
+        else {
+            $currentKey = $keys[$i];
+
+            $currentElement = $data[$currentKey];
+
+            if(count($currentElement) <= 0){
+                generate_combinations($data, $all, $group, null, null, $i + 1, $currentKey);
+            }
+            else{
+                foreach ($currentElement as $k => $val){
+                    generate_combinations($data, $all, $group, $k, $val, $i + 1, $currentKey);
+                }
+            }
+        }
+
+        return $all;
+    }
+}
+
+if (! function_exists('format_datetime')) {
+    function format_datetime($datetime, $format = 'd/m/Y')
+    {
+        return date($format, strtotime($datetime));
     }
 }

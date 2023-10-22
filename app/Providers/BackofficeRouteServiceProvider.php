@@ -19,6 +19,7 @@ class BackofficeRouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapWebRoutes();
+        $this->mapApiRoutes();
     }
 
     protected function mapWebRoutes()
@@ -28,5 +29,13 @@ class BackofficeRouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->as('bo.web.')
             ->group(base_path('routes/backoffice/web.php'));
+    }
+
+    protected function mapApiRoutes()
+    {
+        Route::middleware(['web', 'auth:admin'])
+            ->as('bo.api.')
+            ->prefix('bo/api')
+            ->group(base_path('routes/backoffice/api.php'));
     }
 }
