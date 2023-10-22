@@ -22,29 +22,13 @@
 
 @section('style')
 <style>
-    .upload_image_custom_append_icon {
-        top: 50%;
-        right: 0;
-        transform: translate(-6%, -50%);
-        color: #4346ce!important;
-        border: 1px solid #4346ce!important;
-    }
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
-    #form_builder_dom.styled {
-        padding: 10px 35px;
-        border: 1px solid #ebedf2;
-        border-radius: 3px;
-    }
-    .ce-block__content,
-    .ce-toolbar__content {
-        max-width: unset!important;
-    }
-    .codex-editor__redactor {
-        padding-bottom: 0px!important;
-        min-height: 200px;
-    }
+.upload_image_custom_append_icon {
+    top: 50%;
+    right: 0;
+    transform: translate(-6%, -50%);
+    color: #4346ce!important;
+    border: 1px solid #4346ce!important;
+}
 </style>
 @endsection
 
@@ -108,7 +92,7 @@
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
                                                 <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path', $collection->primary_image) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
-                                                <div data-image-ref-wapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
                                                         <span data-image-ref-delete="primary" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
@@ -127,7 +111,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="image_primary_image_review">
-                                                <div data-image-ref-review-wapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                <div data-image-ref-review-wrapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
                                                     <img data-image-ref-review-img="primary" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
                                                 </div>
                                             </div>
@@ -141,7 +125,7 @@
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
                                                 <input type="text" data-image-ref-path="cover" data-image-ref-index="0" class="form-control image_cover_image_url" name="cover_image[path]" value="{{ old('cover_image.path', $collection->cover_image) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
-                                                <div data-image-ref-wapper="cover" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                <div data-image-ref-wrapper="cover" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="cover" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
                                                         <span data-image-ref-delete="cover" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
@@ -160,7 +144,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="image_cover_image_review">
-                                                <div data-image-ref-review-wapper="cover" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                <div data-image-ref-review-wrapper="cover" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
                                                     <img data-image-ref-review-img="cover" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
                                                 </div>
                                             </div>
@@ -177,9 +161,7 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Description') }}</label>
-                                    <div id="form_builder_dom" class="styled"></div>
-                                    <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description', json_encode($collection->description)) }}">
+                                    <x-content-editor id="collection_description" label="Description" name="description" value="{{ old('description', $collection->description) }}" />
                                 </div>
 
                                 <div class="form-group">
@@ -263,7 +245,6 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.collections.js-pages.content-builder')
 @include('backoffice.pages.collections.js-pages.handle')
 <script>
     FORM_PRIMARY_IMAGE_PATH.triggerChange();

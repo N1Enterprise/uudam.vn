@@ -51,4 +51,14 @@ class PageService extends BaseService
     {
         return $this->pageRepository->delete($id);
     }
+
+    public function findBySlug($slug, $data = [])
+    {
+        return $this->pageRepository
+            ->modelScopes(['active'])
+            ->selectColumns(data_get($data, 'columns', ['*']))
+            ->firstWhere([
+                'slug' => $slug
+            ]);
+    }
 }

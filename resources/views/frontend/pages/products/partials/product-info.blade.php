@@ -122,7 +122,7 @@
             </summary>
             <div class="share-button__fallback motion-reduce">
                 <div class="field">
-                    <span id="ShareMessage-template--16599720820986__main" class="share-button__message hidden" role="status"></span>
+                    <span class="share-button__message hidden" role="status"></span>
                     <input data-url type="text" class="field__input" id="url" value="{{ route('fe.web.products.show', $inventory->slug) }}" placeholder="Link" onclick="" readonly="">
                     <label class="field__label" for="url">Link</label>
                 </div>

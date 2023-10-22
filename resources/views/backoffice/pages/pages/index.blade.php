@@ -50,7 +50,6 @@
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-orderable="false" data-badge data-name="display_type" data-property="display_type_name">{{ __('Display Type') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                            <th data-orderable="false" data-badge data-name="has_contact_form" data-property="has_contact_form_name">{{ __('Has Contact Form') }}</th>
                             <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
                             <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>

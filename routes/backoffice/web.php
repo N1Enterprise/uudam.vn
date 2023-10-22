@@ -160,3 +160,5 @@ Route::post('included-products', [Controllers\IncludedProductController::class, 
 Route::get('included-products/{id}', [Controllers\IncludedProductController::class, 'edit'])->name('included-products.edit')->middleware(['can:included-products.update']);
 Route::put('included-products/{id}', [Controllers\IncludedProductController::class, 'update'])->name('included-products.update')->middleware(['can:included-products.update']);
 Route::delete('included-products/{id}', [Controllers\IncludedProductController::class, 'destroy'])->name('included-products.delete')->middleware(['can:included-products.delete']);
+
+Route::post('file-manager/upload', [Controllers\FileManagerController::class, 'upload'])->name('file-manager.upload');

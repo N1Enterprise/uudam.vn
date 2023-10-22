@@ -18,7 +18,7 @@
                     <ul class="footer-block__details-content list-unstyled">
                         @foreach ($PAGES_BY_MENUS as $page)
                         <li>
-                            <a href="{{ data_get($page, 'custom_redirect_url') ? data_get($page, 'custom_redirect_url') : route('fe.web.posts.show', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
+                            <a href="{{ data_get($page, 'custom_redirect_url') ? data_get($page, 'custom_redirect_url') : route('fe.web.pages.index', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
                         </li>
                         @endforeach
                     </ul>

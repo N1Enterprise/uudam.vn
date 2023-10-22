@@ -14,7 +14,7 @@
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -23,8 +23,7 @@
 
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
-		<div class="col-md-6">
-
+		<div class="col-md-12">
 			<!--begin::Portlet-->
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
@@ -43,7 +42,7 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="store_attribute_values" id="store_attribute_values" method="post" action="{{ route('bo.web.attribute-values.store') }}" enctype="multipart/form-data">
+				<form class="k-form" name="store_attribute_values" id="store_attribute_values" method="post" action="{{ route('bo.web.attribute-values.store') }}">
 					@csrf
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
@@ -98,14 +97,9 @@
 						</div>
 					</div>
 				</form>
-
 				<!--end::Form-->
 			</div>
 		</div>
 	</div>
 </div>
-@endsection
-
-@section('js_script')
-
 @endsection

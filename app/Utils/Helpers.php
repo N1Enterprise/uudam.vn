@@ -200,3 +200,10 @@ if (! function_exists('generate_combinations'))
         return $all;
     }
 }
+
+if (! function_exists('format_datetime')) {
+    function format_datetime($datetime, $format = 'd/m/Y')
+    {
+        return date($format, strtotime($datetime));
+    }
+}

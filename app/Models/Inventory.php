@@ -40,7 +40,6 @@ class Inventory extends BaseModel
     ];
 
     protected $casts = [
-        'description' => 'json',
         'key_features' => 'json',
     ];
 

@@ -16,7 +16,6 @@ class StoreProductRequest extends BaseFormRequest implements StoreProductRequest
         return [
             'name' => ['required', 'max:255'],
             'code' => ['required', 'max:255', 'alpha-dash', Rule::unique(Product::class)],
-            'slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Product::class)],
             'description' => ['nullable'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'branch' => ['nullable', 'max:255'],
@@ -47,7 +46,6 @@ class StoreProductRequest extends BaseFormRequest implements StoreProductRequest
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'categories' => array_map('intval', $this->categories ?? []),
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
-            'description' => $this->description ? json_decode($this->description, true) : null,
             'media' => array_filter([
                 'image' => collect(data_get($this->media, 'image'))
                     ->filter(fn($item) => data_get($item, 'path') || data_get($item, 'file'))

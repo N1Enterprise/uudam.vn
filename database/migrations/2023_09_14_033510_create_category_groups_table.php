@@ -17,7 +17,7 @@ class CreateCategoryGroupsTable extends Migration
         Schema::create('category_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('description')->nullable();
+            $table->text('description')->nullable();
             $table->text('primary_image')->nullable();
             $table->string('slug')->unique();
             $table->integer('order')->nullable();

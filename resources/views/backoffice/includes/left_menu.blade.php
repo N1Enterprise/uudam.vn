@@ -121,7 +121,7 @@
             });
         },
         activeMenuByUrl: () => {
-            let currentUrl = window.location.href.split(/[?#]/)[0].replace(/\/*$/, '');
+			let currentUrl = window.location.href.match(/^(https?:\/\/[^/]+\/backoffice\/[^/]+)\/?/)?.[1] || window.location.href;
             let menuActiveLinkEl = $(`a.k-menu__link[href="${currentUrl}"]`);
             let urlPaths = window.location.pathname.split('/').filter(path => !isEmpty(path));
 
@@ -137,6 +137,7 @@
 
                     if( isActive) {
                         menuActiveLinkEl = $(e);
+                        console.log({menuActiveLinkEl, e });
                         return false;
                     }
                 })

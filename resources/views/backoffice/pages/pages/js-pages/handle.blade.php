@@ -1,39 +1,4 @@
 <script>
-    var __IMAGE_MANAGER__ = {
-        toUrl: async (file) => {
-            return file ? await __IMAGE_MANAGER__.toBase64(file) : '';
-        },
-        toBase64: (file) => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-            });
-        },
-        reviewImage: (src, ref, index) => {
-            $(`[data-image-ref-review-wapper="${ref}"][data-image-ref-index="${index}"]`).toggleClass('d-none', !src);
-            $(`[data-image-ref-review-img="${ref}"][data-image-ref-index="${index}"]`).attr('src', src ? src : '');
-        },
-        reviewFileOn: async (file, ref, index) => {
-            const imageUrl = await __IMAGE_MANAGER__.toUrl(file);
-
-            $(`[data-image-ref-wapper="${ref}"][data-image-ref-index="${index}"]`).toggleClass('d-none', !imageUrl);
-            $(`[data-image-ref-img="${ref}"][data-image-ref-index="${index}"]`).attr('src', imageUrl ? imageUrl : '');
-            $(`[data-image-ref-path="${ref}"][data-image-ref-index="${index}"]`).val('');
-
-            __IMAGE_MANAGER__.reviewImage(imageUrl, ref, index);
-        },
-        reviewPathOn: (path, ref, index) => {
-            __IMAGE_MANAGER__.reviewImage(path, ref, index);
-            $(`[data-image-ref-file="${ref}"][data-image-ref-index="${index}"]`).val('');
-        },
-
-        deleteRef: (ref, index) => {
-            __IMAGE_MANAGER__.reviewFileOn(null, ref, index);
-        },
-    };
-
     var FORM_SLUG = {
         element: $('#form_category_group').find('[name="slug"]'),
         onChange: () => {

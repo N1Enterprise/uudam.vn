@@ -18,6 +18,7 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
             'image' => ['required', 'array'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
+            'content' => ['nullable'],
             'description' => ['nullable'],
             'post_at' => ['required', 'date'],
             'post_category_id' => ['required', 'integer', Rule::exists(PostCategory::class, 'id')],
@@ -37,7 +38,6 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
-            'description' => $this->description ? json_decode($this->description, true) : null
         ]);
     }
 }

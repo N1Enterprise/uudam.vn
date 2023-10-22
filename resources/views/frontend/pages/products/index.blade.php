@@ -115,8 +115,6 @@
 @endsection
 
 @push('js_pages')
-{{-- <script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script> --}}
-{{-- <script src="{{ asset('backoffice/assets/vendors/general/product-description/build/Parser.browser.js') }}" type="text/javascript"></script> --}}
 @include('frontend.pages.products.js-pages.index')
 
 <script>

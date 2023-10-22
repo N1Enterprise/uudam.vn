@@ -35,7 +35,6 @@ class UpdateCategoryRequest extends BaseFormRequest implements UpdateCategoryReq
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
-            'description' => $this->description ? json_decode($this->description, true) : null
         ]);
     }
 }

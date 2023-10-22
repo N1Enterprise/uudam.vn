@@ -19,7 +19,7 @@ class CreatePostCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('image')->nullable();
-            $table->json('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('order')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
             $table->tinyInteger('featured')->default(0);

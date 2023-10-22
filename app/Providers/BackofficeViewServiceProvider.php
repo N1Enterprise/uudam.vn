@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Classes\AdminAuth;
 use App\Services\BackofficeMenuService;
+use App\View\Components\Backoffice\ContentEditor;
 use App\View\Components\Backoffice\PhoneInput;
 use App\View\Components\Backoffice\SearchUsernameInput;
 use App\View\Components\Backoffice\NumberInput;
@@ -39,6 +40,7 @@ class BackofficeViewServiceProvider extends ServiceProvider
         Blade::component('search-username-input', SearchUsernameInput::class);
         Blade::component('phone-input', PhoneInput::class);
         Blade::component('number-input', NumberInput::class);
+        Blade::component('content-editor', ContentEditor::class);
     }
 
     private function registerViewComposer()

@@ -42,7 +42,6 @@ class UpdateCollectionRequest extends BaseFormRequest implements UpdateCollectio
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
             'cover_image' => empty(array_filter($this->cover_image)) ? null : array_filter($this->cover_image),
             'inventories' => array_filter($this->inventories ?? []),
-            'description' => $this->description ? json_decode($this->description, true) : null
         ]);
     }
 }

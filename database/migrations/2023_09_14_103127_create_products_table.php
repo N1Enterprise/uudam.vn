@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('code')->unique()->index();
             $table->string('slug')->unique()->index();
             $table->string('branch')->nullable();
-            $table->json('description')->nullable();
+            $table->text('description')->nullable();
             $table->tinyInteger('status')->default(1)->comment(ActivationStatusEnum::class);
             $table->tinyInteger('type')->comment(ProductTypeEnum::class);
             $table->text('primary_image')->nullable();

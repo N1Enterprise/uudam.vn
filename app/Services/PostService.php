@@ -44,6 +44,14 @@ class PostService extends BaseService
         });
     }
 
+    public function getListFeatured($data = [])
+    {
+        return $this->postRepository
+            ->modelScopes(['featured', 'active'])
+            ->addSort('order', 'desc')
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function show($id, $columns = ['*'])
     {
         return $this->postRepository->findOrFail($id, $columns);
@@ -92,5 +100,12 @@ class PostService extends BaseService
                 $q->whereIn('id', Arr::wrap($suggested));
             })
             ->all(data_get($data, 'columns'));
+    }
+
+    public function showBySlug($slug, $data = [])
+    {
+        return $this->postRepository
+            ->modelScopes(['active'])
+            ->firstWhere(['slug' => $slug], data_get($data, 'columns', ['*']));
     }
 }
