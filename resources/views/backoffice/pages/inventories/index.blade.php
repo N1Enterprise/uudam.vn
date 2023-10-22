@@ -43,8 +43,8 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
+                        <th data-property="title">{{ __('Title') }}</th>
                         <th data-property="product" data-render-callback="renderCallbackProduct">{{ __('Product') }}</th>
-                        <th data-property="title" data-render-callback="renderCallbackTitle">{{ __('Title') }}</th>
                         <th data-property="sku">{{ __('Sku') }}</th>
                         <th data-property="slug">{{ __('Slug') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
@@ -147,10 +147,6 @@
         });
     }
 
-    function renderCallbackTitle(data, type, full) {
-        return `${data} ${full.product.type} <small><b>(${full.product.type_name})</b></small>`;
-    }
-
     function renderCallbackImage(data) {
         const image = $('<img>', {
             src: data,
@@ -173,15 +169,13 @@
                 <div class="offer_price d-flex align-items-center">
                     <img src="${data.primary_image}" width="30" height="30" />
                 </div>
-                <small>--------------</small>
-                <div class="d-flex align-items-center">
-                    <small style="display: block; width: 40px;">ID:</small>
-                    <b><a href="${productRoute}" target="_blank">${data.id ? data.id : 'N/A'}</a></b>
-                </div>
-                <div class="d-flex align-items-center">
-                    <small style="display: block; width: 40px;">Name:</small>
+                <div class="d-flex align-items-center mt-2">
                     <b>
-                        <a href="${productRoute}" title="${data.name}" class="d-inline-block" target="_blank" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;">${data.name ? data.name : 'N/A'}</a>
+                        <a
+                            href="${productRoute}"
+                            title="${data.name}"
+                            class="d-inline-block" target="_blank" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;"
+                        >${data.name ? '(' + data.id + ')' + data.name : 'N/A'}</a>
                     </b>
                 </div>
             </div>

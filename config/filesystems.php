@@ -95,19 +95,28 @@ return [
             'visibility' => 'public',
         ],
 
-        'file_manager' => [
-            // 'driver' => 's3',
-            // 'key' => env('AWS_ACCESS_KEY_ID'),
-            // 'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            // 'region' => env('AWS_DEFAULT_REGION'),
-            // 'bucket' => env('AWS_BUCKET'),
-            // 'url' => env('AWS_URL'),
-            // 'endpoint' => env('AWS_ENDPOINT'),
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
+        // 'file_manager' => [
+        //     // 'driver' => 's3',
+        //     // 'key' => env('AWS_ACCESS_KEY_ID'),
+        //     // 'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        //     // 'region' => env('AWS_DEFAULT_REGION'),
+        //     // 'bucket' => env('AWS_BUCKET'),
+        //     // 'url' => env('AWS_URL'),
+        //     // 'endpoint' => env('AWS_ENDPOINT'),
+        //     'driver' => 'local',
+        //     'root' => storage_path('app/public'),
+        //     'url' => env('APP_URL').'/storage',
+        //     'visibility' => 'public',
+        // ],
+
+        'sftp' => [
+            'driver'   => 'sftp',
+            'port'     => env('SFTP_PORT'),
+            'host'     => env('SFTP_HOST'),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+            'root'     => '/volume1/dev-cdn',
+        ]
     ],
 
     /*
