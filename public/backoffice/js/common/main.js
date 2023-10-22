@@ -5,7 +5,7 @@ let utcOffsetMenu = {
 		$('#k_header_menu').removeClass('d-none')
         $('.k_selectpicker').selectpicker();
 
-		$('#currentOffsetUTCLabel').text(currentUtcOffset.label())
+		// $('#currentOffsetUTCLabel').text(currentUtcOffset.label())
 
 		let offsetItem = {
 			label: 'GMT+00:00',

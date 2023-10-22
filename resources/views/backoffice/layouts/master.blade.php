@@ -118,7 +118,7 @@
 						<!-- begin: Header Menu -->
 						<button class="k-header-menu-wrapper-close" id="k_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
 						<div class="k-header-menu-wrapper">
-							<div id="k_header_menu" class="k-header-menu k-header-menu-mobile d-none">
+							{{-- <div id="k_header_menu" class="k-header-menu k-header-menu-mobile d-none">
 								<ul class="k-menu__nav">
 									<li class="k-menu__item  k-menu__item--submenu k-menu__item--rel" data-kmenu-submenu-toggle="click">
 										<a href="javascript:;" class="k-menu__link k-menu__toggle">
@@ -133,7 +133,7 @@
 										</div>
 									</li>
 								</ul>
-							</div>
+							</div> --}}
 						</div>
 						<!-- end: Header Menu -->
 
