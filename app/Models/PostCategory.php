@@ -23,10 +23,6 @@ class PostCategory extends BaseModel
         'meta_description',
     ];
 
-    protected $casts = [
-        'description' => 'json',
-    ];
-
     public function getFeaturedNameAttribute()
     {
         return ActivationStatusEnum::findConstantLabel($this->featured);

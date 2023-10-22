@@ -19,29 +19,13 @@
 
 @section('style')
 <style>
-    .upload_image_custom_append_icon {
-        top: 50%;
-        right: 0;
-        transform: translate(-6%, -50%);
-        color: #4346ce!important;
-        border: 1px solid #4346ce!important;
-    }
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
-    #form_builder_dom.styled {
-        padding: 10px 35px;
-        border: 1px solid #ebedf2;
-        border-radius: 3px;
-    }
-    .ce-block__content,
-    .ce-toolbar__content {
-        max-width: unset!important;
-    }
-    .codex-editor__redactor {
-        padding-bottom: 0px!important;
-        min-height: 200px;
-    }
+.upload_image_custom_append_icon {
+    top: 50%;
+    right: 0;
+    transform: translate(-6%, -50%);
+    color: #4346ce!important;
+    border: 1px solid #4346ce!important;
+}
 </style>
 @endsection
 
@@ -50,7 +34,7 @@
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 
 			<!--begin::Portlet-->
 			<div class="k-portlet k-portlet--tabs">
@@ -82,9 +66,7 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Answer') }}</label>
-                                    <div id="form_builder_dom" class="styled"></div>
-                                    <input type="hidden" name="answer" data-builder-ref="form_builder_dom" value="{{ old('answer') }}">
+                                    <x-content-editor id="faq_answer" label="Answer" name="answer" value="{{ old('answer') }}" />
                                 </div>
 
                                 <div class="form-group">
@@ -133,6 +115,5 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.faqs.js-pages.content-builder')
 @include('backoffice.pages.faqs.js-pages.handle')
 @endsection

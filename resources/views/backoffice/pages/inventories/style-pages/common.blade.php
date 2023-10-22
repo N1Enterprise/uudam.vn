@@ -6,23 +6,6 @@
         color: #4346ce!important;
         border: 1px solid #4346ce!important;
     }
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
-    #form_builder_dom.styled {
-        padding: 10px 35px;
-        border: 1px solid #ebedf2;
-        border-radius: 3px;
-    }
-    .ce-block__content,
-    .ce-toolbar__content {
-        max-width: unset!important;
-    }
-    .codex-editor__redactor {
-        padding-bottom: 0px!important;
-        min-height: 200px;
-    }
-
     [data-repeater-list-custom=variants] [data-repeater-item] {
         border: 1px solid #ebedf2;
         border-radius: 0.25rem;

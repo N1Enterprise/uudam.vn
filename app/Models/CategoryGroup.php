@@ -20,10 +20,6 @@ class CategoryGroup extends BaseModel
         'primary_image',
     ];
 
-    protected $casts = [
-        'description' => 'json',
-    ];
-
     public function categories()
     {
         return $this->hasMany(Category::class);

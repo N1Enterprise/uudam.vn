@@ -19,32 +19,10 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
-@section('style')
-<style>
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
-    #form_builder_dom.styled {
-        padding: 10px 35px;
-        border: 1px solid #ebedf2;
-        border-radius: 3px;
-    }
-    .ce-block__content,
-    .ce-toolbar__content {
-        max-width: unset!important;
-    }
-    .codex-editor__redactor {
-        padding-bottom: 0px!important;
-        min-height: 200px;
-    }
-</style>
-@endsection
-
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
 		<div class="col-md-12">
-
 			<!--begin::Portlet-->
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
@@ -76,27 +54,17 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Type') }}</label>
-                                    <div class="k-radio-inline">
-                                        <label class="k-radio">
-                                            <input type="radio" name="has_custom_redirect_url" {{ !empty(old('slug', $page->slug)) ? 'checked' : empty(old('custom_redirect_url', $page->custom_redirect_url)) ? 'checked' : '' }} value="0"> {{ __('Slug') }}
-                                            <span></span>
-                                        </label>
-                                        <label class="k-radio">
-                                            <input type="radio" name="has_custom_redirect_url" {{ !empty(old('custom_redirect_url', $page->custom_redirect_url)) ? 'checked' : '' }} value="1"> {{ __('Redirect Url') }}
-                                            <span></span>
-                                        </label>
-                                    </div>
+                                    <label>{{ __('Display Type') }} *</label>
+                                    <select data-actions-box="true" name="display_type" title="--{{ __('Select Display Type') }}--"  class="form-control k_selectpicker" required>
+                                        @foreach($pageDisplayPositionEnumLabels as $key => $lable)
+                                        <option value="{{ $key }}" {{ old('display_type', $page->display_type) == $key ? 'selected' : '' }}>{{  $lable }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
-                                <div class="form-group" data-url-type-tab-key="0">
+                                <div class="form-group">
 									<label>{{ __('Slug') }} *</label>
 									<input type="text" class="form-control" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug', $page->slug) }}" required>
-								</div>
-
-                                <div class="form-group d-none" data-url-type-tab-key="1">
-									<label>{{ __('Custom Redirect Url') }} *</label>
-									<input type="text" class="form-control" name="custom_redirect_url" placeholder="{{ __('Enter Custom Redirect Url') }}" value="{{ old('custom_redirect_url', $page->custom_redirect_url) }}" required disabled>
 								</div>
 
                                 <div class="form-group">
@@ -110,9 +78,7 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Description') }}</label>
-                                    <div id="form_builder_dom" class="styled"></div>
-                                    <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description', json_encode($page->description)) }}">
+                                    <x-content-editor id="page_content" label="Content" name="content" value="{{ old('content', $page->content) }}" />
                                 </div>
 
                                 <div class="form-group">
@@ -123,18 +89,6 @@
                                 <div class="form-group">
 									<label>{{ __('Meta Description') }}</label>
 									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description', $page->meta_description) }}">
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Has Contact Form') }}</label>
-									<div class="col-3">
-										<span class="k-switch">
-											<label>
-												<input type="checkbox" {{ old('has_contact_form', boolean($page->has_contact_form) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="has_contact_form"/>
-												<span></span>
-											</label>
-										</span>
-									</div>
 								</div>
 
 								<div class="form-group row">
@@ -166,25 +120,5 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.category-groups.js-pages.content-builder')
 @include('backoffice.pages.category-groups.js-pages.handle')
-<script>
-    onChangeUrlType();
-
-    function onChangeUrlType() {
-        $('[name="has_custom_redirect_url"]').on('change', function() {
-            const type = $(this).val();
-            $('[data-url-type-tab-key]').addClass('d-none');
-            $('[data-url-type-tab-key]').find('input').prop('disabled', true);
-            $(`[data-url-type-tab-key="${type}"]`).removeClass('d-none');
-            $(`[data-url-type-tab-key="${type}"]`).find('input').prop('disabled', false);
-
-            if (!!(type)) {
-                $('[name="name"]').trigger('change');
-            }
-        });
-    }
-
-    $('[name="has_custom_redirect_url"] checked').trigger('change');
-</script>
 @endsection

@@ -42,7 +42,7 @@
                                     <label class="field__label" for="signin-phone">Số Điện Thoại / E-mail <span aria-hidden="true">*</span></label>
                                 </div>
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="password" name="passowrd" id="signin-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập">
+                                    <input type="password" name="passowrd" id="signin-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập" autocomplete="current-password">
                                     <label class="field__label" for="signin-password">Mật Khẩu <span aria-hidden="true">*</span></label>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                     <label class="field__label" for="signup-phone">E-mail<span aria-hidden="true">*</span></label>
                                 </div>
                                 <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="password" name="passowrd" id="signup-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập">
+                                    <input type="password" name="passowrd" id="signup-password" class="field__input" value="" autocorrect="off" autocapitalize="off" aria-required="true" required="" placeholder="Mật Khẩu Đăng Nhập" autocomplete="current-password">
                                     <label class="field__label" for="signup-password">Mật Khẩu <span aria-hidden="true">*</span></label>
                                 </div>
                             </div>

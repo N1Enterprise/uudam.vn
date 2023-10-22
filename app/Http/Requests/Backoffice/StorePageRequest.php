@@ -4,6 +4,7 @@ namespace App\Http\Requests\Backoffice;
 
 use App\Contracts\Requests\Backoffice\StorePageRequestContract;
 use App\Enum\ActivationStatusEnum;
+use App\Enum\PageDisplayTypeEnum;
 use App\Models\Page;
 use Illuminate\Validation\Rule;
 
@@ -13,13 +14,12 @@ class StorePageRequest extends BaseFormRequest implements StorePageRequestContra
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'slug' => [Rule::requiredIf(!$this->has_custom_redirect_url), 'string', 'max:255', Rule::unique(Page::class, 'slug')],
-            'custom_redirect_url' => [Rule::requiredIf($this->has_custom_redirect_url), 'string', 'url', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Page::class, 'slug')],
             'title' => ['required', 'string', 'max:255'],
+            'display_type' => ['required', 'integer', Rule::in(PageDisplayTypeEnum::all())],
             'order' => ['nullable', 'integer'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'has_contact_form' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'description' => ['nullable'],
+            'content' => ['nullable'],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
         ];
@@ -28,19 +28,9 @@ class StorePageRequest extends BaseFormRequest implements StorePageRequestContra
     public function prepareForValidation()
     {
         $payload = $this->all();
-        $hasCustomRedirectUrl = boolean($this->has_custom_redirect_url);
-
-        if ($hasCustomRedirectUrl) {
-            $payload['slug'] = '';
-        } else {
-            $payload['custom_redirect_url'] = '';
-        }
 
         $this->merge(array_merge($payload, [
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'has_contact_form' => boolean($this->has_contact_form) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'description' => $this->description ? json_decode($this->description, true) : null,
-            'has_custom_redirect_url' => boolean($this->has_custom_redirect_url)
         ]));
     }
 }

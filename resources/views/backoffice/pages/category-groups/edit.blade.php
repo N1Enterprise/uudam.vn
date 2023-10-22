@@ -50,7 +50,7 @@
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 
 			<!--begin::Portlet-->
 			<div class="k-portlet k-portlet--tabs">
@@ -79,7 +79,7 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $categoryGroup->name) }}" required>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $categoryGroup->name) }}" data-reference-slug="slug" required>
 								</div>
 
                                 <div class="form-group">
@@ -98,7 +98,7 @@
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
                                                 <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path', $categoryGroup->primary_image) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
-                                                <div data-image-ref-wapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
                                                         <span data-image-ref-delete="primary" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="image_primary_image_review">
-                                                <div data-image-ref-review-wapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                <div data-image-ref-review-wrapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
                                                     <img data-image-ref-review-img="primary" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
                                                 </div>
                                             </div>
@@ -126,9 +126,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Description') }}</label>
-                                    <div id="form_builder_dom" class="styled"></div>
-                                    <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description', json_encode($categoryGroup->description)) }}">
+                                    <x-content-editor id="description" label="Description" name="description" value="{{ old('description', $categoryGroup->description) }}" />
                                 </div>
 
                                 <div class="form-group">
@@ -171,7 +169,6 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.category-groups.js-pages.content-builder')
 @include('backoffice.pages.category-groups.js-pages.handle')
 <script>
     FORM_PRIMARY_IMAGE_PATH.triggerChange();

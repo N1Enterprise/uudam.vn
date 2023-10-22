@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\ActivationStatusEnum;
+use App\Enum\PageDisplayTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,12 +16,11 @@ class Page extends BaseModel
     protected $fillable = [
         'name',
         'slug',
-        'custom_redirect_url',
         'title',
+        'display_type',
         'order',
         'status',
-        'has_contact_form',
-        'description',
+        'content',
         'meta_title',
         'meta_description',
         'created_by_type',
@@ -30,12 +29,8 @@ class Page extends BaseModel
         'updated_by_id',
     ];
 
-    protected $casts = [
-        'description' => 'json'
-    ];
-
-    public function getHasContactFormNameAttribute()
+    public function getDisplayTypeNameAttribute()
     {
-        return ActivationStatusEnum::findConstantLabel($this->has_contact_form);
+        return PageDisplayTypeEnum::findConstantLabel($this->display_type);
     }
 }

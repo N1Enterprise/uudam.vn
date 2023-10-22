@@ -18,6 +18,7 @@ class Post extends BaseModel
         'slug',
         'image',
         'description',
+        'content',
         'post_at',
         'post_category_id',
         'created_by_type',
@@ -33,7 +34,6 @@ class Post extends BaseModel
     ];
 
     protected $casts = [
-        'description' => 'json',
         'meta' => 'json'
     ];
 
@@ -45,5 +45,10 @@ class Post extends BaseModel
     public function postCategory()
     {
         return $this->belongsTo(PostCategory::class, 'post_category_id');
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', ActivationStatusEnum::ACTIVE);
     }
 }

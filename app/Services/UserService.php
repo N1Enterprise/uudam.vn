@@ -28,10 +28,8 @@ class UserService extends BaseService
 
     public function searchByAdmin($data = [])
     {
-        $withRelations = array_merge(data_get($data, 'with', []), ['userDetail']);
-
         $builder = $this->userRepository
-            ->with($withRelations)
+            ->with(data_get($data, 'with', []))
             ->whereColumnsLike(data_get($data, 'query'), ['username' , 'email', 'phone_number'])
             ->whereColumnsLike(data_get($data, 'username', null), ['username'])
             ->whereColumnsLike(data_get($data, 'email', null), ['email'])
@@ -77,9 +75,7 @@ class UserService extends BaseService
 
     public function findByUsername($username = null, $data = [])
     {
-        $with = array_merge(Arr::wrap(data_get($data, 'with', [])), ['userDetail', 'systemCurrency']);
-
-        return $this->userRepository->with($with)->firstWhere(['username' => $username]);
+        return $this->userRepository->with(data_get($data, 'with', []))->firstWhere(['username' => $username]);
     }
 
     public function findByPhoneNumber($phoneNumber)

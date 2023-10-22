@@ -119,5 +119,7 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StoreIncludedProductResponseContract::class => Responses\StoreIncludedProductResponse::class,
         Contracts\UpdateIncludedProductResponseContract::class => Responses\UpdateIncludedProductResponse::class,
         Contracts\DeleteIncludedProductResponseContract::class => Responses\DeleteIncludedProductResponse::class,
+
+        Contracts\UploadFileManagerResponseContract::class => Responses\UploadFileManagerResponse::class,
     ];
 }

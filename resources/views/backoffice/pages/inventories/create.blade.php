@@ -298,9 +298,7 @@
                     </div>
                     <div class="k-portlet__body">
                         <div class="form-group">
-                            <label for="">{{ __('Description') }}</label>
-                            <div id="form_builder_dom" class="styled"></div>
-                            <input type="hidden" name="description" data-builder-ref="form_builder_dom" value="{{ old('description', json_encode($inventory->description)) }}">
+                            <x-content-editor id="description" label="Description" name="description" value="{{ old('description', $inventory->description) }}" />
                         </div>
 
                         <div class="form-group">
@@ -336,7 +334,7 @@
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
-                                        <input type="checkbox" {{ old('status', boolean($inventory->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+                                        <input type="checkbox" {{ old('status', boolean($inventory->status) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="status"/>
                                         <span></span>
                                     </label>
                                 </span>
@@ -352,7 +350,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('INCLUDED PRODUCTS') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('PRODUCTS COMBO') }}</h3>
                         </div>
                     </div>
 
@@ -395,7 +393,6 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script>
-@include('backoffice.pages.inventories.js-pages.content-builder')
 @include('backoffice.pages.inventories.js-pages.handle')
 @include('backoffice.pages.inventories.js-pages.included-products')
 <script>

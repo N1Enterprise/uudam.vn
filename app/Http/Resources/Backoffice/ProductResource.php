@@ -12,7 +12,6 @@ class ProductResource extends BaseJsonResource
             'id' => $this->id,
             'name' => $this->name,
             'code' => $this->code,
-            'slug' => $this->slug,
             'branch' => $this->branch,
             'min_amount' => $this->min_amount,
             'max_amount' => $this->max_amount,

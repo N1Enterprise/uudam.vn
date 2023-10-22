@@ -33,7 +33,6 @@ class StorePostCategoryRequest extends BaseFormRequest implements StorePostCateg
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
-            'description' => $this->description ? json_decode($this->description, true) : null
         ]);
     }
 }

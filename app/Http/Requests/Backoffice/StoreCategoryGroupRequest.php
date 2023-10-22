@@ -31,7 +31,6 @@ class StoreCategoryGroupRequest extends BaseFormRequest implements StoreCategory
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
-            'description' => $this->description ? json_decode($this->description, true) : null
         ]);
     }
 }

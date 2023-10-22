@@ -16,7 +16,6 @@ class Product extends BaseModel
     protected $fillable = [
         'name',
         'code',
-        'slug',
         'branch',
         'description',
         'type',
@@ -32,7 +31,6 @@ class Product extends BaseModel
 
     protected $casts = [
         'media' => 'json',
-        'description' => 'json',
         'suggested_relationships' => 'json'
     ];
 

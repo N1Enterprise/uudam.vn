@@ -52,9 +52,9 @@ function initDefault() {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
 			'Accept': 'application/json',
 		}
-	 });
+    });
 
-	$( document ).ajaxStart(function( event, jqxhr, settings ) {
+	$( document ).ajaxStart(function( event, xhr, settings ) {
 		if($('.modal.show').length) {
 			fscommon.blockElementUI('.modal.show');
 			return;
@@ -105,8 +105,51 @@ function initDefault() {
     });
 }
 
-$(document).ready(function() {
+$( document ).ready(function() {
 	utcOffsetMenu.init();
 	initDefault();
-})
+});
 
+$('[data-reference-slug]').on('change', function() {
+    const value = $(this).val();
+    const name = $(this).attr('data-reference-slug');
+
+    const nameValSlugify = value?.trim()?.toLowerCase()?.replace(/[^\w-]+/g, '-');
+
+    $(`[name="${name}"]`).val(nameValSlugify);
+});
+
+var __IMAGE_MANAGER__ = {
+    toUrl: async (file) => {
+        return file ? await __IMAGE_MANAGER__.toBase64(file) : '';
+    },
+    toBase64: (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+        });
+    },
+    reviewImage: (src, ref, index) => {
+        $(`[data-image-ref-review-wrapper="${ref}"][data-image-ref-index="${index}"]`).toggleClass('d-none', !src);
+        $(`[data-image-ref-review-img="${ref}"][data-image-ref-index="${index}"]`).attr('src', src ? src : '');
+    },
+    reviewFileOn: async (file, ref, index) => {
+        const imageUrl = await __IMAGE_MANAGER__.toUrl(file);
+
+        $(`[data-image-ref-wrapper="${ref}"][data-image-ref-index="${index}"]`).toggleClass('d-none', !imageUrl);
+        $(`[data-image-ref-img="${ref}"][data-image-ref-index="${index}"]`).attr('src', imageUrl ? imageUrl : '');
+        $(`[data-image-ref-path="${ref}"][data-image-ref-index="${index}"]`).val('');
+
+        __IMAGE_MANAGER__.reviewImage(imageUrl, ref, index);
+    },
+    reviewPathOn: (path, ref, index) => {
+        __IMAGE_MANAGER__.reviewImage(path, ref, index);
+        $(`[data-image-ref-file="${ref}"][data-image-ref-index="${index}"]`).val('');
+    },
+
+    deleteRef: (ref, index) => {
+        __IMAGE_MANAGER__.reviewFileOn(null, ref, index);
+    },
+};

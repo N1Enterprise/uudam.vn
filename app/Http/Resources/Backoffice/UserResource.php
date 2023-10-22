@@ -26,12 +26,6 @@ class UserResource extends BaseJsonResource
             'created_at' => $this->created_at_localized,
             'status' => $this->status,
             'updated_at' => $this->updated_at_localized,
-            $this->mergeWhen($this->whenLoaded('userDetail', true, false), function () {
-                return [
-                    'birthday' => optional($this->userDetail)->birthday,
-                    'gender' => optional($this->userDetail)->gender,
-                ];
-            }),
         ], $this->generateActionPermissions());
     }
 

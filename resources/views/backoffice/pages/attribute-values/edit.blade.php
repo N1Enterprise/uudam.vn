@@ -23,7 +23,7 @@
 
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 
 			<!--begin::Portlet-->
 			<div class="k-portlet k-portlet--tabs">

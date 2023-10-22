@@ -11,6 +11,8 @@ Route::get('my-cart', [Controllers\CartController::class, 'index']);
 
 Route::get('blogs', [Controllers\BlogController::class, 'index']);
 
-Route::get('blogs/news/{slug}', [Controllers\BlogNewsController::class, 'index'])->name('posts.show');
+Route::get('blogs/posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
 
 Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index']);
+
+Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');

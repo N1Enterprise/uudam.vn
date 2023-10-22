@@ -88,7 +88,7 @@
 <section class="shopify-section section review-section">
     <div class="page-width">
         <div class="product__description rte quick-add-hidden">
-            <div class="editorjs-content editorjs-parser"></div>
+            <div class="editorjs-content product-description"></div>
         </div>
     </div>
 </section>
@@ -115,8 +115,6 @@
 @endsection
 
 @push('js_pages')
-<script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
 @include('frontend.pages.products.js-pages.index')
 
 <script>
@@ -142,6 +140,8 @@
         focusOnSelect: true
     });
 
-    $('.editorjs-parser').html((new edjsParser()).parse(@json(data_get($inventory, 'product.description'))));
+    $('.product-description').html(
+        (new edjsParser()).parse(@json(data_get($inventory, 'product.description')))
+    );
 </script>
 @endpush
