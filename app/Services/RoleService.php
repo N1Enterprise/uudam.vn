@@ -102,6 +102,10 @@ class RoleService extends BaseService
                 'product-reviews.update',
                 'product-reviews.delete',
             ],
+            'subscribers' => [
+                'subscribers.index',
+                'subscribers.manage',
+            ],
         ],
         'appearances' => [
             'display-inventories' => [

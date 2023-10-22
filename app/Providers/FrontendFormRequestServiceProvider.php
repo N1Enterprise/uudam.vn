@@ -10,5 +10,6 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
 {
     public $singletons = [
         Contracts\StoreUserProductReviewRequestContract::class => Requests\StoreUserProductReviewRequest::class,
+        Contracts\StoreUserSubscribeRequestContract::class => Requests\StoreUserSubscribeRequest::class,
     ];
 }

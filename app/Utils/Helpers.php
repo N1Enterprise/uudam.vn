@@ -57,12 +57,11 @@ if (! function_exists('enum')) {
      * @throws BindingResolutionException
      * @throws Exception
      */
-    function enum($name, $module = 'System')
+    function enum($name)
     {
         $name = Str::studly($name);
-        $module = Str::studly($module);
 
-        $enumClass = implode('\\', ['Modules', $module, 'Enum', $name]);
+        $enumClass = implode('\\', ['App', 'Enum', $name]);
 
         $enumInstance = app($enumClass);
 
