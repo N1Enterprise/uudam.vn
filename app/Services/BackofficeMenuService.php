@@ -118,6 +118,11 @@ class BackofficeMenuService extends BaseService
                         'link' => route('bo.web.product-reviews.index'),
                         'permissions' => ['product-reviews.index'],
                     ],
+                    [
+                        'name' => 'Subscribers',
+                        'link' => route('bo.web.subscribers.index'),
+                        'permissions' => ['subscribers.index'],
+                    ],
                 ],
             ],
             [

@@ -162,3 +162,6 @@ Route::put('included-products/{id}', [Controllers\IncludedProductController::cla
 Route::delete('included-products/{id}', [Controllers\IncludedProductController::class, 'destroy'])->name('included-products.delete')->middleware(['can:included-products.delete']);
 
 Route::post('file-manager/upload', [Controllers\FileManagerController::class, 'upload'])->name('file-manager.upload');
+
+Route::get('subscribers', [Controllers\SubscriberController::class, 'index'])->name('subscribers.index');
+
