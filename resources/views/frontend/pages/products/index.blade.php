@@ -88,7 +88,7 @@
 <section class="shopify-section section review-section">
     <div class="page-width">
         <div class="product__description rte quick-add-hidden">
-            <div class="editorjs-content product-description"></div>
+            {!! data_get($inventory->product, 'description') !!}
         </div>
     </div>
 </section>
@@ -139,9 +139,5 @@
         infinite: false,
         focusOnSelect: true
     });
-
-    $('.product-description').html(
-        (new edjsParser()).parse(@json(data_get($inventory, 'product.description')))
-    );
 </script>
 @endpush

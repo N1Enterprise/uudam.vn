@@ -108,9 +108,6 @@
             </form>
         </product-form>
     </div>
-    {{-- <div class="product__description rte quick-add-hidden">
-        <div class="editorjs-parser" data-editorjs-content='@json(data_get($inventory, 'product.description'))'></div>
-    </div> --}}
     <share-button class="share-button quick-add-hidden">
         <details>
             <summary class="share-button__button" role="button" aria-expanded="false">
