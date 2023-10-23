@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('image')->nullable();
+            $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->dateTime('post_at');
             $table->foreignId('post_category_id');

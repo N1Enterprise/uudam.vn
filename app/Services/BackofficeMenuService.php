@@ -99,17 +99,6 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Systems',
-                'icon' => 'flaticon2-settings',
-                'subs' => [
-                    [
-                        'name' => 'System Setting',
-                        'link' => route('bo.web.system-settings.index'),
-                        'permissions' => ['system-settings.index'],
-                    ],
-                ],
-            ],
-            [
                 'name' => 'Support Desks',
                 'icon' => 'flaticon-technology-1',
                 'subs' => [
@@ -204,6 +193,17 @@ class BackofficeMenuService extends BaseService
                                 'permissions' => ['faqs.index'],
                             ]
                         ],
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Systems',
+                'icon' => 'flaticon2-settings',
+                'subs' => [
+                    [
+                        'name' => 'System Setting',
+                        'link' => route('bo.web.system-settings.index'),
+                        'permissions' => ['system-settings.index'],
                     ],
                 ],
             ],
