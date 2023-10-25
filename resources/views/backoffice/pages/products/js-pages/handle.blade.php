@@ -35,7 +35,6 @@
         elemen_del_list: $('[data-image-ref-delete="media"]'),
         onChange: () => {
             $.each(FORM_MEDIA_IMAGE_FILE.element_list, function(index, element) {
-                console.log({ element });
                 $(element).on('change', function() {
                     __IMAGE_MANAGER__.reviewFileOn($(this)[0].files[0], 'media', index);
                 });

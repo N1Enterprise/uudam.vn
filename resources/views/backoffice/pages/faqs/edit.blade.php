@@ -114,7 +114,3 @@
 	</div>
 </div>
 @endsection
-
-@section('js_script')
-@include('backoffice.pages.faqs.js-pages.handle')
-@endsection

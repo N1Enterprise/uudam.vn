@@ -39,6 +39,9 @@
     <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
 
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"> --}}
+    <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+
     <!--end::Page Vendors Styles -->
 
     @yield('style_datatable')
@@ -148,6 +151,9 @@
     <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script> --}}
+    <!-- NOTE: prior to v2.2.1 tiny-slider.js need to be in <body> -->
 
     @yield('js_script')
     @stack('js_pages')

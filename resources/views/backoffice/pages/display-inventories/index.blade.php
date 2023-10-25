@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="k-portlet__body">
-                <table id="table_display_inventoris_index" data-searching="true" data-request-url="{{ route('bo.api.display-inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+                <table id="table_display_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.display-inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>

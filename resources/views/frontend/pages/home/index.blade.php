@@ -1,8 +1,6 @@
 @extends('frontend.layouts.master')
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick.css') }}">
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick-theme.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-1.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/home/index.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-featured-blog.css') }}">
@@ -13,6 +11,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slideshow.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-image-banner.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 @endpush
 
 @section('content_body')
@@ -51,5 +50,9 @@
 @endsection
 
 @push('js_pages')
-<script src="{{ asset('backoffice/assets/vendors/general/slick/slick.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script>
+    owlSlider('.Slider_Home_Banner', 1);
+</script>
 @endpush

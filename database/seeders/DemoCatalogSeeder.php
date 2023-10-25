@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 
-class FakerCatalogSeeder extends Seeder
+class DemoCatalogSeeder extends Seeder
 {
     private $faker;
 
@@ -44,6 +44,7 @@ class FakerCatalogSeeder extends Seeder
 
             DB::commit();
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             DB::rollBack();
         }
     }
@@ -60,16 +61,13 @@ class FakerCatalogSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $name = $this->faker->company;
 
-            $minAmount = $this->faker->randomFloat(4, 20, 30);
-
             $products[] = array_merge([
                 'name' => $name,
                 'slug' => Str::slug($name).'-'.($i + 1),
                 'code' => $this->faker->ean13(),
                 'branch' => $this->faker->title(),
-                'min_amount' => $minAmount,
-                'max_amount' => $minAmount + 100,
                 'type' => ProductTypeEnum::all()[array_rand([ProductTypeEnum::SIMPLE, ProductTypeEnum::VARIABLE])],
+                'description' => $this->faker->paragraphs(10, true),
                 'status' => 1,
                 'primary_image' => 'https://uudam.vn/wp-content/uploads/2022/12/uat-kim-huong-de-thap-6-510x510.jpg',
                 'media' => json_encode([

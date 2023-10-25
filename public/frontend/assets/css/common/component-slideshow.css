@@ -207,13 +207,6 @@ slideshow-component:not(.page-width) .slider-buttons {
     transform: scale(.8)
 }
 
-slideshow-component .slick-dots,
-slideshow-component .slick-arrow {
-    display: none !important;
-}
-
-slideshow-component .slick-track,
-slideshow-component .slick-track .slick-slide>div,
-slideshow-component .slick-track .slick-slide>div .slideshow__slide {
-    height: 100% !important;
+slideshow-component .owl-dots {
+    display: none!important;
 }
