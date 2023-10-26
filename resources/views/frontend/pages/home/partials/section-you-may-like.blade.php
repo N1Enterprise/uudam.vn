@@ -3,7 +3,7 @@
     <h3 class="ls-box-title">Bạn Có Thể Thích</h3>
     <div class="limespot-recommendation-box-carousel-container">
         <div class="ls-ul-container limespot-recommendation-box-carousel ls-drag-scroll v-align">
-            <div class="ls-ul limespot-recommendation-box-carousel-shelf" data-slick-config='{"id": "you_may_like", "speed": 300, "slidesToShow": 5, "slidesToScroll": 5, "infinite": true, "lazyLoad": "ondemand"}'>
+            <div class="owl-carousel owl-theme ls-ul limespot-recommendation-box-carousel-shelf" data-owl-id="Slider_YouMayLike_Products" data-owl-items="5">
                 @foreach ($youMayLikeInventories as $inventory)
                 <div class="limespot-recommendation-box-item" data-product-identifier="{{ $inventory->id }}" data-product-title="{{ $inventory->title }}" data-price="{{ round_money($inventory->sale_price) }}" data-original-price="{{ round_money($inventory->sale_price) }}" data-display-url="{{ route('fe.web.products.show', $inventory->slug) }}" style="margin-right: 10px; max-width: 270px; flex-basis: 270px; min-width: 270px;">
                     <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.show', $inventory->slug) }}">
@@ -24,14 +24,14 @@
                 @endforeach
             </div>
         </div>
-        <div data-slick-id="you_may_like" data-slick-button-prev class="ls-left-arrow limespot-recommendation-box-carousel-indicator indicator-left static-arrow ls-animate">
+        <div class="ls-left-arrow limespot-recommendation-box-carousel-indicator indicator-left static-arrow ls-animate" data-owl-prev="Slider_YouMayLike_Products">
             <div class="recomm-arrow arrow-left ls-svg-arrow" style="margin-top: 115px; max-width: 50px;">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>
                 </svg>
             </div>
         </div>
-        <div data-slick-id="you_may_like" data-slick-button-next class="ls-right-arrow limespot-recommendation-box-carousel-indicator indicator-right static-arrow ls-animate">
+        <div class="ls-right-arrow limespot-recommendation-box-carousel-indicator indicator-right static-arrow ls-animate" data-owl-next="Slider_YouMayLike_Products">
             <div class="recomm-arrow arrow-right ls-svg-arrow" style="margin-top: 115px; max-width: 50px;">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 44.5 62.03">
                     <path d="M5 .6a2 2 0 0 0-3 0L1 1.8a2 2 0 0 0 0 2.8l14.6 14.7a2 2 0 0 1 0 2.8L.6 37a2 2 0 0 0 0 3L2 41.3a2 2 0 0 0 3 0l19-19a2 2 0 0 0 0-2.8z"></path>

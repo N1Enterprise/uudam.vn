@@ -1,6 +1,6 @@
 <div class="section-template-padding page-width section-template__video-padding">
     <div class="video-section__media deferred-media no-js-hidden gradient global-media-settings" style="padding-bottom: 56.25%;">
-        <button id="Deferred-Poster-Modal-wV4lxensYvU" class="video-section__poster media deferred-media__poster media--landscape" type="button" aria-label="Load video: DharmaCrafts Find Your Tranquil Space">
+        <button class="video-section__poster media deferred-media__poster media--landscape" type="button" aria-label="Load video: DharmaCrafts Find Your Tranquil Space">
             <img srcset="//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735&amp;width=375 375w,//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735&amp;width=750 750w,//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735&amp;width=1100 1100w,//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735&amp;width=1500 1500w,//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735&amp;width=1780 1780w,//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735 1920w" src="//dharmacrafts.com/cdn/shop/files/Banner_Supplies.png?v=1646921735&amp;width=1920" sizes="(min-width: 1600px) 1500px, (min-width: 750px) calc(100vw - 10rem), 100vw" alt="Load video: DharmaCrafts Find Your Tranquil Space" loading="lazy" width="1920" height="1080">
             <span class="deferred-media__poster-button motion-reduce">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" fill="none" viewBox="0 0 10 14">
@@ -8,6 +8,5 @@
                 </svg>
             </span>
         </button>
-        <iframe src="https://www.youtube.com/embed/wV4lxensYvU?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen="" title="DharmaCrafts Find Your Tranquil Space"></iframe>
     </div>
 </div>

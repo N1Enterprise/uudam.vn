@@ -90,7 +90,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -119,11 +119,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Cover Image') }} *</label>
+                                    <label>{{ __('Cover Image') }}</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="cover" data-image-ref-index="0" class="form-control image_cover_image_url" name="cover_image[path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="cover" data-image-ref-index="0" class="form-control image_cover_image_url" name="cover_image[path]" value="{{ old('cover_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="cover" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="cover" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -181,14 +181,22 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Inventory') }} *</label>
-                                    <select name="inventories[]" title="--{{ __('Select Inventories') }}--" class="form-control k_selectpicker" data-live-search="true" multiple>
+                                    <select data-actions-box="true" name="inventories[]" title="--{{ __('Select Inventories') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($inventories as $inventory)
-                                        <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ in_array($inventory->id, old('inventories', [])) ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                        <option
+                                            value="{{ $inventory->id }}"
+                                            data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                            data-slug="{{ $inventory->slug }}"
+                                            data-inventory-id="{{ $inventory->id }}"
+                                            data-inventory-name="{{ $inventory->title }}"
+                                            {{ in_array($inventory->id, old('inventories', [])) ? 'selected' : '' }}
+                                        >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
                                         @endforeach
                                     </select>
-                                    @error('inventories')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                </div>
+                                <div class="form-group Display_Inventory_Allowed_Holder mb-0">
+                                    <div class="Display_Inventory_Holder_Content">
+                                    </div>
                                 </div>
 
                                 <div class="form-group row">
@@ -204,7 +212,7 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Display On Front End') }}</label>
+									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -245,4 +253,5 @@
 
 @section('js_script')
 @include('backoffice.pages.collections.js-pages.handle')
+@include('backoffice.pages.collections.js-pages.display-inventories')
 @endsection

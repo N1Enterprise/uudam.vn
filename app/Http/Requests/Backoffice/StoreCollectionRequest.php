@@ -18,7 +18,7 @@ class StoreCollectionRequest extends BaseFormRequest implements StoreCollectionR
             'primary_image' => ['required', 'array'],
             'primary_image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'primary_image.path' => ['nullable', 'string'],
-            'cover_image' => ['required', 'array'],
+            'cover_image' => ['nullable', 'array'],
             'cover_image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'cover_image.path' => ['nullable', 'string'],
             'cta_label' => ['nullable', 'string', 'max:255'],

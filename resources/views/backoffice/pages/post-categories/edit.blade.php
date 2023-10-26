@@ -64,7 +64,7 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $postCategory->name) }}" required>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $postCategory->name) }}" data-reference-slug="slug" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -140,11 +140,11 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
+									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('featured', boolean($postCategory->featured) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="featured" />
+												<input type="checkbox" {{ old('display_on_frontend', boolean($postCategory->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
 												<span></span>
 											</label>
 										</span>
@@ -181,7 +181,4 @@
 
 @section('js_script')
 @include('backoffice.pages.post-categories.js-pages.handle')
-<script>
-    FORM_PRIMARY_IMAGE_PATH.triggerChange();
-</script>
 @endsection

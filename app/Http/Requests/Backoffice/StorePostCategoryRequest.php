@@ -20,7 +20,7 @@ class StorePostCategoryRequest extends BaseFormRequest implements StorePostCateg
             'description' => ['nullable'],
             'order' => ['nullable', 'integer', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
         ];
@@ -31,7 +31,7 @@ class StorePostCategoryRequest extends BaseFormRequest implements StorePostCateg
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
         ]);
     }

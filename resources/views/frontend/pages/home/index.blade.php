@@ -21,13 +21,20 @@
 
     <section class="shopify-section section">
         <div class="multicolumn color-background-1 gradient background-primary no-heading">
+            @if(! $popularInventories->isEmpty())
             @include('frontend.pages.home.partials.section-most-popular-items')
+            @endif
+
+            @if(! $featuredCollections->isEmpty())
             @include('frontend.pages.home.partials.section-catalog-collection')
+            @endif
         </div>
     </section>
 
     <section class="shopify-section section">
+        @if(! $displayOnFrontendCollections->isEmpty())
         @include('frontend.pages.home.partials.section-our-collection')
+        @endif
     </section>
 
     <section class="shopify-section section">
@@ -39,7 +46,9 @@
     </section>
 
     <section class="shopify-section section">
+        @if(! $postCategories->isEmpty())
         @include('frontend.pages.home.partials.section-blogs')
+        @endif
     </section>
 
     @if(!empty($PAGE_HIGHLIGHT_INFORMATION))
@@ -52,7 +61,4 @@
 @push('js_pages')
 <script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script>
-    owlSlider('.Slider_Home_Banner', 1);
-</script>
 @endpush

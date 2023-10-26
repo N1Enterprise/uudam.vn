@@ -26,8 +26,8 @@ class CreatePostsTable extends Migration
             $table->morphs('created_by');
             $table->morphs('updated_by');
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->tinyInteger('featured')->comment(ActivationStatusEnum::class);
-            $table->json('meta')->nullable();
+            $table->tinyInteger('display_on_frontend')->comment(ActivationStatusEnum::class);
+            $table->json('linked_inventories')->nullable();
             $table->integer('order')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();

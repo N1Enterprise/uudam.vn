@@ -147,7 +147,6 @@
     <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/components/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>

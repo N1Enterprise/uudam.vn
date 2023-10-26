@@ -13,7 +13,9 @@ class DemoSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(DemoCatalogSeeder::class);
-        $this->call(DemoInventorySeeder::class);
+        // $this->call(DemoCatalogSeeder::class);
+        // $this->call(DemoInventorySeeder::class);
+        // $this->call(DemoCollectionSeeder::class);
+        $this->call(DemoBlogSeeder::class);
     }
 }

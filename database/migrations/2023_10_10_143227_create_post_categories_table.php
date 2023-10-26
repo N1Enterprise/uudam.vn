@@ -22,7 +22,7 @@ class CreatePostCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->integer('order')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->tinyInteger('featured')->default(0);
+            $table->tinyInteger('display_on_frontend')->default(0);
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->timestamps();
