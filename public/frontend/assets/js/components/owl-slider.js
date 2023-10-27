@@ -24,11 +24,12 @@ function owlSliderSetup() {
     $.each($('[data-owl-id]'), function(index, element) {
         const owlId = $(element).attr('data-owl-id');
         const items = $(element).attr('data-owl-items');
+        const hasLoop = $(element).attr('data-owl-loop') == 'true';
 
         $(element).addClass('owl-carousel owl-theme');
 
         $(element).owlCarousel({
-            loop: false,
+            loop: hasLoop,
             nav: false,
             responsive: getResponsive(items)
         });

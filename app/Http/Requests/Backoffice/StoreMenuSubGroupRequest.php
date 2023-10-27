@@ -24,6 +24,7 @@ class StoreMenuSubGroupRequest extends BaseFormRequest implements StoreMenuSubGr
     public function prepareForValidation()
     {
         $this->merge([
+            'params' => !empty($this->params) ? json_decode($this->params) : null,
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
         ]);
     }

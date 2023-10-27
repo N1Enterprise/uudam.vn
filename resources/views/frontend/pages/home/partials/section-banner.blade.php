@@ -11,7 +11,7 @@
             </svg>
         </button>
     </div>
-    <div class="slideshow banner banner--medium grid grid--1-col slider slider--everywhere" aria-live="off" aria-atomic="true" data-autoplay="true" data-speed="9" data-owl-id="Slider_Home_Banner" data-owl-items="1">
+    <div class="slideshow banner banner--medium grid grid--1-col slider slider--everywhere" aria-live="off" aria-atomic="true" data-autoplay="true" data-speed="9" data-owl-id="Slider_Home_Banner" data-owl-items="1" data-owl-loop="true">
         @foreach ($homeBanners as $banner)
         <div class="slideshow__slide grid__item grid--1-col slider__slide" id="{{ $banner->id }}" role="group" aria-roledescription="Slide" aria-label="1 of 4" aria-hidden="true" tabindex="-1">
             <div class="slideshow__media banner__media media">

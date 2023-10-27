@@ -143,7 +143,7 @@ class DemoMenuSeeder extends Seeder
 
                 [
                     'id' => 7,
-                    'name' => 'Statues No Name',
+                    'name' => 'Statues 2',
                     'redirect_url' => '',
                     'menu_group_id' => 2,
                     'params' => json_encode([
@@ -164,7 +164,7 @@ class DemoMenuSeeder extends Seeder
                     'menu_group_id' => 2,
                     'params' => json_encode([
                         'submenu_columns' => 2,
-                        'hide_name' => false,
+                        'hide_name' => true,
                         'image_type' => 'fit-wide',
                         'item_type' => 'featured-article',
                     ]),
@@ -175,71 +175,71 @@ class DemoMenuSeeder extends Seeder
                 ],
 
                 // Meditation Supplies
-                // [
-                //     'id' => 7,
-                //     'name' => 'General Supplies',
-                //     'redirect_url' => '',
-                //     'menu_group_id' => 3,
-                //     'params' => json_encode([
-                //         'submenu_columns' => 1
-                //     ]),
-                //     'order' => 7,
-                //     'status' => 1,
-                //     'created_at' => $now,
-                //     'updated_at' => $now,
-                // ],
-                // [
-                //     'id' => 8,
-                //     'name' => 'Incense and Burners',
-                //     'redirect_url' => '',
-                //     'menu_group_id' => 3,
-                //     'params' => json_encode([
-                //         'submenu_columns' => 1
-                //     ]),
-                //     'order' => 8,
-                //     'status' => 1,
-                //     'created_at' => $now,
-                //     'updated_at' => $now,
-                // ],
-                // [
-                //     'id' => 9,
-                //     'name' => 'Your Meditation Space',
-                //     'redirect_url' => '',
-                //     'menu_group_id' => 3,
-                //     'params' => json_encode([
-                //         'submenu_columns' => 1
-                //     ]),
-                //     'order' => 9,
-                //     'status' => 1,
-                //     'created_at' => $now,
-                //     'updated_at' => $now,
-                // ],
-                // [
-                //     'id' => 10,
-                //     'name' => 'Healing',
-                //     'redirect_url' => '',
-                //     'menu_group_id' => 3,
-                //     'params' => json_encode([
-                //         'submenu_columns' => 1
-                //     ]),
-                //     'order' => 10,
-                //     'status' => 1,
-                //     'created_at' => $now,
-                //     'updated_at' => $now,
-                // ],
-                // [
-                //     'id' => 11,
-                //     'name' => 'Meditation Benches',
-                //     'redirect_url' => '',
-                //     'menu_group_id' => 3,
-                //     'params' => json_encode([
-                //         'submenu_columns' => 1
-                //     ]),
-                //     'order' => 11,
-                //     'status' => 1,
-                //     'created_at' => $now,
-                //     'updated_at' => $now,
-                // ],
+                [
+                    'id' => 9,
+                    'name' => 'General Supplies',
+                    'redirect_url' => '',
+                    'menu_group_id' => 3,
+                    'params' => json_encode([
+                        'submenu_columns' => 1
+                    ]),
+                    'order' => 9,
+                    'status' => 1,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ],
+                [
+                    'id' => 10,
+                    'name' => 'Incense and Burners',
+                    'redirect_url' => '',
+                    'menu_group_id' => 3,
+                    'params' => json_encode([
+                        'submenu_columns' => 1
+                    ]),
+                    'order' => 10,
+                    'status' => 1,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ],
+                [
+                    'id' => 11,
+                    'name' => 'Your Meditation Space',
+                    'redirect_url' => '',
+                    'menu_group_id' => 3,
+                    'params' => json_encode([
+                        'submenu_columns' => 1
+                    ]),
+                    'order' => 11,
+                    'status' => 1,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ],
+                [
+                    'id' => 12,
+                    'name' => 'Healing',
+                    'redirect_url' => '',
+                    'menu_group_id' => 3,
+                    'params' => json_encode([
+                        'submenu_columns' => 1
+                    ]),
+                    'order' => 12,
+                    'status' => 1,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ],
+                [
+                    'id' => 13,
+                    'name' => 'Meditation Benches',
+                    'redirect_url' => '',
+                    'menu_group_id' => 3,
+                    'params' => json_encode([
+                        'submenu_columns' => 1
+                    ]),
+                    'order' => 13,
+                    'status' => 1,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ],
             ];
 
             $collections = DB::table('collections')->pluck('name', 'id')->toArray();
