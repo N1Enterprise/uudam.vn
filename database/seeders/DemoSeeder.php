@@ -16,6 +16,7 @@ class DemoSeeder extends Seeder
         // $this->call(DemoCatalogSeeder::class);
         // $this->call(DemoInventorySeeder::class);
         // $this->call(DemoCollectionSeeder::class);
-        $this->call(DemoBlogSeeder::class);
+        // $this->call(DemoBlogSeeder::class);
+        $this->call(DemoMenuSeeder::class);
     }
 }

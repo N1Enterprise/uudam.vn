@@ -27,6 +27,7 @@ class MenuGroupService extends BaseService
     {
         return $this->menuGroupRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
+            ->addSort('order', 'asc')
             ->all(data_get($data, 'columns', ['*']));
     }
 

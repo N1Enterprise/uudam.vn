@@ -19,34 +19,6 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
-@section('style')
-<style>
-    .upload_image_custom_append_icon {
-        top: 50%;
-        right: 0;
-        transform: translate(-6%, -50%);
-        color: #4346ce!important;
-        border: 1px solid #4346ce!important;
-    }
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
-    #form_builder_dom.styled {
-        padding: 10px 35px;
-        border: 1px solid #ebedf2;
-        border-radius: 3px;
-    }
-    .ce-block__content,
-    .ce-toolbar__content {
-        max-width: unset!important;
-    }
-    .codex-editor__redactor {
-        padding-bottom: 0px!important;
-        min-height: 200px;
-    }
-</style>
-@endsection
-
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">
@@ -99,48 +71,17 @@
                                     </div>
                                 </div>
 
-                                <div data-menu-type-tab-key="1" data-menu-type="normal">
+                                <div data-menu-type-tab-key="1" data-menu-type="Collection">
                                     <div class="form-group">
-                                        <label>{{ __('Title') }}</label>
-                                        <input type="text" class="form-control" name="meta[title]" placeholder="{{ __('Enter Menu Title') }}" value="{{ old('meta.title', data_get($menu->meta, 'title')) }}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>{{ __('Redirect Url') }}</label>
-                                        <input type="text" class="form-control" name="meta[redirect_url]" placeholder="{{ __('Enter Redirect Url') }}" value="{{ old('meta.redirect_url', data_get($menu->meta, 'redirect_url')) }}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>{{ __('Image') }} *</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="upload_image_custom position-relative">
-                                                    <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="meta[image][path]" value="{{ old('meta.image.path', data_get($menu->meta, 'image')) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
-                                                    <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
-                                                        <div class="d-flex align-items-center h-100">
-                                                            <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                            <span data-image-ref-delete="primary" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
-                                                        </div>
-                                                    </div>
-                                                    <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
-                                                        <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="meta[image][file]" class="d-none image_primary_image_file">
-                                                        <i class="flaticon2-image-file"></i>
-                                                        <span>{{ __('Upload') }}</span>
-                                                    </label>
-                                                </div>
-                                                <input type="hidden" class="form-control @anyerror('image, image.file, image.path') is-invalid @endanyerror">
-                                                @anyerror('image, image.file, image.path')
-                                                {{ $displayMessages() }}
-                                                @endanyerror
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="image_primary_image_review">
-                                                    <div data-image-ref-review-wrapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
-                                                        <img data-image-ref-review-img="primary" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <label>{{ __('Collection') }} *</label>
+                                        <select name="collection_id" title="--{{ __('Select Collection') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                            @foreach($collections as $collection)
+                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id', $collection->id) == $collection->id ? 'selected' : '' }}>{{ $collection->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('collection_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -229,7 +170,6 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.menus.js-pages.handle')
 <script>
     onChangeMenuType();
 

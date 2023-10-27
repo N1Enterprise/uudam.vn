@@ -14,10 +14,20 @@ class MenuSubGroup extends BaseModel
         'menu_group_id',
         'order',
         'status',
+        'params'
+    ];
+
+    public $casts = [
+        'params' => 'json'
     ];
 
     public function menuGroup()
     {
         return $this->belongsTo(MenuGroup::class, 'menu_group_id');
+    }
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'menu_sub_group_menus');
     }
 }

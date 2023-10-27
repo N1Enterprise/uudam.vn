@@ -14,8 +14,9 @@ class StoreMenuSubGroupRequest extends BaseFormRequest implements StoreMenuSubGr
         return [
             'name' => ['required', 'max:255'],
             'menu_group_id' => ['required', 'integer', Rule::exists(MenuGroup::class, 'id')],
-            'redirect_url' => ['required', 'string', 'max:255'],
+            'redirect_url' => ['nullable', 'string', 'max:255'],
             'order' => ['nullable', 'integer'],
+            'params' => ['nullable'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }

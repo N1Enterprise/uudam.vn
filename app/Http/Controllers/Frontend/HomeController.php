@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Enum\BannerTypeEnum;
 use App\Enum\DisplayInventoryTypeEnum;
+use App\Enum\SystemSettingKeyEnum;
+use App\Models\SystemSetting;
 use App\Services\CollectionService;
 use App\Services\PostCategoryService;
-use App\Services\PostService;
 use App\Services\StoreFront\StoreFrontBannerService;
 use App\Services\StoreFront\StoreFrontProductDisplayService;
 
@@ -42,6 +43,7 @@ class HomeController extends BaseController
         $featuredCollections = $collections->where('featured', 1);
 
         $postCategories = $this->postCategoryService->getAvailableDisplayOnFE(['with' => 'posts']);
+        $videoOutsideUI = SystemSetting::from(SystemSettingKeyEnum::VIDEO_OUTSIDE_UI)->get(null, []);
 
         return $this->view('frontend.pages.home.index', compact(
             'homeBanners',
@@ -49,7 +51,8 @@ class HomeController extends BaseController
             'youMayLikeInventories',
             'displayOnFrontendCollections',
             'featuredCollections',
-            'postCategories'
+            'postCategories',
+            'videoOutsideUI'
         ));
     }
 }

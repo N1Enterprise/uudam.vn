@@ -8,6 +8,7 @@ use App\Contracts\Responses\Backoffice\DeleteMenuResponseContract;
 use App\Contracts\Responses\Backoffice\StoreMenuResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateMenuResponseContract;
 use App\Enum\MenuTypeEnum;
+use App\Services\CollectionService;
 use App\Services\InventoryService;
 use App\Services\MenuGroupService;
 use App\Services\MenuService;
@@ -18,17 +19,20 @@ class MenuController extends BaseController
     public $inventoryService;
     public $postService;
     public $menuGroupService;
+    public $collectionService;
 
     public function __construct(
         MenuService $menuService,
         InventoryService $inventoryService,
         InventoryService $postService,
-        MenuGroupService $menuGroupService
+        MenuGroupService $menuGroupService,
+        CollectionService $collectionService
     ) {
         $this->menuService = $menuService;
         $this->inventoryService = $inventoryService;
         $this->postService = $postService;
         $this->menuGroupService = $menuGroupService;
+        $this->collectionService = $collectionService;
     }
 
     public function index()
@@ -42,13 +46,14 @@ class MenuController extends BaseController
     {
         $inventories = $this->inventoryService->allAvailable();
         $posts = $this->postService->allAvailable();
+        $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
             ->allAvailable(['with' => 'menuSubGroups', 'columns' => ['id', 'name']])
             ->filter(fn($item) => !$item->menuSubGroups->isEmpty());
 
         $menuTypeEnumLabels = MenuTypeEnum::labels();
 
-        return view('backoffice.pages.menus.create', compact('menuTypeEnumLabels', 'inventories', 'posts', 'menuGroups'));
+        return view('backoffice.pages.menus.create', compact('menuTypeEnumLabels', 'inventories', 'posts', 'menuGroups', 'collections'));
     }
 
     public function edit($id)

@@ -1291,7 +1291,59 @@
 
             <nav class="header__inline-menu">
                 <ul class="list-menu list-menu--inline horizontal-mega-menu" role="list">
+                    @foreach ($APP_MENU_GROUPS as $menuGroup)
                     <li class="buddha-menu-item" itemid="PMu22">
+                        <a
+                            data-href="{{ data_get($menuGroup, 'redirect_url') }}"
+                            href="{{ data_get($menuGroup, 'redirect_url') }}"
+                            aria-label="Meditation Cushions"
+                            data-no-instant=""
+                            onclick="mmGoToPage(this, event); return false;"
+                            class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"
+                        >
+                            <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
+
+                            @if(! optional($menuGroup->menuSubGroups)->isEmpty())
+                            <i class="mm-arrow mm-angle-down" aria-hidden="true"></i>
+                            <span class="toggle-menu-btn" style="display:none;" title="Toggle menu" onclick="return toggleSubmenu(this)">
+                                <span class="mm-arrow-icon">
+                                    <span class="bar-one"></span>
+                                    <span class="bar-two"></span>
+                                </span>
+                            </span>
+                            @endif
+                        </a>
+
+                        @if(! optional($menuGroup->menuSubGroups)->isEmpty())
+                        <ul class="mm-submenu simple mm-last-level" style="width: 1500px !important; left: -207.5px; right: auto; max-width: none; min-width: 400px !important; max-height: none; overflow: hidden;" columns="5">
+                            @foreach (data_get($menuGroup, 'menuSubGroups', []) as $menuSubGroup)
+                            <li submenu-columns="{{ data_get($menuSubGroup, 'params.submenu_columns') }}" item-type="link-list-image" style="z-index: 10; margin-bottom: 10px !important;">
+                                <div class="mega-menu-item-container">
+                                    <div class="mm-list-name" style="height: 37px;">
+                                        <span>
+                                            @if(empty(data_get($menuSubGroup, 'redirect_url')))
+                                                <span class="mm-title">{{ data_get($menuSubGroup, 'name') }}</span>
+                                            @else
+                                                <a href="{{ data_get($menuSubGroup, 'redirect_url') }}" class="mm-title">{{ data_get($menuSubGroup, 'name') }}</a>
+                                            @endif
+                                        </span>
+                                    </div>
+
+                                    @if(! optional($menuSubGroup->menus)->isEmpty())
+                                    <ul class="mm-product-list mm-last-level">
+                                        @foreach ($menuSubGroup->menus as $menu)
+                                            @include('frontend.layouts.parials.header.partials.menu-'.$menu->type)
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
+                    @endforeach
+                    {{-- <li class="buddha-menu-item" itemid="PMu22">
                         <a data-href="/collections/cushions-and-benches" href="/collections/cushions-and-benches" aria-label="Meditation Cushions" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"><span class="mm-title">Meditation Cushions</span><i class="mm-arrow mm-angle-down" aria-hidden="true"></i><span class="toggle-menu-btn" style="display:none;" title="Toggle menu" onclick="return toggleSubmenu(this)"><span class="mm-arrow-icon"><span class="bar-one"></span><span class="bar-two"></span></span></span></a>
                         <ul class="mm-submenu simple   mm-last-level" style="width: 1500px !important; left: -207.5px; right: auto; max-width: none; min-width: 400px !important; max-height: none; overflow: hidden;" columns="5">
                             <li submenu-columns="1" item-type="link-list-image" style="z-index: 10; margin-bottom: 10px !important;">
@@ -1465,9 +1517,10 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li class="buddha-menu-item" itemid="oXDvR">
+                    </li> --}}
+                    {{-- <li class="buddha-menu-item" itemid="oXDvR">
                         <a data-href="/collections/statues" href="/collections/statues" aria-label="Statues" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"><span class="mm-title">Statues</span><i class="mm-arrow mm-angle-down" aria-hidden="true"></i><span class="toggle-menu-btn" style="display:none;" title="Toggle menu" onclick="return toggleSubmenu(this)"><span class="mm-arrow-icon"><span class="bar-one"></span><span class="bar-two"></span></span></span></a>
+                                                                            width: 1500px !important; left: -207.5px; right: auto; max-width: none; min-width: 400px !important; max-height: none; overflow: hidden;
                         <ul class="mm-submenu simple   mm-last-level" style="width: 1500px !important; left: -386.936px; right: auto; max-width: none; min-width: 400px !important; max-height: none;" columns="5">
                             <li submenu-columns="1" item-type="link-list-image" style="z-index: 10; margin-bottom: 10px !important;">
                                 <div class="mega-menu-item-container">
@@ -1746,8 +1799,8 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <li class="buddha-menu-item" itemid="xECJE">
+                    </li> --}}
+                    {{-- <li class="buddha-menu-item" itemid="xECJE">
                         <a data-href="/collections/yoga-supplies" href="/collections/yoga-supplies" aria-label="Yoga" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"><span class="mm-title">Yoga</span><i class="mm-arrow mm-angle-down" aria-hidden="true"></i><span class="toggle-menu-btn" style="display:none;" title="Toggle menu" onclick="return toggleSubmenu(this)"><span class="mm-arrow-icon"><span class="bar-one"></span><span class="bar-two"></span></span></span></a>
                         <ul class="mm-submenu simple   mm-last-level" style="width: 1500px !important; left: -660.278px; right: auto; max-width: none; min-width: 400px !important; max-height: none; overflow: hidden;" columns="5">
                             <li submenu-columns="1" image-type="fit-high" item-type="featured-product" haslabel="NEW" style="z-index: 10; padding-top: 15px !important; margin-bottom: 10px !important;">
@@ -2369,7 +2422,7 @@
                     <li class="buddha-disabled"><a href="/collections/wellness-products" class="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                         <span>Wellness</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
             @include('frontend.layouts.parials.header.partials.header-icons')

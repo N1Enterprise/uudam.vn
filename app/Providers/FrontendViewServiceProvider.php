@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Enum\PageDisplayTypeEnum;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
+use App\Services\MenuGroupService;
 use App\Services\PageService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -35,24 +36,30 @@ class FrontendViewServiceProvider extends ServiceProvider
             $view->with('APP_URL', config('app.url'));
 
             $view->with('PAGE_SETTINGS', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get(null, []));
-            $view->with('SOCIAL_NETWORKS', SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []));
-            $view->with('RECEIVE_NEW_POST_SETTING', SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []));
+
             $view->with(
-                'PAGE_HIGHLIGHT_INFORMATION',
-                collect(SystemSetting::from(SystemSettingKeyEnum::PAGE_HIGHLIGHT_INFORMATION)->get(null, []))
+                'SOCIAL_NETWORKS',
+                collect(SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []))
                     ->filter(fn($item) => data_get($item, 'enable'))
-                    ->toArray()
             );
 
-            $pages = app(PageService::class)->allAvailable();
+            $view->with('RECEIVE_NEW_POST_SETTING', SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []));
 
-            $view->with('PAGES_BY_LEFT_SHOW_DIRECT', $pages->filter(fn($item) => $item->display_type == PageDisplayTypeEnum::LEFT_SHOW_DIRECT));
-            $view->with('PAGES_BY_MENUS', $pages->filter(fn($item) => $item->display_type == PageDisplayTypeEnum::MENU));
+            $view->with('PAGES_BELONGTO_MENU', app(PageService::class)->allAvailable(['columns' => ['id', 'name', 'slug'], 'scopes' => ['menu']]));
+
+            $view->with('APP_MENU_GROUPS', $this->getAppMenus());
         });
     }
 
     private function registerDirectives()
     {
 
+    }
+
+    public function getAppMenus()
+    {
+        $menuGroups = app(MenuGroupService::class)->allAvailable(['columns' => ['id', 'name', 'redirect_url']]);
+
+        return $menuGroups;
     }
 }

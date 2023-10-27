@@ -42,7 +42,9 @@
     </section>
 
     <section class="shopify-section section">
+        @if(! empty($videoOutsideUI))
         @include('frontend.pages.home.partials.section-featured-videos')
+        @endif
     </section>
 
     <section class="shopify-section section">

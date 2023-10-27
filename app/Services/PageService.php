@@ -26,9 +26,10 @@ class PageService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->pageRepository->modelScopes(['active'])
+        return $this->pageRepository
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes')))
             ->with(data_get($data, 'with', []))
-            ->addSort('order', 'desc')
+            ->addSort('order', 'asc')
             ->all(data_get($data, 'columns', ['*']));
     }
 

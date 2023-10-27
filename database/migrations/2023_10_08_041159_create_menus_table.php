@@ -18,9 +18,9 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->nullable();
             $table->tinyInteger('is_new')->default(0);
             $table->tinyInteger('type')->comment(MenuTypeEnum::class);
+            $table->foreignId('collection_id')->index()->nullable();
             $table->foreignId('inventory_id')->index()->nullable();
             $table->foreignId('post_id')->index()->nullable();
             $table->integer('order')->nullable();
