@@ -37,7 +37,6 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== SUPPORT DESKS ======================== */
     Route::get('product-reviews', [Api\ProductReviewController::class, 'index'])->name('product-reviews.index')->middleware(['can:product-reviews.index']);
-    Route::get('subscribers', [Api\SubscriberController::class, 'index'])->name('subscribers.index')->middleware(['can:subscribers.index']);
 
     /* ======================== APPEARANCE ======================== */
     Route::get('display-inventories', [Api\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);

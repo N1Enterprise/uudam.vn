@@ -3,22 +3,20 @@
         <div class="footer__content-top page-width">
             <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet ">
                 <div class="footer-block grid__item">
-                    @foreach ($PAGES_BY_LEFT_SHOW_DIRECT as $page)
                     <div>
-                        <h2 class="footer-block__heading">{{ data_get($page, 'name') }}</h2>
+                        <h2 class="footer-block__heading"></h2>
                         <div class="footer-block__details-content rte">
-                            {!! data_get($page, 'content') !!}
+
                         </div>
                     </div>
-                    @endforeach
                 </div>
-                @if(! empty($PAGES_BY_MENUS))
+                @if(! empty($PAGES_BELONGTO_MENU))
                 <div class="footer-block grid__item footer-block--menu">
                     <h2 class="footer-block__heading">MENU</h2>
                     <ul class="footer-block__details-content list-unstyled">
-                        @foreach ($PAGES_BY_MENUS as $page)
+                        @foreach ($PAGES_BELONGTO_MENU as $page)
                         <li>
-                            <a href="{{ data_get($page, 'custom_redirect_url') ? data_get($page, 'custom_redirect_url') : route('fe.web.pages.index', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
+                            <a href="{{ route('fe.web.pages.index', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
                         </li>
                         @endforeach
                     </ul>

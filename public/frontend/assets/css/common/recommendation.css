@@ -597,3 +597,26 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         order: 1;
     }
 }
+
+
+@media screen and (max-width: 749px) {
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+        margin-right: 10px!important;
+        max-width: 150px!important;
+        flex: 1;
+        min-width: 190px!important;
+    }
+
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item img {
+        object-fit: cover!important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+        margin-right: 10px!important;
+        max-width: 150px!important;
+        flex: 1;
+        min-width: 180px!important;
+    }
+}

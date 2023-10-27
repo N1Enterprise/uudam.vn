@@ -18,14 +18,24 @@ class PostCategory extends BaseModel
         'description',
         'order',
         'status',
-        'featured',
+        'display_on_frontend',
+        'linked_inventories',
         'meta_title',
         'meta_description',
     ];
 
-    public function getFeaturedNameAttribute()
+    protected $casts = [
+        'linked_inventories'
+    ];
+
+    public function getDisplayOnFrontendNameAttribute()
     {
-        return ActivationStatusEnum::findConstantLabel($this->featured);
+        return ActivationStatusEnum::findConstantLabel($this->display_on_frontend);
+    }
+
+    public function scopeDisplayOnFE($query)
+    {
+        return $query->where('display_on_frontend', ActivationStatusEnum::ACTIVE);
     }
 
     public function posts()

@@ -13,6 +13,6 @@ Route::get('blogs', [Controllers\BlogController::class, 'index']);
 
 Route::get('blogs/posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
 
-Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index']);
+Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index'])->name('collections.index');
 
 Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');

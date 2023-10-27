@@ -19,6 +19,7 @@ class CreateMenuSubGroupsTable extends Migration
             $table->string('name');
             $table->string('redirect_url')->nullable();
             $table->foreignId('menu_group_id')->index();
+            $table->json('params')->nullable();
             $table->tinyInteger('order')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
             $table->timestamps();

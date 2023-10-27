@@ -100,31 +100,31 @@ body#buddha-preview {
     z-index: 100000000000!important
 }
 
-li.buddha-menu-item {
+li.app-menu-item {
     position: relative!important;
     z-index: 1000!important;
 }
 
-li.buddha-menu-item.mega-hover,li.buddha-menu-item:hover {
+li.app-menu-item.mega-hover,li.app-menu-item:hover {
     z-index: 1001!important
 }
 
-li.buddha-menu-item:after {
+li.app-menu-item:after {
     content: none!important
 }
 
-li.buddha-menu-item.mm-hovering {
+li.app-menu-item.mm-hovering {
     height: auto!important
 }
 
-li.buddha-menu-item a {
+li.app-menu-item a {
     cursor: pointer;
     position: relative!important;
     border: 0!important;
     min-width: auto!important
 }
 
-li.buddha-menu-item span {
+li.app-menu-item span {
     position: relative!important;
     top: auto!important;
     left: auto!important;
@@ -135,24 +135,24 @@ li.buddha-menu-item span {
     display: inline-block
 }
 
-li.buddha-menu-item span:before {
+li.app-menu-item span:before {
     content: none!important
 }
 
-li.buddha-menu-item i.mm-icon {
+li.app-menu-item i.mm-icon {
     vertical-align: inherit!important;
     float: none!important;
     padding-left: 5px;
     padding-right: 5px
 }
 
-li.buddha-menu-item>a>i.mm-icon {
+li.app-menu-item>a>i.mm-icon {
     min-width: 25px;
     min-height: 15px;
     text-align: center
 }
 
-.vertical-mega-menu li.buddha-menu-item>a>i.mm-icon {
+.vertical-mega-menu li.app-menu-item>a>i.mm-icon {
     min-width: 31px
 }
 
@@ -211,11 +211,11 @@ ul.mm-submenu.mm-icons>li>a .mm-icon {
     transform: translateY(-50%) translateX(-50%)!important
 }
 
-.horizontal-mega-menu .buddha-menu-item ul.mm-submenu.tabbed.mm-icons>li>a {
+.horizontal-mega-menu .app-menu-item ul.mm-submenu.tabbed.mm-icons>li>a {
     padding-left: 35px!important
 }
 
-.vertical-mega-menu .buddha-menu-item ul.mm-submenu.tabbed.mm-icons>li>a {
+.vertical-mega-menu .app-menu-item ul.mm-submenu.tabbed.mm-icons>li>a {
     padding-left: 20px!important
 }
 
@@ -267,11 +267,11 @@ ul.mm-submenu.link-list.mm-icons>li>a>.mm-icon.dynamic,ul.mm-submenu.link-list.m
     left: -13px
 }
 
-li.buddha-menu-item i.mm-icon.fa-none {
+li.app-menu-item i.mm-icon.fa-none {
     display: none
 }
 
-li.buddha-menu-item i.mm-icon:after {
+li.app-menu-item i.mm-icon:after {
     content: none!important
 }
 
@@ -292,7 +292,7 @@ li.buddha-menu-item i.mm-icon:after {
     display: inline-block!important
 }
 
-.buddha-menu-item .mm-icon.dynamic {
+.app-menu-item .mm-icon.dynamic {
     vertical-align: middle;
     position: relative;
     top: -1px;
@@ -327,7 +327,7 @@ li.buddha-menu-item i.mm-icon:after {
     display: none!important
 }
 
-.buddha-menu-item .mm-description {
+.app-menu-item .mm-description {
     display: block;
     flex-basis: 100%;
     font-weight: 400!important;
@@ -336,22 +336,22 @@ li.buddha-menu-item i.mm-icon:after {
     margin-top: 3px!important
 }
 
-.buddha-menu-item .mm-product-list .mm-list-info .mm-description {
+.app-menu-item .mm-product-list .mm-list-info .mm-description {
     display: block!important;
     word-break: break-word
 }
 
-.buddha-menu-item .mm-submenu.tabbed>li>a>.mm-description,.buddha-menu-item .mm-submenu.tree .mm-description {
+.app-menu-item .mm-submenu.tabbed>li>a>.mm-description,.app-menu-item .mm-submenu.tree .mm-description {
     text-align: left
 }
 
-.buddha-menu-item li[image-type] .mega-menu-item-container>a>.mm-description {
+.app-menu-item li[image-type] .mega-menu-item-container>a>.mm-description {
     position: relative;
     transform: translateX(-50%)!important;
     left: 50%!important
 }
 
-.buddha-menu-item .mm-label-wrap {
+.app-menu-item .mm-label-wrap {
     position: absolute;
     pointer-events: none;
     top: 0;
@@ -362,33 +362,33 @@ li.buddha-menu-item i.mm-icon:after {
     display: block
 }
 
-.horizontal-mega-menu .buddha-menu-item[countdown_start]>a>.mm-label {
+.horizontal-mega-menu .app-menu-item[countdown_start]>a>.mm-label {
     top: -21px!important
 }
 
-.horizontal-mega-menu .buddha-menu-item>a>.mm-label {
+.horizontal-mega-menu .app-menu-item>a>.mm-label {
     top: -18px!important;
     left: -39px!important;
     margin-right: -38px!important
 }
 
-.buddha-menu-item>a>.mm-label {
+.app-menu-item>a>.mm-label {
     top: -15px!important;
     left: 0!important
 }
 
-.buddha-menu-item .mm-list-info>a {
+.app-menu-item .mm-list-info>a {
     display: block
 }
 
-.buddha-menu-item .mm-image-container>.mm-label-wrap>.mm-label {
+.app-menu-item .mm-image-container>.mm-label-wrap>.mm-label {
     position: absolute!important;
     top: -8px!important;
     right: -12px!important;
     font-size: 12px!important
 }
 
-.buddha-menu-item .mm-label,.horizontal-mega-menu .buddha-menu-item .mm-label,.vertical-mega-menu .buddha-menu-item .mm-label {
+.app-menu-item .mm-label,.horizontal-mega-menu .app-menu-item .mm-label,.vertical-mega-menu .app-menu-item .mm-label {
     display: inline-block!important;
     margin: 2px 4px 2px 0!important;
     position: relative!important;
@@ -407,54 +407,54 @@ li.buddha-menu-item i.mm-icon:after {
     font-family: "Helvetica Neue",Helvetica,Arial
 }
 
-.buddha-menu-item .mm-label:after {
+.app-menu-item .mm-label:after {
     content: none!important
 }
 
-.horizontal-mega-menu .buddha-menu-item .mm-submenu.tabbed>li>a>.mm-title>.mm-label,.horizontal-mega-menu .buddha-menu-item .mm-submenu.tree .mm-label {
+.horizontal-mega-menu .app-menu-item .mm-submenu.tabbed>li>a>.mm-title>.mm-label,.horizontal-mega-menu .app-menu-item .mm-submenu.tree .mm-label {
     top: -1px!important
 }
 
-.buddha-menu-item .mm-label.new {
+.app-menu-item .mm-label.new {
     color: #fff!important;
     background-color: #127ab8!important
 }
 
-.buddha-menu-item .mm-label.sale {
+.app-menu-item .mm-label.sale {
     color: #fff!important;
     background-color: #52a104!important
 }
 
-.buddha-menu-item .mm-label.hot {
+.app-menu-item .mm-label.hot {
     color: #fff!important;
     background-color: #e51f14!important
 }
 
-.vertical-mega-menu .buddha-menu-item .mm-label.mm-right {
+.vertical-mega-menu .app-menu-item .mm-label.mm-right {
     position: absolute!important;
     top: calc(-25px + 50%)!important;
     right: 5px!important;
     left: auto!important
 }
 
-.vertical-mega-menu .buddha-menu-item .mm-label.mm-hidden {
+.vertical-mega-menu .app-menu-item .mm-label.mm-hidden {
     width: 0!important;
     padding: 0!important;
     visibility: hidden!important
 }
 
-.buddha-menu-item-countdown {
+.app-menu-item-countdown {
     display: inline-block;
     position: relative;
     padding-right: 2px;
     margin-left: -2px
 }
 
-.buddha-menu-item-countdown.inactive .flip-clock-label {
+.app-menu-item-countdown.inactive .flip-clock-label {
     display: none
 }
 
-.buddha-menu-item-countdown.inactive:after {
+.app-menu-item-countdown.inactive:after {
     content: 'Starts at the configured date';
     display: block;
     position: absolute;
@@ -463,45 +463,45 @@ li.buddha-menu-item i.mm-icon:after {
     font-size: 8px
 }
 
-.horizontal-mega-menu .buddha-menu-item>a {
+.horizontal-mega-menu .app-menu-item>a {
     white-space: nowrap
 }
 
-.horizontal-mega-menu .buddha-menu-item>a>.mm-title:after {
+.horizontal-mega-menu .app-menu-item>a>.mm-title:after {
     content: none!important
 }
 
-.horizontal-mega-menu .buddha-menu-item>a>.mm-title {
+.horizontal-mega-menu .app-menu-item>a>.mm-title {
     padding: 0 2px 0 4px!important;
     white-space: nowrap!important
 }
 
-.vertical-mega-menu .buddha-menu-item>a>.mm-title {
+.vertical-mega-menu .app-menu-item>a>.mm-title {
     padding: 0 2px 0 6px!important
 }
 
-.buddha-menu-item .mm-title {
+.app-menu-item .mm-title {
     vertical-align: middle;
     display: inline!important;
     white-space: normal!important
 }
 
-.vertical-mega-menu .buddha-menu-item>a>.mm-title {
+.vertical-mega-menu .app-menu-item>a>.mm-title {
     float: none;
     white-space: normal!important
 }
 
-.vertical-mega-menu>.buddha-menu-item>.mm-submenu .mm-title {
+.vertical-mega-menu>.app-menu-item>.mm-submenu .mm-title {
     background: inherit!important;
     margin: 0!important;
     padding: 0!important
 }
 
-.vertical-mega-menu>.buddha-menu-item>.mm-submenu.tree .mm-title {
+.vertical-mega-menu>.app-menu-item>.mm-submenu.tree .mm-title {
     text-align: left
 }
 
-.buddha-menu-item .mm-list-name>span {
+.app-menu-item .mm-list-name>span {
     width: 100%
 }
 
@@ -514,44 +514,44 @@ li.buddha-menu-item i.mm-icon:after {
     padding-top: 0!important
 }
 
-.horizontal-mega-menu .buddha-menu-item .mm-submenu.tree.small>li {
+.horizontal-mega-menu .app-menu-item .mm-submenu.tree.small>li {
     min-width: 135px!important
 }
 
-.horizontal-mega-menu .buddha-menu-item .mm-submenu.tree.medium>li {
+.horizontal-mega-menu .app-menu-item .mm-submenu.tree.medium>li {
     min-width: 205px!important
 }
 
-.horizontal-mega-menu .buddha-menu-item .mm-submenu.tree.large>li {
+.horizontal-mega-menu .app-menu-item .mm-submenu.tree.large>li {
     min-width: 270px!important
 }
 
-.horizontal-mega-menu .buddha-menu-item .mm-submenu.tree.large2>li {
+.horizontal-mega-menu .app-menu-item .mm-submenu.tree.large2>li {
     min-width: 340px!important
 }
 
-.horizontal-mega-menu .buddha-menu-item>.mm-submenu.tree.tree-open-left .mm-submenu.tree.medium.tree-open-left {
+.horizontal-mega-menu .app-menu-item>.mm-submenu.tree.tree-open-left .mm-submenu.tree.medium.tree-open-left {
     clip: rect(-10000px,246px,10000px,-10000px)!important
 }
 
-.horizontal-mega-menu .buddha-menu-item>.mm-submenu.tree.tree-open-left .mm-submenu.tree.large.tree-open-left {
+.horizontal-mega-menu .app-menu-item>.mm-submenu.tree.tree-open-left .mm-submenu.tree.large.tree-open-left {
     clip: rect(-10000px,311px,10000px,-10000px)!important
 }
 
-.horizontal-mega-menu .buddha-menu-item>.mm-submenu.tree.tree-open-left .mm-submenu.tree.large2.tree-open-left {
+.horizontal-mega-menu .app-menu-item>.mm-submenu.tree.tree-open-left .mm-submenu.tree.large2.tree-open-left {
     clip: rect(-10000px,381px,10000px,-10000px)!important
 }
 
-.vertical-mega-menu .buddha-menu-item .mm-submenu.tree>li {
+.vertical-mega-menu .app-menu-item .mm-submenu.tree>li {
     padding-left: 0!important;
     padding-right: 0!important
 }
 
-li.buddha-menu-item>a>i.fa-main-angle-down {
+li.app-menu-item>a>i.fa-main-angle-down {
     display: none
 }
 
-.horizontal-mega-menu>li.buddha-menu-item>a>i.fa-main-angle-down {
+.horizontal-mega-menu>li.app-menu-item>a>i.fa-main-angle-down {
     display: inline-block!important;
     vertical-align: inherit;
     float: none;
@@ -559,15 +559,15 @@ li.buddha-menu-item>a>i.fa-main-angle-down {
     padding-right: 5px
 }
 
-li.buddha-menu-item a:after {
+li.app-menu-item a:after {
     border: 0!important
 }
 
-li.buddha-menu-item a:before {
+li.app-menu-item a:before {
     content: none!important
 }
 
-li.buddha-menu-item .exp {
+li.app-menu-item .exp {
     display: none!important
 }
 
@@ -575,16 +575,16 @@ li.buddha-menu-item .exp {
     overflow: visible!important;
 }
 
-.horizontal-mega-menu li.buddha-menu-item>ul.mm-submenu {
+.horizontal-mega-menu li.app-menu-item>ul.mm-submenu {
     opacity: 0;
     height: auto!important
 }
 
-.horizontal-mega-menu li.buddha-menu-item>ul.mm-submenu li {
+.horizontal-mega-menu li.app-menu-item>ul.mm-submenu li {
     background: inherit!important
 }
 
-.horizontal-mega-menu li.buddha-menu-item.mega-hover>ul.mm-submenu,.horizontal-mega-menu li.buddha-menu-item:hover>ul.mm-submenu {
+.horizontal-mega-menu li.app-menu-item.mega-hover>ul.mm-submenu,.horizontal-mega-menu li.app-menu-item:hover>ul.mm-submenu {
     top: 100%!important;
     -webkit-animation: mmFadeInUp .3s ease forwards;
     animation: mmFadeInUp .3s ease forwards;
@@ -606,18 +606,18 @@ li.buddha-menu-item .exp {
     visibility: visible!important
 }
 
-.horizontal-mega-menu li.buddha-menu-item ul.mm-submenu.simple,.vertical-mega-menu>li.buddha-menu-item.mm-hovering>ul.mm-submenu.simple,.vertical-mega-menu>li.buddha-menu-item.mm-hovering>ul.mm-submenu.tabbed>li.mm-hovering>ul.mm-submenu.simple {
+.horizontal-mega-menu li.app-menu-item ul.mm-submenu.simple,.vertical-mega-menu>li.app-menu-item.mm-hovering>ul.mm-submenu.simple,.vertical-mega-menu>li.app-menu-item.mm-hovering>ul.mm-submenu.tabbed>li.mm-hovering>ul.mm-submenu.simple {
     display: flex!important;
     flex-flow: row wrap;
     align-items: stretch
 }
 
-.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.simple,.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.tabbed>li>ul.mm-submenu.simple {
+.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.simple,.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.tabbed>li>ul.mm-submenu.simple {
     flex-flow: row wrap;
     align-items: stretch
 }
 
-.horizontal-mega-menu li.buddha-menu-item.disabled:hover>ul.mm-submenu {
+.horizontal-mega-menu li.app-menu-item.disabled:hover>ul.mm-submenu {
     top: -99999px!important
 }
 
@@ -717,18 +717,18 @@ ul.mm-submenu li {
     font-weight: 400
 }
 
-.vertical-mega-menu li.buddha-menu-item {
+.vertical-mega-menu li.app-menu-item {
     display: block!important;
     -webkit-tap-highlight-color: transparent;
     opacity: 1!important
 }
 
-.vertical-mega-menu li.buddha-menu-item>a {
+.vertical-mega-menu li.app-menu-item>a {
     display: block!important;
     float: none!important
 }
 
-.vertical-mega-menu li.buddha-menu-item ul.mm-submenu,.vertical-mega-menu li.buddha-menu-item:hover ul.mm-submenu {
+.vertical-mega-menu li.app-menu-item ul.mm-submenu,.vertical-mega-menu li.app-menu-item:hover ul.mm-submenu {
     display: none!important
 }
 
@@ -785,19 +785,19 @@ ul.mm-submenu li {
     bottom: auto!important
 }
 
-.vertical-mega-menu li.buddha-menu-item:hover>ul.mm-submenu {
+.vertical-mega-menu li.app-menu-item:hover>ul.mm-submenu {
     display: none!important;
     -webkit-animation: none;
     animation: none
 }
 
-.vertical-mega-menu li.buddha-menu-item ul.mm-submenu.submenu-opened {
+.vertical-mega-menu li.app-menu-item ul.mm-submenu.submenu-opened {
     opacity: 1!important;
     height: auto!important;
     overflow: visible!important
 }
 
-.vertical-mega-menu li.buddha-menu-item ul.mm-submenu.submenu-opened .mm-submenu {
+.vertical-mega-menu li.app-menu-item ul.mm-submenu.submenu-opened .mm-submenu {
     display: block!important
 }
 
@@ -1391,7 +1391,7 @@ ul.mm-submenu.simple>li ul.mm-submenu.link-list li a {
     background: inherit!important
 }
 
-.horizontal-mega-menu li.buddha-menu-item.mega-hover>ul.mm-submenu.mm-contact,.horizontal-mega-menu li.buddha-menu-item:hover>ul.mm-submenu.mm-contact,ul.mm-submenu.mm-contact {
+.horizontal-mega-menu li.app-menu-item.mega-hover>ul.mm-submenu.mm-contact,.horizontal-mega-menu li.app-menu-item:hover>ul.mm-submenu.mm-contact,ul.mm-submenu.mm-contact {
     width: 100%;
     display: flex!important;
     cursor: default;
@@ -1402,7 +1402,7 @@ ul.mm-submenu.simple>li ul.mm-submenu.link-list li a {
     display: none!important
 }
 
-.horizontal-mega-menu>.buddha-menu-item>.mm-contact {
+.horizontal-mega-menu>.app-menu-item>.mm-contact {
     background: #fff!important
 }
 
@@ -1459,7 +1459,7 @@ ul.mm-submenu li.mm-contact-column.mm-info {
     margin-bottom: 40px
 }
 
-li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-address,li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-email,li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-phone {
+li.app-menu-item>ul.mm-submenu li.mm-info .mm-address,li.app-menu-item>ul.mm-submenu li.mm-info .mm-email,li.app-menu-item>ul.mm-submenu li.mm-info .mm-phone {
     display: inline-block;
     width: calc(100% - 140px)!important;
     vertical-align: middle
@@ -1469,17 +1469,17 @@ ul.mm-submenu li.mm-contact-column.mm-info .mm-address>a,ul.mm-submenu li.mm-con
     display: block
 }
 
-.vertical-mega-menu li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-address {
+.vertical-mega-menu li.app-menu-item>ul.mm-submenu li.mm-info .mm-address {
     width: calc(100% - 30px)!important;
     word-break: break-word
 }
 
-.vertical-mega-menu li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-email,.vertical-mega-menu li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-phone {
+.vertical-mega-menu li.app-menu-item>ul.mm-submenu li.mm-info .mm-email,.vertical-mega-menu li.app-menu-item>ul.mm-submenu li.mm-info .mm-phone {
     width: calc(100% - 40px)!important;
     word-break: break-word
 }
 
-.horizontal-mega-menu li.buddha-menu-item>ul.mm-submenu li.mm-info,.horizontal-mega-menu li.buddha-menu-item>ul.mm-submenu li.mm-info a {
+.horizontal-mega-menu li.app-menu-item>ul.mm-submenu li.mm-info,.horizontal-mega-menu li.app-menu-item>ul.mm-submenu li.mm-info a {
     background: #3a3a3a!important;
     color: #f1f1f0!important
 }
@@ -1550,11 +1550,11 @@ ul.mm-submenu li.mm-contact-column.mm-info .mm-socialmedia>a {
     z-index: 1
 }
 
-li.buddha-menu-item>ul.mm-submenu li.mm-info .mm-socialmedia>a:hover {
+li.app-menu-item>ul.mm-submenu li.mm-info .mm-socialmedia>a:hover {
     background: #ccc!important
 }
 
-li.buddha-menu-item>ul.mm-submenu li.mm-contact-column.mm-info .mm-socialmedia>a:hover>i {
+li.app-menu-item>ul.mm-submenu li.mm-contact-column.mm-info .mm-socialmedia>a:hover>i {
     color: #fff!important
 }
 
@@ -1649,7 +1649,7 @@ ul.mm-submenu li.mm-contact-column input,ul.mm-submenu li.mm-contact-column text
     box-shadow: none!important
 }
 
-.buddha-menu-item ul.mm-submenu .mm-contact-column textarea {
+.app-menu-item ul.mm-submenu .mm-contact-column textarea {
     margin-bottom: 10px
 }
 
@@ -1705,7 +1705,7 @@ ul.mm-submenu .mm-contact-column input:focus,ul.mm-submenu .mm-contact-column te
     font-size: 1.2em
 }
 
-.horizontal-mega-menu li[data-href=no-link],.vertical-mega-menu li[data-href=no-link],li.buddha-menu-item a[data-href=no-link] {
+.horizontal-mega-menu li[data-href=no-link],.vertical-mega-menu li[data-href=no-link],li.app-menu-item a[data-href=no-link] {
     cursor: default!important
 }
 
@@ -1722,7 +1722,7 @@ ul.mm-submenu .mm-contact-column input:focus,ul.mm-submenu .mm-contact-column te
     }
 }
 
-.buddha-menu-item a:focus {
+.app-menu-item a:focus {
     outline: 0!important
 }
 
@@ -2065,11 +2065,11 @@ ul.mm-submenu.tabbed[columns="2"]>li>ul.mm-submenu>li[submenu-columns="5"] {
     line-height: 1.5em
 }
 
-li.buddha-menu-item .toggle-menu-btn {
+li.app-menu-item .toggle-menu-btn {
     transition: opacity .3s linear
 }
 
-li.buddha-menu-item>a>.toggle-menu-btn {
+li.app-menu-item>a>.toggle-menu-btn {
     opacity: 0!important
 }
 
@@ -2147,7 +2147,7 @@ li[item-type=best-sellers] .mm-add-to-cart>div,li[item-type=link-list-image] .mm
     display: none!important
 }
 
-.horizontal-mega-menu .buddha-menu-item .mm-add-to-cart>div:hover {
+.horizontal-mega-menu .app-menu-item .mm-add-to-cart>div:hover {
     background: #0da19a!important;
     color: #fff!important;
     border-color: #0da19a!important
@@ -2164,7 +2164,7 @@ li[item-type=best-sellers] .mm-add-to-cart>div,li[item-type=link-list-image] .mm
     -webkit-border-radius: 5px
 }
 
-.vertical-mega-menu .buddha-menu-item .mm-add-to-cart>div:hover {
+.vertical-mega-menu .app-menu-item .mm-add-to-cart>div:hover {
     background: #000!important;
     color: #fff!important;
     border-color: #000!important
@@ -2246,7 +2246,7 @@ ul.mm-submenu.simple .mega-menu-item-container {
     width: 100%
 }
 
-.buddha-menu-item img:not([src]),.buddha-menu-item img[src=""] {
+.app-menu-item img:not([src]),.app-menu-item img[src=""] {
     visibility: hidden
 }
 
@@ -2352,7 +2352,7 @@ ul.mm-submenu.simple li[item-type=featured-banner]:hover .mm-image-container>.mm
     transform: scale(1)!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item ul.mm-submenu.height-transition {
+.vertical-mega-menu>li.app-menu-item ul.mm-submenu.height-transition {
     -webkit-transition: max-height .6s ease-in-out,margin-bottom .6s ease-in-out!important;
     -moz-transition: max-height .6s ease-in-out,margin-bottom .6s ease-in-out!important;
     -o-transition: max-height .6s ease-in-out,margin-bottom .6s ease-in-out!important;
@@ -2362,7 +2362,7 @@ ul.mm-submenu.simple li[item-type=featured-banner]:hover .mm-image-container>.mm
     transform: none!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.simple.height-transition,.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.tabbed.height-transition>li>ul.mm-submenu.simple.height-transition {
+.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.simple.height-transition,.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.tabbed.height-transition>li>ul.mm-submenu.simple.height-transition {
     display: flex!important
 }
 
@@ -2490,38 +2490,38 @@ ul.mm-submenu.simple li .mega-menu-prices>span {
     font-weight: 700!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item>a>.toggle-menu-btn.fa-visible {
+.vertical-mega-menu>li.app-menu-item>a>.toggle-menu-btn.fa-visible {
     opacity: 1!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item .toggle-menu-btn:after,.vertical-mega-menu>li.buddha-menu-item span:after {
+.vertical-mega-menu>li.app-menu-item .toggle-menu-btn:after,.vertical-mega-menu>li.app-menu-item span:after {
     content: none!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item .mm-arrow-icon>span {
+.vertical-mega-menu>li.app-menu-item .mm-arrow-icon>span {
     bottom: unset!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.tabbed>li>a>.toggle-menu-btn>span.mm-cross,.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.tree li>a>.toggle-menu-btn>span.mm-cross {
+.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.tabbed>li>a>.toggle-menu-btn>span.mm-cross,.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.tree li>a>.toggle-menu-btn>span.mm-cross {
     border-radius: 5px 5px 0 0!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item>a>.toggle-menu-btn {
+.vertical-mega-menu>li.app-menu-item>a>.toggle-menu-btn {
     position: absolute!important;
     top: 50%;
     transform: translateY(-50%)
 }
 
-.vertical-mega-menu>li.buddha-menu-item .mm-submenu>li>a>.toggle-menu-btn {
+.vertical-mega-menu>li.app-menu-item .mm-submenu>li>a>.toggle-menu-btn {
     position: absolute!important;
     bottom: 0
 }
 
-.vertical-mega-menu>li.buddha-menu-item .mm-submenu.tabbed>li>a,.vertical-mega-menu>li.buddha-menu-item .mm-submenu.tree>li>a {
+.vertical-mega-menu>li.app-menu-item .mm-submenu.tabbed>li>a,.vertical-mega-menu>li.app-menu-item .mm-submenu.tree>li>a {
     min-height: 25px!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item a>.toggle-menu-btn>span {
+.vertical-mega-menu>li.app-menu-item a>.toggle-menu-btn>span {
     padding: 0 6px;
     background: 0 0!important;
     border-radius: 5px!important;
@@ -2529,15 +2529,15 @@ ul.mm-submenu.simple li .mega-menu-prices>span {
     font-size: 20px!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item a>.toggle-menu-btn>span.mm-cross {
+.vertical-mega-menu>li.app-menu-item a>.toggle-menu-btn>span.mm-cross {
     background: rgba(255,255,255,.1)
 }
 
-.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.tabbed>li>a>.toggle-menu-btn,.vertical-mega-menu>li.buddha-menu-item>ul.mm-submenu.tree li>a>.toggle-menu-btn {
+.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.tabbed>li>a>.toggle-menu-btn,.vertical-mega-menu>li.app-menu-item>ul.mm-submenu.tree li>a>.toggle-menu-btn {
     right: 0!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item>a>.toggle-menu-btn {
+.vertical-mega-menu>li.app-menu-item>a>.toggle-menu-btn {
     right: 5px!important
 }
 
@@ -2553,13 +2553,13 @@ ul.mm-submenu.simple li .mega-menu-prices>span {
     padding-bottom: 0!important
 }
 
-.buddha-menu-item .mmLazyloaded,.buddha-menu-item .mmShow {
+.app-menu-item .mmLazyloaded,.app-menu-item .mmShow {
     opacity: 1!important;
     -webkit-transition: opacity .35s ease;
     transition: opacity .35s ease
 }
 
-.buddha-menu-item .mmHidden,.buddha-menu-item .mmLazyload,.buddha-menu-item .mmLazyloading {
+.app-menu-item .mmHidden,.app-menu-item .mmLazyload,.app-menu-item .mmLazyloading {
     opacity: 0!important
 }
 
@@ -2599,16 +2599,16 @@ ul.mm-submenu.simple>li .mega-menu-prices span.mega-menu-sold_out {
     text-shadow: none!important
 }
 
-.horizontal-mega-menu>li.buddha-menu-item ul.mm-submenu.tree,.horizontal-mega-menu>li.buddha-menu-item ul.mm-submenu.tree>li:first-child,.horizontal-mega-menu>li.buddha-menu-item ul.mm-submenu.tree>li:last-child,.horizontal-mega-menu>li.buddha-menu-item>ul.mm-contact,.horizontal-mega-menu>li.buddha-menu-item>ul.mm-contact>li.mm-contact-column,.horizontal-mega-menu>li.buddha-menu-item>ul.mm-submenu,.horizontal-mega-menu>li.buddha-menu-item>ul.mm-submenu.tree>li>ul.mm-submenu.tree {
+.horizontal-mega-menu>li.app-menu-item ul.mm-submenu.tree,.horizontal-mega-menu>li.app-menu-item ul.mm-submenu.tree>li:first-child,.horizontal-mega-menu>li.app-menu-item ul.mm-submenu.tree>li:last-child,.horizontal-mega-menu>li.app-menu-item>ul.mm-contact,.horizontal-mega-menu>li.app-menu-item>ul.mm-contact>li.mm-contact-column,.horizontal-mega-menu>li.app-menu-item>ul.mm-submenu,.horizontal-mega-menu>li.app-menu-item>ul.mm-submenu.tree>li>ul.mm-submenu.tree {
     border-radius: 5px!important
 }
 
-.horizontal-mega-menu>li.buddha-menu-item ul.mm-submenu.tree>li:first-child:not(:last-child) {
+.horizontal-mega-menu>li.app-menu-item ul.mm-submenu.tree>li:first-child:not(:last-child) {
     border-bottom-left-radius: 0!important;
     border-bottom-right-radius: 0!important
 }
 
-.horizontal-mega-menu>li.buddha-menu-item ul.mm-submenu.tree>li:last-child:not(:first-child) {
+.horizontal-mega-menu>li.app-menu-item ul.mm-submenu.tree>li:last-child:not(:first-child) {
     border-top-left-radius: 0!important;
     border-top-right-radius: 0!important
 }
@@ -2618,7 +2618,7 @@ ul.mm-submenu.simple>li .mega-menu-prices span.mega-menu-sold_out {
     padding-right: 25px!important
 }
 
-.vertical-mega-menu>li.buddha-menu-item>a {
+.vertical-mega-menu>li.app-menu-item>a {
     width: 100%!important;
     box-sizing: border-box!important;
     padding-right: 35px!important
@@ -2639,7 +2639,7 @@ ul.mm-submenu.simple>li .mega-menu-prices span.mega-menu-sold_out {
     position: relative
 }
 
-.buddha-menu-item #nudge-offer {
+.app-menu-item #nudge-offer {
     display: none!important
 }
 

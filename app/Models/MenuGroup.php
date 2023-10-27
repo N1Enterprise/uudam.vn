@@ -13,6 +13,11 @@ class MenuGroup extends BaseModel
         'redirect_url',
         'order',
         'status',
+        'params',
+    ];
+
+    protected $casts = [
+        'params' => 'json',
     ];
 
     public function menuSubGroups()

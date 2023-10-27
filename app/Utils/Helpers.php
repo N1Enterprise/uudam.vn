@@ -206,3 +206,10 @@ if (! function_exists('format_datetime')) {
         return date($format, strtotime($datetime));
     }
 }
+
+if (! function_exists('display_json_value')) {
+    function display_json_value($value, $default = '{}')
+    {
+        return $value ? json_encode($value, JSON_PRETTY_PRINT) : $default;
+    }
+}

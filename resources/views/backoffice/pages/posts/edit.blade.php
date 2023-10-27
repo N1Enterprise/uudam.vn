@@ -29,22 +29,6 @@
         color: #4346ce!important;
         border: 1px solid #4346ce!important;
     }
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
-    #form_builder_dom.styled {
-        padding: 10px 35px;
-        border: 1px solid #ebedf2;
-        border-radius: 3px;
-    }
-    .ce-block__content,
-    .ce-toolbar__content {
-        max-width: unset!important;
-    }
-    .codex-editor__redactor {
-        padding-bottom: 0px!important;
-        min-height: 200px;
-    }
 </style>
 @endsection
 
@@ -80,7 +64,7 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $post->name) }}" required>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $post->name) }}" data-reference-slug="slug" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -183,11 +167,11 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
+									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('featured', boolean($post->featured) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="featured" />
+												<input type="checkbox" {{ old('display_on_frontend', boolean($post->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
 												<span></span>
 											</label>
 										</span>
@@ -224,7 +208,4 @@
 
 @section('js_script')
 @include('backoffice.pages.posts.js-pages.handle')
-<script>
-    FORM_PRIMARY_IMAGE_PATH.triggerChange();
-</script>
 @endsection

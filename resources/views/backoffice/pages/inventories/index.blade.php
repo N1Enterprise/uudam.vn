@@ -192,13 +192,13 @@
         const wrapper = $(`
             <div style="width: 200px;">
                 <div class="offer_price d-flex align-items-center">
-                    <small style="display: block; width: 30px;">Price:</small> <b>${data ? data: 'N/A'}</b>
+                    <small style="display: block; width: 40px;">Price:</small> <b>${data ? data: 'N/A'}</b>
                 </div>
                 <div class="offer_start d-flex align-items-center">
-                    <small style="display: block; width: 30px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
+                    <small style="display: block; width: 40px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
                 </div>
                 <div class="offer_end d-flex align-items-center">
-                    <small style="display: block; width: 30px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
+                    <small style="display: block; width: 40px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
                 </div>
             </div>
         `);

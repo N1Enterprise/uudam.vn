@@ -301,3 +301,7 @@ body {
 .d-none {
     display: none!important;
 }
+
+.owl-dots {
+    display: none!important;
+}

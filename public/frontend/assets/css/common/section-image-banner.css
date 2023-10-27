@@ -73,7 +73,8 @@
         min-height: 42rem;
     }
 
-    .banner--medium:not(.banner--adapt) {
+    .banner--medium:not(.banner--adapt),
+    .banner--medium:not(.banner--adapt) .slideshow__slide {
         min-height: 56rem;
     }
 
@@ -345,18 +346,6 @@
     .banner--mobile-bottom .banner__media::after {
         display: none;
     }
-}
-
-.banner::after,
-.banner__media::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    background: #000000;
-    opacity: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
 }
 
 .banner__box>*+.banner__text {
