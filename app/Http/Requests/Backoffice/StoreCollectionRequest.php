@@ -26,8 +26,10 @@ class StoreCollectionRequest extends BaseFormRequest implements StoreCollectionR
             'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'inventories' => ['required', 'array'],
-            'inventories.*' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
+            'linked_inventories' => ['nullable', 'array'],
+            'linked_inventories.*' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
+            'linked_featured_inventories' => ['nullable', 'array'],
+            'linked_featured_inventories.*' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
             'order' => ['nullable', 'integer'],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
@@ -42,7 +44,8 @@ class StoreCollectionRequest extends BaseFormRequest implements StoreCollectionR
             'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
             'cover_image' => empty(array_filter($this->cover_image)) ? null : array_filter($this->cover_image),
-            'inventories' => array_filter($this->inventories ?? []),
+            'linked_inventories' => array_map('intval', array_filter($this->linked_inventories ?? [])),
+            'linked_featured_inventories' => array_map('intval', array_filter($this->linked_featured_inventories ?? [])),
         ]);
     }
 }

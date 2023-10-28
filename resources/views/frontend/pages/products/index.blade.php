@@ -14,8 +14,6 @@
         }
     }
 </style>
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick.css') }}">
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick-theme.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/products/index.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
@@ -33,7 +31,7 @@
 
 @section('page_seo')
 <meta name="description" content="{{ $inventory->meta_description }}">
-<meta property="og:url" content="{{ route('fe.web.products.show', $inventory->slug) }}">
+<meta property="og:url" content="{{ route('fe.web.products.index', $inventory->slug) }}">
 <meta property="og:title" content="{{ $inventory->meta_title }}">
 <meta property="og:type" content="product">
 <meta property="og:description" content="{{ $inventory->meta_description }}">

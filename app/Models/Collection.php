@@ -20,10 +20,17 @@ class Collection extends BaseModel
         'description',
         'featured',
         'status',
+        'linked_inventories',
+        'linked_featured_inventories',
         'display_on_frontend',
         'order',
         'meta_title',
         'meta_description'
+    ];
+
+    protected $casts = [
+        'linked_inventories' => 'json',
+        'linked_featured_inventories' => 'json',
     ];
 
     public function getFeaturedNameAttribute()
@@ -34,10 +41,5 @@ class Collection extends BaseModel
     public function getDisplayOnFrontendNameAttribute()
     {
         return ActivationStatusEnum::findConstantLabel($this->display_on_frontend);
-    }
-
-    public function inventories()
-    {
-        return $this->belongsToMany(Inventory::class, 'collection_inventories');
     }
 }

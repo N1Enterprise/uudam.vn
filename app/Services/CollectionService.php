@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Collection;
 use App\Repositories\Contracts\CollectionRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
@@ -12,10 +11,12 @@ use Illuminate\Support\Facades\Storage;
 class CollectionService extends BaseService
 {
     public $collectionRepository;
+    public $inventoryService;
 
-    public function __construct(CollectionRepositoryContract $collectionRepository)
+    public function __construct(CollectionRepositoryContract $collectionRepository, InventoryService $inventoryService)
     {
         $this->collectionRepository = $collectionRepository;
+        $this->inventoryService = $inventoryService;
     }
 
     public function searchByAdmin($data = [])
@@ -29,9 +30,28 @@ class CollectionService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->collectionRepository->modelScopes(['active'])
+        return $this->collectionRepository
+            ->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function showBySlug($slug, $data = [])
+    {
+        return $this->collectionRepository
+            ->modelScopes(['active'])
+            ->firstWhere(['slug' => $slug], data_get($data, 'columns', ['*']));
+    }
+
+    public function getLinkedInventories($id, $data = [])
+    {
+        $collection = $this->show($id);
+
+        $linkedInventories = data_get($collection, 'linked_inventories', []);
+
+        $inventories = $this->inventoryService->searchByUser(array_merge(['filter_ids' => $linkedInventories], $data));
+
+        return $inventories;
     }
 
     public function create($attributes = [])
@@ -41,8 +61,6 @@ class CollectionService extends BaseService
             $attributes['cover_image'] = $this->convertImage(data_get($attributes, 'cover_image'));
 
             $collection = $this->collectionRepository->create($attributes);
-
-            $this->syncInventories($collection, data_get($attributes, 'inventories', []));
 
             return $collection;
         });
@@ -65,8 +83,6 @@ class CollectionService extends BaseService
 
             $collection = $this->collectionRepository->update($attributes, $collection->getKey());
 
-            $this->syncInventories($collection, data_get($attributes, 'inventories', []));
-
             return $collection;
         });
     }
@@ -74,11 +90,6 @@ class CollectionService extends BaseService
     public function delete($id)
     {
         return $this->collectionRepository->delete($id);
-    }
-
-    protected function syncInventories(Collection $collection, $inventories = [])
-    {
-        return $collection->inventories()->sync($inventories);
     }
 
     protected function convertImage($image)

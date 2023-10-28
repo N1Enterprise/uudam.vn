@@ -35,7 +35,7 @@ class CollectionController extends BaseController
 
     public function edit($id)
     {
-        $collection = $this->collectionService->show($id, ['with' => 'inventories']);
+        $collection = $this->collectionService->show($id);
         $inventories = $this->inventoryService->allAvailable();
 
         return view('backoffice.pages.collections.edit', compact('collection', 'inventories'));

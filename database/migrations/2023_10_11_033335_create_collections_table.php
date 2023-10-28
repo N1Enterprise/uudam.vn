@@ -28,6 +28,8 @@ class CreateCollectionsTable extends Migration
             $table->integer('order')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
+            $table->json('linked_inventories')->nullable();
+            $table->json('linked_featured_inventories')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
