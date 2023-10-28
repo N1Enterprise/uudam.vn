@@ -110,7 +110,7 @@
     function onInventoryChange() {
         $('[name="inventory_id"]').on('change', function() {
             const slug = $(this).find(`option[value="${$(this).val()}"]`).attr('data-slug');
-            const productRoute = "{{ route('fe.web.products.show', ':slug') }}".replace(':slug', slug);
+            const productRoute = "{{ route('fe.web.products.index', ':slug') }}".replace(':slug', slug);
 
             $('[name="redirect_url"]').val(slug ? productRoute : '');
         });

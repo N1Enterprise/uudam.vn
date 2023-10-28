@@ -102,7 +102,7 @@ class PostService extends BaseService
             ->all(data_get($data, 'columns'));
     }
 
-    public function showBySlug($slug, $data = [])
+    public function findBySlug($slug, $data = [])
     {
         return $this->postRepository
             ->modelScopes(['active'])

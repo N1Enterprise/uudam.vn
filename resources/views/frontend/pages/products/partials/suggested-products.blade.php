@@ -4,8 +4,8 @@
         <div class="ls-ul-container limespot-recommendation-box-carousel ls-drag-scroll v-align">
             <div class="ls-ul limespot-recommendation-box-carousel-shelf" data-slick-config='{"id": "most_popular_items", "speed": 300, "slidesToShow": 5, "slidesToScroll": 5, "infinite": true, "lazyLoad": "ondemand"}'>
                 @foreach ($suggestedInventories as $inventory)
-                <div class="limespot-recommendation-box-item" data-product-identifier="{{ $inventory->id }}" data-product-title="{{ $inventory->title }}" data-price="{{ format_price($inventory->sale_price) }}" data-original-price="{{ format_price($inventory->sale_price) }}" data-display-url="{{ route('fe.web.products.show', $inventory->slug) }}" style="margin-right: 10px; max-width: 270px; flex-basis: 270px; min-width: 270px;">
-                    <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.show', $inventory->slug) }}">
+                <div class="limespot-recommendation-box-item" data-product-identifier="{{ $inventory->id }}" data-product-title="{{ $inventory->title }}" data-price="{{ format_price($inventory->sale_price) }}" data-original-price="{{ format_price($inventory->sale_price) }}" data-display-url="{{ route('fe.web.products.index', $inventory->slug) }}" style="margin-right: 10px; max-width: 270px; flex-basis: 270px; min-width: 270px;">
+                    <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.index', $inventory->slug) }}">
                         <div class="ls-image-wrap" style="flex: 1 1 270px;">
                             <img class="ls-image" alt="{{ $inventory->title }}" title="{{ $inventory->title }}" loading="lazy" sizes="270px" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
                             <img sizes="270px" srcset="{{ optional($inventory->product)->primary_image }}" src="{{ optional($inventory->product)->primary_image }}" class="ls-image ls-image-secondary" style="max-width: 270px; max-height: 270px; border-radius: 0px;">

@@ -25,6 +25,7 @@ class Inventory extends BaseModel
         'purchase_price',
         'sale_price',
         'offer_price',
+        'featured',
         'offer_start',
         'offer_end',
         'stock_quantity',

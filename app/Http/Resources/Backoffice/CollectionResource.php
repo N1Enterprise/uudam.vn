@@ -21,6 +21,8 @@ class CollectionResource extends BaseJsonResource
             'display_on_frontend_name' => $this->display_on_frontend_name,
             'status' => $this->status,
             'status_name' => $this->status_name,
+            'linked_inventories' => $this->linked_inventories,
+            'linked_featured_inventories' => $this->linked_featured_inventories,
             'order' => $this->order,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,

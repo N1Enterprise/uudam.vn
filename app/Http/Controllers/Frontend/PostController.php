@@ -16,7 +16,7 @@ class PostController extends BaseController
 
     public function index(Request $request, $slug)
     {
-        $post = $this->postService->showBySlug($slug);
+        $post = $this->postService->findBySlug($slug);
 
         return $this->view('frontend.pages.posts.index', compact('post'));
     }
