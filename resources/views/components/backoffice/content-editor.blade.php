@@ -24,7 +24,6 @@
     const config = @json($config);
 
     const element = $('.summernote');
-    const htmlContent = "{!! nl2br($value) !!}";
 
     const instance = element.summernote({
         height: 300,

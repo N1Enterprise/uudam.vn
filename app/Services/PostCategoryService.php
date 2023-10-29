@@ -40,6 +40,21 @@ class PostCategoryService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
+    public function getAvailableDisplayOnFE($data = [])
+    {
+        if (data_get($data, 'with.posts')) {
+            $data['with']['posts'] = ['posts' => function($q) {
+                $q->where('status', ActivationStatusEnum::ACTIVE)
+                    ->where('display_on_frontend', ActivationStatusEnum::ACTIVE);
+            }];
+        }
+
+        return $this->postCategoryRepository
+            ->modelScopes(['active', 'displayOnFE'])
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {

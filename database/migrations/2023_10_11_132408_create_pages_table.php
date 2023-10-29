@@ -22,7 +22,7 @@ class CreatePagesTable extends Migration
             $table->string('title');
             $table->tinyInteger('order')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->morphs('created_by');

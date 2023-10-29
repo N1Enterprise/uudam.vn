@@ -188,11 +188,10 @@
                                     </label>
                                     <input
                                         type="datetimepicker"
-                                        class="form-control d-none @error('offer_start') is-invalid @enderror"
+                                        class="form-control @error('offer_start') is-invalid @enderror"
                                         name="offer_start"
                                         value="{{ old('offer_start', $inventory->offer_start) }}"
                                         required
-                                        disabled
                                     >
                                     @error('offer_start')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -210,11 +209,10 @@
                                     </label>
                                     <input
                                         type="datetimepicker"
-                                        class="form-control d-none @error('offer_end') is-invalid @enderror"
+                                        class="form-control @error('offer_end') is-invalid @enderror"
                                         name="offer_end"
                                         value="{{ old('offer_end', $inventory->offer_end) }}"
                                         required
-                                        disabled
                                     >
                                     @error('offer_end')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -297,10 +295,6 @@
                         </div>
                     </div>
                     <div class="k-portlet__body">
-                        <div class="form-group">
-                            <x-content-editor id="description" label="Description" name="description" value="{{ old('description', $inventory->description) }}" />
-                        </div>
-
                         <div class="form-group">
                             <label>{{ __('Meta Title') }}</label>
                             <input

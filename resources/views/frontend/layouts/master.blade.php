@@ -30,6 +30,7 @@
     <!--begin::Page Vendors Styles -->
     <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
@@ -37,7 +38,6 @@
     <link href="{{ asset('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
-
     <!--end::Page Vendors Styles -->
 
     @yield('style_datatable')
@@ -85,7 +85,7 @@
             display: block!important;
             pointer-events: auto!important;
         }
-        .horizontal-mega-menu ul.mm-submenu, .horizontal-mega-menu>li>ul.mm-submenu.tabbed>li>ul.mm-submenu li, .horizontal-mega-menu li.buddha-menu-item:hover ul.mm-submenu.simple li:hover, .horizontal-mega-menu li.buddha-menu-item.mega-hover ul.mm-submenu.simple li:hover {
+        .horizontal-mega-menu ul.mm-submenu, .horizontal-mega-menu>li>ul.mm-submenu.tabbed>li>ul.mm-submenu li, .horizontal-mega-menu li.app-menu-item:hover ul.mm-submenu.simple li:hover, .horizontal-mega-menu li.app-menu-item.mega-hover ul.mm-submenu.simple li:hover {
             background: #ffffff !important;
         }
         .horizontal-mega-menu ul.mm-submenu, .horizontal-mega-menu ul.mm-submenu li, .horizontal-mega-menu ul.mm-submenu li.mm-contact-column span, .horizontal-mega-menu ul.mm-submenu li a, .horizontal-mega-menu ul.mm-submenu li a span, .horizontal-mega-menu ul.mm-submenu li.fa, .horizontal-mega-menu ul.mm-submenu.tree li:hover>a[data-href="no-link"], .horizontal-mega-menu ul.mm-submenu.tree li.mega-hover>a[data-href="no-link"], .horizontal-mega-menu ul.mm-submenu.tabbed>li.tab-opened>a[data-href="no-link"], .horizontal-mega-menu ul.mm-submenu li a[data-href="no-link"]:hover {
@@ -94,13 +94,13 @@
         .horizontal-mega-menu ul.mm-submenu, .horizontal-mega-menu ul.mm-submenu a, .horizontal-mega-menu ul.mm-submenu a>span, .horizontal-mega-menu ul.mm-submenu .money {
             font-size: 13px !important;
         }
-        .vertical-mega-menu>.buddha-menu-item>.mm-submenu.height-transition {
+        .vertical-mega-menu>.app-menu-item>.mm-submenu.height-transition {
             background-color: #017b86 !important;
         }
-        .vertical-mega-menu[menuIdx="0"]>li.buddha-menu-item ul.mm-submenu.simple>li.mm-left-item {
+        .vertical-mega-menu[menuIdx="0"]>li.app-menu-item ul.mm-submenu.simple>li.mm-left-item {
             padding-left: 32px !important;
         }
-        .vertical-mega-menu[menuIdx="0"]>li.buddha-menu-item ul.mm-submenu.simple>li.mm-right-item {
+        .vertical-mega-menu[menuIdx="0"]>li.app-menu-item ul.mm-submenu.simple>li.mm-right-item {
             padding-right: 32px !important;
         }
         .vertical-mega-menu ul.mm-submenu.simple > li .mm-list-name {
@@ -121,7 +121,7 @@
         .vertical-mega-menu ul.mm-submenu, .vertical-mega-menu ul.mm-submenu span, .vertical-mega-menu ul.mm-submenu.simple>li ul.mm-product-list>li .mm-list-info {
             font-size: 13px !important;
         }
-        .vertical-mega-menu[menuIdx="0"]>li.buddha-menu-item > a > .toggle-menu-btn {
+        .vertical-mega-menu[menuIdx="0"]>li.app-menu-item > a > .toggle-menu-btn {
             right: 32px !important;
             top: calc(50% + 0px) !important;
         }
@@ -141,13 +141,29 @@
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/components/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
 
     @yield('js_script')
     @stack('js_pages')
+    <script>
+        $(document).ready(function() {
+            $.each($('.horizontal-mega-menu .app-menu-item'), function(index, element) {
+                const $menu = $(element);
+                const $submenu = $menu.find('.mm-submenu');
+                const $mainHeaderHeading = $('#shopify-section-header .header__heading');
+                const $appHeader = $('header.header');
+
+                const offsetLeft = $submenu.offset().left - $mainHeaderHeading.offset().left;
+                const withOfAppHeader = $appHeader.width();
+
+                $submenu.css('left', `-${offsetLeft}px`);
+                $submenu.css('width', `${withOfAppHeader}px`);
+            });
+        });
+    </script>
 </body>
 </html>

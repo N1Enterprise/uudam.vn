@@ -1,8 +1,6 @@
 @extends('frontend.layouts.master')
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick.css') }}">
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick-theme.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/blog-news/index.css') }}">
 @endpush
 

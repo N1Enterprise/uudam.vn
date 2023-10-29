@@ -65,7 +65,7 @@ const PRODUCT_VARIANTS = {
     renderProduct: (product) => {
         const { id, title, sku, sale_price, stock_quantity, image, slug } = product;
 
-        const newHref = "{{ route('fe.web.products.show', ':slug') }}".replace(':slug', slug);
+        const newHref = "{{ route('fe.web.products.index', ':slug') }}".replace(':slug', slug);
 
         $('[data-title]').text(title);
         $('[data-sku]').text(sku);

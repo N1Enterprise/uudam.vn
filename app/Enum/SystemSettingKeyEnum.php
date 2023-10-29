@@ -16,7 +16,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const SOCIAL_NETWORKS = 'social_networks';
     public const RECEIVE_NEW_POST_SETTING = 'receive_new_post_setting';
     public const PAGE_HIGHLIGHT_INFORMATION = 'page_highlight_information';
-    public const FOOTER_CONTENTS = 'footer_contents';
+    public const VIDEO_OUTSIDE_UI = 'video_outside_ui';
 
     public static function all(): array
     {
@@ -31,7 +31,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SOCIAL_NETWORKS,
             self::RECEIVE_NEW_POST_SETTING,
             self::PAGE_HIGHLIGHT_INFORMATION,
-            self::FOOTER_CONTENTS,
+            self::VIDEO_OUTSIDE_UI,
         ];
     }
 }

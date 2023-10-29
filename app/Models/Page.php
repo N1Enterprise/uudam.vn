@@ -33,4 +33,9 @@ class Page extends BaseModel
     {
         return PageDisplayTypeEnum::findConstantLabel($this->display_type);
     }
+
+    public function scopeMenu($query)
+    {
+        return $query->where('display_type', PageDisplayTypeEnum::MENU);
+    }
 }

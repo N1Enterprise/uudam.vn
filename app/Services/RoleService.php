@@ -102,6 +102,10 @@ class RoleService extends BaseService
                 'product-reviews.update',
                 'product-reviews.delete',
             ],
+            'subscribers' => [
+                'subscribers.index',
+                'subscribers.manage',
+            ],
         ],
         'appearances' => [
             'display-inventories' => [
@@ -133,12 +137,12 @@ class RoleService extends BaseService
                     'menu-sub-groups.update',
                     'menu-sub-groups.delete',
                 ],
-                'collections' => [
-                    'collections.index',
-                    'collections.store',
-                    'collections.update',
-                    'collections.delete',
-                ],
+            ],
+            'collections' => [
+                'collections.index',
+                'collections.store',
+                'collections.update',
+                'collections.delete',
             ],
         ],
         'utilities' => [

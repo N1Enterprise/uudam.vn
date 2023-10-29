@@ -106,5 +106,8 @@
 
     $(document).ready(function() {
         FORM_MASTER.init();
+
+        FORM_PRIMARY_IMAGE_PATH.triggerChange();
+        FORM_COVER_IMAGE_PATH.triggerChange();
     });
 </script>

@@ -3,22 +3,20 @@
         <div class="footer__content-top page-width">
             <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet ">
                 <div class="footer-block grid__item">
-                    @foreach ($PAGES_BY_LEFT_SHOW_DIRECT as $page)
                     <div>
-                        <h2 class="footer-block__heading">{{ data_get($page, 'name') }}</h2>
+                        <h2 class="footer-block__heading"></h2>
                         <div class="footer-block__details-content rte">
-                            <div class="editorjs-parser" data-content='@json(data_get($page, 'description'))'></div>
+
                         </div>
                     </div>
-                    @endforeach
                 </div>
-                @if(! empty($PAGES_BY_MENUS))
+                @if(! empty($PAGES_BELONGTO_MENU))
                 <div class="footer-block grid__item footer-block--menu">
                     <h2 class="footer-block__heading">MENU</h2>
                     <ul class="footer-block__details-content list-unstyled">
-                        @foreach ($PAGES_BY_MENUS as $page)
+                        @foreach ($PAGES_BELONGTO_MENU as $page)
                         <li>
-                            <a href="{{ data_get($page, 'custom_redirect_url') ? data_get($page, 'custom_redirect_url') : route('fe.web.pages.index', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
+                            <a href="{{ route('fe.web.pages.index', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -30,14 +28,11 @@
                 <div class="footer-block__newsletter">
                     <h2 class="footer-block__heading">{{ data_get($RECEIVE_NEW_POST_SETTING, 'title') }}</h2>
                     <p>{{ data_get($RECEIVE_NEW_POST_SETTING, 'description') }}</p>
-                    <form method="post" action="/contact#ContactFooter" id="ContactFooter" accept-charset="UTF-8"
+                    <form method="post" action="{{ route('fe.api.user.subscribe.news-letter') }}" id="ContactFooter" accept-charset="UTF-8"
                         class="footer__newsletter newsletter-form">
-                        <input type="hidden" name="form_type" value="customer">
-                        <input type="hidden" name="utf8" value="✓">
-                        <input type="hidden" name="contact[tags]" value="newsletter">
                         <div class="newsletter-form__field-wrapper">
                             <div class="field">
-                                <input id="NewsletterForm--footer" type="email" name="contact[email]" class="field__input" value="" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Email" required="">
+                                <input id="NewsletterForm--footer" type="email" name="contact[email]" class="field__input" value="" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Email" required>
                                 <label class="field__label" for="NewsletterForm--footer">Email</label>
                                 <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="Subscribe">
                                     <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
@@ -46,6 +41,14 @@
                                 </button>
                             </div>
                         </div>
+                        <h3 class="newsletter-form__message newsletter-form__message--success form__message d-none" id="ContactFooter-success" tabindex="-1" autofocus="">
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-success" viewBox="0 0 13 13">
+                                <path d="M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z" fill="#428445" stroke="white" stroke-width="0.7"></path>
+                                <path d="M5.53271 8.66357L9.25213 4.68197" stroke="white"></path>
+                                <path d="M4.10645 6.7688L6.13766 8.62553" stroke="white"></path>
+                            </svg>
+                            Thanks for subscribing
+                        </h3>
                     </form>
                 </div>
 				@endif
@@ -75,13 +78,28 @@
 </div>
 
 @push('js_pages')
-<script>
-    $.each($('.editorjs-parser'), function(i, element) {
-        const rawContent = JSON.parse($(element).attr('data-content') || '{}');
+    @if(data_get($RECEIVE_NEW_POST_SETTING, 'enable'))
+    <script>
+        $('#ContactFooter').on('submit', function(e) {
+            e.preventDefault();
 
-        if (rawContent) {
-            $(element).html((new edjsParser()).parse(rawContent));
-        }
-    });
-</script>
+            const email = $(this).find('[name="contact[email]"]').val();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: { email },
+                beforeSend: () => {
+                    $('#ContactFooter-success').addClass('d-none');
+                },
+                success: () => {
+                    $('#ContactFooter-success').removeClass('d-none');
+                },
+                error: function (jqXHR, status, errorThrown) {
+                    toastr.error("Đăng ký không thành công.");
+                },
+            });
+        });
+    </script>
+    @endif
 @endpush

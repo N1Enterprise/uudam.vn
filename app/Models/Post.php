@@ -27,7 +27,7 @@ class Post extends BaseModel
         'updated_by_id',
         'order',
         'status',
-        'featured',
+        'display_on_frontend',
         'meta',
         'meta_title',
         'meta_description',
@@ -37,9 +37,9 @@ class Post extends BaseModel
         'meta' => 'json'
     ];
 
-    public function getFeaturedNameAttribute()
+    public function getDisplayOnFrontendNameAttribute()
     {
-        return ActivationStatusEnum::findConstantLabel($this->featured);
+        return ActivationStatusEnum::findConstantLabel($this->display_on_frontend);
     }
 
     public function postCategory()

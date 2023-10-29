@@ -57,12 +57,11 @@ if (! function_exists('enum')) {
      * @throws BindingResolutionException
      * @throws Exception
      */
-    function enum($name, $module = 'System')
+    function enum($name)
     {
         $name = Str::studly($name);
-        $module = Str::studly($module);
 
-        $enumClass = implode('\\', ['Modules', $module, 'Enum', $name]);
+        $enumClass = implode('\\', ['App', 'Enum', $name]);
 
         $enumInstance = app($enumClass);
 
@@ -205,5 +204,12 @@ if (! function_exists('format_datetime')) {
     function format_datetime($datetime, $format = 'd/m/Y')
     {
         return date($format, strtotime($datetime));
+    }
+}
+
+if (! function_exists('display_json_value')) {
+    function display_json_value($value, $default = '{}')
+    {
+        return $value ? json_encode($value, JSON_PRETTY_PRINT) : $default;
     }
 }

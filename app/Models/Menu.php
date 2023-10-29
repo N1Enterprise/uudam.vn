@@ -11,9 +11,9 @@ class Menu extends BaseModel
 
     protected $fillable = [
         'name',
-        'slug',
         'is_new',
         'type',
+        'collection_id',
         'inventory_id',
         'post_id',
         'order',
@@ -28,6 +28,11 @@ class Menu extends BaseModel
     public function getTypeNameAttribute()
     {
         return MenuTypeEnum::findConstantLabel($this->type);
+    }
+
+    public function collection()
+    {
+        return $this->belongsTo(Collection::class, 'collection_id');
     }
 
     public function inventory()

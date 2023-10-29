@@ -17,6 +17,8 @@ class InitSystemSettingGroupSeeder extends Seeder
     {
         Model::unguard();
 
+        DB::table('system_setting_groups')->truncate();
+
         $now = now();
 
         $groups = [

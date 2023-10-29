@@ -30,10 +30,81 @@ class InventoryService extends BaseService
         return $result;
     }
 
+    public function searchByUser($data = [])
+    {
+        $where = [];
+
+        $orderBy  = 'featured';
+        $sortBy = 'asc';
+
+        if (! empty(data_get($data, 'sort_by'))) {
+            switch (data_get($data, 'sort_by')) {
+                case 'manual';
+                    $orderBy = 'featured';
+                    $sortBy = 'asc';
+                    break;
+                case 'best-selling';
+                    $orderBy = 'offer_price';
+                    $sortBy = 'asc';
+                    break;
+                case 'title-ascending':
+                    $orderBy = 'title';
+                    $sortBy = 'asc';
+                    break;
+                case 'title-descending':
+                    $orderBy = 'title';
+                    $sortBy = 'desc';
+                    break;
+                case 'price-ascending':
+                    $orderBy = 'sale_price';
+                    $sortBy = 'asc';
+                    break;
+                case 'price-descending':
+                    $orderBy = 'sale_price';
+                    $sortBy = 'desc';
+                    break;
+                case 'created-ascending':
+                    $orderBy = 'created_at';
+                    $sortBy = 'asc';
+                    break;
+                case 'created-descending':
+                    $orderBy = 'created_at';
+                    $sortBy = 'desc';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $result = $this->inventoryRepository
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            })
+            ->addSort($orderBy, $sortBy);
+
+        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+    }
+
     public function allAvailable($data = [])
     {
-        return $this->inventoryRepository->modelScopes(['active'])
+        return $this->inventoryRepository
+            ->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function getAvailableByIds($ids = [], $data = [])
+    {
+        return $this->inventoryRepository
+            ->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->scopeQuery(function($q) use ($ids) {
+                $q->whereIn('id', $ids);
+            })
             ->all(data_get($data, 'columns', ['*']));
     }
 

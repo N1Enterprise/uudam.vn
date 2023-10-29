@@ -83,6 +83,10 @@ return [
     'product-reviews.update' => 'Update Product Review',
     'product-reviews.delete' => 'Delete Product Review',
 
+    'subscribers' => 'Subscribers',
+    'subscribers.index' => 'View Subscriber List',
+    'subscribers.manage' => 'Manage Subscriber',
+
     'appearances' => 'Appearances',
     'display-inventories' => 'Display Inventories',
     'display-inventories.index' => 'View Display Inventory List',

@@ -133,10 +133,6 @@ div.ls-recommendation-box
     font-size: 13px!important;
 }
 
-.ls-price::after, .ls-original-price::after {
-    content: " VND";
-}
-
 .ls-sale-sign {
     align-items: center;
     background-color: rgba(200,0,0,.6);

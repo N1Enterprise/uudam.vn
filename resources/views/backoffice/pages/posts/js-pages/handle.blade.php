@@ -1,26 +1,4 @@
 <script>
-    var FORM_SLUG = {
-        element: $('#form_posts').find('[name="slug"]'),
-        onChange: () => {
-
-        },
-        fillSlugFromName: (name) => {
-            let nameValSlugify = name?.trim()?.toLowerCase()?.replace(/[^\w-]+/g, '-');
-            FORM_SLUG.element.val(nameValSlugify);
-        },
-    };
-
-    var FORM_NAME = {
-        element: $('#form_posts').find('[name="name"]'),
-        onChange: () => {
-            FORM_NAME.element.on('change', function() {
-                const name = $(this).val();
-
-                FORM_SLUG.fillSlugFromName(name);
-            });
-        },
-    };
-
     var FORM_PRIMARY_IMAGE_FILE = {
         element: $('[name="image[file]"]'),
         elemen_del: $('[data-image-ref-delete="primary"]'),
@@ -62,12 +40,11 @@
 
             FORM_PRIMARY_IMAGE_FILE.onDelete();
             FORM_PRIMARY_IMAGE_PATH.onDelete();
-
-            FORM_NAME.onChange();
         },
     };
 
     $(document).ready(function() {
         FORM_MASTER.init();
+        FORM_PRIMARY_IMAGE_PATH.triggerChange();
     });
 </script>

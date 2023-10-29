@@ -10,5 +10,6 @@ class FrontendResponseServiceProvider extends ServiceProvider
 {
     public $singletons = [
         Contracts\StoreUserProductReviewResponseContract::class => Responses\StoreUserProductReviewResponse::class,
+        Contracts\ListLinkedInventoryResponseContract::class => Responses\ListLinkedInventoryResponse::class,
     ];
 }

@@ -14,8 +14,6 @@
         }
     }
 </style>
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick.css') }}">
-<link rel="stylesheet" href="{{ asset('backoffice/assets/vendors/general/slick/slick-theme.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/products/index.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
@@ -24,7 +22,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/editorjs-custom.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 @endpush
 
 @section('page_title')
@@ -33,7 +31,7 @@
 
 @section('page_seo')
 <meta name="description" content="{{ $inventory->meta_description }}">
-<meta property="og:url" content="{{ route('fe.web.products.show', $inventory->slug) }}">
+<meta property="og:url" content="{{ route('fe.web.products.index', $inventory->slug) }}">
 <meta property="og:title" content="{{ $inventory->meta_title }}">
 <meta property="og:type" content="product">
 <meta property="og:description" content="{{ $inventory->meta_description }}">
@@ -116,32 +114,6 @@
 
 @push('js_pages')
 @include('frontend.pages.products.js-pages.index')
-
-<script>
-    $('.gallery-viewer__slider-for').slick({
-        id: "product_gallery_viewer",
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        infinite: false,
-        dots: false,
-        arrow: false,
-        lazyLoad: "ondemand",
-        asNavFor: ".gallery-thumbnails__slider-nav"
-    });
-
-    $('.gallery-thumbnails__slider-nav').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        asNavFor: '.gallery-viewer__slider-for',
-        dots: false,
-        arrow: false,
-        infinite: false,
-        focusOnSelect: true
-    });
-
-    $('.product-description').html(
-        (new edjsParser()).parse(@json(data_get($inventory, 'product.description')))
-    );
-</script>
+<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
 @endpush

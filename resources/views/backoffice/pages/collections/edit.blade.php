@@ -50,6 +50,17 @@
 									{{ __('Main') }}
 								</a>
 							</li>
+                            <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#setupInventoryTab" role="tab" aria-selected="true">
+									{{ __('Setup Inventory') }}
+								</a>
+							</li>
+
+                            <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#setupFeaturedInventoryTab" role="tab" aria-selected="true">
+									{{ __('Setup Featured Inventory') }}
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -120,7 +131,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Cover Image') }} *</label>
+                                    <label>{{ __('Cover Image') }}</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
@@ -180,18 +191,6 @@
                                     @enderror
 								</div>
 
-                                <div class="form-group">
-                                    <label>{{ __('Inventory') }} *</label>
-                                    <select name="inventories[]" title="--{{ __('Select Inventories') }}--" class="form-control k_selectpicker" data-live-search="true" multiple>
-                                        @foreach($inventories as $inventory)
-                                        <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ in_array($inventory->id, old('inventories', optional($collection->inventories)->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
-                                        @endforeach
-                                    </select>
-                                    @error('inventories')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 <div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
 									<div class="col-3">
@@ -205,7 +204,7 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Display On Front End') }}</label>
+									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -228,6 +227,48 @@
 									</div>
 								</div>
 							</div>
+                            <div class="tab-pane" id="setupInventoryTab" role="tabpanel">
+                                <div class="form-group">
+                                    <label>{{ __('Inventory') }} *</label>
+                                    <select data-actions-box="true" name="linked_inventories[]" title="--{{ __('Select Inventories') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
+                                        @foreach($inventories as $inventory)
+                                        <option
+                                            value="{{ $inventory->id }}"
+                                            data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                            data-slug="{{ $inventory->slug }}"
+                                            data-inventory-id="{{ $inventory->id }}"
+                                            data-inventory-name="{{ $inventory->title }}"
+                                            {{ in_array($inventory->id, old('linked_inventories', data_get($collection, 'linked_inventories', []))) ? 'selected' : '' }}
+                                        >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group Display_Inventory_Allowed_Holder mb-0">
+                                    <div class="Display_Inventory_Holder_Content">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="setupFeaturedInventoryTab" role="tabpanel">
+                                <div class="form-group">
+                                    <label>{{ __('Featured Inventories') }} *</label>
+                                    <select data-actions-box="true" name="linked_featured_inventories[]" title="--{{ __('Select Featured Inventories') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Featured_Inventory_Selector" multiple data-selected-text-format="count > 5">
+                                        @foreach($inventories as $inventory)
+                                        <option
+                                            value="{{ $inventory->id }}"
+                                            data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                            data-slug="{{ $inventory->slug }}"
+                                            data-inventory-id="{{ $inventory->id }}"
+                                            data-featured-inventory-name="{{ $inventory->title }}"
+                                            {{ in_array($inventory->id, old('linked_featured_inventories', data_get($collection, 'linked_featured_inventories', []))) ? 'selected' : '' }}
+                                        >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group Display_Featured_Inventory_Allowed_Holder mb-0">
+                                    <div class="Display_Featured_Inventory_Holder_Content">
+                                    </div>
+                                </div>
+                            </div>
 						</div>
 					</div>
 					<div class="k-portlet__foot">
@@ -246,8 +287,6 @@
 
 @section('js_script')
 @include('backoffice.pages.collections.js-pages.handle')
-<script>
-    FORM_PRIMARY_IMAGE_PATH.triggerChange();
-    FORM_COVER_IMAGE_PATH.triggerChange();
-</script>
+@include('backoffice.pages.collections.js-pages.display-inventories')
+@include('backoffice.pages.collections.js-pages.display-featured-inventories')
 @endsection

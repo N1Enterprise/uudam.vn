@@ -21,23 +21,6 @@
         },
     };
 
-    var FORM_DESCRIPTION = {
-        element: $('#form_category_group').find('[name="description"]'),
-        setup: () => {
-            FORM_DESCRIPTION.onChange();
-            FORM_DESCRIPTION.pluginBuilderSetup();
-        },
-        onChange: () => {
-            PLUGIN_BUILDER.build('block_editor', 'editorjs');
-        },
-
-        pluginBuilderSetup: () => {
-            const content = JSON.parse(FORM_DESCRIPTION.element.val() || '{}');
-
-            PLUGIN_BUILDER.setValue(content);
-        },
-    };
-
     var FORM_PRIMARY_IMAGE_FILE = {
         element: $('[name="primary_image[file]"]'),
         elemen_del: $('[data-image-ref-delete="primary"]'),
@@ -72,7 +55,6 @@
     var FORM_MASTER = {
         init: () => {
             FORM_MASTER.onChange();
-            FORM_DESCRIPTION.setup();
         },
         onChange: () => {
             FORM_PRIMARY_IMAGE_FILE.onChange();

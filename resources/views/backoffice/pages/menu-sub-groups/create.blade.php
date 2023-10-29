@@ -37,6 +37,11 @@
 									{{ __('Main') }}
 								</a>
 							</li>
+                            <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#advanceTab" role="tab" aria-selected="true">
+									{{ __('Advance') }}
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -87,6 +92,13 @@
 									</div>
 								</div>
 							</div>
+                            <div class="tab-pane" id="advanceTab" role="tabpanel">
+                                <div class="form-group">
+									<label for="gameCode">{{ __('Behavior') }}</label>
+									<div id="json_editor_params" style="height: 200px"></div>
+									<input type="hidden" name="params" value="{{ old('params', '{}') }}">
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="k-portlet__foot">
@@ -101,4 +113,24 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('js_script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        let editorMeta = ace.edit($('#json_editor_params')[0], {
+            mode: "ace/mode/json",
+            theme: 'ace/theme/tomorrow',
+            value: $(`input[name="params"]`).val()
+        });
+
+        $('form#form_menu_groups').on('submit', function(e) {
+            e.preventDefault();
+            let editorMetaElement = $(`input[name="params"]`).val(editorMeta.getValue());
+            $(this).append(editorMetaElement);
+            $(this)[0].submit();
+        })
+    })
+</script>
 @endsection

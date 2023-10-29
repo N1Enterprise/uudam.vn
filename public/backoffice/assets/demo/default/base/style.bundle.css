@@ -60,7 +60,7 @@ $k-media-breakpoints: (
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
+  font-family: var(--font-family-monospace);
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -10447,7 +10447,7 @@ input.btn.btn-label-danger {
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family: var(--font-family-monospace);
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -10461,7 +10461,7 @@ body {
   padding: 0px;
   font-size: 13px;
   font-weight: 300;
-  font-family: Poppins;
+  font-family: var(--font-family-monospace);
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -25892,7 +25892,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
       top: 0;
       right: 0;
       left: 260px;
-      z-index: 97; }
+      z-index: 100000; }
     .k-header--fixed.k-aside--minimize .k-header {
       left: 78px;
       -webkit-transition: all 0.3s ease;
