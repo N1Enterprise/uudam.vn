@@ -1,4 +1,4 @@
-<limespot-box data-owner="LimeSpot" data-box-type="Related" data-dynamic="true" data-host-page="Home" data-placement-order="2" class="ls-recommendation-box limespot-recommendation-box ls-animate page-width no-zoom section-template-padding" data-placement-sibling="#shopify-section-template--16599720788218__166329174764a5c7e2" data-placement-disposition="0" data-placement-method="before" data-reference-id="" data-box-style="carousel" data-recommendation-reference-id="" style="display: block;">
+<limespot-box data-owner="LimeSpot" data-box-type="Related" data-dynamic="true" data-host-page="Home" data-placement-order="2" class="ls-recommendation-box limespot-recommendation-box ls-animate page-width no-zoom section-template-padding" data-placement-disposition="0" data-placement-method="before" data-box-style="carousel" style="display: block;">
     <h3 class="ls-box-title">Sản Phẩm Nổi Bậc</h3>
     <div class="limespot-recommendation-box-carousel-container">
         <div class="ls-ul-container limespot-recommendation-box-carousel ls-drag-scroll v-align">
