@@ -46,6 +46,19 @@
 <meta name="twitter:description" content="{{ $inventory->meta_description }}">
 @endsection
 
+@push('style_pages')
+<style>
+[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
+    padding: 5px!important;
+    border: none;
+}
+
+[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
+    border: 2px solid #000;
+}
+</style>
+@endpush
+
 @section('content_body')
 <section class="shopify-section section">
     <section class="page-width section-template__main-padding">
@@ -116,4 +129,14 @@
 @include('frontend.pages.products.js-pages.index')
 <script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script>
+    $('.thumbnail-list__item').on('click', function() {
+        const index = $(this).attr('data-owl-index');
+
+        $('[data-owl-id="Slider_Product_Detail"]').trigger('to.owl.carousel', index);
+
+        $('.thumbnail-list__item').find('button.thumbnail').removeAttr('aria-current');
+        $(this).find('button.thumbnail').attr('aria-current', 'true');
+    });
+</script>
 @endpush

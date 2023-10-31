@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Common\RequestHelper;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\View;
@@ -43,9 +44,15 @@ class BaseException extends Exception
         }
 
         if (app()->environment('production') || ! config('app.debug')) {
-            return View::exists(config('view.views.errors.404'))
-                ? view(config('view.views.errors.404'))
-                : abort(404);
+            if (RequestHelper::isFrontEndRequest(request())) {
+                return View::exists(config('view.views.errors.frontend_404'))
+                    ? view(config('view.views.errors.frontend_404'))
+                    : abort(404);
+            } else if (RequestHelper::isBackOfficeRequest(request())) {
+                return View::exists(config('view.views.errors.backoffice_404'))
+                    ? view(config('view.views.errors.backoffice_404'))
+                    : abort(404);
+            }
         }
     }
 

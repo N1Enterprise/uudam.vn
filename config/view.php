@@ -35,7 +35,8 @@ return [
 
     'views' => [
         'errors' => [
-            '404' => 'backoffice.errors.404',
+            'backoffice_404' => 'backoffice.errors.404',
+            'frontend_404'  => 'frontend.errors.404'
         ],
     ],
 ];

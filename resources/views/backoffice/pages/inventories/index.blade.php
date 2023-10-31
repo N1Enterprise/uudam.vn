@@ -174,7 +174,7 @@
                         <a
                             href="${productRoute}"
                             title="${data.name}"
-                            class="d-inline-block" target="_blank" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;"
+                            class="d-inline-block" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;"
                         >${data.name ? '(' + data.id + ')' + data.name : 'N/A'}</a>
                     </b>
                 </div>

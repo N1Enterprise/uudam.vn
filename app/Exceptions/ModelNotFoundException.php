@@ -2,10 +2,9 @@
 
 namespace App\Exceptions;
 
-use Exception;
 use Illuminate\Http\Response;
 
-class ModelNotFoundException extends Exception
+class ModelNotFoundException extends BaseException
 {
     public function __construct($message = 'Invalid Entity', $code = 'invalid_entity', $status = Response::HTTP_NOT_FOUND)
     {

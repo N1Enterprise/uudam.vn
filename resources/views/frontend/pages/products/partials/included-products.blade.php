@@ -1,3 +1,4 @@
+@if(count(data_get($inventory, 'includedProducts', [])))
 <div class="included-products">
     @foreach (data_get($inventory, 'includedProducts', []) as $product)
     <div class="included-products__item">
@@ -37,3 +38,4 @@
     </div>
     @endforeach
 </div>
+@endif

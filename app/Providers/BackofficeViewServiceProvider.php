@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Classes\AdminAuth;
+use App\Enum\SystemSettingKeyEnum;
+use App\Models\SystemSetting;
 use App\Services\BackofficeMenuService;
 use App\View\Components\Backoffice\ContentEditor;
 use App\View\Components\Backoffice\PhoneInput;
@@ -50,6 +52,7 @@ class BackofficeViewServiceProvider extends ServiceProvider
         });
 
         View::composer('backoffice.*', function ($view) {
+            $view->with('LOGO', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get('logo', []));
             $view->with('APP_NAME', config('name'));
             $view->with('AUTHENTICATED_USER',  AdminAuth::user());
         });

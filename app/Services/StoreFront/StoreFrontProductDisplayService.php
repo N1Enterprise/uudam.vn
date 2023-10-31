@@ -3,10 +3,13 @@
 namespace App\Services\StoreFront;
 
 use App\Enum\ActivationStatusEnum;
+use App\Exceptions\BusinessLogicException;
+use App\Exceptions\ModelNotFoundException;
 use App\Services\BaseService;
 use App\Services\DisplayInventoryService;
 use App\Services\InventoryService;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class StoreFrontProductDisplayService extends BaseService
 {
@@ -43,6 +46,10 @@ class StoreFrontProductDisplayService extends BaseService
                 $q->where('slug', $slug);
             })
             ->first();
+
+        if (empty($inventory)) {
+            throw new ModelNotFoundException();
+        }
 
         $inventory->load([
             'product' => function($q) use ($inventory) {
