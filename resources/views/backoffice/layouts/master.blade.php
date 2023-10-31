@@ -27,7 +27,6 @@
         @stack('style_pages')
 
         <!--begin::Page Vendors Styles -->
-		<link href="{{ asset('backoffice/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
         <!--end::Page Vendors Styles -->
 
@@ -99,7 +98,7 @@
 					<div class="k-aside__brand	k-grid__item " id="k_aside_brand">
 						<div class="k-aside__brand-logo">
 							<a href="{{ route('bo.web.dashboard') }}">
-								<img alt="Logo" src="{{ asset('backoffice/assets/img/logos/stevephamhi_login_logo.png') }}" style="max-width: 100%; padding-right: 8px" />
+								<img alt="Logo" src="{{ data_get($LOGO, 'image') }}" style="width: {{ data_get($LOGO, 'width', '0px') }}; height: {{ data_get($LOGO, 'height', '0px') }}" style="max-width: 100%; padding-right: 8px" />
 							</a>
 						</div>
 						<div class="k-aside__brand-tools">
@@ -117,24 +116,7 @@
 
 						<!-- begin: Header Menu -->
 						<button class="k-header-menu-wrapper-close" id="k_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
-						<div class="k-header-menu-wrapper">
-							{{-- <div id="k_header_menu" class="k-header-menu k-header-menu-mobile d-none">
-								<ul class="k-menu__nav">
-									<li class="k-menu__item  k-menu__item--submenu k-menu__item--rel" data-kmenu-submenu-toggle="click">
-										<a href="javascript:;" class="k-menu__link k-menu__toggle">
-											<span class="k-menu__link-text" id="currentOffsetUTCLabel">GMT+00:00</span>
-										</a>
-										<div class="k-menu__submenu k-menu__submenu--classic k-menu__submenu--left w-auto">
-											<ul class="k-menu__subnav p-0 k-scroll ps" id="utcOffsets"
-											data-scroll="true"
-											data-height="160" data-mobile-height="128" style="height: 160px; overflow: hidden;"
-											>
-											</ul>
-										</div>
-									</li>
-								</ul>
-							</div> --}}
-						</div>
+						<div class="k-header-menu-wrapper"></div>
 						<!-- end: Header Menu -->
 
 						<!-- begin:: Header Topbar -->

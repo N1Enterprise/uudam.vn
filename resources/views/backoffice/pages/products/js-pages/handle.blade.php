@@ -121,5 +121,7 @@
         });
 
         FORM_MASTER.init();
+        FORM_PRIMARY_IMAGE_PATH.triggerChange();
+        FORM_MEDIA_IMAGE_PATH.triggerChange();
     });
 </script>

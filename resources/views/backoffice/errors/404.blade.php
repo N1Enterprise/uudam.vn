@@ -33,7 +33,7 @@
 		<!--end:: Global Mandatory Vendors -->
 
 		<!--begin:: Global Optional Vendors -->
-	
+
 		<!--end:: Global Optional Vendors -->
 
 		<!--begin::Global Theme Styles -->
@@ -319,7 +319,7 @@
 			};
 		</script>
 
-		
+
 		<!--end::Global App Bundle -->
 	</body>
 

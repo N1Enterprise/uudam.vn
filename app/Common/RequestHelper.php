@@ -97,11 +97,6 @@ class RequestHelper
         return Str::contains($url, '://') ? parse_url($url, PHP_URL_HOST) : $url;
     }
 
-    public function isFeRequest(Request $request)
-    {
-        return $request->is('fe/api/*');
-    }
-
     public static function getBasicToken(Request $request)
     {
         $header = $request->header('Authorization', '');
@@ -122,9 +117,14 @@ class RequestHelper
         return base64_encode("{$username}:{$password}");
     }
 
-    public function isBackOfficeRequest(Request $request)
+    public static function isBackOfficeRequest(Request $request)
     {
         return Str::is('bo.web.*', optional($request->route())->getName()) || Str::is('bo.api.*', optional($request->route())->getName());
+    }
+
+    public static function isFrontEndRequest(Request $request)
+    {
+        return Str::is('fe.web.*', optional($request->route())->getName()) || Str::is('fe.api.*', optional($request->route())->getName());
     }
 
     /**
