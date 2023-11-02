@@ -209,6 +209,44 @@
         $('[close-modal-search]').on('click', function() {
             $('details-modal.header__search details[open]').removeAttr('open');
         });
+
+        onSuggestUserSearch();
+
+        function onSuggestUserSearch() {
+
+            function performSearch(query) {
+                const data = {
+                    q: query,
+                    resources: {
+                        type: ['product', 'post', 'collection'],
+                        limit: 4,
+                    },
+                    section_id: 'predictive-search'
+                };
+
+                $.ajax({
+                    url: "{{ route('fe.api.user.search.suggest') }}",
+                    method: 'GET',
+                    data,
+                    beforeSend: () => {
+                        $('predictive-search').attr('open', 'true');
+                        $('predictive-search').attr('loading', 'true');
+                        $('.predictive-search-status').attr('aria-hidden', false);
+                    },
+                    success: (response) => {
+                        console.log({ response });
+                    },
+                });
+            }
+
+            const debouncedSuggest = debounce(performSearch, 300);
+
+            $('#Search-In-Modal').on('input', function() {
+                const query = $(this).val();
+
+                debounce(performSearch, 1000)(query);
+            });
+        }
     </script>
 </body>
 </html>
