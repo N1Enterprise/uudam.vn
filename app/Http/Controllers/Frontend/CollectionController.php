@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Exceptions\ModelNotFoundException;
 use App\Services\CollectionService;
 use App\Services\InventoryService;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ class CollectionController extends BaseController
     {
         $collection = $this->collectionService->showBySlug($slug);
         $linkedFeaturedInventories =$this->inventoryService->getAvailableByIds(data_get($collection, 'linked_featured_inventories', []));
+
+        if (empty($collection)) {
+            throw new ModelNotFoundException();
+        }
 
         return $this->view('frontend.pages.collections.index', compact('collection', 'linkedFeaturedInventories'));
     }
