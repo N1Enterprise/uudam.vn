@@ -79,8 +79,8 @@
     height: 100%;
     }
     .menu-drawer__navigation-container {
-    display: grid;
-    grid-template-rows: 1fr auto;
+    /* display: grid; */
+    /* grid-template-rows: 1fr auto; */
     align-content: space-between;
     overflow-y: auto;
     height: 100%;

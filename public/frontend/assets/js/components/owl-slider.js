@@ -38,8 +38,6 @@ function owlSliderSetup() {
 
         !dotsContainer && delete config.dotsContainer;
 
-        console.log({ config });
-
         $(element).owlCarousel({
             ...config
         });

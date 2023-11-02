@@ -2,7 +2,7 @@
     $post = optional($menu->post);
 @endphp
 
-<li data-menu-type="post">
+<div data-menu-type="post">
     <div class="mega-menu-item-container">
         <div class="mm-image-container" style="height: 298px;">
             <div class="mm-image" style="width: 570px; height: 298.359px;">
@@ -16,4 +16,4 @@
         </a>
         <div class="mega-menu-prices get-mega-menu-prices" data-id="{{ data_get($post, 'id') }}" style="height: 0px;"></div>
     </div>
-</li>
+</div>
