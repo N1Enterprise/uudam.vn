@@ -1,3 +1,4 @@
+<script>
 const AUTHENTICATION = {
     actions: ['signin', 'signup', 'forgot-password'],
     elements: {
@@ -54,3 +55,4 @@ const AUTHENTICATION = {
 };
 
 AUTHENTICATION.init();
+</script>

@@ -13,10 +13,10 @@
                 <div class="modal-overlay" close-modal-search></div>
                 <div class="search-modal__content search-modal__content-bottom" tabindex="-1">
                     <predictive-search class="search-modal__form" data-loading-text="Loading..." results="true">
-                        <form action="/search" method="get" role="search" class="search search-modal__form">
+                        <form id="Form_Search_Master" action="/search" method="get" role="search" class="search search-modal__form" data-search-setting='@json($SEARCH_SETTING)'>
                             <div class="field">
                                 <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
-                                <label class="field__label" for="Search-In-Modal">Nhập tên sản phẩm, bài viết ...</label>
+                                <label class="field__label" for="Search-In-Modal">{{ data_get($SEARCH_SETTING, 'placeholder', 'Tìm kiếm...') }}</label>
                                 <input type="hidden" name="options[prefix]" value="last">
                                 <button class="search__button field__button" aria-label="Search">
                                     <svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 32 32" version="1.1">
@@ -31,61 +31,22 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search="">
+                            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
                                 <div id="predictive-search-results">
-                                    <h2 id="predictive-search-products" class="predictive-search__heading text-body caption-with-letter-spacing"> Products <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                                        </svg>
-                                    </h2>
-                                    <ul id="predictive-search-results-list" class="predictive-search__results-list list-unstyled" role="listbox" aria-labelledby="predictive-search-products">
-                                        <li id="predictive-search-option-1" class="predictive-search__list-item" role="option" aria-selected="false">
-                                            <a href="/products/buckwheat-hull-zafu-classic?_pos=1&amp;_psq=hu&amp;_ss=e&amp;_v=1.0" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
-                                                <img class="predictive-search__image" src="//cdn.shopify.com/s/files/1/0298/7753/4853/products/1015b.jpg?v=1661519678&amp;width=150" alt="Studio Buckwheat Hull Zafu" width="50" height="50.0">
-                                                <div class="predictive-search__item-content predictive-search__item-content--centered">
-                                                    <h3 class="predictive-search__item-heading h5">Studio Buckwheat Hull Zafu</h3>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li id="predictive-search-option-2" class="predictive-search__list-item" role="option" aria-selected="false">
-                                            <a href="/products/geometric-buckwheat-hull-zafu-navy?_pos=2&amp;_psq=hu&amp;_ss=e&amp;_v=1.0" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
-                                                <img class="predictive-search__image" src="//cdn.shopify.com/s/files/1/0298/7753/4853/products/ZFR-Barrows_TPC-drumcliff-venetian_slate_coconut_stacked.jpg?v=1601997969&amp;width=150" alt="Geometric Buckwheat Hull Zafu" width="50" height="50.0">
-                                                <div class="predictive-search__item-content predictive-search__item-content--centered">
-                                                    <h3 class="predictive-search__item-heading h5">Geometric Buckwheat Hull Zafu</h3>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li id="predictive-search-option-3" class="predictive-search__list-item" role="option" aria-selected="false">
-                                            <a href="/products/buckwheat-hull-zafu-organic?_pos=3&amp;_psq=hu&amp;_ss=e&amp;_v=1.0" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
-                                                <img class="predictive-search__image" src="//cdn.shopify.com/s/files/1/0298/7753/4853/products/1041b_85a6eef8-044c-4ec5-a7ef-94b14301a48b.jpg?v=1661519545&amp;width=150" alt="Buckwheat Hull Zafu, Organic" width="50" height="50.0">
-                                                <div class="predictive-search__item-content predictive-search__item-content--centered">
-                                                    <h3 class="predictive-search__item-heading h5">Buckwheat Hull Zafu, Organic</h3>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li id="predictive-search-option-4" class="predictive-search__list-item" role="option" aria-selected="false">
-                                            <a href="/products/buckwheat-hull-zafu-eco?_pos=4&amp;_psq=hu&amp;_ss=e&amp;_v=1.0" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
-                                                <img class="predictive-search__image" src="//cdn.shopify.com/s/files/1/0298/7753/4853/products/1068b.jpg?v=1661518991&amp;width=150" alt="Eco Organic Buckwheat Hull Zafu" width="50" height="50.0">
-                                                <div class="predictive-search__item-content predictive-search__item-content--centered">
-                                                    <h3 class="predictive-search__item-heading h5">Eco Organic Buckwheat Hull Zafu</h3>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li id="predictive-search-option-search-keywords" class="predictive-search__list-item" role="option">
-                                            <button class="predictive-search__item predictive-search__item--term link link--text h5 animate-arrow" tabindex="-1"> Search for “hu” <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
-                                                </svg>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                    <div class="predictive-search__loading-state" aria-hidden="true">
-                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                                        </svg>
+                                    <div id="Predictive_Search_Product_Results" class="d-none">
+                                        <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Sản phẩm</h2>
+                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
+                                    </div>
+                                    <div id="Predictive_Search_Post_Results" class="d-none">
+                                        <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Bài viết</h2>
+                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
+                                    </div>
+                                    <div id="Predictive_Search_Collection_Results" class="d-none">
+                                        <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Bộ sưu tập</h2>
+                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
                                     </div>
                                 </div>
-                                <span class="hidden" data-predictive-search-live-region-count-value="">4 results </span>
                             </div>
-                            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true">4 results </span>
                         </form>
                     </predictive-search>
                     <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="Close" close-modal-search>
