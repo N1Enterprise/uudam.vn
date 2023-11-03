@@ -48,6 +48,8 @@ class FrontendViewServiceProvider extends ServiceProvider
             $view->with('PAGES_BELONGTO_MENU', app(PageService::class)->allAvailable(['columns' => ['id', 'name', 'slug'], 'scopes' => ['menu']]));
 
             $view->with('APP_MENU_GROUPS', $this->getAppMenus());
+
+            $view->with('SEARCH_SETTING', SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []));
         });
     }
 

@@ -87,7 +87,7 @@ class InitSystemSettingGroupSeeder extends Seeder
                 'order' => 11,
                 'created_at' => $now,
                 'updated_at' => $now,
-            ]
+            ],
         ];
 
         DB::table('system_setting_groups')->insert($groups);
