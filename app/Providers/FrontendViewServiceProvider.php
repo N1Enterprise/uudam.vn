@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Classes\Contracts\UserAuthContract;
 use App\Enum\PageDisplayTypeEnum;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
@@ -50,6 +51,11 @@ class FrontendViewServiceProvider extends ServiceProvider
             $view->with('APP_MENU_GROUPS', $this->getAppMenus());
 
             $view->with('SEARCH_SETTING', SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []));
+
+            /** @var UserAuthContract */
+            $userAuth = app(UserAuthContract::class);
+
+            $view->with('AUTHENTICATED_USER', $userAuth->user());
         });
     }
 

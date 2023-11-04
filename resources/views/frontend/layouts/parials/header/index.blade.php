@@ -84,6 +84,7 @@
                                     </ul>
                                 </nav>
                                 <div class="menu-drawer__utility-links">
+                                    @if(empty($AUTHENTICATED_USER))
                                     <a href="javascript:void(0);" class="menu-drawer__account link focus-inset h5" data-overlay-action-button="signin">
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
@@ -91,6 +92,15 @@
                                         </svg>
                                         Đăng nhập
                                     </a>
+                                    @else
+                                    <a href="{{ route('fe.web.user.profile') }}" class="menu-drawer__account link focus-inset h5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
+                                            </path>
+                                        </svg>
+                                        Tài khoản
+                                    </a>
+                                    @endif
                                     <ul class="list list-social list-unstyled" role="list">
                                         @foreach ($SOCIAL_NETWORKS as $network)
                                         <li class="list-social__item">

@@ -54,7 +54,7 @@ class BackofficeViewServiceProvider extends ServiceProvider
         View::composer('backoffice.*', function ($view) {
             $view->with('LOGO', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get('logo', []));
             $view->with('APP_NAME', config('name'));
-            $view->with('AUTHENTICATED_USER',  AdminAuth::user());
+            $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
         });
 
         View::composer('backoffice.includes.left_menu', function($view) {

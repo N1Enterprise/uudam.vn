@@ -1,6 +1,7 @@
 <script>
 const AUTHENTICATION = {
     actions: ['signin', 'signup', 'forgot-password'],
+    is_logged: "{{ !empty($AUTHENTICATED_USER) }}",
     elements: {
         close: $('[data-overlay-close]'),
         wrapper: $('[data-overlay-wrapper]'),
@@ -14,6 +15,108 @@ const AUTHENTICATION = {
         AUTHENTICATION.onClose();
         AUTHENTICATION.onGoPage();
         AUTHENTICATION.detectOverlay();
+        AUTHENTICATION.onSignup();
+        AUTHENTICATION.onSignin();
+        AUTHENTICATION.onSignout();
+    },
+    onSignout: () => {
+        $('#User_SignOut').on('click', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('href'),
+                method: 'POST',
+                success: () => {
+                    toastr.success('Đăng xuất thành công.');
+
+                    window.location.href = "{{ route('fe.web.home') }}";
+                },
+            });
+        });
+    },
+    onSignup: () => {
+        $('#signup_form').on('submit', function(e) {
+            e.preventDefault();
+
+            const _self = $(this);
+
+            const payload = {
+                name: _self.find('[name="name"]').val(),
+                phone_number: _self.find('[name="phone_number"]').val(),
+                email: _self.find('[name="email"]').val(),
+                password: _self.find('[name="password"]').val()
+            };
+
+            $.ajax({
+                url: _self.attr('action'),
+                method: 'POST',
+                data: payload,
+                beforeSend: () => {
+                    _self.find('[type="submit"]').prop('disabled', true);
+                    _self.find('.form-errors').removeClass('show');
+                },
+                success: (response) => {
+                    toastr.success('Đăng ký thành công.');
+
+                    _self.find('[type="submit"]').prop('disabled', false);
+
+                    AUTHENTICATION.elements.close.trigger('click');
+
+                    window.location.href = "{{ route('fe.web.home') }}";
+                },
+                error: (request, status, error) => {
+                    _self.find('[type="submit"]').prop('disabled', false);
+
+                    if (request.status == 422) {
+                        const errorMessage = request.responseJSON.errors;
+
+                        __HELPER__.appendErrorMessages(_self, errorMessage);
+                    }
+                },
+            });
+        });
+    },
+    onSignin: () => {
+        $('#signin_form').on('submit', function(e) {
+            e.preventDefault();
+
+            const _self = $(this);
+
+            const payload = {
+                username: _self.find('[name="username"]').val(),
+                password: _self.find('[name="password"]').val()
+            };
+
+            $.ajax({
+                url: _self.attr('action'),
+                method: 'POST',
+                data: payload,
+                beforeSend: () => {
+                    _self.find('[type="submit"]').prop('disabled', true);
+                    _self.find('.form-errors').removeClass('show');
+                },
+                success: (response) => {
+                    toastr.success('Đăng nhập thành công.');
+
+                    _self.find('[type="submit"]').prop('disabled', false);
+
+                    AUTHENTICATION.elements.close.trigger('click');
+
+                    const routeRedirect = __HELPER__.urlParams('redirect').get() || "{{ route('fe.web.home') }}";
+
+                    window.location.href = routeRedirect;
+                },
+                error: (request, status, error) => {
+                    _self.find('[type="submit"]').prop('disabled', false);
+
+                    if (request.status == 422) {
+                        const errorMessage = request.responseJSON.errors;
+
+                        __HELPER__.appendErrorMessages(_self, errorMessage);
+                    }
+                },
+            });
+        });
     },
     onClose: () => {
         AUTHENTICATION.elements.close.on('click', function() {
@@ -46,6 +149,11 @@ const AUTHENTICATION = {
 
         AUTHENTICATION.elements.wrapper.hide();
         AUTHENTICATION.elements.action_wrapper.hide();
+
+        if (AUTHENTICATION.actions.includes(overlay) && AUTHENTICATION.is_logged) {
+            __HELPER__.urlParams('overlay').del();
+            return;
+        }
 
         if (overlay && AUTHENTICATION.actions.includes(overlay)) {
             AUTHENTICATION.elements.wrapper.show();

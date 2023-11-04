@@ -13,12 +13,12 @@
                         @csrf
                         <div class="form-group">
                             <label>{{ __('Email') }}</label>
-                            <input name="email" type="text" class="form-control" value="{{ $AUTHENTICATED_USER->email }}" disabled>
+                            <input name="email" type="text" class="form-control" value="{{ $AUTHENTICATED_ADMIN->email }}" disabled>
                         </div>
 
                         <div class="form-group">
                             <label>{{ __('Name') }} *</label>
-                            <input name="name" required type="text" class="form-control" value="{{ $AUTHENTICATED_USER->name }}">
+                            <input name="name" required type="text" class="form-control" value="{{ $AUTHENTICATED_ADMIN->name }}">
                         </div>
 
                         <div class="form-group mb-2 text-right">

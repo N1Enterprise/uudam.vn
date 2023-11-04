@@ -8,12 +8,21 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller;
 use App\Classes\AdminAuth;
+use App\Classes\Contracts\UserAuthContract;
 
 class BaseApiController extends Controller
 {
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
+
+    /** @var UserAuthContract */
+    public $userAuth;
+
+    public function __construct()
+    {
+        $this->userAuth = app(UserAuthContract::class);
+    }
 
     /**
      * @return \App\Models\Admin

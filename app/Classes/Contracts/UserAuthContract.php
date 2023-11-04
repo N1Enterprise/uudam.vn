@@ -1,24 +1,23 @@
 <?php
 
-namespace Modules\User\Classes\Contracts;
+namespace App\Classes\Contracts;
+
+use App\Models\User;
 
 interface UserAuthContract
 {
-    /**
-     * @return \Tymon\JWTAuth\JWTGuard
-     */
     public function guard();
 
     public function guardAs(string $guard);
 
     public function attempt(array $credentials = []);
 
-    public function login();
+    public function login(User $user);
 
     public function logout($forceForever = false): void;
 
     /**
-     * @return \Modules\User\Entities\User
+     * @return \App\Models\User
      */
     public function user();
 

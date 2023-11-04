@@ -10,17 +10,16 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
-use Laravel\Fortify\FortifyServiceProvider as LaravelFortifyServiceProvider;
-use Illuminate\Support\Facades\Config;
+use Laravel\Fortify\FortifyServiceProvider;
 
-class FortifyServiceProvider extends ServiceProvider
+class BackofficeAuthenticationServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        $this->app->register(LaravelFortifyServiceProvider::class);
+        $this->app->register(FortifyServiceProvider::class);
     }
 
     /**
@@ -28,7 +27,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->registerAuth();
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -42,26 +40,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(function () {
             return view('backoffice.auth.login-v1');
         });
-    }
-
-    protected function registerAuth()
-    {
-        Config::set('auth.guards.admin', [
-            'driver' => 'session',
-            'provider' => 'admins'
-        ]);
-
-        Config::set('auth.providers.admins', [
-            'driver' => 'eloquent',
-            'model' => \App\Models\Admin::class
-        ]);
-
-        Config::set('auth.passwords.admins', [
-            'provider' => 'admins',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 1,
-        ]);
     }
 
     protected function configureRateLimiting()
