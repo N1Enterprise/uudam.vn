@@ -10,6 +10,7 @@ return [
     'users.show-user-email' => 'View User Email',
     'users.show-user-phone' => 'View User Phone',
     'users.update' => 'Update User Info',
+    'users.action' => 'Action Of User',
 
     // system setting
     'systems' => 'Systems',

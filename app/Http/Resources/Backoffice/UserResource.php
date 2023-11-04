@@ -8,24 +8,18 @@ class UserResource extends BaseJsonResource
 {
     public function toArray($request)
     {
-        $showEmail = $request->user()->can('users.show-user-email');
-        $showPhone = $request->user()->can('users.show-user-phone');
-
-        $email = $showEmail ? $this->email : '*****';
-        $phoneNumberBeautify = $showPhone ? $this->phone_number_beautify : '*****';
-        $nationalPhoneNumber = $showPhone ? $this->national_phone_number : '*****';
-
         return array_merge([
             'id' => $this->id,
             'username' => $this->username,
-            'email' => $email,
+            'name' => $this->name,
+            'email' => $this->email,
+            'status' => $this->status,
             'serialized_status' => $this->serialized_status,
             'serialized_status_name' => $this->serialized_status_name,
-            'contact_number' => $nationalPhoneNumber,
-            'phone_number_beautify' => $phoneNumberBeautify,
-            'created_at' => $this->created_at_localized,
-            'status' => $this->status,
-            'updated_at' => $this->updated_at_localized,
+            'last_logged_in_at' => $this->last_logged_in_at,
+            'phone_number' => $this->phone_number,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ], $this->generateActionPermissions());
     }
 

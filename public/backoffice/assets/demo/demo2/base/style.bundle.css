@@ -25897,10 +25897,10 @@ body {
       top: 0;
       right: 30px;
       left: 310px;
-      z-index: 100000;
+      z-index: 97;
       background-color: #efeff5;
       height: 95px;
-      paddin-top: 30px; }
+      padding-top: 30px; }
     .k-header--fixed.k-aside--minimize .k-header {
       left: 78px;
       -webkit-transition: all 0.3s ease;
