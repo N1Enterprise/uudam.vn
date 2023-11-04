@@ -12,6 +12,7 @@ use App\Services\BaseService;
 use App\Services\UserDetailService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UserService extends BaseService
 {
@@ -53,8 +54,6 @@ class UserService extends BaseService
 
         $user = DB::transaction(function() use ($attributes) {
             $user = $this->userRepository->create($attributes);
-
-            $user->userDetail()->create(Arr::except($attributes, ['state_id', 'city_id', 'address', 'post_code']));
 
             UserCreating::dispatch($user);
 
@@ -137,5 +136,16 @@ class UserService extends BaseService
         UserProfileUpdated::dispatch($user);
 
         return $user;
+    }
+
+    public function generateUsername($length = 8)
+    {
+        $username = mb_strtolower(Str::random($length));
+
+        while ($this->userRepository->exists(['username' => $username])) {
+            $username = mb_strtolower(Str::random($length));
+        }
+
+        return $username;
     }
 }

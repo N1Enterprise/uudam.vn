@@ -10,6 +10,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MAINTENANCE_END_DATE = 'maintenance_end_date';
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
+    public const ENABLE_USER_EMAIL_VERIFICATION = 'enable_user_email_verification';
 
     // Shop Setting
     public const PAGE_SETTINGS = 'page_settings';
@@ -34,6 +35,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::PAGE_HIGHLIGHT_INFORMATION,
             self::VIDEO_OUTSIDE_UI,
             self::SEARCH_SETTING,
+            self::ENABLE_USER_EMAIL_VERIFICATION,
         ];
     }
 }

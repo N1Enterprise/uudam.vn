@@ -16,6 +16,8 @@ class Admin extends BaseAuthenticateModel
     use SoftDeletes;
     use HasRoles;
 
+    protected $guard = 'admin';
+
     protected $fillable = [
         'name',
         'email',

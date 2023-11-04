@@ -60,4 +60,24 @@ const __HELPER__ = {
 
             return x1 + (! !Object.keys(x2).length ? dec_point + x2 : '');
     },
+    appendErrorMessages: ($parent, errorMessages) => {
+        $parent.find('.form-errors').removeClass('show');
+
+        Object.keys(errorMessages).forEach(function(name) {
+            const element = $parent.find(`.form-errors[data-name="${name}"]`);
+            const messages = errorMessages[name];
+
+            if (Array.isArray(messages) && messages.length > 0) {
+                element.addClass('show');
+
+                const htmlError = messages.map((message) => {
+                    return $('<span>')
+                        .addClass('form-errors__message')
+                        .text(message);
+                });
+
+                element.html(htmlError);
+            }
+        });
+    },
 };

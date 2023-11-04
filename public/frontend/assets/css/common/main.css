@@ -306,3 +306,15 @@ body {
     display: none!important;
 }
 
+
+.form-errors {
+    display: none;
+}
+
+.form-errors.show {
+    display: block!important;
+    margin-bottom: 9px;
+    font-size: 14px;
+    color: #c90a0a;
+    margin-top: -5px;
+}

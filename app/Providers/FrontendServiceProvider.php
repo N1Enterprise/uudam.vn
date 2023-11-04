@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 class FrontendServiceProvider extends ServiceProvider
 {
+    public $singletons = [
+        \App\Classes\Contracts\UserAuthContract::class => \App\Classes\UserAuth::class
+    ];
+
     /**
      * @var string $moduleNameLower
      */
@@ -18,6 +22,7 @@ class FrontendServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(FrontendAuthenticationServiceProvider::class);
         $this->app->register(FrontendViewServiceProvider::class);
         $this->app->register(FrontendRouteServiceProvider::class);
         $this->app->register(FrontendResponseServiceProvider::class);

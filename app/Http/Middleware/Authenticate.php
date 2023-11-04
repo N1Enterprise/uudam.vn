@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use App\Common\RequestHelper;
+use Illuminate\Support\Facades\View;
 
 class Authenticate extends Middleware
 {
@@ -15,7 +17,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            if (RequestHelper::isFrontEndRequest($request)) {
+                return route('fe.web.home', ['overlay' => 'signin', 'redirect' => $request->fullUrl()]);
+            } else if (RequestHelper::isBackOfficeRequest($request)) {
+                return route('login');
+            }
         }
     }
 }
