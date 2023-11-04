@@ -1,11 +1,11 @@
 @foreach ($postCategories as $category)
 <div class="blog color-background-1 gradient">
-    <div class="page-width-desktop isolate section-template-padding">
+    <div class="page-width section-template__main-padding">
         <div class="title-wrapper-with-link title-wrapper--self-padded-tablet-down title-wrapper--no-top-margin">
             <h2 class="blog__title h2">{{ data_get($category, 'name') }}</h2>
         </div>
         <div class="slider-mobile-gutter">
-            <div class="owl-carousel owl-theme blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" style="margin: 0 -5px;" data-owl-id="Owl_Post_Category_{{ $category->id }}" data-owl-items="3">
+            <div class="owl-carousel owl-theme blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" style="margin: 0 0;" data-owl-id="Owl_Post_Category_{{ $category->id }}" data-owl-items="3">
                 @foreach (data_get($category, 'posts', []) as $post)
                 <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
                     <div class="card-wrapper underline-links-hover">

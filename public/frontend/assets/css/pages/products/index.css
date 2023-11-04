@@ -491,11 +491,11 @@ a.product__text {
         margin-bottom: 3rem;
         width: calc(100% + 4rem);
     }
-
+/*
     .product__media-wrapper .slider-component:not(.thumbnail-slider--no-slide) {
         margin-left: -1.5rem;
         margin-right: -1.5rem;
-    }
+    } */
 
     .slider.product__media-list::-webkit-scrollbar {
         height: 0.2rem;
@@ -511,7 +511,8 @@ a.product__text {
     }
 
     .product__media-list .product__media-item {
-        width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+        /* width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing)); */
+        width: 100%;
     }
 }
 
