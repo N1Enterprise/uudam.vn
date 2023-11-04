@@ -11,16 +11,14 @@ class UserProfileUpdated
     use Dispatchable;
 
     public $user;
-    public $userDetail;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, $userDetail = null)
+    public function __construct($user)
     {
         $this->user = $user;
-        $this->userDetail = $userDetail;
     }
 }

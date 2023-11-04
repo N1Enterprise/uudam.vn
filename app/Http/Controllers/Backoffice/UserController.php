@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backoffice;
 
+use App\Contracts\Requests\Backoffice\UpdateUserActionLogRequestContract;
 use Illuminate\Http\Request;
 use App\Contracts\Requests\Backoffice\UpdateUserRequestContract;
+use App\Contracts\Responses\Backoffice\UpdateUserActionLogResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateUserResponseContract;
 use App\Enum\UserStatusEnum;
 use App\Services\UserService;
@@ -43,5 +45,16 @@ class UserController extends BaseController
         $user = $this->userService->updateInfo($request->validated(), $id);
 
         return $this->response(UpdateUserResponseContract::class, $user);
+    }
+
+    public function updateUserAction(UpdateUserActionLogRequestContract $request, $id)
+    {
+        $actionLog = $this->userService->handleUserAction($request->validated(), $id);
+
+        if ($actionLog) {
+            session()->flash('actionMessage', ($request['type']));
+
+            return $this->response(UpdateUserActionLogResponseContract::class, $actionLog);
+        }
     }
 }

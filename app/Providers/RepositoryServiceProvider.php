@@ -37,5 +37,6 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\IncludedProductRepositoryContract::class => Repositories\IncludedProductRepository::class,
         Contracts\FileManagerRepositoryContract::class => Repositories\FileManagerRepository::class,
         Contracts\SubscriberRepositoryContract::class => Repositories\SubscriberRepository::class,
+        Contracts\UserActionLogRepositoryContract::class => Repositories\UserActionLogRepository::class,
     ];
 }

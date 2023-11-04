@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\Hash;
+use App\Enum\UserStatusEnum;
 use App\Models\Traits\Activatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,7 +25,9 @@ class User extends Authenticatable
         'password',
         'status',
         'last_logged_in_at',
+        'is_test_user',
         'phone_number',
+        'birthday',
         'email_verified_at'
     ];
 
@@ -57,6 +60,22 @@ class User extends Authenticatable
         return rtrim($verificationUrl).'?'.Arr::query([
             'link' => $link,
         ]);
+    }
+
+    public function getSerializedStatusAttribute()
+    {
+        $status = UserStatusEnum::ACTIVE;
+
+        if (! $this->isActive()) {
+            $status = UserStatusEnum::INACTIVE;
+        }
+
+        return $status;
+    }
+
+    public function getSerializedStatusNameAttribute()
+    {
+        return UserStatusEnum::findConstantLabel($this->serialized_status);
     }
 
     public function setLoggedInAt(Carbon $time = null)

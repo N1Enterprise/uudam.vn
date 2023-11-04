@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_logged_in_at')->nullable();
             $table->string('phone_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->date('birthday')->nullable();
+            $table->boolean('is_test_user')->default(0);
             $table->rememberToken();
 
             $table->timestamps();
