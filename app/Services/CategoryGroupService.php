@@ -47,11 +47,9 @@ class CategoryGroupService extends BaseService
         if ($imageUrl = data_get($image, 'path')) {
             return $imageUrl;
         } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->catalogDisk()->url($filename);
+            $pathname = sftp_upload($this->catalogDisk(), data_get($image, 'file'));
 
-            return $imageUrl;
+            return $pathname;
         }
 
         return null;
