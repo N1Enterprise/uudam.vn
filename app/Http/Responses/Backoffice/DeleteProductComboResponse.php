@@ -3,9 +3,9 @@
 namespace App\Http\Responses\Backoffice;
 
 use Illuminate\Http\JsonResponse;
-use App\Contracts\Responses\Backoffice\DeleteIncludedProductResponseContract;
+use App\Contracts\Responses\Backoffice\DeleteProductComboResponseContract;
 
-class DeleteIncludedProductResponse extends BaseResponse implements DeleteIncludedProductResponseContract
+class DeleteProductComboResponse extends BaseResponse implements DeleteProductComboResponseContract
 {
     public function toResponse($request)
     {

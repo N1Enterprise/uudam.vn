@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Included Product');
+	$title = __('Product Combo');
 
 	$breadcrumbs = [
 		[
 			'label' => $title,
 		],
 		[
-			'label' => __('Edit Included Product'),
+			'label' => __('Add Product Combo'),
 		]
 	];
 @endphp
@@ -56,7 +56,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Included Product') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Add Product Combo') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -70,16 +70,15 @@
 				</div>
 
 				<!--begin::Form-->
-				<form class="k-form" name="form_included_products" id="form_included_products" method="post" action="{{ route('bo.web.included-products.update', $includedProduct->id) }}" enctype="multipart/form-data">
+				<form class="k-form" name="form_included_products" id="form_included_products" method="post" action="{{ route('bo.web.product-combos.store') }}" enctype="multipart/form-data">
 					@csrf
-                    @method('PUT')
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $includedProduct->name) }}" required>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -90,7 +89,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="image[path]" value="{{ old('image.path', $includedProduct->image) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="image[path]" value="{{ old('image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -125,7 +124,7 @@
                                         key="sale_price"
                                         name="sale_price"
                                         class="form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}"
-                                        value='{{ old("sale_price", $includedProduct->sale_price) }}'
+                                        value='{{ old("sale_price") }}'
                                     />
                                     @error("sale_price")
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -137,7 +136,7 @@
                                     <input
                                         type="number"
                                         name="stock_quantity"
-                                        value="{{ old('stock_quantity', $includedProduct->stock_quantity) }}"
+                                        value="{{ old('stock_quantity') }}"
                                         class="form-control {{ $errors->has('stock_quantity') ? 'is-invalid' : '' }}"
                                         placeholder="{{ __('Enter stock quantity') }}"
                                         min="0"
@@ -148,8 +147,16 @@
                                 </div>
 
                                 <div class="form-group">
+									<label>{{ __('Unit') }} *</label>
+									<input type="text" class="form-control {{ $errors->has('unit') ? 'is-invalid' : '' }}" name="unit" placeholder="{{ __('Enter unit') }}" value="{{ old('unit') }}" required>
+                                    @error('unit')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
+
+                                <div class="form-group">
                                     <label for="">{{ __('Description') }}</label>
-                                    <textarea name="description" id="" rows="3" class="form-control">{{ old('description', $includedProduct->description) }}</textarea>
+                                    <textarea name="description" id="" rows="3" class="form-control">{{ old('description') }}</textarea>
                                 </div>
 
 								<div class="form-group row">
@@ -157,7 +164,7 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', boolean($includedProduct->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', '1') == '1'  ? 'checked' : ''}} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>
@@ -181,8 +188,5 @@
 @endsection
 
 @section('js_script')
-@include('backoffice.pages.included-products.js-pages.handle')
-<script>
-    FORM_PRIMARY_IMAGE_PATH.triggerChange();
-</script>
+@include('backoffice.pages.product-combos.js-pages.handle')
 @endsection

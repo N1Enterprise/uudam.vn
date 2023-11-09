@@ -3,13 +3,11 @@
 namespace App\Services\StoreFront;
 
 use App\Enum\ActivationStatusEnum;
-use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ModelNotFoundException;
 use App\Services\BaseService;
 use App\Services\DisplayInventoryService;
 use App\Services\InventoryService;
 use Illuminate\Support\Facades\DB;
-use Throwable;
 
 class StoreFrontProductDisplayService extends BaseService
 {
@@ -63,8 +61,8 @@ class StoreFrontProductDisplayService extends BaseService
             'attributes' => function($q) {
                 $q->select('attributes.id', 'attributes.name', 'attributes.attribute_type', 'attributes.order');
             },
-            'includedProducts' => function($q) {
-                $q->select('included_products.id', 'included_products.name', 'included_products.image', 'included_products.sale_price', 'included_products.description');
+            'productCombos' => function($q) {
+                $q->select('product_combos.id', 'product_combos.name', 'product_combos.image', 'product_combos.sale_price', 'product_combos.description', 'product_combos.unit');
             }
         ]);
 

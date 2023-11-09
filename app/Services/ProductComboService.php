@@ -2,17 +2,17 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\IncludedProductRepositoryContract;
+use App\Repositories\Contracts\ProductComboRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class IncludedProductService extends BaseService
+class ProductComboService extends BaseService
 {
     public $includedProductRepository;
 
-    public function __construct(IncludedProductRepositoryContract $includedProductRepository)
+    public function __construct(ProductComboRepositoryContract $includedProductRepository)
     {
         $this->includedProductRepository = $includedProductRepository;
     }

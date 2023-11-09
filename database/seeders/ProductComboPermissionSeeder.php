@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
-class IncludedProductPermissionSeeder extends Seeder
+class ProductComboPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,10 +23,10 @@ class IncludedProductPermissionSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         $permissionNames = [
-            'included-products.index',
-            'included-products.store',
-            'included-products.update',
-            'included-products.delete',
+            'product-combos.index',
+            'product-combos.store',
+            'product-combos.update',
+            'product-combos.delete',
         ];
 
         $permissions = [];

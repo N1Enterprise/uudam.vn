@@ -45,12 +45,12 @@
                 optionHolder.removeClass('d-none');
 
                 relatedPosts.map(function(obj) {
-                    generateIncludedProductBadge(obj, optionHolder);
+                    generateProductComboBadge(obj, optionHolder);
                 });
             }
         });
 
-        function generateIncludedProductBadge(obj, holderSelector) {
+        function generateProductComboBadge(obj, holderSelector) {
             if ($.isEmptyObject(obj)) {
                 return;
             }
