@@ -155,12 +155,12 @@ Route::get('product-reviews/{id}', [Controllers\ProductReviewController::class, 
 Route::put('product-reviews/{id}', [Controllers\ProductReviewController::class, 'update'])->name('product-reviews.update')->middleware(['can:product-reviews.update']);
 Route::delete('product-reviews/{id}', [Controllers\ProductReviewController::class, 'destroy'])->name('product-reviews.delete')->middleware(['can:product-reviews.delete']);
 
-Route::get('included-products', [Controllers\IncludedProductController::class, 'index'])->name('included-products.index')->middleware(['can:included-products.index']);
-Route::get('included-products/create', [Controllers\IncludedProductController::class, 'create'])->name('included-products.create')->middleware(['can:included-products.store']);
-Route::post('included-products', [Controllers\IncludedProductController::class, 'store'])->name('included-products.store')->middleware(['can:included-products.store']);
-Route::get('included-products/{id}', [Controllers\IncludedProductController::class, 'edit'])->name('included-products.edit')->middleware(['can:included-products.update']);
-Route::put('included-products/{id}', [Controllers\IncludedProductController::class, 'update'])->name('included-products.update')->middleware(['can:included-products.update']);
-Route::delete('included-products/{id}', [Controllers\IncludedProductController::class, 'destroy'])->name('included-products.delete')->middleware(['can:included-products.delete']);
+Route::get('product-combos', [Controllers\ProductComboController::class, 'index'])->name('product-combos.index')->middleware(['can:product-combos.index']);
+Route::get('product-combos/create', [Controllers\ProductComboController::class, 'create'])->name('product-combos.create')->middleware(['can:product-combos.store']);
+Route::post('product-combos', [Controllers\ProductComboController::class, 'store'])->name('product-combos.store')->middleware(['can:product-combos.store']);
+Route::get('product-combos/{id}', [Controllers\ProductComboController::class, 'edit'])->name('product-combos.edit')->middleware(['can:product-combos.update']);
+Route::put('product-combos/{id}', [Controllers\ProductComboController::class, 'update'])->name('product-combos.update')->middleware(['can:product-combos.update']);
+Route::delete('product-combos/{id}', [Controllers\ProductComboController::class, 'destroy'])->name('product-combos.delete')->middleware(['can:product-combos.delete']);
 
 Route::post('file-manager/upload', [Controllers\FileManagerController::class, 'upload'])->name('file-manager.upload');
 

@@ -39,7 +39,7 @@
                     </svg>
                 </span>
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img srcset="{{ $image }}" src="{{ $image }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" width="973" height="973" alt="{{ data_get($inventory, 'title') }}">
+                    <img data-image-index="{{ $loop->index }}" srcset="{{ $image }}" src="{{ $image }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" width="973" height="973" alt="{{ data_get($inventory, 'title') }}">
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog">
                     <span class="visually-hidden"> Open media 1 in modal </span>

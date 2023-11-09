@@ -2,16 +2,17 @@
 
 namespace App\Http\Requests\Backoffice;
 
-use App\Contracts\Requests\Backoffice\UpdateIncludedProductRequestContract;
+use App\Contracts\Requests\Backoffice\UpdateProductComboRequestContract;
 use App\Enum\ActivationStatusEnum;
 use Illuminate\Validation\Rule;
 
-class UpdateIncludedProductRequest extends BaseFormRequest implements UpdateIncludedProductRequestContract
+class UpdateProductComboRequest extends BaseFormRequest implements UpdateProductComboRequestContract
 {
     public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'unit' => ['required', 'string', 'max:255'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
             'sale_price' => ['required', 'numeric', 'gt:0'],

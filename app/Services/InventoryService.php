@@ -165,6 +165,7 @@ class InventoryService extends BaseService
             $variant['product_slug'] = data_get($attributes, 'product_slug');
             $variant['offer_start'] = data_get($attributes, 'offer_start');
             $variant['offer_end'] = data_get($attributes, 'offer_end');
+            $variant['featured'] = data_get($attributes, 'featured');
 
             $variantsCreated = [];
 
@@ -201,15 +202,27 @@ class InventoryService extends BaseService
             $inventory = $this->inventoryRepository->update($attributes, $id);
 
             $this->setAttributes($inventory, data_get($attributes, ['variants', 'attribute'], []));
-            $this->syncIncludedProducts($inventory, data_get($attributes, 'included_products', []));
+            $this->syncProductCombos($inventory, data_get($attributes, 'product_combos', []));
 
             return $inventory;
         });
     }
 
-    public function syncIncludedProducts(Inventory $inventory, array $includedProducts = [])
+    public function syncProductCombos(Inventory $inventory, array $productCombos = [])
     {
-        return $inventory->includedProducts()->syncWithPivotValues($includedProducts, ['created_at' => now(), 'updated_at' => now()]);
+        DB::table('product_combo_inventories')->where('inventory_id', $inventory->getKey())->delete();
+
+        foreach ($productCombos as $combo) {
+            $data[] = [
+                'product_combo_id' => data_get($combo, 'product_combo_id'),
+                'inventory_id' => $inventory->getKey(),
+                'quantity' => data_get($combo, 'quantity'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+        }
+
+        DB::table('product_combo_inventories')->insert($data);
     }
 
     public function delete($id)

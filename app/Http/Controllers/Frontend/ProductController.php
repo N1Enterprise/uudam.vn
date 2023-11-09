@@ -36,7 +36,7 @@ class ProductController extends BaseController
     {
         $inventory = $this->storeFrontProductDisplayService->showBySlug($slug);
         $variants  = $this->inventoryService->listAvailableByProduct($inventory->product_id, [
-            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order', 'includedProducts:id,name,image,sale_price,description'],
+            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order', 'productCombos:id,name,image,sale_price,description,unit'],
             'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
         ]);
 
