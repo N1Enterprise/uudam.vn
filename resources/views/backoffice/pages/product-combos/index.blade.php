@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Included Product');
+	$title = __('Product Combo');
 
 	$breadcrumbs = [
 		[
@@ -23,16 +23,16 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Included Product') }}
+                        {{ __('Product Combo') }}
                     </h3>
                 </div>
-                @canAny(['included-products.store'])
+                @canAny(['product-combos.store'])
                 <div class="k-portlet__head-toolbar">
                     <div class="k-portlet__head-toolbar-wrapper">
-                        @can('included-products.store')
-                        <a href="{{ route('bo.web.included-products.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
+                        @can('product-combos.store')
+                        <a href="{{ route('bo.web.product-combos.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Included Product') }}
+                            {{ __('Create Product Combo') }}
                         </a>
                         @endcan
                     </div>
@@ -40,7 +40,7 @@
                 @endcan
             </div>
             <div class="k-portlet__body">
-                <table id="table_included_products_index" data-searching="true" data-request-url="{{ route('bo.api.included-products.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+                <table id="table_included_products_index" data-searching="true" data-request-url="{{ route('bo.api.product-combos.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
@@ -48,6 +48,7 @@
                             <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
                             <th data-property="sale_price">{{ __('Sale Price') }}</th>
                             <th data-property="stock_quantity">{{ __('Stock Quantity') }}</th>
+                            <th data-property="unit">{{ __('Unit') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>
                             <th data-property="updated_at">{{ __('Updated At') }}</th>

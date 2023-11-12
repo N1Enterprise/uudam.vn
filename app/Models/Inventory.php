@@ -73,8 +73,10 @@ class Inventory extends BaseModel
             ->withTimestamps();
     }
 
-    public function includedProducts()
+    public function productCombos()
     {
-        return $this->belongsToMany(IncludedProduct::class, 'included_product_inventories');
+        return $this->belongsToMany(ProductCombo::class, 'product_combo_inventories')
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 }

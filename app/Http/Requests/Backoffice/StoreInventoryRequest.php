@@ -32,6 +32,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'key_features.*.title' => ['required', 'string'],
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
+                'featured' => ['required', 'integer'],
                 'offer_start' => [
                     Rule::requiredIf(function() {
                         $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
@@ -63,6 +64,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
     public function prepareForValidation()
     {
         $this->merge([
+            'featured' => 0,
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,

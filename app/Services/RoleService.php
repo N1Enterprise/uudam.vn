@@ -43,11 +43,11 @@ class RoleService extends BaseService
                 'products.update',
                 'products.delete',
             ],
-            'included-products' => [
-                'included-products.index',
-                'included-products.store',
-                'included-products.update',
-                'included-products.delete',
+            'product-combos' => [
+                'product-combos.index',
+                'product-combos.store',
+                'product-combos.update',
+                'product-combos.delete',
             ],
             'attributes' => [
                 'attributes.index',

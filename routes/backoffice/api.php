@@ -30,7 +30,7 @@ Route::prefix('v1')->group(function () {
     Route::get('products', [Api\ProductController::class, 'index'])->name('products.index')->middleware(['can:products.index']);
     Route::get('attributes', [Api\AttributeController::class, 'index'])->name('attributes.index')->middleware(['can:attributes.index']);
     Route::get('attribute-values', [Api\AttributeValueController::class, 'index'])->name('attribute-values.index')->middleware(['can:attribute-values.index']);
-    Route::get('included-products', [Api\IncludedProductController::class, 'index'])->name('included-products.index')->middleware(['can:included-products.index']);
+    Route::get('product-combos', [Api\ProductComboController::class, 'index'])->name('product-combos.index')->middleware(['can:product-combos.index']);
 
     /* ======================== STOCK ======================== */
     Route::get('inventories', [Api\InventoryController::class, 'index'])->name('inventories.index')->middleware(['can:inventories.index']);

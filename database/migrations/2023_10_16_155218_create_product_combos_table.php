@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncludedProductsTable extends Migration
+class CreateProductCombosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIncludedProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('included_products', function (Blueprint $table) {
+        Schema::create('product_combos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('image')->nullable();
@@ -21,6 +21,7 @@ class CreateIncludedProductsTable extends Migration
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
             $table->text('description')->nullable();
             $table->integer('stock_quantity')->default(0);
+            $table->string('unit')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateIncludedProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('included_products');
+        Schema::dropIfExists('product_combos');
     }
 }

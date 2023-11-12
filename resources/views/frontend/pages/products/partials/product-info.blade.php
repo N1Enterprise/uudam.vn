@@ -90,7 +90,7 @@
             </div>
             @endif
 
-            @include('frontend.pages.products.partials.included-products')
+            @include('frontend.pages.products.partials.product-combos')
 
             <form method="post" action="/cart/add" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
                 <input type="hidden" name="form_type" value="product">

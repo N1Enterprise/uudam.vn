@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncludedProductInventoriesTable extends Migration
+class CreateProductComboInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateIncludedProductInventoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('included_product_inventories', function (Blueprint $table) {
+        Schema::create('product_combo_inventories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('included_product_id')->index();
+            $table->foreignId('product_combo_id')->index();
             $table->foreignId('inventory_id')->index();
+            $table->integer('quantity')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateIncludedProductInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('included_product_inventories');
+        Schema::dropIfExists('product_combo_inventories');
     }
 }

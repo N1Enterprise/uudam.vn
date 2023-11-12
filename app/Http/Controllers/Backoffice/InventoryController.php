@@ -12,7 +12,7 @@ use App\Enum\ProductTypeEnum;
 use App\Models\Inventory;
 use App\Services\AttributeService;
 use App\Services\CategoryService;
-use App\Services\IncludedProductService;
+use App\Services\ProductComboService;
 use App\Services\InventoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -23,20 +23,20 @@ class InventoryController extends BaseController
     public $categoryService;
     public $productService;
     public $attributeService;
-    public $includedProductService;
+    public $productComboService;
 
     public function __construct(
         InventoryService $inventoryService,
         CategoryService $categoryService,
         ProductService $productService,
         AttributeService $attributeService,
-        IncludedProductService $includedProductService
+        ProductComboService $productComboService
     ) {
         $this->inventoryService = $inventoryService;
         $this->categoryService = $categoryService;
         $this->productService = $productService;
         $this->attributeService = $attributeService;
-        $this->includedProductService = $includedProductService;
+        $this->productComboService = $productComboService;
     }
 
     public function index()
@@ -82,7 +82,7 @@ class InventoryController extends BaseController
 
     public function edit($id)
     {
-        $inventory = $this->inventoryService->show($id, ['with' => 'attributes', 'attributeValues', 'includedProducts']);
+        $inventory = $this->inventoryService->show($id, ['with' => 'attributes', 'attributeValues', 'productCombos']);
         $product = $this->productService->show($inventory->product_id);
 
         $hasVariant = $product->type == ProductTypeEnum::VARIABLE;
@@ -110,7 +110,7 @@ class InventoryController extends BaseController
         }
 
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
-        $includedProducts = $this->includedProductService->allAvailable(['columns' => ['id', 'name']]);
+        $productCombos = $this->productComboService->allAvailable(['columns' => ['id', 'name', 'unit', 'sale_price']]);
 
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
@@ -119,7 +119,7 @@ class InventoryController extends BaseController
             'attributes',
             'combinations',
             'inventoryConditionEnumLabels',
-            'includedProducts',
+            'productCombos',
         ));
     }
 
