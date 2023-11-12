@@ -213,15 +213,3 @@ if (! function_exists('display_json_value')) {
         return $value ? json_encode($value, JSON_PRETTY_PRINT) : $default;
     }
 }
-
-if (! function_exists('sftp_upload')) {
-    function sftp_upload(\Illuminate\Filesystem\FilesystemAdapter $disk, \Illuminate\Http\UploadedFile $file)
-    {
-        $pathname = $disk->put('/', $file);
-        $fullPathname = $disk->url($pathname);
-
-        dd([
-            '$fullPathname' => $fullPathname
-        ]);
-    }
-}

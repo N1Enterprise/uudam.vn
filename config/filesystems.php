@@ -59,8 +59,8 @@ return [
             'host'     => env('SFTP_HOST'),
             'username' => env('SFTP_USERNAME'),
             'password' => env('SFTP_PASSWORD'),
-            'url'      => env('SFTP_URL'),
-            'root'     => '/sftp_folder/catalog',
+            'url'      => env('SFTP_URL') . '/catalog',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/catalog',
         ],
 
         'appearance' => [
@@ -69,8 +69,8 @@ return [
             'host'     => env('SFTP_HOST'),
             'username' => env('SFTP_USERNAME'),
             'password' => env('SFTP_PASSWORD'),
-            'url'      => env('SFTP_URL'),
-            'root'     => '/sftp_folder/appearance',
+            'url'      => env('SFTP_URL') . '/appearance',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/appearance',
         ],
 
         'utility' => [
@@ -80,7 +80,8 @@ return [
             'username' => env('SFTP_USERNAME'),
             'password' => env('SFTP_PASSWORD'),
             'url'      => env('SFTP_URL'),
-            'root'     => '/sftp_folder/utility',
+            'url'      => env('SFTP_URL') . '/utility',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/utility',
         ],
 
         'sftp' => [
@@ -89,8 +90,8 @@ return [
             'host'     => env('SFTP_HOST'),
             'username' => env('SFTP_USERNAME'),
             'password' => env('SFTP_PASSWORD'),
-            'url'      => env('SFTP_URL'),
-            'root'     => '/sftp_folder',
+            'url'      => env('SFTP_URL') . '/root',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/root',
         ]
     ],
 
@@ -108,5 +109,4 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 ];
