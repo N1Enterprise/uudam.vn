@@ -2,11 +2,10 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Repositories\Contracts\ProductComboRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class ProductComboService extends BaseService
 {
@@ -36,25 +35,15 @@ class ProductComboService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
 
             return $this->includedProductRepository->create($attributes);
         });
     }
 
-    protected function convertImage($image)
+    protected function u($image)
     {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->catalogDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
+        return ImageHelper::make('catalog')->uploadImage($image);
     }
 
     public function show($id, $columns = ['*'])
@@ -65,7 +54,7 @@ class ProductComboService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
 
             return $this->includedProductRepository->update($attributes, $id);
         });
@@ -74,10 +63,5 @@ class ProductComboService extends BaseService
     public function delete($id)
     {
         return $this->includedProductRepository->delete($id);
-    }
-
-    protected function catalogDisk()
-    {
-        return Storage::disk('catalog');
     }
 }
