@@ -2,11 +2,10 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Repositories\Contracts\PostRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 
 class PostService extends BaseService
@@ -38,7 +37,7 @@ class PostService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('utility')->uploadImage(data_get($attributes, 'image'));
 
             return $this->postRepository->create($attributes);
         });
@@ -60,35 +59,15 @@ class PostService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('utility')->uploadImage(data_get($attributes, 'image'));
 
             return $this->postRepository->update($attributes, $id);
         });
     }
 
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->utilityDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->utilityDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
     public function delete($id)
     {
         return $this->postRepository->delete($id);
-    }
-
-    protected function utilityDisk()
-    {
-        return Storage::disk('utility');
     }
 
     public function getAvailableBySuggested($suggested, $data = [])

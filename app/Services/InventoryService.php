@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Models\BaseModel;
 use App\Models\Inventory;
 use App\Repositories\Contracts\InventoryRepositoryContract;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class InventoryService extends BaseService
@@ -137,7 +136,7 @@ class InventoryService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, ['image']));
+            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
             $attributes['slug'] = Str::slug($attributes['product_slug'] . ' ' . $attributes['sku'], '-');
 
             $inventory = $this->inventoryRepository->create($attributes);
@@ -179,7 +178,7 @@ class InventoryService extends BaseService
                 $variant['offer_end'] = $variant['offer_price'] ? $variant['offer_end'] : null;
                 $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
                 $variant['slug'] = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
-                $variant['image'] = $this->convertImage(data_get($variants, ['image', $index]));
+                $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($variants, ['image', $index]));
 
                 $inventory = $this->inventoryRepository->create($variant);
 
@@ -197,7 +196,7 @@ class InventoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
 
             $inventory = $this->inventoryRepository->update($attributes, $id);
 
@@ -247,26 +246,6 @@ class InventoryService extends BaseService
         return true;
     }
 
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->catalogDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
-    protected function catalogDisk()
-    {
-        return Storage::disk('catalog');
-    }
-
     public function listAvailableByProduct($product, $data = [])
     {
         $inventories = $this->inventoryRepository
@@ -278,24 +257,5 @@ class InventoryService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
 
         return $inventories;
-    }
-
-    public function inventoriesAttributes($inventoryIds = [])
-    {
-
-    }
-
-    public function getInventoryAttributesByVariants($inventory, $variants)
-    {
-        $attrPivots = DB::table('attribute_inventories')
-            ->select('attribute_id','inventory_id','attribute_value_id')
-            ->whereIn('inventory_id', $variants->pluck('id'))->get();
-
-        $inventoryAttributes = $attrPivots
-            ->where('inventory_id', $inventory->id)
-            ->pluck('attribute_value_id')
-            ->toArray();
-
-        dd($inventoryAttributes);
     }
 }
