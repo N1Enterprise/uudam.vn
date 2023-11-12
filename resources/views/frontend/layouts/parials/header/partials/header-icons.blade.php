@@ -80,8 +80,13 @@
         </svg>
         <span class="visually-hidden">Cart</span>
         <div class="cart-count-bubble">
-            <span aria-hidden="true">1</span>
-            <span class="visually-hidden">1 item</span>
+            <span aria-hidden="true">
+                <count-items-in-cart>0</count-items-in-cart>
+            </span>
+            <span class="visually-hidden">
+                <count-items-in-cart>0</count-items-in-cart>
+                item
+            </span>
         </div>
     </a>
 </div>

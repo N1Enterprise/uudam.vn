@@ -137,7 +137,6 @@
 
                     if( isActive) {
                         menuActiveLinkEl = $(e);
-                        console.log({menuActiveLinkEl, e });
                         return false;
                     }
                 })

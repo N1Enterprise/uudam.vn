@@ -43,7 +43,27 @@ class StoreFrontProductDisplayService extends BaseService
             ->scopeQuery(function($q) use ($slug) {
                 $q->where('slug', $slug);
             })
-            ->first();
+            ->first([
+                'available_from',
+                'condition',
+                'condition_note',
+                'featured',
+                'id',
+                'image',
+                'key_features',
+                'meta_description',
+                'meta_title',
+                'min_order_quantity',
+                'offer_end',
+                'offer_price',
+                'offer_start',
+                'product_id',
+                'sale_price',
+                'sku',
+                'slug',
+                'stock_quantity',
+                'title'
+            ]);
 
         if (empty($inventory)) {
             throw new ModelNotFoundException();

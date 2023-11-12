@@ -28,6 +28,7 @@ class UserAuthenticationController extends BaseApiController
 
     public function signin(UserSigninRequestContract $request)
     {
+        dd($request->validated());
         $user = $this->userAuthService->signin($request->validated());
 
         return response()->json($user->only(['username']));

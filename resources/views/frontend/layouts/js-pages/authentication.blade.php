@@ -40,11 +40,14 @@ const AUTHENTICATION = {
 
             const _self = $(this);
 
+            const cartItems = JSON.parse(__HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
+
             const payload = {
                 name: _self.find('[name="name"]').val(),
                 phone_number: _self.find('[name="phone_number"]').val(),
                 email: _self.find('[name="email"]').val(),
-                password: _self.find('[name="password"]').val()
+                password: _self.find('[name="password"]').val(),
+                cart_items: cartItems,
             };
 
             $.ajax({
@@ -82,9 +85,12 @@ const AUTHENTICATION = {
 
             const _self = $(this);
 
+            const cartItems = JSON.parse(__HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
+
             const payload = {
                 username: _self.find('[name="username"]').val(),
-                password: _self.find('[name="password"]').val()
+                password: _self.find('[name="password"]').val(),
+                cart_items: cartItems
             };
 
             $.ajax({

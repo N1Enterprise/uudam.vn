@@ -40,6 +40,8 @@
     <link href="{{ asset('frontend/assets/css/common/component-predictive-search.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles -->
 
     @yield('style_datatable')
@@ -141,6 +143,10 @@
 
     @include('frontend.layouts.parials.footer.index')
 
+    {{-- @include('frontend.layouts.parials.cart-drawer.index') --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
@@ -148,11 +154,12 @@
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
 
-    @yield('js_script')
-    @stack('js_pages')
-
     @include('frontend.layouts.js-pages.menu-drawer')
     @include('frontend.layouts.js-pages.authentication')
     @include('frontend.layouts.js-pages.predictive-search')
+    @include('frontend.layouts.js-pages.user-order-cart')
+
+    @yield('js_script')
+    @stack('js_pages')
 </body>
 </html>

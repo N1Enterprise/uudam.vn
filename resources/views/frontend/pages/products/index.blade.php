@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
 @endpush
 
 @section('page_title')

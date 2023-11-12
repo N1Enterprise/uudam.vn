@@ -1,4 +1,4 @@
-<div class="product__info-container product__info-container--sticky">
+<div class="product__info-container product__info-container--sticky" data-inventory='@json($inventory)'>
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
         <a href="/products/teaching-garden-buddha-statue" class="product__title">
@@ -14,7 +14,7 @@
             <div class="price__container">
                 <div class="price__regular">
                     <span class="visually-hidden visually-hidden--inline">Giá Bán</span>
-                    <span class="price-item price-item--regular" data-sale-price>{{ format_price($inventory->sale_price) }}</span>
+                    <span class="price-item price-item--regular" data-price-value="{{ $inventory->sale_price }}" data-sale-price>{{ format_price($inventory->sale_price) }}</span>
                 </div>
             </div>
             <span class="badge price__badge-sale color-accent-2">Giảm Giá</span>
@@ -22,31 +22,41 @@
         </div>
     </div>
     <div>
-        <form method="post" action="/cart/add" accept-charset="UTF-8" class="installment caption-large">
+        <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="installment caption-large">
             <input type="hidden" name="form_type" value="product">
             <input type="hidden" name="utf8" value="✓">
             <input type="hidden" name="id" data-inventory-id value="{{ $inventory->id }}">
             <input type="hidden" name="product-id" value="{{ optional($inventory->product)->id }}">
         </form>
     </div>
-    <div class="product-form__input product-form__quantity">
-        <label class="form__label">{{ __('Số Lượng') }}</label>
-        <quantity-input class="quantity">
-            <button class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
-                <span class="visually-hidden">Decrease quantity for Teaching Garden Buddha Statue</span>
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
-                </svg>
-            </button>
-            <input data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
-            <button class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
-                <span class="visually-hidden">Increase quantity for Teaching Garden Buddha Statue</span>
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
-                </svg>
-            </button>
-        </quantity-input>
+
+    <div class="inventory-price-area">
+        <div class="product-form__input product-form__quantity">
+            <label class="form__label">{{ __('Số Lượng') }}</label>
+            <quantity-input class="quantity">
+                <button class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
+                    <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
+                    </svg>
+                </button>
+                <input data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
+                <button class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
+                    <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
+                    </svg>
+                </button>
+            </quantity-input>
+        </div>
+        <div>
+            <div class="inventory-price">
+                <label for="" data-total-cart-label>Tạm tính</label>:
+                <b class="total-cart" data-total-cart-price>{{ format_price($inventory->sale_price) }}</b>
+            </div>
+        </div>
     </div>
+
     <div>
         <product-form class="product-form">
             <div id="inventory_variants" data-variants='@json($variants)'></div>
@@ -92,10 +102,13 @@
 
             @include('frontend.pages.products.partials.product-combos')
 
-            <form method="post" action="/cart/add" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+            <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="id" value="{{ data_get($inventory, 'product.id') }}">
+                <input type="hidden" name="product_id" value="{{ data_get($inventory, 'product.id') }}">
+                <input type="hidden" name="inventory_id" value="{{ data_get($inventory, 'id') }}">
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="has_combo" value="0">
                 <div class="product-form__buttons">
                     <button type="submit" name="add" class="product-form__submit button button--full-width button--primary">
                         <span>Thêm Vào Giỏ Hàng</span>
@@ -108,6 +121,7 @@
                     </div>
                 </div>
             </form>
+
         </product-form>
     </div>
     <share-button class="share-button quick-add-hidden">

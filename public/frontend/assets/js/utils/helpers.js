@@ -60,6 +60,9 @@ const __HELPER__ = {
 
             return x1 + (! !Object.keys(x2).length ? dec_point + x2 : '');
     },
+    formatPrice: (money, symbol = 'VND') => {
+        return __HELPER__.formatNumber(money) + ' ' + symbol;
+    },
     appendErrorMessages: ($parent, errorMessages) => {
         $parent.find('.form-errors').removeClass('show');
 
@@ -79,5 +82,29 @@ const __HELPER__ = {
                 element.html(htmlError);
             }
         });
+    },
+    number: (number) => {
+        const _number = parseFloat(number);
+
+        return {
+            multiply: (by) => {
+                return _number * parseFloat(by);
+            },
+            toFloat: () => {
+                return parseFloat(_number);
+            },
+        };
+    },
+    cookie: (key) => {
+        return {
+            get: (_default = null) => {
+                const value = Cookies.get(key);
+
+                return value || _default;
+            },
+            set: (data) => {
+                Cookies.set(key, data);
+            },
+        };
     },
 };

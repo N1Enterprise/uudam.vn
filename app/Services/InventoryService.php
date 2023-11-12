@@ -212,6 +212,8 @@ class InventoryService extends BaseService
     {
         DB::table('product_combo_inventories')->where('inventory_id', $inventory->getKey())->delete();
 
+        $data = [];
+
         foreach ($productCombos as $combo) {
             $data[] = [
                 'product_combo_id' => data_get($combo, 'product_combo_id'),
