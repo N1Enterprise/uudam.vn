@@ -1,16 +1,43 @@
 <script>
     const USER_ORDER_CART = {
+        authenticated_user: @json($AUTHENTICATED_USER),
         init: () => {
-            USER_ORDER_CART.countOrderItems();
+            USER_ORDER_CART.updateCartInfo();
         },
-        countOrderItems: () => {
-            const items = JSON.parse(__HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
+        updateCartInfo: () => {
+            if (!USER_ORDER_CART.authenticated_user) {
+                return;
+            }
 
-            const totalQuantity = Object.values(items).reduce(function(totalOrder, item) {
-                return totalOrder + +(item.quantity);
-            }, 0);
+            $.ajax({
+                url: "{{ route('fe.api.user.cart.info') }}",
+                method: 'GET',
+                success: (response) => {
+                    $('count-items-in-cart').text(response?.total_quantity || 0);
+                },
+            });
+        },
+        addToCart: (dataOrder, callback = {}) => {
+            if (!USER_ORDER_CART.authenticated_user) {
+                return;
+            }
 
-            $('count-items-in-cart').text(totalQuantity);
+            const beforeSend = callback?.beforeSend;
+            const success = callback?.success;
+
+            dataOrder = {
+                user_id: USER_ORDER_CART.authenticated_user.id,
+                ...dataOrder,
+            };
+
+            $.ajax({
+                url: "{{ route('fe.api.user.cart.store') }}",
+                method: 'POST',
+                data: dataOrder,
+                beforeSend: beforeSend,
+                success: success,
+                error: () => {},
+            });
         },
     };
 

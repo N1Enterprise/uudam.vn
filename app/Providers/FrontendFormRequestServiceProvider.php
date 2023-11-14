@@ -14,5 +14,7 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
 
         Contracts\StoreUserProductReviewRequestContract::class => Requests\StoreUserProductReviewRequest::class,
         Contracts\StoreUserSubscribeRequestContract::class => Requests\StoreUserSubscribeRequest::class,
+
+        Contracts\UserAddToCartRequestContract::class => Requests\UserAddToCartRequest::class,
     ];
 }

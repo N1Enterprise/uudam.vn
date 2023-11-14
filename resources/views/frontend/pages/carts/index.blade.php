@@ -6,8 +6,16 @@
 @endpush
 
 @section('content_body')
-    <div class="shopify-section">
+<div class="shopify-section">
+    @if(!$items->isEmpty())
         @include('frontend.pages.carts.partials.cart-items')
         @include('frontend.pages.carts.partials.cart-footer')
-    </div>
+    @else
+        @include('frontend.pages.carts.partials.cart-empty')
+    @endif
+</div>
+@endsection
+
+@section('js_script')
+@include('frontend.pages.carts.js-pages.my-cart')
 @endsection

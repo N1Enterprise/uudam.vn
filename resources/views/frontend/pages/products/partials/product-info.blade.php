@@ -102,7 +102,11 @@
 
             @include('frontend.pages.products.partials.product-combos')
 
-            <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
+            @if(empty($AUTHENTICATED_USER))
+            <p>Bạn cần <a id="Add_Cart_Required_Login" href="?overlay=signin" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> trước khi mua hàng</p>
+            @endif
+
+            <form method="post" action="" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
                 <input type="hidden" name="product_id" value="{{ data_get($inventory, 'product.id') }}">

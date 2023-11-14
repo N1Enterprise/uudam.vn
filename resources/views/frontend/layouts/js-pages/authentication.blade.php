@@ -130,6 +130,7 @@ const AUTHENTICATION = {
             AUTHENTICATION.elements.action_wrapper.hide();
 
             __HELPER__.urlParams('overlay').del();
+            __HELPER__.urlParams('redirect').del();
         });
     },
     onGoPage: () => {
@@ -137,12 +138,18 @@ const AUTHENTICATION = {
             e.preventDefault();
 
             const overlay = $(this).attr('data-overlay-action-button');
+            const dataRedirect = $(this).attr('data-redirect');
 
             if (overlay && AUTHENTICATION.actions.includes(overlay)) {
                 AUTHENTICATION.elements.wrapper.show();
                 AUTHENTICATION.elements.action_wrapper.hide();
 
                 __HELPER__.urlParams('overlay').set(overlay);
+
+                if (dataRedirect) {
+                    __HELPER__.urlParams('redirect').set(dataRedirect);
+                }
+
                 $(`[data-overlay-action-wrapper="${overlay}"]`).show();
             } else {
                 AUTHENTICATION.elements.wrapper.hide();

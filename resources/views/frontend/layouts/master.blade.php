@@ -134,16 +134,16 @@
 </head>
 
 <body class="gradient swym-ready swym-buttons-loaded">
-    @include('frontend.layouts.parials.header.index')
+    @include('frontend.layouts.partials.header.index')
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         @yield('content_body')
         @stack('modals')
     </main>
 
-    @include('frontend.layouts.parials.footer.index')
+    @include('frontend.layouts.partials.footer.index')
 
-    {{-- @include('frontend.layouts.parials.cart-drawer.index') --}}
+    {{-- @include('frontend.layouts.partials.cart-drawer.index') --}}
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>

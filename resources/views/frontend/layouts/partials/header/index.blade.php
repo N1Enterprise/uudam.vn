@@ -70,7 +70,7 @@
                                                         @if(! optional($menuSubGroup->menus)->isEmpty())
                                                         <ul class="mm-product-list mm-last-level">
                                                             @foreach ($menuSubGroup->menus as $menu)
-                                                            @include('frontend.layouts.parials.header.partials.menu-'.$menu->type)
+                                                            @include('frontend.layouts.partials.header.partials.menu-'.$menu->type)
                                                             @endforeach
                                                         </ul>
                                                         @endif
@@ -173,7 +173,7 @@
                                     @if(! optional($menuSubGroup->menus)->isEmpty())
                                     <ul class="mm-product-list mm-last-level">
                                         @foreach ($menuSubGroup->menus as $menu)
-                                            @include('frontend.layouts.parials.header.partials.menu-'.$menu->type)
+                                            @include('frontend.layouts.partials.header.partials.menu-'.$menu->type)
                                         @endforeach
                                     </ul>
                                     @endif
@@ -186,11 +186,11 @@
                     @endforeach
                 </ul>
             </nav>
-            @include('frontend.layouts.parials.header.partials.header-icons')
+            @include('frontend.layouts.partials.header.partials.header-icons')
         </header>
     </sticky-header>
 </div>
 
 @push('modals')
-@include('frontend.layouts.parials.header.modals.authentication')
+@include('frontend.layouts.partials.header.modals.authentication')
 @endpush

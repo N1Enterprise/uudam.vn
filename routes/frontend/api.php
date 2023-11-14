@@ -4,6 +4,7 @@ use App\Enum\SystemSettingKeyEnum;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Api as Controllers;
 use App\Http\Controllers\Frontend\Api\UserAuthenticationController;
+use App\Http\Controllers\Frontend\Api\UserCartController;
 use App\Http\Controllers\Frontend\Api\UserSearchController;
 
 Route::post('user/product/review', [Controllers\UserProductReviewController::class, 'review'])->name('user.product.review');
@@ -15,3 +16,6 @@ Route::post('signup', [UserAuthenticationController::class, 'signup'])->name('us
 Route::post('signin', [UserAuthenticationController::class, 'signin'])->name('user.signin');
 Route::post('signout', [UserAuthenticationController::class, 'signout'])->name('user.signout');
 Route::get('/email/verify/{id}', [UserAuthenticationController::class, 'verifyEmail'])->name('user.email_verification.verify')->middleware('system.feature_toggle:'.SystemSettingKeyEnum::ENABLE_USER_EMAIL_VERIFICATION);
+
+Route::post('user/add-to-cart', [UserCartController::class, 'store'])->name('user.cart.store');
+Route::get('user/cart-info', [UserCartController::class, 'cartInfo'])->name('user.cart.info');

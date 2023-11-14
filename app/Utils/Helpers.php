@@ -150,9 +150,9 @@ if (! function_exists('round_money')) {
 }
 
 if (! function_exists('format_price')) {
-    function format_price($money, $currency = null, $symbol = 'VND', $round = Money::ROUND_UP)
+    function format_price($money, $symbol = 'VND')
     {
-        return Money::roundMoney($money, $currency, $round) . ' '. $symbol;
+        return Money::format($money, 0, '.', '.') . ' '. $symbol;
     }
 }
 

@@ -3,9 +3,6 @@
 namespace App\Http\Requests\Frontend;
 
 use App\Contracts\Requests\Frontend\UserSigninRequestContract;
-use App\Models\Inventory;
-use App\Models\Product;
-use Illuminate\Validation\Rule;
 
 class UserSigninRequest extends BaseFormRequest implements UserSigninRequestContract
 {
@@ -14,13 +11,6 @@ class UserSigninRequest extends BaseFormRequest implements UserSigninRequestCont
         return [
             'username' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
-
-            'cart_items' => ['nullable', 'array'],
-            'cart_items.*' => ['required', 'array'],
-            'cart_items.*.product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
-            'cart_items.*.inventory_id' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
-            'cart_items.*.has_combo' => ['required', 'integer'],
-            'cart_items.*.quantity' => ['required', 'integer'],
         ];
     }
 

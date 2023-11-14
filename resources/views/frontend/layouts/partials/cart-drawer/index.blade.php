@@ -1,9 +1,9 @@
 <cart-drawer class="drawer animate active">
     <div id="CartDrawer" class="cart-drawer">
         <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
-        <div class="drawer__inner" role="dialog" aria-modal="true" aria-label="Your cart" tabindex="-1">
+        <div class="drawer__inner" role="dialog" aria-modal="true" aria-label="Giỏ hàng" tabindex="-1">
             <div class="drawer__header">
-                <h2 class="drawer__heading">Your cart</h2>
+                <h2 class="drawer__heading">Giỏ hàng</h2>
                 <button class="drawer__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="Close">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
                         <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
@@ -18,30 +18,31 @@
                                 <thead role="rowgroup">
                                     <tr role="row">
                                         <th id="CartDrawer-ColumnProductImage" role="columnheader">
-                                            <span class="visually-hidden">Product image</span>
+                                            <span class="visually-hidden">Ảnh sản phẩm</span>
                                         </th>
-                                        <th id="CartDrawer-ColumnProduct" class="caption-with-letter-spacing" scope="col" role="columnheader">Product</th>
-                                        <th id="CartDrawer-ColumnTotal" class="right caption-with-letter-spacing" scope="col" role="columnheader">Total</th>
+                                        <th id="CartDrawer-ColumnProduct" class="caption-with-letter-spacing" scope="col" role="columnheader">Sản phẩm</th>
+                                        <th id="CartDrawer-ColumnTotal" class="right caption-with-letter-spacing" scope="col" role="columnheader">Tổng cộng</th>
                                         <th id="CartDrawer-ColumnQuantity" role="columnheader">
-                                            <span class="visually-hidden">Quantity</span>
+                                            <span class="visually-hidden">Số lượng</span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody role="rowgroup">
+                                    @foreach ($items as $item)
                                     <tr id="CartDrawer-Item-1" class="cart-item" role="row">
                                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
-                                            <a href="/products/classic-square-support-cushion?variant=31939457712261" class="cart-item__link" tabindex="-1" aria-hidden="true"></a>
-                                            <img class="cart-item__image" src="//cdn.shopify.com/s/files/1/0298/7753/4853/products/c1311.jpg?v=1661519593&amp;width=300" alt="Classic Square Support Cushion" loading="lazy" width="150" height="130">
+                                            <a href="{{ route('fe.web.products.index', data_get($item, 'inventory.slug')) }}" class="cart-item__link" tabindex="-1" aria-hidden="true"></a>
+                                            <img class="cart-item__image" src="{{ data_get($item, 'inventory.image') }}" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="150" height="130">
                                         </td>
                                         <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
-                                            <a href="/products/classic-square-support-cushion?variant=31939457712261" class="cart-item__name h4 break">Classic Square Support Cushion</a>
-                                            <div class="product-option"> 963.000₫ </div>
-                                            <dl>
+                                            <a href="{{ route('fe.web.products.index', data_get($item, 'inventory.slug')) }}" class="cart-item__name h4 break">{{ data_get($item, 'inventory.title') }}</a>
+                                            <div class="product-option"> {{ format_price($item->price) }} </div>
+                                            {{-- <dl>
                                                 <div class="product-option">
                                                     <dt>Color: </dt>
                                                     <dd>Black</dd>
                                                 </div>
-                                            </dl>
+                                            </dl> --}}
                                             <p class="product-option"></p>
                                             <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                                         </td>
@@ -61,21 +62,21 @@
                                             <div class="cart-item__quantity-wrapper">
                                                 <quantity-input class="quantity">
                                                     <button class="quantity__button no-js-hidden" name="minus" type="button">
-                                                        <span class="visually-hidden">Decrease quantity for Classic Square Support Cushion</span>
+                                                        <span class="visually-hidden">Decrease quantity for {{ data_get($item, 'inventory.title') }}</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
                                                         </svg>
                                                     </button>
-                                                    <input class="quantity__input" type="number" name="updates[]" value="66" min="0" aria-label="Quantity for Classic Square Support Cushion" id="Drawer-quantity-1" data-index="1">
+                                                    <input class="quantity__input" type="number" name="updates[]" value="66" min="0" aria-label="Quantity for {{ data_get($item, 'inventory.title') }}" id="Drawer-quantity-1" data-index="1">
                                                     <button class="quantity__button no-js-hidden" name="plus" type="button">
-                                                        <span class="visually-hidden">Increase quantity for Classic Square Support Cushion</span>
+                                                        <span class="visually-hidden">Increase quantity for {{ data_get($item, 'inventory.title') }}</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
                                                         </svg>
                                                     </button>
                                                 </quantity-input>
                                                 <cart-remove-button id="CartDrawer-Remove-1" data-index="1">
-                                                    <button class="button button--tertiary" aria-label="Remove Classic Square Support Cushion - Black">
+                                                    <button class="button button--tertiary" aria-label="Remove {{ data_get($item, 'inventory.title') }} - Black">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
                                                             <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
                                                             <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
@@ -94,6 +95,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -365,12 +365,6 @@ const FORM_ORDER = {
         FORM_ORDER.onAddToCart();
     },
     formOrderData: {},
-    cookie: __HELPER__.cookie(COOKIES_KEY.SHOPPING_CART),
-    shopping_cart_data: (() => {
-        const data = __HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).get();
-
-        return JSON.parse(data || '{}');
-    })(),
     updateCookie: (data) => {
         __HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).set(JSON.stringify(data));
     },
@@ -389,45 +383,29 @@ const FORM_ORDER = {
             quantity: +quantity
         };
     },
-    triggerButtonEvent: (callback = () => undefined, timer = 500) => {
-        $('form[form-add-to-cart]').find('button[type="submit"]').addClass('loading');
-        $('form[form-add-to-cart]').find('.loading-overlay__spinner').removeClass('hidden');
-
-        setTimeout(() => {
-            $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
-            $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
-
-            return callback();
-        }, timer);
-    },
     onAddToCart: () => {
         $('form[form-add-to-cart]').on('submit', function(e) {
             e.preventDefault();
 
-            FORM_ORDER.triggerButtonEvent(function() {
-                const { inventory_id, has_combo, quantity } = FORM_ORDER.formOrderData;
+            const isLogged = "{{ !empty($AUTHENTICATED_USER) }}";
+            const loginRef = $(this).attr('login-ref');
 
-                console.log({ inventory_id, has_combo, quantity });
+            if (!isLogged && loginRef) {
+                $(loginRef).trigger('click');
+            }
 
-                // const orderList = { ...FORM_ORDER.shopping_cart_data };
-
-                // const orderKey = `${inventory_id}:${has_combo ? 'has_combo' : 'no_combo'}`;
-
-                // const existsingCart = FORM_ORDER.shopping_cart_data[orderKey];
-
-                // if (orderList[orderKey]) {
-                //     const updatedExists = {
-                //         ...existsingCart,
-                //         quantity: existsingCart.quantity + quantity
-                //     };
-
-                //     orderList[orderKey] = updatedExists;
-                // } else {
-                //     orderList[orderKey] = FORM_ORDER.formOrderData;
-                // }
-
-                // FORM_ORDER.updateCookie(orderList);
-                // USER_ORDER_CART.countOrderItems();
+            USER_ORDER_CART.addToCart({
+                ...FORM_ORDER.formOrderData
+            }, {
+                beforeSend: () => {
+                    $('form[form-add-to-cart]').find('button[type="submit"]').addClass('loading');
+                    $('form[form-add-to-cart]').find('.loading-overlay__spinner').removeClass('hidden');
+                },
+                success: (response) => {
+                    $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
+                    $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
+                    USER_ORDER_CART.updateCartInfo();
+                },
             });
         });
     },

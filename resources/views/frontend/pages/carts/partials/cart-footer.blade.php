@@ -5,14 +5,13 @@
                 <div class="cart__blocks">
                     <div class="js-contents">
                         <div class="totals">
-                            <h2 class="totals__subtotal">Subtotal</h2>
-                            <p class="totals__subtotal-value">$90.00 USD</p>
+                            <h2 class="totals__subtotal">Tổng tạm tính</h2>
+                            <p class="totals__subtotal-value">{{ format_price($cart->total_price) }}</p>
                         </div>
                         <div></div>
-                        <small class="tax-note caption-large rte">Taxes and <a href="/policies/shipping-policy">shipping</a> calculated at checkout </small>
                     </div>
                     <div class="cart__ctas">
-                        <button type="submit" id="checkout" class="cart__checkout-button button" name="checkout" form="cart"> Check out </button>
+                        <button type="submit" id="checkout" class="cart__checkout-button button" name="checkout" form="cart"> Hoàn tất thanh toán </button>
                     </div>
                 </div>
             </div>
