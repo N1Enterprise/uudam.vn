@@ -171,3 +171,11 @@ Route::get('carriers/create', [Controllers\CarrierController::class, 'create'])-
 Route::post('carriers', [Controllers\CarrierController::class, 'store'])->name('carriers.store')->middleware(['can:carriers.store']);
 Route::get('carriers/{id}', [Controllers\CarrierController::class, 'edit'])->name('carriers.edit')->middleware(['can:carriers.update']);
 Route::put('carriers/{id}', [Controllers\CarrierController::class, 'update'])->name('carriers.update')->middleware(['can:carriers.update']);
+
+Route::get('countries', [Controllers\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
+
+Route::get('shipping-zones', [Controllers\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
+Route::get('shipping-zones/create', [Controllers\ShippingZoneController::class, 'create'])->name('shipping-zones.create')->middleware(['can:shipping-zones.store']);
+Route::post('shipping-zones', [Controllers\ShippingZoneController::class, 'store'])->name('shipping-zones.store')->middleware(['can:shipping-zones.store']);
+Route::get('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'edit'])->name('shipping-zones.edit')->middleware(['can:shipping-zones.update']);
+Route::put('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'update'])->name('shipping-zones.update')->middleware(['can:shipping-zones.update']);

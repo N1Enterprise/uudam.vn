@@ -99,6 +99,17 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Localization',
+                'icon' => 'flaticon-placeholder-3',
+                'subs' => [
+                    [
+                        'name' => 'Countries',
+                        'link' => route('bo.web.countries.index'),
+                        'permissions' => ['countries.index'],
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Shipping',
                 'icon' => 'fa fa-truck',
                 'subs' => [
@@ -106,6 +117,11 @@ class BackofficeMenuService extends BaseService
                         'name' => 'Carriers',
                         'link' => route('bo.web.carriers.index'),
                         'permissions' => ['carriers.index'],
+                    ],
+                    [
+                        'name' => 'Shipping Zones',
+                        'link' => route('bo.web.shipping-zones.index'),
+                        'permissions' => ['shipping-zones.index'],
                     ]
                 ],
             ],

@@ -128,5 +128,11 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,
         Contracts\StoreCarrierResponseContract::class => Responses\StoreCarrierResponse::class,
         Contracts\UpdateCarrierResponseContract::class => Responses\UpdateCarrierResponse::class,
+
+        Contracts\ListCountryResponseContract::class => Responses\ListCountryResponse::class,
+
+        Contracts\ListShippingZoneResponseContract::class => Responses\ListShippingZoneResponse::class,
+        Contracts\StoreShippingZoneResponseContract::class => Responses\StoreShippingZoneResponse::class,
+        Contracts\UpdateShippingZoneResponseContract::class => Responses\UpdateShippingZoneResponse::class,
     ];
 }

@@ -55,4 +55,8 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== SHIPPINGS ======================== */
     Route::get('carriers', [Api\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
+    Route::get('shipping-zones', [Api\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
+
+    /* ======================== LOCALIZATION ======================== */
+    Route::get('countries', [Api\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
 });

@@ -151,6 +151,18 @@ class RoleService extends BaseService
                 'carriers.store',
                 'carriers.update',
             ],
+            'shipping-zones' => [
+                'shipping-zones.index',
+                'shipping-zones.store',
+                'shipping-zones.update',
+            ],
+        ],
+        'localizations' => [
+            'countries' => [
+                'countries.index',
+                'countries.store',
+                'countries.update',
+            ],
         ],
         'utilities' => [
             'blogs' => [

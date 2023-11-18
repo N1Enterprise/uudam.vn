@@ -41,5 +41,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\CartRepositoryContract::class => Repositories\CartRepository::class,
         Contracts\CartItemRepositoryContract::class => Repositories\CartItemRepository::class,
         Contracts\CarrierRepositoryContract::class => Repositories\CarrierRepository::class,
+        Contracts\CountryRepositoryContract::class => Repositories\CountryRepository::class,
+        Contracts\ShippingZoneRepositoryContract::class => Repositories\ShippingZoneRepository::class,
     ];
 }
