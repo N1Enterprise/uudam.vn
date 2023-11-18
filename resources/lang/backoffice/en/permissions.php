@@ -151,4 +151,10 @@ return [
     'faq-topics.store' => 'Create Faq Topic',
     'faq-topics.update' => 'Update Faq Topic',
     'faq-topics.delete' => 'Delete Faq Topic',
+
+    'shippings' => 'Shippings',
+    'carriers' => 'Carriers',
+    'carriers.index' => 'View Carrier List',
+    'carriers.store' => 'Create Carrier',
+    'carriers.update' => 'Update Carrier',
 ];

@@ -166,3 +166,8 @@ Route::post('file-manager/upload', [Controllers\FileManagerController::class, 'u
 
 Route::get('subscribers', [Controllers\SubscriberController::class, 'index'])->name('subscribers.index');
 
+Route::get('carriers', [Controllers\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
+Route::get('carriers/create', [Controllers\CarrierController::class, 'create'])->name('carriers.create')->middleware(['can:carriers.store']);
+Route::post('carriers', [Controllers\CarrierController::class, 'store'])->name('carriers.store')->middleware(['can:carriers.store']);
+Route::get('carriers/{id}', [Controllers\CarrierController::class, 'edit'])->name('carriers.edit')->middleware(['can:carriers.update']);
+Route::put('carriers/{id}', [Controllers\CarrierController::class, 'update'])->name('carriers.update')->middleware(['can:carriers.update']);

@@ -86,5 +86,8 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\UpdateProductComboRequestContract::class => Requests\UpdateProductComboRequest::class,
 
         Contracts\UploadFileManagerRequestContract::class => Requests\UploadFileManagerRequest::class,
+
+        Contracts\StoreCarrierRequestContract::class => Requests\StoreCarrierRequest::class,
+        Contracts\UpdateCarrierRequestContract::class => Requests\UpdateCarrierRequest::class,
     ];
 }

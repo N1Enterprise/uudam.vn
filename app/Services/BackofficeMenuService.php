@@ -99,6 +99,17 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Shipping',
+                'icon' => 'fa fa-truck',
+                'subs' => [
+                    [
+                        'name' => 'Carriers',
+                        'link' => route('bo.web.carriers.index'),
+                        'permissions' => ['carriers.index'],
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Support Desks',
                 'icon' => 'flaticon-technology-1',
                 'subs' => [

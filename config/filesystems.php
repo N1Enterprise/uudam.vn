@@ -84,6 +84,17 @@ return [
             'root'     => env('SFTP_ROOT_FOLDER') . '/utility',
         ],
 
+        'shipping' => [
+            'driver'   => 'sftp',
+            'port'     => env('SFTP_PORT'),
+            'host'     => env('SFTP_HOST'),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+            'url'      => env('SFTP_URL'),
+            'url'      => env('SFTP_URL') . '/shipping',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/shipping',
+        ],
+
         'sftp' => [
             'driver'   => 'sftp',
             'port'     => env('SFTP_PORT'),

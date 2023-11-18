@@ -52,4 +52,7 @@ Route::prefix('v1')->group(function () {
     Route::get('pages', [Api\PageController::class, 'index'])->name('pages.index')->middleware(['can:pages.index']);
     Route::get('faq-topics', [Api\FaqTopicController::class, 'index'])->name('faq-topics.index')->middleware(['can:faq-topics.index']);
     Route::get('faqs', [Api\FaqController::class, 'index'])->name('faqs.index')->middleware(['can:faqs.index']);
+
+    /* ======================== SHIPPINGS ======================== */
+    Route::get('carriers', [Api\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
 });

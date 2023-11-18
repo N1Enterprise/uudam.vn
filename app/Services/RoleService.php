@@ -145,6 +145,13 @@ class RoleService extends BaseService
                 'collections.delete',
             ],
         ],
+        'shippings' => [
+            'carriers' => [
+                'carriers.index',
+                'carriers.store',
+                'carriers.update',
+            ],
+        ],
         'utilities' => [
             'blogs' => [
                 'post-categories' => [
