@@ -4,7 +4,7 @@
         init: () => {
             USER_ORDER_CART.updateCartInfo();
         },
-        updateCartInfo: () => {
+        updateCartInfo: (callback = () => undefined) => {
             if (!USER_ORDER_CART.authenticated_user) {
                 return;
             }
@@ -13,7 +13,10 @@
                 url: "{{ route('fe.api.user.cart.info') }}",
                 method: 'GET',
                 success: (response) => {
-                    $('count-items-in-cart').text(response?.total_quantity || 0);
+                    $('[data-value-cart-total-quantity]').text(response?.total_quantity || 0);
+                    $('[data-value-cart-total-price]').text(utils_helper.formatPrice(response?.total_price || 0));
+
+                    return callback(response);
                 },
             });
         },

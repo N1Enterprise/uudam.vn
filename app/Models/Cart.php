@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enum\CartItemStatusEnum;
+
 class Cart extends BaseModel
 {
     protected $fillable = [
@@ -14,8 +16,8 @@ class Cart extends BaseModel
         'payment_option_id'
     ];
 
-    public function items()
+    public function availableItems()
     {
-        return $this->hasMany(CartItem::class, 'cart_id', 'id');
+        return $this->hasMany(CartItem::class, 'cart_id', 'id')->where('status', CartItemStatusEnum::PENDING);
     }
 }

@@ -15,10 +15,11 @@ const PREDICTIVE_SEARCH = {
         $('#Search-In-Modal').on('input', function() {
             const query = $(this).val();
 
-            debounce(PREDICTIVE_SEARCH.performSearch, 1000)(query);
+            utils_helper.debounce(PREDICTIVE_SEARCH.performSearch, 1000)(query);
         });
     },
     performSearch: (query) => {
+        console.log({ query });
         const data = {
             q: query,
             resources: {

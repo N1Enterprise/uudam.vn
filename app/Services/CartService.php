@@ -9,6 +9,8 @@ use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
 use App\Models\Inventory;
+use App\Vendors\Localization\Money;
+use Illuminate\Support\Str;
 
 class CartService extends BaseService
 {
@@ -40,12 +42,17 @@ class CartService extends BaseService
         return $this->cartRepository->findOrFail($id);
     }
 
-    public function create($attributes = [])
+    public function update($attributes = [], $id)
     {
-        return DB::transaction(function() use ($attributes) {
+        return $this->cartRepository->update($attributes, $id);
+    }
+
+    public function createByUser($userId, $attributes = [])
+    {
+        return DB::transaction(function() use ($userId, $attributes) {
             /** @var Cart */
             $cart = $this->cartRepository->firstOrCreate([
-                'user_id' => data_get($attributes, 'user_id')
+                'user_id' => $userId
             ], [
                 'ip_address'     => data_get($attributes, 'ip_address'),
                 'total_quantity' => 0,
@@ -58,28 +65,35 @@ class CartService extends BaseService
             $inventory = $this->inventoryService->show(data_get($attributes, 'inventory_id'));
 
             $cartItem = $this->cartItemRepository->firstOrCreate([
-                'cart_id' => $cart->getKey(),
+                'cart_id'      => $cart->getKey(),
+                'user_id'      => $userId,
                 'inventory_id' => $inventory->getKey(),
-                'has_combo' => data_get($attributes, 'has_combo', 0),
+                'has_combo'    => data_get($attributes, 'has_combo', 0),
+                'status'       => CartItemStatusEnum::PENDING,
             ], [
                 'quantity'   => 0,
                 'price'      => 0,
-                'status'     => CartItemStatusEnum::PENDING,
+                'uuid'       => Str::uuid(),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
 
+            $quantity = (int) data_get($attributes, 'quantity', 0);
+
+            $totalPrice = Money::make($inventory->sale_price)->multipliedBy($quantity);
+
             $cartItem->update([
-                'quantity' => DB::raw('quantity + ' . data_get($attributes, 'quantity', 0)),
-                'price'    => DB::raw('price + ' . $inventory->sale_price),
+                'quantity' => DB::raw('quantity + ' . $quantity),
+                'price' => $inventory->sale_price,
+                'total_price' => DB::raw('total_price + ' . (string) $totalPrice),
             ]);
 
-            $itemsInCart = $cart->items;
+            $items = $cart->availableItems;
 
             $cart->update([
-                'total_item'     => $itemsInCart->count(),
-                'total_quantity' => $itemsInCart->sum('quantity'),
-                'total_price'    => $itemsInCart->sum('price') * $itemsInCart->sum('quantity'),
+                'total_item'     => $items->count('id'),
+                'total_quantity' => $items->sum('quantity'),
+                'total_price'    => $items->sum('total_price'),
             ]);
 
             return $cart;

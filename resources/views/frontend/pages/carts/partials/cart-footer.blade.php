@@ -6,7 +6,7 @@
                     <div class="js-contents">
                         <div class="totals">
                             <h2 class="totals__subtotal">Tổng tạm tính</h2>
-                            <p class="totals__subtotal-value">{{ format_price($cart->total_price) }}</p>
+                            <p class="totals__subtotal-value" data-value-cart-total-price>{{ format_price($cart->total_price) }}</p>
                         </div>
                         <div></div>
                     </div>

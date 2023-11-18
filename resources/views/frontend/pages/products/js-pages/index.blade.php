@@ -2,7 +2,7 @@
 $('.share-button__copy').on('click', function() {
     const text = $('#url.field__input').val();
 
-    __HELPER__.copyClipBoard(text);
+    utils_helper.copyClipBoard(text);
 });
 
 const MAIN_INVENTORY = {
@@ -41,12 +41,12 @@ const MAIN_INVENTORY = {
         const inventoryPrice = $('[data-price-value]').attr('data-price-value') || 0;
         const stockQuantity = $('[data-stock-quantity]').val() || 0;
 
-        const totalPriceByStockQuantity = __HELPER__.number(inventoryPrice).multiply(stockQuantity);
+        const totalPriceByStockQuantity = utils_helper.number(inventoryPrice).multiply(stockQuantity);
 
         const totalCartPrice = hasCombo ? (() => {
             // Has Combo
             return MAIN_INVENTORY.inventory_combos.reduce(function(accumulator, currentValue) {
-                return accumulator + __HELPER__.number(currentValue?.sale_price || 0).toFloat();
+                return accumulator + utils_helper.number(currentValue?.sale_price || 0).toFloat();
             }, totalPriceByStockQuantity);
         })() : (() => {
             // No Combo
@@ -54,7 +54,7 @@ const MAIN_INVENTORY = {
         })();
 
         $('[data-total-cart-label]').text(label);
-        $('[data-total-cart-price]').html(__HELPER__.formatPrice(totalCartPrice));
+        $('[data-total-cart-price]').html(utils_helper.formatPrice(totalCartPrice));
     },
     onChange: () => {
         $('[name="attribute_value"]').on('change', function() {
@@ -115,7 +115,7 @@ const MAIN_INVENTORY = {
 
         $('[data-title]').text(title);
         $('[data-sku]').text(sku);
-        $('[data-sale-price]').text(__HELPER__.formatPrice(sale_price));
+        $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
         $('[data-sale-price]').attr('data-price-value', sale_price);
         $('[data-inventory-id]').text(id);
         $('[data-stock-quantity]').attr('max', stock_quantity);
@@ -242,71 +242,6 @@ const MAIN_INVENTORY_REVIEW = {
     }
 };
 
-const MAIN_INVENTORY_QUANTITY = {
-    elements: {
-        btn_increase: $('[data-quantity-button="increase"]'),
-        btn_decrease: $('[data-quantity-button="decrease"]'),
-        input_quantity: $('.quantity__input[name="quantity"]'),
-    },
-    init: () => {
-        MAIN_INVENTORY_QUANTITY.onIncrease();
-        MAIN_INVENTORY_QUANTITY.onDecrease();
-        MAIN_INVENTORY_QUANTITY.onChange();
-    },
-    getValue: () => {
-        return +MAIN_INVENTORY_QUANTITY.elements.input_quantity.val();
-    },
-    getMaxValue: () => {
-        return +MAIN_INVENTORY_QUANTITY.elements.input_quantity.attr('max');
-    },
-    getMinValue: () => {
-        return +MAIN_INVENTORY_QUANTITY.elements.input_quantity.attr('min');
-    },
-    setValue: (value) => {
-        MAIN_INVENTORY_QUANTITY.elements.input_quantity.val(value);
-        COMBO_INVENTORY.recalculatePrice(value);
-        MAIN_INVENTORY.calculateInventoryPrice();
-        FORM_ORDER.setDataOrder();
-    },
-    onIncrease: () => {
-        MAIN_INVENTORY_QUANTITY.elements.btn_increase.on('click', function() {
-            const value = MAIN_INVENTORY_QUANTITY.getValue();
-            const maxValue = MAIN_INVENTORY_QUANTITY.getMaxValue();
-
-            if (value < maxValue) {
-                MAIN_INVENTORY_QUANTITY.setValue(value + 1);
-            }
-        });
-    },
-    onDecrease: () => {
-        MAIN_INVENTORY_QUANTITY.elements.btn_decrease.on('click', function() {
-            const value = MAIN_INVENTORY_QUANTITY.getValue();
-            const minValue = MAIN_INVENTORY_QUANTITY.getMinValue();
-
-            if (value > minValue) {
-                MAIN_INVENTORY_QUANTITY.setValue(value - 1);
-            }
-        });
-    },
-    onChange: () => {
-        MAIN_INVENTORY_QUANTITY.elements.input_quantity.on('change', function() {
-            const value = MAIN_INVENTORY_QUANTITY.getValue();
-            const maxValue = MAIN_INVENTORY_QUANTITY.getMaxValue();
-            const minValue = MAIN_INVENTORY_QUANTITY.getMinValue();
-
-            if (value > maxValue) {
-                toastr.warning('Số lượng vượt quá số lượng trong kho.');
-                MAIN_INVENTORY_QUANTITY.setValue(maxValue);
-            }
-
-            if (value < minValue) {
-                toastr.warning('Số lượng không hợp lệ.');
-                MAIN_INVENTORY_QUANTITY.setValue(minValue);
-            }
-        });
-    },
-};
-
 const COMBO_INVENTORY = {
     init: () => {
         COMBO_INVENTORY.onCheckedBuyWithCombo();
@@ -331,7 +266,7 @@ const COMBO_INVENTORY = {
                 <div class="product-combos__item-info">
                     <div>
                         <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
-                        <span class="product-combos-info-price">${__HELPER__.formatPrice(item.sale_price)}</span>
+                        <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
                     </div>
                     <div class="product-combos__item-sale">
                         <div class="product-form__input product-form__quantity">
@@ -351,7 +286,7 @@ const COMBO_INVENTORY = {
         const newProductCombos = [...product_combos].map(function(item) {
             return {
                 ...item,
-                sale_price: __HELPER__.number(item.sale_price).multiply(productQuantity)
+                sale_price: utils_helper.number(item.sale_price).multiply(productQuantity)
             };
         });
 
@@ -366,7 +301,7 @@ const FORM_ORDER = {
     },
     formOrderData: {},
     updateCookie: (data) => {
-        __HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).set(JSON.stringify(data));
+        utils_helper.cookie(COOKIES_KEY.SHOPPING_CART).set(JSON.stringify(data));
     },
     setDataOrder: () => {
         const { quantity, has_combo, inventory, product_id } = MAIN_INVENTORY.getFullData();
@@ -407,6 +342,20 @@ const FORM_ORDER = {
                     USER_ORDER_CART.updateCartInfo();
                 },
             });
+        });
+    },
+};
+
+const MAIN_INVENTORY_QUANTITY = {
+    init: () => {
+        utils_quantity('product', {
+            callbacks: {
+                onChange: (value) => {
+                    COMBO_INVENTORY.recalculatePrice(value);
+                    MAIN_INVENTORY.calculateInventoryPrice();
+                    FORM_ORDER.setDataOrder();
+                }
+            }
         });
     },
 };

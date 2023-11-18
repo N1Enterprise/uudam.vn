@@ -81,10 +81,10 @@
         <span class="visually-hidden">Cart</span>
         <div class="cart-count-bubble">
             <span aria-hidden="true">
-                <count-items-in-cart>0</count-items-in-cart>
+                <span data-value-cart-total-quantity>0</span>
             </span>
             <span class="visually-hidden">
-                <count-items-in-cart>0</count-items-in-cart>
+                <span data-value-cart-total-quantity>0</span>
                 item
             </span>
         </div>

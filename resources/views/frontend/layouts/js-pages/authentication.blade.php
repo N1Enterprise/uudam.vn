@@ -40,7 +40,7 @@ const AUTHENTICATION = {
 
             const _self = $(this);
 
-            const cartItems = JSON.parse(__HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
+            const cartItems = JSON.parse(utils_helper.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
 
             const payload = {
                 name: _self.find('[name="name"]').val(),
@@ -73,7 +73,7 @@ const AUTHENTICATION = {
                     if (request.status == 422) {
                         const errorMessage = request.responseJSON.errors;
 
-                        __HELPER__.appendErrorMessages(_self, errorMessage);
+                        utils_helper.appendErrorMessages(_self, errorMessage);
                     }
                 },
             });
@@ -85,7 +85,7 @@ const AUTHENTICATION = {
 
             const _self = $(this);
 
-            const cartItems = JSON.parse(__HELPER__.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
+            const cartItems = JSON.parse(utils_helper.cookie(COOKIES_KEY.SHOPPING_CART).get() || '{}');
 
             const payload = {
                 username: _self.find('[name="username"]').val(),
@@ -108,7 +108,7 @@ const AUTHENTICATION = {
 
                     AUTHENTICATION.elements.close.trigger('click');
 
-                    const routeRedirect = __HELPER__.urlParams('redirect').get() || "{{ route('fe.web.home') }}";
+                    const routeRedirect = utils_helper.urlParams('redirect').get() || "{{ route('fe.web.home') }}";
 
                     window.location.href = routeRedirect;
                 },
@@ -118,7 +118,7 @@ const AUTHENTICATION = {
                     if (request.status == 422) {
                         const errorMessage = request.responseJSON.errors;
 
-                        __HELPER__.appendErrorMessages(_self, errorMessage);
+                        utils_helper.appendErrorMessages(_self, errorMessage);
                     }
                 },
             });
@@ -129,8 +129,8 @@ const AUTHENTICATION = {
             AUTHENTICATION.elements.wrapper.hide();
             AUTHENTICATION.elements.action_wrapper.hide();
 
-            __HELPER__.urlParams('overlay').del();
-            __HELPER__.urlParams('redirect').del();
+            utils_helper.urlParams('overlay').del();
+            utils_helper.urlParams('redirect').del();
         });
     },
     onGoPage: () => {
@@ -144,10 +144,10 @@ const AUTHENTICATION = {
                 AUTHENTICATION.elements.wrapper.show();
                 AUTHENTICATION.elements.action_wrapper.hide();
 
-                __HELPER__.urlParams('overlay').set(overlay);
+                utils_helper.urlParams('overlay').set(overlay);
 
                 if (dataRedirect) {
-                    __HELPER__.urlParams('redirect').set(dataRedirect);
+                    utils_helper.urlParams('redirect').set(dataRedirect);
                 }
 
                 $(`[data-overlay-action-wrapper="${overlay}"]`).show();
@@ -158,13 +158,13 @@ const AUTHENTICATION = {
         });
     },
     detectOverlay: () => {
-        const overlay = __HELPER__.urlParams('overlay').get();
+        const overlay = utils_helper.urlParams('overlay').get();
 
         AUTHENTICATION.elements.wrapper.hide();
         AUTHENTICATION.elements.action_wrapper.hide();
 
         if (AUTHENTICATION.actions.includes(overlay) && AUTHENTICATION.is_logged) {
-            __HELPER__.urlParams('overlay').del();
+            utils_helper.urlParams('overlay').del();
             return;
         }
 

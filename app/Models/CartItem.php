@@ -3,25 +3,24 @@
 namespace App\Models;
 
 use App\Enum\CartItemStatusEnum;
+use App\Models\Traits\HasMoney;
 
 class CartItem extends BaseModel
 {
+    use HasMoney;
+
     protected $fillable = [
         'cart_id',
-        'key',
         'uuid',
         'inventory_id',
         'note',
         'has_combo',
         'quantity',
         'price',
+        'total_price',
+        'user_id',
         'status',
     ];
-
-    public function getTotalPriceAttribute()
-    {
-        return $this->price * $this->quantity;
-    }
 
     public function scopePending($query)
     {
@@ -31,5 +30,10 @@ class CartItem extends BaseModel
     public function inventory()
     {
         return $this->belongsTo(Inventory::class, 'inventory_id', 'id');
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
     }
 }

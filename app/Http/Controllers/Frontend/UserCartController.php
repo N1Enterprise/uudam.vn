@@ -22,13 +22,8 @@ class UserCartController extends AuthenticatedController
     public function index(Request $request)
     {
         $cart = $this->cartService->findByUser($this->user()->getKey());
-        $items = $this->cartItemService->getPendingByCartId($cart->id);
+        $items = $this->cartItemService->searchPendingItemsByUser($this->user()->getKey());
 
         return $this->view('frontend.pages.carts.index', compact('cart', 'items'));
-    }
-
-    public function cancel(Request $request, $id)
-    {
-
     }
 }

@@ -9,7 +9,6 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');
 
 Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
-Route::post('cart/{id}/delete', [Controllers\UserCartController::class, 'cancel'])->name('cart.delete');
 
 Route::get('blogs', [Controllers\BlogController::class, 'index']);
 

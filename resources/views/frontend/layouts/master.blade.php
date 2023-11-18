@@ -27,10 +27,14 @@
     </script>
     <!--end::Web font -->
 
-    <!--begin::Page Vendors Styles -->
+    <!--begin::Page Vendor Styles -->
+    <link href="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendor Styles -->
+
+    <!--begin::Page Common Styles -->
     <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
@@ -42,7 +46,7 @@
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Page Vendors Styles -->
+    <!--end::Page Common Styles -->
 
     @yield('style_datatable')
     @yield('style')
@@ -145,14 +149,16 @@
 
     {{-- @include('frontend.layouts.partials.cart-drawer.index') --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-    <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
+
 
     @include('frontend.layouts.js-pages.menu-drawer')
     @include('frontend.layouts.js-pages.authentication')

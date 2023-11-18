@@ -152,7 +152,7 @@ if (! function_exists('round_money')) {
 if (! function_exists('format_price')) {
     function format_price($money, $symbol = 'VND')
     {
-        return Money::format($money, 0, '.', '.') . ' '. $symbol;
+        return Money::format($money, 0) . ' '. $symbol;
     }
 }
 
