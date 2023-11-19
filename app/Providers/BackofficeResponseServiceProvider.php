@@ -124,5 +124,20 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UploadFileManagerResponseContract::class => Responses\UploadFileManagerResponse::class,
 
         Contracts\ListSubscriberResponseContract::class => Responses\ListSubscriberResponse::class,
+
+        Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,
+        Contracts\StoreCarrierResponseContract::class => Responses\StoreCarrierResponse::class,
+        Contracts\UpdateCarrierResponseContract::class => Responses\UpdateCarrierResponse::class,
+
+        Contracts\ListCountryResponseContract::class => Responses\ListCountryResponse::class,
+
+        Contracts\ListShippingZoneResponseContract::class => Responses\ListShippingZoneResponse::class,
+        Contracts\StoreShippingZoneResponseContract::class => Responses\StoreShippingZoneResponse::class,
+        Contracts\UpdateShippingZoneResponseContract::class => Responses\UpdateShippingZoneResponse::class,
+
+        Contracts\ListShippingRateResponseContract::class => Responses\ListShippingRateResponse::class,
+        Contracts\StoreShippingRateResponseContract::class => Responses\StoreShippingRateResponse::class,
+        Contracts\UpdateShippingRateResponseContract::class => Responses\UpdateShippingRateResponse::class,
+        Contracts\DeleteShippingRateResponseContract::class => Responses\DeleteShippingRateResponse::class,
     ];
 }

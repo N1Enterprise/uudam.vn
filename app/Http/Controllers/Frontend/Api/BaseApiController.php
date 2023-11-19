@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller;
 use App\Classes\AdminAuth;
 use App\Classes\Contracts\UserAuthContract;
+use App\Classes\UserAuth;
 
 class BaseApiController extends Controller
 {
@@ -25,11 +26,11 @@ class BaseApiController extends Controller
     }
 
     /**
-     * @return \App\Models\Admin
+     * @return \App\Models\User
      */
     public function user()
     {
-        return AdminAuth::user();
+        return $this->userAuth->user();
     }
 
     public function response($responseClass, $resource = null, $status = 200, array $headers = [], $meta = [])

@@ -6,7 +6,6 @@ $(document).ready(function(){
 
 	responsiveNav.on('click',function(e){
 		e.preventDefault();
-		console.log(navBar);
 		navBar.toggleClass('active')
 	});
 
@@ -15,7 +14,7 @@ $(document).ready(function(){
 		var sidenav = $('ul.side-nav').find('a');
 		var url = window.location.pathname.split( '/' );
 		var url = url[url.length-1];
-		
+
 		sidenav.each(function(i,e){
 			var active = $(e).attr('href');
 

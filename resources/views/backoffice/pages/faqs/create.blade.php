@@ -17,18 +17,6 @@
 	{{ __($title) }}
 @endsection
 
-@section('style')
-<style>
-.upload_image_custom_append_icon {
-    top: 50%;
-    right: 0;
-    transform: translate(-6%, -50%);
-    color: #4346ce!important;
-    border: 1px solid #4346ce!important;
-}
-</style>
-@endsection
-
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
 @section('content_body')

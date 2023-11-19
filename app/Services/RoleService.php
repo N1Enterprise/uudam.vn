@@ -145,6 +145,31 @@ class RoleService extends BaseService
                 'collections.delete',
             ],
         ],
+        'shippings' => [
+            'carriers' => [
+                'carriers.index',
+                'carriers.store',
+                'carriers.update',
+            ],
+            'shipping-zones' => [
+                'shipping-zones.index',
+                'shipping-zones.store',
+                'shipping-zones.update',
+            ],
+            'shipping-rates' => [
+                'shipping-rates.index',
+                'shipping-rates.store',
+                'shipping-rates.update',
+                'shipping-rates.delete',
+            ],
+        ],
+        'localizations' => [
+            'countries' => [
+                'countries.index',
+                'countries.store',
+                'countries.update',
+            ],
+        ],
         'utilities' => [
             'blogs' => [
                 'post-categories' => [

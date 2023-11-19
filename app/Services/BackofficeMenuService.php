@@ -99,6 +99,38 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Localization',
+                'icon' => 'flaticon-placeholder-3',
+                'subs' => [
+                    [
+                        'name' => 'Countries',
+                        'link' => route('bo.web.countries.index'),
+                        'permissions' => ['countries.index'],
+                    ]
+                ],
+            ],
+            [
+                'name' => 'Shipping',
+                'icon' => 'fa fa-truck',
+                'subs' => [
+                    [
+                        'name' => 'Carriers',
+                        'link' => route('bo.web.carriers.index'),
+                        'permissions' => ['carriers.index'],
+                    ],
+                    [
+                        'name' => 'Shipping Zones',
+                        'link' => route('bo.web.shipping-zones.index'),
+                        'permissions' => ['shipping-zones.index'],
+                    ],
+                    [
+                        'name' => 'Shipping Rates',
+                        'link' => route('bo.web.shipping-rates.index'),
+                        'permissions' => ['shipping-rates.index'],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'Support Desks',
                 'icon' => 'flaticon-technology-1',
                 'subs' => [

@@ -23,7 +23,7 @@
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
     <div class="k-portlet">
         <!--begin::Form-->
-        <form data-datatable="table_list_user" class="k-form k-form--label-right" id="search_user_form" name="search_user_form" method="GET">
+        <form data-datatable="table_user-list-index" class="k-form k-form--label-right" id="search_user_form" name="search_user_form" method="GET">
             <div class="k-portlet__body">
                 <div class="filter_body">
                     <div class="row filter_content">
@@ -77,7 +77,7 @@
         </div>
         <div class="k-portlet__body">
             <!--begin: Datatable -->
-            <table data-searching="true" data-request-url="{{ route('bo.api.users.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable fs-table-object" id="table_list_user">
+            <table id="table_user-list-index" data-searching="true" data-request-url="{{ route('bo.api.users.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable fs-table-object">
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('User ID') }}</th>

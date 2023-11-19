@@ -199,7 +199,7 @@
 		</div>
         <!-- end::Scrolltop -->
 
-        @include('backoffice.layouts.parials.modal-user-profile')
+        @include('backoffice.layouts.partials.modal-user-profile')
 
         @include('backoffice.layouts.js.master-script')
 

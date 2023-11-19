@@ -55,7 +55,7 @@ class FrontendViewServiceProvider extends ServiceProvider
             /** @var UserAuthContract */
             $userAuth = app(UserAuthContract::class);
 
-            $view->with('AUTHENTICATED_USER', $userAuth->user());
+            $view->with('AUTHENTICATED_USER', optional($userAuth->user())->only(['id', 'email', 'birthday', 'name', 'phone_number']));
         });
     }
 

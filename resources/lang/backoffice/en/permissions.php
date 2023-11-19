@@ -140,6 +140,12 @@ return [
     'pages.update' => 'Update Page',
     'pages.delete' => 'Delete Page',
 
+    'localizations' => 'Localizations',
+    'countries' => 'Countries',
+    'countries.index' => 'View Country List',
+    'countries.store' => 'Create Country',
+    'countries.update' => 'Update Country',
+
     'faqs' => 'Faqs',
     'faqs.index' => 'View Faq List',
     'faqs.store' => 'Create Faq',
@@ -151,4 +157,19 @@ return [
     'faq-topics.store' => 'Create Faq Topic',
     'faq-topics.update' => 'Update Faq Topic',
     'faq-topics.delete' => 'Delete Faq Topic',
+
+    'shippings' => 'Shippings',
+    'carriers' => 'Carriers',
+    'carriers.index' => 'View Carrier List',
+    'carriers.store' => 'Create Carrier',
+    'carriers.update' => 'Update Carrier',
+    'shipping-zones' => 'Shipping Zones',
+    'shipping-zones.index' => 'View Shipping Zone List',
+    'shipping-zones.store' => 'Create Shipping Zone',
+    'shipping-zones.update' => 'Update Shipping Zone',
+    'shipping-rates' => 'Shipping Rates',
+    'shipping-rates.index' => 'View Shipping Rate List',
+    'shipping-rates.store' => 'Create Shipping Rate',
+    'shipping-rates.update' => 'Update Shipping Rate',
+    'shipping-rates.delete' => 'Delete Shipping Rate',
 ];

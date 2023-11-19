@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend as Controllers;
+use App\Http\Controllers\Frontend\UserCheckoutController;
 use App\Http\Controllers\Frontend\UserProfileController;
 
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');
 
-Route::get('my-cart', [Controllers\CartController::class, 'index']);
+Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
 
 Route::get('blogs', [Controllers\BlogController::class, 'index']);
 
@@ -20,4 +21,5 @@ Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('
 
 Route::middleware(['auth:user'])->group(function() {
     Route::get('profile', [UserProfileController::class, 'profile'])->name('user.profile');
+    Route::get('checkout', [UserCheckoutController::class, 'index'])->name('user.checkout.index');
 });

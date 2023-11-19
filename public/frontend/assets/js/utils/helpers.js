@@ -1,5 +1,5 @@
 
-const __HELPER__ = {
+const utils_helper = {
     urlParams: (key) => {
         return {
             get: (_default = '') => {
@@ -19,6 +19,26 @@ const __HELPER__ = {
             },
         }
     },
+    debounce: (func, within = 300, timerId = null) => {
+        window.callOnceTimers = window.callOnceTimers || {};
+
+        if (timerId == null)
+            timerId = func;
+
+        var timer = window.callOnceTimers[timerId];
+        clearTimeout(timer);
+
+        return function () {
+            var context = this;
+            var args = arguments;
+
+            timer = setTimeout(() => {
+                func.apply(context, args);
+            }, within);
+
+            window.callOnceTimers[timerId] = timer;
+        };
+    },
     copyClipBoard: (text) => {
         var $temp = $("<input>");
 
@@ -36,7 +56,7 @@ const __HELPER__ = {
         document.execCommand("copy");
         $temp.remove();
     },
-    formatNumber: function(number, dec_point = ',', thousands_sep = '.', decimals = 2, minDecimals = null) {
+    formatNumber: function(number, dec_point = '.', thousands_sep = ',', decimals = 2, minDecimals = null) {
 		if(!number) number = 0;
         var nstr = number.toString();
         nstr += '';
@@ -60,6 +80,9 @@ const __HELPER__ = {
 
             return x1 + (! !Object.keys(x2).length ? dec_point + x2 : '');
     },
+    formatPrice: (money, symbol = 'VND') => {
+        return utils_helper.formatNumber(money) + ' ' + symbol;
+    },
     appendErrorMessages: ($parent, errorMessages) => {
         $parent.find('.form-errors').removeClass('show');
 
@@ -80,4 +103,114 @@ const __HELPER__ = {
             }
         });
     },
+    number: (number) => {
+        const _number = parseFloat(number);
+
+        return {
+            multiply: (by) => {
+                return _number * parseFloat(by);
+            },
+            toFloat: () => {
+                return parseFloat(_number);
+            },
+        };
+    },
+    cookie: (key) => {
+        return {
+            get: (_default = null) => {
+                const value = Cookies.get(key);
+
+                return value || _default;
+            },
+            set: (data) => {
+                Cookies.set(key, data);
+            },
+        };
+    },
+    swal: (options) => {
+        const confirmButtonText = options?.okText || 'Xác nhận';
+        const confirmButtonClass = options?.okClass || 'swal-button button-primary';
+        const cancelButtonText = options?.cancelText || 'Huỷ';
+        const cancelButtonClass = options?.cancelClass || 'swal-button button-secondary';
+        const title = options?.title || '';
+        const showConfirmButton = options?.showConfirmButton || true;
+
+        return swal({
+            confirmButtonText,
+            confirmButtonClass,
+            cancelButtonText,
+            cancelButtonClass,
+            showConfirmButton,
+            showCancelButton: true,
+            reverseButtons: true,
+            ...options,
+            title: `<span style="font-weight: 400; font-size: 16px">${title}</span>`,
+        });
+    },
+    reload: () => {
+        window.location.reload();
+    }
+};
+
+const utils_quantity = (selector, config = {}) => {
+    let FINAL_CONFIG = {
+        msg_quantity_max: 'Số lượng vượt quá số lượng trong kho.',
+        msg_quantity_min: 'Số lượng không hợp lệ.',
+        ...config,
+        callbacks: {
+            onChange: () => {},
+            onIncrease: () => {},
+            onDecrease: () => {},
+            ...config.callbacks
+        },
+    };
+
+    const ELEMENT_INCREASE = $(`[data-quantity-increase="${selector}"]`);
+    const ELEMENT_DECREASE = $(`[data-quantity-decrease="${selector}"]`);
+    const ELEMENT_INPUT = $(`[data-quantity-input="${selector}"]`);
+
+    function changeValue(value) {
+        ELEMENT_INPUT.val(value);
+        FINAL_CONFIG.callbacks.onChange(value);
+    }
+
+    ELEMENT_INCREASE.on('click', function() {
+        const value    = +ELEMENT_INPUT.val();
+        const maxValue = +ELEMENT_INPUT.attr('max');
+
+        if (value < maxValue) {
+            changeValue(value + 1);
+            FINAL_CONFIG.callbacks.onIncrease(value + 1);
+        }
+    });
+
+    ELEMENT_DECREASE.on('click', function() {
+        const value    = +ELEMENT_INPUT.val();
+        const minValue = +ELEMENT_INPUT.attr('min');
+
+        if (value > minValue) {
+            changeValue(value - 1);
+            FINAL_CONFIG.callbacks.onIncrease(value - 1);
+        }
+    });
+
+    ELEMENT_INPUT.on('change', function() {
+        const value    = +ELEMENT_INPUT.val();
+        const minValue = +ELEMENT_INPUT.attr('min');
+        const maxValue = +ELEMENT_INPUT.attr('max');
+
+        if (value > maxValue) {
+            toastr.warning(FINAL_CONFIG.msg_quantity_max);
+            changeValue(maxValue);
+            return;
+        }
+
+        if (value < minValue) {
+            toastr.warning(FINAL_CONFIG.msg_quantity_min);
+            changeValue(minValue);
+            return;
+        }
+
+        changeValue(value);
+    });
 };
