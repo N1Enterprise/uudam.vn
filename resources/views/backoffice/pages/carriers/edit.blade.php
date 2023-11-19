@@ -122,7 +122,7 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', '1') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', boolean($carrier->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>

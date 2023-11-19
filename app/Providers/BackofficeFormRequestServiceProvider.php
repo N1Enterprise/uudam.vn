@@ -87,6 +87,8 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         Contracts\UploadFileManagerRequestContract::class => Requests\UploadFileManagerRequest::class,
 
+        // Shipping
+
         Contracts\StoreCarrierRequestContract::class => Requests\StoreCarrierRequest::class,
         Contracts\UpdateCarrierRequestContract::class => Requests\UpdateCarrierRequest::class,
 
@@ -95,5 +97,9 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         Contracts\StoreShippingRateRequestContract::class => Requests\StoreShippingRateRequest::class,
         Contracts\UpdateShippingRateRequestContract::class => Requests\UpdateShippingRateRequest::class,
+
+        // Payment
+        Contracts\StorePaymentProviderRequestContract::class => Requests\StorePaymentProviderRequest::class,
+        Contracts\UpdatePaymentProviderRequestContract::class => Requests\UpdatePaymentProviderRequest::class,
     ];
 }

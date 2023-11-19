@@ -172,4 +172,10 @@ return [
     'shipping-rates.store' => 'Create Shipping Rate',
     'shipping-rates.update' => 'Update Shipping Rate',
     'shipping-rates.delete' => 'Delete Shipping Rate',
+
+    'payments' => 'Payments',
+    'payment-providers' => 'Payment Providers',
+    'payment-providers.index' => 'View Payment Provider List',
+    'payment-providers.store' => 'Create Payment Provider',
+    'payment-providers.update' => 'Update Payment Provider',
 ];
