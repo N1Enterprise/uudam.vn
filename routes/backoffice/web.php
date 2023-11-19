@@ -188,3 +188,10 @@ Route::post('shipping-rates', [Controllers\ShippingRateController::class, 'store
 Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'edit'])->name('shipping-rates.edit')->middleware(['can:shipping-rates.update']);
 Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
 Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
+
+/* ======================== PAYMENT ======================== */
+Route::get('payment-providers', [Controllers\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);
+Route::get('payment-providers/create', [Controllers\PaymentProviderController::class, 'create'])->name('payment-providers.create')->middleware(['can:payment-providers.store']);
+Route::post('payment-providers', [Controllers\PaymentProviderController::class, 'store'])->name('payment-providers.store')->middleware(['can:payment-providers.store']);
+Route::get('payment-providers/{id}', [Controllers\PaymentProviderController::class, 'edit'])->name('payment-providers.edit')->middleware(['can:payment-providers.update']);
+Route::put('payment-providers/{id}', [Controllers\PaymentProviderController::class, 'update'])->name('payment-providers.update')->middleware(['can:payment-providers.update']);

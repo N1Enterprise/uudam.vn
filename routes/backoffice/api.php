@@ -60,4 +60,7 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== LOCALIZATION ======================== */
     Route::get('countries', [Api\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
+
+    /* ======================== PAYMENT ======================== */
+    Route::get('payment-providers', [Api\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);
 });

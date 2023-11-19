@@ -131,6 +131,22 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Payment',
+                'icon' => 'flaticon2-copy',
+                'subs' => [
+                    [
+                        'name' => 'Payment Settings',
+                        'subs' => [
+                            [
+                                'name' => 'Payment Providers',
+                                'link' => route('bo.web.payment-providers.index'),
+                                'permissions' => ['payment-providers.index'],
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Support Desks',
                 'icon' => 'flaticon-technology-1',
                 'subs' => [
