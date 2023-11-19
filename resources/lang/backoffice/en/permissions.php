@@ -167,4 +167,9 @@ return [
     'shipping-zones.index' => 'View Shipping Zone List',
     'shipping-zones.store' => 'Create Shipping Zone',
     'shipping-zones.update' => 'Update Shipping Zone',
+    'shipping-rates' => 'Shipping Rates',
+    'shipping-rates.index' => 'View Shipping Rate List',
+    'shipping-rates.store' => 'Create Shipping Rate',
+    'shipping-rates.update' => 'Update Shipping Rate',
+    'shipping-rates.delete' => 'Delete Shipping Rate',
 ];

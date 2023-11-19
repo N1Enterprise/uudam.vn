@@ -122,7 +122,12 @@ class BackofficeMenuService extends BaseService
                         'name' => 'Shipping Zones',
                         'link' => route('bo.web.shipping-zones.index'),
                         'permissions' => ['shipping-zones.index'],
-                    ]
+                    ],
+                    [
+                        'name' => 'Shipping Rates',
+                        'link' => route('bo.web.shipping-rates.index'),
+                        'permissions' => ['shipping-rates.index'],
+                    ],
                 ],
             ],
             [

@@ -156,6 +156,12 @@ class RoleService extends BaseService
                 'shipping-zones.store',
                 'shipping-zones.update',
             ],
+            'shipping-rates' => [
+                'shipping-rates.index',
+                'shipping-rates.store',
+                'shipping-rates.update',
+                'shipping-rates.delete',
+            ],
         ],
         'localizations' => [
             'countries' => [
