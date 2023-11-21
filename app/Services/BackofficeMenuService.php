@@ -106,7 +106,12 @@ class BackofficeMenuService extends BaseService
                         'name' => 'Countries',
                         'link' => route('bo.web.countries.index'),
                         'permissions' => ['countries.index'],
-                    ]
+                    ],
+                    [
+                        'name' => 'Currencies',
+                        'link' => route('bo.web.currencies.index'),
+                        'permissions' => ['currencies.index'],
+                    ],
                 ],
             ],
             [
@@ -252,6 +257,11 @@ class BackofficeMenuService extends BaseService
                         'name' => 'System Setting',
                         'link' => route('bo.web.system-settings.index'),
                         'permissions' => ['system-settings.index'],
+                    ],
+                    [
+                        'name' => 'Currency Setting',
+                        'link' => route('bo.web.system-currencies.index'),
+                        'permissions' => ['system-currencies.manage'],
                     ],
                 ],
             ],

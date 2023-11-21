@@ -24,6 +24,8 @@ return [
     'system-settings.clear-cache' => 'Clear Cache System Setting',
     'system-settings.import' => 'Import System Setting',
     'system-settings.export' => 'Export System Setting',
+    'system-currencies' => 'Currency Setting',
+    'system-currencies.manage' => 'Manage Currency Setting',
 
     'admin-users' => 'Admin Users',
     'admins' => 'Admins',
@@ -140,11 +142,16 @@ return [
     'pages.update' => 'Update Page',
     'pages.delete' => 'Delete Page',
 
+    // Localization
     'localizations' => 'Localizations',
     'countries' => 'Countries',
     'countries.index' => 'View Country List',
     'countries.store' => 'Create Country',
     'countries.update' => 'Update Country',
+    'currencies' => 'Currencies',
+    'currencies.index' => 'View Currency List',
+    'currencies.store' => 'Create Currency',
+    'currencies.update' => 'Update Currency',
 
     'faqs' => 'Faqs',
     'faqs.index' => 'View Faq List',

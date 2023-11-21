@@ -86,8 +86,9 @@ class RoleService extends BaseService
                 'system-settings.delete',
                 'system-settings.clear-cache',
                 'system-settings.import',
-                'system-settings.export'
+                'system-settings.export',
             ],
+            'system-currencies.manage',
         ],
         'admin-users' => [
             'admins' => [
@@ -175,6 +176,11 @@ class RoleService extends BaseService
                 'countries.index',
                 'countries.store',
                 'countries.update',
+            ],
+            'currencies' => [
+                'currencies.index',
+                'currencies.store',
+                'currencies.update',
             ],
         ],
         'utilities' => [

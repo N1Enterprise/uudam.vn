@@ -32,6 +32,13 @@ Route::get('system-settings', [Controllers\SystemSettingController::class, 'inde
 Route::get('system-settings/{id}/edit', [Controllers\SystemSettingController::class, 'edit'])->name('system-settings.edit')->middleware(['can:system-settings.update']);
 Route::post('system-settings/{id}/update', [Controllers\SystemSettingController::class, 'update'])->name('system-settings.update')->middleware(['can:system-settings.update']);
 
+Route::get('system-currencies', [Controllers\SystemCurrencyController::class, 'index'])->name('system-currencies.index')->middleware(['can:system-currencies.manage']);
+Route::get('system-currencies/create', [Controllers\SystemCurrencyController::class, 'create'])->name('system-currencies.create')->middleware(['can:system-currencies.manage']);
+Route::post('system-currencies', [Controllers\SystemCurrencyController::class, 'store'])->name('system-currencies.store')->middleware(['can:system-currencies.manage']);
+Route::get('system-currencies/{key}', [Controllers\SystemCurrencyController::class, 'edit'])->name('system-currencies.edit')->middleware(['can:system-currencies.manage']);
+Route::put('system-currencies/{key}', [Controllers\SystemCurrencyController::class, 'update'])->name('system-currencies.update')->middleware(['can:system-currencies.manage']);
+
+
 /* ======================== CATALOG ======================== */
 Route::get('category-groups', [Controllers\CategoryGroupController::class, 'index'])->name('category-groups.index')->middleware(['can:category-groups.index']);
 Route::get('category-groups/create', [Controllers\CategoryGroupController::class, 'create'])->name('category-groups.create')->middleware(['can:category-groups.store']);
@@ -168,6 +175,7 @@ Route::get('subscribers', [Controllers\SubscriberController::class, 'index'])->n
 
 /* ======================== LOCALIZATION ======================== */
 Route::get('countries', [Controllers\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
+Route::get('currencies', [Controllers\CurrencyController::class, 'index'])->name('currencies.index')->middleware(['can:currencies.index']);
 
 /* ======================== SHIPPINGS ======================== */
 Route::get('carriers', [Controllers\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);

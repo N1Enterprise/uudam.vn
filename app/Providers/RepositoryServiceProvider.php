@@ -10,12 +10,19 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     public $singletons = [
         Contracts\BaseRepositoryContract::class => Repositories\BaseRepository::class,
+
+        // Admin User
         Contracts\RoleRepositoryContract::class => Repositories\RoleRepository::class,
         Contracts\AdminRepositoryContract::class => Repositories\AdminRepository::class,
         Contracts\UserRepositoryContract::class => Repositories\UserRepository::class,
         Contracts\UserDetailRepositoryContract::class => Repositories\UserDetailRepository::class,
+
+        // System Setting
         Contracts\SystemSettingRepositoryContract::class => Repositories\SystemSettingRepository::class,
         Contracts\SystemSettingGroupRepositoryContract::class => Repositories\SystemSettingGroupRepository::class,
+        Contracts\SystemCurrencyRepositoryContract::class => Repositories\SystemCurrencyRepository::class,
+
+        // Catalog
         Contracts\CategoryGroupRepositoryContract::class => Repositories\CategoryGroupRepository::class,
         Contracts\CategoryRepositoryContract::class => Repositories\CategoryRepository::class,
         Contracts\ProductRepositoryContract::class => Repositories\ProductRepository::class,
@@ -41,9 +48,16 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\CartRepositoryContract::class => Repositories\CartRepository::class,
         Contracts\CartItemRepositoryContract::class => Repositories\CartItemRepository::class,
         Contracts\CarrierRepositoryContract::class => Repositories\CarrierRepository::class,
+
+        // Localization
         Contracts\CountryRepositoryContract::class => Repositories\CountryRepository::class,
+        Contracts\CurrencyRepositoryContract::class => Repositories\CurrencyRepository::class,
+
+        // Shipping
         Contracts\ShippingZoneRepositoryContract::class => Repositories\ShippingZoneRepository::class,
         Contracts\ShippingRateRepositoryContract::class => Repositories\ShippingRateRepository::class,
+
+        // Payment
         Contracts\PaymentProviderRepositoryContract::class => Repositories\PaymentProviderRepository::class,
     ];
 }

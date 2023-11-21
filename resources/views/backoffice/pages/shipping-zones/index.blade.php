@@ -64,7 +64,6 @@
 
 @section('js_script')
 <script>
-
     onSeeMoreCountry();
 
     function renderSupportedCountriesCallback(data, type, full) {
