@@ -203,3 +203,9 @@ Route::get('payment-providers/create', [Controllers\PaymentProviderController::c
 Route::post('payment-providers', [Controllers\PaymentProviderController::class, 'store'])->name('payment-providers.store')->middleware(['can:payment-providers.store']);
 Route::get('payment-providers/{id}', [Controllers\PaymentProviderController::class, 'edit'])->name('payment-providers.edit')->middleware(['can:payment-providers.update']);
 Route::put('payment-providers/{id}', [Controllers\PaymentProviderController::class, 'update'])->name('payment-providers.update')->middleware(['can:payment-providers.update']);
+
+Route::get('payment-options', [Controllers\PaymentOptionController::class, 'index'])->name('payment-options.index')->middleware(['can:payment-options.index']);
+Route::get('payment-options/create', [Controllers\PaymentOptionController::class, 'create'])->name('payment-options.create')->middleware(['can:payment-options.store']);
+Route::post('payment-options', [Controllers\PaymentOptionController::class, 'store'])->name('payment-options.store')->middleware(['can:payment-options.store']);
+Route::get('payment-options/{id}', [Controllers\PaymentOptionController::class, 'edit'])->name('payment-options.edit')->middleware(['can:payment-options.update']);
+Route::put('payment-options/{id}', [Controllers\PaymentOptionController::class, 'update'])->name('payment-options.update')->middleware(['can:payment-options.update']);

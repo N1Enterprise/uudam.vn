@@ -138,7 +138,7 @@ class Money
         $systemCurrency = SystemCurrency::get($currencyCode, $fallbackDefaultCurrency);
 
         // fixed 18 decimal places for crypto currency
-        return new Currency($systemCurrency->getKey(), 0, $systemCurrency->name, $systemCurrency->isCrypto() ? 18 : $systemCurrency->decimals);
+        return new Currency($systemCurrency->getKey(), 0, $systemCurrency->name, $systemCurrency->decimals);
     }
 
     public function getMoney()

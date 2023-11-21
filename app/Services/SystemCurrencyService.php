@@ -40,7 +40,7 @@ class SystemCurrencyService extends BaseService
 
     public function allAvailable($where = [])
     {
-        return $this->systemCurrencyRepository->with(['blockchainNetworks'])->modelScopes(['active', 'ordered'])->findWhere($where);
+        return $this->systemCurrencyRepository->modelScopes(['active', 'ordered'])->findWhere($where);
     }
 
     public function create($attributes = [])

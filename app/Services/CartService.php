@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
 use App\Models\Inventory;
 use App\Vendors\Localization\Money;
+use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Str;
 
 class CartService extends BaseService
@@ -80,7 +81,7 @@ class CartService extends BaseService
 
             $quantity = (int) data_get($attributes, 'quantity', 0);
 
-            $totalPrice = Money::make($inventory->sale_price)->multipliedBy($quantity);
+            $totalPrice = Money::make($inventory->sale_price, SystemCurrency::getBaseCurrency())->multipliedBy($quantity);
 
             $cartItem->update([
                 'quantity' => DB::raw('quantity + ' . $quantity),

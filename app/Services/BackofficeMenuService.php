@@ -147,6 +147,11 @@ class BackofficeMenuService extends BaseService
                                 'link' => route('bo.web.payment-providers.index'),
                                 'permissions' => ['payment-providers.index'],
                             ],
+                            [
+                                'name' => 'Payment Options',
+                                'link' => route('bo.web.payment-options.index'),
+                                'permissions' => ['payment-providers.index'],
+                            ]
                         ]
                     ]
                 ],

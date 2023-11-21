@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests\Backoffice;
 
-use App\Contracts\Requests\Backoffice\StorePaymentOptionRequestContract;
+use App\Contracts\Requests\Backoffice\UpdatePaymentOptionRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\PaymentOptionTypeEnum;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class StorePaymentOptionRequest extends BaseFormRequest implements StorePaymentOptionRequestContract
+class UpdatePaymentOptionRequest extends BaseFormRequest implements UpdatePaymentOptionRequestContract
 {
     public function rules(): array
     {
@@ -34,10 +34,11 @@ class StorePaymentOptionRequest extends BaseFormRequest implements StorePaymentO
             'min_amount' => ['nullable', 'min:0', 'numeric'],
             'max_amount' => ['nullable', 'gt:min_amount', 'numeric'],
             'status' => ['required'],
-            'cms_code' => ['nullable', 'alpha-dash', Rule::unique(PaymentOption::class)],
+            'cms_code' => ['nullable', 'alpha_dash', Rule::unique(PaymentOption::class)->ignore($this->route('id'))],
             'cms_params' => ['nullable', 'json'],
             'display_on_frontend' => ['required', 'boolean'],
         ];
+
         if (empty($this->min_amount)) {
             $rules['max_amount'] = ['nullable', 'numeric'];
         }
@@ -49,7 +50,6 @@ class StorePaymentOptionRequest extends BaseFormRequest implements StorePaymentO
     {
         $this->merge([
             'status' => $this->status == 'on' ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'params' => !empty($this->params) ? json_decode($this->params) : null,
         ]);
     }
 }

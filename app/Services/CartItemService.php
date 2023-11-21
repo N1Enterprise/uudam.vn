@@ -10,6 +10,7 @@ use App\Services\BaseService;
 use App\Vendors\Localization\Money;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
+use App\Vendors\Localization\SystemCurrency;
 
 class CartItemService extends BaseService
 {
@@ -51,7 +52,7 @@ class CartItemService extends BaseService
             }
 
             $inventorySalePrice = $cartItem->inventory->toMoney('sale_price');
-            $updateTotalPrice = Money::make($inventorySalePrice)->multipliedBy($quantity);
+            $updateTotalPrice = Money::make($inventorySalePrice, SystemCurrency::getBaseCurrency())->multipliedBy($quantity);
 
             /** @var Cart */
             $cart = $cartItem->cart;
