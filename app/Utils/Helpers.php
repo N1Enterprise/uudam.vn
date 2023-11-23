@@ -3,6 +3,8 @@
 use App\Common\Money;
 use App\Enum\BaseEnum;
 use App\Enum\TimeZoneEnum;
+use App\Vendors\Localization\Money as LocalizationMoney;
+use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Request;
@@ -150,9 +152,9 @@ if (! function_exists('round_money')) {
 }
 
 if (! function_exists('format_price')) {
-    function format_price($money, $symbol = 'VND')
+    function format_price($money, $currencyCode = null)
     {
-        return Money::format($money, 0) . ' '. $symbol;
+        return LocalizationMoney::make($money, $currencyCode ?? SystemCurrency::getDefaultCurrency()->getKey())->format(0, true);
     }
 }
 
@@ -211,5 +213,12 @@ if (! function_exists('display_json_value')) {
     function display_json_value($value, $default = '{}')
     {
         return $value ? json_encode($value, JSON_PRETTY_PRINT) : $default;
+    }
+}
+
+if (! function_exists('image')) {
+    function image($image)
+    {
+        return $image ?? asset('frontend/assets/images/shared/undefined.jpeg');
     }
 }

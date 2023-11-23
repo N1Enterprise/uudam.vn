@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\Hash;
 use App\Enum\UserStatusEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasCurrency;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use Activatable;
     use SoftDeletes;
     use Notifiable;
+    use HasCurrency;
 
     protected $fillable = [
         'username',
@@ -24,11 +26,12 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
+        'currency_code',
         'last_logged_in_at',
         'is_test_user',
         'phone_number',
         'birthday',
-        'email_verified_at'
+        'email_verified_at',
     ];
 
     protected $hidden = [

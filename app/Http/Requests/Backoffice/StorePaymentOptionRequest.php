@@ -27,16 +27,16 @@ class StorePaymentOptionRequest extends BaseFormRequest implements StorePaymentO
                 'required',
                 Rule::in(PaymentOptionTypeEnum::all()),
             ],
-            'deposit_bank_id' => [Rule::requiredIf($this->type == PaymentOptionTypeEnum::LOCAL_BANK)],
             'payment_provider_id' => [Rule::requiredIf(PaymentOptionTypeEnum::isThirdParty($this->type))],
             'online_banking_code' => [Rule::requiredIf(PaymentOptionTypeEnum::isThirdParty($this->type) && $currency->isFiat())],
             'name' => ['required'],
             'min_amount' => ['nullable', 'min:0', 'numeric'],
             'max_amount' => ['nullable', 'gt:min_amount', 'numeric'],
             'status' => ['required'],
-            'cms_code' => ['nullable', 'alpha-dash', Rule::unique(PaymentOption::class)],
-            'cms_params' => ['nullable', 'json'],
+            'params' => ['nullable'],
             'display_on_frontend' => ['required', 'boolean'],
+            'logo.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'logo.path' => ['nullable', 'string'],
         ];
         if (empty($this->min_amount)) {
             $rules['max_amount'] = ['nullable', 'numeric'];
@@ -48,8 +48,10 @@ class StorePaymentOptionRequest extends BaseFormRequest implements StorePaymentO
     public function prepareForValidation()
     {
         $this->merge([
-            'status' => $this->status == 'on' ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend),
             'params' => !empty($this->params) ? json_decode($this->params) : null,
+            'logo' => empty(array_filter($this->logo)) ? null : array_filter($this->logo),
         ]);
     }
 }

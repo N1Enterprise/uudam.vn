@@ -25,7 +25,16 @@ class CartItemService extends BaseService
     {
         return $this->cartItemRepository
             ->modelScopes(['pending'])
-            ->scopeQuery(function($q) use ($userId) {
+            ->scopeQuery(function($q) use ($userId, $data) {
+
+                if ($currencyCode = data_get($data, 'currency_code')) {
+                    $q->where('currency_code', $currencyCode);
+                }
+
+                if ($cartId = data_get($data, 'cart_id')) {
+                    $q->where('cart_id', $cartId);
+                }
+
                 $q->where('user_id', $userId);
             })
             ->all(data_get($data, 'columns', ['*']));
@@ -52,7 +61,7 @@ class CartItemService extends BaseService
             }
 
             $inventorySalePrice = $cartItem->inventory->toMoney('sale_price');
-            $updateTotalPrice = Money::make($inventorySalePrice, SystemCurrency::getBaseCurrency())->multipliedBy($quantity);
+            $updateTotalPrice = Money::make($inventorySalePrice, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             /** @var Cart */
             $cart = $cartItem->cart;
@@ -77,10 +86,23 @@ class CartItemService extends BaseService
         });
     }
 
-    public function cancelByUser($userId, $id)
+    public function findByUser($userId)
+    {
+        return $this->cartItemRepository->firstWhere([
+            'user_id' => $userId
+        ]);
+    }
+
+    public function cancelByUser($userId, $id, $data = [])
     {
         return DB::transaction(function() use ($userId, $id) {
-            $cartItem = $this->update(['user_id' => $userId, 'status' => CartItemStatusEnum::CANCELED], $id);
+            $cartItem = $this->findByUser($userId);
+
+            if (empty($cartItem) || $cartItem->id != $id) {
+                throw new BusinessLogicException('Invalid Cart Item', ExceptionCode::INVALID_CART_ITEM);
+            }
+
+            $cartItem = $this->update(['status' => CartItemStatusEnum::CANCELED], $id);
 
             $cart = $cartItem->cart;
 

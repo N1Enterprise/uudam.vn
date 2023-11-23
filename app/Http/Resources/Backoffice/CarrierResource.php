@@ -11,7 +11,7 @@ class CarrierResource extends BaseJsonResource
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
-            'logo' => $this->logo,
+            'logo' => image($this->logo),
             'email' => $this->email,
             'phone' => $this->phone,
             'params' => $this->params,

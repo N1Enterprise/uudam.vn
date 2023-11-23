@@ -24,7 +24,9 @@
                                                                         </span>
                                                                     </label>
                                                                     <select name="countryCode" id="Select0" required="" autocomplete="quốc gia vận chuyển" class="_b6uH _1fragemm8 yA4Q8 vYo81 RGaKd">
-                                                                        <option value="VN">Vietnam</option>
+                                                                        @foreach ($countries as $country)
+                                                                        <option value="{{ $country->iso2 }}">{{ data_get($country, 'native', $country->name) }}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                     <div class="TUEJq">
                                                                         <span class="_1fragemhb _1fragem1w _1fragemd8 _1fragemd4 a8x1wu3 _1fragemfc a8x1wug a8x1wum">
@@ -169,20 +171,44 @@
                                                 <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemfz _1fragemgg">
                                                     <fieldset id="shipping_methods">
                                                         <legend class="_1fragemle">Chọn phương thức vận chuyển</legend>
+
+                                                        @foreach ($shippingRatesCarriers as $shippingRateCarrer)
                                                         <div class="Wo4qW ezrb1p3 _1fragemf1 _1fragemm8 NDMe9 NdTJE PuVf0">
                                                             <div class="B4zH6 Zb82w HKtYc OpmPd">
-                                                                <div class="yL8c2 ezrb1p5 _1fragemf2">
-                                                                    <div class="f5aCe">
-                                                                        <div>
-                                                                            <p class="_1x52f9s1 _1frageme0 _1x52f9so _1fragemfq">FedEx International Priority</p>
+                                                                <label for="basic-Afterpay" class="yL8c2 ezrb1p5 _1fragemf2 D1RJr">
+                                                                    <div class="hEGyz">
+                                                                        <div class="f5aCe">
+                                                                            <div class="_5uqybw2 _1fragemfe _1fragemdc _1fragemfx _1fragemge _1frageme8 _1fragemec _1fragemhf">
+                                                                                <img alt="afterpay" src="{{ data_get($shippingRateCarrer, 'carrier_logo') }}" role="img" width="50" height="50" class="_1tgdqw61 _1fragemlr _1fragemlm _1fragemm0 _1fragemha">
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="_19gi7yt0 _19gi7yth _1fragemfq">{{ data_get($shippingRateCarrer, 'carrier_name') }}</span>
+                                                                            </div>
                                                                         </div>
-                                                                        <div>
-                                                                            <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq _19gi7yt1 notranslate">₫6,156,000</span>
+                                                                    </div>
+                                                                </label>
+                                                                <div class="_94sxtb1 _1fragemkt _1fragemkv _1frageme0 _1fragemlt _1fragemlx _1fragemln" style="height: auto; overflow: visible;">
+                                                                    <div>
+                                                                        <div class="b7U_P" style="display: flex; align-items: center; justify-content: space-between">
+                                                                            @foreach (data_get($shippingRateCarrer, 'shipping_rates', []) as $shippingRate)
+                                                                            <label for="shipping_option_{{ data_get($shippingRate, 'id') }}" style="display: flex; align-items: flex-start">
+                                                                                <input type="radio" name="shipping_rate_id" value="{{ data_get($shippingRate, 'id') }}" id="shipping_option_{{ data_get($shippingRate, 'id') }}" class="_6hzjvo5 _1fragemfa _1fragemfc _1fragemlr _1fragemll _1fragemlx _6hzjvof _1fragemf1 _1fragemm8 _6hzjvoe _6hzjvob" style="margin-right: 10px; margin-top: 2px;" {{ count(data_get($shippingRateCarrer, 'shipping_rates', [])) == 1 && $loop->index == 0 ? 'checked' : '' }}>
+                                                                                <div>
+                                                                                    {{ data_get($shippingRate, 'name') }}
+                                                                                    <p><small>({{ data_get($shippingRate, 'delivery_takes') }})</small></p>
+                                                                                </div>
+                                                                            </label>
+                                                                            <div>
+                                                                                <span style="font-weight: bold;">{{ format_price(data_get($shippingRate, 'rate')) }}</span>
+                                                                            </div>
+                                                                            @endforeach
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endforeach
+
                                                     </fieldset>
                                                 </div>
                                             </div>

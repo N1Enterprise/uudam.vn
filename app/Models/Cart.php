@@ -3,17 +3,22 @@
 namespace App\Models;
 
 use App\Enum\CartItemStatusEnum;
+use App\Models\Traits\HasCurrency;
 
 class Cart extends BaseModel
 {
+    use HasCurrency;
+
     protected $fillable = [
         'user_id',
         'ip_address',
         'address_id',
+        'currency_code',
         'total_item',
         'total_quantity',
         'total_price',
-        'payment_option_id'
+        'payment_option_id',
+        'uuid',
     ];
 
     public function availableItems()

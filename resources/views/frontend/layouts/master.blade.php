@@ -133,6 +133,42 @@
             right: 32px !important;
             top: calc(50% + 0px) !important;
         }
+
+        #admintopnav {
+            position: relative;
+            background: #1d2327;
+            background-color: #1d2327;
+            color: #c3c4c7;
+            font-weight: 400;
+            font-size: 13px;
+            width: 100%;
+            overflow: hidden;
+            z-index: 4;
+        }
+
+        #admintopnav a.split.highlight {
+            background-color: #04AA6D;
+            color: #fff;
+        }
+
+        #admintopnav a.split {
+            float: right;
+        }
+
+        #admintopnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        #admintopnav a:hover {
+            background-color: #04AA6D;
+            color: #fff;
+        }
     </style>
     <!--end::Layout Skins -->
 </head>

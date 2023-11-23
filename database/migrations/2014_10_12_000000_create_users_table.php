@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('currency_code');
             $table->tinyInteger('status');
             $table->timestamp('last_logged_in_at')->nullable();
             $table->string('phone_number')->nullable();

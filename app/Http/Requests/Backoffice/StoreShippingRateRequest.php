@@ -23,6 +23,7 @@ class StoreShippingRateRequest extends BaseFormRequest implements StoreShippingR
             'maximum' => ['required', 'gt:minimum'],
             'rate' => ['required'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'display_on_frontend' => ['required']
         ];
     }
 
@@ -30,6 +31,7 @@ class StoreShippingRateRequest extends BaseFormRequest implements StoreShippingR
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend)
         ]);
     }
 }

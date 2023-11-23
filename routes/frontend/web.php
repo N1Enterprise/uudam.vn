@@ -9,8 +9,6 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');
 
-Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
-
 Route::get('blogs', [Controllers\BlogController::class, 'index']);
 
 Route::get('blogs/posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
@@ -20,6 +18,8 @@ Route::get('collections/{slug}', [Controllers\CollectionController::class, 'inde
 Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');
 
 Route::middleware(['auth:user'])->group(function() {
+    Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
     Route::get('profile', [UserProfileController::class, 'profile'])->name('user.profile');
-    Route::get('checkout', [UserCheckoutController::class, 'index'])->name('user.checkout.index');
+    Route::get('checkout-confirmation', [UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');
+    Route::get('checkout/{cartUuid}', [UserCheckoutController::class, 'checkout'])->name('user.checkout.index');
 });

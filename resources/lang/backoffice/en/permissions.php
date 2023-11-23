@@ -185,4 +185,8 @@ return [
     'payment-providers.index' => 'View Payment Provider List',
     'payment-providers.store' => 'Create Payment Provider',
     'payment-providers.update' => 'Update Payment Provider',
+    'payment-options' => 'Payment Options',
+    'payment-options.index' => 'View Payment Option List',
+    'payment-options.store' => 'Create Payment Option',
+    'payment-options.update' => 'Update Payment Option',
 ];

@@ -11,7 +11,9 @@
                         <div></div>
                     </div>
                     <div class="cart__ctas">
-                        <button type="submit" id="checkout" class="cart__checkout-button button" name="checkout" form="cart"> Hoàn tất thanh toán </button>
+                        <form action="{{ route('fe.web.user.checkout.confirmation') }}" method="GET" class="w-100">
+                            <button type="submit" id="checkout" class="cart__checkout-button button">Hoàn tất thanh toán</button>
+                        </form>
                     </div>
                 </div>
             </div>

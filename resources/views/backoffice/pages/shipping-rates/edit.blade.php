@@ -135,7 +135,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Rate') }} *</label>
-                                    <input type="text" class="form-control" name="rate" placeholder="{{ __('Shipping Rate') }}" value="{{ old('rate', $shippingRate->rate) }}" required>
+                                    <x-number-input allow-minus="false" key="rate" name="rate" class="form-control" value='{{ old("rate", $shippingRate->rate) }}' required />
                                 </div>
 
                                 <div class="form-group row">
@@ -159,6 +159,20 @@
 										<span class="k-switch">
 											<label>
 												<input type="checkbox" {{ old('status', boolean($shippingRate->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+                                <div class="row">
+									<div class="col-2">
+										<label class="col-form-label">{{ __('Display on Front End') }}</label>
+									</div>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', boolean($shippingRate->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
 												<span></span>
 											</label>
 										</span>

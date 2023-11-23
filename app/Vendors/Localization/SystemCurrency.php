@@ -101,12 +101,12 @@ class SystemCurrency
 
     public static function allConfigurable()
     {
-        return static::all()->where('usable', true);
+        return static::all()->where('status', 1);
     }
 
     public static function allFiatConfigurable()
     {
-        return static::allFiat()->where('is_base', true);
+        return static::allFiat();
     }
 
     public static function allFiat()

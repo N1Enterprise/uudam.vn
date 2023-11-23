@@ -10,11 +10,11 @@
                         </div>
                     </div>
                 </div>
-                @if(! empty($PAGES_BELONGTO_MENU))
+                @if(! empty($PAGES_DISPLAY_IN_FOOTER))
                 <div class="footer-block grid__item footer-block--menu">
                     <h2 class="footer-block__heading">MENU</h2>
                     <ul class="footer-block__details-content list-unstyled">
-                        @foreach ($PAGES_BELONGTO_MENU as $page)
+                        @foreach ($PAGES_DISPLAY_IN_FOOTER as $page)
                         <li>
                             <a href="{{ route('fe.web.pages.index', data_get($page, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($page, 'name') }}</a>
                         </li>

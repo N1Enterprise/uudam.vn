@@ -12,30 +12,41 @@ use App\Models\Inventory;
 use App\Vendors\Localization\Money;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class CartService extends BaseService
 {
     public $cartRepository;
     public $cartItemRepository;
     public $inventoryService;
+    public $userService;
 
     public function __construct(
         CartRepositoryContract $cartRepository,
         CartItemRepositoryContract $cartItemRepository,
-        InventoryService $inventoryService
+        InventoryService $inventoryService,
+        UserService $userService
     ) {
         $this->cartRepository = $cartRepository;
         $this->cartItemRepository = $cartItemRepository;
         $this->inventoryService = $inventoryService;
+        $this->userService = $userService;
     }
 
     public function findByUser($userId, $data = [])
     {
         return $this->cartRepository
             ->with(data_get($data, 'with', []))
-            ->firstWhere([
-                'user_id' => $userId
-            ], data_get($data, 'columns', ['*']));
+            ->scopeQuery(function($q) use ($data) {
+                if ($currencyCode = data_get($data, 'currency_code')) {
+                    $q->where('currency_code', $currencyCode);
+                }
+
+                if ($uuid = data_get($data, 'uuid')) {
+                    $q->where('uuid', $uuid);
+                }
+            })
+            ->firstWhere([ 'user_id' => $userId ]);
     }
 
     public function show($id)
@@ -51,37 +62,45 @@ class CartService extends BaseService
     public function createByUser($userId, $attributes = [])
     {
         return DB::transaction(function() use ($userId, $attributes) {
+            /** @var User */
+            $user = $this->userService->show($userId);
+
+            $currency = SystemCurrency::get($user->currency());
+
             /** @var Cart */
             $cart = $this->cartRepository->firstOrCreate([
-                'user_id' => $userId
+                'user_id' => $user->getKey(),
+                'currency_code' => $currency->getKey(),
             ], [
-                'ip_address'     => data_get($attributes, 'ip_address'),
+                'ip_address' => data_get($attributes, 'ip_address'),
                 'total_quantity' => 0,
-                'total_price'    => 0,
-                'created_at'     => now(),
-                'updated_at'     => now()
+                'total_price' => 0,
+                'uuid' => Str::uuid(),
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
 
             /** @var Inventory */
             $inventory = $this->inventoryService->show(data_get($attributes, 'inventory_id'));
 
             $cartItem = $this->cartItemRepository->firstOrCreate([
-                'cart_id'      => $cart->getKey(),
-                'user_id'      => $userId,
+                'cart_id' => $cart->getKey(),
+                'user_id' => $user->getKey(),
                 'inventory_id' => $inventory->getKey(),
-                'has_combo'    => data_get($attributes, 'has_combo', 0),
-                'status'       => CartItemStatusEnum::PENDING,
+                'has_combo' => data_get($attributes, 'has_combo', 0),
+                'currency_code' => $currency->getKey(),
+                'status' => CartItemStatusEnum::PENDING,
             ], [
-                'quantity'   => 0,
-                'price'      => 0,
-                'uuid'       => Str::uuid(),
+                'quantity' => 0,
+                'price' => 0,
+                'uuid' => Str::uuid(),
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ]);
 
             $quantity = (int) data_get($attributes, 'quantity', 0);
 
-            $totalPrice = Money::make($inventory->sale_price, SystemCurrency::getBaseCurrency())->multipliedBy($quantity);
+            $totalPrice = Money::make($inventory->sale_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             $cartItem->update([
                 'quantity' => DB::raw('quantity + ' . $quantity),

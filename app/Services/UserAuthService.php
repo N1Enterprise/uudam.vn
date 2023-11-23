@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Classes\Contracts\UserAuthContract;
-use Illuminate\Support\Facades\DB;
+use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -20,6 +20,8 @@ class UserAuthService extends BaseService
 
     public function signup($attributes = [])
     {
+        $attributes = array_merge([ 'currency_code' => SystemCurrency::getDefaultCurrency()->getKey() ], $attributes);
+
         return  $this->userService->create($attributes);
     }
 

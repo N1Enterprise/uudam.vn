@@ -1,3 +1,5 @@
+@include('frontend.layouts.partials.header.partials.admintopnav')
+
 <div id="shopify-section-header" class="shopify-section section-header">
     <sticky-header class="header-wrapper color-background-1 gradient header-wrapper--border-bottom">
         <header class="header header--middle-left page-width header--has-menu">

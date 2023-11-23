@@ -93,21 +93,11 @@
                         <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg2 _1fragemgj">
                             <div class="_1fragemfe _1frageme0 _1fragemhf">
                                 <div class="_5uqybw2 _1fragemfe _1fragemdc _1fragemea _1fragemee _1fragemfx _1fragemgi _1fragemhf">
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Refund policy</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Shipping policy</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Privacy policy</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Terms of service</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Contact information</span>
-                                    </button>
+                                    @foreach ($checkoutPages as $page)
+                                    <a href="{{ route('fe.web.pages.index', [ 'slug' => data_get($page, 'slug'), 'viewfrom' => 'checkout' ]) }}" class="QT4by eVFmT janiy mRJ8x EP07D">
+                                        <span class="AjwsM">{{ data_get($page, 'name') }}</span>
+                                    </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\Contracts\ShippingRateRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Facades\DB;
 
 class ShippingRateService extends BaseService
 {
@@ -23,6 +24,27 @@ class ShippingRateService extends BaseService
             ->whereColumnsLike(data_get($data, 'carrier_id') ?? null, ['carrier_id'])
             ->whereColumnsLike(data_get($data, 'type') ?? null, ['type'])
             ->search([]);
+
+        return $result;
+    }
+
+    public function searchByUser($data = [])
+    {
+        $result = $this->shippingRateRepository
+            ->with(['shippingZone', 'carrier'])
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                if ($type = data_get($data, 'type')) {
+                    $q->where('type', $type);
+                }
+
+                if ($value = data_get($data, 'value')) {
+                    $q->where('minimum', '<=', $value)
+                        ->where('maximum', '>=', $value);
+                }
+            });
+
+        $result = $result->search([], null, ['*'], false);
 
         return $result;
     }

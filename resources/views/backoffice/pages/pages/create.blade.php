@@ -54,10 +54,15 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Display Type') }} *</label>
-                                    <select data-actions-box="true" name="display_type" title="--{{ __('Select Display Type') }}--"  class="form-control k_selectpicker" required>
-                                        @foreach($pageDisplayPositionEnumLabels as $key => $lable)
-                                        <option value="{{ $key }}" {{ old('display_type') == $key ? 'selected' : '' }}>{{  $lable }}</option>
+                                    <label>{{ __('Display In') }} *</label>
+                                    <select data-actions-box="true" name="display_in[]" title="--{{ __('Select the page to display') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" multiple data-selected-text-format="count > 5" required>
+                                        @foreach($pageDisplayInEnumLabels as $key => $label)
+                                        <option
+                                            {{ in_array($key, old("display_in", [])) ? 'selected' : '' }}
+                                            data-tokens="{{ $key }} | {{ $label }}"
+                                            data-subtext="{{ $key }}"
+                                            data-name="{{ $label }}"
+                                            value="{{ $key }}">{{ $label }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -102,6 +107,20 @@
 										</span>
 									</div>
 								</div>
+
+                                <div class="row">
+									<div class="col-2">
+										<label class="col-form-label">{{ __('Display on Front End') }}</label>
+									</div>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ boolean(old('display_on_frontend')) ? 'checked' : ''}} value="1" name="display_on_frontend" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -117,8 +136,4 @@
 		</div>
 	</div>
 </div>
-@endsection
-
-@section('js_script')
-@include('backoffice.pages.category-groups.js-pages.handle')
 @endsection

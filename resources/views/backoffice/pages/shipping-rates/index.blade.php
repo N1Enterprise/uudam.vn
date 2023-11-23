@@ -80,5 +80,28 @@
 
         return parseFloat(data);
     }
+
+    onDelete();
+
+    function onDelete() {
+        $(document).on('click', '[data-action=delete]', function(e) {
+            e.preventDefault();
+
+            let confirmation = confirm("{{ __('Are you sure you want to delete this shipping rate value?') }}");
+
+            if(! confirmation) {
+                return;
+            }
+
+            $.ajax({
+                url: $(this).attr('href'),
+                method: 'delete',
+                preventRedirectOnComplete: 1,
+                success: function(res) {
+                    $('#table-shipping-rates-index').DataTable().ajax.reload();
+                }
+            });
+        });
+    }
 </script>
 @endsection

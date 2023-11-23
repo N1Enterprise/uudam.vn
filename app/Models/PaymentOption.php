@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
+use App\Enum\PaymentOptionTypeEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasCurrency;
+use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasMoney;
 
 class PaymentOption extends BaseModel
 {
-    use Activatable;
     use HasMoney;
+    use Activatable;
+    use HasCurrency;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',
@@ -16,7 +21,7 @@ class PaymentOption extends BaseModel
         'min_amount',
         'max_amount',
         'currency_code',
-        'icon',
+        'logo',
         'status',
         'online_banking_code',
         'payment_provider_id',
@@ -27,4 +32,14 @@ class PaymentOption extends BaseModel
     protected $casts = [
         'params' => 'json'
     ];
+
+    public function getTypeNameAttribute()
+    {
+        return PaymentOptionTypeEnum::findConstantLabel($this->type);
+    }
+
+    public function paymentProvider()
+    {
+        return $this->belongsTo(PaymentProvider::class);
+    }
 }

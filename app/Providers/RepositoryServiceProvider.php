@@ -59,5 +59,6 @@ class RepositoryServiceProvider extends ServiceProvider
 
         // Payment
         Contracts\PaymentProviderRepositoryContract::class => Repositories\PaymentProviderRepository::class,
+        Contracts\PaymentOptionRepositoryContract::class => Repositories\PaymentOptionRepository::class,
     ];
 }

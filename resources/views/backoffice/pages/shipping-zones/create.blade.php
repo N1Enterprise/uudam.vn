@@ -57,13 +57,13 @@
                                     <label>{{ __('Supported Countries') }}</label>
                                     <select data-actions-box="true" name="supported_countries[]" title="--{{ __('Select Country') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($countries as $country)
-                                            <option
-                                                {{ in_array($country->iso2, old("supported_countries", [])) ? 'selected' : '' }}
-                                                data-tokens="{{ $country->iso2 }} | {{ $country->name }}"
-                                                data-subtext="{{ $country->iso2 }}"
-                                                data-country-iso2="{{ $country->iso2 }}"
-                                                data-country-name="{{ $country->name }}"
-                                                value="{{ $country->iso2 }}">{{ $country->name }}</option>
+                                        <option
+                                            {{ in_array($country->iso2, old("supported_countries", [])) ? 'selected' : '' }}
+                                            data-tokens="{{ $country->iso2 }} | {{ $country->name }}"
+                                            data-subtext="{{ $country->iso2 }}"
+                                            data-country-iso2="{{ $country->iso2 }}"
+                                            data-country-name="{{ $country->name }}"
+                                            value="{{ $country->iso2 }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

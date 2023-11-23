@@ -75,6 +75,11 @@ class RoleService extends BaseService
                 'payment-providers.store',
                 'payment-providers.update',
             ],
+            'payment-options' => [
+                'payment-options.index',
+                'payment-options.store',
+                'payment-options.update',
+            ],
         ],
         'systems' => [
             'system-settings' => [

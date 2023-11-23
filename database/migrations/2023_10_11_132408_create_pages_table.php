@@ -25,6 +25,7 @@ class CreatePagesTable extends Migration
             $table->text('content')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
+            $table->boolean('display_on_frontend')->default(0);
             $table->morphs('created_by');
             $table->morphs('updated_by');
             $table->timestamps();

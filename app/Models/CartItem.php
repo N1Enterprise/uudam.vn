@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Enum\CartItemStatusEnum;
+use App\Models\Traits\HasCurrency;
 use App\Models\Traits\HasMoney;
 
 class CartItem extends BaseModel
 {
     use HasMoney;
+    use HasCurrency;
 
     protected $fillable = [
         'cart_id',
@@ -16,6 +18,7 @@ class CartItem extends BaseModel
         'note',
         'has_combo',
         'quantity',
+        'currency_code',
         'price',
         'total_price',
         'user_id',
