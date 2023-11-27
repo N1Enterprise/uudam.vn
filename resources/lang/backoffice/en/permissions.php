@@ -189,4 +189,8 @@ return [
     'payment-options.index' => 'View Payment Option List',
     'payment-options.store' => 'Create Payment Option',
     'payment-options.update' => 'Update Payment Option',
+
+    'orders' => 'Orders',
+    'orders.index' => 'List Orders',
+    'orders.manage' => 'Manage Orders',
 ];

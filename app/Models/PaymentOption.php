@@ -42,4 +42,19 @@ class PaymentOption extends BaseModel
     {
         return $this->belongsTo(PaymentProvider::class);
     }
+
+    public function isThirdParty()
+    {
+        return PaymentOptionTypeEnum::isThirdParty($this->type);
+    }
+
+    public function isCashOnDelivery()
+    {
+        return PaymentOptionTypeEnum::isCashOnDelivery($this->type);
+    }
+
+    public function isLocalBank()
+    {
+        return PaymentOptionTypeEnum::isLocalBank($this->type);
+    }
 }

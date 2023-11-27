@@ -7,6 +7,7 @@ use App\Services\UserService;
 class UserProfileController extends AuthenticatedController
 {
     public $userService;
+    public $orderService;
 
     public function __construct(UserService $userService)
     {
@@ -19,6 +20,11 @@ class UserProfileController extends AuthenticatedController
     {
         $user = $this->user();
 
-        return $this->view('frontend.pages.users.profile', compact('user'));
+        return $this->view('frontend.pages.profile.user-info', compact('user'));
+    }
+
+    public function changePassword()
+    {
+        return $this->view('frontend.pages.profile.change-password');
     }
 }

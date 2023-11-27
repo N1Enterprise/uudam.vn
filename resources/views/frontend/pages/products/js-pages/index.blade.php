@@ -27,7 +27,7 @@ const MAIN_INVENTORY = {
     },
     getFullData: () => {
         const data = {
-            product_id: MAIN_INVENTORY.inventory_selected.product_id,
+            product_id: $('[name="product_id"]').val(),
             inventory: MAIN_INVENTORY.inventory_selected,
             has_combo: $('[data-product-combo-confirm]').is(':checked'),
             quantity: $('[data-stock-quantity]').val() || 0
@@ -70,7 +70,7 @@ const MAIN_INVENTORY = {
             const product = MAIN_INVENTORY.findProductByAttribute();
 
             MAIN_INVENTORY.calculateInventoryPrice();
-            MAIN_INVENTORY_QUANTITY.setValue(1);
+            // MAIN_INVENTORY_QUANTITY.setValue(1);
             FORM_ORDER.setDataOrder();
         });
     },
@@ -304,6 +304,9 @@ const FORM_ORDER = {
         utils_helper.cookie(COOKIES_KEY.SHOPPING_CART).set(JSON.stringify(data));
     },
     setDataOrder: () => {
+        console.log({
+            data: MAIN_INVENTORY.getFullData()
+        });
         const { quantity, has_combo, inventory, product_id } = MAIN_INVENTORY.getFullData();
 
         $('form[form-add-to-cart]').find('[name="product_id"]').val(product_id);

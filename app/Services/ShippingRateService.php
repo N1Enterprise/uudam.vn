@@ -39,8 +39,11 @@ class ShippingRateService extends BaseService
                 }
 
                 if ($value = data_get($data, 'value')) {
-                    $q->where('minimum', '<=', $value)
-                        ->where('maximum', '>=', $value);
+                    $q->where('minimum', '<=', $value);
+                    $q->where(function($q) use ($value) {
+                        $q->where('maximum', '>=', $value)
+                            ->orWhereNull('maximum');
+                    });
                 }
             });
 

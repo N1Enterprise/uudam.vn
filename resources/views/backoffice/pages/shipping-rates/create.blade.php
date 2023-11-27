@@ -94,14 +94,14 @@
                                     <div class="col-md-6">
                                         <label>{{ __('Minimum Price') }} *</label>
                                         <div class="input-group">
-                                            <x-number-input allow-minus="false" key="minimum" name="minimum" class="form-control" value='{{ old("minimum") }}' />
+                                            <x-number-input allow-minus="false" key="minimum" name="minimum" class="form-control" value='{{ old("minimum") }}' required />
                                             <div class="input-group-append">
                                                 <span class="input-group-text">$</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>{{ __('Maximum Price') }} *</label>
+                                        <label>{{ __('Maximum Price') }}</label>
                                         <div class="input-group">
                                             <x-number-input allow-minus="false" key="maximum" name="maximum" class="form-control" value='{{ old("maximum") }}' />
                                             <div class="input-group-append">
@@ -115,14 +115,14 @@
                                     <div class="col-md-6 form-group">
                                         <label>{{ __('Minimum Weight') }} *</label>
                                         <div class="input-group">
-                                            <input type="number" name="minimum" class="form-control" value="{{ old('minimum') }}">
+                                            <input type="number" name="minimum" class="form-control" value="{{ old('minimum') }}" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">g</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>{{ __('Maximum Weight') }} *</label>
+                                        <label>{{ __('Maximum Weight') }}</label>
                                         <div class="input-group">
                                             <input type="number" name="maximum" class="form-control" value="{{ old('maximum') }}">
                                             <div class="input-group-append">

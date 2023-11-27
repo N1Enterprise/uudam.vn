@@ -153,5 +153,9 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\ListPaymentOptionResponseContract::class => Responses\ListPaymentOptionResponse::class,
         Contracts\StorePaymentOptionResponseContract::class => Responses\StorePaymentOptionResponse::class,
         Contracts\UpdatePaymentOptionResponseContract::class => Responses\UpdatePaymentOptionResponse::class,
+
+        // Order
+        Contracts\ListOrderResponseContract::class => Responses\ListOrderResponse::class,
+        Contracts\ListOrderItemResponseContract::class => Responses\ListOrderItemResponse::class,
     ];
 }

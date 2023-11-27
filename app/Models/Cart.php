@@ -17,12 +17,17 @@ class Cart extends BaseModel
         'total_item',
         'total_quantity',
         'total_price',
-        'payment_option_id',
+        'order_id',
         'uuid',
     ];
 
     public function availableItems()
     {
         return $this->hasMany(CartItem::class, 'cart_id', 'id')->where('status', CartItemStatusEnum::PENDING);
+    }
+
+    public function scopeNotOrdered($query)
+    {
+        return $query->whereNull('order_id');
     }
 }

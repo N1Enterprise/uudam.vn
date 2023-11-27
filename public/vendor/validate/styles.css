@@ -1,0 +1,7 @@
+.msg-error {
+    color: #d80101;
+    font-size: 13px;
+}
+.input.is-invalid {
+    border: 1px solid #d80101;
+}

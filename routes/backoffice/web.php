@@ -209,3 +209,7 @@ Route::get('payment-options/create', [Controllers\PaymentOptionController::class
 Route::post('payment-options', [Controllers\PaymentOptionController::class, 'store'])->name('payment-options.store')->middleware(['can:payment-options.store']);
 Route::get('payment-options/{id}', [Controllers\PaymentOptionController::class, 'edit'])->name('payment-options.edit')->middleware(['can:payment-options.update']);
 Route::put('payment-options/{id}', [Controllers\PaymentOptionController::class, 'update'])->name('payment-options.update')->middleware(['can:payment-options.update']);
+
+/* ======================== ORDER ======================== */
+Route::get('orders', [Controllers\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
+Route::get('orders/{id}', [Controllers\OrderController::class, 'edit'])->name('orders.edit')->middleware(['can:orders.manage']);

@@ -20,7 +20,7 @@ class UpdateShippingRateRequest extends BaseFormRequest implements UpdateShippin
             'delivery_takes' => ['required', 'string', 'max:255'],
             'type' => ['required', 'integer', Rule::in(ShippingRateTypeEnum::all())],
             'minimum' => ['required'],
-            'maximum' => ['required', 'gt:minimum'],
+            'maximum' => ['nullable', 'gt:minimum'],
             'rate' => [Rule::requiredIf($this->rate != 0)],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'display_on_frontend' => ['required']

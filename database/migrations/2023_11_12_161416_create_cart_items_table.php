@@ -25,6 +25,7 @@ class CreateCartItemsTable extends Migration
             $table->boolean('has_combo')->default(0);
             $table->integer('quantity')->default(0);
             $table->decimal('price', 20, 6)->default(0);
+            $table->decimal('total_price', 20, 6)->nullable();
             $table->tinyInteger('status')->comment(CartItemStatusEnum::class);
             $table->timestamps();
         });

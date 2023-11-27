@@ -16,14 +16,16 @@
                                         <div class="Wo4qW ezrb1p3 _1fragemf1 _1fragemm8 NDMe9 NdTJE PuVf0">
                                             @foreach ($paymentOptions as $paymentOption)
                                             <div class="B4zH6 Zb82w HKtYc OpmPd">
-                                                <label for="basic-Afterpay" class="yL8c2 ezrb1p5 _1fragemf2 D1RJr">
+                                                <label for="payment_option_{{ data_get($paymentOption, 'id') }}" class="yL8c2 ezrb1p5 _1fragemf2 D1RJr">
                                                     <div class="hEGyz">
                                                         <div class="_1frageme0">
                                                             <input
                                                                 type="radio"
                                                                 name="payment_option_id"
+                                                                id="payment_option_{{ data_get($paymentOption, 'id') }}"
                                                                 value="{{ data_get($paymentOption, 'id') }}"
                                                                 class="_6hzjvo5 _1fragemfa _1fragemfc _1fragemlr _1fragemll _1fragemlx _6hzjvof _1fragemf1 _1fragemm8 _6hzjvoe _6hzjvob"
+                                                                {{ data_get($order, 'payment_option_id') == $paymentOption->id ? 'checked' : '' }}
                                                                 {{ count($paymentOptions) == 1 && $loop->index == 0 ? 'checked' : '' }}
                                                             >
                                                         </div>

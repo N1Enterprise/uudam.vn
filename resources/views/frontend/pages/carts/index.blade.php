@@ -7,11 +7,11 @@
 
 @section('content_body')
 <div class="shopify-section">
-    @if(!$items->isEmpty())
-        @include('frontend.pages.carts.partials.cart-items')
-        @include('frontend.pages.carts.partials.cart-footer')
+    @if(!empty($cart) && !$items->isEmpty())
+    @include('frontend.pages.carts.partials.cart-items')
+    @include('frontend.pages.carts.partials.cart-footer')
     @else
-        @include('frontend.pages.carts.partials.cart-empty')
+    @include('frontend.pages.carts.partials.cart-empty')
     @endif
 </div>
 @endsection

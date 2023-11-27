@@ -1,0 +1,70 @@
+@extends('frontend.layouts.master')
+
+@section('style')
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/profile/index.css') }}">
+<style>
+    .profile-tabs-nav {
+        display: flex;
+    }
+
+    .profile-tabs-content form[data-form] {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    @media screen and (min-width: 750px) {
+        .profile-tabs-content form[data-form] {
+            width: 50%;
+        }
+    }
+
+
+    .profile-tabs-nav .profile-tabs-nav__tab {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+        text-decoration: auto;
+        border: 1px solid #000;
+        margin-right: 10px;
+    }
+
+    .profile-tabs-nav .profile-tabs-nav__tab.active {
+        text-decoration: underline!important;
+    }
+</style>
+
+@yield('profile_style')
+@endsection
+
+@section('content_body')
+<section class="shopify-section section">
+    <div class="profile-tabs customer account">
+        <nav class="profile-tabs-nav">
+            <a href="{{ route('fe.web.user.profile.info') }}" class="profile-tabs-nav__tab">Thông tin tài khoản</a>
+            <a href="{{ route('fe.web.user.profile.order-history') }}" class="profile-tabs-nav__tab">Lịch sử đơn hàng</a>
+            <a href="{{ route('fe.web.user.profile.change-password') }}" class="profile-tabs-nav__tab">Thanh đổi mật khẩu</a>
+        </nav>
+        <div class="profile-tabs-content">
+            @yield('profile_content')
+        </div>
+    </div>
+</section>
+@endsection
+
+@section('js_script')
+<script>
+    $(document).ready(function() {
+        const pathname = window.location.pathname;
+
+        $.each($('.profile-tabs-nav__tab'), function(index, element) {
+            const href = $(element).attr('href');
+
+            console.log({ href, pathname });
+
+            $(element).toggleClass('active', href.includes(pathname));
+        });
+    });
+</script>
+
+@yield('profile_js')
+@endsection

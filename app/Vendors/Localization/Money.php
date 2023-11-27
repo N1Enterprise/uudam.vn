@@ -349,7 +349,7 @@ class Money
      * @param string $decimalsSeparator
      * @return string
      */
-    public function format($fractionalPartLength = 2, $currencyCodeSuffix = false, $realFractionalPart = false, $removeTrailingZero = true, $decimalsSeparator = '.')
+    public function format($fractionalPartLength = 0, $currencyCodeSuffix = true, $realFractionalPart = false, $removeTrailingZero = true, $decimalsSeparator = '.')
     {
         $integralPart = $this->getAmount()->getIntegralPart();
         $fractionalPart = $this->getAmount()->getFractionalPart();

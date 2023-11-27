@@ -99,6 +99,17 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Orders',
+                'icon' => 'fa fa-cart-plus',
+                'subs' => [
+                    [
+                        'name' => 'Orders',
+                        'link' => route('bo.web.orders.index'),
+                        'permissions' => ['orders.index'],
+                    ]
+                ],
+            ],
+            [
                 'name' => 'Localization',
                 'icon' => 'flaticon-placeholder-3',
                 'subs' => [

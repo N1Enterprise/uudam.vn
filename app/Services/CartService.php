@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Enum\CartItemStatusEnum;
+use App\Events\Cart\CartPurchased;
+use App\Models\BaseModel;
 use App\Repositories\Contracts\CartItemRepositoryContract;
 use App\Repositories\Contracts\CartRepositoryContract;
 use App\Services\BaseService;
@@ -36,6 +38,7 @@ class CartService extends BaseService
     public function findByUser($userId, $data = [])
     {
         return $this->cartRepository
+            ->modelScopes(['notOrdered'])
             ->with(data_get($data, 'with', []))
             ->scopeQuery(function($q) use ($data) {
                 if ($currencyCode = data_get($data, 'currency_code')) {
@@ -71,6 +74,7 @@ class CartService extends BaseService
             $cart = $this->cartRepository->firstOrCreate([
                 'user_id' => $user->getKey(),
                 'currency_code' => $currency->getKey(),
+                'order_id' => null,
             ], [
                 'ip_address' => data_get($attributes, 'ip_address'),
                 'total_quantity' => 0,
@@ -118,5 +122,17 @@ class CartService extends BaseService
 
             return $cart;
         });
+    }
+
+    public function purchased($cartId, $orderId)
+    {
+        $cart = $this->show($cartId);
+        $order = app(OrderService::class)->show($orderId);
+
+        $this->update(['order_id' => BaseModel::getModelKey($order)], BaseModel::getModelKey($cart));
+
+        CartPurchased::dispatch($cart);
+
+        return $cart;
     }
 }

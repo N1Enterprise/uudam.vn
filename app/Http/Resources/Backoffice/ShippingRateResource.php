@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Backoffice;
 
+use App\Common\Money;
 use Illuminate\Support\Facades\Route;
 
 class ShippingRateResource extends BaseJsonResource
@@ -16,8 +17,10 @@ class ShippingRateResource extends BaseJsonResource
             'delivery_takes' => $this->delivery_takes,
             'type' => $this->type,
             'type_name' => $this->type_name,
-            'minimum' => (string) $this->toMoney('minimum'),
-            'maximum' => (string) $this->toMoney('maximum'),
+            'minimum' => $this->minimum,
+            'minimum_formatted' => Money::format($this->minimum),
+            'maximum' => $this->maximum,
+            'maximum_formatted' => Money::format($this->maximum),
             'rate' => $this->rate,
             'status' => $this->status,
             'status_name' => $this->status_name,

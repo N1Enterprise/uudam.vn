@@ -51,8 +51,8 @@
                         <th data-orderable="false" data-property="shipping_zone.name">{{ __('Shipping Zone') }}</th>
                         <th data-orderable="false" data-property="carrier.name">{{ __('Carrier') }}</th>
                         <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                        <th data-property="minimum">{{ __('Minimum') }}</th>
-                        <th data-property="maximum">{{ __('Maximum') }}</th>
+                        <th data-name="minimum" data-property="minimum_formatted">{{ __('Minimum') }}</th>
+                        <th data-name="maximum" data-property="maximum_formatted">{{ __('Maximum') }}</th>
                         <th data-property="rate" data-render-callback="renderRateCallback">{{ __('Rate') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>

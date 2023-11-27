@@ -60,5 +60,10 @@ class RepositoryServiceProvider extends ServiceProvider
         // Payment
         Contracts\PaymentProviderRepositoryContract::class => Repositories\PaymentProviderRepository::class,
         Contracts\PaymentOptionRepositoryContract::class => Repositories\PaymentOptionRepository::class,
+        Contracts\DepositTransactionRepositoryContract::class => Repositories\DepositTransactionRepository::class,
+
+        // Order
+        Contracts\OrderRepositoryContract::class => Repositories\OrderRepository::class,
+        Contracts\OrderItemRepositoryContract::class => Repositories\OrderItemRepository::class,
     ];
 }

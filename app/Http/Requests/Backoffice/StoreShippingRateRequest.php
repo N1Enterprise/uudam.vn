@@ -20,7 +20,7 @@ class StoreShippingRateRequest extends BaseFormRequest implements StoreShippingR
             'delivery_takes' => ['required', 'string', 'max:255'],
             'type' => ['required', 'integer', Rule::in(ShippingRateTypeEnum::all())],
             'minimum' => ['required'],
-            'maximum' => ['required', 'gt:minimum'],
+            'maximum' => ['nullable', 'gt:minimum'],
             'rate' => ['required'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'display_on_frontend' => ['required']

@@ -69,6 +69,12 @@ class RoleService extends BaseService
                 'inventories.delete',
             ],
         ],
+        'orders' => [
+            'orders' => [
+                'orders.index',
+                'orders.manage',
+            ],
+        ],
         'payments' => [
             'payment-providers' => [
                 'payment-providers.index',

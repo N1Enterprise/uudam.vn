@@ -69,4 +69,8 @@ Route::prefix('v1')->group(function () {
     /* ======================== PAYMENT ======================== */
     Route::get('payment-providers', [Api\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);
     Route::get('payment-options', [Api\PaymentOptionController::class, 'index'])->name('payment-options.index')->middleware(['can:payment-options.index']);
+
+    /* ======================== ORDER ======================== */
+    Route::get('orders', [Api\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
+    Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 });

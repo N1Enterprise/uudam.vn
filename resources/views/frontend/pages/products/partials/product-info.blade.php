@@ -109,7 +109,7 @@
             <form method="post" action="" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="product_id" value="{{ data_get($inventory, 'product.id') }}">
+                <input type="hidden" name="product_id" data-value="{{ data_get($inventory, 'product.id') }}" value="{{ data_get($inventory, 'product.id') }}">
                 <input type="hidden" name="inventory_id" value="{{ data_get($inventory, 'id') }}">
                 <input type="hidden" name="quantity" value="1">
                 <input type="hidden" name="has_combo" value="0">

@@ -30,7 +30,17 @@
                         <td class="cart-item__details">
                             <a href="{{ route('fe.web.products.index', data_get($item, 'inventory.slug')) }}" class="cart-item__name h4 break">{{ data_get($item, 'inventory.title') }}</a>
                             <div class="product-option" data-value-cart-item-price>{{ format_price(data_get($item, 'price')) }}</div>
-                            <dl></dl>
+                            <dl>
+                                @php
+                                    $attributeValues = data_get($item, 'inventory.attributeValues')->pluck('value', 'attribute_id')->toArray();
+                                @endphp
+                                @foreach (data_get($item, 'inventory.attributes', []) as $attribute)
+                                <div class="product-option">
+                                    <dt>{{ data_get($attribute, 'name') }}: </dt>
+                                    <dd>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</dd>
+                                </div>
+                                @endforeach
+                            </dl>
                             <p class="product-option"></p>
                             <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                         </td>
@@ -51,14 +61,14 @@
                                 <label class="visually-hidden" for="Quantity-1"> Số lượng </label>
                                 <quantity-input class="quantity" data-cart-id="{{ data_get($item, 'id') }}">
                                     <button data-quantity-decrease="cart_item_{{ data_get($item, 'id') }}" class="quantity__button no-js-hidden" name="minus" type="button">
-                                        <span class="visually-hidden">Decrease quantity for {{ data_get($item, 'inventory.title') }}</span>
+                                        <span class="visually-hidden">Giảm số lượng cho {{ data_get($item, 'inventory.title') }}</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
                                         </svg>
                                     </button>
                                     <input data-quantity-input="cart_item_{{ data_get($item, 'id') }}" class="quantity__input" type="number" name="updates[]" value="{{ data_get($item, 'quantity') }}" min="{{ data_get($item, 'inventory.min_order_quantity') }}" max="{{ data_get($item, 'inventory.stock_quantity') }}" aria-label="Quantity for {{ data_get($item, 'inventory.title') }}" data-index="1">
                                     <button data-quantity-increase="cart_item_{{ data_get($item, 'id') }}" class="quantity__button no-js-hidden" name="plus" type="button">
-                                        <span class="visually-hidden">Increase quantity for {{ data_get($item, 'inventory.title') }}</span>
+                                        <span class="visually-hidden">Tăng số lượng cho {{ data_get($item, 'inventory.title') }}</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
                                         </svg>
