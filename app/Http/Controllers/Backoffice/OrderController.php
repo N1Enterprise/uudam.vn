@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backoffice;
 
+use App\Enum\OrderStatusEnum;
+use App\Enum\PaymentStatusEnum;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,9 @@ class OrderController extends BaseController
             ]
         ]);
 
-        return view('backoffice.pages.orders.edit', compact('order'));
+        $orderStatusEnumLabels = OrderStatusEnum::labels();
+        $paymentStatusEnumLabels = PaymentStatusEnum::labels();
+
+        return view('backoffice.pages.orders.edit', compact('order', 'orderStatusEnumLabels', 'paymentStatusEnumLabels'));
     }
 }

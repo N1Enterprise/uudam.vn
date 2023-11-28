@@ -24,8 +24,12 @@
         padding: 10px;
         margin: 5px 0;
         text-decoration: auto;
-        border: 1px solid #000;
+        /* border: 1px solid #000; */
         margin-right: 10px;
+    }
+
+    .profile-tabs-nav .profile-tabs-nav__tab:first-child {
+        padding-left: 0;
     }
 
     .profile-tabs-nav .profile-tabs-nav__tab.active {
@@ -58,8 +62,6 @@
 
         $.each($('.profile-tabs-nav__tab'), function(index, element) {
             const href = $(element).attr('href');
-
-            console.log({ href, pathname });
 
             $(element).toggleClass('active', href.includes(pathname));
         });

@@ -21,6 +21,7 @@ class UserOrderRequest extends BaseFormRequest implements UserOrderRequestContra
             'address_line' => ['required', 'string', 'max:255'],
             'city_name' => ['required', 'string', 'max:255'],
             'postal_code' => ['nullable', 'string', 'max:255'],
+            'user_note' => ['nullable', 'string'],
             'phone' => ['required', 'string', new PhoneNumberValidate],
             'shipping_rate_id' => ['required', 'integer', Rule::exists(ShippingRate::class, 'id')],
             'payment_option_id' => ['required', 'integer', Rule::exists(PaymentOption::class, 'id')],

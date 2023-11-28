@@ -127,6 +127,23 @@ class Order extends BaseModel
         ]);
     }
 
+    public function canChangeOrderStatus()
+    {
+        return in_array($this->order_status, [
+            OrderStatusEnum::WAITING_FOR_PAYMENT,
+            OrderStatusEnum::PAYMENT_ERROR,
+            OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::DELIVERY,
+        ]);
+    }
+
+    public function canChangePaymentStatus()
+    {
+        return in_array($this->payment_status, [
+            PaymentStatusEnum::PENDING,
+        ]);
+    }
+
     public function isPaymentError()
     {
         return $this->order_status == OrderStatusEnum::PAYMENT_ERROR;

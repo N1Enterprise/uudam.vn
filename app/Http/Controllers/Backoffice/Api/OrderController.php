@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backoffice\Api;
 
+use App\Contracts\Requests\Backoffice\UpdateOrderStatusRequestContract;
 use App\Contracts\Responses\Backoffice\ListOrderResponseContract;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
@@ -20,5 +21,12 @@ class OrderController extends BaseApiController
         $orders = $this->orderService->searchByAdmin($request->all());
 
         return $this->response(ListOrderResponseContract::class, $orders);
+    }
+
+    public function changeStatus(UpdateOrderStatusRequestContract $request, $id)
+    {
+        $this->orderService->update($request->validated(), $id);
+
+        return $this->responseNoContent();
     }
 }

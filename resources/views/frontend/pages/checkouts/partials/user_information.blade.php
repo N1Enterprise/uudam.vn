@@ -136,7 +136,22 @@
                     </div>
                 </div>
             </div>
-
+            <div class="form-group">
+                <div class="_1frageme0 _1fragemfi _1mrl40q3 _1fragemg1 _1fragemgi _16s97g7c _16s97g7k _16s97g718 _16s97g71g" style="--_16s97g78: minmax(0, 1fr); --_16s97g7g: minmax(0, 1fr); --_16s97g714: minmax(0, 1fr); --_16s97g71c: minmax(0, 1fr);">
+                    <div class="_7ozb2u2 _1fragemfx _1fragemge _1frageme0 _1fragemfi _10vrn9p1 _10vrn9p0 _10vrn9p4 _1fragemf1">
+                        <div class="_1frageme0">
+                            <label for="checkout_ref_fullname" class="cektnc3 _1fragemds _1fragemld _1fragemkw _1fragemm2 _1fragemlr _1fragemlm _1fragemm0">
+                                <span class="cektnc9">
+                                    <span class="rermvf1 _1fragemkt _1fragemkv _1fragemfc">Ghi chú đơn hàng (không bắt buộc)</span>
+                                </span>
+                            </label>
+                            <div class="_7ozb2u6 _1frageme0 _1fragemfi _1fragemfb _1fragemlr _1fragemlm _1fragemm0 _1fragemm1 _1fragemf1 _1fragemm8 _7ozb2ul _7ozb2uh">
+                                <textarea name="user_note" cols="30" rows="2" placeholder="Ghi chú đơn hàng (không bắt buộc)" class="_7ozb2uq _1frageme0 _1fragemm2 _1fragemhb _1fragemlc _7ozb2ur _7ozb2u11 _7ozb2u1j"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

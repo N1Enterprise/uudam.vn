@@ -72,5 +72,6 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== ORDER ======================== */
     Route::get('orders', [Api\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
+    Route::post('orders/{id}/change-status', [Api\OrderController::class, 'changeStatus'])->name('orders.change-status')->middleware('can:orders.manage');
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 });

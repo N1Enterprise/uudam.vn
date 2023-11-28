@@ -128,8 +128,8 @@
                                     <label for="">{{ __('Available From') }}
                                         <i
                                             data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
                                             data-title="The date when the stock will be available. Default = immediately"
+                                            class="flaticon-questions-circular-button"
                                         ></i>
                                     </label>
                                     <input
