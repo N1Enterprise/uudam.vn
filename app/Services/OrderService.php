@@ -63,6 +63,26 @@ class OrderService extends BaseService
                 if ($uuid = data_get($data, 'uuid')) {
                     $q->where('uuid', $uuid);
                 }
+
+                if ($orderCode = data_get($data, 'order_code')) {
+                    $q->where('order_code', $orderCode);
+                }
+
+                if ($orderStatus = data_get($data, 'order_status')) {
+                    $q->where('order_status', $orderStatus);
+                }
+
+                $orderStatuses = data_get($data, 'order_statuses', []);
+
+                if (!empty($orderStatuses)) {
+                    $q->whereIn('order_status', $orderStatuses);
+                }
+
+                $paymentStatuses = data_get($data, 'payment_status', []);
+
+                if (!empty($paymentStatuses)) {
+                    $q->whereIn('payment_status', $paymentStatuses);
+                }
             })
             ->search([]);
 
@@ -175,5 +195,22 @@ class OrderService extends BaseService
         }
 
         return $orderCode;
+    }
+
+    public function statisticOrderStatus($status, $data = [])
+    {
+        return $this->orderRepository
+            ->scopeQuery(function ($q) use ($status, $data) {
+                $q->where('order_status', $status);
+
+                if (! empty(data_get($data, 'month'))) {
+                    $q->whereMonth('updated_at', data_get($data, 'month'));
+                }
+
+                if (! empty($data['year'])) {
+                    $q->whereYear('updated_at', data_get($data, 'year'));
+                }
+            })
+            ->count();
     }
 }

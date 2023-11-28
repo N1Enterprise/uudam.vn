@@ -106,7 +106,12 @@ class BackofficeMenuService extends BaseService
                         'name' => 'Orders',
                         'link' => route('bo.web.orders.index'),
                         'permissions' => ['orders.index'],
-                    ]
+                    ],
+                    [
+                        'name' => 'Carts',
+                        'link' => route('bo.web.carts.index'),
+                        'permissions' => ['carts.index'],
+                    ],
                 ],
             ],
             [

@@ -29,4 +29,11 @@ class OrderController extends BaseApiController
 
         return $this->responseNoContent();
     }
+
+    public function statisticOrderStatus(Request $request, $orderStatus)
+    {
+        $count = $this->orderService->statisticOrderStatus($orderStatus, $request->all());
+
+        return response()->json(['count' => $count]);
+    }
 }

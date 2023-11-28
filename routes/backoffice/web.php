@@ -213,3 +213,6 @@ Route::put('payment-options/{id}', [Controllers\PaymentOptionController::class, 
 /* ======================== ORDER ======================== */
 Route::get('orders', [Controllers\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
 Route::get('orders/{id}', [Controllers\OrderController::class, 'edit'])->name('orders.edit')->middleware(['can:orders.manage']);
+
+Route::get('carts', [Controllers\OrderController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
+Route::get('carts/{id}', [Controllers\OrderController::class, 'edit'])->name('carts.edit')->middleware(['can:carts.manage']);

@@ -192,5 +192,8 @@ return [
 
     'orders' => 'Orders',
     'orders.index' => 'List Orders',
-    'orders.manage' => 'Manage Orders',
+    'orders.manage' => 'Manage Order',
+    'carts' => 'Carts',
+    'carts.index' => 'List Carts',
+    'carts.manage' => 'Manage Cart',
 ];

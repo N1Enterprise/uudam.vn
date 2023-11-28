@@ -70,10 +70,12 @@ class RoleService extends BaseService
             ],
         ],
         'orders' => [
-            'orders' => [
-                'orders.index',
-                'orders.manage',
-            ],
+            'orders.index',
+            'orders.manage',
+        ],
+        'carts' => [
+            'carts.index',
+            'carts.manage',
         ],
         'payments' => [
             'payment-providers' => [

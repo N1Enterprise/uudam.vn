@@ -11,14 +11,25 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
+@endsection
+
+@section('style')
+<style>
+    [data-order-status].active {
+        border-bottom: 2px solid #fff;
+    }
+</style>
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
 @section('content_body')
     <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
-        @include('backoffice.partials.message')
+
+        @include('backoffice.pages.orders.partials.statistic')
+        @include('backoffice.pages.orders.partials.search-form')
+
         <div class="k-portlet k-portlet--mobile">
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
@@ -75,3 +86,79 @@
 @endsection
 
 @component('backoffice.partials.datatable') @endcomponent
+
+@section('js_script')
+<script>
+    const ORDER_STATUS_ENUM = {
+        WAITING_FOR_PAYMENT: 1,
+        PAYMENT_ERROR: 2,
+        PROCESSING: 3,
+        DELIVERY: 4,
+        COMPLETED: 5,
+        CANCELED: 6,
+        REFUNDED: 7,
+    };
+
+    const ORDER_STATUS_STATISTIC = {
+        init: () => {
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.WAITING_FOR_PAYMENT);
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.PAYMENT_ERROR);
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.PROCESSING);
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.DELIVERY);
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.COMPLETED);
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.CANCELED);
+            ORDER_STATUS_STATISTIC.statistic(ORDER_STATUS_ENUM.REFUNDED);
+        },
+        statistic: (status) => {
+            const element = $(`[data-order-status="${status}"]`);
+            const api = $(element).attr('data-api');
+
+            $(element).html('<i class="fa fa-sync fa-spin"></i>');
+
+            $.ajax({
+                url: api,
+                method: 'GET',
+                success: (response) => {
+                    $(element).text(response.count || 0);
+                }
+            });
+        },
+    };
+
+    function reloadTable(orderStatus) {
+        const $form  = $('#search_table_orders_index');
+        const $table = $('#table_orders_index');
+
+        $(`[data-order-status]`).removeClass('active');
+        $(`[data-order-status="${orderStatus}"]`).addClass('active');
+
+        $form.trigger('reset', [{}, false]);
+
+        removeRequestParams('table_orders_index', 'reset_form');
+
+        $form.find('input[name="order_status"]').val(orderStatus);
+
+        $table.DataTable().ajax.reload(function(data) {
+            $form.find(':submit').prop('disabled', false);
+        });
+    }
+
+    function initOrderStatisticActive() {
+        $(document).ready(function() {
+            $('#table_orders_index').DataTable().ajax.reload(function(data) {
+                const orderStatus = $('#search_table_orders_index').find('[name="order_status"]').val();
+
+                $(`[data-order-status="${orderStatus}"]`).addClass('active');
+            });
+        });
+    }
+
+    function setFilterParams() {
+        $(`[data-order-status]`).removeClass('active');
+    }
+
+    initOrderStatisticActive();
+
+    ORDER_STATUS_STATISTIC.init();
+</script>
+@endsection

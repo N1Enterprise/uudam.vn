@@ -18,7 +18,10 @@ class OrderController extends BaseController
 
     public function index()
     {
-        return view('backoffice.pages.orders.index');
+        $orderStatusEnumLabels = OrderStatusEnum::labels();
+        $paymentStatusEnumLabels = PaymentStatusEnum::labels();
+
+        return view('backoffice.pages.orders.index', compact('orderStatusEnumLabels', 'paymentStatusEnumLabels'));
     }
 
     public function edit(Request $request, $id)
