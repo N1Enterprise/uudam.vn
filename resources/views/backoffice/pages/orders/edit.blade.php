@@ -113,7 +113,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active show" id="order_tab" role="tabpanel">
                             <div class="user_information">
-                                <h5 style="margin-bottom: 30px; font-weight: bold;">#1. GENERAL INFORMATION</h5>
+                                <h5 style="margin-bottom: 30px; font-weight: bold;">#1. {{ __('GENERAL INFORMATION') }}</h5>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label>{{ __('Order Code') }}</label>
@@ -256,7 +256,7 @@
 
                         <div class="tab-pane" id="delivery_tab" role="tabpanel">
                             <div class="delivery_information">
-                                <h5 style="margin-bottom: 30px; font-weight: bold;">#4. DELIVERY INFORMATION</h5>
+                                <h5 style="margin-bottom: 30px; font-weight: bold;">#4. {{ __('DELIVERY INFORMATION') }}</h5>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label>
@@ -269,6 +269,18 @@
                                             <a href="{{ route('bo.web.carriers.edit', $order->shippingRate->carrier->id) }}" target="_blank">{{ __('Carrier') }}</a>
                                         </label>
                                         <input type="text" class="form-control" value="{{ $order->shippingRate->carrier->name }}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="payment_tab" role="tabpanel">
+                            <div class="payment_information">
+                                <h5 style="margin-bottom: 30px; font-weight: bold;">#4. {{ __('PAYMENT INFORMATION') }}</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="{{ data_get($order, 'paymentOption.logo') }}" alt="{{ data_get($order, 'paymentOption.name') }}" width="70" height="70">
+                                        <a href="{{ route('bo.web.payment-options.edit', data_get($order, 'paymentOption.id')) }}" target="_blank">{{ data_get($order, 'paymentOption.name') }}</a>
                                     </div>
                                 </div>
                             </div>
