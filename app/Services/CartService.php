@@ -35,6 +35,50 @@ class CartService extends BaseService
         $this->userService = $userService;
     }
 
+    public function searchByAdmin($data = [])
+    {
+        $result = $this->cartRepository
+            ->with(['user', 'order'])
+            ->whereColumnsLike($data['query'] ?? null, ['uuid', 'ip_address', 'currency_code', 'address_id'])
+            ->scopeQuery(function($q) use ($data) {
+                if ($userId = data_get($data, 'user_id')) {
+                    $q->where('user_id', $userId);
+                }
+
+                if ($createdAtRange = data_get($data, 'created_at_range', [])) {
+                    $q->whereBetween('created_at', $createdAtRange);
+                }
+
+                $q->whereRelation('user', function($q) use ($data) {
+                    $userUsernameOrEmail = data_get($data, 'user_username_or_email');
+
+                    if (! empty($userUsernameOrEmail)) {
+                        $q->where('username', $userUsernameOrEmail)
+                            ->orWhere('name', $userUsernameOrEmail)
+                            ->orWhere('email', $userUsernameOrEmail);
+                    }
+
+                    $userPhone = data_get($data, 'user_phone_number');
+
+                    if (! empty($userPhone)) {
+                        $q->where('phone_number', $userPhone);
+                    }
+                });
+
+                $q->whereRelation('order', function($q) use ($data) {
+                    $orderCode = data_get($data, 'order_code');
+
+                    if (! empty($orderCode)) {
+                        $q->where('order_code', $orderCode)
+                            ->orWhere('uuid', $orderCode);
+                    }
+                });
+            })
+            ->search([]);
+
+        return $result;
+    }
+
     public function findByUser($userId, $data = [])
     {
         return $this->cartRepository

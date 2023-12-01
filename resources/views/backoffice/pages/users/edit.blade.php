@@ -53,6 +53,18 @@ $breadcrumbs = [
                 <div class="tab-pane active show" id="tab_general_information" role="tabpanel">
                     @include("backoffice.pages.users.partials.info")
                 </div>
+
+                @can('carts.index')
+                <div class="tab-pane" id="tab_cart" role="tabpanel">
+                    @include("backoffice.pages.users.partials.cart")
+                </div>
+                @endcan
+
+                @can('orders.index')
+                <div class="tab-pane" id="tab_order" role="tabpanel">
+                    @include("backoffice.pages.users.partials.order")
+                </div>
+                @endcan
             </div>
         </div>
 
@@ -63,11 +75,26 @@ $breadcrumbs = [
                         <div class="k-section__content">
                             <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font" role="tablist">
                                 <li class="k-nav__item k-nav__item--active">
-                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab"
-                                        aria-selected="true">
+                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab" aria-selected="true">
                                         <span class="k-nav__link-text">{{ __('General Information') }}</span>
                                     </a>
                                 </li>
+
+                                @can('carts.index')
+                                <li class="k-nav__item">
+                                    <a href="#tab_cart" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="cart">
+                                        <span class="k-nav__link-text">{{ __('Cart') }}</span>
+                                    </a>
+                                </li>
+                                @endcan
+
+                                @can('orders.index')
+                                <li class="k-nav__item">
+                                    <a href="#tab_order" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="order">
+                                        <span class="k-nav__link-text">{{ __('Order') }}</span>
+                                    </a>
+                                </li>
+                                @endcan
                             </ul>
                         </div>
                     </div>
@@ -149,6 +176,8 @@ $breadcrumbs = [
 </div>
 @endpush
 
+@component('backoffice.partials.datatable') @endcomponent
+
 @section('js_script')
 <script>
     onProcessUserAction();
@@ -168,5 +197,39 @@ $breadcrumbs = [
             });
         }
     }
+
+    function reloadTable(element) {
+        if (element && $(element).data('defer-loading') == true) {
+            $(element).data('defer-loading', false);
+            $(element).DataTable().ajax.reload(function(){});
+        }
+    }
+
+    const TABPANEL_MANAGE = {
+        init: () => {
+            TABPANEL_MANAGE.onClickTabGeneral();
+            TABPANEL_MANAGE.onClickTabCart();
+            TABPANEL_MANAGE.onClickTabOrder();
+        },
+        onClickTabGeneral: () => {},
+        onClickTabCart: () => {
+            $('[data-tab="cart"]').on('click', function() {
+                reloadTable('#table_carts_index');
+            });
+        },
+        onClickTabOrder: () => {
+            $('[data-tab="order"]').on('click', function() {
+                reloadTable('#table_orders_index');
+            });
+        },
+    };
+
+    TABPANEL_MANAGE.init();
+
+    $('#tabItemSection li.k-nav__item a.k-nav__link').on('click', function() {
+        $('.k-nav__item').removeClass('k-nav__item--active');
+        $(this).closest('li.k-nav__item').addClass('k-nav__item--active');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    });
 </script>
 @endsection

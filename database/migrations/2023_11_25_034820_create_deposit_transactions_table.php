@@ -29,6 +29,7 @@ class CreateDepositTransactionsTable extends Migration
             $table->integer('approved_index')->nullable();
             $table->json('provider_payload')->nullable();
             $table->json('bank_transfer_info')->nullable();
+            $table->json('provider_response')->nullable();
             $table->morphs('created_by');
             $table->morphs('updated_by');
             $table->timestamps();

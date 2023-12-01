@@ -189,6 +189,10 @@ return [
     'payment-options.index' => 'View Payment Option List',
     'payment-options.store' => 'Create Payment Option',
     'payment-options.update' => 'Update Payment Option',
+    'deposit-transactions' => 'Deposit Transactions',
+    'deposit-transactions.index' => 'View Deposit Transaction List',
+    'deposit-transactions.store' => 'Create Deposit Transaction',
+    'deposit-transactions.update' => 'Update Deposit Transaction',
 
     'orders' => 'Orders',
     'orders.index' => 'List Orders',

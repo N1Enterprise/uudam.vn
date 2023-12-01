@@ -34,6 +34,18 @@ class PaymentOptionService extends BaseService
         return $result->search([], null, ['*'], data_get($data, 'paginate', true));
     }
 
+    public function allAvailable()
+    {
+        return $this->paymentOptionRepository->with(['paymentProvider'])->modelScopes(['active', 'paymentProviderActive'])->get();
+    }
+
+    public function depositPaymentOptions()
+    {
+        return $this->allAvailable()->filter(function ($option) {
+            return ! $option->isThirdParty() || ($option->paymentProvider && $option->paymentProvider->isDeposit());
+        })->groupBy('type_name')->all();
+    }
+
     public function searchByUser($data = [])
     {
         $result = $this->paymentOptionRepository

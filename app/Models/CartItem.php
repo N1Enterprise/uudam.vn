@@ -25,6 +25,11 @@ class CartItem extends BaseModel
         'status',
     ];
 
+    public function getStatusNameAttribute()
+    {
+        return CartItemStatusEnum::findConstantLabel($this->status);
+    }
+
     public function scopePending($query)
     {
         return $query->where('status', CartItemStatusEnum::PENDING);
@@ -38,5 +43,10 @@ class CartItem extends BaseModel
     public function cart()
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

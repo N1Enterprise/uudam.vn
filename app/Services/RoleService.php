@@ -88,6 +88,11 @@ class RoleService extends BaseService
                 'payment-options.store',
                 'payment-options.update',
             ],
+            'deposit-transactions' => [
+                'deposit-transactions.index',
+                'deposit-transactions.store',
+                'deposit-transactions.update',
+            ],
         ],
         'systems' => [
             'system-settings' => [

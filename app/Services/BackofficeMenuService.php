@@ -156,6 +156,11 @@ class BackofficeMenuService extends BaseService
                 'icon' => 'flaticon2-copy',
                 'subs' => [
                     [
+                        'name' => 'Deposit Transactions',
+                        'link' => route('bo.web.deposit-transactions.index'),
+                        'permissions' => ['deposit-transactions.index']
+                    ],
+                    [
                         'name' => 'Payment Settings',
                         'subs' => [
                             [

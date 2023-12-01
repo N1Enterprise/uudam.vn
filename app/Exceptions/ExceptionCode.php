@@ -10,4 +10,5 @@ class ExceptionCode
     public const INVALID_ORDER = 'invalid_order';
     public const UNAUTHORIZED = 'unauthorized';
     public const INVALID_PAYMENT_PROVIDER = 'invalid_payment_provider';
+    public const INVALID_TRANSACTION = 'invalid_transaction';
 }

@@ -64,6 +64,8 @@ class CreateOrdersTable extends Migration
             $table->morphs('created_by');
             $table->morphs('updated_by');
 
+            $table->json('log')->nullable();
+
             $table->softDeletes();
 
             $table->timestamps();

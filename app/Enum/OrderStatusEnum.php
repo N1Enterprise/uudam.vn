@@ -4,6 +4,7 @@ namespace App\Enum;
 
 class OrderStatusEnum extends BaseEnum
 {
+    public const DECLINED = 0;
     public const WAITING_FOR_PAYMENT = 1;
     public const PAYMENT_ERROR = 2;
     public const PROCESSING = 3;
@@ -15,6 +16,7 @@ class OrderStatusEnum extends BaseEnum
     public static function all(): array
     {
         return [
+            self::DECLINED,
             self::WAITING_FOR_PAYMENT,
             self::PAYMENT_ERROR,
             self::PROCESSING,

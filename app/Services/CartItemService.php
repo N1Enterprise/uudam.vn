@@ -21,6 +21,23 @@ class CartItemService extends BaseService
         $this->cartItemRepository = $cartItemRepository;
     }
 
+    public function searchByAdmin($data = [])
+    {
+        $result = $this->cartItemRepository
+        ->with(['cart', 'inventory', 'user'])
+        ->whereColumnsLike($data['query'] ?? null, ['uuid', 'currency_code'])
+        ->scopeQuery(function($q) use ($data) {
+            $cartId = data_get($data, 'cart_id');
+
+            if (! empty($cartId)) {
+                $q->where('cart_id', $cartId);
+            }
+        })
+        ->search([]);
+
+    return $result;
+    }
+
     public function searchPendingItemsByUser($userId, $data = [])
     {
         return $this->cartItemRepository

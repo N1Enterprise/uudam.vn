@@ -45,6 +45,7 @@ class Order extends BaseModel
         'delivery_date',
         'payment_status',
         'order_status',
+        'log',
         'is_sent_invoice_to_user',
         'admin_note',
         'user_note',
@@ -53,6 +54,10 @@ class Order extends BaseModel
         'created_by_type',
         'updated_by_id',
         'updated_by_type',
+    ];
+
+    protected $casts = [
+        'log' => 'json'
     ];
 
     public function getPaymentStatusNameAttribute()
@@ -98,6 +103,11 @@ class Order extends BaseModel
     public function cart()
     {
         return $this->hasOne(Cart::class);
+    }
+
+    public function isProcessing()
+    {
+        return $this->order_status == OrderStatusEnum::PROCESSING;
     }
 
     public function isSucceed()

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\ActivationStatusEnum;
 use App\Enum\PaymentOptionTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasCurrency;
@@ -32,6 +33,16 @@ class PaymentOption extends BaseModel
     protected $casts = [
         'params' => 'json'
     ];
+
+    public function scopePaymentProviderActive($query)
+    {
+        return $query->where(function ($q) {
+            $q->whereHas('paymentProvider', function ($q) {
+                $q->where('status', ActivationStatusEnum::ACTIVE);
+            })
+            ->orWhereNull('payment_provider_id');
+        });
+    }
 
     public function getTypeNameAttribute()
     {

@@ -210,9 +210,12 @@ Route::post('payment-options', [Controllers\PaymentOptionController::class, 'sto
 Route::get('payment-options/{id}', [Controllers\PaymentOptionController::class, 'edit'])->name('payment-options.edit')->middleware(['can:payment-options.update']);
 Route::put('payment-options/{id}', [Controllers\PaymentOptionController::class, 'update'])->name('payment-options.update')->middleware(['can:payment-options.update']);
 
+Route::get('deposit-transactions', [Controllers\DepositTransactionController::class, 'index'])->name('deposit-transactions.index')->middleware(['can:deposit-transactions.index']);
+Route::get('deposit-transactions/{id}', [Controllers\DepositTransactionController::class, 'edit'])->name('deposit-transactions.edit')->middleware(['can:deposit-transactions.update']);
+
 /* ======================== ORDER ======================== */
 Route::get('orders', [Controllers\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
 Route::get('orders/{id}', [Controllers\OrderController::class, 'edit'])->name('orders.edit')->middleware(['can:orders.manage']);
 
-Route::get('carts', [Controllers\OrderController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
-Route::get('carts/{id}', [Controllers\OrderController::class, 'edit'])->name('carts.edit')->middleware(['can:carts.manage']);
+Route::get('carts', [Controllers\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
+Route::get('carts/{id}', [Controllers\CartController::class, 'edit'])->name('carts.edit')->middleware(['can:carts.manage']);

@@ -3,6 +3,7 @@
 @section('profile_content')
 <div class="profile-user-info">
     <h4>Thông tin tài khoản</h4>
+
     <form action="{{ route('fe.api.user.update-info') }}" method="POST" data-form="user-info">
         <div class="form-fields">
             <div class="form-group">

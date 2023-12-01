@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Common\Cache;
+use App\Enum\OrderCacheKeyEnum;
 use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
+use App\Events\Order\OrderDeclined;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
 use App\Models\BaseModel;
@@ -14,7 +17,10 @@ use App\Models\ShippingRate;
 use App\Models\User;
 use App\Models\Cart;
 use App\Vendors\Localization\Money;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Order;
+use Illuminate\Support\Arr;
 
 class OrderService extends BaseService
 {
@@ -44,6 +50,14 @@ class OrderService extends BaseService
             ->with(['createdBy', 'updatedBy', 'user', 'shippingRate', 'paymentOption'])
             ->whereColumnsLike($data['query'] ?? null, ['uuid', 'order_code', 'currency_code', 'fullname', 'email', 'phone', 'company'])
             ->scopeQuery(function($q) use ($data) {
+                if ($userId = data_get($data, 'user_id')) {
+                    $q->where('user_id', $userId);
+                }
+
+                if ($createdAtRange = data_get($data, 'created_at_range', [])) {
+                    $q->whereBetween('created_at', $createdAtRange);
+                }
+
                 if ($fullname = data_get($data, 'fullname')) {
                     $q->where('fullname', $fullname);
                 }
@@ -212,5 +226,30 @@ class OrderService extends BaseService
                 }
             })
             ->count();
+    }
+
+    public function declined($id, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, $id);
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
+            ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($id, $data) {
+                /** @var Order */
+                $order = $this->show($id);
+
+                if (! $order->isProcessing()) {
+                    throw new BusinessLogicException("Unable to update order #{$order->id}.", ExceptionCode::INVALID_ORDER);
+                }
+
+                $updateResource = array_merge(['status' => OrderStatusEnum::DECLINED], [
+                    'log' => array_merge($order->log ?? [], Arr::wrap(data_get($data, 'log', [])))
+                ], $data);
+
+                $order = $this->orderRepository->update($updateResource, $order);
+
+                OrderDeclined::dispatch($order);
+
+                return $order;
+            });
     }
 }

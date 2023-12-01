@@ -70,6 +70,12 @@ Route::prefix('v1')->group(function () {
     Route::get('payment-providers', [Api\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);
     Route::get('payment-options', [Api\PaymentOptionController::class, 'index'])->name('payment-options.index')->middleware(['can:payment-options.index']);
 
+    Route::get('deposit-transactions', [Api\DepositTransactionController::class, 'index'])->name('deposit-transactions.index')->middleware(['can:deposit-transactions.index']);
+    Route::put('deposit-transactions/{id}/decline', [Api\DepositTransactionController::class, 'decline'])->name('deposit-transactions.decline')->middleware(['can:deposit-transactions.update']);
+    Route::put('deposit-transactions/{id}/approve', [Api\DepositTransactionController::class, 'approve'])->name('deposit-transactions.approve')->middleware(['can:deposit-transactions.update']);
+    Route::get('deposit-transactions/statistic/status/{status}', [Api\DepositTransactionController::class, 'statisticStatus'])->name('deposit-transactions.statistic.status')->middleware(['can:deposit-transactions.index']);
+    Route::get('deposit-transactions/statistic/amount', [Api\DepositTransactionController::class, 'statisticAmount'])->name('deposit-transactions.statistic.amount')->middleware(['can:deposit-transactions.index']);
+
     /* ======================== ORDER ======================== */
     Route::get('orders', [Api\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
     Route::post('orders/{id}/change-status', [Api\OrderController::class, 'changeStatus'])->name('orders.change-status')->middleware('can:orders.manage');
@@ -77,5 +83,6 @@ Route::prefix('v1')->group(function () {
 
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 
-    Route::get('carts', [Api\OrderController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
+    Route::get('carts', [Api\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
+    Route::get('cart-items', [Api\CartItemController::class, 'index'])->name('cart-items.index')->middleware(['can:carts.index']);
 });
