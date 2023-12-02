@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backoffice\Api;
 
+use App\Contracts\Requests\Backoffice\ApproveDepositTransactionRequestContract;
 use App\Contracts\Requests\Backoffice\DeclineDepositTransactionRequestContract;
 use App\Contracts\Responses\Backoffice\ListDepositTransactionResponseContract;
 use App\Services\DepositService;
@@ -43,6 +44,13 @@ class DepositTransactionController extends BaseApiController
     public function decline(DeclineDepositTransactionRequestContract $request, $id)
     {
         $this->depositService->decline($id, $request->validated());
+
+        return response()->json(['success' => true]);
+    }
+
+    public function approve(ApproveDepositTransactionRequestContract $request, $id)
+    {
+        $this->depositService->approve($id, $request->validated());
 
         return response()->json(['success' => true]);
     }

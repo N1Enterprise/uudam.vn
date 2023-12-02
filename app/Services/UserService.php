@@ -68,7 +68,7 @@ class UserService extends BaseService
             /** @var User */
             $user = $this->userRepository->create($attributes);
 
-            $user->userWallet()->create([
+            $user->userWallets()->create([
                 'balance'       => 0,
                 'status'        => ActivationStatusEnum::ACTIVE,
                 'type'          => UserWalletTypeEnum::SHOPPING,

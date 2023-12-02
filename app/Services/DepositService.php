@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Common\Cache;
 use App\Enum\DepositStatusEnum;
 use App\Enum\TransactionCacheKeyEnum;
+use App\Events\Deposit\DepositApproved;
 use App\Events\Deposit\DepositDeclined;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
@@ -16,13 +17,16 @@ class DepositService extends BaseService
 {
     public $depositTransactionService;
     public $paymentOptionService;
+    public $userWalletService;
 
     public function __construct(
         DepositTransactionService $depositTransactionService,
-        PaymentOptionService $paymentOptionService
+        PaymentOptionService $paymentOptionService,
+        UserWalletService $userWalletService
     ) {
         $this->depositTransactionService = $depositTransactionService;
         $this->paymentOptionService = $paymentOptionService;
+        $this->userWalletService = $userWalletService;
     }
 
     public function decline($transactionId, $data = [])
@@ -31,21 +35,60 @@ class DepositService extends BaseService
 
         $transaction = Cache::lock($cacheKey, TransactionCacheKeyEnum::TTL)
             ->block(TransactionCacheKeyEnum::MAXIMUM_WAIT, function() use ($transactionId, $data) {
-                DB::transaction(function() use ($transactionId, $data) {
-                    $transaction = $this->depositTransactionService->show($transactionId);
+                $transaction = $this->depositTransactionService->show($transactionId);
 
-                    if (! $transaction->isPending()) {
-                        throw new BusinessLogicException("Unable to update transaction #{$transaction->id}.", ExceptionCode::INVALID_TRANSACTION);
-                    }
+                if (! $transaction->isPending()) {
+                    throw new BusinessLogicException("Unable to update transaction #{$transaction->id}.", ExceptionCode::INVALID_TRANSACTION);
+                }
 
-                    $updateResource = array_merge(['status' => DepositStatusEnum::DECLINED], $data);
+                $updateResource = array_merge(['status' => DepositStatusEnum::DECLINED], $data);
 
-                    $transaction = $this->depositTransactionService->update($updateResource, $transaction);
+                $transaction = $this->depositTransactionService->update($updateResource, $transaction);
 
-                    DepositDeclined::dispatch($transaction);
+                DepositDeclined::dispatch($transaction);
+
+                return $transaction;
+            });
+
+        return $transaction;
+    }
+
+    public function approve($transactionId, $data = [], $quietly = false)
+    {
+        $cacheKey = TransactionCacheKeyEnum::getTransactionCacheKey(TransactionCacheKeyEnum::DEPOSIT_TRANSACTION, BaseModel::getModelKey($transactionId));
+
+        $transaction = Cache::lock($cacheKey, TransactionCacheKeyEnum::TTL)
+            ->block(TransactionCacheKeyEnum::MAXIMUM_WAIT, function() use ($transactionId, $data, $quietly) {
+                $transaction = $this->depositTransactionService->show($transactionId);
+
+                if (! $transaction->isPending()) {
+                    throw new BusinessLogicException('Unable to update this transaction.', ExceptionCode::INVALID_TRANSACTION);
+                }
+
+                $transaction = DB::transaction(function() use ($transaction, &$approvedTimes, $data, $quietly) {
+                    $approvedTimes = $this->depositTransactionService->getApprovedTimesForUser($transaction->user_id);
+
+                    // $user = $transaction->user;
+                    // $wallet = $this->userWalletService->getWalletByCurrency($user->getKey(), $transaction->currency_code);
+
+                    // $this->userWalletService
+                    //     ->allowVoidTransfer()
+                    //     ->transfer();
+
+                    $updateParams = array_merge(['status' => DepositStatusEnum::APPROVED], $data);
+
+                    ++$approvedTimes;
+
+                    $transaction = $this->depositTransactionService->update(array_merge($updateParams, [
+                        'approved_index' => $approvedTimes,
+                    ]), $transaction->getKey(), $quietly);
+
+                    DepositApproved::dispatch($transaction);
 
                     return $transaction;
                 });
+
+                return $transaction;
             });
 
         return $transaction;

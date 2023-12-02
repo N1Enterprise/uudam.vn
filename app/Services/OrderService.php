@@ -7,6 +7,7 @@ use App\Enum\OrderCacheKeyEnum;
 use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Events\Order\OrderDeclined;
+use App\Events\Order\OrderPaymentApproved;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
 use App\Models\BaseModel;
@@ -241,13 +242,36 @@ class OrderService extends BaseService
                     throw new BusinessLogicException("Unable to update order #{$order->id}.", ExceptionCode::INVALID_ORDER);
                 }
 
-                $updateResource = array_merge(['status' => OrderStatusEnum::DECLINED], [
+                $updateResource = array_merge(['order_status' => OrderStatusEnum::DECLINED], [
                     'log' => array_merge($order->log ?? [], Arr::wrap(data_get($data, 'log', [])))
                 ], $data);
 
                 $order = $this->orderRepository->update($updateResource, $order);
 
                 OrderDeclined::dispatch($order);
+
+                return $order;
+            });
+    }
+
+    public function approvePayment($id, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, $id);
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
+            ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($id, $data) {
+                /** @var Order */
+                $order = $this->show($id);
+
+                if (! $order->isPendingPayment()) {
+                    throw new BusinessLogicException("Unable to update order payment #{$order->id}.", ExceptionCode::INVALID_ORDER);
+                }
+
+                $updateResource = array_merge(['payment_status' => PaymentStatusEnum::APPROVED], $data);
+
+                $order = $this->orderRepository->update($updateResource, $order);
+
+                OrderPaymentApproved::dispatch($order);
 
                 return $order;
             });

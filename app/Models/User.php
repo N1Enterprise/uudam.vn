@@ -88,8 +88,8 @@ class User extends Authenticatable
         return $this;
     }
 
-    public function userWallet()
+    public function userWallets()
     {
-        return $this->belongsTo(UserWallet::class);
+        return $this->hasMany(UserWallet::class);
     }
 }

@@ -16,6 +16,9 @@ class EventOrderServiceProvider extends ServiceProvider
     protected $listen = [
         Events\Deposit\DepositDeclined::class => [
             Listeners\Order\CancelOrderPayment::class
+        ],
+        Events\Deposit\DepositApproved::class => [
+            Listeners\Order\ApprovedOrderPayment::class
         ]
     ];
 

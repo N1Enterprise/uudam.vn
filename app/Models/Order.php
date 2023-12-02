@@ -110,6 +110,11 @@ class Order extends BaseModel
         return $this->order_status == OrderStatusEnum::PROCESSING;
     }
 
+    public function isPendingPayment()
+    {
+        return $this->payment_status == PaymentStatusEnum::PENDING;
+    }
+
     public function isSucceed()
     {
         return in_array($this->order_status, [

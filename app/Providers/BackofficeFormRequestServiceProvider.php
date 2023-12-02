@@ -110,6 +110,7 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\UpdatePaymentOptionRequestContract::class => Requests\UpdatePaymentOptionRequest::class,
 
         Contracts\DeclineDepositTransactionRequestContract::class => Requests\DeclineDepositTransactionRequest::class,
+        Contracts\ApproveDepositTransactionRequestContract::class => Requests\ApproveDepositTransactionRequest::class,
 
         // Order
         Contracts\UpdateOrderStatusRequestContract::class => Requests\UpdateOrderStatusRequest::class,

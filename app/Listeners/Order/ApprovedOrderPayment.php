@@ -2,12 +2,12 @@
 
 namespace App\Listeners\Order;
 
-use App\Events\Deposit\DepositDeclined;
+use App\Events\Deposit\DepositApproved;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\DepositTransaction;
 use App\Services\OrderService;
 
-class CancelOrderPayment implements ShouldQueue
+class ApprovedOrderPayment implements ShouldQueue
 {
     public $timeout = 300;
 
@@ -23,14 +23,12 @@ class CancelOrderPayment implements ShouldQueue
      * @param  object  $event
      * @return void
      */
-    public function handle(DepositDeclined $event)
+    public function handle(DepositApproved $event)
     {
         /** @var DepositTransaction */
         $transaction = $event->transaction;
 
-        OrderService::make()->declined($transaction->order->id, [
-            'log' => [["[".now()."] DECLINED BY DEPOSIT DECLINED"]]
-        ]);
+        OrderService::make()->approvePayment($transaction->order->id);
     }
 
     public function shouldQueue($event)

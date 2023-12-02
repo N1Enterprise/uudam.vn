@@ -265,4 +265,24 @@ class DepositTransactionService extends BaseService
 
         return $total;
     }
+
+    public function getApprovedTimesForUser($user_id, $criteria = [])
+    {
+        return $this->depositTransactionRepository
+            ->modelScopes(['approved'])
+            ->scopeQuery(function ($q) use ($criteria) {
+                $ignoreIds = Arr::wrap(data_get($criteria, 'ignore_ids', []));
+
+                if (! blank($ignoreIds)) {
+                    $q->whereNotIn('id', $ignoreIds);
+                }
+
+                $currencyCode = data_get($criteria, 'currency_code');
+
+                if ($currencyCode) {
+                    $q->where('currency_code', $currencyCode);
+                }
+            })
+            ->count(['user_id' => $user_id]);
+    }
 }
