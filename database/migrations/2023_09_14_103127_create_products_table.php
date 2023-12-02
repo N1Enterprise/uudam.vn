@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code')->unique()->index();
-            $table->string('slug')->unique()->index();
             $table->string('branch')->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(1)->comment(ActivationStatusEnum::class);

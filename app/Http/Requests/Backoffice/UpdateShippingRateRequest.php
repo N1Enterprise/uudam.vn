@@ -20,9 +20,10 @@ class UpdateShippingRateRequest extends BaseFormRequest implements UpdateShippin
             'delivery_takes' => ['required', 'string', 'max:255'],
             'type' => ['required', 'integer', Rule::in(ShippingRateTypeEnum::all())],
             'minimum' => ['required'],
-            'maximum' => ['required', 'gt:minimum'],
+            'maximum' => ['nullable', 'gt:minimum'],
             'rate' => [Rule::requiredIf($this->rate != 0)],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'display_on_frontend' => ['required']
         ];
     }
 
@@ -31,6 +32,7 @@ class UpdateShippingRateRequest extends BaseFormRequest implements UpdateShippin
         $this->merge([
             'rate' => boolean($this->free_shipping) ? 0 : $this->rate,
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend)
         ]);
     }
 }

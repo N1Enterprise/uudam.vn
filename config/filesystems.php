@@ -95,6 +95,17 @@ return [
             'root'     => env('SFTP_ROOT_FOLDER') . '/shipping',
         ],
 
+        'payment' => [
+            'driver'   => 'sftp',
+            'port'     => env('SFTP_PORT'),
+            'host'     => env('SFTP_HOST'),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+            'url'      => env('SFTP_URL'),
+            'url'      => env('SFTP_URL') . '/payment',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/payment',
+        ],
+
         'sftp' => [
             'driver'   => 'sftp',
             'port'     => env('SFTP_PORT'),

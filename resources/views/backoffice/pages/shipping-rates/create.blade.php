@@ -94,14 +94,14 @@
                                     <div class="col-md-6">
                                         <label>{{ __('Minimum Price') }} *</label>
                                         <div class="input-group">
-                                            <x-number-input allow-minus="false" key="minimum" name="minimum" class="form-control" value='{{ old("minimum") }}' />
+                                            <x-number-input allow-minus="false" key="minimum" name="minimum" class="form-control" value='{{ old("minimum") }}' required />
                                             <div class="input-group-append">
                                                 <span class="input-group-text">$</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>{{ __('Maximum Price') }} *</label>
+                                        <label>{{ __('Maximum Price') }}</label>
                                         <div class="input-group">
                                             <x-number-input allow-minus="false" key="maximum" name="maximum" class="form-control" value='{{ old("maximum") }}' />
                                             <div class="input-group-append">
@@ -115,14 +115,14 @@
                                     <div class="col-md-6 form-group">
                                         <label>{{ __('Minimum Weight') }} *</label>
                                         <div class="input-group">
-                                            <input type="number" name="minimum" class="form-control" value="{{ old('minimum') }}">
+                                            <input type="number" name="minimum" class="form-control" value="{{ old('minimum') }}" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">g</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>{{ __('Maximum Weight') }} *</label>
+                                        <label>{{ __('Maximum Weight') }}</label>
                                         <div class="input-group">
                                             <input type="number" name="maximum" class="form-control" value="{{ old('maximum') }}">
                                             <div class="input-group-append">
@@ -134,7 +134,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Rate') }} *</label>
-                                    <input type="text" class="form-control" name="rate" placeholder="{{ __('Shipping Rate') }}" value="{{ old('rate') }}" required>
+                                    <x-number-input allow-minus="false" key="rate" name="rate" class="form-control" value='{{ old("rate") }}' required />
                                 </div>
 
                                 <div class="form-group row">
@@ -155,6 +155,20 @@
 										<span class="k-switch">
 											<label>
 												<input type="checkbox" {{ old('status', '1') == '1'  ? 'checked' : ''}} value="1" name="status" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+                                <div class="row">
+									<div class="col-2">
+										<label class="col-form-label">{{ __('Display on Front End') }}</label>
+									</div>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend') || is_null(old('display_on_frontend')) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend"/>
 												<span></span>
 											</label>
 										</span>

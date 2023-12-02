@@ -21,9 +21,11 @@ class CreateCartItemsTable extends Migration
             $table->foreignId('user_id')->index();
             $table->text('note')->nullable();
             $table->string('uuid')->unique();
+            $table->string('currency_code');
             $table->boolean('has_combo')->default(0);
             $table->integer('quantity')->default(0);
             $table->decimal('price', 20, 6)->default(0);
+            $table->decimal('total_price', 20, 6)->nullable();
             $table->tinyInteger('status')->comment(CartItemStatusEnum::class);
             $table->timestamps();
         });

@@ -26,6 +26,7 @@ class CreateShippingRatesTable extends Migration
             $table->decimal('maximum', 20, 6)->nullable();
             $table->decimal('rate', 20, 6)->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
+            $table->tinyInteger('display_on_frontend')->default(0);
             $table->timestamps();
         });
     }

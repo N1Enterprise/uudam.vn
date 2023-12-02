@@ -4,7 +4,8 @@
             <div class="_1fragemfc _1fragem8d _1fragema9 _1fragem6h _1fragemc5 _1frageme0 _16s97g77s  _16s97g732" style="--_16s97g72y: 65rem;">
                 <main id="checkout-main" class="_1fragemfc _1fragem8e _1fragemaa _1fragem6i _1fragemc6 _1frageme0 _16s97g7ac">
                     <div id="OnePageFrame" class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg3 _1fragemgk">
-                        <form action="" method="POST" novalidate="" id="Form0" class="_1fragemfd">
+                        <form action="{{ empty($order->id) ? route('fe.api.user.order.store', request()->cartUuid) : route('fe.api.user.order.reorder', $order->order_code) }}" method="POST" id="FormCheckout" class="_1fragemfd" data-form="checkout">
+                            @csrf
                             <div class="_1frageme0">
                                 <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg1 _1fragemgi _1fragem98 _1fragemb4 _1fragem7c _1fragemd0">
                                     <div class="JHJye">
@@ -65,7 +66,7 @@
                                                                             <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg3 _1fragemgk">
                                                                                 <button type="submit" class="QT4by _1fragemf4 rqC98 EbLsk _7QHNJ VDIfJ j6D1f janiy">
                                                                                     <span class="AjwsM">
-                                                                                        <span class="_19gi7yt0 _19gi7ytl _1fragemfs">Đặt hàng</span>
+                                                                                        <span class="_19gi7yt0 _19gi7ytl _1fragemfs" data-button-btn-process-order-text>Đặt hàng</span>
                                                                                     </span>
                                                                                 </button>
                                                                             </div>
@@ -93,21 +94,11 @@
                         <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg2 _1fragemgj">
                             <div class="_1fragemfe _1frageme0 _1fragemhf">
                                 <div class="_5uqybw2 _1fragemfe _1fragemdc _1fragemea _1fragemee _1fragemfx _1fragemgi _1fragemhf">
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Refund policy</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Shipping policy</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Privacy policy</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Terms of service</span>
-                                    </button>
-                                    <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                        <span class="AjwsM">Contact information</span>
-                                    </button>
+                                    @foreach ($checkoutPages as $page)
+                                    <a href="{{ route('fe.web.pages.index', [ 'slug' => data_get($page, 'slug'), 'viewfrom' => 'checkout' ]) }}" target="_blank" class="QT4by eVFmT janiy mRJ8x EP07D">
+                                        <span class="AjwsM">{{ data_get($page, 'name') }}</span>
+                                    </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

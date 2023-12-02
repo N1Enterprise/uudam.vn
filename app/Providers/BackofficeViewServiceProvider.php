@@ -6,6 +6,7 @@ use App\Classes\AdminAuth;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
 use App\Services\BackofficeMenuService;
+use App\Vendors\Localization\SystemCurrency;
 use App\View\Components\Backoffice\ContentEditor;
 use App\View\Components\Backoffice\PhoneInput;
 use App\View\Components\Backoffice\SearchUsernameInput;
@@ -47,14 +48,18 @@ class BackofficeViewServiceProvider extends ServiceProvider
 
     private function registerViewComposer()
     {
+        $configurableFiatCurrencies = SystemCurrency::allFiatConfigurable();
+
         View::composer('frontend.*', function ($view) {
             $view->with('APP_NAME', config('name'));
+            $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
         });
 
-        View::composer('backoffice.*', function ($view) {
+        View::composer('backoffice.*', function ($view) use ($configurableFiatCurrencies) {
             $view->with('LOGO', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get('logo', []));
             $view->with('APP_NAME', config('name'));
             $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
+            $view->with('__CONFIGURABLE_FIAT_CURRENCIES', $configurableFiatCurrencies);
         });
 
         View::composer('backoffice.includes.left_menu', function($view) {

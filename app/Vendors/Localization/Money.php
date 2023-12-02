@@ -10,6 +10,7 @@ use Brick\Money\Exception\MoneyMismatchException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Brick\Money\Money as BrickMoney;
 use Illuminate\Support\Traits\ForwardsCalls;
+use App\Models\SystemCurrency as SystemCurrencyEntity;
 /**
  * Used to interact Brick Money
  *
@@ -32,8 +33,6 @@ class Money
 
     public const ROUND_DOWN = RoundingMode::DOWN;
 
-    public const DEFAULT_CURRENCY = 'VND';
-
     public const ROUND_CEILING = RoundingMode::CEILING;
 
     public const ROUND_FLOOR = RoundingMode::FLOOR;
@@ -50,30 +49,13 @@ class Money
 
     protected BrickMoney $money;
 
-    protected $systemCurrency;
+    protected SystemCurrencyEntity $systemCurrency;
 
     protected ?BrickMoney $convertedFrom;
 
     protected ?string $convertedRate;
 
-    protected $maxFormatScale = null;
-
     public function __construct() {
-    }
-
-    public static function systemCurrency($currencyCode)
-    {
-        $currencyCode = $currencyCode instanceof \stdClass ? data_get($currencyCode, 'code') : $currencyCode;
-
-        $systemCurrencies = [
-            'VND' => (object) ([
-                'name' => 'Vietnamese đồng',
-                'code' => 'VND',
-                'decimals' => 0,
-            ])
-        ];
-
-        return $systemCurrencies[$currencyCode];
     }
 
     /**
@@ -83,7 +65,7 @@ class Money
      * @return static
      * @throws BindingResolutionException
      */
-    public static function make($amount, $currencyCode = self::DEFAULT_CURRENCY, $roundingMode = self::ROUND_DOWN, $ofMinor = false)
+    public static function make($amount, $currencyCode, $roundingMode = self::ROUND_DOWN, $ofMinor = false)
     {
         if($amount instanceof static) {
             return $amount;
@@ -92,7 +74,7 @@ class Money
         /** @var static */
         $static = app(static::class);
 
-        $systemCurrency = self::systemCurrency($currencyCode);
+        $systemCurrency = SystemCurrency::get($currencyCode);
 
         $currency = $static->toBrickCurrency($systemCurrency);
 
@@ -126,7 +108,7 @@ class Money
 
     public function convertedTo($currencyCode, $rate, $roundingMode = self::ROUND_DOWN)
     {
-        $systemCurrency = self::systemCurrency($currencyCode);
+        $systemCurrency = SystemCurrency::get($currencyCode);
 
         $brickCurrency = $this->toBrickCurrency($systemCurrency);
 
@@ -153,10 +135,10 @@ class Money
 
     public function toBrickCurrency($currencyCode, $fallbackDefaultCurrency = false)
     {
-        $systemCurrency = self::systemCurrency($currencyCode);
+        $systemCurrency = SystemCurrency::get($currencyCode, $fallbackDefaultCurrency);
 
         // fixed 18 decimal places for crypto currency
-        return new Currency($systemCurrency->code, 0, $systemCurrency->name, $systemCurrency->decimals);
+        return new Currency($systemCurrency->getKey(), 0, $systemCurrency->name, $systemCurrency->decimals);
     }
 
     public function getMoney()
@@ -200,11 +182,6 @@ class Money
     public function getCurrencyCode()
     {
         return $this->money->getCurrency()->getCurrencyCode();
-    }
-
-    public function getExchangeRateProvider($convertCurrencyCode = null)
-    {
-
     }
 
     /**
@@ -354,7 +331,7 @@ class Money
      */
     public function parseAmount($amount)
     {
-        if ($amount instanceof static) {
+        if($amount instanceof static) {
             // try to determine the $amount is same currency, its not make any changes of this instance
             $this->plus($amount->getMoney());
 
@@ -372,23 +349,22 @@ class Money
      * @param string $decimalsSeparator
      * @return string
      */
-    public function format($fractionalPartLength = 2, $currencyCodeSuffix = false, $realFractionalPart = false, $removeTrailingZero = true, $decimalsSeparator = '.')
+    public function format($fractionalPartLength = 0, $currencyCodeSuffix = true, $realFractionalPart = false, $removeTrailingZero = true, $decimalsSeparator = '.')
     {
         $integralPart = $this->getAmount()->getIntegralPart();
         $fractionalPart = $this->getAmount()->getFractionalPart();
 
-        $maxFormatScale = $this->getMaxFormatScale();
-        $formatScale = $maxFormatScale !== null && ($this->getContext()->getFormatScale() > $maxFormatScale) ? $this->getMaxFormatScale(): $this->getContext()->getFormatScale();
-
-        $fractionalPart = $realFractionalPart ? $fractionalPart : substr($fractionalPart, 0, $formatScale);
+        $fractionalPart = $realFractionalPart ? $fractionalPart : substr($fractionalPart, 0, $this->getContext()->getFormatScale());
 
         $fractionalPart = $removeTrailingZero ? preg_replace('/\.?0+$/', '', $fractionalPart) : $fractionalPart;
 
-        if ($fractionalPartLength !== null) {
+        if($fractionalPartLength !== null) {
             $fractionalPart = strlen($fractionalPart) < $fractionalPartLength ? str_pad($fractionalPart, $fractionalPartLength, '0') : $fractionalPart;
         }
 
-        $formatted = number_format($integralPart, 0) . (!empty($fractionalPart) ? $decimalsSeparator . $fractionalPart : '');
+        $formatIntegralPart = $integralPart === '-0' ? '-' . number_format($integralPart, 0) : number_format($integralPart, 0);
+
+        $formatted = $formatIntegralPart . (!empty($fractionalPart) ? $decimalsSeparator . $fractionalPart : '');
 
         return $currencyCodeSuffix ? $formatted . ' ' . $this->getCurrencyCode() : $formatted;
     }
@@ -397,7 +373,7 @@ class Money
     {
         // if the arguments instance of money localization so we will parse this to brick money for calculation.
         $arguments = array_map(function($arg) {
-            if ($arg instanceof static) {
+            if($arg instanceof static) {
                 return $arg->getMoney();
             }
 
@@ -413,17 +389,5 @@ class Money
         }
 
         return $called;
-    }
-
-    public function setMaxFormatScale($max)
-    {
-        $this->maxFormatScale = $max;
-
-        return $this;
-    }
-
-    public function getMaxFormatScale()
-    {
-        return $this->maxFormatScale;
     }
 }

@@ -16,7 +16,7 @@ class PageController extends BaseController
 
     public function index(Request $request, $slug)
     {
-        $page = $this->pageService->findBySlug($slug, ['columns' => ['name', 'title', 'slug', 'content', 'meta_title', 'meta_description', 'updated_at']]);
+        $page = $this->pageService->findBySlugByUser($slug, ['columns' => ['name', 'title', 'slug', 'content', 'meta_title', 'meta_description', 'updated_at']]);
 
         return $this->view('frontend.pages.pages.index', compact('page'));
     }

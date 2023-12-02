@@ -115,8 +115,18 @@
 					<div id="k_header" class="k-header k-grid__item  k-header--fixed ">
 
 						<!-- begin: Header Menu -->
-						<button class="k-header-menu-wrapper-close" id="k_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
-						<div class="k-header-menu-wrapper"></div>
+						<button class="k-header-menu-wrapper-close" id="k_header_menu_mobile_close_btn">
+                            <i class="la la-close"></i>
+                        </button>
+						<div id="k_header_menu" class="k-header-menu k-header-menu-mobile">
+                            <ul class="k-menu__nav ">
+                                <li class="k-menu__item k-menu__item--submenu k-menu__item--rel">
+                                    <a href="{{ route('fe.web.home') }}" target="_blank" class="k-menu__link" onclick="">
+                                        <span class="k-menu__link-text">{{ __('Store Front') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 						<!-- end: Header Menu -->
 
 						<!-- begin:: Header Topbar -->

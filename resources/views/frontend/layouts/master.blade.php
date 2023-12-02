@@ -46,6 +46,7 @@
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Common Styles -->
 
     @yield('style_datatable')
@@ -133,6 +134,42 @@
             right: 32px !important;
             top: calc(50% + 0px) !important;
         }
+
+        #admintopnav {
+            position: relative;
+            background: #1d2327;
+            background-color: #1d2327;
+            color: #c3c4c7;
+            font-weight: 400;
+            font-size: 13px;
+            width: 100%;
+            overflow: hidden;
+            z-index: 4;
+        }
+
+        #admintopnav a.split.highlight {
+            background-color: #04AA6D;
+            color: #fff;
+        }
+
+        #admintopnav a.split {
+            float: right;
+        }
+
+        #admintopnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        #admintopnav a:hover {
+            background-color: #04AA6D;
+            color: #fff;
+        }
     </style>
     <!--end::Layout Skins -->
 </head>
@@ -154,6 +191,8 @@
     <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/validate/custom.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>

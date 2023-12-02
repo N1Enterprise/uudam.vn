@@ -6,93 +6,58 @@
                     <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg3 _1fragemgk">
                         <section class="_1fragemfc _1frageme0">
                             <div class="_1fragemfc _1fragemle _1frageme0">
-                                <h2 id="ResourceList0" class="n8k95w1 _1frageme0 n8k95w3">Shopping cart</h2>
+                                <h2 id="ResourceList0" class="n8k95w1 _1frageme0 n8k95w3">Giỏ hàng</h2>
                             </div>
                             <div role="table" aria-labelledby="ResourceList0" class="_6zbcq55 _1fragemfe _1fragemfk _6zbcq56">
                                 <div role="row" class="_6zbcq51d _1fragemfe _1fragemec _1fragemhb _6zbcq51b">
                                     <div role="columnheader" class="_6zbcq51e">
-                                        <div class="_1fragemfc _1fragemle _1frageme0">Product image</div>
+                                        <div class="_1fragemfc _1fragemle _1frageme0">Ảnh sản phẩm</div>
                                     </div>
                                     <div role="columnheader" class="_6zbcq51e">
-                                        <div class="_1fragemfc _1fragemle _1frageme0">Description</div>
+                                        <div class="_1fragemfc _1fragemle _1frageme0">Mô tả sản phẩm</div>
                                     </div>
                                     <div role="columnheader" class="_6zbcq51e">
-                                        <div class="_1fragemfc _1fragemle _1frageme0">Quantity</div>
+                                        <div class="_1fragemfc _1fragemle _1frageme0">Số lượng</div>
                                     </div>
                                     <div role="columnheader" class="_6zbcq51e">
-                                        <div class="_1fragemfc _1fragemle _1frageme0">Price</div>
+                                        <div class="_1fragemfc _1fragemle _1frageme0">Giá sản phẩm</div>
                                     </div>
                                 </div>
-                                <div role="row" class="_6zbcq524 _1fragemfe _1fragem1w _6zbcq52b">
+                                @foreach ($cartItems as $cartItem)
+                                <div role="row" class="_6zbcq524 _1fragemfe _1fragem1w _6zbcq52b" style="display: flex; align-items: flex-start;">
                                     <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhf">
                                         <div class="_1m6j2n32 _1frageme0 _1fragemmc _1m6j2n33" style="--_1m6j2n30: 1;">
                                             <div class="_1h3po421 _1h3po423 _1frageme0" style="--_1h3po420: 1;">
                                                 <picture>
-                                                    <source media="(min-width: 0px)" srcset="https://cdn.shopify.com/s/files/1/0298/7753/4853/products/d286_1_64x64.jpg?v=1686326728 1x, https://cdn.shopify.com/s/files/1/0298/7753/4853/products/d286_1_128x128.jpg?v=1686326728 2x, https://cdn.shopify.com/s/files/1/0298/7753/4853/products/d286_1_256x256.jpg?v=1686326728 4x">
-                                                    <img src="https://cdn.shopify.com/s/files/1/0298/7753/4853/products/d286_1_64x64.jpg?v=1686326728" alt="&quot;Lotus Harvest&quot; Wall Art" class="_1h3po424 _1fragemfc _1fragemd8 _1fragemhu _1fragemhz _1fragemi9 _1fragemi4 _1fragem2s _1fragem2g _1fragem34 _1fragem24 _1fragem4g _1fragem3w _1fragem50 _1fragem3c _1fragemdk">
+                                                    <source media="(min-width: 0px)" srcset="{{ data_get($cartItem, 'inventory.image') }}">
+                                                    <img src="{{ data_get($cartItem, 'inventory.image') }}" alt="{{ data_get($cartItem, 'inventory.title') }}" class="_1h3po424 _1fragemfc _1fragemd8 _1fragemhu _1fragemhz _1fragemi9 _1fragemi4 _1fragem2s _1fragem2g _1fragem34 _1fragem24 _1fragem4g _1fragem3w _1fragem50 _1fragem3c _1fragemdk">
                                                 </picture>
                                             </div>
                                             <div class="_1m6j2n3e _1fragemds _1fragemj7 _1fragemjq">
-                                                <div aria-hidden="true" class="_99ss3s1 _1fragemfh _1fragemec _1fragemhd _99ss3s4 _99ss3s2 _99ss3s7">1</div>
+                                                <div aria-hidden="true" class="_99ss3s1 _1fragemfh _1fragemec _1fragemhd _99ss3s4 _99ss3s2 _99ss3s7">{{ data_get($cartItem, 'quantity') }}</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhd _1fragemfn">
+                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhd _1fragemfn" style="padding-right: 15px;">
                                         <div class="_1fragemfc _1frageme0 iZ894">
-                                            <p class="_1x52f9s1 _1frageme0 _1x52f9so _1fragemfq">"Lotus Harvest" Wall Art</p>
+                                            <p class="_1x52f9s1 _1frageme0 _1x52f9so _1fragemfq">{{ data_get($cartItem, 'inventory.title') }}</p>
                                             <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemgb _1fragemgs"></div>
                                         </div>
-                                    </div>
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhd _6zbcq53q">
-                                        <div class="_1fragemfc _1fragemle _1frageme0">
-                                            <span class="_19gi7yt0 _19gi7yth _1fragemfq">1 <div aria-hidden="true" class="_1fragemfc _1frageme0"> x</div>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhf">
-                                        <div class="_1fragemfe _1fragemfk _1fragemed _1fragemhd _1frageme0 _16s97g738 bua0H" style="--_16s97g734: 6.4rem;">
-                                            <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemfz _1fragemgg _1fragemhi">
-                                                <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq notranslate">₫4,655,000</span>
+                                        <div>
+                                            @php
+                                                $attributeValues = data_get($cartItem, 'inventory.attributeValues')->pluck('value', 'attribute_id')->toArray();
+                                            @endphp
+                                            @foreach (data_get($cartItem, 'inventory.attributes', []) as $attribute)
+                                            <div class="_1x52f9s1 _1frageme0 _1x52f9sm _1fragemfp _1x52f9si" style="display: flex; align-items: center; font-size: 12px;">
+                                                <small style="margin-right: 5px;">{{ data_get($attribute, 'name') }}: </small>
+                                                <small>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</small>
                                             </div>
+                                            @endforeach
                                         </div>
+                                        <b>{{ format_price($cartItem->total_price) }}</b>
                                     </div>
                                 </div>
-                                <div role="row" class="_6zbcq524 _1fragemfe _1fragem1w _6zbcq52b">
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhf">
-                                        <div class="_1m6j2n32 _1frageme0 _1fragemmc _1m6j2n33" style="--_1m6j2n30: 1;">
-                                            <div class="_1h3po421 _1h3po423 _1frageme0" style="--_1h3po420: 1;">
-                                                <picture>
-                                                    <source media="(min-width: 0px)" srcset="https://cdn.shopify.com/s/files/1/0298/7753/4853/files/DCZZBundlesofBlack_23_002_64x64.jpg?v=1698157738 1x, https://cdn.shopify.com/s/files/1/0298/7753/4853/files/DCZZBundlesofBlack_23_002_128x128.jpg?v=1698157738 2x, https://cdn.shopify.com/s/files/1/0298/7753/4853/files/DCZZBundlesofBlack_23_002_256x256.jpg?v=1698157738 4x">
-                                                    <img src="https://cdn.shopify.com/s/files/1/0298/7753/4853/files/DCZZBundlesofBlack_23_002_64x64.jpg?v=1698157738" alt="Meditation Cushion Bundle" class="_1h3po424 _1fragemfc _1fragemd8 _1fragemhu _1fragemhz _1fragemi9 _1fragemi4 _1fragem2s _1fragem2g _1fragem34 _1fragem24 _1fragem4g _1fragem3w _1fragem50 _1fragem3c _1fragemdk">
-                                                </picture>
-                                            </div>
-                                            <div class="_1m6j2n3e _1fragemds _1fragemj7 _1fragemjq">
-                                                <div aria-hidden="true" class="_99ss3s1 _1fragemfh _1fragemec _1fragemhd _99ss3s4 _99ss3s2 _99ss3s7">1</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhd _1fragemfn">
-                                        <div class="_1fragemfc _1frageme0 iZ894">
-                                            <p class="_1x52f9s1 _1frageme0 _1x52f9so _1fragemfq">Meditation Cushion Bundle</p>
-                                            <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemgb _1fragemgs">
-                                                <p class="_1x52f9s1 _1frageme0 _1x52f9sm _1fragemfp _1x52f9si">Black / No Mala / No Bench</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhd _6zbcq53q">
-                                        <div class="_1fragemfc _1fragemle _1frageme0">
-                                            <span class="_19gi7yt0 _19gi7yth _1fragemfq">1 <div aria-hidden="true" class="_1fragemfc _1frageme0"> x</div>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div role="cell" class="_6zbcq53s _1fragemfe _1fragemfk _1fragemhf">
-                                        <div class="_1fragemfe _1fragemfk _1fragemed _1fragemhd _1frageme0 _16s97g738 bua0H" style="--_16s97g734: 6.4rem;">
-                                            <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemfz _1fragemgg _1fragemhi">
-                                                <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq notranslate">₫4,655,000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </section>
                     </div>
@@ -128,6 +93,7 @@
                             </section>
                         </div>
                     </div>
+
                     <section class="_1fragemfc _1frageme0">
                         <div class="_1fragemfc _1fragemle _1frageme0">
                             <h2 id="MoneyLine-Heading0" class="n8k95w1 _1frageme0 n8k95w3">Tóm tắt chi phí</h2>
@@ -138,7 +104,7 @@
                                     <span class="_19gi7yt0 _19gi7yth _1fragemfq">Tổng tiền hàng</span>
                                 </div>
                                 <div role="cell" class="_1qy6ue68">
-                                    <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq _19gi7yt1 notranslate">₫9,310,000</span>
+                                    <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq _19gi7yt1 notranslate">{{ format_price($cart->total_price) }}</span>
                                 </div>
                             </div>
                             <div role="row" class="_1qy6ue61 _1fragemfi _1qy6ue65">
@@ -147,23 +113,12 @@
                                         <div class="_1fragemfe _1frageme0 _1fragemhf">
                                             <div class="_5uqybw2 _1fragemfe _1fragemdc _1fragemfx _1fragemge _1frageme8 _1fragemec _1fragemhf">
                                                 <span class="_19gi7yt0 _19gi7yth _1fragemfq">Phí vận chuyển</span>
-                                                <button type="button" aria-haspopup="dialog" class="QT4by eVFmT janiy mRJ8x EP07D">
-                                                    <span class="AjwsM">
-                                                        <span class="_1fragemhb _1fragem1w _1fragemd8 _1fragemd4 a8x1wu3 _1fragemfc a8x1wuh a8x1wum">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-hidden="true" class="a8x1wuo _1fragemfc _1fragemhb _1fragemd8 _1fragemd4">
-                                                                <circle cx="7" cy="7" r="5.6"></circle>
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.6 5.1c.2-1.3 2.6-1.3 2.8 0 .2 1.3-1.45 1.3-1.45 2.35m.055 2.35H7v.005h.005V9.8Z"></path>
-                                                                <circle cx="7" cy="9.7" r="0.1"></circle>
-                                                            </svg>
-                                                        </span>
-                                                    </span>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div role="cell" class="_1qy6ue68">
-                                    <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq notranslate">₫6,156,000</span>
+                                    <span translate="yes" class="_19gi7yt0 _19gi7yth _1fragemfq notranslate" data-value-transport-fee>0</span>
                                 </div>
                             </div>
                             <div role="row" class="_1x41w3p1 _1fragemfi _1fragemec _1x41w3p5">
@@ -173,8 +128,7 @@
                                 <div role="cell" class="_1x41w3p8">
                                     <div class="_1fragemfe _1frageme0 _1fragemhf">
                                         <div class="_5uqybw2 _1fragemfe _1fragemdc _1fragemfz _1fragemgg _1fragemeb _1fragemhf">
-                                            <abbr translate="yes" class="_19gi7yt0 _19gi7ytf _1fragemfp _19gi7ytb notranslate _19gi7ytt _1fragemli">VND</abbr>
-                                            <strong translate="yes" class="_19gi7yt0 _19gi7ytl _1fragemfs _19gi7yt1 notranslate">₫15,466,000</strong>
+                                            <strong translate="yes" class="_19gi7yt0 _19gi7ytl _1fragemfs _19gi7yt1 notranslate" data-value-total-payment>0</strong>
                                         </div>
                                     </div>
                                 </div>

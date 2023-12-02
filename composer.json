@@ -11,10 +11,12 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^8.75",
+        "laravel/horizon": "^5.21",
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.10",
         "laravel/tinker": "^2.5",
         "league/flysystem-sftp": "^1.1",
+        "predis/predis": "^2.2",
         "propaganistas/laravel-phone": "^4.4",
         "spatie/laravel-permission": "^5.11",
         "spatie/laravel-responsecache": "^6.6"

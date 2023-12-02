@@ -115,18 +115,6 @@ const utils_helper = {
             },
         };
     },
-    cookie: (key) => {
-        return {
-            get: (_default = null) => {
-                const value = Cookies.get(key);
-
-                return value || _default;
-            },
-            set: (data) => {
-                Cookies.set(key, data);
-            },
-        };
-    },
     swal: (options) => {
         const confirmButtonText = options?.okText || 'Xác nhận';
         const confirmButtonClass = options?.okClass || 'swal-button button-primary';

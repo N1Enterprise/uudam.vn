@@ -21,6 +21,7 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\UpdateUserRequestContract::class => Requests\UpdateUserRequest::class,
         Contracts\UpdateUserActionLogRequestContract::class => Requests\UpdateUserActionLogRequest::class,
 
+        // System Setting
         Contracts\UpdateSystemSettingRequestContract::class => Requests\UpdateSystemSettingRequest::class,
         Contracts\StoreSystemSettingGroupRequestContract::class => Requests\StoreSystemSettingGroupRequest::class,
         Contracts\StoreSystemSettingKeyRequestContract::class => Requests\StoreSystemSettingKeyRequest::class,
@@ -28,6 +29,10 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\ImportSystemSettingRequestContract::class => Requests\ImportSystemSettingRequest::class,
         Contracts\UpdateSystemSettingGroupRequestContract::class => Requests\UpdateSystemSettingGroupRequest::class,
 
+        Contracts\StoreSystemCurrencyRequestContract::class => Requests\StoreSystemCurrencyRequest::class,
+        Contracts\UpdateSystemCurrencyRequestContract::class => Requests\UpdateSystemCurrencyRequest::class,
+
+        // Catalog
         Contracts\StoreCategoryGroupRequestContract::class => Requests\StoreCategoryGroupRequest::class,
         Contracts\UpdateCategoryGroupRequestContract::class => Requests\UpdateCategoryGroupRequest::class,
 
@@ -88,7 +93,6 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\UploadFileManagerRequestContract::class => Requests\UploadFileManagerRequest::class,
 
         // Shipping
-
         Contracts\StoreCarrierRequestContract::class => Requests\StoreCarrierRequest::class,
         Contracts\UpdateCarrierRequestContract::class => Requests\UpdateCarrierRequest::class,
 
@@ -101,5 +105,14 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         // Payment
         Contracts\StorePaymentProviderRequestContract::class => Requests\StorePaymentProviderRequest::class,
         Contracts\UpdatePaymentProviderRequestContract::class => Requests\UpdatePaymentProviderRequest::class,
+
+        Contracts\StorePaymentOptionRequestContract::class => Requests\StorePaymentOptionRequest::class,
+        Contracts\UpdatePaymentOptionRequestContract::class => Requests\UpdatePaymentOptionRequest::class,
+
+        Contracts\DeclineDepositTransactionRequestContract::class => Requests\DeclineDepositTransactionRequest::class,
+        Contracts\ApproveDepositTransactionRequestContract::class => Requests\ApproveDepositTransactionRequest::class,
+
+        // Order
+        Contracts\UpdateOrderStatusRequestContract::class => Requests\UpdateOrderStatusRequest::class,
     ];
 }

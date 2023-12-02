@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enum\ActivationStatusEnum;
 use App\Enum\UserActionEnum;
+use App\Enum\UserWalletTypeEnum;
 use App\Events\User\UserCreated;
 use App\Events\User\UserCreating;
 use App\Events\User\UserPasswordChanged;
@@ -14,6 +15,7 @@ use App\Services\UserDetailService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class UserService extends BaseService
 {
@@ -63,7 +65,16 @@ class UserService extends BaseService
         $attributes['status'] = ActivationStatusEnum::ACTIVE;
 
         $user = DB::transaction(function() use ($attributes) {
+            /** @var User */
             $user = $this->userRepository->create($attributes);
+
+            $user->userWallets()->create([
+                'balance'       => 0,
+                'status'        => ActivationStatusEnum::ACTIVE,
+                'type'          => UserWalletTypeEnum::SHOPPING,
+                'currency_code' => $user->currency_code,
+                'activated'     => true,
+            ]);
 
             UserCreating::dispatch($user);
 

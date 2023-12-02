@@ -10,6 +10,7 @@ use App\Services\BaseService;
 use App\Vendors\Localization\Money;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
+use App\Vendors\Localization\SystemCurrency;
 
 class CartItemService extends BaseService
 {
@@ -20,11 +21,37 @@ class CartItemService extends BaseService
         $this->cartItemRepository = $cartItemRepository;
     }
 
+    public function searchByAdmin($data = [])
+    {
+        $result = $this->cartItemRepository
+        ->with(['cart', 'inventory', 'user'])
+        ->whereColumnsLike($data['query'] ?? null, ['uuid', 'currency_code'])
+        ->scopeQuery(function($q) use ($data) {
+            $cartId = data_get($data, 'cart_id');
+
+            if (! empty($cartId)) {
+                $q->where('cart_id', $cartId);
+            }
+        })
+        ->search([]);
+
+    return $result;
+    }
+
     public function searchPendingItemsByUser($userId, $data = [])
     {
         return $this->cartItemRepository
             ->modelScopes(['pending'])
-            ->scopeQuery(function($q) use ($userId) {
+            ->scopeQuery(function($q) use ($userId, $data) {
+
+                if ($currencyCode = data_get($data, 'currency_code')) {
+                    $q->where('currency_code', $currencyCode);
+                }
+
+                if ($cartId = data_get($data, 'cart_id')) {
+                    $q->where('cart_id', $cartId);
+                }
+
                 $q->where('user_id', $userId);
             })
             ->all(data_get($data, 'columns', ['*']));
@@ -51,7 +78,7 @@ class CartItemService extends BaseService
             }
 
             $inventorySalePrice = $cartItem->inventory->toMoney('sale_price');
-            $updateTotalPrice = Money::make($inventorySalePrice)->multipliedBy($quantity);
+            $updateTotalPrice = Money::make($inventorySalePrice, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             /** @var Cart */
             $cart = $cartItem->cart;
@@ -76,10 +103,23 @@ class CartItemService extends BaseService
         });
     }
 
-    public function cancelByUser($userId, $id)
+    public function findByUser($userId)
+    {
+        return $this->cartItemRepository->firstWhere([
+            'user_id' => $userId
+        ]);
+    }
+
+    public function cancelByUser($userId, $id, $data = [])
     {
         return DB::transaction(function() use ($userId, $id) {
-            $cartItem = $this->update(['user_id' => $userId, 'status' => CartItemStatusEnum::CANCELED], $id);
+            $cartItem = $this->findByUser($userId);
+
+            if (empty($cartItem) || $cartItem->id != $id) {
+                throw new BusinessLogicException('Invalid Cart Item', ExceptionCode::INVALID_CART_ITEM);
+            }
+
+            $cartItem = $this->update(['status' => CartItemStatusEnum::CANCELED], $id);
 
             $cart = $cartItem->cart;
 

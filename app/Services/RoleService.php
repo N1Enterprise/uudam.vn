@@ -69,11 +69,29 @@ class RoleService extends BaseService
                 'inventories.delete',
             ],
         ],
+        'orders' => [
+            'orders.index',
+            'orders.manage',
+        ],
+        'carts' => [
+            'carts.index',
+            'carts.manage',
+        ],
         'payments' => [
             'payment-providers' => [
                 'payment-providers.index',
                 'payment-providers.store',
                 'payment-providers.update',
+            ],
+            'payment-options' => [
+                'payment-options.index',
+                'payment-options.store',
+                'payment-options.update',
+            ],
+            'deposit-transactions' => [
+                'deposit-transactions.index',
+                'deposit-transactions.store',
+                'deposit-transactions.update',
             ],
         ],
         'systems' => [
@@ -86,8 +104,9 @@ class RoleService extends BaseService
                 'system-settings.delete',
                 'system-settings.clear-cache',
                 'system-settings.import',
-                'system-settings.export'
+                'system-settings.export',
             ],
+            'system-currencies.manage',
         ],
         'admin-users' => [
             'admins' => [
@@ -175,6 +194,11 @@ class RoleService extends BaseService
                 'countries.index',
                 'countries.store',
                 'countries.update',
+            ],
+            'currencies' => [
+                'currencies.index',
+                'currencies.store',
+                'currencies.update',
             ],
         ],
         'utilities' => [

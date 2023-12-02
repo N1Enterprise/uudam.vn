@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Enum\ShippingRateTypeEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasMoney;
 
 class ShippingRate extends BaseModel
 {
     use Activatable;
+    use HasFeUsage;
     use HasMoney;
 
     protected $fillable = [
@@ -20,7 +22,8 @@ class ShippingRate extends BaseModel
         'minimum',
         'maximum',
         'rate',
-        'status'
+        'status',
+        'display_on_frontend'
     ];
 
     public function getTypeNameAttribute()

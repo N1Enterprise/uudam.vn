@@ -40,6 +40,8 @@ class ProductController extends BaseController
             'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
         ]);
 
+        // dd();
+
         $imageGalleries = collect([$inventory->image])
             ->merge(collect(data_get($inventory, 'product.media.image', []))->map(fn($item) => data_get($item, 'path')))
             ->toArray();
@@ -58,6 +60,8 @@ class ProductController extends BaseController
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
         $productReviews = $this->productReviewService->allAvailable(['columns' => ['id', 'user_name', 'rating_type', 'status', 'created_at', 'content']]);
+
+        // dd(data_get($inventory, 'product.id'));
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',

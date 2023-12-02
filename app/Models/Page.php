@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Enum\PageDisplayTypeEnum;
+use App\Enum\PageDisplayInEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,12 +13,13 @@ class Page extends BaseModel
     use Activatable;
     use SoftDeletes;
     use HasImpactor;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',
         'slug',
         'title',
-        'display_type',
+        'display_in',
         'order',
         'status',
         'content',
@@ -27,15 +29,20 @@ class Page extends BaseModel
         'created_by_id',
         'updated_by_type',
         'updated_by_id',
+        'display_on_frontend',
     ];
 
-    public function getDisplayTypeNameAttribute()
+    protected $casts = [
+        'display_in' => 'json'
+    ];
+
+    public function scopeDisplayInFooter($query)
     {
-        return PageDisplayTypeEnum::findConstantLabel($this->display_type);
+        return $query->whereJsonContains('display_in', PageDisplayInEnum::FOOTER);
     }
 
-    public function scopeMenu($query)
+    public function scopeDisplayInCheckout($query)
     {
-        return $query->where('display_type', PageDisplayTypeEnum::MENU);
+        return $query->whereJsonContains('display_in', PageDisplayInEnum::CHECKOUT);
     }
 }

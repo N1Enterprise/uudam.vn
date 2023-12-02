@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Enum\CartItemStatusEnum;
+use App\Models\Traits\HasCurrency;
 use App\Models\Traits\HasMoney;
 
 class CartItem extends BaseModel
 {
     use HasMoney;
+    use HasCurrency;
 
     protected $fillable = [
         'cart_id',
@@ -16,11 +18,17 @@ class CartItem extends BaseModel
         'note',
         'has_combo',
         'quantity',
+        'currency_code',
         'price',
         'total_price',
         'user_id',
         'status',
     ];
+
+    public function getStatusNameAttribute()
+    {
+        return CartItemStatusEnum::findConstantLabel($this->status);
+    }
 
     public function scopePending($query)
     {
@@ -35,5 +43,10 @@ class CartItem extends BaseModel
     public function cart()
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

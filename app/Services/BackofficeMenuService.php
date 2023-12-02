@@ -99,6 +99,22 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
+                'name' => 'Orders',
+                'icon' => 'fa fa-cart-plus',
+                'subs' => [
+                    [
+                        'name' => 'Orders',
+                        'link' => route('bo.web.orders.index'),
+                        'permissions' => ['orders.index'],
+                    ],
+                    [
+                        'name' => 'Carts',
+                        'link' => route('bo.web.carts.index'),
+                        'permissions' => ['carts.index'],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'Localization',
                 'icon' => 'flaticon-placeholder-3',
                 'subs' => [
@@ -106,7 +122,12 @@ class BackofficeMenuService extends BaseService
                         'name' => 'Countries',
                         'link' => route('bo.web.countries.index'),
                         'permissions' => ['countries.index'],
-                    ]
+                    ],
+                    [
+                        'name' => 'Currencies',
+                        'link' => route('bo.web.currencies.index'),
+                        'permissions' => ['currencies.index'],
+                    ],
                 ],
             ],
             [
@@ -135,6 +156,11 @@ class BackofficeMenuService extends BaseService
                 'icon' => 'flaticon2-copy',
                 'subs' => [
                     [
+                        'name' => 'Deposit Transactions',
+                        'link' => route('bo.web.deposit-transactions.index'),
+                        'permissions' => ['deposit-transactions.index']
+                    ],
+                    [
                         'name' => 'Payment Settings',
                         'subs' => [
                             [
@@ -142,6 +168,11 @@ class BackofficeMenuService extends BaseService
                                 'link' => route('bo.web.payment-providers.index'),
                                 'permissions' => ['payment-providers.index'],
                             ],
+                            [
+                                'name' => 'Payment Options',
+                                'link' => route('bo.web.payment-options.index'),
+                                'permissions' => ['payment-providers.index'],
+                            ]
                         ]
                     ]
                 ],
@@ -252,6 +283,11 @@ class BackofficeMenuService extends BaseService
                         'name' => 'System Setting',
                         'link' => route('bo.web.system-settings.index'),
                         'permissions' => ['system-settings.index'],
+                    ],
+                    [
+                        'name' => 'Currency Setting',
+                        'link' => route('bo.web.system-currencies.index'),
+                        'permissions' => ['system-currencies.manage'],
                     ],
                 ],
             ],

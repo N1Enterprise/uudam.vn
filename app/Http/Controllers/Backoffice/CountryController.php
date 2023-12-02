@@ -15,6 +15,6 @@ class CountryController extends BaseController
 
     public function index()
     {
-        return view('backoffice.pages.countries.index');
+        return $this->view('backoffice.pages.countries.index');
     }
 }

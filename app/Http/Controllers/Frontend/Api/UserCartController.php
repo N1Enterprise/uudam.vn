@@ -23,7 +23,7 @@ class UserCartController extends BaseApiController
 
     public function store(UserAddToCartRequestContract $request)
     {
-        $attributes = array_merge($request->validated(), [ 'ip_address' => $request->ip() ]);
+        $attributes = array_merge($request->validated(), ['ip_address' => $request->ip()]);
 
         $cart = $this->cartService->createByUser($this->user()->getKey(), $attributes);
 
@@ -44,9 +44,14 @@ class UserCartController extends BaseApiController
         return $this->response(UserUpdateCartItemQuantityResponseContract::class, $cartItem);
     }
 
-    public function cartInfo()
+    public function cartInfo(Request $request)
     {
-        $cart = $this->cartService->findByUser($this->user()->getKey());
+        $cart = $this->cartService->findByUser(
+            $this->user()->getKey(),
+            array_merge($request->all(), [
+                'currency_code' => $this->user()->currency_code
+            ])
+        );
 
         $response = optional($cart)->only([
             'id',
@@ -60,7 +65,7 @@ class UserCartController extends BaseApiController
 
     public function cancel(Request $request, $id)
     {
-        $this->cartItemService->cancelByUser($this->user()->getKey(), $id);
+        $this->cartItemService->cancelByUser($this->user()->getKey(), $id, $request->all());
 
         return response()->json(['status' => true]);
     }
