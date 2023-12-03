@@ -59,7 +59,7 @@ return [
     |
     */
 
-    'home' => '/backoffice',
+    'home' => '/bo',
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'prefix' => '/backoffice',
+    'prefix' => '/bo',
 
     'domain' => null,
 
@@ -106,7 +106,7 @@ return [
     ],
 
     'redirects' => [
-        'logout' => '/backoffice/login',
+        'logout' => route('login'),
     ],
 
     /*
