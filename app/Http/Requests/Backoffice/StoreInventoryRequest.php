@@ -100,7 +100,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
     {
         return [
             'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
-            'sku' => ['required', 'distinct', Rule::unique(Inventory::class, 'sku')],
+            'sku' => ['required', Rule::unique(Inventory::class, 'sku')],
             'purchase_price' => ['nullable', 'numeric', 'gt:0'],
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'offer_price' => ['nullable', 'numeric', 'gt:0'],

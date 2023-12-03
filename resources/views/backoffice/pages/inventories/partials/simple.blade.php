@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="">{{ __('SKU') }}
+                <label for="">{{ __('SKU') }} *
                     <i
                         data-toggle="tooltip"
                         class="flaticon-questions-circular-button"

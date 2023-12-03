@@ -38,7 +38,11 @@ class ProductService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
-            $attributes['primary_image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Product::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
             $attributes['media']['image'] = $this->convertMediaImage(data_get($attributes, 'media.image', []));
 
             $product = $this->productRepository->create($attributes);
@@ -62,7 +66,11 @@ class ProductService extends BaseService
             /** @var Product */
             $product = $this->show($id);
 
-            $attributes['primary_image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Product::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
             $attributes['media']['image'] = $this->convertMediaImage(data_get($attributes, 'media.image', []));
 
             $product = $this->productRepository->update($attributes, $product->getKey());
@@ -85,7 +93,10 @@ class ProductService extends BaseService
         return array_map(function($image) use (&$counter) {
             return [
                 'order' => $counter++,
-                'path'  => ImageHelper::make('catalog')->uploadImage($image),
+                'path'  => ImageHelper::make('catalog')
+                    ->hasOptimization()
+                    ->setConfigKey([Product::class, 'primary_image'])
+                    ->uploadImage($image),
             ];
         }, $mediaImages);
     }

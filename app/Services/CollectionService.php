@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Common\ImageHelper;
+use App\Models\Collection;
 use App\Repositories\Contracts\CollectionRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
@@ -56,9 +57,15 @@ class CollectionService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $imageHelper = ImageHelper::make('appearance');
-            $attributes['primary_image'] = $imageHelper->uploadImage(data_get($attributes, 'primary_image'));
-            $attributes['cover_image']   = $imageHelper->uploadImage(data_get($attributes, 'cover_image'));
+            $imageHelper = ImageHelper::make('appearance')->hasOptimization();
+
+            $attributes['primary_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
+            $attributes['cover_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'cover_image'])
+                ->uploadImage(data_get($attributes, 'cover_image'));
 
             $collection = $this->collectionRepository->create($attributes);
 
@@ -78,9 +85,15 @@ class CollectionService extends BaseService
         return DB::transaction(function() use ($attributes, $id) {
             $collection = $this->show($id);
 
-            $imageHelper = ImageHelper::make('appearance');
-            $attributes['primary_image'] = $imageHelper->uploadImage(data_get($attributes, 'primary_image'));
-            $attributes['cover_image']   = $imageHelper->uploadImage(data_get($attributes, 'cover_image'));
+            $imageHelper = ImageHelper::make('appearance')->hasOptimization();
+
+            $attributes['primary_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
+            $attributes['cover_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'cover_image'])
+                ->uploadImage(data_get($attributes, 'cover_image'));
 
             $collection = $this->collectionRepository->update($attributes, $collection->getKey());
 

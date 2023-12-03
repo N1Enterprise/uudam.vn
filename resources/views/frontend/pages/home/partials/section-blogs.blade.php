@@ -13,7 +13,7 @@
                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
                                 <div class="article-card__image-wrapper card__media">
                                     <div class="article-card__image media media--hover-effect">
-                                        <img srcset="{{ $post->image }}" src="{{ $post->image }}" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="What Do You Think About All Day? - Koun Franz" class="motion-reduce" loading="lazy" width="2727" height="1818">
+                                        <img class="image-lazy" srcset="{{ $post->image }}" src="{{ $post->image }}" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="What Do You Think About All Day? - Koun Franz" class="motion-reduce" loading="lazy" width="2727" height="1818">
                                     </div>
                                 </div>
                                 <div class="card__content">

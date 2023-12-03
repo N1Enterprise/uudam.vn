@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Common\ImageHelper;
 use App\Enum\ActivationStatusEnum;
+use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +45,8 @@ class CategoryService extends BaseService
     {
         return DB::transaction(function () use ($attributes) {
             $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Category::class, 'primary_image'])
                 ->uploadImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryRepository->create($attributes);
@@ -59,6 +62,8 @@ class CategoryService extends BaseService
     {
         return DB::transaction(function () use ($attributes, $id) {
             $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Category::class, 'primary_image'])
                 ->uploadImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryRepository->update($attributes, $id);

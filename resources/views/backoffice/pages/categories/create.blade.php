@@ -79,7 +79,7 @@
                                     <label>{{ __('Category Group') }} *</label>
                                     <select name="category_group_id" title="--{{ __('Select Category Group') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($categoryGroups as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}" {{ old('category_group_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category_group_id')

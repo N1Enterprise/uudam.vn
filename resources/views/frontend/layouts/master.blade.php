@@ -184,8 +184,6 @@
 
     @include('frontend.layouts.partials.footer.index')
 
-    {{-- @include('frontend.layouts.partials.cart-drawer.index') --}}
-
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>

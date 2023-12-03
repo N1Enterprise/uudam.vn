@@ -15,6 +15,7 @@ class StoreProductRequest extends BaseFormRequest implements StoreProductRequest
     {
         return [
             'name' => ['required', 'max:255'],
+            'slug' => ['required', 'alpha-dash', 'max:255', Rule::unique(Product::class, 'slug')],
             'code' => ['required', 'max:255', 'alpha-dash', Rule::unique(Product::class)],
             'description' => ['nullable'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],

@@ -1,0 +1,114 @@
+{
+    "default": {
+        "ext": "jpeg",
+        "ratio": 1,
+        "width": 200,
+        "height": 200
+    },
+    "App\\Models\\Post": {
+        "image": {
+            "ext": "jpeg",
+            "width": 1300,
+            "folder": "post",
+            "height": 825
+        }
+    },
+    "App\\Models\\Banner": {
+        "mobile_image": {
+            "ext": "jpeg",
+            "width": 1815,
+            "folder": "banner",
+            "height": 1006
+        },
+        "desktop_image": {
+            "ext": "jpeg",
+            "width": 1815,
+            "folder": "banner",
+            "height": 1006
+        }
+    },
+    "App\\Models\\Carrier": {
+        "logo": {
+            "ext": "jpeg",
+            "width": 100,
+            "folder": "carrier",
+            "height": 1006
+        }
+    },
+    "App\\Models\\Product": {
+        "media": {
+            "ext": "jpeg",
+            "width": 720,
+            "folder": "product",
+            "height": 720
+        },
+        "primary_image": {
+            "ext": "jpeg",
+            "width": 720,
+            "folder": "product",
+            "height": 720
+        }
+    },
+    "App\\Models\\Category": {
+        "primary_image": {
+            "ext": "jpeg",
+            "width": 720,
+            "folder": "category",
+            "height": 720
+        }
+    },
+    "App\\Models\\Inventory": {
+        "image": {
+            "ext": "jpeg",
+            "width": 720,
+            "folder": "inventory",
+            "height": 720
+        }
+    },
+    "App\\Models\\Collection": {
+        "cover_image": {
+            "ext": "jpeg",
+            "width": 1700,
+            "folder": "collection",
+            "height": 630
+        },
+        "primary_image": {
+            "ext": "jpeg",
+            "width": 1000,
+            "folder": "collection",
+            "height": 666
+        }
+    },
+    "App\\Models\\PostCategory": {
+        "image": {
+            "ext": "jpeg",
+            "width": 1300,
+            "folder": "post-category",
+            "height": 825
+        }
+    },
+    "App\\Models\\ProductCombo": {
+        "image": {
+            "ext": "jpeg",
+            "width": 270,
+            "folder": "product-combo",
+            "height": 345
+        }
+    },
+    "App\\Models\\CategoryGroup": {
+        "primary_image": {
+            "ext": "jpeg",
+            "width": 720,
+            "folder": "category-group",
+            "height": 720
+        }
+    },
+    "App\\Models\\PaymentOption": {
+        "logo": {
+            "ext": "jpeg",
+            "width": 100,
+            "folder": "payment-option",
+            "height": 100
+        }
+    }
+}

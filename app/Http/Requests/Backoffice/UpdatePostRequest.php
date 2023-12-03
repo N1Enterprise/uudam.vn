@@ -28,6 +28,7 @@ class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestCont
             'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
+            'display_on_frontend' => ['required', 'boolean']
         ];
     }
 
@@ -37,6 +38,7 @@ class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestCont
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolval($this->display_on_frontend),
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Common\ImageHelper;
+use App\Models\CategoryGroup;
 use App\Repositories\Contracts\CategoryGroupRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,10 @@ class CategoryGroupService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['primary_image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([CategoryGroup::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryGroupRepository->create($attributes);
         });
@@ -49,7 +53,10 @@ class CategoryGroupService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['primary_image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([CategoryGroup::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryGroupRepository->update($attributes, $id);
         });

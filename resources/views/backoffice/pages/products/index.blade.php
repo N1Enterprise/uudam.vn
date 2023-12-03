@@ -18,7 +18,6 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
-    @include('backoffice.partials.message')
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">

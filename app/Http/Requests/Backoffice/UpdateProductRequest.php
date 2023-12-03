@@ -19,6 +19,7 @@ class UpdateProductRequest extends BaseFormRequest implements UpdateProductReque
 
         return [
             'name' => ['required', 'max:255'],
+            'slug' => ['required', 'alpha-dash', 'max:255', Rule::unique(Product::class, 'slug')->ignore($product->getKey())],
             'code' => ['required', 'max:255', 'alpha-dash', Rule::unique(Product::class)->ignore($product->getKey())],
             'description' => ['nullable'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],

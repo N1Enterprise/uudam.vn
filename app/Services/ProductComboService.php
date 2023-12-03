@@ -3,22 +3,23 @@
 namespace App\Services;
 
 use App\Common\ImageHelper;
+use App\Models\ProductCombo;
 use App\Repositories\Contracts\ProductComboRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
 class ProductComboService extends BaseService
 {
-    public $includedProductRepository;
+    public $productComboRepository;
 
-    public function __construct(ProductComboRepositoryContract $includedProductRepository)
+    public function __construct(ProductComboRepositoryContract $productComboRepository)
     {
-        $this->includedProductRepository = $includedProductRepository;
+        $this->productComboRepository = $productComboRepository;
     }
 
     public function searchByAdmin($data = [])
     {
-        $result = $this->includedProductRepository
+        $result = $this->productComboRepository
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -27,7 +28,7 @@ class ProductComboService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->includedProductRepository->modelScopes(['active'])
+        return $this->productComboRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -35,33 +36,34 @@ class ProductComboService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([ProductCombo::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
-            return $this->includedProductRepository->create($attributes);
+            return $this->productComboRepository->create($attributes);
         });
-    }
-
-    protected function u($image)
-    {
-        return ImageHelper::make('catalog')->uploadImage($image);
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->includedProductRepository->findOrFail($id, $columns);
+        return $this->productComboRepository->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([ProductCombo::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
-            return $this->includedProductRepository->update($attributes, $id);
+            return $this->productComboRepository->update($attributes, $id);
         });
     }
 
     public function delete($id)
     {
-        return $this->includedProductRepository->delete($id);
+        return $this->productComboRepository->delete($id);
     }
 }

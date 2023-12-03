@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Common\ImageHelper;
 use App\Enum\ShippingRateTypeEnum;
+use App\Models\Carrier;
 use App\Repositories\Contracts\CarrierRepositoryContract;
 use App\Services\BaseService;
 use App\Vendors\Localization\Money;
@@ -45,7 +46,10 @@ class CarrierService extends BaseService
     {
         return DB::transaction(function() use ($attributes) {
             if ($logo = data_get($attributes, 'logo')) {
-                $attributes['logo'] = ImageHelper::make('shipping')->uploadImage($logo);
+                $attributes['logo'] = ImageHelper::make('shipping')
+                    ->hasOptimization()
+                    ->setConfigKey([Carrier::class, 'logo'])
+                    ->uploadImage($logo);
             }
 
             return $this->carrierRepository->create($attributes);
@@ -56,7 +60,10 @@ class CarrierService extends BaseService
     {
         return DB::transaction(function() use ($attributes, $id) {
             if ($logo = data_get($attributes, 'logo')) {
-                $attributes['logo'] = ImageHelper::make('shipping')->uploadImage($logo);
+                $attributes['logo'] = ImageHelper::make('shipping')
+                    ->hasOptimization()
+                    ->setConfigKey([Carrier::class, 'logo'])
+                    ->uploadImage($logo);
             }
 
             return $this->carrierRepository->update($attributes, $id);
