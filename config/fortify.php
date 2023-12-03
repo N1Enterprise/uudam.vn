@@ -106,7 +106,7 @@ return [
     ],
 
     'redirects' => [
-        'logout' => route('login'),
+        'logout' => '/bo/login',
     ],
 
     /*
