@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backoffice as Controllers;
 
+Route::redirect('/', '/bo/dashboard');
+
 Route::get('/dashboard', [Controllers\DashboardController::class, 'home'])->name('dashboard');
 
 Route::get('users', [Controllers\UserController::class, 'index'])->name('users.index')->middleware(['can:users.index']);
