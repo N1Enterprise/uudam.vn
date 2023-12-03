@@ -98,6 +98,21 @@
             },
         });
 
+        $('.product_combo_repeater').repeater({
+            initEmpty: false,
+            show: function() {
+                $(this).slideDown();
+                $(this).find('select.Product_Combo_Selector').selectpicker('refresh');
+            },
+            hide: function(deleteElement) {
+                if (confirm('Are you sure you want to delete this element?')) {
+                    $(this).slideUp(deleteElement);
+                }
+            },
+            ready: function(setIndexes) {
+            },
+        });
+
         FORM_MASTER.init();
     });
 

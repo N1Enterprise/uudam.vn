@@ -33,6 +33,15 @@ class PageService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
+    public function listByUser($data = [])
+    {
+        return $this->pageRepository
+            ->modelScopes(array_merge(['active', 'feDisplay'], data_get($data, 'scopes')))
+            ->with(data_get($data, 'with', []))
+            ->addSort('order', 'asc')
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function create($attributes = [])
     {
         return $this->pageRepository->create($attributes);
@@ -53,10 +62,10 @@ class PageService extends BaseService
         return $this->pageRepository->delete($id);
     }
 
-    public function findBySlug($slug, $data = [])
+    public function findBySlugByUser($slug, $data = [])
     {
         return $this->pageRepository
-            ->modelScopes(['active'])
+            ->modelScopes(['active', 'feDisplay'])
             ->selectColumns(data_get($data, 'columns', ['*']))
             ->firstWhere([
                 'slug' => $slug

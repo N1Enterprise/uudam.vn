@@ -1,9 +1,9 @@
-<div id="GalleryViewer-template--16599720820986__main" class="slider-component slider-mobile-gutter">
-    <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-template--16599720820986__main"> Skip to product information </a>
+<div class="slider-component slider-mobile-gutter">
+    <a class="skip-to-content-link button visually-hidden quick-add-hidden"> Skip to product information </a>
     <div data-owl-id="Slider_Product_Detail" data-owl-items="1" class="owl-carousel owl-theme product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile" role="presentation" >
         @if(!empty($mediaVideos))
         @foreach ($mediaVideos as $video)
-        <div class="product__media-item grid__item slider__slide" role="presentation">
+        <div data-media-modal-open data-owl-index="0" class="product__media-item grid__item slider__slide" role="presentation">
             <div data-media-modal-open class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden">
                 <span class="product__media-icon motion-reduce quick-add-hidden" aria-hidden="true">
                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,8 +29,8 @@
         @endif
 
         @foreach ($imageGalleries as $image)
-        <div class="product__media-item grid__item slider__slide is-active" data-media-id="template--16599720820986__main-23233169457304" role="presentation">
-            <div class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden" data-modal="#ProductModal-template--16599720820986__main">
+        <div data-media-modal-open data-owl-index="{{ empty($mediaVideos) ? $loop->index : $loop->index + 1 }}" class="product__media-item grid__item slider__slide is-active" role="presentation">
+            <div class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden">
                 <span class="product__media-icon motion-reduce quick-add-hidden" aria-hidden="true">
                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.66724 7.93978C4.66655 7.66364 4.88984 7.43922 5.16598 7.43853L10.6996 7.42464C10.9758 7.42395 11.2002 7.64724 11.2009 7.92339C11.2016 8.19953 10.9783 8.42395 10.7021 8.42464L5.16849 8.43852C4.89235 8.43922 4.66793 8.21592 4.66724 7.93978Z" fill="currentColor"></path>
@@ -39,9 +39,9 @@
                     </svg>
                 </span>
                 <div class="product__media media media--transparent gradient global-media-settings" style="padding-top: 100.0%;">
-                    <img data-image-index="{{ $loop->index }}" srcset="{{ $image }}" src="{{ $image }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" width="973" height="973" alt="">
+                    <img data-image-index="{{ $loop->index }}" srcset="{{ $image }}" src="{{ $image }}" sizes="(min-width: 1600px) 975px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" width="973" height="973" alt="{{ data_get($inventory, 'title') }}">
                 </div>
-                <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog" data-media-id="23233169457304">
+                <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog">
                     <span class="visually-hidden"> Open media 1 in modal </span>
                 </button>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Common\Cache;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 abstract class BaseService
 {
@@ -25,5 +26,15 @@ abstract class BaseService
     public function generateLockKey($key = null)
     {
         return is_array($key) ? implode('-', $key) : $key;
+    }
+
+    /**
+     * @param array $parameters
+     * @return static
+     * @throws BindingResolutionException
+     */
+    public static function make($parameters = [])
+    {
+        return app(static::class, $parameters);
     }
 }

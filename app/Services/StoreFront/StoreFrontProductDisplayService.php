@@ -3,6 +3,7 @@
 namespace App\Services\StoreFront;
 
 use App\Enum\ActivationStatusEnum;
+use App\Exceptions\ModelNotFoundException;
 use App\Services\BaseService;
 use App\Services\DisplayInventoryService;
 use App\Services\InventoryService;
@@ -42,10 +43,34 @@ class StoreFrontProductDisplayService extends BaseService
             ->scopeQuery(function($q) use ($slug) {
                 $q->where('slug', $slug);
             })
-            ->first();
+            ->first([
+                'available_from',
+                'condition',
+                'condition_note',
+                'featured',
+                'id',
+                'image',
+                'key_features',
+                'meta_description',
+                'meta_title',
+                'min_order_quantity',
+                'offer_end',
+                'offer_price',
+                'offer_start',
+                'product_id',
+                'sale_price',
+                'sku',
+                'slug',
+                'stock_quantity',
+                'title'
+            ]);
+
+        if (empty($inventory)) {
+            throw new ModelNotFoundException();
+        }
 
         $inventory->load([
-            'product' => function($q) use ($inventory) {
+            'product' => function($q) {
                 $q->select(['id', 'code', 'branch', 'description', 'media', 'created_at', 'suggested_relationships'])
                     ->withCount('inventories');
             },
@@ -56,8 +81,8 @@ class StoreFrontProductDisplayService extends BaseService
             'attributes' => function($q) {
                 $q->select('attributes.id', 'attributes.name', 'attributes.attribute_type', 'attributes.order');
             },
-            'includedProducts' => function($q) {
-                $q->select('included_products.id', 'included_products.name', 'included_products.image', 'included_products.sale_price', 'included_products.description');
+            'productCombos' => function($q) {
+                $q->select('product_combos.id', 'product_combos.name', 'product_combos.image', 'product_combos.sale_price', 'product_combos.description', 'product_combos.unit');
             }
         ]);
 

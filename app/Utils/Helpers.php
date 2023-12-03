@@ -2,7 +2,13 @@
 
 use App\Common\Money;
 use App\Enum\BaseEnum;
+use App\Enum\SystemSettingKeyEnum;
 use App\Enum\TimeZoneEnum;
+use App\Models\SystemSetting;
+use App\Vendors\Localization\Money as LocalizationMoney;
+use App\Vendors\Localization\SystemCurrency;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Request;
@@ -150,9 +156,9 @@ if (! function_exists('round_money')) {
 }
 
 if (! function_exists('format_price')) {
-    function format_price($money, $currency = null, $symbol = 'VND', $round = Money::ROUND_UP)
+    function format_price($money, $currencyCode = null)
     {
-        return Money::roundMoney($money, $currency, $round) . ' '. $symbol;
+        return LocalizationMoney::make($money, $currencyCode ?? SystemCurrency::getDefaultCurrency()->getKey())->format(0, true);
     }
 }
 
@@ -203,6 +209,7 @@ if (! function_exists('generate_combinations'))
 if (! function_exists('format_datetime')) {
     function format_datetime($datetime, $format = 'd/m/Y')
     {
+        if (empty($datetime)) return;
         return date($format, strtotime($datetime));
     }
 }
@@ -211,5 +218,54 @@ if (! function_exists('display_json_value')) {
     function display_json_value($value, $default = '{}')
     {
         return $value ? json_encode($value, JSON_PRETTY_PRINT) : $default;
+    }
+}
+
+if (! function_exists('image')) {
+    function image($image)
+    {
+        return $image ?? asset('frontend/assets/images/shared/undefined.jpeg');
+    }
+}
+
+if (! function_exists('get_file_version')) {
+    function get_file_version($file)
+    {
+        return "{$file}?v=" . date('YmdHis', filemtime(public_path($file)));
+    }
+}
+
+if (! function_exists('empty_model')) {
+    function empty_model($model)
+    {
+        if (! $model instanceof Model || empty($model)) {
+            return redirect()->route('fe.web.home');
+        }
+    }
+}
+
+if (! function_exists('disabled_input')) {
+    function disabled_input($bool)
+    {
+        if ($bool) {
+            return 'disabled';
+        }
+    }
+}
+
+if (! function_exists('frontend_image')) {
+    function frontend_image($image, $modelName = null)
+    {
+        // $params = [];
+
+        // if (! empty($modelName)) {
+        //     $imageConfiguration = SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get('App\\Models\\'.$modelName, []);
+        //     $params = Arr::only($imageConfiguration, ['width', 'height']);
+        //     $params = http_build_query($params);
+
+        // }
+
+        // return !empty($params) ? $image . '?' .$params : $image;
+        return $image;
     }
 }

@@ -2,13 +2,11 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Models\Product;
 use App\Repositories\Contracts\ProductRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class ProductService extends BaseService
 {
@@ -17,6 +15,7 @@ class ProductService extends BaseService
     public function __construct(ProductRepositoryContract $productRepository)
     {
         $this->productRepository = $productRepository;
+
     }
 
     public function searchByAdmin($data = [])
@@ -39,7 +38,11 @@ class ProductService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
-            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Product::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
             $attributes['media']['image'] = $this->convertMediaImage(data_get($attributes, 'media.image', []));
 
             $product = $this->productRepository->create($attributes);
@@ -63,7 +66,11 @@ class ProductService extends BaseService
             /** @var Product */
             $product = $this->show($id);
 
-            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Product::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
             $attributes['media']['image'] = $this->convertMediaImage(data_get($attributes, 'media.image', []));
 
             $product = $this->productRepository->update($attributes, $product->getKey());
@@ -79,21 +86,6 @@ class ProductService extends BaseService
         return $product->categories()->sync($categories);
     }
 
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->catalogDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
     protected function convertMediaImage($mediaImages = [])
     {
         $counter = 0;
@@ -101,13 +93,11 @@ class ProductService extends BaseService
         return array_map(function($image) use (&$counter) {
             return [
                 'order' => $counter++,
-                'path' => $this->convertImage($image),
+                'path'  => ImageHelper::make('catalog')
+                    ->hasOptimization()
+                    ->setConfigKey([Product::class, 'primary_image'])
+                    ->uploadImage($image),
             ];
         }, $mediaImages);
-    }
-
-    protected function catalogDisk()
-    {
-        return Storage::disk('catalog');
     }
 }

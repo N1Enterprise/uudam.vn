@@ -17,7 +17,6 @@ class CategoryGroup extends BaseModel
         'status',
         'meta_title',
         'meta_description',
-        'primary_image',
     ];
 
     public function categories()

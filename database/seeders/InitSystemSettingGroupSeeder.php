@@ -29,12 +29,6 @@ class InitSystemSettingGroupSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
-                'name' => 'Languages',
-                'order' => 2,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
                 'name' => 'Securities',
                 'order' => 3,
                 'created_at' => $now,
@@ -47,38 +41,8 @@ class InitSystemSettingGroupSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
-                'name' => 'Dynamic Forms',
-                'order' => 5,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name' => 'Third Party Services',
-                'order' => 6,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name' => 'Responsible Site',
-                'order' => 7,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name' => 'User Wallet Configuration',
-                'order' => 8,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
                 'name' => 'Email Setting',
                 'order' => 9,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'name' => 'Currencies',
-                'order' => 10,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
@@ -87,7 +51,13 @@ class InitSystemSettingGroupSeeder extends Seeder
                 'order' => 11,
                 'created_at' => $now,
                 'updated_at' => $now,
-            ]
+            ],
+            [
+                'name' => 'Image',
+                'order' => 12,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
         ];
 
         DB::table('system_setting_groups')->insert($groups);

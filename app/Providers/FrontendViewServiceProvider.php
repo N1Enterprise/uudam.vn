@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Enum\PageDisplayTypeEnum;
+use App\Classes\Contracts\UserAuthContract;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
 use App\Services\MenuGroupService;
@@ -45,9 +45,16 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('RECEIVE_NEW_POST_SETTING', SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []));
 
-            $view->with('PAGES_BELONGTO_MENU', app(PageService::class)->allAvailable(['columns' => ['id', 'name', 'slug'], 'scopes' => ['menu']]));
+            $view->with('PAGES_DISPLAY_IN_FOOTER', app(PageService::class)->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInFooter']]));
 
             $view->with('APP_MENU_GROUPS', $this->getAppMenus());
+
+            $view->with('SEARCH_SETTING', SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []));
+
+            /** @var UserAuthContract */
+            $userAuth = app(UserAuthContract::class);
+
+            $view->with('AUTHENTICATED_USER', optional($userAuth->user())->only(['id', 'email', 'birthday', 'name', 'phone_number']));
         });
     }
 

@@ -63,11 +63,14 @@ class ProductController extends BaseController
         $product = $this->productService->show($id, ['with' => 'categories']);
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
-        $categoryRelatedProducts = $this->categoryService
-            ->allAvailable(['with' => 'products', 'columns' => ['id', 'name']])
-            ->filter(fn($category) => !$category->products->isEmpty());
 
-        return view('backoffice.pages.products.edit', compact('product', 'productTypeLabels', 'categoryGroups', 'categoryRelatedProducts'));
+        $relatedInventories = $this->inventoryService->allAvailable(['columns' => ['id', 'title']]);
+
+        $categoryRelatedPosts = $this->postCategoryService
+            ->allAvailable(['with' => ['posts'], 'columns' => ['id', 'name']])
+            ->filter(fn($category) => !$category->posts->isEmpty());
+
+        return view('backoffice.pages.products.edit', compact('product', 'productTypeLabels', 'categoryGroups', 'relatedInventories', 'categoryRelatedPosts'));
     }
 
     public function store(StoreProductRequestContract $request)

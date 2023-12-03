@@ -18,7 +18,6 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
-    @include('backoffice.partials.message')
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
@@ -174,7 +173,7 @@
                         <a
                             href="${productRoute}"
                             title="${data.name}"
-                            class="d-inline-block" target="_blank" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;"
+                            class="d-inline-block" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;"
                         >${data.name ? '(' + data.id + ')' + data.name : 'N/A'}</a>
                     </b>
                 </div>

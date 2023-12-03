@@ -43,11 +43,11 @@ class RoleService extends BaseService
                 'products.update',
                 'products.delete',
             ],
-            'included-products' => [
-                'included-products.index',
-                'included-products.store',
-                'included-products.update',
-                'included-products.delete',
+            'product-combos' => [
+                'product-combos.index',
+                'product-combos.store',
+                'product-combos.update',
+                'product-combos.delete',
             ],
             'attributes' => [
                 'attributes.index',
@@ -69,6 +69,31 @@ class RoleService extends BaseService
                 'inventories.delete',
             ],
         ],
+        'orders' => [
+            'orders.index',
+            'orders.manage',
+        ],
+        'carts' => [
+            'carts.index',
+            'carts.manage',
+        ],
+        'payments' => [
+            'payment-providers' => [
+                'payment-providers.index',
+                'payment-providers.store',
+                'payment-providers.update',
+            ],
+            'payment-options' => [
+                'payment-options.index',
+                'payment-options.store',
+                'payment-options.update',
+            ],
+            'deposit-transactions' => [
+                'deposit-transactions.index',
+                'deposit-transactions.store',
+                'deposit-transactions.update',
+            ],
+        ],
         'systems' => [
             'system-settings' => [
                 'system-settings.index',
@@ -79,8 +104,9 @@ class RoleService extends BaseService
                 'system-settings.delete',
                 'system-settings.clear-cache',
                 'system-settings.import',
-                'system-settings.export'
+                'system-settings.export',
             ],
+            'system-currencies.manage',
         ],
         'admin-users' => [
             'admins' => [
@@ -143,6 +169,36 @@ class RoleService extends BaseService
                 'collections.store',
                 'collections.update',
                 'collections.delete',
+            ],
+        ],
+        'shippings' => [
+            'carriers' => [
+                'carriers.index',
+                'carriers.store',
+                'carriers.update',
+            ],
+            'shipping-zones' => [
+                'shipping-zones.index',
+                'shipping-zones.store',
+                'shipping-zones.update',
+            ],
+            'shipping-rates' => [
+                'shipping-rates.index',
+                'shipping-rates.store',
+                'shipping-rates.update',
+                'shipping-rates.delete',
+            ],
+        ],
+        'localizations' => [
+            'countries' => [
+                'countries.index',
+                'countries.store',
+                'countries.update',
+            ],
+            'currencies' => [
+                'currencies.index',
+                'currencies.store',
+                'currencies.update',
             ],
         ],
         'utilities' => [

@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Enum\ActivationStatusEnum;
+use App\Models\PostCategory;
 use App\Repositories\Contracts\PostCategoryRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class PostCategoryService extends BaseService
 {
@@ -58,7 +58,10 @@ class PostCategoryService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('utility')
+                ->hasOptimization()
+                ->setConfigKey([PostCategory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
             return $this->postCategoryRepository->create($attributes);
         });
@@ -72,7 +75,10 @@ class PostCategoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('utility')
+                ->hasOptimization()
+                ->setConfigKey([PostCategory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
             return $this->postCategoryRepository->update($attributes, $id);
         });
@@ -81,25 +87,5 @@ class PostCategoryService extends BaseService
     public function delete($id)
     {
         return $this->postCategoryRepository->delete($id);
-    }
-
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->utilityDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->utilityDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
-    protected function utilityDisk()
-    {
-        return Storage::disk('utility');
     }
 }

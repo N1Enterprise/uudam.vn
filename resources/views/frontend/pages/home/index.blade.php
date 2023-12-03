@@ -15,49 +15,49 @@
 @endpush
 
 @section('content_body')
-    <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-banner')
-    </section>
+<section class="shopify-section section">
+    @include('frontend.pages.home.partials.section-banner')
+</section>
 
-    <section class="shopify-section section">
-        <div class="multicolumn color-background-1 gradient background-primary no-heading">
-            @if(! $popularInventories->isEmpty())
-            @include('frontend.pages.home.partials.section-most-popular-items')
-            @endif
-
-            @if(! $featuredCollections->isEmpty())
-            @include('frontend.pages.home.partials.section-catalog-collection')
-            @endif
-        </div>
-    </section>
-
-    <section class="shopify-section section">
-        @if(! $displayOnFrontendCollections->isEmpty())
-        @include('frontend.pages.home.partials.section-our-collection')
+<section class="shopify-section section">
+    <div class="multicolumn color-background-1 gradient background-primary no-heading">
+        @if(! $popularInventories->isEmpty())
+        @include('frontend.pages.home.partials.section-most-popular-items')
         @endif
-    </section>
 
-    <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-you-may-like')
-    </section>
-
-    <section class="shopify-section section">
-        @if(! empty($videoOutsideUI))
-        @include('frontend.pages.home.partials.section-featured-videos')
+        @if(! $featuredCollections->isEmpty())
+        @include('frontend.pages.home.partials.section-catalog-collection')
         @endif
-    </section>
+    </div>
+</section>
 
-    <section class="shopify-section section">
-        @if(! $postCategories->isEmpty())
-        @include('frontend.pages.home.partials.section-blogs')
-        @endif
-    </section>
-
-    @if(!empty($PAGE_HIGHLIGHT_INFORMATION))
-    <section class="shopify-section section">
-        @include('frontend.pages.home.partials.section-our-highlights')
-    </section>
+<section class="shopify-section section">
+    @if(! $displayOnFrontendCollections->isEmpty())
+    @include('frontend.pages.home.partials.section-our-collection')
     @endif
+</section>
+
+<section class="shopify-section section">
+    @include('frontend.pages.home.partials.section-you-may-like')
+</section>
+
+<section class="shopify-section section">
+    @if(! empty($videoOutsideUI))
+    @include('frontend.pages.home.partials.section-featured-videos')
+    @endif
+</section>
+
+<section class="shopify-section section">
+    @if(! $postCategories->isEmpty())
+    @include('frontend.pages.home.partials.section-blogs')
+    @endif
+</section>
+
+@if(!empty($PAGE_HIGHLIGHT_INFORMATION))
+<section class="shopify-section section">
+    @include('frontend.pages.home.partials.section-our-highlights')
+</section>
+@endif
 @endsection
 
 @push('js_pages')

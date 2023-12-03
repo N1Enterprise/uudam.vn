@@ -9,7 +9,20 @@ use App\Http\Requests\Frontend as Requests;
 class FrontendFormRequestServiceProvider extends ServiceProvider
 {
     public $singletons = [
+        // Authentication
+        Contracts\UserSignupRequestContract::class => Requests\UserSignupRequest::class,
+        Contracts\UserSigninRequestContract::class => Requests\UserSigninRequest::class,
+        Contracts\UserUpdateInfoRequestContract::class => Requests\UserUpdateInfoRequest::class,
+        Contracts\UserPasswordRequestContract::class => Requests\UserPasswordRequest::class,
+
+        // Catalog
         Contracts\StoreUserProductReviewRequestContract::class => Requests\StoreUserProductReviewRequest::class,
         Contracts\StoreUserSubscribeRequestContract::class => Requests\StoreUserSubscribeRequest::class,
+
+        // Cart
+        Contracts\UserAddToCartRequestContract::class => Requests\UserAddToCartRequest::class,
+
+        // Order
+        Contracts\UserOrderRequestContract::class => Requests\UserOrderRequest::class,
     ];
 }

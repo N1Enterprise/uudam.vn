@@ -5,7 +5,7 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
-use App\Models\IncludedProduct;
+use App\Models\ProductCombo;
 use App\Models\Inventory;
 use App\Models\Product;
 use App\Services\InventoryService;
@@ -51,8 +51,9 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                     'date',
                     'after:offer_start'
                 ],
-                'included_products' => ['nullable', 'array'],
-                'included_products.*' => ['required', 'integer', Rule::exists(IncludedProduct::class, 'id')],
+                'product_combos' => ['nullable', 'array'],
+                'product_combos.*.product_combo_id' => ['required', Rule::exists(Inventory::class, 'id')],
+                'product_combos.*.quantity' => ['required', 'integer'],
             ],
             $this->defineSimpleRules($inventory) ?? []
         );
@@ -67,8 +68,18 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            'included_products' => array_filter(array_map('intval', $this->included_products ?? [])),
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray(),
+            'product_combos' => collect($this->product_combos ?? [])
+                ->filter(function($item) {
+                    return data_get($item, 'product_combo_id') && data_get($item, 'quantity') > 0;
+                })
+                ->map(function($item) {
+                    return [
+                        'product_combo_id' => (int) data_get($item, 'product_combo_id'),
+                        'quantity' => (int) data_get($item, 'quantity')
+                    ];
+                })
+                ->toArray()
         ]);
     }
 
@@ -76,7 +87,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
     {
         return [
             'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
-            'sku' => ['required', 'distinct', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
+            'sku' => ['required', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
             'purchase_price' => ['nullable', 'numeric', 'gt:0'],
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'offer_price' => ['nullable', 'numeric', 'gt:0'],

@@ -15,6 +15,7 @@ class Product extends BaseModel
 
     protected $fillable = [
         'name',
+        'slug',
         'code',
         'branch',
         'description',

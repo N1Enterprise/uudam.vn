@@ -128,8 +128,8 @@
                                     <label for="">{{ __('Available From') }}
                                         <i
                                             data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
                                             data-title="The date when the stock will be available. Default = immediately"
+                                            class="flaticon-questions-circular-button"
                                         ></i>
                                     </label>
                                     <input
@@ -192,6 +192,7 @@
                                         name="offer_start"
                                         value="{{ old('offer_start', $inventory->offer_start) }}"
                                         required
+                                        disabled
                                     >
                                     @error('offer_start')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -212,7 +213,7 @@
                                         class="form-control @error('offer_end') is-invalid @enderror"
                                         name="offer_end"
                                         value="{{ old('offer_end', $inventory->offer_end) }}"
-                                        required
+                                        disabled
                                     >
                                     @error('offer_end')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -224,20 +225,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- @if($hasVariant)
-            <div class="d-none">
-                @foreach($combinations as $combination)
-                    @php $parentIndex = $loop->index; @endphp
-
-                    @foreach($combination as $attrId => $attrValue)
-                        <input type="hidden" name="variants[attribute][{{ $attrId }}]" value="{{ key($attrValue) }}">
-                        {{ $attributes[$attrId] .' : '. current($attrValue) }}
-                        {{ ($attrValue !== end($combination))?'; ':'' }}
-                    @endforeach
-                @endforeach
-            </div>
-        @endif --}}
 
         @if($hasVariant && empty($inventory->id))
         <div class="row">
@@ -342,6 +329,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="k-portlet">
+                    @if(!empty($inventory->id))
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
                             <h3 class="k-portlet__head-title">{{ __('PRODUCTS COMBO') }}</h3>
@@ -349,25 +337,9 @@
                     </div>
 
                     <div class="k-portlet__body">
-                        <div class="form-group">
-                            <label>{{ __('Included Products') }}</label>
-                            <select data-actions-box="true" name="included_products[]" title="--{{ __('Select Included Products') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Included_Product_Selector" multiple data-selected-text-format="count > 5">
-                                @foreach($includedProducts as $product)
-                                <option
-                                    {{ in_array($product->id, old('included_products', optional(optional($inventory->includedProducts)->pluck('id'))->toArray() ?? [])) ? 'selected' : '' }}
-                                    data-tokens="{{ $product->id }} | {{ $product->name }}"
-                                    data-subtext="{{ $product->id }}"
-                                    data-included-product-id="{{ $product->id }}"
-                                    data-included-product-name="{{ $product->name }}"
-                                    value="{{ $product->id }}">{{ $product->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group Included_Product_Allowed_Holder mb-0">
-                            <div class="Included_Product_Holder_Content">
-                            </div>
-                        </div>
+                        @include('backoffice.pages.inventories.partials.product-combo')
                     </div>
+                    @endif
 
                     <div class="k-portlet__foot">
                         <div class="k-form__actions d-flex justify-content-end">
@@ -388,7 +360,7 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script>
 @include('backoffice.pages.inventories.js-pages.handle')
-@include('backoffice.pages.inventories.js-pages.included-products')
+@include('backoffice.pages.inventories.js-pages.product-combos')
 <script>
     $(document).ready(function() {
         FORM_MEDIA_IMAGE_PATH.triggerChange();

@@ -210,6 +210,9 @@ var fscommon = {
 			self.initDateRangePicker($(this), config);
 		});
 	},
+    formatPrice: function(money, symbol = 'VND') {
+        return this.formatNumber(money, '.', ',') + ' ' + symbol;
+    },
 	formatMoney: function(value, currency = null, includeSymbol = true, fixedDecimals = true, minDecimals = 2, codeAsSymbol = true) {
 		if (value == 'N/A' || isEmpty(value)) {
 			return 'N/A';

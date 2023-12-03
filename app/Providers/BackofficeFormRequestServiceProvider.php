@@ -19,7 +19,9 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\UpdateRoleRequestContract::class => Requests\UpdateRoleRequest::class,
 
         Contracts\UpdateUserRequestContract::class => Requests\UpdateUserRequest::class,
+        Contracts\UpdateUserActionLogRequestContract::class => Requests\UpdateUserActionLogRequest::class,
 
+        // System Setting
         Contracts\UpdateSystemSettingRequestContract::class => Requests\UpdateSystemSettingRequest::class,
         Contracts\StoreSystemSettingGroupRequestContract::class => Requests\StoreSystemSettingGroupRequest::class,
         Contracts\StoreSystemSettingKeyRequestContract::class => Requests\StoreSystemSettingKeyRequest::class,
@@ -27,6 +29,10 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\ImportSystemSettingRequestContract::class => Requests\ImportSystemSettingRequest::class,
         Contracts\UpdateSystemSettingGroupRequestContract::class => Requests\UpdateSystemSettingGroupRequest::class,
 
+        Contracts\StoreSystemCurrencyRequestContract::class => Requests\StoreSystemCurrencyRequest::class,
+        Contracts\UpdateSystemCurrencyRequestContract::class => Requests\UpdateSystemCurrencyRequest::class,
+
+        // Catalog
         Contracts\StoreCategoryGroupRequestContract::class => Requests\StoreCategoryGroupRequest::class,
         Contracts\UpdateCategoryGroupRequestContract::class => Requests\UpdateCategoryGroupRequest::class,
 
@@ -81,9 +87,32 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreProductReviewRequestContract::class => Requests\StoreProductReviewRequest::class,
         Contracts\UpdateProductReviewRequestContract::class => Requests\UpdateProductReviewRequest::class,
 
-        Contracts\StoreIncludedProductRequestContract::class => Requests\StoreIncludedProductRequest::class,
-        Contracts\UpdateIncludedProductRequestContract::class => Requests\UpdateIncludedProductRequest::class,
+        Contracts\StoreProductComboRequestContract::class => Requests\StoreProductComboRequest::class,
+        Contracts\UpdateProductComboRequestContract::class => Requests\UpdateProductComboRequest::class,
 
         Contracts\UploadFileManagerRequestContract::class => Requests\UploadFileManagerRequest::class,
+
+        // Shipping
+        Contracts\StoreCarrierRequestContract::class => Requests\StoreCarrierRequest::class,
+        Contracts\UpdateCarrierRequestContract::class => Requests\UpdateCarrierRequest::class,
+
+        Contracts\StoreShippingZoneRequestContract::class => Requests\StoreShippingZoneRequest::class,
+        Contracts\UpdateShippingZoneRequestContract::class => Requests\UpdateShippingZoneRequest::class,
+
+        Contracts\StoreShippingRateRequestContract::class => Requests\StoreShippingRateRequest::class,
+        Contracts\UpdateShippingRateRequestContract::class => Requests\UpdateShippingRateRequest::class,
+
+        // Payment
+        Contracts\StorePaymentProviderRequestContract::class => Requests\StorePaymentProviderRequest::class,
+        Contracts\UpdatePaymentProviderRequestContract::class => Requests\UpdatePaymentProviderRequest::class,
+
+        Contracts\StorePaymentOptionRequestContract::class => Requests\StorePaymentOptionRequest::class,
+        Contracts\UpdatePaymentOptionRequestContract::class => Requests\UpdatePaymentOptionRequest::class,
+
+        Contracts\DeclineDepositTransactionRequestContract::class => Requests\DeclineDepositTransactionRequest::class,
+        Contracts\ApproveDepositTransactionRequestContract::class => Requests\ApproveDepositTransactionRequest::class,
+
+        // Order
+        Contracts\UpdateOrderStatusRequestContract::class => Requests\UpdateOrderStatusRequest::class,
     ];
 }

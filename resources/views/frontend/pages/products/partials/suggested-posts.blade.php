@@ -1,10 +1,10 @@
 <div class="blog color-background-1 gradient">
-    <div class="page-width-desktop isolate section-template-padding">
+    <div class="page-width section-template__main-padding">
         <div class="title-wrapper-with-link title-wrapper--self-padded-tablet-down title-wrapper--no-top-margin" style="margin-bottom: 10px;">
             <h2 class="blog__title h2">Bài Viết Liên Quan</h2>
         </div>
         <div class="slider-mobile-gutter">
-            <div class="blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" data-slick-config='{"id": "suggested_posts", "speed": 300, "slidesToShow": 3, "slidesToScroll": 3, "infinite": true, "lazyLoad": "ondemand"}' style="margin: 0 -5px;">
+            <div class="owl-carousel owl-theme blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" style="margin: 0 0;" data-owl-id="Inventory_Related_Post" data-owl-items="3">
                 @foreach ($suggestedPosts as $post)
                 <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
                     <div class="card-wrapper underline-links-hover">
@@ -18,16 +18,14 @@
                                 <div class="card__content">
                                     <div class="card__information">
                                         <h3 class="card__heading h2">
-                                            <a href="{{ route('fe.web.posts.show', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
+                                            <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
                                         </h3>
                                         <div class="article-card__info caption-with-letter-spacing h5">
                                             <span class="circle-divider">
-                                                <time datetime="{{ $post->post_at }}">{{ date('d/m/Y', strtotime($post->post_at)) }}</time>
+                                                <time datetime="{{ $post->post_at }}">{{ format_datetime($post->post_at) }}</time>
                                             </span>
                                         </div>
-                                        <p class="article-card__excerpt rte-width">
-                                            <div class="editorjs-parser" data-editorjs-content='@json($post->description)'></div>
-                                        </p>
+                                        <p class="article-card__excerpt rte-width">{{ $post->description }}</p>
                                         <div class="article-card__footer"></div>
                                     </div>
                                 </div>
@@ -35,16 +33,14 @@
                             <div class="card__content">
                                 <div class="card__information">
                                     <h3 class="card__heading h2">
-                                        <a href="{{ route('fe.web.posts.show', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
+                                        <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
                                     </h3>
                                     <div class="article-card__info caption-with-letter-spacing h5">
                                         <span class="circle-divider">
-                                            <time datetime="{{ $post->post_at }}">{{ date('d/m/Y', strtotime($post->post_at)) }}</time>
+                                            <time datetime="{{ $post->post_at }}">{{ format_datetime($post->post_at) }}</time>
                                         </span>
                                     </div>
-                                    <p class="article-card__excerpt rte-width">
-                                        <div class="editorjs-parser" data-editorjs-content='@json($post->description)'></div>
-                                    </p>
+                                    <p class="article-card__excerpt rte-width">{{ $post->description }}</p>
                                     <div class="article-card__footer"></div>
                                 </div>
                             </div>
@@ -54,12 +50,12 @@
                 @endforeach
             </div>
             <div class="slider-buttons no-js-hidden medium-hide">
-                <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left" data-slick-id="suggested_posts" data-slick-button-prev>
+                <button data-owl-prev="Inventory_Related_Post" type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left">
                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
                     </svg>
                 </button>
-                <button type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right" data-slick-id="suggested_posts" data-slick-button-next>
+                <button data-owl-next="Inventory_Related_Post" type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right">
                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
                     </svg>

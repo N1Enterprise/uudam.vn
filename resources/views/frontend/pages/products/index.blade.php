@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
 @endpush
 
 @section('page_title')
@@ -45,6 +46,31 @@
 <meta name="twitter:title" content="{{ $inventory->meta_title }}">
 <meta name="twitter:description" content="{{ $inventory->meta_description }}">
 @endsection
+
+@push('style_pages')
+<style>
+[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
+    padding: 5px!important;
+    border: none;
+}
+
+[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
+    border: 2px solid #000;
+}
+.confirm-buy-with-combo {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 4px 9px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    width: 173px;
+    justify-content: space-between;
+}
+</style>
+@endpush
 
 @section('content_body')
 <section class="shopify-section section">
@@ -116,4 +142,14 @@
 @include('frontend.pages.products.js-pages.index')
 <script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script>
+    $('.thumbnail-list__item').on('click', function() {
+        const index = $(this).attr('data-owl-index');
+
+        $('[data-owl-id="Slider_Product_Detail"]').trigger('to.owl.carousel', index);
+
+        $('.thumbnail-list__item').find('button.thumbnail').removeAttr('aria-current');
+        $(this).find('button.thumbnail').attr('aria-current', 'true');
+    });
+</script>
 @endpush

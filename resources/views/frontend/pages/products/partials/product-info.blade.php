@@ -1,4 +1,4 @@
-<div class="product__info-container product__info-container--sticky">
+<div class="product__info-container product__info-container--sticky" data-inventory='@json($inventory)'>
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
         <a href="/products/teaching-garden-buddha-statue" class="product__title">
@@ -14,7 +14,7 @@
             <div class="price__container">
                 <div class="price__regular">
                     <span class="visually-hidden visually-hidden--inline">Giá Bán</span>
-                    <span class="price-item price-item--regular" data-sale-price>{{ format_price($inventory->sale_price) }}</span>
+                    <span class="price-item price-item--regular" data-price-value="{{ $inventory->sale_price }}" data-sale-price>{{ format_price($inventory->sale_price) }}</span>
                 </div>
             </div>
             <span class="badge price__badge-sale color-accent-2">Giảm Giá</span>
@@ -22,31 +22,41 @@
         </div>
     </div>
     <div>
-        <form method="post" action="/cart/add" accept-charset="UTF-8" class="installment caption-large">
+        <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="installment caption-large">
             <input type="hidden" name="form_type" value="product">
             <input type="hidden" name="utf8" value="✓">
             <input type="hidden" name="id" data-inventory-id value="{{ $inventory->id }}">
             <input type="hidden" name="product-id" value="{{ optional($inventory->product)->id }}">
         </form>
     </div>
-    <div class="product-form__input product-form__quantity">
-        <label class="form__label">{{ __('Số Lượng') }}</label>
-        <quantity-input class="quantity">
-            <button class="quantity__button no-js-hidden" name="minus" type="button">
-                <span class="visually-hidden">Decrease quantity for Teaching Garden Buddha Statue</span>
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
-                </svg>
-            </button>
-            <input data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
-            <button class="quantity__button no-js-hidden" name="plus" type="button">
-                <span class="visually-hidden">Increase quantity for Teaching Garden Buddha Statue</span>
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
-                </svg>
-            </button>
-        </quantity-input>
+
+    <div class="inventory-price-area">
+        <div class="product-form__input product-form__quantity">
+            <label class="form__label">{{ __('Số Lượng') }}</label>
+            <quantity-input class="quantity">
+                <button data-quantity-decrease="product" class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
+                    <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
+                    </svg>
+                </button>
+                <input data-quantity-input="product" data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
+                <button data-quantity-increase="product" class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
+                    <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
+                    </svg>
+                </button>
+            </quantity-input>
+        </div>
+        <div>
+            <div class="inventory-price">
+                <label for="" data-total-cart-label>Tạm tính</label>:
+                <b class="total-cart" data-total-cart-price>{{ format_price($inventory->sale_price) }}</b>
+            </div>
+        </div>
     </div>
+
     <div>
         <product-form class="product-form">
             <div id="inventory_variants" data-variants='@json($variants)'></div>
@@ -59,6 +69,7 @@
                 </svg>
                 <span class="product-form__error-message"></span>
             </div>
+            @if(count($attributes))
             <div class="product-attributes">
                 @foreach ($attributes as $attribute)
                 <div class="attributes-item">
@@ -87,13 +98,21 @@
                 </div>
                 @endforeach
             </div>
+            @endif
 
-            @include('frontend.pages.products.partials.included-products')
+            @include('frontend.pages.products.partials.product-combos')
 
-            <form method="post" action="/cart/add" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form">
+            @if(empty($AUTHENTICATED_USER))
+            <p>Bạn cần <a id="Add_Cart_Required_Login" href="?overlay=signin" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> trước khi mua hàng</p>
+            @endif
+
+            <form method="post" action="" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="id" value="{{ data_get($inventory, 'product.id') }}">
+                <input type="hidden" name="product_id" data-value="{{ data_get($inventory, 'product.id') }}" value="{{ data_get($inventory, 'product.id') }}">
+                <input type="hidden" name="inventory_id" value="{{ data_get($inventory, 'id') }}">
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="has_combo" value="0">
                 <div class="product-form__buttons">
                     <button type="submit" name="add" class="product-form__submit button button--full-width button--primary">
                         <span>Thêm Vào Giỏ Hàng</span>
@@ -106,11 +125,9 @@
                     </div>
                 </div>
             </form>
+
         </product-form>
     </div>
-    {{-- <div class="product__description rte quick-add-hidden">
-        <div class="editorjs-parser" data-editorjs-content='@json(data_get($inventory, 'product.description'))'></div>
-    </div> --}}
     <share-button class="share-button quick-add-hidden">
         <details>
             <summary class="share-button__button" role="button" aria-expanded="false">
@@ -118,7 +135,7 @@
                     <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"></path>
-                </svg>Share
+                </svg>Chia Sẻ
             </summary>
             <div class="share-button__fallback motion-reduce">
                 <div class="field">

@@ -6,7 +6,7 @@
                 <div class="multicolumn-card content-container">
                     <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width multicolumn-card-spacing">
                         <div class="media media--transparent media--adapt" style="padding-bottom: 59.78043912175649%;">
-                            <img class="multicolumn-card__image" srcset="{{ data_get($collection, 'primary_image') }}" src="{{ data_get($collection, 'primary_image') }}" sizes="(min-width: 990px) 550px, (min-width: 750px) 550px, calc(100vw - 30px)" alt="{{ data_get($collection, 'name') }}" height="2000" width="3000" loading="lazy">
+                            <img class="multicolumn-card__image image-lazy" srcset="{{ data_get($collection, 'primary_image') }}" src="{{ data_get($collection, 'primary_image') }}" sizes="(min-width: 990px) 550px, (min-width: 750px) 550px, calc(100vw - 30px)" alt="{{ data_get($collection, 'name') }}" height="2000" width="3000" loading="lazy">
                         </div>
                     </div>
                     <div class="multicolumn-card__info">

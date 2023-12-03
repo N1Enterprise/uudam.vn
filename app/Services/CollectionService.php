@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
+use App\Models\Collection;
 use App\Repositories\Contracts\CollectionRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class CollectionService extends BaseService
 {
@@ -57,8 +57,15 @@ class CollectionService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
-            $attributes['cover_image'] = $this->convertImage(data_get($attributes, 'cover_image'));
+            $imageHelper = ImageHelper::make('appearance')->hasOptimization();
+
+            $attributes['primary_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
+            $attributes['cover_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'cover_image'])
+                ->uploadImage(data_get($attributes, 'cover_image'));
 
             $collection = $this->collectionRepository->create($attributes);
 
@@ -78,8 +85,15 @@ class CollectionService extends BaseService
         return DB::transaction(function() use ($attributes, $id) {
             $collection = $this->show($id);
 
-            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
-            $attributes['cover_image'] = $this->convertImage(data_get($attributes, 'cover_image'));
+            $imageHelper = ImageHelper::make('appearance')->hasOptimization();
+
+            $attributes['primary_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
+
+            $attributes['cover_image'] = $imageHelper
+                ->setConfigKey([Collection::class, 'cover_image'])
+                ->uploadImage(data_get($attributes, 'cover_image'));
 
             $collection = $this->collectionRepository->update($attributes, $collection->getKey());
 
@@ -90,25 +104,5 @@ class CollectionService extends BaseService
     public function delete($id)
     {
         return $this->collectionRepository->delete($id);
-    }
-
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->appearanceDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->appearanceDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
-    protected function appearanceDisk()
-    {
-        return Storage::disk('appearance');
     }
 }

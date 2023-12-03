@@ -10,6 +10,7 @@ Route::get('users/{id}', [Controllers\UserController::class, 'edit'])->name('use
 Route::put('users/{id}', [Controllers\UserController::class, 'update'])->name('users.update')->middleware(['can:users.update']);
 Route::post('users/{id}/actions/deactivate', [Controllers\UserController::class, 'updateUserAction'])->name('users.action.deactivate')->middleware(['can:users.action']);
 Route::post('users/{id}/actions/active', [Controllers\UserController::class, 'updateUserAction'])->name('users.action.active')->middleware(['can:users.action']);
+Route::put('users/{id}/set-test-user', [Controllers\UserController::class, 'setTestUser'])->name('users.set-test-user')->middleware(['can:users.action']);
 
 /* ======================== ADMIN USER ======================== */
 Route::get('admins', [Controllers\AdminController::class, 'index'])->name('admins.index')->middleware(['can:admins.index']);
@@ -30,6 +31,13 @@ Route::put('roles/{id}', [Controllers\RoleController::class, 'update'])->name('r
 Route::get('system-settings', [Controllers\SystemSettingController::class, 'index'])->name('system-settings.index')->middleware(['can:system-settings.index']);
 Route::get('system-settings/{id}/edit', [Controllers\SystemSettingController::class, 'edit'])->name('system-settings.edit')->middleware(['can:system-settings.update']);
 Route::post('system-settings/{id}/update', [Controllers\SystemSettingController::class, 'update'])->name('system-settings.update')->middleware(['can:system-settings.update']);
+
+Route::get('system-currencies', [Controllers\SystemCurrencyController::class, 'index'])->name('system-currencies.index')->middleware(['can:system-currencies.manage']);
+Route::get('system-currencies/create', [Controllers\SystemCurrencyController::class, 'create'])->name('system-currencies.create')->middleware(['can:system-currencies.manage']);
+Route::post('system-currencies', [Controllers\SystemCurrencyController::class, 'store'])->name('system-currencies.store')->middleware(['can:system-currencies.manage']);
+Route::get('system-currencies/{key}', [Controllers\SystemCurrencyController::class, 'edit'])->name('system-currencies.edit')->middleware(['can:system-currencies.manage']);
+Route::put('system-currencies/{key}', [Controllers\SystemCurrencyController::class, 'update'])->name('system-currencies.update')->middleware(['can:system-currencies.manage']);
+
 
 /* ======================== CATALOG ======================== */
 Route::get('category-groups', [Controllers\CategoryGroupController::class, 'index'])->name('category-groups.index')->middleware(['can:category-groups.index']);
@@ -154,14 +162,60 @@ Route::get('product-reviews/{id}', [Controllers\ProductReviewController::class, 
 Route::put('product-reviews/{id}', [Controllers\ProductReviewController::class, 'update'])->name('product-reviews.update')->middleware(['can:product-reviews.update']);
 Route::delete('product-reviews/{id}', [Controllers\ProductReviewController::class, 'destroy'])->name('product-reviews.delete')->middleware(['can:product-reviews.delete']);
 
-Route::get('included-products', [Controllers\IncludedProductController::class, 'index'])->name('included-products.index')->middleware(['can:included-products.index']);
-Route::get('included-products/create', [Controllers\IncludedProductController::class, 'create'])->name('included-products.create')->middleware(['can:included-products.store']);
-Route::post('included-products', [Controllers\IncludedProductController::class, 'store'])->name('included-products.store')->middleware(['can:included-products.store']);
-Route::get('included-products/{id}', [Controllers\IncludedProductController::class, 'edit'])->name('included-products.edit')->middleware(['can:included-products.update']);
-Route::put('included-products/{id}', [Controllers\IncludedProductController::class, 'update'])->name('included-products.update')->middleware(['can:included-products.update']);
-Route::delete('included-products/{id}', [Controllers\IncludedProductController::class, 'destroy'])->name('included-products.delete')->middleware(['can:included-products.delete']);
+Route::get('product-combos', [Controllers\ProductComboController::class, 'index'])->name('product-combos.index')->middleware(['can:product-combos.index']);
+Route::get('product-combos/create', [Controllers\ProductComboController::class, 'create'])->name('product-combos.create')->middleware(['can:product-combos.store']);
+Route::post('product-combos', [Controllers\ProductComboController::class, 'store'])->name('product-combos.store')->middleware(['can:product-combos.store']);
+Route::get('product-combos/{id}', [Controllers\ProductComboController::class, 'edit'])->name('product-combos.edit')->middleware(['can:product-combos.update']);
+Route::put('product-combos/{id}', [Controllers\ProductComboController::class, 'update'])->name('product-combos.update')->middleware(['can:product-combos.update']);
+Route::delete('product-combos/{id}', [Controllers\ProductComboController::class, 'destroy'])->name('product-combos.delete')->middleware(['can:product-combos.delete']);
 
 Route::post('file-manager/upload', [Controllers\FileManagerController::class, 'upload'])->name('file-manager.upload');
 
 Route::get('subscribers', [Controllers\SubscriberController::class, 'index'])->name('subscribers.index');
 
+/* ======================== LOCALIZATION ======================== */
+Route::get('countries', [Controllers\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
+Route::get('currencies', [Controllers\CurrencyController::class, 'index'])->name('currencies.index')->middleware(['can:currencies.index']);
+
+/* ======================== SHIPPINGS ======================== */
+Route::get('carriers', [Controllers\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
+Route::get('carriers/create', [Controllers\CarrierController::class, 'create'])->name('carriers.create')->middleware(['can:carriers.store']);
+Route::post('carriers', [Controllers\CarrierController::class, 'store'])->name('carriers.store')->middleware(['can:carriers.store']);
+Route::get('carriers/{id}', [Controllers\CarrierController::class, 'edit'])->name('carriers.edit')->middleware(['can:carriers.update']);
+Route::put('carriers/{id}', [Controllers\CarrierController::class, 'update'])->name('carriers.update')->middleware(['can:carriers.update']);
+
+Route::get('shipping-zones', [Controllers\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
+Route::get('shipping-zones/create', [Controllers\ShippingZoneController::class, 'create'])->name('shipping-zones.create')->middleware(['can:shipping-zones.store']);
+Route::post('shipping-zones', [Controllers\ShippingZoneController::class, 'store'])->name('shipping-zones.store')->middleware(['can:shipping-zones.store']);
+Route::get('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'edit'])->name('shipping-zones.edit')->middleware(['can:shipping-zones.update']);
+Route::put('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'update'])->name('shipping-zones.update')->middleware(['can:shipping-zones.update']);
+
+Route::get('shipping-rates', [Controllers\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
+Route::get('shipping-rates/create', [Controllers\ShippingRateController::class, 'create'])->name('shipping-rates.create')->middleware(['can:shipping-rates.store']);
+Route::post('shipping-rates', [Controllers\ShippingRateController::class, 'store'])->name('shipping-rates.store')->middleware(['can:shipping-rates.store']);
+Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'edit'])->name('shipping-rates.edit')->middleware(['can:shipping-rates.update']);
+Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
+Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
+
+/* ======================== PAYMENT ======================== */
+Route::get('payment-providers', [Controllers\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);
+Route::get('payment-providers/create', [Controllers\PaymentProviderController::class, 'create'])->name('payment-providers.create')->middleware(['can:payment-providers.store']);
+Route::post('payment-providers', [Controllers\PaymentProviderController::class, 'store'])->name('payment-providers.store')->middleware(['can:payment-providers.store']);
+Route::get('payment-providers/{id}', [Controllers\PaymentProviderController::class, 'edit'])->name('payment-providers.edit')->middleware(['can:payment-providers.update']);
+Route::put('payment-providers/{id}', [Controllers\PaymentProviderController::class, 'update'])->name('payment-providers.update')->middleware(['can:payment-providers.update']);
+
+Route::get('payment-options', [Controllers\PaymentOptionController::class, 'index'])->name('payment-options.index')->middleware(['can:payment-options.index']);
+Route::get('payment-options/create', [Controllers\PaymentOptionController::class, 'create'])->name('payment-options.create')->middleware(['can:payment-options.store']);
+Route::post('payment-options', [Controllers\PaymentOptionController::class, 'store'])->name('payment-options.store')->middleware(['can:payment-options.store']);
+Route::get('payment-options/{id}', [Controllers\PaymentOptionController::class, 'edit'])->name('payment-options.edit')->middleware(['can:payment-options.update']);
+Route::put('payment-options/{id}', [Controllers\PaymentOptionController::class, 'update'])->name('payment-options.update')->middleware(['can:payment-options.update']);
+
+Route::get('deposit-transactions', [Controllers\DepositTransactionController::class, 'index'])->name('deposit-transactions.index')->middleware(['can:deposit-transactions.index']);
+Route::get('deposit-transactions/{id}', [Controllers\DepositTransactionController::class, 'edit'])->name('deposit-transactions.edit')->middleware(['can:deposit-transactions.update']);
+
+/* ======================== ORDER ======================== */
+Route::get('orders', [Controllers\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
+Route::get('orders/{id}', [Controllers\OrderController::class, 'edit'])->name('orders.edit')->middleware(['can:orders.manage']);
+
+Route::get('carts', [Controllers\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
+Route::get('carts/{id}', [Controllers\CartController::class, 'edit'])->name('carts.edit')->middleware(['can:carts.manage']);

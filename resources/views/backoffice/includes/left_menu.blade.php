@@ -3,7 +3,7 @@
         <ul class="k-menu__nav">
             @foreach($LEFT_MENU as $menu)
                 @php
-                    $hasPermission = !empty(data_get($menu, 'permissions')) ? $AUTHENTICATED_USER->canAny(data_get($menu, 'permissions')) : true;
+                    $hasPermission = !empty(data_get($menu, 'permissions')) ? $AUTHENTICATED_ADMIN->canAny(data_get($menu, 'permissions')) : true;
                     $hasSubMenu = !empty(data_get($menu, 'subs'));
                 @endphp
 
@@ -23,7 +23,7 @@
                         <ul class="k-menu__subnav">
                         @foreach(data_get($menu, 'subs', []) as $menu)
                             @php
-                                $hasPermission = !empty(data_get($menu, 'permissions')) ? $AUTHENTICATED_USER->canAny(data_get($menu, 'permissions')) : true;
+                                $hasPermission = !empty(data_get($menu, 'permissions')) ? $AUTHENTICATED_ADMIN->canAny(data_get($menu, 'permissions')) : true;
                                 $hasSubMenu = !empty(data_get($menu, 'subs'));
                             @endphp
 
@@ -68,7 +68,7 @@
                                 <ul class="k-menu__subnav">
                                     @foreach(data_get($menu, 'subs', []) as $menu)
                                     @php
-                                        $hasPermission = !empty(data_get($menu, 'permissions')) ? $AUTHENTICATED_USER->canAny(data_get($menu, 'permissions')) : true;
+                                        $hasPermission = !empty(data_get($menu, 'permissions')) ? $AUTHENTICATED_ADMIN->canAny(data_get($menu, 'permissions')) : true;
                                         $hasSubMenu = !empty(data_get($menu, 'subs'));
                                     @endphp
                                     @if($hasPermission)
@@ -137,7 +137,6 @@
 
                     if( isActive) {
                         menuActiveLinkEl = $(e);
-                        console.log({menuActiveLinkEl, e });
                         return false;
                     }
                 })

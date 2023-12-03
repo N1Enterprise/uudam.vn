@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enum\InventoryConditionEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasImpactor;
+use App\Models\Traits\HasMoney;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends BaseModel
@@ -12,6 +13,7 @@ class Inventory extends BaseModel
     use Activatable;
     use SoftDeletes;
     use HasImpactor;
+    use HasMoney;
 
     protected $fillable = [
         'title',
@@ -73,8 +75,10 @@ class Inventory extends BaseModel
             ->withTimestamps();
     }
 
-    public function includedProducts()
+    public function productCombos()
     {
-        return $this->belongsToMany(IncludedProduct::class, 'included_product_inventories');
+        return $this->belongsToMany(ProductCombo::class, 'product_combo_inventories')
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 }

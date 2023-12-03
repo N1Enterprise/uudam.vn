@@ -36,9 +36,11 @@ class ProductController extends BaseController
     {
         $inventory = $this->storeFrontProductDisplayService->showBySlug($slug);
         $variants  = $this->inventoryService->listAvailableByProduct($inventory->product_id, [
-            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order', 'includedProducts:id,name,image,sale_price,description'],
+            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order', 'productCombos:id,name,image,sale_price,description,unit'],
             'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
         ]);
+
+        // dd();
 
         $imageGalleries = collect([$inventory->image])
             ->merge(collect(data_get($inventory, 'product.media.image', []))->map(fn($item) => data_get($item, 'path')))
@@ -58,6 +60,8 @@ class ProductController extends BaseController
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
         $productReviews = $this->productReviewService->allAvailable(['columns' => ['id', 'user_name', 'rating_type', 'status', 'created_at', 'content']]);
+
+        // dd(data_get($inventory, 'product.id'));
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',

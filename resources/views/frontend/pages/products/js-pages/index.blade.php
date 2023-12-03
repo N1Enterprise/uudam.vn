@@ -2,18 +2,60 @@
 $('.share-button__copy').on('click', function() {
     const text = $('#url.field__input').val();
 
-    __HELPER__.copyClipBoard(text);
+    utils_helper.copyClipBoard(text);
 });
 
-const PRODUCT_VARIANTS = {
+const MAIN_INVENTORY = {
     init: () => {
-        PRODUCT_VARIANTS.onChange();
+        MAIN_INVENTORY.onChange();
+        MAIN_INVENTORY.firstTrigger();
     },
     variant_resources: (() => {
         const data = $('#inventory_variants').attr('data-variants') || '{}';
 
         return JSON.parse(data);
     })(),
+    inventory_selected: (() => {
+        const data = JSON.parse($('[data-inventory]').attr('data-inventory') || '{}');
+
+        return data;
+    })(),
+    inventory_combos: [],
+    firstTrigger: () => {
+        $('.attributes-values-item label.active').find('[name="attribute_value"]').trigger('change');
+        FORM_ORDER.setDataOrder();
+    },
+    getFullData: () => {
+        const data = {
+            product_id: $('[name="product_id"]').val(),
+            inventory: MAIN_INVENTORY.inventory_selected,
+            has_combo: $('[data-product-combo-confirm]').is(':checked'),
+            quantity: $('[data-stock-quantity]').val() || 0
+        };
+
+        return data;
+    },
+    calculateInventoryPrice: () => {
+        const hasCombo = $('[data-product-combo-confirm]').is(':checked');
+        const label = hasCombo ? 'Tổng Combo' : 'Tạm Tính';
+        const inventoryPrice = $('[data-price-value]').attr('data-price-value') || 0;
+        const stockQuantity = $('[data-stock-quantity]').val() || 0;
+
+        const totalPriceByStockQuantity = utils_helper.number(inventoryPrice).multiply(stockQuantity);
+
+        const totalCartPrice = hasCombo ? (() => {
+            // Has Combo
+            return MAIN_INVENTORY.inventory_combos.reduce(function(accumulator, currentValue) {
+                return accumulator + utils_helper.number(currentValue?.sale_price || 0).toFloat();
+            }, totalPriceByStockQuantity);
+        })() : (() => {
+            // No Combo
+            return totalPriceByStockQuantity;
+        })();
+
+        $('[data-total-cart-label]').text(label);
+        $('[data-total-cart-price]').html(utils_helper.formatPrice(totalCartPrice));
+    },
     onChange: () => {
         $('[name="attribute_value"]').on('change', function() {
             const value = $(this).val();
@@ -25,7 +67,11 @@ const PRODUCT_VARIANTS = {
             $(this).prop('checked', true);
             $(this).parents('.label').addClass('active');
 
-            const product = PRODUCT_VARIANTS.findProductByAttribute();
+            const product = MAIN_INVENTORY.findProductByAttribute();
+
+            MAIN_INVENTORY.calculateInventoryPrice();
+            // MAIN_INVENTORY_QUANTITY.setValue(1);
+            FORM_ORDER.setDataOrder();
         });
     },
     findProductByAttribute: () => {
@@ -35,7 +81,7 @@ const PRODUCT_VARIANTS = {
             conditions[ + ($(element).find('input').attr('data-attribute-id')) ] = + ($(element).find('input').val());
         });
 
-        const product = PRODUCT_VARIANTS.variant_resources.find(function(item) {
+        const inventory = MAIN_INVENTORY.variant_resources.find(function(item) {
             const attributes = item.attributes.map((item) => item.id);
             const attrValues = item.attribute_values.map((item) => item.id);
 
@@ -58,18 +104,19 @@ const PRODUCT_VARIANTS = {
             return matches;
         });
 
-        if (product) {
-            PRODUCT_VARIANTS.renderProduct(product);
-        }
+        MAIN_INVENTORY.renderInventory(inventory || null);
+        MAIN_INVENTORY.inventory_selected = inventory || null;
+        MAIN_INVENTORY.inventory_combos = inventory?.product_combos || [];
     },
-    renderProduct: (product) => {
-        const { id, title, sku, sale_price, stock_quantity, image, slug } = product;
+    renderInventory: (inventory) => {
+        const { id, title, sku, sale_price, stock_quantity, image, slug } = inventory;
 
         const newHref = "{{ route('fe.web.products.index', ':slug') }}".replace(':slug', slug);
 
         $('[data-title]').text(title);
         $('[data-sku]').text(sku);
-        $('[data-sale-price]').text(__HELPER__.formatNumber(sale_price)+' VND');
+        $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
+        $('[data-sale-price]').attr('data-price-value', sale_price);
         $('[data-inventory-id]').text(id);
         $('[data-stock-quantity]').attr('max', stock_quantity);
         $('[data-image-index="0"]').attr('src', image);
@@ -78,82 +125,39 @@ const PRODUCT_VARIANTS = {
 
         $(document).prop('title', title);
 
-        PRODUCT_VARIANTS.renderIncludedProducts(product?.included_products || []);
+        COMBO_INVENTORY.renderInventoryCombos(inventory?.product_combos || []);
 
         window.history.pushState('', '', newHref);
     },
-    renderIncludedProducts: (includedProducts) => {
-        const html = includedProducts?.map(function(item) {
-            return `
-            <div class="included-products__item">
-                <div class="included-products__item-image" title="${item.description}">
-                    <img src="${item.image}" alt="test">
-                </div>
-
-                <div class="included-products__item-info">
-                    <div>
-                        <h3 class="included-products-info-name" style="margin: 0">${item.name}</h3>
-                        <span class="included-products-info-price">${__HELPER__.formatNumber(item.sale_price)}</span>
-                    </div>
-                    <div class="included-products__item-sale">
-                        <div>
-                            <div class="product-form__input product-form__quantity">
-                                <label class="form__label">Số Lượng</label>
-                                <quantity-input class="quantity">
-                                    <button class="quantity__button no-js-hidden" name="minus" type="button">
-                                        <span class="visually-hidden">Decrease quantity for test</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
-                                        </svg>
-                                    </button>
-                                    <input class="quantity__input" type="number" name="quantity" min="1" value="1" max="${item.stock_quantity}">
-                                    <button class="quantity__button no-js-hidden" name="plus" type="button">
-                                        <span class="visually-hidden">Increase quantity for test</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
-                                        </svg>
-                                    </button>
-                                </quantity-input>
-                            </div>
-                        </div>
-                        <button type="button" class="included-products-info-order">Mua Kèm</button>
-                    </div>
-                </div>
-            </div>
-            `;
-        }).join('');
-
-        $('.included-products').html(html);
-    },
 };
 
-const PRODUCT_OPEN_IMAGE_GALERIES = {
+const MAIN_INVENTORY_OPEN_IMAGE_GALERIES = {
     close_element: $('[data-media-modal-close]'),
     open_element: $('[data-media-modal-open]'),
     video_iframe: $('#product-video-iframe'),
     init: () => {
-        PRODUCT_OPEN_IMAGE_GALERIES.onOpen();
-        PRODUCT_OPEN_IMAGE_GALERIES.onClose();
+        MAIN_INVENTORY_OPEN_IMAGE_GALERIES.onOpen();
+        MAIN_INVENTORY_OPEN_IMAGE_GALERIES.onClose();
     },
     onOpen: () => {
-        PRODUCT_OPEN_IMAGE_GALERIES.open_element.on('click', function() {
+        MAIN_INVENTORY_OPEN_IMAGE_GALERIES.open_element.on('click', function() {
             $('.product-media-modal').attr('open', 'true');
         });
     },
     onClose: () => {
-        PRODUCT_OPEN_IMAGE_GALERIES.close_element.on('click', function() {
+        MAIN_INVENTORY_OPEN_IMAGE_GALERIES.close_element.on('click', function() {
             $('.product-media-modal').removeAttr('open');
-            PRODUCT_OPEN_IMAGE_GALERIES.video_iframe.remove();
-            setTimeout(() => { $('.product-media-modal__video').html(PRODUCT_OPEN_IMAGE_GALERIES.video_iframe) }, 100);
+            MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe.remove();
+            setTimeout(() => { $('.product-media-modal__video').html(MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe) }, 100);
         });
     },
 };
 
-const PRODUCT_REVIEW = {
+const MAIN_INVENTORY_REVIEW = {
     init: () => {
-        PRODUCT_REVIEW.onToggle();
-        PRODUCT_REVIEW.onReview();
-        PRODUCT_REVIEW.onKeyDownContent();
+        MAIN_INVENTORY_REVIEW.onToggle();
+        MAIN_INVENTORY_REVIEW.onReview();
+        MAIN_INVENTORY_REVIEW.onKeyDownContent();
     },
     onToggle: () => {
         $('.spr-summary-actions-newreview').on('click', function() {
@@ -205,7 +209,7 @@ const PRODUCT_REVIEW = {
 
                     response.rating_type_name = ratingName;
 
-                    PRODUCT_REVIEW.makeReviewHTML(response);
+                    MAIN_INVENTORY_REVIEW.makeReviewHTML(response);
                 },
                 error: () => {
                     $(button).prop('disabled', false);
@@ -238,7 +242,131 @@ const PRODUCT_REVIEW = {
     }
 };
 
-PRODUCT_VARIANTS.init();
-PRODUCT_OPEN_IMAGE_GALERIES.init();
-PRODUCT_REVIEW.init();
+const COMBO_INVENTORY = {
+    init: () => {
+        COMBO_INVENTORY.onCheckedBuyWithCombo();
+    },
+    onCheckedBuyWithCombo: () => {
+        $('[data-product-combo-confirm]').on('change', function() {
+            $('[data-product-combo-list]').toggleClass('d-none', !$(this).is(':checked'));
+            MAIN_INVENTORY.calculateInventoryPrice();
+            FORM_ORDER.setDataOrder();
+        });
+    },
+    renderInventoryCombos: (productCombos) => {
+        $('.product-combos').toggleClass('d-none', !productCombos.length);
+
+        const html = productCombos?.map(function(item) {
+            return `
+            <div class="product-combos__item">
+                <div class="product-combos__item-image" title="${item.description}">
+                    <img src="${item.image}" alt="test">
+                </div>
+
+                <div class="product-combos__item-info">
+                    <div>
+                        <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
+                        <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
+                    </div>
+                    <div class="product-combos__item-sale">
+                        <div class="product-form__input product-form__quantity">
+                            <span>${item.pivot.quantity} ${item.unit}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        }).join('');
+
+        $('[data-product-combo-list]').html(html);
+    },
+    recalculatePrice: (productQuantity) => {
+        const { product_combos } = MAIN_INVENTORY.inventory_selected;
+
+        const newProductCombos = [...product_combos].map(function(item) {
+            return {
+                ...item,
+                sale_price: utils_helper.number(item.sale_price).multiply(productQuantity)
+            };
+        });
+
+        MAIN_INVENTORY.inventory_combos = newProductCombos;
+        COMBO_INVENTORY.renderInventoryCombos(newProductCombos);
+    },
+};
+
+const FORM_ORDER = {
+    init: () => {
+        FORM_ORDER.onAddToCart();
+    },
+    formOrderData: {},
+    updateCookie: (data) => {
+        utils_helper.cookie(COOKIES_KEY.SHOPPING_CART).set(JSON.stringify(data));
+    },
+    setDataOrder: () => {
+        console.log({
+            data: MAIN_INVENTORY.getFullData()
+        });
+        const { quantity, has_combo, inventory, product_id } = MAIN_INVENTORY.getFullData();
+
+        $('form[form-add-to-cart]').find('[name="product_id"]').val(product_id);
+        $('form[form-add-to-cart]').find('[name="inventory_id"]').val(inventory.id);
+        $('form[form-add-to-cart]').find('[name="has_combo"]').val(has_combo ? '1' : '0');
+        $('form[form-add-to-cart]').find('[name="quantity"]').val(quantity);
+
+        FORM_ORDER.formOrderData = {
+            product_id: +product_id,
+            inventory_id: inventory.id,
+            has_combo: has_combo ? 1 : 0,
+            quantity: +quantity
+        };
+    },
+    onAddToCart: () => {
+        $('form[form-add-to-cart]').on('submit', function(e) {
+            e.preventDefault();
+
+            const isLogged = "{{ !empty($AUTHENTICATED_USER) }}";
+            const loginRef = $(this).attr('login-ref');
+
+            if (!isLogged && loginRef) {
+                $(loginRef).trigger('click');
+            }
+
+            USER_ORDER_CART.addToCart({
+                ...FORM_ORDER.formOrderData
+            }, {
+                beforeSend: () => {
+                    $('form[form-add-to-cart]').find('button[type="submit"]').addClass('loading');
+                    $('form[form-add-to-cart]').find('.loading-overlay__spinner').removeClass('hidden');
+                },
+                success: (response) => {
+                    $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
+                    $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
+                    USER_ORDER_CART.updateCartInfo();
+                },
+            });
+        });
+    },
+};
+
+const MAIN_INVENTORY_QUANTITY = {
+    init: () => {
+        utils_quantity('product', {
+            callbacks: {
+                onChange: (value) => {
+                    COMBO_INVENTORY.recalculatePrice(value);
+                    MAIN_INVENTORY.calculateInventoryPrice();
+                    FORM_ORDER.setDataOrder();
+                }
+            }
+        });
+    },
+};
+
+COMBO_INVENTORY.init();
+MAIN_INVENTORY.init();
+MAIN_INVENTORY_OPEN_IMAGE_GALERIES.init();
+MAIN_INVENTORY_REVIEW.init();
+MAIN_INVENTORY_QUANTITY.init();
+FORM_ORDER.init();
 </script>

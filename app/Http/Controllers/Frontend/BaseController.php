@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Classes\Contracts\UserAuthContract;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -12,6 +13,16 @@ class BaseController extends Controller
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
+
+    /**
+     * @var UserAuthContract
+     */
+    public $userAuth;
+
+    public function __construct()
+    {
+        $this->userAuth = app(UserAuthContract::class);
+    }
 
     public function view($view, $data = [], $mergeData = [])
     {

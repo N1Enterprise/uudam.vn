@@ -83,6 +83,83 @@
             FORM_MEDIA_IMAGE_FILE.onDelete();
             FORM_MEDIA_IMAGE_PATH.onDelete();
         },
+        getFormData: () => {
+            const $form = $('#form_store_product');
+
+            const __name = $form.find('[name="name"]').val();
+            const __code = $form.find('[name="code"]').val();
+            const __primaryImage = {
+                file: $form.find('[name="primary_image[file]"]')[0].files[0] ?? '',
+                path: $form.find('[name="primary_image[path]"]').val()
+            };
+            const __imageMedia = $form.find('[data-repeater-item]').map(function(index, element) {
+                return {
+                    file:  $(element).find(`[name="media[image][${index}][file]"]`)[0].files[0] ?? '',
+                    path: $(element).find(`[name="media[image][${index}][path]"]`).val(),
+                };
+            });
+            const __videoMedia = $form.find('.video-media-item').map(function(index, element) {
+                return {
+                    order: $(element).find(`[name="media[video][${index}][order]"]`).val(),
+                    path:  $(element).find(`[name="media[video][${index}][path]"]`).val()
+                };
+            });
+            const __description = $form.find('[name="description"]').val();
+            const __suggestedRelationships = {
+                inventories: $form.find('[name="suggested_relationships[inventories][]"]').val(),
+                posts: $form.find('[name="suggested_relationships[posts][]"]').val(),
+            };
+            const __categories = $form.find('[name="categories[]"]').val();
+            const __type = $form.find('[name="type"]').val();
+            const __branch = $form.find('[name="branch"]').val();
+            const __status = $form.find('[name="status"]').val();
+
+            const formData = new FormData();
+
+            formData.append('name', __name);
+            formData.append('code', __code);
+            formData.append('primary_image[file]', __primaryImage.file);
+            formData.append('primary_image[path]', __primaryImage.path);
+
+            $.each(__imageMedia, function(index, item) {
+                formData.append(`media[image][${index}][file]`, item.file);
+                formData.append(`media[image][${index}][path]`, item.path);
+            });
+
+            $.each(__videoMedia, function(index, item) {
+                formData.append(`media[video][${index}][order]`, item.order);
+                formData.append(`media[video][${index}][path]`, item.path);
+            });
+
+            formData.append('description', __description);
+
+            $.each(__suggestedRelationships.inventories, function(index, item) {
+                formData.append(`suggested_relationships[inventories][${index}]`, item);
+            });
+
+            $.each(__suggestedRelationships.posts, function(index, item) {
+                formData.append(`suggested_relationships[posts][${index}]`, item);
+            });
+
+            $.each(__categories, function(index, item) {
+                formData.append(`categories[${index}]`, item);
+            });
+
+            formData.append('type', __type);
+            formData.append('branch', __branch);
+            formData.append('status', __status);
+
+            for (var p of formData) {
+                let name = p[0];
+                let value = p[1];
+
+                console.log({
+                    [name]: value
+                });
+            }
+
+            return formData;
+        },
     };
 
     $(document).ready(function() {
@@ -121,5 +198,7 @@
         });
 
         FORM_MASTER.init();
+        FORM_PRIMARY_IMAGE_PATH.triggerChange();
+        FORM_MEDIA_IMAGE_PATH.triggerChange();
     });
 </script>

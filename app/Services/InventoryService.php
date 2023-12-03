@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Models\BaseModel;
 use App\Models\Inventory;
 use App\Repositories\Contracts\InventoryRepositoryContract;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class InventoryService extends BaseService
@@ -137,7 +136,11 @@ class InventoryService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, ['image']));
+            $attributes['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
+
             $attributes['slug'] = Str::slug($attributes['product_slug'] . ' ' . $attributes['sku'], '-');
 
             $inventory = $this->inventoryRepository->create($attributes);
@@ -165,6 +168,7 @@ class InventoryService extends BaseService
             $variant['product_slug'] = data_get($attributes, 'product_slug');
             $variant['offer_start'] = data_get($attributes, 'offer_start');
             $variant['offer_end'] = data_get($attributes, 'offer_end');
+            $variant['featured'] = data_get($attributes, 'featured');
 
             $variantsCreated = [];
 
@@ -178,12 +182,15 @@ class InventoryService extends BaseService
                 $variant['offer_end'] = $variant['offer_price'] ? $variant['offer_end'] : null;
                 $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
                 $variant['slug'] = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
-                $variant['image'] = $this->convertImage(data_get($variants, ['image', $index]));
+                $variant['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($variants, ['image', $index]));
 
                 $inventory = $this->inventoryRepository->create($variant);
 
-                if ($attributes = Arr::wrap(data_get($variants, ['attribute', $index], []))) {
-                    $this->setAttributes($inventory, $attributes);
+                if ($invAttributes = Arr::wrap(data_get($variants, ['attribute', $index], []))) {
+                    $this->setAttributes($inventory, $invAttributes);
                 }
 
                 $variantsCreated[] = $inventory;
@@ -196,20 +203,37 @@ class InventoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = $this->convertImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
             $inventory = $this->inventoryRepository->update($attributes, $id);
 
             $this->setAttributes($inventory, data_get($attributes, ['variants', 'attribute'], []));
-            $this->syncIncludedProducts($inventory, data_get($attributes, 'included_products', []));
+            $this->syncProductCombos($inventory, data_get($attributes, 'product_combos', []));
 
             return $inventory;
         });
     }
 
-    public function syncIncludedProducts(Inventory $inventory, array $includedProducts = [])
+    public function syncProductCombos(Inventory $inventory, array $productCombos = [])
     {
-        return $inventory->includedProducts()->syncWithPivotValues($includedProducts, ['created_at' => now(), 'updated_at' => now()]);
+        DB::table('product_combo_inventories')->where('inventory_id', $inventory->getKey())->delete();
+
+        $data = [];
+
+        foreach ($productCombos as $combo) {
+            $data[] = [
+                'product_combo_id' => data_get($combo, 'product_combo_id'),
+                'inventory_id' => $inventory->getKey(),
+                'quantity' => data_get($combo, 'quantity'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+        }
+
+        DB::table('product_combo_inventories')->insert($data);
     }
 
     public function delete($id)
@@ -232,26 +256,6 @@ class InventoryService extends BaseService
         return true;
     }
 
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->catalogDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
-    protected function catalogDisk()
-    {
-        return Storage::disk('catalog');
-    }
-
     public function listAvailableByProduct($product, $data = [])
     {
         $inventories = $this->inventoryRepository
@@ -263,24 +267,5 @@ class InventoryService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
 
         return $inventories;
-    }
-
-    public function inventoriesAttributes($inventoryIds = [])
-    {
-
-    }
-
-    public function getInventoryAttributesByVariants($inventory, $variants)
-    {
-        $attrPivots = DB::table('attribute_inventories')
-            ->select('attribute_id','inventory_id','attribute_value_id')
-            ->whereIn('inventory_id', $variants->pluck('id'))->get();
-
-        $inventoryAttributes = $attrPivots
-            ->where('inventory_id', $inventory->id)
-            ->pluck('attribute_value_id')
-            ->toArray();
-
-        dd($inventoryAttributes);
     }
 }

@@ -25877,7 +25877,7 @@ body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
       top: 0;
       left: 0;
       right: 260px;
-      z-index: 100000; }
+      z-index: 97; }
     .k-header--fixed.k-aside--minimize .k-header {
       right: 78px;
       -webkit-transition: all 0.3s ease;

@@ -25,13 +25,21 @@ function owlSliderSetup() {
         const owlId = $(element).attr('data-owl-id');
         const items = $(element).attr('data-owl-items');
         const hasLoop = $(element).attr('data-owl-loop') == 'true';
+        const dotsContainer = $(element).attr('data-owl-dots-container');
 
         $(element).addClass('owl-carousel owl-theme');
 
-        $(element).owlCarousel({
+        const config = {
             loop: hasLoop,
             nav: false,
-            responsive: getResponsive(items)
+            responsive: getResponsive(items),
+            dotsContainer: dotsContainer,
+        };
+
+        !dotsContainer && delete config.dotsContainer;
+
+        $(element).owlCarousel({
+            ...config
         });
 
         $(`[data-owl-prev=${owlId}]`).on('click', function() {

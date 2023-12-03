@@ -65,6 +65,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="">{{ __('Slug') }} *</label>
+                            <input type="text" name="slug" value="{{ old('slug') }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Slug') }}" required>
+                            @error('slug')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="">{{ __('Code') }} *</label>
                             <input type="text" name="code" value="{{ old('code') }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Code') }}" required>
                             @error('code')
@@ -153,8 +161,10 @@
 
                         <div class="form-group">
                             <label for="">{{ __('Video Media') }}</label>
-                            <input type="text" name="media[video][0][path]" value="{{ old('media.video.0.path') }}" class="form-control {{ $errors->has('media.video.0.path') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Video URL') }}">
-                            <input type="hidden" name="media[video][0][order]" value="1">
+                            <div class="video-media-item">
+                                <input type="text" name="media[video][0][path]" value="{{ old('media.video.0.path') }}" class="form-control {{ $errors->has('media.video.0.path') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Video URL') }}">
+                                <input type="hidden" name="media[video][0][order]" value="1">
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -294,4 +304,34 @@
 @include('backoffice.pages.products.js-pages.handle')
 @include('backoffice.pages.products.js-pages.products-suggested')
 @include('backoffice.pages.products.js-pages.posts-suggested')
+<script>
+    $('#form_store_product').on('submit', function(e) {
+        e.preventDefault();
+
+        const $form = $(this);
+
+        const formData = FORM_MASTER.getFormData();
+        const _token = $('input[name=_token]').val();
+
+        formData.append('_token', _token);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: $(this).attr('method'),
+            preventRedirectOnComplete: 1,
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: () => {},
+            success: (response) => {
+                fstoast.success("{{ __('Created product success!') }}");
+                window.location.href = "{{ route('bo.web.products.index') }}";
+            },
+            error: () => {
+                fstoast.error("{{ __('Created product error!') }}");
+                $form.find('[type="submit"]').prop('disabled', false);
+            },
+        });
+    });
+</script>
 @endsection

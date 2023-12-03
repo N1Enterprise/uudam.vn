@@ -21,7 +21,9 @@ class BackofficeResponseServiceProvider extends ServiceProvider
 
         Contracts\UpdateUserResponseContract::class => Responses\UpdateUserResponse::class,
         Contracts\ListUserResponseContract::class => Responses\ListUserResponse::class,
+        Contracts\UpdateUserActionLogResponseContract::class => Responses\UpdateUserActionLogResponse::class,
 
+        // System Setting
         Contracts\UpdateSystemSettingResponseContract::class => Responses\UpdateSystemSettingResponse::class,
         Contracts\ClearCacheSystemSettingResponseContract::class => Responses\ClearCacheSystemSettingResponse::class,
         Contracts\StoreSystemSettingGroupResponseContract::class => Responses\StoreSystemSettingGroupResponse::class,
@@ -30,6 +32,10 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\DeleteSystemSettingKeyResponseContract::class => Responses\DeleteSystemSettingKeyResponse::class,
         Contracts\ImportSystemSettingResponseContract::class => Responses\ImportSystemSettingResponse::class,
         Contracts\UpdateSystemSettingGroupResponseContract::class => Responses\UpdateSystemSettingGroupResponse::class,
+
+        Contracts\ListSystemCurrencyResponseContract::class => Responses\ListSystemCurrencyResponse::class,
+        Contracts\StoreSystemCurrencyResponseContract::class => Responses\StoreSystemCurrencyResponse::class,
+        Contracts\UpdateSystemCurrencyResponseContract::class => Responses\UpdateSystemCurrencyResponse::class,
 
         Contracts\ListCategoryGroupResponseContract::class => Responses\ListCategoryGroupResponse::class,
         Contracts\ListCategoryResponseContract::class => Responses\ListCategoryResponse::class,
@@ -115,13 +121,45 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateProductReviewResponseContract::class => Responses\UpdateProductReviewResponse::class,
         Contracts\DeleteProductReviewResponseContract::class => Responses\DeleteProductReviewResponse::class,
 
-        Contracts\ListIncludedProductResponseContract::class => Responses\ListIncludedProductResponse::class,
-        Contracts\StoreIncludedProductResponseContract::class => Responses\StoreIncludedProductResponse::class,
-        Contracts\UpdateIncludedProductResponseContract::class => Responses\UpdateIncludedProductResponse::class,
-        Contracts\DeleteIncludedProductResponseContract::class => Responses\DeleteIncludedProductResponse::class,
+        Contracts\ListProductComboResponseContract::class => Responses\ListProductComboResponse::class,
+        Contracts\StoreProductComboResponseContract::class => Responses\StoreProductComboResponse::class,
+        Contracts\UpdateProductComboResponseContract::class => Responses\UpdateProductComboResponse::class,
+        Contracts\DeleteProductComboResponseContract::class => Responses\DeleteProductComboResponse::class,
 
         Contracts\UploadFileManagerResponseContract::class => Responses\UploadFileManagerResponse::class,
 
         Contracts\ListSubscriberResponseContract::class => Responses\ListSubscriberResponse::class,
+
+        Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,
+        Contracts\StoreCarrierResponseContract::class => Responses\StoreCarrierResponse::class,
+        Contracts\UpdateCarrierResponseContract::class => Responses\UpdateCarrierResponse::class,
+
+        Contracts\ListCountryResponseContract::class => Responses\ListCountryResponse::class,
+        Contracts\ListCurrencyResponseContract::class => Responses\ListCurrencyResponse::class,
+
+        Contracts\ListShippingZoneResponseContract::class => Responses\ListShippingZoneResponse::class,
+        Contracts\StoreShippingZoneResponseContract::class => Responses\StoreShippingZoneResponse::class,
+        Contracts\UpdateShippingZoneResponseContract::class => Responses\UpdateShippingZoneResponse::class,
+
+        Contracts\ListShippingRateResponseContract::class => Responses\ListShippingRateResponse::class,
+        Contracts\StoreShippingRateResponseContract::class => Responses\StoreShippingRateResponse::class,
+        Contracts\UpdateShippingRateResponseContract::class => Responses\UpdateShippingRateResponse::class,
+        Contracts\DeleteShippingRateResponseContract::class => Responses\DeleteShippingRateResponse::class,
+
+        Contracts\ListPaymentProviderResponseContract::class => Responses\ListPaymentProviderResponse::class,
+        Contracts\StorePaymentProviderResponseContract::class => Responses\StorePaymentProviderResponse::class,
+        Contracts\UpdatePaymentProviderResponseContract::class => Responses\UpdatePaymentProviderResponse::class,
+
+        Contracts\ListPaymentOptionResponseContract::class => Responses\ListPaymentOptionResponse::class,
+        Contracts\StorePaymentOptionResponseContract::class => Responses\StorePaymentOptionResponse::class,
+        Contracts\UpdatePaymentOptionResponseContract::class => Responses\UpdatePaymentOptionResponse::class,
+
+        Contracts\ListDepositTransactionResponseContract::class => Responses\ListDepositTransactionResponse::class,
+
+        // Order
+        Contracts\ListOrderResponseContract::class => Responses\ListOrderResponse::class,
+        Contracts\ListOrderItemResponseContract::class => Responses\ListOrderItemResponse::class,
+        Contracts\ListCartResponseContract::class => Responses\ListCartResponse::class,
+        Contracts\ListCartItemResponseContract::class => Responses\ListCartItemResponse::class,
     ];
 }

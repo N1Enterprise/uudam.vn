@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
+use App\Common\ImageHelper;
 use App\Enum\ActivationStatusEnum;
+use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class CategoryService extends BaseService
 {
@@ -44,7 +44,10 @@ class CategoryService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Category::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryRepository->create($attributes);
         });
@@ -58,29 +61,12 @@ class CategoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['primary_image'] = $this->convertImage(data_get($attributes, 'primary_image'));
+            $attributes['primary_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Category::class, 'primary_image'])
+                ->uploadImage(data_get($attributes, 'primary_image'));
 
             return $this->categoryRepository->update($attributes, $id);
         });
-    }
-
-    protected function convertImage($image)
-    {
-        if ($imageUrl = data_get($image, 'path')) {
-            return $imageUrl;
-        } else if (data_get($image, 'file') && data_get($image, 'file') instanceof UploadedFile) {
-            $imageFile = data_get($image, 'file');
-            $filename  = $this->catalogDisk()->putFile('/', $imageFile);
-            $imageUrl = $this->catalogDisk()->url($filename);
-
-            return $imageUrl;
-        }
-
-        return null;
-    }
-
-    protected function catalogDisk()
-    {
-        return Storage::disk('catalog');
     }
 }

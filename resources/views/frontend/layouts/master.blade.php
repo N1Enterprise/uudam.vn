@@ -27,18 +27,27 @@
     </script>
     <!--end::Web font -->
 
-    <!--begin::Page Vendors Styles -->
+    <!--begin::Page Vendor Styles -->
+    <link href="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendor Styles -->
+
+    <!--begin::Page Common Styles -->
     <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-search.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-predictive-search.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Page Vendors Styles -->
+    <link href="{{ asset('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
+    <!--end::Page Common Styles -->
 
     @yield('style_datatable')
     @yield('style')
@@ -125,45 +134,75 @@
             right: 32px !important;
             top: calc(50% + 0px) !important;
         }
+
+        #admintopnav {
+            position: relative;
+            background: #1d2327;
+            background-color: #1d2327;
+            color: #c3c4c7;
+            font-weight: 400;
+            font-size: 13px;
+            width: 100%;
+            overflow: hidden;
+            z-index: 4;
+        }
+
+        #admintopnav a.split.highlight {
+            background-color: #04AA6D;
+            color: #fff;
+        }
+
+        #admintopnav a.split {
+            float: right;
+        }
+
+        #admintopnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        #admintopnav a:hover {
+            background-color: #04AA6D;
+            color: #fff;
+        }
     </style>
     <!--end::Layout Skins -->
 </head>
 
 <body class="gradient swym-ready swym-buttons-loaded">
-    @include('frontend.layouts.parials.header.index')
+    @include('frontend.layouts.partials.header.index')
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         @yield('content_body')
         @stack('modals')
     </main>
 
-    @include('frontend.layouts.parials.footer.index')
+    @include('frontend.layouts.partials.footer.index')
 
     <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/validate/custom.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/components/authentication.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backoffice/assets/vendors/general/editorjs-parser/build/Parser.browser.js') }}" type="text/javascript"></script>
+
+
+    @include('frontend.layouts.js-pages.menu-drawer')
+    @include('frontend.layouts.js-pages.authentication')
+    @include('frontend.layouts.js-pages.predictive-search')
+    @include('frontend.layouts.js-pages.user-order-cart')
 
     @yield('js_script')
     @stack('js_pages')
-    <script>
-        $(document).ready(function() {
-            $.each($('.horizontal-mega-menu .app-menu-item'), function(index, element) {
-                const $menu = $(element);
-                const $submenu = $menu.find('.mm-submenu');
-                const $mainHeaderHeading = $('#shopify-section-header .header__heading');
-                const $appHeader = $('header.header');
-
-                const offsetLeft = $submenu.offset().left - $mainHeaderHeading.offset().left;
-                const withOfAppHeader = $appHeader.width();
-
-                $submenu.css('left', `-${offsetLeft}px`);
-                $submenu.css('width', `${withOfAppHeader}px`);
-            });
-        });
-    </script>
 </body>
 </html>

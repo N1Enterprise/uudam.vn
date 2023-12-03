@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Enum\ActivationStatusEnum;
+use App\Enum\UserActionEnum;
+use App\Enum\UserWalletTypeEnum;
 use App\Events\User\UserCreated;
 use App\Events\User\UserCreating;
 use App\Events\User\UserPasswordChanged;
@@ -12,25 +14,30 @@ use App\Services\BaseService;
 use App\Services\UserDetailService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use App\Models\User;
 
 class UserService extends BaseService
 {
     public $userRepository;
     public $userDetailService;
+    public $userActionLogService;
 
     public function __construct(
         UserRepositoryContract $userRepository,
-        UserDetailService $userDetailService
+        UserDetailService $userDetailService,
+        UserActionLogService $userActionLogService
     ) {
         $this->userRepository = $userRepository;
         $this->userDetailService = $userDetailService;
+        $this->userActionLogService = $userActionLogService;
     }
 
     public function searchByAdmin($data = [])
     {
         $builder = $this->userRepository
             ->with(data_get($data, 'with', []))
-            ->whereColumnsLike(data_get($data, 'query'), ['username' , 'email', 'phone_number'])
+            ->whereColumnsLike(data_get($data, 'query'), ['id', 'username' , 'email', 'phone_number'])
             ->whereColumnsLike(data_get($data, 'username', null), ['username'])
             ->whereColumnsLike(data_get($data, 'email', null), ['email'])
             ->whereColumnsLike((string) phone(data_get($data, 'phone_number', null)), ['phone_number'])
@@ -42,6 +49,12 @@ class UserService extends BaseService
                 if (data_get($data, 'search_exact') && $username = data_get($data, 'username')) {
                     $q->where('username', $username);
                 }
+
+                $statuses = array_filter_empty(Arr::wrap(data_get($data, 'status')));
+
+                if (! empty($statuses)) {
+                    $q->whereIn('status', $statuses);
+                }
             });
 
         return $builder->search([]);
@@ -52,9 +65,16 @@ class UserService extends BaseService
         $attributes['status'] = ActivationStatusEnum::ACTIVE;
 
         $user = DB::transaction(function() use ($attributes) {
+            /** @var User */
             $user = $this->userRepository->create($attributes);
 
-            $user->userDetail()->create(Arr::except($attributes, ['state_id', 'city_id', 'address', 'post_code']));
+            $user->userWallets()->create([
+                'balance'       => 0,
+                'status'        => ActivationStatusEnum::ACTIVE,
+                'type'          => UserWalletTypeEnum::SHOPPING,
+                'currency_code' => $user->currency_code,
+                'activated'     => true,
+            ]);
 
             UserCreating::dispatch($user);
 
@@ -97,12 +117,12 @@ class UserService extends BaseService
         return $user;
     }
 
-    public function updateInfo($data = [], $userId)
+    public function updateInfo($attributes = [], $id)
     {
-        return DB::transaction(function () use ($data, $userId) {
-            $user = $this->show($userId);
+        return DB::transaction(function () use ($attributes, $id) {
+            $user = $this->show($id);
 
-            $userData = Arr::only($data ?? [], ['email', 'username', 'phone_number']);
+            $userData = Arr::only($attributes ?? [], ['email', 'username', 'name', 'phone_number', 'birthday']);
 
             // TODO: should separate update phone_number/email to another flow.
             if (! empty($userData)) {
@@ -122,9 +142,7 @@ class UserService extends BaseService
                 $user = $this->update($userData, $user->id);
             }
 
-            $user->userDetail = $this->userDetailService->updateByUser($user->id, $data);
-
-            UserProfileUpdated::dispatch($user, $user->userDetail);
+            UserProfileUpdated::dispatch($user);
 
             return $user;
         });
@@ -135,6 +153,47 @@ class UserService extends BaseService
         $user = $this->userRepository->update($data, $userId);
 
         UserProfileUpdated::dispatch($user);
+
+        return $user;
+    }
+
+    public function generateUsername($length = 8)
+    {
+        $username = mb_strtolower(Str::random($length));
+
+        while ($this->userRepository->exists(['username' => $username])) {
+            $username = mb_strtolower(Str::random($length));
+        }
+
+        return $username;
+    }
+
+    public function handleUserAction($data, $userId)
+    {
+        $attributes = [
+            'user_id' => $userId,
+            'type'    => UserActionEnum::constant(data_get($data, 'type')),
+            'reason'  => data_get($data, 'reason'),
+        ];
+
+        $user = DB::transaction(function () use ($attributes, $userId) {
+            $this->userActionLogService->create($attributes);
+
+            $updateAction = [];
+
+            switch (data_get($attributes, 'type')) {
+                case UserActionEnum::ACTIVE:
+                    $updateAction = ['status' => true];
+                    break;
+                case UserActionEnum::DEACTIVATE:
+                    $updateAction = ['status' => false];
+                    break;
+                default:
+                    break;
+            }
+
+            return $this->userRepository->update($updateAction, $userId);
+        });
 
         return $user;
     }
