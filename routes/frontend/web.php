@@ -15,6 +15,10 @@ Route::get('collections/{slug}', [Controllers\CollectionController::class, 'inde
 
 Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');
 
+Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');
+
+Route::get('maintenance', [Controllers\MaintenanceController::class, 'index'])->name('maintenance');
+
 Route::middleware(['auth:user'])->group(function() {
     Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
     Route::get('profile/info', [Controllers\UserProfileController::class, 'profile'])->name('user.profile.info');

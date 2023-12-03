@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\MaintenanceMiddleware;
 use App\Http\Middleware\ToggleFeatureMiddleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
@@ -42,5 +43,6 @@ class AppServiceProvider extends ServiceProvider
         $router = $this->app['router'];
 
         $router->aliasMiddleware('system.feature_toggle', ToggleFeatureMiddleware::class);
+        $router->aliasMiddleware('system.maintenance', MaintenanceMiddleware::class);
     }
 }

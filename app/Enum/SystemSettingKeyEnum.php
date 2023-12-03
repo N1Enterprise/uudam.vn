@@ -5,10 +5,12 @@ namespace App\Enum;
 class SystemSettingKeyEnum extends BaseEnum
 {
     public const TELESCOPE = 'telescope';
+
     public const IS_MAINTENANCE = 'is_maintenance';
     public const MAINTENANCE_START_DATE = 'maintenance_start_date';
     public const MAINTENANCE_END_DATE = 'maintenance_end_date';
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
+
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
     public const ENABLE_USER_EMAIL_VERIFICATION = 'enable_user_email_verification';
 
@@ -19,6 +21,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const PAGE_HIGHLIGHT_INFORMATION = 'page_highlight_information';
     public const VIDEO_OUTSIDE_UI = 'video_outside_ui';
     public const SEARCH_SETTING = 'search_setting';
+    public const ADMIN_TOP_NAVIGATION = 'admin_top_navigation';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
@@ -40,6 +43,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SEARCH_SETTING,
             self::ENABLE_USER_EMAIL_VERIFICATION,
             self::IMAGE_CONFIGURATION,
+            self::ADMIN_TOP_NAVIGATION,
         ];
     }
 }

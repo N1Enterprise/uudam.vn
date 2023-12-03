@@ -24,7 +24,7 @@ class FrontendRouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes()
     {
-        Route::middleware(['web'])
+        Route::middleware(['web', 'system.maintenance'])
             ->namespace($this->namespace)
             ->as('fe.web.')
             ->group(base_path('routes/frontend/web.php'));
