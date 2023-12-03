@@ -159,8 +159,8 @@ return [
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
-            'scheme' => env('REDIS_SCHEME'),
-            'path' => env('REDIS_PATH')
+            'scheme' => env('REDIS_SCHEME', 'tcp'),
+            'path' => env('REDIS_PATH', '')
         ],
 
         'cache' => [
@@ -169,8 +169,8 @@ return [
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
-            'scheme' => env('REDIS_SCHEME'),
-            'path' => env('REDIS_PATH')
+            'scheme' => env('REDIS_SCHEME', 'tcp'),
+            'path' => env('REDIS_PATH', '')
         ],
     ],
 
