@@ -2,10 +2,13 @@
 
 use App\Common\Money;
 use App\Enum\BaseEnum;
+use App\Enum\SystemSettingKeyEnum;
 use App\Enum\TimeZoneEnum;
+use App\Models\SystemSetting;
 use App\Vendors\Localization\Money as LocalizationMoney;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Request;
@@ -247,5 +250,22 @@ if (! function_exists('disabled_input')) {
         if ($bool) {
             return 'disabled';
         }
+    }
+}
+
+if (! function_exists('frontend_image')) {
+    function frontend_image($image, $modelName = null)
+    {
+        // $params = [];
+
+        // if (! empty($modelName)) {
+        //     $imageConfiguration = SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get('App\\Models\\'.$modelName, []);
+        //     $params = Arr::only($imageConfiguration, ['width', 'height']);
+        //     $params = http_build_query($params);
+
+        // }
+
+        // return !empty($params) ? $image . '?' .$params : $image;
+        return $image;
     }
 }

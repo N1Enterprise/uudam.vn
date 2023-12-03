@@ -15,10 +15,8 @@
         @foreach ($homeBanners as $banner)
         <div class="slideshow__slide grid__item grid--1-col slider__slide" id="{{ $banner->id }}" role="group" aria-roledescription="Slide" aria-label="1 of 4" aria-hidden="true" tabindex="-1">
             <div class="slideshow__media banner__media media">
-                <img
-                    src="{{ $banner->desktop_image }}&amp;width=1500"
-                    srcset="{{ $banner->mobile_image }}&amp;width=375 375w,{{ $banner->mobile_image }}&amp;width=550 550w,{{ $banner->mobile_image }}&amp;width=750 750w,{{ $banner->desktop_image }}&amp;width=1100 1100w,{{ $banner->desktop_image }}&amp;width=1500 1500w,{{ $banner->desktop_image }}&amp;width=1780 1780w,{{ $banner->desktop_image }}&amp;width=2000 2000w,{{ $banner->desktop_image }}&amp;width=3000 3000w,{{ $banner->desktop_image }}&amp;width=3840 3840w,{{ $banner->desktop_image }} 4472w"
-                    sizes="100vw" loading="lazy" alt="" width="4472" height="2982">
+                <img data-device="desktop" class="image-lazy" src="{{ $banner->desktop_image }}" srcset="{{ $banner->desktop_image }}" loading="lazy">
+                <img data-device="mobile" class="d-none image-lazy" src="{{ $banner->mobile_image }}" srcset="{{ $banner->mobile_image }}" loading="lazy">
             </div>
             <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
                 <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-accent-1 gradient slideshow__text--center slideshow__text-mobile--center">

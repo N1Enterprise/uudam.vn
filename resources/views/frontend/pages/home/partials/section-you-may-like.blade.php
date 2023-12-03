@@ -8,8 +8,8 @@
                 <div class="limespot-recommendation-box-item" data-product-identifier="{{ $inventory->id }}" data-product-title="{{ $inventory->title }}" data-price="{{ format_price($inventory->sale_price) }}" data-original-price="{{ format_price($inventory->sale_price) }}" data-display-url="{{ route('fe.web.products.index', $inventory->slug) }}" style="margin-right: 10px; max-width: 270px; flex-basis: 270px; min-width: 270px;">
                     <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.index', $inventory->slug) }}">
                         <div class="ls-image-wrap" style="flex: 1 1 270px;">
-                            <img class="ls-image" alt="{{ $inventory->title }}" title="{{ $inventory->title }}" loading="lazy" sizes="270px" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
-                            <img sizes="270px" srcset="{{ $inventory->product_image }}" src="{{ $inventory->product_image }}" class="ls-image ls-image-secondary" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
+                            <img class="ls-image image-lazy" alt="{{ $inventory->title }}" title="{{ $inventory->title }}" loading="lazy" sizes="270px" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
+                            <img sizes="270px" srcset="{{ $inventory->product_image }}" src="{{ $inventory->product_image }}" class="image-lazy ls-image ls-image-secondary" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
                         </div>
                         <div class="ls-info-wrap">
                             <div class="ls-title">{{ $inventory->title }}</div>

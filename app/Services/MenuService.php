@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Common\ImageHelper;
 use App\Models\Menu;
 use App\Repositories\Contracts\MenuRepositoryContract;
 use App\Services\BaseService;
@@ -37,9 +36,10 @@ class MenuService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
-            if ($image = data_get($attributes, 'meta.image')) {
-                $attributes['meta']['image'] = ImageHelper::make('appearance')->uploadImage($image);
-            }
+            // $attributes['meta']['image'] = ImageHelper::make('appearance')
+            //     ->hasOptimization()
+            //     ->setConfigKey(Menu::class)
+            //     ->uploadImage(data_get($attributes, 'meta.image'));
 
             $menu = $this->menuRepository->create($attributes);
 
@@ -52,9 +52,10 @@ class MenuService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function() use ($attributes, $id) {
-            if ($image = data_get($attributes, 'meta.image')) {
-                $attributes['meta']['image'] = ImageHelper::make('appearance')->uploadImage($image);
-            }
+            // $attributes['meta']['image'] = ImageHelper::make('appearance')
+            //     ->hasOptimization()
+            //     ->setConfigKey(Menu::class)
+            //     ->uploadImage(data_get($attributes, 'meta.image'));
 
             $menu = $this->menuRepository->update($attributes, $id);
 

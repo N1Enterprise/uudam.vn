@@ -6,6 +6,7 @@ use App\Common\ImageHelper;
 use App\Enum\PaymentOptionTypeEnum;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
+use App\Models\PaymentOption;
 use App\Repositories\Contracts\PaymentOptionRepositoryContract;
 use Illuminate\Support\Facades\DB;
 
@@ -78,7 +79,10 @@ class PaymentOptionService extends BaseService
                 $attributes['online_banking_code'] = null;
             }
 
-            $attributes['logo'] = ImageHelper::make('payment')->uploadImage(data_get($attributes, 'logo'));
+            $attributes['logo'] = ImageHelper::make('payment')
+                ->hasOptimization()
+                ->setConfigKey([PaymentOption::class, 'logo'])
+                ->uploadImage(data_get($attributes, 'logo'));
 
             return $this->paymentOptionRepository->create($attributes);
         });
@@ -94,7 +98,10 @@ class PaymentOptionService extends BaseService
                 $attributes['online_banking_code'] = null;
             }
 
-            $attributes['logo'] = ImageHelper::make('payment')->uploadImage(data_get($attributes, 'logo'));
+            $attributes['logo'] = ImageHelper::make('payment')
+                ->hasOptimization()
+                ->setConfigKey([PaymentOption::class, 'logo'])
+                ->uploadImage(data_get($attributes, 'logo'));
 
             return $this->paymentOptionRepository->update($attributes, $id);
         });

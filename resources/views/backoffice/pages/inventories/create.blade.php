@@ -213,7 +213,6 @@
                                         class="form-control @error('offer_end') is-invalid @enderror"
                                         name="offer_end"
                                         value="{{ old('offer_end', $inventory->offer_end) }}"
-                                        required
                                         disabled
                                     >
                                     @error('offer_end')

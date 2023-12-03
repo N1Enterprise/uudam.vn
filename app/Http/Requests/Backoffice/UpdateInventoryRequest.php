@@ -54,8 +54,6 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'product_combos' => ['nullable', 'array'],
                 'product_combos.*.product_combo_id' => ['required', Rule::exists(Inventory::class, 'id')],
                 'product_combos.*.quantity' => ['required', 'integer'],
-                // 'included_products' => ['nullable', 'array'],
-                // 'included_products.*' => ['required', 'integer', Rule::exists(ProductCombo::class, 'id')],
             ],
             $this->defineSimpleRules($inventory) ?? []
         );
@@ -70,7 +68,6 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            // 'included_products' => array_filter(array_map('intval', $this->included_products ?? [])),
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray(),
             'product_combos' => collect($this->product_combos ?? [])
                 ->filter(function($item) {
@@ -90,7 +87,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
     {
         return [
             'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
-            'sku' => ['required', 'distinct', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
+            'sku' => ['required', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
             'purchase_price' => ['nullable', 'numeric', 'gt:0'],
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'offer_price' => ['nullable', 'numeric', 'gt:0'],

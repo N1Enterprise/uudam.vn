@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Common\ImageHelper;
+use App\Models\Banner;
 use App\Repositories\Contracts\BannerRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
@@ -35,10 +36,15 @@ class BannerService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $imageHelper = ImageHelper::make('appearance');
+            $imageHelper = ImageHelper::make('appearance')->hasOptimization();
 
-            $attributes['desktop_image'] = $imageHelper->uploadImage(data_get($attributes, 'desktop_image'));
-            $attributes['mobile_image']  = $imageHelper->uploadImage(data_get($attributes, 'mobile_image'));
+            $attributes['desktop_image'] = $imageHelper
+                ->setConfigKey([Banner::class, 'desktop_image'])
+                ->uploadImage(data_get($attributes, 'desktop_image'));
+
+            $attributes['mobile_image']  = $imageHelper
+                ->setConfigKey([Banner::class, 'mobile_image'])
+                ->uploadImage(data_get($attributes, 'mobile_image'));
 
             return $this->bannerRepository->create($attributes);
         });
@@ -52,10 +58,15 @@ class BannerService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $imageHelper = ImageHelper::make('appearance');
+            $imageHelper = ImageHelper::make('appearance')->hasOptimization();
 
-            $attributes['desktop_image'] = $imageHelper->uploadImage(data_get($attributes, 'desktop_image'));
-            $attributes['mobile_image']  = $imageHelper->uploadImage(data_get($attributes, 'mobile_image'));
+            $attributes['desktop_image'] = $imageHelper
+                ->setConfigKey([Banner::class, 'desktop_image'])
+                ->uploadImage(data_get($attributes, 'desktop_image'));
+
+            $attributes['mobile_image']  = $imageHelper
+                ->setConfigKey([Banner::class, 'mobile_image'])
+                ->uploadImage(data_get($attributes, 'mobile_image'));
 
             return $this->bannerRepository->update($attributes, $id);
         });

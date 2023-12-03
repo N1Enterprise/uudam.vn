@@ -136,7 +136,11 @@ class InventoryService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function() use ($attributes) {
-            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
+
             $attributes['slug'] = Str::slug($attributes['product_slug'] . ' ' . $attributes['sku'], '-');
 
             $inventory = $this->inventoryRepository->create($attributes);
@@ -178,12 +182,15 @@ class InventoryService extends BaseService
                 $variant['offer_end'] = $variant['offer_price'] ? $variant['offer_end'] : null;
                 $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
                 $variant['slug'] = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
-                $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($variants, ['image', $index]));
+                $variant['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($variants, ['image', $index]));
 
                 $inventory = $this->inventoryRepository->create($variant);
 
-                if ($attributes = Arr::wrap(data_get($variants, ['attribute', $index], []))) {
-                    $this->setAttributes($inventory, $attributes);
+                if ($invAttributes = Arr::wrap(data_get($variants, ['attribute', $index], []))) {
+                    $this->setAttributes($inventory, $invAttributes);
                 }
 
                 $variantsCreated[] = $inventory;
@@ -196,7 +203,10 @@ class InventoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = ImageHelper::make('catalog')->uploadImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
             $inventory = $this->inventoryRepository->update($attributes, $id);
 

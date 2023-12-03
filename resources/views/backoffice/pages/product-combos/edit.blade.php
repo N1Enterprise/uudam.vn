@@ -133,7 +133,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Stock Quantity') }}</label>
+                                    <label for="">{{ __('Stock Quantity') }} *</label>
                                     <input
                                         type="number"
                                         name="stock_quantity"
@@ -141,6 +141,7 @@
                                         class="form-control {{ $errors->has('stock_quantity') ? 'is-invalid' : '' }}"
                                         placeholder="{{ __('Enter stock quantity') }}"
                                         min="0"
+                                        required
                                     >
                                     @error('stock_quantity')
                                     <div class="invalid-feedback">{{ $message }}</div>

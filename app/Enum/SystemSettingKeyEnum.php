@@ -20,6 +20,9 @@ class SystemSettingKeyEnum extends BaseEnum
     public const VIDEO_OUTSIDE_UI = 'video_outside_ui';
     public const SEARCH_SETTING = 'search_setting';
 
+    // Image
+    public const IMAGE_CONFIGURATION = 'image_configuration';
+
     public static function all(): array
     {
         return [
@@ -36,6 +39,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::VIDEO_OUTSIDE_UI,
             self::SEARCH_SETTING,
             self::ENABLE_USER_EMAIL_VERIFICATION,
+            self::IMAGE_CONFIGURATION,
         ];
     }
 }

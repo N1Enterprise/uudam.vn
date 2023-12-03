@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Common\ImageHelper;
 use App\Enum\ActivationStatusEnum;
+use App\Models\PostCategory;
 use App\Repositories\Contracts\PostCategoryRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
@@ -57,7 +58,10 @@ class PostCategoryService extends BaseService
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['image'] = ImageHelper::make('utility')->uploadImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('utility')
+                ->hasOptimization()
+                ->setConfigKey([PostCategory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
             return $this->postCategoryRepository->create($attributes);
         });
@@ -71,7 +75,10 @@ class PostCategoryService extends BaseService
     public function update($attributes = [], $id)
     {
         return DB::transaction(function () use ($attributes, $id) {
-            $attributes['image'] = ImageHelper::make('utility')->uploadImage(data_get($attributes, 'image'));
+            $attributes['image'] = ImageHelper::make('utility')
+                ->hasOptimization()
+                ->setConfigKey([PostCategory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'image'));
 
             return $this->postCategoryRepository->update($attributes, $id);
         });
