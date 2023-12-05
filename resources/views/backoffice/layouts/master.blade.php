@@ -1,3 +1,16 @@
+@php
+    $footerMenu = '';
+    $envBgColor = '';
+
+    if (app()->environment('local') || app()->environment('development')) {
+        $footerMenu = __('DEVELOPMENT');
+        $envBgColor = '';
+    } else if (app()->environment('production')) {
+        $footerMenu = __('PRODUCTION');
+        $envBgColor = '#fad451';
+    }
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -105,7 +118,7 @@
                 <div class="k-grid__item k-grid__item--fluid k-grid k-grid--hor k-wrapper" id="k_wrapper">
 
 					<!-- begin:: Header -->
-					<div id="k_header" class="k-header k-grid__item  k-header--fixed ">
+					<div id="k_header" class="k-header k-grid__item  k-header--fixed " style="background-color: {{ $envBgColor }}">
 
 						<!-- begin: Header Menu -->
 						<button class="k-header-menu-wrapper-close" id="k_header_menu_mobile_close_btn">
