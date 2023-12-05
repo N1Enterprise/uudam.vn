@@ -2,6 +2,7 @@ const APP_CONSTANT = {
     DATE_TIME_FORMAT: "YYYY-MM-DD HH:mm:ss",
     DATE_FORMAT: "YYYY-MM-DD",
     RAW_DATE_TIME_FORMAT: "YYYY-MM-DDTHH:mm:ss.000000Z",
+    UTC_OFFSET: localStorage.getItem("fs_stevephamhi_utc_offset") ?? "0",
     UTC_OFFSETS: {
         "-660": "GMT-11:00",
         "-600": "GMT-10:00",

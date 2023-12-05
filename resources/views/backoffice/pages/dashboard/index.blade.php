@@ -21,6 +21,21 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
+    <div class="row">
+        @include('backoffice.pages.dashboard.partials.statistic-user')
+        @include('backoffice.pages.dashboard.partials.statistic-order')
+        @include('backoffice.pages.dashboard.partials.statistic-turnover')
+    </div>
 
+    <div class="row">
+        {{-- @include('backoffice.pages.dashboard.partials.table-top-user') --}}
+        {{-- @include('backoffice.pages.dashboard.partials.table-top-order') --}}
+    </div>
 </div>
+@endsection
+
+@component('backoffice.partials.datatable') @endcomponent
+
+@section('js_script')
+@include('backoffice.pages.dashboard.js-pages.index')
 @endsection
