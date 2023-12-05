@@ -85,4 +85,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('carts', [Api\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
     Route::get('cart-items', [Api\CartItemController::class, 'index'])->name('cart-items.index')->middleware(['can:carts.index']);
+
+    /* ======================== DASHBOARD REPORT ======================== */
+    Route::get('dashboard/total-new-users', [Api\DashboardController::class, 'getTotalNewUsers'])->name('dashboard.new-users');
 });

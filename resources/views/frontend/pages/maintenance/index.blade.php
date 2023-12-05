@@ -53,10 +53,9 @@
             }
         </style>
     </head>
-    <body class="home page-template page-template-page-blank page-template-page-blank-php page page-id-18 theme-flatsome woocommerce-js woo-variation-swatches wvs-behavior-blur wvs-theme-flatsome wvs-show-label lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
+    <body class="home page-template page-template-page-blank page-template-page-blank-php page page-id-18 theme-flatsome woo-variation-swatches wvs-behavior-blur wvs-theme-flatsome wvs-show-label lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
         <div id="wrapper">
-            <main id="main" class="">
-                <!-- wp:flatsome/uxbuilder -->
+            <main id="main">
                 <section class="section" id="section_827439329">
                     <div class="bg section-bg fill bg-fill bg-loaded">
                         <div class="effect-snow bg-effect fill no-click"></div>
