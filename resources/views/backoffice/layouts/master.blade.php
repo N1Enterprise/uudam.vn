@@ -127,8 +127,8 @@
 						<div id="k_header_menu" class="k-header-menu k-header-menu-mobile">
                             <ul class="k-menu__nav ">
                                 <li class="k-menu__item k-menu__item--submenu k-menu__item--rel">
-                                    <a href="{{ route('fe.web.home') }}" target="_blank" class="k-menu__link" onclick="">
-                                        <span class="k-menu__link-text">{{ __('Store Front') }}</span>
+                                    <a href="{{ route('fe.web.home') }}" target="_blank" class="k-menu__link" style="background-color: #fff;">
+                                        <span class="k-menu__link-text" style="text-transform: uppercase;">{{ __('Store Front') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -142,7 +142,7 @@
 							<!--begin: User bar -->
 							<div class="k-header__topbar-item k-header__topbar-item--user">
 								<div class="k-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px -2px">
-									<div class="k-header__topbar-user">
+									<div class="k-header__topbar-user" style="background-color: #fff;">
 										<span class="k-header__topbar-welcome k-hidden-mobile">{{__('Hi')}},</span>
 										<span class="k-header__topbar-username k-hidden-mobile">{{ $AUTHENTICATED_ADMIN->name }}</span>
 										<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
