@@ -88,4 +88,8 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== DASHBOARD REPORT ======================== */
     Route::get('dashboard/total-new-users', [Api\DashboardController::class, 'getTotalNewUsers'])->name('dashboard.new-users');
+    Route::get('dashboard/total-new-orders', [Api\DashboardController::class, 'getTotalNewOrders'])->name('dashboard.new-orders');
+    Route::get('dashboard/total-deposit', [Api\DashboardController::class, 'getTotalDeposit'])->name('dashboard.total-deposit');
+    Route::get('dashboard/top-users', [Api\DashboardController::class, 'getTopUsers'])->name('dashboard.top-users');
+    Route::get('dashboard/top-orders', [Api\DashboardController::class, 'getTopOrders'])->name('dashboard.top-orders');
 });

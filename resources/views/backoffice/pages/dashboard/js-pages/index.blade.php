@@ -15,7 +15,7 @@ $(document).ready(function() {
                     $("#total_user").html('...');
                 },
                 success: function(response) {
-                    $('#total_user').text(response?.total_count || 0)
+                    $('#total_user').text(response?.total_count || 0);
                 },
                 error: function() {
                     toastr.error("{{ __('Something when wrong please try to calculate total new user.') }}");
@@ -23,10 +23,42 @@ $(document).ready(function() {
             });
         },
         statisticOrder: (params) => {
-            console.log({ statisticOrder: params });
+            const route = $('#report_total_order').attr('data-request-url');
+
+            $.ajax({
+                url: route,
+                method: 'GET',
+                data: params,
+                dataType: 'json',
+                beforeSend: function() {
+                    $("#total_order").html('...');
+                },
+                success: function(response) {
+                    $('#total_order').text(response?.total_count || 0);
+                },
+                error: function() {
+                    toastr.error("{{ __('Something when wrong please try to calculate total new order.') }}");
+                }
+            });
         },
-        statisticTurnover: (params) => {
-            console.log({ statisticTurnover: params });
+        statisticDeposit: (params) => {
+            const route = $('#report_total_deposit').attr('data-request-url');
+
+            $.ajax({
+                url: route,
+                method: 'GET',
+                data: params,
+                dataType: 'json',
+                beforeSend: function() {
+                    $("#deposit_metric").html('...');
+                },
+                success: function(response) {
+                    $('#deposit_metric').text(response?.total_count || 0);
+                },
+                error: function() {
+                    toastr.error("{{ __('Something when wrong please try to calculate total deposit.') }}");
+                }
+            });
         },
     };
 
@@ -67,7 +99,7 @@ $(document).ready(function() {
 
             STATISTIC.statisticUser(params);
             STATISTIC.statisticOrder(params);
-            STATISTIC.statisticTurnover(params);
+            STATISTIC.statisticDeposit(params);
         },
         loadDataTable: () => {
 
