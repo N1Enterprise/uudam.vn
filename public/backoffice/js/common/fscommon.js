@@ -183,6 +183,7 @@ var fscommon = {
 			const customRange = boolVal($(this).attr('custom-range') ?? false);
 			const storeFormat = $(this).attr('date-store-format');
 			const timePickerSeconds = boolVal($(this).attr('time-picker-seconds') ?? true);
+
 			const config = self.cleanObject({
 				startDate,
 				endDate,
@@ -197,8 +198,9 @@ var fscommon = {
 					format,
 					separator
 				}
-			})
-			if(predefined){
+			});
+
+			if (predefined) {
 				config.ranges = {
 					'Today': [moment().utcOffset(utcOffset).startOf('day'), moment().utcOffset(utcOffset).endOf('day')],
 					'Yesterday': [moment().utcOffset(utcOffset).subtract(1, 'days').startOf('day'), moment().utcOffset(utcOffset).subtract(1, 'days').endOf('day')],
@@ -391,7 +393,7 @@ const currentUtcOffset = {
         });
 	},
 	get: function() {
-        // return UTC_OFFSET;
+        return 0;
 	},
 	label: function() {
 		return APP_CONSTANT.UTC_OFFSETS[this.get()];
