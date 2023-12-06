@@ -27,7 +27,7 @@
 @endpush
 
 @section('page_title')
-{{ $inventory->title }}
+{{ data_get($inventory, 'meta_title', $inventory, 'title') }}
 @endsection
 
 @section('page_seo')
@@ -38,13 +38,30 @@
 <meta property="og:description" content="{{ $inventory->meta_description }}">
 <meta property="og:image" content="{{ $inventory->product_image }}">
 <meta property="og:image:secure_url" content="{{ $inventory->product_image }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
 <meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
 <meta property="og:price:currency" content="VND">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $inventory->meta_title }}">
 <meta name="twitter:description" content="{{ $inventory->meta_description }}">
+
+<meta name="description" content="{{ data_get($inventory, 'meta_description') }}">
+<meta name="keywords" content="{{ data_get($inventory, 'title') }}">
+<meta property="og:title" content="{{ data_get($inventory, 'meta_title', $inventory, 'title') }}">
+<meta property="og:description" content="{{ data_get($inventory, 'meta_description') }}">
+<meta property="og:image" content="{{ data_get($inventory, 'product_image') }}">
+<meta property="og:image:secure_url" content="{{ data_get($inventory, 'product_image') }}">
+<meta property="og:url" content="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}">
+<meta property="og:site_name" content="{{ config('app.user_host') }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="brand" content="{{ data_get($inventory, 'product.branch') }}">
+<meta name="product" content="{{ data_get($inventory, 'product.id') }}">
+<meta name="category" content="1795">
+<meta name="next-head-count" content="31">
+<meta http-equiv="origin-trial" content="AwnOWg2dzaxHPelVjqOT/Y02cSxnG2FkjXO7DlX9VZF0eyD0In8IIJ9fbDFZGXvxNvn6HaF51qFHycDGLOkj1AUAAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5jb206NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY5NTE2Nzk5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
 @endsection
 
 @push('style_pages')

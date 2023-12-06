@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="js ls-gt-xs ls-lt-xl ls-sm ls-lt-md ls-lt-lg">
-
+<html class="no-js" lang="vi" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8" />
-    <title> @yield('page_title', __($APP_NAME))</title>
+    <title>@yield('page_title', __($APP_NAME))</title>
+
     <meta name="description" content="Latest updates and statistic charts">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
@@ -24,6 +24,9 @@
                 sessionStorage.fonts = true;
             }
         });
+    </script>
+    <script nomodule="">
+        document.documentMode <= 11 && location.replace("/unsupported.html")
     </script>
     <!--end::Web font -->
 
