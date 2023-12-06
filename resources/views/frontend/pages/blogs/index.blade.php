@@ -20,6 +20,26 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-pagination.css') }}">
 @endpush
 
+@section('page_seo')
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:image:secure_url" content="">
+<meta property="og:url" content="">
+<meta property="og:site_name" content="">
+<meta property="og:type" content="">
+<meta property="og:locale" content="">
+<meta property="og:price:amount" content="">
+<meta property="og:price:currency" content="">
+<meta name="al:ios:app_name" content="">
+<meta name="al:iphone:app_name" content="">
+<meta name="al:ipad:app_name" content="">
+<meta name="brand" content="">
+<meta name="product" content="">
+@endsection
+
 @section('content_body')
 <section class="shopify-section section">
     <div class="main-blog page-width section-template__main-paddingg">

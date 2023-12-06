@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="vi" prefix="og: http://ogp.me/ns#">
+<html lang="vi" class="js ls-gt-xs ls-lt-xl ls-sm ls-lt-md ls-lt-lg">
 <head>
     <meta charset="utf-8" />
     <title>@yield('page_title', __($APP_NAME))</title>
@@ -10,6 +10,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
     <meta property="og:site_name" content="{{ __($APP_NAME) }}">
+
+    @foreach (data_get($PAGE_SETTINGS, 'favicon') as $favicon)
+    <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
+    @endforeach
 
     @yield('page_seo')
 

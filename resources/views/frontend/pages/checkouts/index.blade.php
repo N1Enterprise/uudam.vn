@@ -1,5 +1,22 @@
 @extends('frontend.layouts.checkout')
 
+@section('page_title')
+Thanh toán | {{ config('app.user_domain') }}
+@endsection
+
+@section('page_seo')
+<meta property="og:title" content="Thanh toán | {{ config('app.user_domain') }}">
+<meta property="og:description" content="Thanh toán | {{ config('app.user_domain') }}">
+<meta property="og:url" content="{{ request()->url() }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:price:currency" content="VND">
+<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+@endsection
+
 @section('style')
 <link href="{{ asset('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
 <style>
