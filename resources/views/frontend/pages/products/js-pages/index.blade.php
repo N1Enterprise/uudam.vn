@@ -304,9 +304,6 @@ const FORM_ORDER = {
         utils_helper.cookie(COOKIES_KEY.SHOPPING_CART).set(JSON.stringify(data));
     },
     setDataOrder: () => {
-        console.log({
-            data: MAIN_INVENTORY.getFullData()
-        });
         const { quantity, has_combo, inventory, product_id } = MAIN_INVENTORY.getFullData();
 
         $('form[form-add-to-cart]').find('[name="product_id"]').val(product_id);
