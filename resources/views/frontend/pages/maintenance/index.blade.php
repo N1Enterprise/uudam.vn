@@ -2,20 +2,23 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>Ưu Đàm Handmade</title>
-        <meta name="description" content="Ưu Đàm chuyên cung cấp các sản phẩm nến bơ thực vật Ogranic 100% an toàn cho sức khoẻ và nguyên liệu làm nến sỉ và lẻ.">
-        <link rel="canonical" href="https://uudam.vn/">
-        <meta property="og:locale" content="vi_VN">
+        <title>{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}</title>
+
+        @foreach (data_get($PAGE_SETTINGS, 'favicon') as $favicon)
+        <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
+        @endforeach
+
+        <meta property="og:title" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
+        <meta property="og:description" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
+        <meta property="og:url" content="{{ request()->url() }}">
+        <meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="Ưu Đàm Handmade">
-        <meta property="og:description" content="Ưu Đàm chuyên cung cấp các sản phẩm nến bơ thực vật Ogranic 100% an toàn cho sức khoẻ và nguyên liệu làm nến sỉ và lẻ.">
-        <meta property="og:url" content="https://uudam.vn/">
-        <meta property="og:site_name" content="Ưu Đàm">
-        <meta property="article:modified_time" content="2023-04-16T06:06:32+00:00">
-        <meta property="og:image:width" content="200">
-        <meta property="og:image:height" content="200">
-        <meta property="og:image:type" content="image/png">
-        <meta name="twitter:card" content="summary_large_image">
+        <meta property="og:locale" content="vi_VN">
+        <meta property="og:price:currency" content="VND">
+        <meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+        <meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+        <meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+
         <link rel="stylesheet" id="flatsome-main-css" href="{{ asset('frontend/assets/css/pages/maintenance/index.css') }}" type="text/css" media="all">
         <style id="custom-css" type="text/css">
             .sticky-add-to-cart--active, #wrapper, #main, #main.dark {

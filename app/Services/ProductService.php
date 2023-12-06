@@ -22,7 +22,7 @@ class ProductService extends BaseService
     {
         $result = $this->productRepository
             ->with(['createdBy', 'updatedBy'])
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['id', 'name', 'slug', 'code'])
             ->search([]);
 
         return $result;

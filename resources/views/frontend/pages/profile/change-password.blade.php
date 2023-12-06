@@ -1,5 +1,22 @@
 @extends('frontend.layouts.profile')
 
+@section('page_title')
+Thay đổi mật khẩu | {{ config('app.user_domain') }}
+@endsection
+
+@section('page_seo')
+<meta property="og:title" content="Thay đổi mật khẩu | {{ config('app.user_domain') }}">
+<meta property="og:description" content="Thay đổi mật khẩu | {{ config('app.user_domain') }}">
+<meta property="og:url" content="{{ request()->url() }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:price:currency" content="VND">
+<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+@endsection
+
 @section('profile_content')
 <div class="profile-change-password">
     <h4>Thay đổi mật khẩu</h4>

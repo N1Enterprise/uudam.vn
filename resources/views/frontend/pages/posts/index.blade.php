@@ -1,5 +1,25 @@
 @extends('frontend.layouts.master')
 
+@section('page_title')
+{{ data_get($post, 'meta_title', $post, 'name') }}
+@endsection
+
+@section('page_seo')
+<meta name="description" content="{{ data_get($post, 'meta_description') }}">
+<meta name="keywords" content="{{ data_get($post, 'name') }}">
+<meta property="og:title" content="{{ data_get($post, 'meta_title', $post, 'name') }}">
+<meta property="og:description" content="{{ data_get($post, 'meta_description') }}">
+<meta property="og:image" content="{{ data_get($post, 'image') }}">
+<meta property="og:image:secure_url" content="{{ data_get($post, 'image') }}">
+<meta property="og:url" content="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+@endsection
+
 @push('style_pages')
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/blog-news/index.css') }}">
 @endpush
