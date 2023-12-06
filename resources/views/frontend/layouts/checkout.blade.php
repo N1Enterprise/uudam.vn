@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,28 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
     <meta property="og:site_name" content="{{ __($APP_NAME) }}">
+
+    @foreach (data_get($PAGE_SETTINGS, 'favicon') as $favicon)
+    <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
+    @endforeach
+
+    @yield('page_seo')
+
+    <!--begin::Web font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700"]
+            },
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <script nomodule="">
+        document.documentMode <= 11 && location.replace("/unsupported.html")
+    </script>
 </head>
 <body>
     <link href="{{ asset('frontend/assets/css/common/latest/199.latest.css') }}" rel="stylesheet" type="text/css" />

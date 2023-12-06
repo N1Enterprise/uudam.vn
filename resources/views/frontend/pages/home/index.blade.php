@@ -1,5 +1,22 @@
 @extends('frontend.layouts.master')
 
+@section('page_title')
+{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}
+@endsection
+
+@section('page_seo')
+<meta property="og:title" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
+<meta property="og:description" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
+<meta property="og:url" content="{{ request()->url() }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:price:currency" content="VND">
+<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+@endsection
+
 @push('style_pages')
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-1.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/home/index.css') }}">

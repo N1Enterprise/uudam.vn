@@ -40,8 +40,6 @@ class ProductController extends BaseController
             'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
         ]);
 
-        // dd();
-
         $imageGalleries = collect([$inventory->image])
             ->merge(collect(data_get($inventory, 'product.media.image', []))->map(fn($item) => data_get($item, 'path')))
             ->toArray();

@@ -24,11 +24,11 @@
     <div class="row">
         @include('backoffice.pages.dashboard.partials.statistic-user')
         @include('backoffice.pages.dashboard.partials.statistic-order')
-        @include('backoffice.pages.dashboard.partials.statistic-turnover')
+        @include('backoffice.pages.dashboard.partials.statistic-deposit')
     </div>
 
     <div class="row">
-        {{-- @include('backoffice.pages.dashboard.partials.table-top-user') --}}
+        @include('backoffice.pages.dashboard.partials.table-top-user')
         {{-- @include('backoffice.pages.dashboard.partials.table-top-order') --}}
     </div>
 </div>
