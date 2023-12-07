@@ -7,6 +7,7 @@ php artisan optimize:clear
 
 composer install
 npm install
+npm run prod:fe
 
 php artisan migrate --force
 
