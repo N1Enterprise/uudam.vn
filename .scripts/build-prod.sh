@@ -8,7 +8,7 @@ php artisan optimize:clear
 composer install
 npm install
 
-php artisan migrate
+php artisan migrate --force
 
 php artisan config:cache
 php artisan route:cache
