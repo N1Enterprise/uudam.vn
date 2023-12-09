@@ -28,7 +28,6 @@
             body {
                 color: #fff;
                 background-color: #025b50;
-                height: 100vh!important;
                 overflow: hidden;
             }
 
@@ -53,6 +52,7 @@
             }
 
             .master-image {
+                width: 100%!important;
             }
         </style>
     </head>
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="col-827608374" class="col medium-8 small-12 large-8" style="padding: 4px 0;">
+                            <div id="col-827608374" class="col medium-8 small-12 large-8" style="padding: 4px 10px;">
                                 <div class="col-inner text-center">
                                     <marquee>
                                         <p>
@@ -88,15 +88,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row align-center" id="row-1691135138">
-                            <div id="col-1101815550" class="col small-12 large-12">
-                                <div class="col-inner">
-                                    <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1998674865">
-                                        <div data-parallax-fade="true" data-parallax="-2" class="parallax-active">
-                                            <div data-animate="fadeInLeft" data-animated="true">
-                                                <div class="img-inner dark">
-                                                    <img class="master-image" src="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" srcset="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy">
-                                                </div>
+                        <div class="row align-center">
+                            <div class="col-inner">
+                                <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1998674865">
+                                    <div data-parallax-fade="true" data-parallax="-2" class="parallax-active">
+                                        <div data-animate="fadeInLeft" data-animated="true">
+                                            <div class="img-inner dark">
+                                                <img class="master-image" src="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" srcset="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy">
                                             </div>
                                         </div>
                                     </div>
