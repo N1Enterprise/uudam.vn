@@ -34,7 +34,7 @@ generate_build_version() {
 }
 
 
-git checkout feature/improve-user-authentication
+git checkout develop
 git pull
 
 php artisan optimize:clear
