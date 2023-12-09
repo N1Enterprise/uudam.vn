@@ -36,4 +36,5 @@ mix
     .js('resources/src/frontend/js/checkout/index.js', 'public/frontend/bundle/js/checkout/index.min.js')
     .js('resources/src/frontend/js/profile/user-info.js', 'public/frontend/bundle/js/profile/user-info.min.js')
     .js('resources/src/frontend/js/profile/change-password.js', 'public/frontend/bundle/js/profile/change-password.min.js')
+    .js('resources/src/frontend/js/authentication/index.js', 'public/frontend/bundle/js/authentication/index.min.js')
     .sourceMaps(productionSourceMaps, 'source-map');

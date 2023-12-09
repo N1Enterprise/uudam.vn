@@ -35,25 +35,25 @@
     <!--end::Web font -->
 
     <!--begin::Page Vendor Styles -->
-    <link href="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Vendor Styles -->
 
     <!--begin::Page Common Styles -->
-    <link href="{{ asset('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-search.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-predictive-search.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-search.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-predictive-search.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Common Styles -->
 
     @yield('style_datatable')
@@ -179,6 +179,55 @@
         }
     </style>
     <!--end::Layout Skins -->
+
+    <!--start::Social authentication -->
+    <style>
+        .social-authentication .social-authentication__item {
+            width: 60px;
+            height: 60px;
+            background-color: rgb(var(--color-background));
+            border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+            border-radius: 50%;
+            color: rgba(var(--color-foreground), 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 1.2rem;
+            margin: 5px;
+        }
+
+        .social-authentication .social-authentication__item.facebook {
+            background-color: #25479b;
+        }
+
+        .social-authentication__title {
+            position: relative;
+        }
+
+        .social-authentication__title span {
+            font-size: 15px;
+            color: rgb(120, 120, 120);
+            display: inline-block;
+            background: rgb(255, 255, 255);
+            padding: 0px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-authentication__title::before {
+            content: "";
+            width: 100%;
+            height: 1px;
+            background: rgb(242, 242, 242);
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+    </style>
+    <!--end::Layout Skins -->
 </head>
 
 <body class="gradient swym-ready swym-buttons-loaded">
@@ -191,18 +240,21 @@
 
     @include('frontend.layouts.partials.footer.index')
 
-    <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('vendor/validate/custom.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('vendor/validate/custom.js') }}" type="text/javascript"></script>
 
-    <script src="{{ asset('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
 
+    <!--start:: Authentication -->
+    <script src="{{ asset_with_version('frontend/bundle/js/authentication/index.min.js') }}" type="text/javascript"></script>
+    <!--end:: Authentication -->
 
     @include('frontend.layouts.js-pages.menu-drawer')
     @include('frontend.layouts.js-pages.authentication')

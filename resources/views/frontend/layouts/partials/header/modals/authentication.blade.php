@@ -58,6 +58,7 @@
                                 <a href="?overlay=forgot-password" data-overlay-action-button="forgot-password" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Quên Mật Khẩu?</a>
                             </div>
                             <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng Nhập</button>
+                            @include('frontend.layouts.partials.header.modals.social-authentication')
                         </form>
                     </div>
                     <div class="form-social-signup"></div>
