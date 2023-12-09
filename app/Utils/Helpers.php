@@ -253,19 +253,9 @@ if (! function_exists('disabled_input')) {
     }
 }
 
-if (! function_exists('frontend_image')) {
-    function frontend_image($image, $modelName = null)
+if (! function_exists('asset_with_version')) {
+    function asset_with_version($pathname)
     {
-        // $params = [];
-
-        // if (! empty($modelName)) {
-        //     $imageConfiguration = SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get('App\\Models\\'.$modelName, []);
-        //     $params = Arr::only($imageConfiguration, ['width', 'height']);
-        //     $params = http_build_query($params);
-
-        // }
-
-        // return !empty($params) ? $image . '?' .$params : $image;
-        return $image;
+        return asset($pathname) . '?v=' . config('app.build_version');
     }
 }

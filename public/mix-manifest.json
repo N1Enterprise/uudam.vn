@@ -1,5 +1,6 @@
 {
     "/frontend/bundle/js/checkout/index.min.js": "/frontend/bundle/js/checkout/index.min.js",
     "/frontend/bundle/js/profile/user-info.min.js": "/frontend/bundle/js/profile/user-info.min.js",
-    "/frontend/bundle/js/profile/change-password.min.js": "/frontend/bundle/js/profile/change-password.min.js"
+    "/frontend/bundle/js/profile/change-password.min.js": "/frontend/bundle/js/profile/change-password.min.js",
+    "/frontend/bundle/js/authentication/index.min.js": "/frontend/bundle/js/authentication/index.min.js"
 }

@@ -138,6 +138,3 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
     </div>
 </div>
 @endsection
-
-@section('profile_js')
-@endsection
