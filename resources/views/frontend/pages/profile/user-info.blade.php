@@ -65,5 +65,5 @@ Thông tin tài khoản | {{ config('app.user_domain') }}
 @endsection
 
 @section('profile_js')
-<script src="{{ mix('frontend/bundle/js/profile/user-info.min.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/profile/user-info.min.js') }}"></script>
 @endsection

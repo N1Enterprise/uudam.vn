@@ -38,5 +38,5 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
 @endsection
 
 @section('profile_js')
-<script src="{{ mix('frontend/bundle/js/profile/change-password.min.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/profile/change-password.min.js') }}"></script>
 @endsection
