@@ -193,7 +193,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            padding: 1.2rem;
             margin: 5px;
         }
 
