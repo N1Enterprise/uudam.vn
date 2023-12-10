@@ -40,10 +40,6 @@ $(document).ready(function() {
             loginWithWindowPopup: (provider) => {
                 const windowInstance = openWindow(provider?.authorization_url, 'Đăng nhập với Facebook', 600, 600);
 
-                if (! windowInstance || windowInstance.closed || typeof windowInstance.closed == 'undefined') {
-                    return SOCIAL_AUTHENTICATION.loginWithNewTab(provider);
-                }
-
                 var checkPopupClosed = setInterval(function () {
                     if (windowInstance.closed) {
                         clearInterval(checkPopupClosed);
@@ -76,13 +72,14 @@ $(document).ready(function() {
                             if (selectedProvider) {
                                 const windowWidth = window.innerWidth;
 
-                                Cookies.set(COOKIE_KEYS.CURRENT_URL, window.location.href);
+                                const testWindow = window.open('', '_blank');
+                                const openWindowBlocked = !testWindow || testWindow.closed || typeof testWindow.closed=='undefined';
 
-                                if (windowWidth <= 800) {
-                                    return SOCIAL_AUTHENTICATION.loginWithNewTab(selectedProvider);
-                                } else {
+                                if (windowWidth > 800 && !openWindowBlocked) {
                                     return SOCIAL_AUTHENTICATION.loginWithWindowPopup(selectedProvider);
                                 }
+
+                                return SOCIAL_AUTHENTICATION.loginWithNewTab(selectedProvider);
                             }
                         },
                         error: () => {
