@@ -25,48 +25,65 @@ $(document).ready(function() {
                     data: { auth_code: oauthCode, provider },
                     success: (response) => {
                         toastr.success('Đăng nhập thành công.');
-                        setTimeout(() => window.close(), 500);
+
+                        if (window.opener) {
+                            setTimeout(() => window.close(), 500);
+                        } else {
+                            window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
+                        }
                     },
                     error: () => {
                         toastr.error('Đăng nhập không thành công.');
                     }
                 });
             },
+            loginWithWindowPopup: (provider) => {
+                const windowInstance = openWindow(provider?.authorization_url, 'Đăng nhập với Facebook', 600, 600);
+
+                var checkPopupClosed = setInterval(function () {
+                    if (windowInstance.closed) {
+                        clearInterval(checkPopupClosed);
+                        handleAfterLoginSucceed();
+                    }
+                }, 1000);
+
+                function handleAfterLoginSucceed() {
+                    setTimeout(() => window.location.reload(), 500);
+                }
+            },
+            loginWithNewTab: (provider) => {
+                window.location.href = provider?.authorization_url;
+            },
             onOauthLogin: () => {
                 $('[data-oauth-provider]').on('click', function() {
                     const route = $(this).attr('data-oauth-login-route');
                     const provider = $(this).attr('data-oauth-provider');
-
-                    const _self = $(this);
 
                     $.ajax({
                         url: route,
                         method: 'GET',
                         data: { provider },
                         beforeSend: () => {
-                            _self.addClass('disabled');
+                            $('[data-oauth-provider]').addClass('disabled');
                         },
                         success: ({ oauth_providers }) => {
                             const selectedProvider = oauth_providers.find((item) => item.provider == provider);
 
                             if (selectedProvider) {
-                                const windowInstance = openWindow(selectedProvider?.authorization_url, 'Đăng nhập với Facebook', 600, 600);
+                                const windowWidth = window.innerWidth;
 
-                                var checkPopupClosed = setInterval(function () {
-                                    if (windowInstance.closed) {
-                                        clearInterval(checkPopupClosed);
-                                        handleAfterLoginSucceed();
-                                    }
-                                }, 1000);
+                                Cookies.set(COOKIE_KEYS.CURRENT_URL, window.location.href);
 
-                                function handleAfterLoginSucceed() {
-                                    setTimeout(() => window.location.reload(), 500);
+                                if (windowWidth <= 800) {
+                                    return SOCIAL_AUTHENTICATION.loginWithNewTab(selectedProvider);
+                                } else {
+                                    return SOCIAL_AUTHENTICATION.loginWithWindowPopup(selectedProvider);
                                 }
                             }
                         },
                         error: () => {
                             toastr.error('Đăng nhập không thành công.');
-                            _self.removeClass('disabled');
+                            $('[data-oauth-provider]').removeClass('disabled');
                         }
                     });
                 });

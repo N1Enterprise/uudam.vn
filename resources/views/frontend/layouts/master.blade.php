@@ -239,7 +239,8 @@
     </main>
 
     <input type="hidden" data-bo-shared='@json([
-        'bo_host' => config('app.url')
+        'bo_host' => config('app.url'),
+        'app_id'  => config('app.id')
     ])'>
 
     @include('frontend.layouts.partials.footer.index')
@@ -249,10 +250,13 @@
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/assets/vendors/general/js-cookie/src/js.cookie.js') }}" type="text/javascript"></script>
+
     <script src="{{ asset_with_version('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('vendor/validate/custom.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset_with_version('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/utils/router.js') }}" type="text/javascript"></script>
 

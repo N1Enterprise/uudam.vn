@@ -61,6 +61,8 @@ return [
 
     'build_version' => env('BUILD_VERSION'),
 
+    'id' => env('APP_ID'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

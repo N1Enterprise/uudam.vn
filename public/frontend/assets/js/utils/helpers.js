@@ -142,7 +142,8 @@ const utils_helper = {
         const BO_DOMAIN = JSON.parse($('input[type="hidden"][data-bo-shared]').attr('data-bo-shared') || '{}');
 
         return {
-            bo_host: BO_DOMAIN?.bo_host
+            bo_host: BO_DOMAIN?.bo_host,
+            app_id: BO_DOMAIN?.app_id
         };
     },
 };
