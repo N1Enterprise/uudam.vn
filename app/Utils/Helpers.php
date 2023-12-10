@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
@@ -257,5 +258,55 @@ if (! function_exists('asset_with_version')) {
     function asset_with_version($pathname)
     {
         return asset($pathname) . '?v=' . config('app.build_version');
+    }
+}
+
+
+if (!function_exists('parse_expression')) {
+    function parse_expression($string, $replacements, $emptyOnParseError = false, $pattern = '/\$\{([^}]*)\}/')
+    {
+        $parsed = preg_replace_callback(
+            $pattern,
+            function ($matches) use ($replacements, $string, $emptyOnParseError) {
+                $expressionLanguage = new Symfony\Component\ExpressionLanguage\ExpressionLanguage();
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('array_search'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('in_array'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('data_get'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('implode'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('coalesce'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('to_timestamp'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('to_stringable'));
+
+                $expression = $matches[1] ?? $matches[0]; // remove string expression wrapper (ex: ${expression} => expression)
+                try {
+                    $parsed = $expressionLanguage->evaluate(
+                        $expression,
+                        $replacements
+                    );
+                } catch (\Throwable $th) {
+                    Log::warning('Expression Unable to Parse: ' . $th->getMessage(), ['string' => $string, 'expression' => $expression, 'replacements' => $replacements]);
+
+                    return $emptyOnParseError ? null : $matches[0];
+                }
+
+                return $parsed;
+            },
+            $string
+        );
+
+        // cast parsed expression string to another type
+        // example expression "${parsedString} $| float"
+        // the cast type will get after last `$|` character
+        $castType = trim(Str::afterLast($parsed, '$|'));
+
+        $possibleTypes = ['boolean', 'bool', 'integer', 'int', 'float', 'double', 'string', 'array', 'object'];
+
+        if (!in_array($castType, $possibleTypes)) {
+            return $parsed;
+        }
+
+        settype($parsed, $castType);
+
+        return $parsed;
     }
 }

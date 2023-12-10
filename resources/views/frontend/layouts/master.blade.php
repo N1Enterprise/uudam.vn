@@ -238,6 +238,10 @@
         @stack('modals')
     </main>
 
+    <input type="hidden" data-bo-shared='@json([
+        'bo_host' => config('app.url')
+    ])'>
+
     @include('frontend.layouts.partials.footer.index')
 
     <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
@@ -248,9 +252,9 @@
     <script src="{{ asset_with_version('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('vendor/validate/custom.js') }}" type="text/javascript"></script>
 
-    <script src="{{ asset_with_version('frontend/assets/js/utils/constants.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/assets/js/utils/router.js') }}" type="text/javascript"></script>
 
     <!--start:: Authentication -->
     <script src="{{ asset_with_version('frontend/bundle/js/authentication/index.min.js') }}" type="text/javascript"></script>

@@ -16,6 +16,10 @@ Route::post('user/signin', [Controllers\UserAuthenticationController::class, 'si
 Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
 Route::get('user/email/verify/{id}', [Controllers\UserAuthenticationController::class, 'verifyEmail'])->name('user.email_verification.verify')->middleware('system.feature_toggle:'.SystemSettingKeyEnum::ENABLE_USER_EMAIL_VERIFICATION);
 
+Route::get('user/oauth/providers', [Controllers\OauthController::class, 'providers'])->name('user.oauth.providers');
+Route::get('user/oauth/{provider}/callback', [Controllers\OauthController::class, 'callback'])->name('user.oauth.callback');
+Route::post('user/oauth/signin', [Controllers\OauthController::class, 'signin'])->name('user.oauth.signin');
+
 // Cart
 Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
 Route::get('user/carts-info', [Controllers\UserCartController::class, 'cartInfo'])->name('user.cart.info');
