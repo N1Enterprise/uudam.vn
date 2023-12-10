@@ -24,9 +24,13 @@ $(document).ready(function() {
                     method: 'POST',
                     data: { auth_code: oauthCode, provider },
                     success: (response) => {
-                        window.opener
-                            ? window.close()
-                            : window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
+                        toastr.success('Đăng nhập thành công.');
+
+                        setTimeout(() => {
+                            window.opener
+                                ? window.close()
+                                : window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
+                        }, 500);
                     },
                     error: () => {
                         toastr.error('Đăng nhập không thành công.');
@@ -60,7 +64,7 @@ $(document).ready(function() {
                         method: 'GET',
                         data: { provider },
                         beforeSend: () => {
-                            $('[data-oauth-provider]').addClass('disabled');
+                            // $('[data-oauth-provider]').addClass('disabled');
                         },
                         success: ({ oauth_providers }) => {
                             const selectedProvider = oauth_providers.find((item) => item.provider == provider);
@@ -82,7 +86,7 @@ $(document).ready(function() {
                         },
                         error: () => {
                             toastr.error('Đăng nhập không thành công.');
-                            $('[data-oauth-provider]').removeClass('disabled');
+                            // $('[data-oauth-provider]').removeClass('disabled');
                         }
                     });
                 });
