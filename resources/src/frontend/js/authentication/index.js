@@ -40,6 +40,10 @@ $(document).ready(function() {
             loginWithWindowPopup: (provider) => {
                 const windowInstance = openWindow(provider?.authorization_url, 'Đăng nhập với Facebook', 600, 600);
 
+                if (! windowInstance || windowInstance.closed || typeof windowInstance.closed == 'undefined') {
+                    return SOCIAL_AUTHENTICATION.loginWithNewTab(provider);
+                }
+
                 var checkPopupClosed = setInterval(function () {
                     if (windowInstance.closed) {
                         clearInterval(checkPopupClosed);
