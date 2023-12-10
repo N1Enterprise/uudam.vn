@@ -24,6 +24,7 @@ $(document).ready(function() {
                     method: 'POST',
                     data: { auth_code: oauthCode, provider },
                     success: (response) => {
+                        toastr.success('Đăng nhập thành công.');
                         window.close();
                     },
                     error: () => {
@@ -59,8 +60,6 @@ $(document).ready(function() {
                                 }, 1000);
 
                                 function handleAfterLoginSucceed() {
-                                    toastr.success('Đăng nhập thành công.');
-
                                     setTimeout(() => window.location.reload(), 500);
                                 }
                             }
