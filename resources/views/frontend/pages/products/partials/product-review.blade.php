@@ -15,12 +15,16 @@
             <div class="spr-container">
                 <div class="spr-header">
                     <h2 class="spr-header-title">Phản hồi khách hàng</h2>
+                    @if($AUTHENTICATED_USER)
                     <div class="spr-summary rte">
                         <span class="spr-summary-actions">
                             <a href="javascript:void(0)" class="spr-summary-actions-newreview" onclick="">Viết đánh giá</a>
                         </span>
                     </div>
+                    @endif
                 </div>
+
+                @if($AUTHENTICATED_USER)
                 <div class="spr-content">
                     <div data-product-review class="spr-form d-none">
                         <form id="User_Product_Review" method="post" action="{{ route('fe.api.user.product.review') }}" class="new-review-form">
@@ -81,6 +85,11 @@
                         @endif
                     </div>
                 </div>
+                @else
+                <a href="?overlay=signin" data-overlay-action-button="signin">Đăng Nhập</a>
+                <span>để bình luận</span>
+                @endif
+
             </div>
         </div>
         <style>

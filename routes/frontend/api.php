@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Api as Controllers;
 
 // Catalog
-Route::post('user/product/review', [Controllers\UserProductReviewController::class, 'review'])->name('user.product.review');
 Route::post('user/subscribe/news-letter', [Controllers\UserSubscribeController::class, 'subscribeNewsLetter'])->name('user.subscribe.news-letter');
 Route::get('user/collections/{id}/linked-inventories', [Controllers\CollectionController::class, 'getLinkedInventories'])->name('user.collections.linked-inventories');
 Route::get('user/search/suggest', [Controllers\UserSearchController::class, 'suggest'])->name('user.search.suggest');
@@ -20,11 +19,6 @@ Route::get('user/oauth/providers', [Controllers\OauthController::class, 'provide
 Route::get('user/oauth/{provider}/callback', [Controllers\OauthController::class, 'callback'])->name('user.oauth.callback');
 Route::post('user/oauth/signin', [Controllers\OauthController::class, 'signin'])->name('user.oauth.signin');
 
-// Cart
-Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
-Route::get('user/carts-info', [Controllers\UserCartController::class, 'cartInfo'])->name('user.cart.info');
-Route::put('user/carts/{id}/delete', [Controllers\UserCartController::class, 'cancel'])->name('user.cart.delete');
-Route::put('user/carts/{id}/item-update-quantity', [Controllers\UserCartController::class, 'updateItemQuantity'])->name('user.cart-item.update-quantity');
 
 Route::middleware(['auth:user'])->group(function() {
     // Authentication
@@ -41,4 +35,13 @@ Route::middleware(['auth:user'])->group(function() {
     // Order
     Route::post('user/order/{cartUuid}', [Controllers\UserOrderController::class, 'order'])->name('user.order.store');
     Route::post('user/order/reorder/{orderCode}', [Controllers\UserOrderController::class, 'reorder'])->name('user.order.reorder');
+
+    // Cart
+    Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
+    Route::get('user/carts-info', [Controllers\UserCartController::class, 'cartInfo'])->name('user.cart.info');
+    Route::put('user/carts/{id}/delete', [Controllers\UserCartController::class, 'cancel'])->name('user.cart.delete');
+    Route::put('user/carts/{id}/item-update-quantity', [Controllers\UserCartController::class, 'updateItemQuantity'])->name('user.cart-item.update-quantity');
+
+    // Support Desks
+    Route::post('user/product/review', [Controllers\UserProductReviewController::class, 'review'])->name('user.product.review');
 });
