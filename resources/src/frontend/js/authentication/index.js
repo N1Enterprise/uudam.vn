@@ -25,7 +25,7 @@ $(document).ready(function() {
                     data: { auth_code: oauthCode, provider },
                     success: (response) => {
                         toastr.success('Đăng nhập thành công.');
-                        window.close();
+                        setTimeout(() => window.close(), 500);
                     },
                     error: () => {
                         toastr.error('Đăng nhập không thành công.');
