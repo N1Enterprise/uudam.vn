@@ -26,6 +26,9 @@ class SystemSettingKeyEnum extends BaseEnum
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
 
+    // OAuth
+    public const SUPPORTED_OAUTH_PROVIDERS = 'supported_oauth_providers';
+
     public static function all(): array
     {
         return [
@@ -44,6 +47,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::ENABLE_USER_EMAIL_VERIFICATION,
             self::IMAGE_CONFIGURATION,
             self::ADMIN_TOP_NAVIGATION,
+            self::SUPPORTED_OAUTH_PROVIDERS,
         ];
     }
 }

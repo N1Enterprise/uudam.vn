@@ -3,7 +3,7 @@
         <span>Đăng nhập với mạng xã hội</span>
     </div>
     <div style="display: flex; justify-content: center;">
-        <div class="social-authentication__item facebook">
+        <div class="social-authentication__item facebook" data-oauth-provider="facebook" data-oauth-login-route="{{ route('fe.api.user.oauth.providers') }}">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="-5 0 20 20" version="1.1" fill="#000000">
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
@@ -22,7 +22,7 @@
             </svg>
         </div>
 
-        <div class="social-authentication__item google">
+        <div class="social-authentication__item google" data-oauth-provider="google" data-oauth-login-route="{{ route('fe.api.user.oauth.providers') }}">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-0.5 0 48 48" version="1.1">
                 <title>Đăng nhập với Google</title>
                 <desc>Created with Sketch.</desc>

@@ -340,8 +340,10 @@ body {
     margin-right: 10px;
 }
 
-.prevent {
+.prevent,
+.disabled {
     pointer-events: none;
+    opacity: .7;
 }
 
 .w-100 {

@@ -18,6 +18,9 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\UserDetailRepositoryContract::class => Repositories\UserDetailRepository::class,
         Contracts\UserWalletRepositoryContract::class => Repositories\UserWalletRepository::class,
 
+        // Oauth User
+        Contracts\OauthUserRepositoryContract::class => Repositories\OauthUserRepository::class,
+
         // System Setting
         Contracts\SystemSettingRepositoryContract::class => Repositories\SystemSettingRepository::class,
         Contracts\SystemSettingGroupRepositoryContract::class => Repositories\SystemSettingGroupRepository::class,
