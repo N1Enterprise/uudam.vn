@@ -75,6 +75,8 @@ $(document).ready(function() {
                                 const testWindow = window.open('', '_blank');
                                 const openWindowBlocked = !testWindow || testWindow.closed || typeof testWindow.closed=='undefined';
 
+                                Cookies.set(COOKIE_KEYS.CURRENT_URL, window.location.href);
+
                                 if (windowWidth > 800 && !openWindowBlocked) {
                                     return SOCIAL_AUTHENTICATION.loginWithWindowPopup(selectedProvider);
                                 }
