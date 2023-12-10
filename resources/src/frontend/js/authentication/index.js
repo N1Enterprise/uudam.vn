@@ -26,11 +26,11 @@ $(document).ready(function() {
                     success: (response) => {
                         toastr.success('Đăng nhập thành công.');
 
-                        if (window.opener) {
-                            setTimeout(() => window.close(), 500);
-                        } else {
-                            window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
-                        }
+                        setTimeout(() => {
+                            window.opener
+                                ? window.close()
+                                : window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
+                        }, 1000);
                     },
                     error: () => {
                         toastr.error('Đăng nhập không thành công.');
