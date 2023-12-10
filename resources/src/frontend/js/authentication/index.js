@@ -24,13 +24,9 @@ $(document).ready(function() {
                     method: 'POST',
                     data: { auth_code: oauthCode, provider },
                     success: (response) => {
-                        toastr.success('Đăng nhập thành công.');
-
-                        setTimeout(() => {
-                            window.opener
-                                ? window.close()
-                                : window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
-                        }, 1000);
+                        window.opener
+                            ? window.close()
+                            : window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
                     },
                     error: () => {
                         toastr.error('Đăng nhập không thành công.');
