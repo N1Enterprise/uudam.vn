@@ -219,7 +219,7 @@ const utils_quantity = (selector, config = {}) => {
  * @param {Number} h
  * @returns {windowInstance}
  */
-const openWindow = (url, title, w, h) => {
+const openWindow = (url, title, w, h, callbacks = {}) => {
     const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
     const dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
 
@@ -252,6 +252,10 @@ const openWindow = (url, title, w, h) => {
     // Puts focus on the windowInstance
     if (window.focus) {
         windowInstance.focus();
+    }
+
+    if (!windowInstance || windowInstance.closed || typeof windowInstance.closed == 'undefined') {
+        callbacks?.onBlocked();
     }
 
     return windowInstance;
