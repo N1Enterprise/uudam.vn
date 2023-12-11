@@ -38,7 +38,11 @@ $(document).ready(function() {
                 });
             },
             loginWithWindowPopup: (provider) => {
-                const windowInstance = openWindow(provider?.authorization_url, 'Đăng nhập với Facebook', 600, 600);
+                const windowInstance = openWindow(provider?.authorization_url, 'Đăng nhập với Facebook', 600, 600, () => ({
+                    onBlocked: () => {
+                        return SOCIAL_AUTHENTICATION.loginWithNewTab(provider);
+                    },
+                }));
 
                 var checkPopupClosed = setInterval(function () {
                     if (windowInstance.closed) {
@@ -72,12 +76,9 @@ $(document).ready(function() {
                             if (selectedProvider) {
                                 const windowWidth = window.innerWidth;
 
-                                const testWindow = window.open('', '_blank');
-                                const openWindowBlocked = !testWindow || testWindow.closed || typeof testWindow.closed=='undefined';
-
                                 Cookies.set(COOKIE_KEYS.CURRENT_URL, window.location.href);
 
-                                if (windowWidth > 800 && !openWindowBlocked) {
+                                if (windowWidth > 800) {
                                     return SOCIAL_AUTHENTICATION.loginWithWindowPopup(selectedProvider);
                                 }
 
