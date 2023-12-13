@@ -158,7 +158,14 @@ const AUTHENTICATION = {
         AUTHENTICATION.elements.action_wrapper.hide();
 
         if (AUTHENTICATION.actions.includes(overlay) && AUTHENTICATION.is_logged) {
+            const redirect = utils_helper.urlParams('redirect').get();
+
             utils_helper.urlParams('overlay').del();
+
+            if (redirect) {
+                window.location.href = redirect;
+            }
+
             return;
         }
 

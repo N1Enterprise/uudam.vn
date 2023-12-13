@@ -239,7 +239,7 @@
 
     <input type="hidden" data-bo-shared='@json([
         'bo_host' => config('app.url'),
-        'app_id'  => config('app.id')
+        'app_id'  => config('app.app_id')
     ])'>
 
     @include('frontend.layouts.partials.footer.index')
