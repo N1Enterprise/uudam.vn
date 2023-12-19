@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "dev:fe": "mix --mix-config=webpack-fe.mix.js",
+        "dev:fe": "NODE_OPTIONS='--max_old_space_size=6144' mix --mix-config=webpack-fe.mix.js",
         "watch:fe": "NODE_OPTIONS='--max_old_space_size=6144' mix watch --mix-config=webpack-fe.mix.js",
         "watch-poll:fe": "NODE_OPTIONS='--max_old_space_size=6144' mix watch --mix-config=webpack-fe.mix.js -- --watch-options-poll=1000",
         "prod:fe": "NODE_OPTIONS='--max_old_space_size=6144' mix --mix-config=webpack-fe.mix.js --production"
