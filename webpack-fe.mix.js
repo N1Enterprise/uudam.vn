@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-const isProduction = mix.inProduction();
+let productionSourceMaps = true;
 const path = require('path');
 
 /*
@@ -36,12 +36,5 @@ mix
     .js('resources/src/frontend/js/checkout/index.js', 'public/frontend/bundle/js/checkout/index.min.js')
     .js('resources/src/frontend/js/profile/user-info.js', 'public/frontend/bundle/js/profile/user-info.min.js')
     .js('resources/src/frontend/js/profile/change-password.js', 'public/frontend/bundle/js/profile/change-password.min.js')
-    .js('resources/src/frontend/js/authentication/index.js', 'public/frontend/bundle/js/authentication/index.min.js');
-
-if (isProduction) {
-    mix.version();
-} else {
-    mix.sourceMaps().webpackConfig({
-        devtool: 'eval-cheap-source-map', // Fastest for development
-    });
-}
+    .js('resources/src/frontend/js/authentication/index.js', 'public/frontend/bundle/js/authentication/index.min.js')
+    .sourceMaps(productionSourceMaps, 'source-map');
