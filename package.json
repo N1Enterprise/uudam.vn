@@ -1,10 +1,10 @@
 {
     "private": true,
     "scripts": {
-        "dev:fe": "NODE_OPTIONS=--max_old_space_size=4096 mix --mix-config=webpack-fe.mix.js",
-        "watch:fe": "NODE_OPTIONS=--max_old_space_size=4096 mix watch --mix-config=webpack-fe.mix.js",
-        "watch-poll:fe": "NODE_OPTIONS=--max_old_space_size=4096 mix watch --mix-config=webpack-fe.mix.js -- --watch-options-poll=1000",
-        "prod:fe": "NODE_OPTIONS=--max_old_space_size=4096 mix --mix-config=webpack-fe.mix.js --production"
+        "dev:fe": "mix --mix-config=webpack-fe.mix.js",
+        "watch:fe": "mix watch --mix-config=webpack-fe.mix.js",
+        "watch-poll:fe": "mix watch --mix-config=webpack-fe.mix.js -- --watch-options-poll=1000",
+        "prod:fe": "mix --mix-config=webpack-fe.mix.js --production"
     },
     "devDependencies": {
         "axios": "^0.21",

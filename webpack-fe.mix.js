@@ -30,6 +30,11 @@ mix.webpackConfig({
         chunkFilename: 'assets/js/[name].min.js',
         publicPath: '/',
     },
+    // Adjust the WebAssembly memory settings
+    webassemblyMemory: {
+        initial: 512,
+        maximum: 512,
+    },
 });
 
 mix
