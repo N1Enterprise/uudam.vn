@@ -25,15 +25,16 @@ if (path.resolve(__dirname, '..').indexOf('webpack-client') >= 0) {
     mix.setPublicPath('../');
 }
 
+mix.then(() => {
+    // Add Emscripten compilation flags for WebAssembly memory
+    const execSync = require('child_process').execSync;
+    execSync('emcc your_source_code.c -s WASM_MEM_MAX=512MB -s WASM_MEM_INIT=512MB -o output.wasm');
+});
+
 mix.webpackConfig({
     output: {
         chunkFilename: 'assets/js/[name].min.js',
         publicPath: '/',
-    },
-    // Adjust the WebAssembly memory settings
-    webassemblyMemory: {
-        initial: 512,
-        maximum: 512,
     },
 });
 
