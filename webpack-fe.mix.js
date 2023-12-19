@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-let productionSourceMaps = true;
+const isProduction = mix.inProduction();
 const path = require('path');
 
 /*
@@ -25,12 +25,6 @@ if (path.resolve(__dirname, '..').indexOf('webpack-client') >= 0) {
     mix.setPublicPath('../');
 }
 
-mix.then(() => {
-    // Add Emscripten compilation flags for WebAssembly memory
-    const execSync = require('child_process').execSync;
-    execSync('emcc your_source_code.c -s WASM_MEM_MAX=512MB -s WASM_MEM_INIT=512MB -o output.wasm');
-});
-
 mix.webpackConfig({
     output: {
         chunkFilename: 'assets/js/[name].min.js',
@@ -42,5 +36,12 @@ mix
     .js('resources/src/frontend/js/checkout/index.js', 'public/frontend/bundle/js/checkout/index.min.js')
     .js('resources/src/frontend/js/profile/user-info.js', 'public/frontend/bundle/js/profile/user-info.min.js')
     .js('resources/src/frontend/js/profile/change-password.js', 'public/frontend/bundle/js/profile/change-password.min.js')
-    .js('resources/src/frontend/js/authentication/index.js', 'public/frontend/bundle/js/authentication/index.min.js')
-    .sourceMaps(productionSourceMaps, 'source-map');
+    .js('resources/src/frontend/js/authentication/index.js', 'public/frontend/bundle/js/authentication/index.min.js');
+
+if (isProduction) {
+    mix.version();
+} else {
+    mix.sourceMaps().webpackConfig({
+        devtool: 'eval-cheap-source-map', // Fastest for development
+    });
+}
