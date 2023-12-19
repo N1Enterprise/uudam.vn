@@ -88,6 +88,7 @@
 
             const __name = $form.find('[name="name"]').val();
             const __code = $form.find('[name="code"]').val();
+            const __slug = $form.find('[name="slug"]').val();
             const __primaryImage = {
                 file: $form.find('[name="primary_image[file]"]')[0].files[0] ?? '',
                 path: $form.find('[name="primary_image[path]"]').val()
@@ -118,6 +119,7 @@
 
             formData.append('name', __name);
             formData.append('code', __code);
+            formData.append('slug', __slug);
             formData.append('primary_image[file]', __primaryImage.file);
             formData.append('primary_image[path]', __primaryImage.path);
 
