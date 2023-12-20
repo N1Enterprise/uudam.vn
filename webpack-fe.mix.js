@@ -1,7 +1,6 @@
 const mix = require('laravel-mix');
 let productionSourceMaps = true;
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 
 /*
 |--------------------------------------------------------------------------
@@ -30,18 +29,6 @@ mix.webpackConfig({
     output: {
         chunkFilename: 'assets/js/[name].min.js',
         publicPath: '/',
-    },
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    // Your Terser options go here
-                    compress: {
-                        drop_console: true,
-                    },
-                },
-            }),
-        ],
     },
 });
 

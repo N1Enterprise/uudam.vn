@@ -1,24 +1,17 @@
 {
     "private": true,
     "scripts": {
-        "dev:fe": "NODE_OPTIONS='--max-old-space-size=10000' mix --mix-config=webpack-fe.mix.js",
-        "watch:fe": "NODE_OPTIONS='--max-old-space-size=10000' mix watch --mix-config=webpack-fe.mix.js",
-        "watch-poll:fe": "NODE_OPTIONS='--max-old-space-size=10000' mix watch --mix-config=webpack-fe.mix.js -- --watch-options-poll=1000",
-        "prod:fe": "NODE_OPTIONS='--max-old-space-size=10000' mix --mix-config=webpack-fe.mix.js --production"
+        "dev:fe": "mix --mix-config=webpack-fe.mix.js",
+        "watch:fe": "mix watch --mix-config=webpack-fe.mix.js",
+        "watch-poll:fe": "mix watch --mix-config=webpack-fe.mix.js -- --watch-options-poll=1000",
+        "prod:fe": "mix --mix-config=webpack-fe.mix.js --production"
     },
     "devDependencies": {
         "axios": "^0.21",
-        "clean-webpack-plugin": "^4.0.0",
         "laravel-mix": "^6.0.49",
         "laravel-mix-merge-manifest": "^2.1.0",
         "laravel-mix-purgecss": "^6.0.0",
         "lodash": "^4.17.19",
-        "moment-locales-webpack-plugin": "^1.2.0",
-        "postcss": "^8.1.14",
-        "terser-webpack-plugin": "^5.3.9",
-        "webpack-bundle-analyzer": "^4.10.1"
-    },
-    "dependencies": {
-        "moment": "^2.29.4"
+        "postcss": "^8.1.14"
     }
 }
