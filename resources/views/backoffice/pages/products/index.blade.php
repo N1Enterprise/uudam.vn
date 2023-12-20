@@ -50,8 +50,6 @@
                         <th data-property="code">{{ __('Code') }}</th>
                         <th data-property="slug">{{ __('Slug') }}</th>
                         <th data-property="branch">{{ __('Branch') }}</th>
-                        <th data-property="min_amount">{{ __('Min Amount') }}</th>
-                        <th data-property="max_amount">{{ __('Max Amount') }}</th>
                         <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
                         <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
