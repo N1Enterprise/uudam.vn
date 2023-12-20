@@ -58,7 +58,7 @@
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label for="">{{ __('Name') }} *</label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Name') }}" required>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Name') }}" data-reference-slug="slug" required>
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
