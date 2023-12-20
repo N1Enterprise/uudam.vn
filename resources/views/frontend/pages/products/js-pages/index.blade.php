@@ -37,7 +37,7 @@ const MAIN_INVENTORY = {
     },
     calculateInventoryPrice: () => {
         const hasCombo = $('[data-product-combo-confirm]').is(':checked');
-        const label = hasCombo ? 'Tổng Combo' : 'Tạm Tính';
+        const label = hasCombo ? 'Tổng Combo' : 'Tạm tính';
         const inventoryPrice = $('[data-price-value]').attr('data-price-value') || 0;
         const stockQuantity = $('[data-stock-quantity]').val() || 0;
 

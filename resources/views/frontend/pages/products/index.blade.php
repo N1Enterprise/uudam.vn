@@ -37,17 +37,22 @@
             padding-bottom: 12px;
         }
     }
+
+    .product-description {
+        line-height: 1;
+        font-size: 1.5rem;
+    }
 </style>
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/products/index.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/pages/products/index.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slider-2.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-price.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/spr.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/recommendation.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/product-attribute.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-card.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-article-card.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-loading-overlay.css') }}">
 @endpush
 
 @push('style_pages')
@@ -114,8 +119,8 @@
 
 <section class="shopify-section section review-section">
     <div class="page-width">
-        <div class="product__description rte quick-add-hidden">
-            <div class="editorjs-content product-description"></div>
+        <div class="product__description rte quick-add-hidden" tagable>
+            <div class="product-description">{!! data_get($inventory, 'product.description') !!}</div>
         </div>
     </div>
 </section>
@@ -143,8 +148,9 @@
 
 @push('js_pages')
 @include('frontend.pages.products.js-pages.index')
-<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/helpers/find-by-tags.min.js') }}"></script>
 <script>
     $('.thumbnail-list__item').on('click', function() {
         const index = $(this).attr('data-owl-index');

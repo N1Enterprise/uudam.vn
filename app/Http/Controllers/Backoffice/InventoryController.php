@@ -63,7 +63,7 @@ class InventoryController extends BaseController
         $hasVariant = $product->type == ProductTypeEnum::VARIABLE;
 
         if ($hasVariant) {
-            $variants = $this->attributeService->confirmAttributes($request->input('attribute_values'));
+            $variants = $this->attributeService->confirmAttributes($request->input('attribute_values') ?? []);
             $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
             $combinations = generate_combinations($variants);
         }
@@ -104,7 +104,7 @@ class InventoryController extends BaseController
                 })
                 ->toArray();
 
-            $variants = $this->attributeService->confirmAttributes($attributeValues);
+            $variants = $this->attributeService->confirmAttributes($attributeValues ?? []);
             $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
             $combinations = generate_combinations($variants);
         }
