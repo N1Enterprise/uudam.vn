@@ -55,6 +55,8 @@ class FrontendViewServiceProvider extends ServiceProvider
             $userAuth = app(UserAuthContract::class);
 
             $view->with('AUTHENTICATED_USER', optional($userAuth->user())->only(['id', 'email', 'birthday', 'name', 'phone_number']));
+
+            $view->with('SYSTEM_SETTING', $this->getSystemSetting());
         });
     }
 
@@ -68,5 +70,12 @@ class FrontendViewServiceProvider extends ServiceProvider
         $menuGroups = app(MenuGroupService::class)->allAvailable(['columns' => ['id', 'name', 'redirect_url']]);
 
         return $menuGroups;
+    }
+
+    protected function getSystemSetting()
+    {
+        return [
+            'admin_top_navigation' => SystemSetting::from(SystemSettingKeyEnum::ADMIN_TOP_NAVIGATION)->get(null, [])
+        ];
     }
 }

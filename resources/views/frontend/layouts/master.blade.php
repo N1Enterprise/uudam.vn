@@ -75,9 +75,10 @@
         }
         @media  screen and (min-width: 990px) {
             header-drawer {
-            display: none;
+                display: none;
+            }
         }
-        }
+
         ul.mm-submenu {
             border: 0!important;
             text-transform: none;
@@ -152,6 +153,9 @@
             width: 100%;
             overflow: hidden;
             z-index: 4;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 35px;
         }
 
         #admintopnav a.split.highlight {
@@ -159,12 +163,8 @@
             color: #fff;
         }
 
-        #admintopnav a.split {
-            float: right;
-        }
 
         #admintopnav a {
-            float: left;
             color: #f2f2f2;
             text-align: center;
             text-decoration: none;
@@ -176,6 +176,12 @@
         #admintopnav a:hover {
             background-color: #04AA6D;
             color: #fff;
+        }
+
+        @media screen and (max-width: 800px) {
+            #admintopnav {
+                display: none;
+            }
         }
     </style>
     <!--end::Layout Skins -->
