@@ -192,7 +192,6 @@
                                         name="offer_start"
                                         value="{{ old('offer_start', $inventory->offer_start) }}"
                                         required
-                                        disabled
                                     >
                                     @error('offer_start')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -213,7 +212,6 @@
                                         class="form-control @error('offer_end') is-invalid @enderror"
                                         name="offer_end"
                                         value="{{ old('offer_end', $inventory->offer_end) }}"
-                                        disabled
                                     >
                                     @error('offer_end')
                                     <div class="invalid-feedback">{{ $message }}</div>
