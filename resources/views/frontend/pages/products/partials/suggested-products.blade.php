@@ -8,7 +8,6 @@
                     <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.index', $inventory->slug) }}">
                         <div class="ls-image-wrap">
                             <img class="ls-image" alt="{{ $inventory->title }}" title="{{ $inventory->title }}" loading="lazy" sizes="270px" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
-                            <img sizes="270px" srcset="{{ optional($inventory->product)->primary_image }}" src="{{ optional($inventory->product)->primary_image }}" class="ls-image ls-image-secondary" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
                         </div>
                         <div class="ls-info-wrap">
                             <div class="ls-title">{{ $inventory->title }}</div>
