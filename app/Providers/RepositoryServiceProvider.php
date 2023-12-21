@@ -69,5 +69,7 @@ class RepositoryServiceProvider extends ServiceProvider
         // Order
         Contracts\OrderRepositoryContract::class => Repositories\OrderRepository::class,
         Contracts\OrderItemRepositoryContract::class => Repositories\OrderItemRepository::class,
+        
+        Contracts\HomePageDisplayOrderRepositoryContract::class => Repositories\HomePageDisplayOrderRepository::class,
     ];
 }

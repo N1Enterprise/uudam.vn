@@ -87,6 +87,13 @@ Route::get('display-inventories/{id}/{type}', [Controllers\DisplayInventoryContr
 Route::put('display-inventories/{id}', [Controllers\DisplayInventoryController::class, 'update'])->name('display-inventories.update')->middleware(['can:display-inventories.update']);
 Route::delete('display-inventories/{id}', [Controllers\DisplayInventoryController::class, 'destroy'])->name('display-inventories.delete')->middleware(['can:display-inventories.delete']);
 
+Route::get('home-page-display-orders', [Controllers\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+Route::get('home-page-display-orders/create', [Controllers\HomePageDisplayOrderController::class, 'create'])->name('home-page-display-orders.create')->middleware(['can:home-page-display-orders.store']);
+Route::post('home-page-display-orders', [Controllers\HomePageDisplayOrderController::class, 'store'])->name('home-page-display-orders.store')->middleware(['can:home-page-display-orders.store']);
+Route::get('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'edit'])->name('home-page-display-orders.edit')->middleware(['can:home-page-display-orders.update']);
+Route::put('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'update'])->name('home-page-display-orders.update')->middleware(['can:home-page-display-orders.update']);
+Route::delete('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'destroy'])->name('home-page-display-orders.delete')->middleware(['can:home-page-display-orders.delete']);
+
 Route::get('banners', [Controllers\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
 Route::get('banners/create', [Controllers\BannerController::class, 'create'])->name('banners.create')->middleware(['can:banners.store']);
 Route::post('banners', [Controllers\BannerController::class, 'store'])->name('banners.store')->middleware(['can:banners.store']);

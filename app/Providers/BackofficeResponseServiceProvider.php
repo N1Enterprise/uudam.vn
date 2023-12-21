@@ -165,5 +165,10 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         // Dashboard
         Contracts\ListReportTopUserResponseContract::class => Responses\ListReportTopUserResponse::class,
         Contracts\ListReportTopOrderResponseContract::class => Responses\ListReportTopOrderResponse::class,
+
+        Contracts\ListHomePageDisplayOrderResponseContract::class => Responses\ListHomePageDisplayOrderResponse::class,
+        Contracts\StoreHomePageDisplayOrderResponseContract::class => Responses\StoreHomePageDisplayOrderResponse::class,
+        Contracts\UpdateHomePageDisplayOrderResponseContract::class => Responses\UpdateHomePageDisplayOrderResponse::class,
+        Contracts\DeleteHomePageDisplayOrderResponseContract::class => Responses\DeleteHomePageDisplayOrderResponse::class,
     ];
 }

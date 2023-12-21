@@ -114,5 +114,8 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         // Order
         Contracts\UpdateOrderStatusRequestContract::class => Requests\UpdateOrderStatusRequest::class,
+
+        Contracts\StoreHomePageDisplayOrderRequestContract::class => Requests\StoreHomePageDisplayOrderRequest::class,
+        Contracts\UpdateHomePageDisplayOrderRequestContract::class => Requests\UpdateHomePageDisplayOrderRequest::class,
     ];
 }

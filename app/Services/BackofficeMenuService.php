@@ -203,6 +203,21 @@ class BackofficeMenuService extends BaseService
                         'permissions' => ['display-inventories.index'],
                     ],
                     [
+                        'name' => 'Homepage Display',
+                        'subs' => [
+                            [   
+                                'name' => 'Group',
+                                'link' => route('bo.web.home-page-display-orders.index'),
+                                'permissions' => ['home-page-display-orders.index'],
+                            ],
+                            [   
+                                'name' => 'Items',
+                                'link' => route('bo.web.home-page-display-orders.index'),
+                                'permissions' => ['home-page-display-orders.index'],
+                            ],
+                        ],
+                    ],
+                    [
                         'name' => 'Banners',
                         'link' => route('bo.web.banners.index'),
                         'permissions' => ['banners.index'],

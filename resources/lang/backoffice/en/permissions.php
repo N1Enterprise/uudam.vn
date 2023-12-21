@@ -96,6 +96,13 @@ return [
     'display-inventories.store' => 'Create Display Inventory',
     'display-inventories.update' => 'Update Display Inventory',
     'display-inventories.delete' => 'Delete Display Inventory',
+
+    'home-page-display-orders' => 'Home Page Display Order',
+    'home-page-display-orders.index' => 'View Home Page Display Order List',
+    'home-page-display-orders.store' => 'Create Home Page Display Order',
+    'home-page-display-orders.update' => 'Update Home Page Display Order',
+    'home-page-display-orders.delete' => 'Delete Home Page Display Order',
+
     'banners' => 'Banners',
     'banners.index' => 'View Banner List',
     'banners.store' => 'Create Banner',
