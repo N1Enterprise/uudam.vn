@@ -46,7 +46,7 @@
         <nav class="profile-tabs-nav">
             <a href="{{ route('fe.web.user.profile.info') }}" class="profile-tabs-nav__tab">Thông tin tài khoản</a>
             <a href="{{ route('fe.web.user.profile.order-history') }}" class="profile-tabs-nav__tab">Lịch sử đơn hàng</a>
-            <a href="{{ route('fe.web.user.profile.change-password') }}" class="profile-tabs-nav__tab">Thanh đổi mật khẩu</a>
+            <a href="{{ route('fe.web.user.profile.change-password') }}" class="profile-tabs-nav__tab">Thay đổi mật khẩu</a>
         </nav>
         <div class="profile-tabs-content">
             @yield('profile_content')
