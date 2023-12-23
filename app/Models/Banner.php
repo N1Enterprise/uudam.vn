@@ -11,6 +11,7 @@ class Banner extends BaseModel
 
     protected $fillable = [
         'name',
+        'label',
         'cta_label',
         'redirect_url',
         'order',

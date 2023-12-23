@@ -202,11 +202,6 @@ class BackofficeMenuService extends BaseService
                 'icon' => 'flaticon2-contract',
                 'subs' => [
                     [
-                        'name' => 'Display Inventories',
-                        'link' => route('bo.web.display-inventories.index'),
-                        'permissions' => ['display-inventories.index'],
-                    ],
-                    [
                         'name' => 'Homepage Display',
                         'subs' => [
                             [   

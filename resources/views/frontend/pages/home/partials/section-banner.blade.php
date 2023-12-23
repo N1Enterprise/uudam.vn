@@ -20,15 +20,21 @@
             </div>
             <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
                 <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-accent-1 gradient slideshow__text--center slideshow__text-mobile--center">
-                    <h2 class="banner__heading h1">{{ $banner->name }}</h2>
-                    @if(! empty($banner->description))
+                    @if (has_data($banner->label))
+                    <h2 class="banner__heading h1">{{ $banner->label }}</h2>
+                    @endif
+
+                    @if (has_data($banner->description))
                     <div class="banner__text">
                         <span>{{ $banner->description }}</span>
                     </div>
                     @endif
+
+                    @if (has_data($banner->redirect_url))
                     <div class="banner__buttons">
-                        <a href="{{ $banner->redirect_url }}" class="button button--primary" tabindex="-1">{{ $banner->cta_label }}</a>
+                        <a href="{{ $banner->redirect_url }}" class="button button--primary" tabindex="-1" style="background: none; color: #fff;">{{ $banner->cta_label }}</a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

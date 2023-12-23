@@ -13,6 +13,7 @@ class StoreBannerRequest extends BaseFormRequest implements StoreBannerRequestCo
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'label' => ['nullable', 'string', 'max:255'],
             'cta_label' => ['nullable', 'string', 'max:255'],
             'redirect_url' => ['required', 'string', 'max:255'],
             'order' => ['nullable', 'integer'],
