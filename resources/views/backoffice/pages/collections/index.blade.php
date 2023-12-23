@@ -45,7 +45,7 @@
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Name') }}</th>
                         <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackImage">{{ __('Primary Image') }}</th>
-                        <th data-orderable="false" data-property="cover_image" data-render-callback="renderCallbackImage">{{ __('Primary Image') }}</th>
+                        <th data-orderable="false" data-property="cover_image" data-render-callback="renderCallbackImage">{{ __('Cover Image') }}</th>
                         <th data-property="cta_label">{{ __('Cta Label') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
