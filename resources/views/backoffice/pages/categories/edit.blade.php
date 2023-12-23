@@ -148,18 +148,6 @@
 									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Enter Meta Description') }}" value="{{ old('meta_description', $category->meta_description) }}">
 								</div>
 
-                                <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
-									<div class="col-3">
-										<span class="k-switch">
-											<label>
-												<input type="checkbox" {{ old('featured', boolean($category->featured) ? 1 : 0) == '1'  ? 'checked' : '' }} value="1" name="featured"/>
-												<span></span>
-											</label>
-										</span>
-									</div>
-								</div>
-
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
 									<div class="col-3">

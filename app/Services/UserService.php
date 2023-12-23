@@ -11,7 +11,6 @@ use App\Events\User\UserPasswordChanged;
 use App\Events\User\UserProfileUpdated;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Services\BaseService;
-use App\Services\UserDetailService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -20,16 +19,13 @@ use App\Models\User;
 class UserService extends BaseService
 {
     public $userRepository;
-    public $userDetailService;
     public $userActionLogService;
 
     public function __construct(
         UserRepositoryContract $userRepository,
-        UserDetailService $userDetailService,
         UserActionLogService $userActionLogService
     ) {
         $this->userRepository = $userRepository;
-        $this->userDetailService = $userDetailService;
         $this->userActionLogService = $userActionLogService;
     }
 

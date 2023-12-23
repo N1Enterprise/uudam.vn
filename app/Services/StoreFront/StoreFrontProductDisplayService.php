@@ -20,22 +20,6 @@ class StoreFrontProductDisplayService extends BaseService
         $this->inventoryService = $inventoryService;
     }
 
-    public function allAvailableInventoryDisplayedByType($type)
-    {
-        $inventories = DB::table('inventories')
-            ->select([
-                'inventories.*',
-                'products.primary_image as product_image',
-                'products.branch as product_branch'
-            ])
-            ->where('inventories.status', ActivationStatusEnum::ACTIVE)
-            ->leftJoin('products', 'products.id', '=', 'inventories.product_id')
-            ->whereIn('inventories.id', DB::table('display_inventories')->where('status', ActivationStatusEnum::ACTIVE)->where('type', $type)->select('inventory_id'))
-            ->get();
-
-        return $inventories;
-    }
-
     public function showBySlug($slug)
     {
         $inventory = $this->inventoryService->inventoryRepository
@@ -47,7 +31,6 @@ class StoreFrontProductDisplayService extends BaseService
                 'available_from',
                 'condition',
                 'condition_note',
-                'featured',
                 'id',
                 'image',
                 'key_features',

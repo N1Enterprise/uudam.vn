@@ -126,8 +126,6 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateProductComboResponseContract::class => Responses\UpdateProductComboResponse::class,
         Contracts\DeleteProductComboResponseContract::class => Responses\DeleteProductComboResponse::class,
 
-        Contracts\UploadFileManagerResponseContract::class => Responses\UploadFileManagerResponse::class,
-
         Contracts\ListSubscriberResponseContract::class => Responses\ListSubscriberResponse::class,
 
         Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,

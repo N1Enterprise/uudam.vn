@@ -65,28 +65,6 @@
     @endforeach
 @endif
 
-{{-- <section class="shopify-section section">
-    <div class="multicolumn color-background-1 gradient background-primary no-heading">
-        @if(! $popularInventories->isEmpty())
-        @include('frontend.pages.home.partials.section-most-popular-items')
-        @endif
-
-        @if(! $featuredCollections->isEmpty())
-        @include('frontend.pages.home.partials.section-catalog-collection')
-        @endif
-    </div>
-</section> --}}
-
-{{-- <section class="shopify-section section">
-    @if(! $displayOnFrontendCollections->isEmpty())
-    @include('frontend.pages.home.partials.section-our-collection')
-    @endif
-</section> --}}
-
-{{-- <section class="shopify-section section">
-    @include('frontend.pages.home.partials.section-you-may-like')
-</section> --}}
-
 <section class="shopify-section section">
     @if(! empty($videoOutsideUI))
     @include('frontend.pages.home.partials.section-featured-videos')

@@ -60,8 +60,12 @@ class RoleService extends BaseService
                     'attribute-values.delete',
                 ],
             ],
-        ],
-        'stocks' => [
+            'collections' => [
+                'collections.index',
+                'collections.store',
+                'collections.update',
+                'collections.delete',
+            ],
             'inventories' => [
                 'inventories.index',
                 'inventories.store',
@@ -175,12 +179,6 @@ class RoleService extends BaseService
                     'menu-sub-groups.update',
                     'menu-sub-groups.delete',
                 ],
-            ],
-            'collections' => [
-                'collections.index',
-                'collections.store',
-                'collections.update',
-                'collections.delete',
             ],
         ],
         'shippings' => [

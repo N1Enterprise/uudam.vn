@@ -15,8 +15,6 @@ class CollectionResource extends BaseJsonResource
             'cover_image' => $this->cover_image,
             'cta_label' => $this->cta_label,
             'description' => $this->description,
-            'featured' => $this->featured,
-            'featured_name' => $this->featured_name,
             'display_on_frontend' => $this->display_on_frontend,
             'display_on_frontend_name' => $this->display_on_frontend_name,
             'status' => $this->status,

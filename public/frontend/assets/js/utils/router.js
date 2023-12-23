@@ -6,9 +6,11 @@ const AUTHENTICATION_ROUTES = {
 };
 
 const HOME_PAGE_DISPLAY_ITEM_ROUTES = {
-    api_display_item_inventory: boHost + '/fe/api/user/display-item/:id/inventory'
+    api_display_item_inventory: boHost + '/fe/api/user/display-item/:id/inventory',
+    api_display_item_collection: boHost + '/fe/api/user/display-item/:id/collection',
 };
 
 const CATALOG_ROUTES = {
-    web_product_detail: boHost + '/products/:slug'
+    web_product_detail: boHost + '/products/:slug',
+    web_collection_detail: boHost + '/collections/:slug',
 };

@@ -28,6 +28,24 @@ class CollectionService extends BaseService
         return $result;
     }
 
+    public function searchByUser($data = [])
+    {
+        $where = [];
+
+        $result = $this->collectionRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+    }
+
     public function allAvailable($data = [])
     {
         return $this->collectionRepository

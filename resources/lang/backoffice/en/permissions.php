@@ -61,6 +61,19 @@ return [
     'product-combos.update' => 'Update Product Combo',
     'product-combos.delete' => 'Delete Product Combo',
 
+    'collections' => 'Collections',
+    'collections.index' => 'View Collection List',
+    'collections.store' => 'Create Collection',
+    'collections.update' => 'Update Collection',
+    'collections.delete' => 'Delete Collection',
+
+    'stocks' => 'Stocks',
+    'inventories' => 'Inventories',
+    'inventories.index' => 'View Inventory List',
+    'inventories.store' => 'Create Inventory',
+    'inventories.update' => 'Update Inventory',
+    'inventories.delete' => 'Delete Inventory',
+
     'attributes' => 'Attributes',
     'attribute-values' => 'Attribute Values',
 
@@ -71,13 +84,7 @@ return [
     'attribute-values.store' => 'Create Attribute Value',
     'attribute-values.update' => 'Update Attribute Value',
     'attribute-values.delete' => 'Delete Attribute Value',
-
-    'stocks' => 'Stocks',
-    'inventories' => 'Inventories',
-    'inventories.index' => 'View Inventory List',
-    'inventories.store' => 'Create Inventory',
-    'inventories.update' => 'Update Inventory',
-    'inventories.delete' => 'Delete Inventory',
+  
 
     'support-desks' => 'Support Desks',
     'product-reviews' => 'Product Reviews',
@@ -130,12 +137,6 @@ return [
     'menus.store' => 'Create Menu',
     'menus.update' => 'Update Menu',
     'menus.delete' => 'Delete Menu',
-
-    'collections' => 'Collections',
-    'collections.index' => 'View Collection List',
-    'collections.store' => 'Create Collection',
-    'collections.update' => 'Update Collection',
-    'collections.delete' => 'Delete Collection',
 
     'utilities' => 'Utilities',
     'blogs' => 'Blogs',

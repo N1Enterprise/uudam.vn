@@ -148,18 +148,6 @@
                                     @enderror
 								</div>
 
-                                <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
-									<div class="col-3">
-										<span class="k-switch">
-											<label>
-												<input type="checkbox" {{ old('featured', '0') == '1'  ? 'checked' : ''}} value="1" name="featured"/>
-												<span></span>
-											</label>
-										</span>
-									</div>
-								</div>
-
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
 									<div class="col-3">

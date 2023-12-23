@@ -10,10 +10,12 @@
             <h1 class="collection-hero__title">
                 <span class="visually-hidden">Collection: </span>{{ data_get($collection, 'name') }}
             </h1>
+            @if (has_data(data_get($collection, 'description')))
             <div class="collection-hero__description rte read_more_span">
                 {!! data_get($collection, 'description') !!}
             </div>
             <button id="btnreadmore" class="read_more_btn button button--secondary" style="display: block;">Xem Thêm</button>
+            @endif
         </div>
     </div>
 </div>

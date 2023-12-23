@@ -23,7 +23,6 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(1)->comment(ActivationStatusEnum::class);
             $table->integer('order')->nullable();
-            $table->tinyInteger('featured')->default(0)->comment(ActivationStatusEnum::class);
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->timestamps();
