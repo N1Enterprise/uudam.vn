@@ -33,18 +33,7 @@ generate_build_version() {
     echo "========== New Build Version: $NEW_VERSION =========="
 }
 
-input_branch_tobuild() {
-    # Read the branch name from user input
-    read -p "Enter the branch name to build: " BRANCH_NAME
-
-    # Switch to the specified branch
-    git checkout "$BRANCH_NAME"
-    git pull
-
-    # ... rest of the script remains unchanged ...
-}
-
-input_branch_tobuild
+git pull
 
 php artisan optimize:clear
 
