@@ -17,8 +17,8 @@ class HomePageDisplayOrderController extends BaseApiController
 
     public function index(Request $request)
     {
-        $displayInventories = $this->homePageDisplayOrder->searchByAdmin($request->all());
+        $homePageDisplayOrders = $this->homePageDisplayOrder->searchByAdmin($request->all());
 
-        return $this->response(ListHomePageDisplayOrderResponseContract::class, $displayInventories);
+        return $this->response(ListHomePageDisplayOrderResponseContract::class, $homePageDisplayOrders);
     }
 }

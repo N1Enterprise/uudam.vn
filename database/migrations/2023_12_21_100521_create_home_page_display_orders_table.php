@@ -19,6 +19,7 @@ class CreateHomePageDisplayOrdersTable extends Migration
             $table->string('name');
             $table->integer('order')->nullable();
             $table->boolean('status')->comment(ActivationStatusEnum::class);
+            $table->boolean('display_on_frontend')->comment(ActivationStatusEnum::class);
             $table->timestamps();
         });
     }

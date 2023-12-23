@@ -14,6 +14,7 @@ class StoreHomePageDisplayOrderRequest extends BaseFormRequest implements StoreH
             'name' => ['required', 'string', 'max:255'],
             'order' => ['nullable', 'integer'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }
 
@@ -21,6 +22,7 @@ class StoreHomePageDisplayOrderRequest extends BaseFormRequest implements StoreH
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
         ]);
     }
 }

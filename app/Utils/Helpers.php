@@ -10,6 +10,7 @@ use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
@@ -261,6 +262,18 @@ if (! function_exists('asset_with_version')) {
     }
 }
 
+if (! function_exists('has_data')) {
+    function has_data($data)
+    {
+        if ($data instanceof Collection) {
+            return !$data->isEmpty();
+        } else if (is_array($data) || is_string($data) || is_numeric($data)) {
+            return $data == 0 ? true : !empty($data);
+        }
+
+        return false;
+    }
+}
 
 if (!function_exists('parse_expression')) {
     function parse_expression($string, $replacements, $emptyOnParseError = false, $pattern = '/\$\{([^}]*)\}/')
@@ -310,3 +323,5 @@ if (!function_exists('parse_expression')) {
         return $parsed;
     }
 }
+
+

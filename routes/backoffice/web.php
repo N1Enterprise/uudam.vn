@@ -94,6 +94,13 @@ Route::get('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderCon
 Route::put('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'update'])->name('home-page-display-orders.update')->middleware(['can:home-page-display-orders.update']);
 Route::delete('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'destroy'])->name('home-page-display-orders.delete')->middleware(['can:home-page-display-orders.delete']);
 
+Route::get('home-page-display-items', [Controllers\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
+Route::get('home-page-display-items/create', [Controllers\HomePageDisplayItemController::class, 'create'])->name('home-page-display-items.create')->middleware(['can:home-page-display-items.store']);
+Route::post('home-page-display-items', [Controllers\HomePageDisplayItemController::class, 'store'])->name('home-page-display-items.store')->middleware(['can:home-page-display-items.store']);
+Route::get('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'edit'])->name('home-page-display-items.edit')->middleware(['can:home-page-display-items.update']);
+Route::put('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'update'])->name('home-page-display-items.update')->middleware(['can:home-page-display-items.update']);
+Route::delete('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'destroy'])->name('home-page-display-items.delete')->middleware(['can:home-page-display-items.delete']);
+
 Route::get('banners', [Controllers\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
 Route::get('banners/create', [Controllers\BannerController::class, 'create'])->name('banners.create')->middleware(['can:banners.store']);
 Route::post('banners', [Controllers\BannerController::class, 'store'])->name('banners.store')->middleware(['can:banners.store']);

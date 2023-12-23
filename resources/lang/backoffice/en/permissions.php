@@ -103,6 +103,12 @@ return [
     'home-page-display-orders.update' => 'Update Home Page Display Order',
     'home-page-display-orders.delete' => 'Delete Home Page Display Order',
 
+    'home-page-display-items' => 'Home Page Display Item',
+    'home-page-display-items.index' => 'View Home Page Display Item List',
+    'home-page-display-items.store' => 'Create Home Page Display Item',
+    'home-page-display-items.update' => 'Update Home Page Display Item',
+    'home-page-display-items.delete' => 'Delete Home Page Display Item',
+
     'banners' => 'Banners',
     'banners.index' => 'View Banner List',
     'banners.store' => 'Create Banner',

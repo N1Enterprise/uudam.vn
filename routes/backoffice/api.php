@@ -44,11 +44,13 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== APPEARANCE ======================== */
     Route::get('display-inventories', [Api\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
-    Route::get('home-page-display-orders', [Api\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
     Route::get('banners', [Api\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
     Route::get('menu-groups', [Api\MenuGroupController::class, 'index'])->name('menu-groups.index')->middleware(['can:menu-groups.index']);
     Route::get('menu-sub-groups', [Api\MenuSubGroupController::class, 'index'])->name('menu-sub-groups.index')->middleware(['can:menu-sub-groups.index']);
     Route::get('menus', [Api\MenuController::class, 'index'])->name('menus.index')->middleware(['can:menus.index']);
+
+    Route::get('home-page-display-orders', [Api\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+    Route::get('home-page-display-items', [Api\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
 
     /* ======================== UTILITIES ======================== */
     Route::get('post-categories', [Api\PostCategoryController::class, 'index'])->name('post-categories.index')->middleware(['can:post-categories.index']);

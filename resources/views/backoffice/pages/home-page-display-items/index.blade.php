@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Home Page Display Order');
+	$title = __('Home Page Display Item');
 
 	$breadcrumbs = [
 		[
@@ -22,22 +22,22 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Home Page Display Order') }}
+                        {{ __('Home Page Display Item') }}
                     </h3>
                 </div>
                 <div class="k-portlet__head-toolbar">
                     <div class="k-portlet__head-toolbar-wrapper">
-                        @can('home-page-display-orders.store')
-                        <a href="{{ route('bo.web.home-page-display-orders.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
+                        @can('home-page-display-items.store')
+                        <a href="{{ route('bo.web.home-page-display-items.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Home Page Display Order') }}
+                            {{ __('Create Home Page Display Item') }}
                         </a>
                         @endcan
                     </div>
                 </div>
             </div>
             <div class="k-portlet__body">
-                <table id="table_home_page_display_order" data-searching="true" data-request-url="{{ route('bo.api.home-page-display-orders.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+                <table id="table_home_page_display_item" data-searching="true" data-request-url="{{ route('bo.api.home-page-display-items.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
@@ -45,6 +45,8 @@
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                             <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Displaying') }}</th>
+                            <th data-property="group.name">{{ __('Group') }}</th>
+                            <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Status') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>
                             <th data-property="updated_at">{{ __('Updated At') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
@@ -69,7 +71,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Home Page Display Order?') }}");
+            let confirmation = confirm("{{ __('Are you sure you want to delete this Home Page Display Item?') }}");
 
             if(!confirmation) {
                 return;
@@ -80,7 +82,7 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table_home_page_display_order').DataTable().ajax.reload()
+                    $('#table_home_page_display_item').DataTable().ajax.reload()
                 }
             });
         });

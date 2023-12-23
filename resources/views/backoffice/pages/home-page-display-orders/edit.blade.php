@@ -60,6 +60,18 @@
 								</div>
 
 								<div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', boolean($homePageDisplayOrder->display_on_frontend)) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
 									<div class="col-3">
 										<span class="k-switch">

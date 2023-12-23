@@ -146,6 +146,12 @@ class RoleService extends BaseService
                 'home-page-display-orders.update',
                 'home-page-display-orders.delete',
             ],
+            'home-page-display-items' => [
+                'home-page-display-items.index',
+                'home-page-display-items.store',
+                'home-page-display-items.update',
+                'home-page-display-items.delete',
+            ],
             'banners' => [
                 'banners.index',
                 'banners.store',

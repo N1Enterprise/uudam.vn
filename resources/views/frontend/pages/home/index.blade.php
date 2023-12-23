@@ -36,7 +36,34 @@
     @include('frontend.pages.home.partials.section-banner')
 </section>
 
-<section class="shopify-section section">
+@if (has_data($homePageDisplayOrders))
+    @foreach ($homePageDisplayOrders as $homePageDisplayOrder)
+    <section class="shopify-section section">
+        <div class="section-template-padding page-width">
+            <h3 class="ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
+
+            @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
+                @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
+                <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom" data-box-style="carousel" style="display: block;">
+                    <h3 class="ls-box-title d-none">{{ data_get($item, 'name') }}</h3>
+                    <div class="recommendation-items" data-show="">
+                        @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
+                        @include('frontend.pages.home.partials.recommendation-products')
+                        @endif
+
+                        @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
+                        @include('frontend.pages.home.partials.recommendation-collections')
+                        @endif
+                    </div>
+                </limespot-box>
+                @endforeach
+            @endif
+        </div>
+    </section>
+    @endforeach
+@endif
+
+{{-- <section class="shopify-section section">
     <div class="multicolumn color-background-1 gradient background-primary no-heading">
         @if(! $popularInventories->isEmpty())
         @include('frontend.pages.home.partials.section-most-popular-items')
@@ -46,17 +73,17 @@
         @include('frontend.pages.home.partials.section-catalog-collection')
         @endif
     </div>
-</section>
+</section> --}}
 
-<section class="shopify-section section">
+{{-- <section class="shopify-section section">
     @if(! $displayOnFrontendCollections->isEmpty())
     @include('frontend.pages.home.partials.section-our-collection')
     @endif
-</section>
+</section> --}}
 
-<section class="shopify-section section">
+{{-- <section class="shopify-section section">
     @include('frontend.pages.home.partials.section-you-may-like')
-</section>
+</section> --}}
 
 <section class="shopify-section section">
     @if(! empty($videoOutsideUI))

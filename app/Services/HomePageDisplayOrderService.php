@@ -49,4 +49,26 @@ class HomePageDisplayOrderService extends BaseService
     {
         return $this->homePageDisplayOrderRepository->delete($id);
     }
+
+    public function searchAvailableByGuest($data = [])
+    {
+        $data = $this->homePageDisplayOrderRepository
+            ->with(['items' => function($q) {
+                $q->where('status', 1)
+                    ->where('display_on_frontend', 1)
+                        ->orderBy('order');
+            }])
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+
+            })
+            ->orderBy('order')
+            ->all();
+
+        // dd(
+        //     $data
+        // );
+
+        return $data;
+    }
 }

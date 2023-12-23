@@ -212,8 +212,8 @@ class BackofficeMenuService extends BaseService
                             ],
                             [   
                                 'name' => 'Items',
-                                'link' => route('bo.web.home-page-display-orders.index'),
-                                'permissions' => ['home-page-display-orders.index'],
+                                'link' => route('bo.web.home-page-display-items.index'),
+                                'permissions' => ['home-page-display-items.index'],
                             ],
                         ],
                     ],

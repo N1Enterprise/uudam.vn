@@ -170,5 +170,10 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StoreHomePageDisplayOrderResponseContract::class => Responses\StoreHomePageDisplayOrderResponse::class,
         Contracts\UpdateHomePageDisplayOrderResponseContract::class => Responses\UpdateHomePageDisplayOrderResponse::class,
         Contracts\DeleteHomePageDisplayOrderResponseContract::class => Responses\DeleteHomePageDisplayOrderResponse::class,
+
+        Contracts\ListHomePageDisplayItemResponseContract::class => Responses\ListHomePageDisplayItemResponse::class,
+        Contracts\StoreHomePageDisplayItemResponseContract::class => Responses\StoreHomePageDisplayItemResponse::class,
+        Contracts\UpdateHomePageDisplayItemResponseContract::class => Responses\UpdateHomePageDisplayItemResponse::class,
+        Contracts\DeleteHomePageDisplayItemResponseContract::class => Responses\DeleteHomePageDisplayItemResponse::class,
     ];
 }
