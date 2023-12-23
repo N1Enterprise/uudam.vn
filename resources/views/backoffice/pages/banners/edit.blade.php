@@ -103,7 +103,7 @@
 
                                 <div class="form-group">
 									<label>{{ __('Redirect Url') }}</label>
-									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Cta Label') }}" value="{{ old('redirect_url', $banner->redirect_url) }}" required>
+									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Cta Label') }}" value="{{ old('redirect_url', $banner->redirect_url) }}">
 								</div>
 
                                 <div class="form-group">
