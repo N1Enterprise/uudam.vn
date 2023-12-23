@@ -42,7 +42,7 @@ const SECTION_SCROLL = {
             success: (response) => {
                 if (Array.isArray(response?.data) && response?.data?.length) {
                     $.each(response?.data, function(index, item) {
-                        const dom = `
+                        $(`[data-recommendation-product-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
                                 <a class="ls-link" data-product-identifier="${item.id}" href="${ CATALOG_ROUTES.web_product_detail.replace(':slug', item.slug) }">
                                     <div class="ls-image-wrap">
@@ -58,9 +58,7 @@ const SECTION_SCROLL = {
                                     </div>
                                 </a>
                             </div>
-                        `;
-
-                        $(`[data-recommendation-product-identifier=${item.id}]`).html(dom);
+                        `);
                     });
                 }
             },
