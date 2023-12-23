@@ -108,7 +108,7 @@
 											@foreach($collections as $collection)
 											<option
 												value="{{ $collection->id }}"
-												data-tokens="{{ $collection->id }} | {{ $collection->title }} | {{ $collection->sku }}"
+												data-tokens="{{ $collection->id }} | {{ $collection->title }}}"
 												data-slug="{{ $collection->slug }}"
 												data-collection-id="{{ $collection->id }}"
 												data-collection-name="{{ $collection->name }}"
@@ -119,6 +119,28 @@
 									</div>
 									<div class="form-group Display_Collection_Allowed_Holder mb-0">
 										<div class="Display_Collection_Holder_Content">
+										</div>
+									</div>
+								</div>
+
+								<div data-type="3" class="d-none">
+									<div class="form-group">
+										<label>{{ __('Post') }} *</label>
+										<select data-actions-box="true" name="linked_items[]" title="--{{ __('Select Posts') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Post_Selector" multiple data-selected-text-format="count > 5">
+											@foreach($posts as $post)
+											<option
+												value="{{ $post->id }}"
+												data-tokens="{{ $post->id }} | {{ $post->title }}}"
+												data-slug="{{ $post->slug }}"
+												data-post-id="{{ $post->id }}"
+												data-post-name="{{ $post->name }}"
+												{{ in_array($post->id, old('linked_items', [])) ? 'selected' : '' }}
+											>{{ $post->name }}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group Display_Post_Allowed_Holder mb-0">
+										<div class="Display_Post_Holder_Content">
 										</div>
 									</div>
 								</div>
@@ -166,6 +188,7 @@
 @section('js_script')
 @include('backoffice.pages.home-page-display-items.js-pages.display-inventories')
 @include('backoffice.pages.home-page-display-items.js-pages.display-collections')
+@include('backoffice.pages.home-page-display-items.js-pages.display-posts')
 
 <script>
 	$(document).ready(function() {

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend\Api;
 
 use App\Contracts\Responses\Frontend\ListLinkedCollectionResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedInventoryResponseContract;
+use App\Contracts\Responses\Frontend\ListLinkedPostResponseContract;
 use App\Services\CollectionService;
 use App\Services\HomePageDisplayItemService;
 use App\Services\InventoryService;
+use App\Services\PostService;
 use Illuminate\Support\Arr;
 
 class UserHomePageDisplayItemController extends BaseApiController
@@ -14,14 +16,20 @@ class UserHomePageDisplayItemController extends BaseApiController
     public $homePageDisplayItemService;
     public $inventoryService;
     public $collectionService;
+    public $postService;
 
-    public function __construct(HomePageDisplayItemService $homePageDisplayItemService, InventoryService $inventoryService, CollectionService $collectionService)
-    {
+    public function __construct(
+        HomePageDisplayItemService $homePageDisplayItemService, 
+        InventoryService $inventoryService, 
+        CollectionService $collectionService,
+        PostService $postService
+    ) {
         parent::__construct();
 
         $this->homePageDisplayItemService = $homePageDisplayItemService;
         $this->inventoryService = $inventoryService;
         $this->collectionService = $collectionService;
+        $this->postService = $postService;
     }
 
     public function getInventories($id)
@@ -44,5 +52,16 @@ class UserHomePageDisplayItemController extends BaseApiController
         $collections = $this->collectionService->searchByUser(['filter_ids' => $collectionIds]);
 
         return $this->response(ListLinkedCollectionResponseContract::class, $collections);
+    }
+
+    public function getPosts($id)
+    {
+        $displayItem = $this->homePageDisplayItemService->show($id);
+
+        $postIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
+
+        $posts = $this->postService->searchByUser(['filter_ids' => $postIds]);
+
+        return $this->response(ListLinkedPostResponseContract::class, $posts);
     }
 }

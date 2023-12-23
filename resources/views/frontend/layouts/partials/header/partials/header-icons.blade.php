@@ -15,7 +15,7 @@
                     <predictive-search class="search-modal__form" data-loading-text="Loading..." results="true">
                         <form id="Form_Search_Master" action="/search" method="get" role="search" class="search search-modal__form" data-search-setting='@json($SEARCH_SETTING)'>
                             <div class="field">
-                                <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
+                                <input class="search__input field__input Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
                                 <label class="field__label" for="Search-In-Modal">{{ data_get($SEARCH_SETTING, 'placeholder', 'Tìm kiếm...') }}</label>
                                 <input type="hidden" name="options[prefix]" value="last">
                                 <button class="search__button field__button" aria-label="Search">

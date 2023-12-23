@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\Api as Controllers;
 Route::post('user/subscribe/news-letter', [Controllers\UserSubscribeController::class, 'subscribeNewsLetter'])->name('user.subscribe.news-letter');
 Route::get('user/collections/{id}/linked-inventories', [Controllers\CollectionController::class, 'getLinkedInventories'])->name('user.collections.linked-inventories');
 Route::get('user/search/suggest', [Controllers\UserSearchController::class, 'suggest'])->name('user.search.suggest');
+Route::get('user/search/inventories', [Controllers\UserSearchController::class, 'searchInventories'])->name('user.search.inventories');
 
 // Authentication
 Route::post('user/signup', [Controllers\UserAuthenticationController::class, 'signup'])->name('user.signup');
@@ -19,8 +20,9 @@ Route::get('user/oauth/providers', [Controllers\OauthController::class, 'provide
 Route::get('user/oauth/{provider}/callback', [Controllers\OauthController::class, 'callback'])->name('user.oauth.callback');
 Route::post('user/oauth/signin', [Controllers\OauthController::class, 'signin'])->name('user.oauth.signin');
 
-Route::get('user/display-item/{id}/inventory', [Controllers\UserHomePageDisplayItemController::class, 'getInventories']);
-Route::get('user/display-item/{id}/collection', [Controllers\UserHomePageDisplayItemController::class, 'getCollections']);
+Route::get('user/display-item/{id}/inventories', [Controllers\UserHomePageDisplayItemController::class, 'getInventories']);
+Route::get('user/display-item/{id}/collections', [Controllers\UserHomePageDisplayItemController::class, 'getCollections']);
+Route::get('user/display-item/{id}/posts', [Controllers\UserHomePageDisplayItemController::class, 'getPosts']);
 
 Route::middleware(['auth:user'])->group(function() {
     // Authentication

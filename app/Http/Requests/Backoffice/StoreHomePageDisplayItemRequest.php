@@ -8,6 +8,7 @@ use App\Enum\HomePageDisplayType;
 use App\Models\Collection;
 use App\Models\HomePageDisplayOrder;
 use App\Models\Inventory;
+use App\Models\Post;
 use Illuminate\Validation\Rule;
 
 class StoreHomePageDisplayItemRequest extends BaseFormRequest implements StoreHomePageDisplayItemRequestContract
@@ -30,6 +31,10 @@ class StoreHomePageDisplayItemRequest extends BaseFormRequest implements StoreHo
 
         if ($this->type == HomePageDisplayType::COLLECTION) {
             $rules['linked_items.*'] = ['required', 'integer', Rule::exists(Collection::class, 'id')];
+        }
+
+        if ($this->type == HomePageDisplayType::POST) {
+            $rules['linked_items.*'] = ['required', 'integer', Rule::exists(Post::class, 'id')];
         }
 
         return $rules;

@@ -23,7 +23,7 @@ class InventoryService extends BaseService
     {
         $result = $this->inventoryRepository
             ->with(['product', 'createdBy', 'updatedBy'])
-            ->whereColumnsLike($data['query'] ?? null, ['id', 'slug', 'sku'])
+            ->whereColumnsLike($data['query'] ?? null, ['id', 'slug', 'sku', 'title'])
             ->search([]);
 
         return $result;
@@ -33,7 +33,7 @@ class InventoryService extends BaseService
     {
         $where = [];
 
-        $orderBy  = 'sale_price';
+        $orderBy = 'sale_price';
         $sortBy = 'asc';
 
         if (! empty(data_get($data, 'sort_by'))) {
@@ -77,6 +77,7 @@ class InventoryService extends BaseService
 
         $result = $this->inventoryRepository
             ->with(data_get($data, 'with', []))
+            ->whereColumnsLike($data['query'] ?? null, ['sku', 'title', 'slug'])
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);
 
@@ -92,7 +93,7 @@ class InventoryService extends BaseService
     public function allAvailable($data = [])
     {
         return $this->inventoryRepository
-            ->modelScopes(['active'])
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }

@@ -19,6 +19,8 @@ Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('
 
 Route::get('maintenance', [Controllers\MaintenanceController::class, 'index'])->name('maintenance');
 
+Route::get('search', [Controllers\UserSearchController::class, 'index'])->name('search');
+
 Route::middleware(['auth:user'])->group(function() {
     Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
     Route::get('profile/info', [Controllers\UserProfileController::class, 'profile'])->name('user.profile.info');

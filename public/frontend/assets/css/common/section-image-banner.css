@@ -427,3 +427,19 @@
 .banner__box>*+.banner__buttons {
     margin-top: 2rem;
 }
+
+.banner__media [data-device=desktop] {
+    display: block!important;
+}
+.banner__media [data-device=mobile] {
+    display: none!important;
+}
+
+@media screen and (max-width: 480px) {
+    .banner__media [data-device="desktop"] {
+        display: none!important;
+    }
+    .banner__media [data-device="mobile"] {
+        display: block!important;
+    }
+}

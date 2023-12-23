@@ -98,11 +98,6 @@ return [
     'subscribers.manage' => 'Manage Subscriber',
 
     'appearances' => 'Appearances',
-    'display-inventories' => 'Display Inventories',
-    'display-inventories.index' => 'View Display Inventory List',
-    'display-inventories.store' => 'Create Display Inventory',
-    'display-inventories.update' => 'Update Display Inventory',
-    'display-inventories.delete' => 'Delete Display Inventory',
 
     'home-page-display-orders' => 'Home Page Display Order',
     'home-page-display-orders.index' => 'View Home Page Display Order List',

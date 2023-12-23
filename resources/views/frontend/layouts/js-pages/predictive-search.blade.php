@@ -12,14 +12,13 @@ const PREDICTIVE_SEARCH = {
     },
     search_setting: JSON.parse($('[data-search-setting]').attr('data-search-setting') || '{}'),
     onSuggest: () => {
-        $('#Search-In-Modal').on('input', function() {
+        $('.Search-In-Modal').on('input', function() {
             const query = $(this).val();
 
             utils_helper.debounce(PREDICTIVE_SEARCH.performSearch, 1000)(query);
         });
     },
     performSearch: (query) => {
-        console.log({ query });
         const data = {
             q: query,
             resources: {

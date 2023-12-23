@@ -12,6 +12,7 @@ use App\Services\CollectionService;
 use App\Services\HomePageDisplayItemService;
 use App\Services\HomePageDisplayOrderService;
 use App\Services\InventoryService;
+use App\Services\PostService;
 use Illuminate\Http\Request;
 
 class HomePageDisplayItemController extends BaseController
@@ -20,17 +21,20 @@ class HomePageDisplayItemController extends BaseController
     public $inventoryService;
     public $collectionService;
     public $homePageDisplayOrderService;
+    public $postService;
 
     public function __construct(
         HomePageDisplayItemService $homePageDisplayItemService, 
         InventoryService $inventoryService, 
         CollectionService $collectionService,
-        HomePageDisplayOrderService $homePageDisplayOrderService
+        HomePageDisplayOrderService $homePageDisplayOrderService,
+        PostService $postService
     ) {
         $this->homePageDisplayItemService = $homePageDisplayItemService;
         $this->inventoryService = $inventoryService;
         $this->collectionService = $collectionService;
         $this->homePageDisplayOrderService = $homePageDisplayOrderService;
+        $this->postService = $postService;
     }
 
     public function index()
@@ -42,10 +46,11 @@ class HomePageDisplayItemController extends BaseController
     {
         $homePageDisplayTypeEnumLabels = HomePageDisplayType::labels();
         $inventories = $this->inventoryService->allAvailable();
-        $collections = $this->collectionService->allAvailable();
+        $collections = $this->collectionService->allAvailable(['scopes' => ['feDisplay']]);
+        $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $groups = $this->homePageDisplayOrderService->allAvailable();
 
-        return view('backoffice.pages.home-page-display-items.create', compact('homePageDisplayTypeEnumLabels', 'inventories', 'collections', 'groups'));
+        return view('backoffice.pages.home-page-display-items.create', compact('homePageDisplayTypeEnumLabels', 'inventories', 'collections', 'groups', 'posts'));
     }
 
     public function edit($id)
@@ -53,10 +58,11 @@ class HomePageDisplayItemController extends BaseController
         $homePageDisplayItem = $this->homePageDisplayItemService->show($id);
         $homePageDisplayTypeEnumLabels = HomePageDisplayType::labels();
         $inventories = $this->inventoryService->allAvailable();
-        $collections = $this->collectionService->allAvailable();
+        $collections = $this->collectionService->allAvailable(['scopes' => ['feDisplay']]);
+        $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $groups = $this->homePageDisplayOrderService->allAvailable();
 
-        return view('backoffice.pages.home-page-display-items.edit', compact('homePageDisplayItem', 'homePageDisplayTypeEnumLabels', 'inventories', 'collections', 'groups'));
+        return view('backoffice.pages.home-page-display-items.edit', compact('homePageDisplayItem', 'homePageDisplayTypeEnumLabels', 'inventories', 'collections', 'groups', 'posts'));
     }
 
     public function store(StoreHomePageDisplayItemRequestContract $request)

@@ -54,6 +54,10 @@
                             @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
                             @include('frontend.pages.home.partials.recommendation-collections')
                             @endif
+
+                            @if (data_get($item, 'type') == enum('HomePageDisplayType')::POST)
+                            @include('frontend.pages.home.partials.recommendation-posts')
+                            @endif
                         </div>
                     </limespot-box>
                 </div>
@@ -67,12 +71,6 @@
 <section class="shopify-section section">
     @if(! empty($videoOutsideUI))
     @include('frontend.pages.home.partials.section-featured-videos')
-    @endif
-</section>
-
-<section class="shopify-section section">
-    @if(! $postCategories->isEmpty())
-    @include('frontend.pages.home.partials.section-blogs')
     @endif
 </section>
 

@@ -39,4 +39,5 @@ mix
     .js('resources/src/frontend/js/profile/change-password.js', 'public/frontend/bundle/js/profile/change-password.min.js')
     .js('resources/src/frontend/js/authentication/index.js', 'public/frontend/bundle/js/authentication/index.min.js')
     .js('resources/src/frontend/js/helpers/find-by-tags.js', 'public/frontend/bundle/js/helpers/find-by-tags.min.js')
+    .js('resources/src/frontend/js/search/index.js', 'public/frontend/bundle/js/search/index.min.js')
     .sourceMaps(productionSourceMaps, 'source-map');

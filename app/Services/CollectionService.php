@@ -49,7 +49,7 @@ class CollectionService extends BaseService
     public function allAvailable($data = [])
     {
         return $this->collectionRepository
-            ->modelScopes(['active'])
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
