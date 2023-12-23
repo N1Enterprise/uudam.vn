@@ -20,7 +20,7 @@ $(document).ready(function() {
                 }
 
                 $.ajax({
-                    url: AUTHENTICATION_ROUTES.oauth_signin,
+                    url: AUTHENTICATION_ROUTES.api_oauth_signin,
                     method: 'POST',
                     data: { auth_code: oauthCode, provider },
                     success: (response) => {

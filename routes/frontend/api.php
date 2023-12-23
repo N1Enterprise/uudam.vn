@@ -19,6 +19,7 @@ Route::get('user/oauth/providers', [Controllers\OauthController::class, 'provide
 Route::get('user/oauth/{provider}/callback', [Controllers\OauthController::class, 'callback'])->name('user.oauth.callback');
 Route::post('user/oauth/signin', [Controllers\OauthController::class, 'signin'])->name('user.oauth.signin');
 
+Route::get('user/display-item/{id}/inventory', [Controllers\UserHomePageDisplayItemController::class, 'getInventories']);
 
 Route::middleware(['auth:user'])->group(function() {
     // Authentication

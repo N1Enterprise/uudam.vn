@@ -33,6 +33,7 @@ mix.webpackConfig({
 });
 
 mix
+    .js('resources/src/frontend/js/home/index.js', 'public/frontend/bundle/js/home/index.min.js')
     .js('resources/src/frontend/js/checkout/index.js', 'public/frontend/bundle/js/checkout/index.min.js')
     .js('resources/src/frontend/js/profile/user-info.js', 'public/frontend/bundle/js/profile/user-info.min.js')
     .js('resources/src/frontend/js/profile/change-password.js', 'public/frontend/bundle/js/profile/change-password.min.js')

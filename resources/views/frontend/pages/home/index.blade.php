@@ -18,17 +18,17 @@
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-1.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/home/index.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-featured-blog.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-multicolumn.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slideshow.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/section-image-banner.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slider-1.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/pages/home/index.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/section-featured-blog.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-card.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-article-card.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/section-multicolumn.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/recommendation.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slideshow.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slider.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/section-image-banner.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 @endpush
 
 @section('content_body')
@@ -44,18 +44,20 @@
 
             @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
                 @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
-                <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom" data-box-style="carousel" style="display: block;">
-                    <h3 class="ls-box-title d-none">{{ data_get($item, 'name') }}</h3>
-                    <div class="recommendation-items" data-show="">
-                        @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
-                        @include('frontend.pages.home.partials.recommendation-products')
-                        @endif
-
-                        @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
-                        @include('frontend.pages.home.partials.recommendation-collections')
-                        @endif
-                    </div>
-                </limespot-box>
+                <div data-section="home_page_display_{{ data_get($item, 'type') }}:{{ data_get($item, 'id') }}" data-section-defer="true">
+                    <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom" data-box-style="carousel" style="display: block;">
+                        <h3 class="ls-box-title d-none">{{ data_get($item, 'name') }}</h3>
+                        <div class="recommendation-items" data-show="">
+                            @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
+                            @include('frontend.pages.home.partials.recommendation-products')
+                            @endif
+    
+                            @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
+                            @include('frontend.pages.home.partials.recommendation-collections')
+                            @endif
+                        </div>
+                    </limespot-box>
+                </div>
                 @endforeach
             @endif
         </div>
@@ -105,6 +107,7 @@
 @endsection
 
 @push('js_pages')
-<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/home/index.min.js') }}"></script>
 @endpush

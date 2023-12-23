@@ -160,6 +160,10 @@ if (! function_exists('round_money')) {
 if (! function_exists('format_price')) {
     function format_price($money, $currencyCode = null)
     {
+        if (empty($money)) {
+            return;
+        }
+
         return LocalizationMoney::make($money, $currencyCode ?? SystemCurrency::getDefaultCurrency()->getKey())->format(0, true);
     }
 }

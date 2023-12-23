@@ -76,6 +76,7 @@ class InventoryService extends BaseService
         }
 
         $result = $this->inventoryRepository
+            ->with(data_get($data, 'with', []))
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);
 
