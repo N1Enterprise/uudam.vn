@@ -145,8 +145,8 @@
 
         #admintopnav {
             position: relative;
-            background: #1d2327;
-            background-color: #1d2327;
+            background: #b4a9a9;
+            background-color: #b4a9a9;
             color: #c3c4c7;
             font-weight: 400;
             font-size: 13px;
@@ -159,7 +159,7 @@
         }
 
         #admintopnav a.split.highlight {
-            background-color: #04AA6D;
+            background-color: #a49a9a;
             color: #fff;
         }
 
@@ -174,7 +174,7 @@
         }
 
         #admintopnav a:hover {
-            background-color: #04AA6D;
+            background-color: #a49a9a;
             color: #fff;
         }
 

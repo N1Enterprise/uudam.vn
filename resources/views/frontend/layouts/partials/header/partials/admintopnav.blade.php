@@ -9,7 +9,7 @@
     </div>
 
     <div style="display: flex; align-items: center">
-        <a href="https://zcart.incevio.cloud/admin/account/profile" class="split highlight">
+        <a href="{{ route('bo.web.admins.edit', $AUTHENTICATED_ADMIN->id) }}" target="_blank" class="split highlight">
             Welcome {{ $AUTHENTICATED_ADMIN->name }}
         </a>
         <a href="javascript:void(0)" class="split" onclick="document.querySelector('#signout_form').submit()">

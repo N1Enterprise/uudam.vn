@@ -21,7 +21,7 @@
                     <iframe style="height: 100%; width: 100%" src="{{ $video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button" aria-haspopup="dialog">
-                    <span class="visually-hidden"> Open media 1 in modal </span>
+                    <span class="visually-hidden">Xem media trong một modal</span>
                 </button>
             </div>
         </div>
