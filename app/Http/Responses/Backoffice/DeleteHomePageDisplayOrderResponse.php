@@ -3,9 +3,9 @@
 namespace App\Http\Responses\Backoffice;
 
 use Illuminate\Http\JsonResponse;
-use App\Contracts\Responses\Backoffice\UploadFileManagerResponseContract;
+use App\Contracts\Responses\Backoffice\DeleteHomePageDisplayOrderResponseContract;
 
-class UploadFileManagerResponse extends BaseResponse implements UploadFileManagerResponseContract
+class DeleteHomePageDisplayOrderResponse extends BaseResponse implements DeleteHomePageDisplayOrderResponseContract
 {
     public function toResponse($request)
     {

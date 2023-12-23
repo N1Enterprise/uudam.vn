@@ -60,8 +60,12 @@ class RoleService extends BaseService
                     'attribute-values.delete',
                 ],
             ],
-        ],
-        'stocks' => [
+            'collections' => [
+                'collections.index',
+                'collections.store',
+                'collections.update',
+                'collections.delete',
+            ],
             'inventories' => [
                 'inventories.index',
                 'inventories.store',
@@ -140,6 +144,18 @@ class RoleService extends BaseService
                 'display-inventories.update',
                 'display-inventories.delete',
             ],
+            'home-page-display-orders' => [
+                'home-page-display-orders.index',
+                'home-page-display-orders.store',
+                'home-page-display-orders.update',
+                'home-page-display-orders.delete',
+            ],
+            'home-page-display-items' => [
+                'home-page-display-items.index',
+                'home-page-display-items.store',
+                'home-page-display-items.update',
+                'home-page-display-items.delete',
+            ],
             'banners' => [
                 'banners.index',
                 'banners.store',
@@ -163,12 +179,6 @@ class RoleService extends BaseService
                     'menu-sub-groups.update',
                     'menu-sub-groups.delete',
                 ],
-            ],
-            'collections' => [
-                'collections.index',
-                'collections.store',
-                'collections.update',
-                'collections.delete',
             ],
         ],
         'shippings' => [

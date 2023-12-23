@@ -33,13 +33,13 @@ class InventoryService extends BaseService
     {
         $where = [];
 
-        $orderBy  = 'featured';
+        $orderBy  = 'sale_price';
         $sortBy = 'asc';
 
         if (! empty(data_get($data, 'sort_by'))) {
             switch (data_get($data, 'sort_by')) {
                 case 'manual';
-                    $orderBy = 'featured';
+                    $orderBy = 'sale_price';
                     $sortBy = 'asc';
                     break;
                 case 'best-selling';
@@ -76,6 +76,7 @@ class InventoryService extends BaseService
         }
 
         $result = $this->inventoryRepository
+            ->with(data_get($data, 'with', []))
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);
 
@@ -168,7 +169,6 @@ class InventoryService extends BaseService
             $variant['product_slug'] = data_get($attributes, 'product_slug');
             $variant['offer_start'] = data_get($attributes, 'offer_start');
             $variant['offer_end'] = data_get($attributes, 'offer_end');
-            $variant['featured'] = data_get($attributes, 'featured');
 
             $variantsCreated = [];
 

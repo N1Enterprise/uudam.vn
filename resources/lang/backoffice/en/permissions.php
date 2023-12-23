@@ -61,6 +61,19 @@ return [
     'product-combos.update' => 'Update Product Combo',
     'product-combos.delete' => 'Delete Product Combo',
 
+    'collections' => 'Collections',
+    'collections.index' => 'View Collection List',
+    'collections.store' => 'Create Collection',
+    'collections.update' => 'Update Collection',
+    'collections.delete' => 'Delete Collection',
+
+    'stocks' => 'Stocks',
+    'inventories' => 'Inventories',
+    'inventories.index' => 'View Inventory List',
+    'inventories.store' => 'Create Inventory',
+    'inventories.update' => 'Update Inventory',
+    'inventories.delete' => 'Delete Inventory',
+
     'attributes' => 'Attributes',
     'attribute-values' => 'Attribute Values',
 
@@ -71,13 +84,7 @@ return [
     'attribute-values.store' => 'Create Attribute Value',
     'attribute-values.update' => 'Update Attribute Value',
     'attribute-values.delete' => 'Delete Attribute Value',
-
-    'stocks' => 'Stocks',
-    'inventories' => 'Inventories',
-    'inventories.index' => 'View Inventory List',
-    'inventories.store' => 'Create Inventory',
-    'inventories.update' => 'Update Inventory',
-    'inventories.delete' => 'Delete Inventory',
+  
 
     'support-desks' => 'Support Desks',
     'product-reviews' => 'Product Reviews',
@@ -96,6 +103,19 @@ return [
     'display-inventories.store' => 'Create Display Inventory',
     'display-inventories.update' => 'Update Display Inventory',
     'display-inventories.delete' => 'Delete Display Inventory',
+
+    'home-page-display-orders' => 'Home Page Display Order',
+    'home-page-display-orders.index' => 'View Home Page Display Order List',
+    'home-page-display-orders.store' => 'Create Home Page Display Order',
+    'home-page-display-orders.update' => 'Update Home Page Display Order',
+    'home-page-display-orders.delete' => 'Delete Home Page Display Order',
+
+    'home-page-display-items' => 'Home Page Display Item',
+    'home-page-display-items.index' => 'View Home Page Display Item List',
+    'home-page-display-items.store' => 'Create Home Page Display Item',
+    'home-page-display-items.update' => 'Update Home Page Display Item',
+    'home-page-display-items.delete' => 'Delete Home Page Display Item',
+
     'banners' => 'Banners',
     'banners.index' => 'View Banner List',
     'banners.store' => 'Create Banner',
@@ -117,12 +137,6 @@ return [
     'menus.store' => 'Create Menu',
     'menus.update' => 'Update Menu',
     'menus.delete' => 'Delete Menu',
-
-    'collections' => 'Collections',
-    'collections.index' => 'View Collection List',
-    'collections.store' => 'Create Collection',
-    'collections.update' => 'Update Collection',
-    'collections.delete' => 'Delete Collection',
 
     'utilities' => 'Utilities',
     'blogs' => 'Blogs',

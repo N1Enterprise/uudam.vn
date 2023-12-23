@@ -33,12 +33,10 @@ generate_build_version() {
     echo "========== New Build Version: $NEW_VERSION =========="
 }
 
-
 git checkout develop
 git pull
 
 php artisan optimize:clear
-
 
 composer install
 npm install

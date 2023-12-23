@@ -25,7 +25,6 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
             'order' => ['nullable', 'integer', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta' => ['nullable', 'array'],
-            'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
             'display_on_frontend' => ['required', 'boolean']
@@ -37,7 +36,6 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'display_on_frontend' => boolval($this->display_on_frontend),
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
         ]);

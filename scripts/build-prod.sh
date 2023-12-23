@@ -33,7 +33,6 @@ generate_build_version() {
     echo "========== New Build Version: $NEW_VERSION =========="
 }
 
-
 git checkout master
 git pull
 

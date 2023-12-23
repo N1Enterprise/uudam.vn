@@ -46,9 +46,4 @@ class Post extends BaseModel
     {
         return $this->belongsTo(PostCategory::class, 'post_category_id');
     }
-
-    public function scopeFeatured($query)
-    {
-        return $query->where('featured', ActivationStatusEnum::ACTIVE);
-    }
 }

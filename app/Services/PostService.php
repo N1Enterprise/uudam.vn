@@ -50,7 +50,7 @@ class PostService extends BaseService
     public function getListFeatured($data = [])
     {
         return $this->postRepository
-            ->modelScopes(['featured', 'active'])
+            ->modelScopes(['active'])
             ->addSort('order', 'desc')
             ->all(data_get($data, 'columns', ['*']));
     }

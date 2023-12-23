@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($collection, 'meta_title', $collection, 'name') }}
+{{ data_get($collection, 'meta_title', data_get($collection, 'name')) }}
 @endsection
 
 @section('page_seo')
 <meta name="description" content="{{ data_get($collection, 'meta_description') }}">
 <meta name="keywords" content="{{ data_get($collection, 'name') }}">
-<meta property="og:title" content="{{ data_get($collection, 'meta_title', $collection, 'name') }}">
+<meta property="og:title" content="{{ data_get($collection, 'meta_title', data_get($collection, 'name')) }}">
 <meta property="og:description" content="{{ data_get($collection, 'meta_description') }}">
 <meta property="og:image" content="{{ data_get($collection, 'primary_image') }}">
 <meta property="og:image:secure_url" content="{{ data_get($collection, 'product_image') }}">

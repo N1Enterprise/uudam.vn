@@ -15,7 +15,6 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\RoleRepositoryContract::class => Repositories\RoleRepository::class,
         Contracts\AdminRepositoryContract::class => Repositories\AdminRepository::class,
         Contracts\UserRepositoryContract::class => Repositories\UserRepository::class,
-        Contracts\UserDetailRepositoryContract::class => Repositories\UserDetailRepository::class,
         Contracts\UserWalletRepositoryContract::class => Repositories\UserWalletRepository::class,
 
         // Oauth User
@@ -69,5 +68,8 @@ class RepositoryServiceProvider extends ServiceProvider
         // Order
         Contracts\OrderRepositoryContract::class => Repositories\OrderRepository::class,
         Contracts\OrderItemRepositoryContract::class => Repositories\OrderItemRepository::class,
+        
+        Contracts\HomePageDisplayOrderRepositoryContract::class => Repositories\HomePageDisplayOrderRepository::class,
+        Contracts\HomePageDisplayItemRepositoryContract::class => Repositories\HomePageDisplayItemRepository::class,
     ];
 }

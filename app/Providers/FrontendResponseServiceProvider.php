@@ -13,5 +13,6 @@ class FrontendResponseServiceProvider extends ServiceProvider
         Contracts\ListLinkedInventoryResponseContract::class => Responses\ListLinkedInventoryResponse::class,
         Contracts\UserUpdateCartItemQuantityResponseContract::class => Responses\UserUpdateCartItemQuantityResponse::class,
         Contracts\UserOrderResponseContract::class => Responses\UserOrderResponse::class,
+        Contracts\ListLinkedCollectionResponseContract::class => Responses\ListLinkedCollectionResponse::class,
     ];
 }
