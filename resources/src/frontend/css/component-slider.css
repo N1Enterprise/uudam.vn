@@ -310,7 +310,11 @@ slider-component.slider-component-full-width {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin-top: 10px; */
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 @media screen and (min-width: 990px) {
@@ -332,17 +336,16 @@ slider-component.slider-component-full-width {
 }
 
 .slider-button {
-    color: rgba(var(--color-foreground), 0.75);
-    background: transparent;
-    border: none;
+    background: rgb(255 255 255 / 4%);
     cursor: pointer;
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(var(--color-foreground), 0.08);
+    border: 1px solid #fff!important;
     margin: 5px;
+    color: #fff!important;
 }
 
 .slider-button:not([disabled]):hover {
