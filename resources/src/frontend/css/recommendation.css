@@ -39,7 +39,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item,limespot-box .limesp
     margin-top: 0;
     max-width: 200px;
     /* padding: 0 5px; */
-    padding: 0;
+    /* padding: 0; */
     position: relative;
     transition: transform .5s;
     -webkit-transition: -webkit-transform .5s;
@@ -70,14 +70,14 @@ div.ls-recommendation-box div.limespot-recommendation-box-carousel,limespot-box 
     margin: 0!important;
     overflow-x: auto!important;
     overflow-y: hidden;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     position: relative;
     width: 100%
 }
 
 div.ls-recommendation-box div.limespot-recommendation-box-carousel-container,limespot-box div.limespot-recommendation-box-carousel-container {
     display: block;
-    margin: 0 0 10px!important;
+    /* margin: 0 0 10px!important; */
     position: relative;
     width: 100%
 }
@@ -335,10 +335,6 @@ limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
     text-decoration: none
 }
 
-.ls-box-title {
-    margin: 10px auto 0;
-}
-
 .ls-vendor {
     display: none
 }
@@ -583,7 +579,7 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
 
 @media screen and (max-width: 749px) {
     div.ls-recommendation-box .limespot-recommendation-box-item, limespot-box .limespot-recommendation-box-item {
-        padding: 0 5px;
+        /* padding: 0 5px; */
     }
     limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
         /* padding: 0 10px; */

@@ -52,7 +52,7 @@ const SECTION_SCROLL = {
                             <div class="recommendation-target">
                                 <a class="ls-link" data-product-identifier="${item.id}" href="${ CATALOG_ROUTES.web_product_detail.replace(':slug', item.slug) }">
                                     <div class="ls-image-wrap">
-                                        <img class="ls-image image-lazy" alt="${ item.title }" title="${ item.title }" loading="lazy" sizes="270px" srcset="${ item.image }" src="${ item.image }" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
+                                        <img class="ls-image image-lazy" alt="${ item.title }" title="${ item.title }" loading="lazy" srcset="${ item.image }" src="${ item.image }" style="border-radius: 0px;">
                                     </div>
                                     <div class="ls-info-wrap">
                                         <div class="ls-title">${ item.title }</div>
@@ -82,17 +82,16 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-collection-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
-                                <div class="multicolumn-list__item grid__item slider__slide center" style="padding: 0 5px; width: 100%;">
-                                    <a href="${ CATALOG_ROUTES.web_collection_detail.replace(':slug', item.slug) }"  style="text-decoration: none;">
+                                <div class="multicolumn-list__item grid__item slider__slide center" style="width: 100%;">
+                                    <a href="${ CATALOG_ROUTES.web_collection_detail.replace(':slug', item.slug) }" style="text-decoration: none;">
                                         <div class="multicolumn-card content-container">
                                             <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width">
-                                                <div class="media media--transparent media--adapt" style="padding-bottom: 59.78043912175649%;">
+                                                <div class="media media--transparent media--adapt">
                                                     <img class="multicolumn-card__image image-lazy" srcset="${ item.primary_image }" src="${ item.primary_image }" style="width: 100%; height: 100%;" alt="${ item.name }" loading="lazy">
                                                 </div>
                                             </div>
-                                            <div class="multicolumn-card__info">
-                                                <h3>${ item.name }</h3>
-                                                <div class="link animate-arrow">
+                                            <div class="multicolumn-card__info" style="padding: 10px 0; text-align: left;">
+                                                <div class="link animate-arrow" style="margin-top: 0; font-size: 18px;">
                                                     ${item.cta_label ? `
                                                         <span>${ item.cta_label }</span>
                                                         <span class="icon-wrap">&nbsp;
@@ -125,7 +124,7 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-post-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
-                                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
+                                <div class="blog__post article slider__slide slider__slide--full-width">
                                     <div class="card-wrapper underline-links-hover" style="width: 100%;">
                                         <div class="card article-card card--standard card--media">
                                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
@@ -171,7 +170,7 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-blog-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
-                                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
+                                <div class="blog__post article slider__slide slider__slide--full-width">
                                     <div class="card-wrapper underline-links-hover" style="width: 100%;">
                                         <div class="card article-card card--standard card--media">
                                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">

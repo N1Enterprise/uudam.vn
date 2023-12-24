@@ -2,8 +2,8 @@
     <div class="slider-mobile-gutter">
         <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-owl-id="Slider_Featured_Collections" data-owl-items="3">
             @foreach (data_get($item, 'linked_items') as $linkedItem)
-            <div class="multicolumn-list__item grid__item slider__slide center" style="padding: 0 5px; width: 100%;" data-recommendation-post-identifier="{{ $linkedItem }}">
-                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
+            <div class="multicolumn-list__item grid__item slider__slide center" style="width: 100%;" data-recommendation-post-identifier="{{ $linkedItem }}">
+                <div class="blog__post article slider__slide slider__slide--full-width">
                     <div class="card-wrapper underline-links-hover" style="width: 100%;">
                         <div class="card article-card card--standard card--media">
                             <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
