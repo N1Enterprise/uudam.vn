@@ -482,8 +482,8 @@
             padding-bottom: 70%;
         }
 
-        [data-recommendation-product-identifier] .recommendation-target {
+        /* [data-recommendation-product-identifier] .recommendation-target {
             padding: 0 2px;
-        }
+        } */
     }
 </style>
