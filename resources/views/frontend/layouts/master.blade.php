@@ -228,6 +228,27 @@
             transform: translateY(-50%);
             z-index: 1;
         }
+
+        .swal-button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            height: 36px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .swal-button.swal2-confirm {
+            border: 1px solid #000;
+            color: #000;
+            background: #fff;
+        }
+
+        .swal-button.swal2-cancel {
+            background: #000;
+            border: 1px solid #000;
+            color: #fff;
+            margin-right: 10px;
+        }
     </style>
     <!--end::Layout Skins -->
 </head>
