@@ -1,4 +1,3 @@
-<script>
 $('[close-modal-search]').on('click', function() {
     $('details-modal.header__search details[open]').removeAttr('open');
 });
@@ -32,7 +31,7 @@ const PREDICTIVE_SEARCH = {
         }
 
         $.ajax({
-            url: "{{ route('fe.api.user.search.suggest') }}",
+            url: SEARCH_ROUTES.api_suggest,
             method: 'GET',
             data,
             beforeSend: () => {
@@ -61,7 +60,7 @@ const PREDICTIVE_SEARCH = {
     },
     buildPostHtml: (data = []) => {
         const html = data.map(function(item) {
-            const route = "{{ route('fe.web.posts.index', ':slug') }}".replace(':slug', item.slug);
+            const route = POST_ROUTES.web_detail.replace(':slug', item.slug);
 
             return `
                 <li class="predictive-search__list-item" role="option" aria-selected="false">
@@ -79,7 +78,7 @@ const PREDICTIVE_SEARCH = {
     },
     buildInventoriesHtml: (data = []) => {
         const html = data.map(function(item) {
-            const route = "{{ route('fe.web.products.index', ':slug') }}".replace(':slug', item.slug);
+            const route = PRODUCT_ROUTES.web_detail.replace(':slug', item.slug);
 
             return `
                 <li class="predictive-search__list-item" role="option" aria-selected="false">
@@ -97,7 +96,7 @@ const PREDICTIVE_SEARCH = {
     },
     buildCollectionsHtml: (data = []) => {
         const html = data.map(function(item) {
-            const route = "{{ route('fe.web.collections.index', ':slug') }}".replace(':slug', item.slug);
+            const route = COLLECTION_ROUTES.web_detail.replace(':slug', item.slug);
 
             return `
                 <li class="predictive-search__list-item" role="option" aria-selected="false">
@@ -116,4 +115,3 @@ const PREDICTIVE_SEARCH = {
 };
 
 PREDICTIVE_SEARCH.init();
-</script>

@@ -319,27 +319,6 @@ body {
     margin-top: -5px;
 }
 
-.swal-button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    height: 36px;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-.swal-button.swal2-confirm {
-    border: 1px solid #000;
-    color: #000;
-    background: #fff;
-}
-
-.swal-button.swal2-cancel {
-    background: #000;
-    border: 1px solid #000;
-    color: #fff;
-    margin-right: 10px;
-}
-
 .prevent,
 .disabled {
     pointer-events: none;
@@ -356,4 +335,45 @@ body {
     background-color: #EEE;
     margin-bottom: 1px;
     display: block!important;
+}
+
+.msg-error {
+    color: #d80101;
+    font-size: 13px;
+}
+.input.is-invalid {
+    border: 1px solid #d80101;
+}
+
+/* read more in collection description */
+.read_more_span {
+    overflow: hidden;
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    height: 5rem;
+}
+
+.read_more_span--clamp {
+    height: min-content
+}
+
+.read_more_span p,
+.read_more_span span {
+    margin: 0;
+}
+
+.read_more_btn {
+    margin: 0 auto;
+}
+
+/* Modal force z-index*/
+.modal__content {
+    z-index: 1000;
+}
+
+/*Infinite Scroll*/
+.Infinite-Scroll-Pagination {
+    display: flex;
+    justify-content: center;
 }

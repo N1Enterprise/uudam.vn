@@ -1,23 +1,31 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-Tìm kiếm
+Tìm kiếm | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-
+<meta property="og:title" content="Tìm kiếm | {{ config('app.user_domain') }}">
+<meta property="og:description" content="Tìm kiếm | {{ config('app.user_domain') }}">
+<meta property="og:url" content="{{ request()->url() }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:price:currency" content="VND">
+<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-collection-hero.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/template-collection.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-price.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-rte.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/custom.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-facets.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-loading-overlay.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/recommendation.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-collection-hero.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/template-collection.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-price.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-rte.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-facets.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
 <link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 <style>
 @media screen and (max-width: 749px) {
@@ -116,7 +124,7 @@ Tìm kiếm
 @push('js_pages')
 <script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script src="{{ asset_with_version('frontend/bundle/js/search/index.min.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/component-search.min.js') }}"></script>
 
 <script>
     $('[data-collection-mobile-filter-open]').on('click', function() {

@@ -1,4 +1,14 @@
-<script>
+import USER_ORDER_CART from './user-order-cart';
+
+$('.thumbnail-list__item').on('click', function() {
+    const index = $(this).attr('data-owl-index');
+
+    $('[data-owl-id="Slider_Product_Detail"]').trigger('to.owl.carousel', index);
+
+    $('.thumbnail-list__item').find('button.thumbnail').removeAttr('aria-current');
+    $(this).find('button.thumbnail').attr('aria-current', 'true');
+});
+
 $('.share-button__copy').on('click', function() {
     const text = $('#url.field__input').val();
 
@@ -111,7 +121,7 @@ const MAIN_INVENTORY = {
     renderInventory: (inventory) => {
         const { id, title, sku, sale_price, stock_quantity, image, slug } = inventory;
 
-        const newHref = "{{ route('fe.web.products.index', ':slug') }}".replace(':slug', slug);
+        const newHref = PRODUCT_ROUTES.web_detail.replace(':slug', slug);
 
         $('[data-title]').text(title);
         $('[data-sku]').text(sku);
@@ -322,7 +332,7 @@ const FORM_ORDER = {
         $('form[form-add-to-cart]').on('submit', function(e) {
             e.preventDefault();
 
-            const isLogged = "{{ !empty($AUTHENTICATED_USER) }}";
+            const isLogged = $('[data-canprocessasthesame]').attr('data-canprocessasthesame');
             const loginRef = $(this).attr('login-ref');
 
             if (!isLogged && loginRef) {
@@ -366,4 +376,3 @@ MAIN_INVENTORY_OPEN_IMAGE_GALERIES.init();
 MAIN_INVENTORY_REVIEW.init();
 MAIN_INVENTORY_QUANTITY.init();
 FORM_ORDER.init();
-</script>

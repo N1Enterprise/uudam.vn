@@ -40,20 +40,17 @@
     <!--end::Page Vendor Styles -->
 
     <!--begin::Page Common Styles -->
-    <link href="{{ asset_with_version('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-search.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-predictive-search.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/reset.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/base.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/buddha-megamenu2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-mega-menu.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/section-footer.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-menu-drawer.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-list-social.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-search.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-predictive-search.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Common Styles -->
 
     @yield('style_datatable')
@@ -231,6 +228,27 @@
             transform: translateY(-50%);
             z-index: 1;
         }
+
+        .swal-button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            height: 36px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .swal-button.swal2-confirm {
+            border: 1px solid #000;
+            color: #000;
+            background: #fff;
+        }
+
+        .swal-button.swal2-cancel {
+            background: #000;
+            border: 1px solid #000;
+            color: #fff;
+            margin-right: 10px;
+        }
     </style>
     <!--end::Layout Skins -->
 </head>
@@ -245,8 +263,10 @@
 
     <input type="hidden" data-bo-shared='@json([
         'bo_host' => config('app.url'),
+        'fe_host' => config('app.user_host'),
         'app_id'  => config('app.app_id')
     ])'>
+    <input type="hidden" data-canprocessasthesame="{{ !empty($AUTHENTICATED_USER) }}" data-authenticated-user='@json($AUTHENTICATED_USER)'>
 
     @include('frontend.layouts.partials.footer.index')
 
@@ -265,14 +285,10 @@
     <script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/utils/router.js') }}" type="text/javascript"></script>
 
-    <!--start:: Authentication -->
-    <script src="{{ asset_with_version('frontend/bundle/js/authentication/index.min.js') }}" type="text/javascript"></script>
-    <!--end:: Authentication -->
-
-    @include('frontend.layouts.js-pages.menu-drawer')
-    @include('frontend.layouts.js-pages.authentication')
-    @include('frontend.layouts.js-pages.predictive-search')
-    @include('frontend.layouts.js-pages.user-order-cart')
+    <script src="{{ asset_with_version('frontend/bundle/js/authentication.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/menu-drawer.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/predictive-search.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/user-order-cart.min.js') }}" type="text/javascript"></script>
 
     @yield('js_script')
     @stack('js_pages')

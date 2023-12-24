@@ -39,7 +39,7 @@ php artisan optimize:clear
 
 composer install
 npm install
-npm run dev:fe
+npm run prod:fe
 
 generate_build_version
 

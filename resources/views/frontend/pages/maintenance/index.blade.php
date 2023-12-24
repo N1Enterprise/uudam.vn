@@ -11,7 +11,7 @@
         <meta property="og:title" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
         <meta property="og:description" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
         <meta property="og:url" content="{{ request()->url() }}">
-        <meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+        <meta property="og:site_name" content="{{ config('app.user_domain') }}">
         <meta property="og:type" content="website">
         <meta property="og:locale" content="vi_VN">
         <meta property="og:price:currency" content="VND">
@@ -19,7 +19,7 @@
         <meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
         <meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
 
-        <link rel="stylesheet" id="flatsome-main-css" href="{{ asset('frontend/assets/css/pages/maintenance/index.css') }}" type="text/css" media="all">
+        <link rel="stylesheet" id="flatsome-main-css" href="{{ asset_with_version('frontend/bundle/css/maintenance-index.min.css') }}" type="text/css" media="all">
         <style id="custom-css" type="text/css">
             .sticky-add-to-cart--active, #wrapper, #main, #main.dark {
                 background-color: #025b50;
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="col-827608374" class="col medium-8 small-12 large-8" style="padding: 4px 10px;">
+                            <div id="col-827608374" class="" style="padding: 4px 10px;">
                                 <div class="col-inner text-center">
                                     <marquee>
                                         <p>

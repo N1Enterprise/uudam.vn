@@ -23,18 +23,13 @@ Route::post('user/oauth/signin', [Controllers\OauthController::class, 'signin'])
 Route::get('user/display-item/{id}/inventories', [Controllers\UserHomePageDisplayItemController::class, 'getInventories']);
 Route::get('user/display-item/{id}/collections', [Controllers\UserHomePageDisplayItemController::class, 'getCollections']);
 Route::get('user/display-item/{id}/posts', [Controllers\UserHomePageDisplayItemController::class, 'getPosts']);
+Route::get('user/display-item/{id}/blogs', [Controllers\UserHomePageDisplayItemController::class, 'getBlogs']);
 
 Route::middleware(['auth:user'])->group(function() {
     // Authentication
     Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
     Route::post('user/update-info', [Controllers\UserController::class, 'updateInfo'])->name('user.update-info');
     Route::post('user/update-password', [Controllers\UserController::class, 'updatePassword'])->name('user.update-password');
-
-    // Cart
-    Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
-    Route::get('user/carts-info', [Controllers\UserCartController::class, 'cartInfo'])->name('user.cart.info');
-    Route::put('user/carts/{id}/delete', [Controllers\UserCartController::class, 'cancel'])->name('user.cart.delete');
-    Route::put('user/carts/{id}/item-update-quantity', [Controllers\UserCartController::class, 'updateItemQuantity'])->name('user.cart-item.update-quantity');
 
     // Order
     Route::post('user/order/{cartUuid}', [Controllers\UserOrderController::class, 'order'])->name('user.order.store');

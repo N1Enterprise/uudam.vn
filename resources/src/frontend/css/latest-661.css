@@ -156,7 +156,7 @@
     inline-size: calc(100% + var(--autocomplete-accessory-offset));
     padding-inline-end:var(--autocomplete-accessory-offset)}
 
-.ii1aN: not(:only-child) {
+.ii1aN:not(:only-child) {
     flex-basis:25%;
     flex-grow: 0
 }

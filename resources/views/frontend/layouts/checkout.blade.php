@@ -35,9 +35,9 @@
     </script>
 </head>
 <body>
-    <link href="{{ asset('frontend/assets/css/common/latest/199.latest.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/latest/661.latest.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/latest/669.latest.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/latest-199.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/latest-661.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/latest-669.min.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('style')
 
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
 
     @yield('js_scipt')
 </body>

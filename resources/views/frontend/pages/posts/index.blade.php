@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($post, 'meta_title', $post, 'name') }}
+{{ data_get($post, 'meta_title', data_get($post, 'name')) }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
 <meta name="description" content="{{ data_get($post, 'meta_description') }}">
 <meta name="keywords" content="{{ data_get($post, 'name') }}">
-<meta property="og:title" content="{{ data_get($post, 'meta_title', $post, 'name') }}">
+<meta property="og:title" content="{{ data_get($post, 'meta_title', data_get($post, 'name')) }}">
 <meta property="og:description" content="{{ data_get($post, 'meta_description') }}">
 <meta property="og:image" content="{{ data_get($post, 'image') }}">
 <meta property="og:image:secure_url" content="{{ data_get($post, 'image') }}">
@@ -21,7 +21,7 @@
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/blog-news/index.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/blog-news-index.min.css') }}">
 @endpush
 
 @section('content_body')

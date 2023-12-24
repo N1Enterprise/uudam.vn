@@ -6268,7 +6268,7 @@ ol,ul {
     padding-block-end:var(--x-spacing-large-100);padding-inline-end: var(--x-spacing-large-200);
     padding-inline-start:var(--x-spacing-large-200)}
 
-.u2pextf .u2pextx: only-child {
+.u2pextf .u2pextx:only-child {
     padding-top:var(--x-spacing-large-100);
     padding-block-start:var(--x-spacing-large-100)}
 
@@ -9168,7 +9168,7 @@ ol,ul {
 ._1mmswk9c {
     margin-inline-start:calc(1.28571em + var(--x-spacing-small-100))}
 
-._1mmswk9d: not(:checked) {
+._1mmswk9d:not(:checked) {
     box-shadow:0 0 0 .14285714285714285em var(--x-default-color-critical) inset
 }
 
@@ -9619,7 +9619,7 @@ ol,ul {
     margin-block-start:calc(var(--x-spacing-base)*-1);margin-top: calc(var(--x-spacing-base)*-1);
     margin-inline-start:calc(var(--x-spacing-base)*-1)}
 
-[dir=ltr] ._5uqybw3: not(._5uqybw4)>* {
+[dir=ltr] ._5uqybw3:not(._5uqybw4)>* {
     margin-left:var(--x-spacing-base)
 }
 
@@ -11103,7 +11103,7 @@ ol,ul {
 }
 
 [dir=rtl] ._1r4exbt9 {
-    --_1r4exbt2: translateX(calc(var(--x-spacing-small-300)*-1)));
+    --_1r4exbt2: translateX(calc(var(--x-spacing-small-300)*-1));
     --_1r4exbt3: translateX(0)
 }
 
@@ -11126,7 +11126,7 @@ ol,ul {
 [dir=rtl] ._1r4exbtd {
     --_1r4exbt2: translateX(0);
     --_1r4exbt3: translateX(calc(var(--x-spacing-small-300)*-1));
-    transform: translateX(calc(var(--x-spacing-small-300)*-1)))
+    transform: translateX(calc(var(--x-spacing-small-300)*-1))
 }
 
 @supports (display: grid) {
@@ -11310,7 +11310,7 @@ ol,ul {
     border-color: var(--x-default-color-border);
     padding-inline-start:calc(var(--padding-inline))}
 
-.vYo81.RGaKd: focus {
+.vYo81.RGaKd:focus {
     border-color:var(--x-default-color-accent);
     box-shadow: 0 0 0 1px var(--x-default-color-accent)
 }

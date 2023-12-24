@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($inventory, 'meta_title', $inventory, 'title') }}
+{{ data_get($inventory, 'meta_title', data_get($inventory, 'title')) }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
 <meta name="description" content="{{ data_get($inventory, 'meta_description') }}">
 <meta name="keywords" content="{{ data_get($inventory, 'title') }}">
-<meta property="og:title" content="{{ data_get($inventory, 'meta_title', $inventory, 'title') }}">
+<meta property="og:title" content="{{ data_get($inventory, 'meta_title', data_get($inventory, 'title')) }}">
 <meta property="og:description" content="{{ data_get($inventory, 'meta_description') }}">
 <meta property="og:image" content="{{ data_get($inventory, 'product_image') }}">
 <meta property="og:image:secure_url" content="{{ data_get($inventory, 'product_image') }}">
@@ -43,16 +43,16 @@
         font-size: 1.5rem;
     }
 </style>
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/pages/products/index.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slider-2.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-price.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/spr.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/product-attribute.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-article-card.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/product-index.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider-2.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-price.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/spr.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/product-attribute.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
 <link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-loading-overlay.css') }}">
 @endpush
 
 @push('style_pages')
@@ -146,19 +146,8 @@
 @include('frontend.pages.products.partials.gallery-image-modal')
 @endsection
 
-@push('js_pages')
-@include('frontend.pages.products.js-pages.index')
+@section('js_script')
 <script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script src="{{ asset_with_version('frontend/bundle/js/helpers/find-by-tags.min.js') }}"></script>
-<script>
-    $('.thumbnail-list__item').on('click', function() {
-        const index = $(this).attr('data-owl-index');
-
-        $('[data-owl-id="Slider_Product_Detail"]').trigger('to.owl.carousel', index);
-
-        $('.thumbnail-list__item').find('button.thumbnail').removeAttr('aria-current');
-        $(this).find('button.thumbnail').attr('aria-current', 'true');
-    });
-</script>
-@endpush
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/product-index.min.js') }}" type="text/javascript"></script>
+@endsection

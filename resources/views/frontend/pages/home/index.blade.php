@@ -18,16 +18,16 @@
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slider-1.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/pages/home/index.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/section-featured-blog.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-article-card.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/section-multicolumn.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slideshow.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/component-slider.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/assets/css/common/section-image-banner.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/home-index.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider-1.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-featured-blog.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-multicolumn.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slideshow.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-image-banner.min.css') }}">
 <link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 @endpush
 
@@ -58,6 +58,10 @@
                             @if (data_get($item, 'type') == enum('HomePageDisplayType')::POST)
                             @include('frontend.pages.home.partials.recommendation-posts')
                             @endif
+
+                            @if (data_get($item, 'type') == enum('HomePageDisplayType')::BLOG)
+                            @include('frontend.pages.home.partials.recommendation-blogs')
+                            @endif
                         </div>
                     </limespot-box>
                 </div>
@@ -83,6 +87,6 @@
 
 @push('js_pages')
 <script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script src="{{ asset_with_version('frontend/bundle/js/home/index.min.js') }}"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/home-deferload.min.js') }}" type="text/javascript"></script>
 @endpush
