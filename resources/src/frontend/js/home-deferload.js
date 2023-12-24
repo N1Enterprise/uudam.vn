@@ -127,7 +127,7 @@ const SECTION_SCROLL = {
                                 <div class="blog__post article slider__slide slider__slide--full-width">
                                     <div class="card-wrapper underline-links-hover" style="width: 100%;">
                                         <div class="card article-card card--standard card--media">
-                                            <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
+                                            <div class="card__inner  color-background-2 gradient ratio">
                                                 <div class="article-card__image-wrapper card__media">
                                                     <div class="article-card__image media media--hover-effect">
                                                         <img class="image-lazy" srcset="${ item.image }" src="${ item.image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.name }" class="motion-reduce" loading="lazy" width="2727" height="1818">
@@ -173,7 +173,7 @@ const SECTION_SCROLL = {
                                 <div class="blog__post article slider__slide slider__slide--full-width">
                                     <div class="card-wrapper underline-links-hover" style="width: 100%;">
                                         <div class="card article-card card--standard card--media">
-                                            <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
+                                            <div class="card__inner  color-background-2 gradient ratio">
                                                 <div class="article-card__image-wrapper card__media">
                                                     <div class="article-card__image media media--hover-effect">
                                                         <img class="image-lazy" srcset="${ item.image }" src="${ item.image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.name }" class="motion-reduce" loading="lazy" width="2727" height="1818">

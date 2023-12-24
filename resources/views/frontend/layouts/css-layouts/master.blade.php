@@ -477,13 +477,16 @@
         padding-bottom: 59.78043912175649%;
     }
 
+    .article-card .card__inner {
+        --ratio-percent: 60.24096385542169%;
+    }
+
     @media screen and (max-width: 500px) {
         .multicolumn-card__image-wrapper .media--adapt {
             padding-bottom: 70%;
         }
-
-        /* [data-recommendation-product-identifier] .recommendation-target {
-            padding: 0 2px;
-        } */
+        .article-card .card__inner {
+            --ratio-percent: 70%;
+        }
     }
 </style>

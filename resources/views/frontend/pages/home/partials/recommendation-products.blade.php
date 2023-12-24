@@ -6,7 +6,7 @@
                 <div class="recommendation-target">
                     <a class="ls-link">
                         <div class="ls-image-wrap">
-                            <img class="ls-image image-lazy" alt="Sản phẩm ưu đàm" title="Sản phẩm ưu đàm" loading="lazy" srcset="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" src="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}">
+                            <img class="ls-image image-lazy" alt="Sản phẩm ưu đàm" title="Sản phẩm ưu đàm" loading="lazy" srcset="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" src="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" style="border-radius: 0px;">
                         </div>
                         <div class="ls-info-wrap">
                             <div class="ls-title skeleton"></div>
