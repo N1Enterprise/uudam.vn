@@ -40,6 +40,7 @@ php artisan optimize:clear
 
 composer install
 npm install
+rm -rf public/frontend/bundle/*
 npm run prod:fe
 
 generate_build_version
