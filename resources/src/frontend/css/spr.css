@@ -52,7 +52,7 @@
 }
 
 #shopify-product-reviews {
-    *zoom: 1;
+    zoom: 1;
     display: block;
     clear: both;
     overflow: hidden;
@@ -70,7 +70,7 @@
 }
 
 .spr-loading {
-    *zoom: 1;
+    zoom: 1;
     display: block;
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 24px;
@@ -88,7 +88,7 @@
 }
 
 .spr-container {
-    *zoom: 1;
+    zoom: 1;
     border: 1px solid #DFDFDF;
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 2em
@@ -105,7 +105,7 @@
 }
 
 .spr-header {
-    *zoom: 1
+    zoom: 1
 }
 
 .spr-header:before,
@@ -119,7 +119,7 @@
 }
 
 .spr-header-title {
-    *zoom: 1;
+    zoom: 1;
     font-size: 24px;
     margin: 0 0 12px 0
 }
@@ -152,7 +152,7 @@
 }
 
 .spr-badge {
-    *zoom: 1;
+    zoom: 1;
     min-height: auto;
     min-width: auto;
     display: block
@@ -177,7 +177,7 @@
 }
 
 .spr-summary {
-    *zoom: 1
+    zoom: 1
 }
 
 .spr-summary:before,
@@ -217,7 +217,7 @@
 .spr-form-review-rating,
 .spr-form-review-title,
 .spr-form-review-body {
-    *zoom: 1;
+    zoom: 1;
     margin: 0 0 15px 0
 }
 
@@ -261,7 +261,7 @@
 .spr-form-contact,
 .spr-form-review,
 .spr-form-actions {
-    *zoom: 1;
+    zoom: 1;
     padding: 0;
     border: 0;
     margin: 0
@@ -397,7 +397,7 @@ input.spr-form-input-error[type="email"] {
 }
 
 .spr-review-content {
-    *zoom: 1;
+    zoom: 1;
     margin: 0 0 24px 0
 }
 
@@ -419,7 +419,7 @@ input.spr-form-input-error[type="email"] {
 }
 
 .spr-review-reply {
-    *zoom: 1;
+    zoom: 1;
     background: #ECECEC;
     background: rgba(0, 0, 0, 0.06);
     margin: 0 0 24px 0;
@@ -453,7 +453,7 @@ input.spr-form-input-error[type="email"] {
 }
 
 .spr-review-footer {
-    *zoom: 1
+    zoom: 1
 }
 
 .spr-review-footer:before,
@@ -512,7 +512,7 @@ input.spr-form-input-error[type="email"] {
 
     .spr-summary-actions-newreview {
         float: none;
-        *zoom: 1
+        zoom: 1;
     }
 
     .spr-summary-actions-newreview:before,

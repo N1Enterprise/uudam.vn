@@ -1,4 +1,3 @@
-<script>
 const COLLECTION_INVENTORY = {
     init: () => {
         COLLECTION_INVENTORY.onReadMore();
@@ -14,7 +13,7 @@ const COLLECTION_INVENTORY = {
 };
 
 const COLLECTION_LINKED_INVENTORIES = {
-    baseRoute: "{{ route('fe.api.user.collections.linked-inventories', ':id') }}".replace(':id', "{{ $collection->id }}"),
+    baseRoute: COLLECTION_ROUTES.api_linked_inventories.replace(':id', $('#collection_resource').attr('data-id')),
     init: () => {
         COLLECTION_LINKED_INVENTORIES.loadInitInventories();
         COLLECTION_LINKED_INVENTORIES.loadMoreInventories();
@@ -137,7 +136,7 @@ const COLLECTION_LINKED_INVENTORIES = {
     },
     buildHTMLInventories: (inventories) => {
         const _html = inventories.map((inventory) => {
-            const route = "{{ route('fe.web.products.index', ':slug') }}".replace(':slug', inventory?.slug);
+            const route = PRODUCT_ROUTES.web_detail.replace(':slug', inventory?.slug);
 
             return `
             <li class="grid__item">
@@ -216,4 +215,3 @@ const COLLECTION_LINKED_INVENTORIES = {
 
 COLLECTION_INVENTORY.init();
 COLLECTION_LINKED_INVENTORIES.init();
-</script>

@@ -263,8 +263,10 @@
 
     <input type="hidden" data-bo-shared='@json([
         'bo_host' => config('app.url'),
+        'fe_host' => config('app.user_host'),
         'app_id'  => config('app.app_id')
     ])'>
+    <input type="hidden" data-canprocessasthesame="{{ !empty($AUTHENTICATED_USER) }}" data-authenticated-user='@json($AUTHENTICATED_USER)'>
 
     @include('frontend.layouts.partials.footer.index')
 
@@ -283,14 +285,10 @@
     <script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/utils/router.js') }}" type="text/javascript"></script>
 
-    <!--start:: Authentication -->
     <script src="{{ asset_with_version('frontend/bundle/js/authentication.min.js') }}" type="text/javascript"></script>
-    <!--end:: Authentication -->
-
-    @include('frontend.layouts.js-pages.menu-drawer')
-    @include('frontend.layouts.js-pages.authentication')
-    @include('frontend.layouts.js-pages.predictive-search')
-    @include('frontend.layouts.js-pages.user-order-cart')
+    <script src="{{ asset_with_version('frontend/bundle/js/menu-drawer.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/predictive-search.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/user-order-cart.min.js') }}" type="text/javascript"></script>
 
     @yield('js_script')
     @stack('js_pages')

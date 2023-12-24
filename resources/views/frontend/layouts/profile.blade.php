@@ -18,7 +18,6 @@
         }
     }
 
-
     .profile-tabs-nav .profile-tabs-nav__tab {
         display: block;
         padding: 10px;

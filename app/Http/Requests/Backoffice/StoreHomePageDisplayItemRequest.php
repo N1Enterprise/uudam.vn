@@ -9,6 +9,7 @@ use App\Models\Collection;
 use App\Models\HomePageDisplayOrder;
 use App\Models\Inventory;
 use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Validation\Rule;
 
 class StoreHomePageDisplayItemRequest extends BaseFormRequest implements StoreHomePageDisplayItemRequestContract
@@ -35,6 +36,10 @@ class StoreHomePageDisplayItemRequest extends BaseFormRequest implements StoreHo
 
         if ($this->type == HomePageDisplayType::POST) {
             $rules['linked_items.*'] = ['required', 'integer', Rule::exists(Post::class, 'id')];
+        }
+
+        if ($this->type == HomePageDisplayType::BLOG) {
+            $rules['linked_items.*'] = ['required', 'integer', Rule::exists(PostCategory::class, 'id')];
         }
 
         return $rules;

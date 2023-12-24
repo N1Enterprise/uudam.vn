@@ -27,6 +27,8 @@ const SECTION_SCROLL = {
                         return SECTION_SCROLL.processHomePageDisplayCollectionScroll(sectionName, value);
                     case 'home_page_display_3':
                         return SECTION_SCROLL.processHomePageDisplayPostScroll(sectionName, value);
+                    case 'home_page_display_4':
+                        return SECTION_SCROLL.processHomePageDisplayBlogScroll(sectionName, value);
                 }
             }
         });
@@ -143,6 +145,47 @@ const SECTION_SCROLL = {
                                                             <time datetime="${ item.post_at }">${ item.post_at }</time>
                                                         </span>
                                                     </div>
+                                                    <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
+                                                    <div class="article-card__footer"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                }
+            },
+        });
+    },
+    processHomePageDisplayBlogScroll: (sectionName, value) => {
+        $.ajax({
+            url: HOME_PAGE_DISPLAY_ITEM_ROUTES.api_display_item_blog.replace(':id', value),
+            method: 'GET',
+            beforeSend: () => {
+                $(`[data-section="${sectionName}"]`).attr('data-section-defer', 'false');
+            },
+            success: (response) => {
+                if (Array.isArray(response?.data) && response?.data?.length) {
+                    $.each(response?.data, function(index, item) {
+                        $(`[data-recommendation-blog-identifier=${item.id}]`).html(`
+                            <div class="recommendation-target">
+                                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
+                                    <div class="card-wrapper underline-links-hover" style="width: 100%;">
+                                        <div class="card article-card card--standard card--media">
+                                            <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
+                                                <div class="article-card__image-wrapper card__media">
+                                                    <div class="article-card__image media media--hover-effect">
+                                                        <img class="image-lazy" srcset="${ item.image }" src="${ item.image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.name }" class="motion-reduce" loading="lazy" width="2727" height="1818">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card__content">
+                                                <div class="card__information">
+                                                    <h3 class="card__heading h2">
+                                                        <a href="${ BLOG_ROUTES.web_detail.replace(':slug', item.slug) }" class="full-unstyled-link">${ item.name }</a>
+                                                    </h3>
                                                     <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
                                                     <div class="article-card__footer"></div>
                                                 </div>

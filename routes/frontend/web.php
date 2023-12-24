@@ -7,9 +7,9 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');
 
-Route::get('blogs', [Controllers\BlogController::class, 'index']);
+Route::get('blogs/{slug}', [Controllers\BlogController::class, 'index'])->name('blogs.index');
 
-Route::get('blogs/posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
 
 Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index'])->name('collections.index');
 

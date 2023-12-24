@@ -1,4 +1,3 @@
-<script>
 $(document).ready(function() {
     $.each($('nav.header__inline-menu .horizontal-mega-menu .app-menu-item'), function(index, element) {
         const $menu = $(element);
@@ -52,4 +51,3 @@ $(document).ready(function() {
 $('#Details-menu-drawer-container .header__icon').on('click', function() {
     $(this).attr('aria-expanded', $('#Details-menu-drawer-container').attr('open') !== undefined ? 'false' : 'true');
 });
-</script>

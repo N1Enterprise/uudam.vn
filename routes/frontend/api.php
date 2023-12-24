@@ -23,6 +23,7 @@ Route::post('user/oauth/signin', [Controllers\OauthController::class, 'signin'])
 Route::get('user/display-item/{id}/inventories', [Controllers\UserHomePageDisplayItemController::class, 'getInventories']);
 Route::get('user/display-item/{id}/collections', [Controllers\UserHomePageDisplayItemController::class, 'getCollections']);
 Route::get('user/display-item/{id}/posts', [Controllers\UserHomePageDisplayItemController::class, 'getPosts']);
+Route::get('user/display-item/{id}/blogs', [Controllers\UserHomePageDisplayItemController::class, 'getBlogs']);
 
 Route::middleware(['auth:user'])->group(function() {
     // Authentication

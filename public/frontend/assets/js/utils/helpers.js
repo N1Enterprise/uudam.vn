@@ -139,11 +139,12 @@ const utils_helper = {
         window.location.reload();
     },
     boDataShared: () => {
-        const BO_DOMAIN = JSON.parse($('input[type="hidden"][data-bo-shared]').attr('data-bo-shared') || '{}');
+        const BO_DATA_SHARED = JSON.parse($('input[type="hidden"][data-bo-shared]').attr('data-bo-shared') || '{}');
 
         return {
-            bo_host: BO_DOMAIN?.bo_host,
-            app_id: BO_DOMAIN?.app_id
+            bo_host: BO_DATA_SHARED?.bo_host,
+            fe_host: BO_DATA_SHARED?.fe_host,
+            app_id: BO_DATA_SHARED?.app_id
         };
     },
 };

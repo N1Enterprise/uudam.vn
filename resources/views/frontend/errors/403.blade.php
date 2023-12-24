@@ -1,6 +1,10 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
+403 vui lòng đăng nhập | {{ config('app.user_domain') }}
+@endsection
+
+@section('style_pages')
 <style type="text/css">
     .template-404 .title + * {
         margin-top: 1rem;
