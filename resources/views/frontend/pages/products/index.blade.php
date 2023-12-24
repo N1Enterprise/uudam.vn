@@ -150,7 +150,6 @@
 @include('frontend.pages.products.js-pages.index')
 <script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script src="{{ asset_with_version('frontend/bundle/js/helpers/find-by-tags.min.js') }}"></script>
 <script>
     $('.thumbnail-list__item').on('click', function() {
         const index = $(this).attr('data-owl-index');

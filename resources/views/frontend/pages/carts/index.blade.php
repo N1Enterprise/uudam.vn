@@ -5,8 +5,9 @@ Giỏ hàng | {{ config('app.user_domain') }}
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/upsell.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-cart.css') }}">
+<link href="{{ asset_with_version('frontend/bundle/css/component-cart.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset_with_version('frontend/bundle/css/component-cart-drawer.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset_with_version('frontend/bundle/css/component-cart-items.min.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('page_seo')
@@ -34,5 +35,5 @@ Giỏ hàng | {{ config('app.user_domain') }}
 @endsection
 
 @section('js_script')
-@include('frontend.pages.carts.js-pages.my-cart')
+<script src="{{ asset_with_version('frontend/bundle/js/cart-index.min.js') }}" type="text/javascript"></script>
 @endsection

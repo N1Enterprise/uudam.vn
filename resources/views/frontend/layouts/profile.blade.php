@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/profile/index.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/profile-index.min.css') }}">
 <style>
     .profile-tabs-nav {
         display: flex;
@@ -41,7 +41,7 @@
 @endsection
 
 @section('content_body')
-<section class="shopify-section section">
+<section class="shopify-section section page-width">
     <div class="profile-tabs customer account">
         <nav class="profile-tabs-nav">
             <a href="{{ route('fe.web.user.profile.info') }}" class="profile-tabs-nav__tab">Thông tin tài khoản</a>

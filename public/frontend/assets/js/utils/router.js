@@ -15,6 +15,10 @@ const CATALOG_ROUTES = {
     web_product_detail: boHost + '/products/:slug',
     web_collection_detail: boHost + '/collections/:slug',
     web_post_detail: boHost + '/posts/:slug',
-    
     api_search_inventories: boHost + '/fe/api/user/search/inventories'
+};
+
+const CART_ROUTES = {
+  api_update_quantity: boHost + '/fe/api/user/carts/:id/item-update-quantity',
+  api_delete: boHost + '/fe/api/user/carts/:id/delete',
 };

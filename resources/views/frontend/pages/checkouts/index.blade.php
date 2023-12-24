@@ -37,5 +37,5 @@ Thanh toán | {{ config('app.user_domain') }}
 <script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/validate/custom.js') }}" type="text/javascript"></script>
-<script src="{{ mix('frontend/bundle/js/checkout/index.min.js') }}" type="text/javascript"></script>
+<script src="{{ mix('frontend/bundle/js/checkout-index.min.js') }}" type="text/javascript"></script>
 @endsection

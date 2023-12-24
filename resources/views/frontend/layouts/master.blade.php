@@ -40,20 +40,17 @@
     <!--end::Page Vendor Styles -->
 
     <!--begin::Page Common Styles -->
-    <link href="{{ asset_with_version('frontend/assets/css/common/reset.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/buddha-megamenu2.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-mega-menu.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/section-footer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-menu-drawer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-list-social.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-search.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-predictive-search.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/quick-add.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/main.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-cart-drawer.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('frontend/assets/css/common/component-cart-items.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset_with_version('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/reset.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/base.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/buddha-megamenu2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-mega-menu.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/section-footer.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-menu-drawer.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-list-social.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-search.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/component-predictive-search.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Common Styles -->
 
     @yield('style_datatable')
@@ -266,7 +263,7 @@
     <script src="{{ asset_with_version('frontend/assets/js/utils/router.js') }}" type="text/javascript"></script>
 
     <!--start:: Authentication -->
-    <script src="{{ asset_with_version('frontend/bundle/js/authentication/index.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/authentication.min.js') }}" type="text/javascript"></script>
     <!--end:: Authentication -->
 
     @include('frontend.layouts.js-pages.menu-drawer')

@@ -1,9 +1,5 @@
 @extends('frontend.layouts.master')
 
-{{-- @section('page_title')
-404 Not Found
-@endsection --}}
-
 @section('page_title')
 <style type="text/css">
     .template-404 .title + * {

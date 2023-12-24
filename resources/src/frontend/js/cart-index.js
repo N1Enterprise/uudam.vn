@@ -1,4 +1,3 @@
-<script>
 const MY_CART = {
     init: () => {
         MY_CART.onRemove();
@@ -29,7 +28,7 @@ const MY_CART = {
     },
     updateCartItemQuantity: (id, quantity, callback = () => undefined) => {
         $.ajax({
-            url: "{{ route('fe.api.user.cart-item.update-quantity', ':id') }}".replace(':id', id),
+            url: CART_ROUTES.api_update_quantity.replace(':id', id),
             method: 'PUT',
             data: { quantity },
             beforeSend: () => {},
@@ -53,7 +52,7 @@ const MY_CART = {
                 const $self = $(this);
 
                 $.ajax({
-                    url: "{{ route('fe.api.user.cart.delete', ':id') }}".replace(':id', cartId),
+                    url: CART_ROUTES.api_delete.replace(':id', cartId),
                     method: 'PUT',
                     beforeSend: () => {
                         $self.addClass('prevent');
@@ -79,4 +78,3 @@ const MY_CART = {
 };
 
 MY_CART.init();
-</script>

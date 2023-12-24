@@ -116,7 +116,7 @@ Tìm kiếm
 @push('js_pages')
 <script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script src="{{ asset_with_version('frontend/bundle/js/search/index.min.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/component-search.min.js') }}"></script>
 
 <script>
     $('[data-collection-mobile-filter-open]').on('click', function() {
