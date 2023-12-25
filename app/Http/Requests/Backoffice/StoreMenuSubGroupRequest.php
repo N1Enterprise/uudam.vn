@@ -18,6 +18,7 @@ class StoreMenuSubGroupRequest extends BaseFormRequest implements StoreMenuSubGr
             'order' => ['nullable', 'integer'],
             'params' => ['nullable'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }
 
@@ -26,6 +27,7 @@ class StoreMenuSubGroupRequest extends BaseFormRequest implements StoreMenuSubGr
         $this->merge([
             'params' => !empty($this->params) ? json_decode($this->params) : null,
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
         ]);
     }
 }

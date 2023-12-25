@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 
 class MenuSubGroup extends BaseModel
 {
     use Activatable;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',
@@ -14,7 +16,8 @@ class MenuSubGroup extends BaseModel
         'menu_group_id',
         'order',
         'status',
-        'params'
+        'params',
+        'display_on_frontend'
     ];
 
     public $casts = [

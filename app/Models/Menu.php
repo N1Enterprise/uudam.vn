@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Enum\MenuTypeEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 
 class Menu extends BaseModel
 {
     use Activatable;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',
@@ -19,6 +21,7 @@ class Menu extends BaseModel
         'order',
         'meta',
         'status',
+        'display_on_frontend'
     ];
 
     protected $casts = [

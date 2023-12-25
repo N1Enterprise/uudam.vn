@@ -191,7 +191,7 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>

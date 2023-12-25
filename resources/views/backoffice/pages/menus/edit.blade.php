@@ -60,14 +60,14 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Menu Type') }}</label>
+                                    <label>{{ __('Menu Type') }} *</label>
+									<input type="hidden" name="type" value="{{ $menu->type }}">
                                     <div class="k-radio-inline">
-                                        @foreach ($menuTypeEnumLabels as $key => $label)
-                                        <label class="k-radio">
-                                            <input type="radio" name="type" {{ (old('type', $menu->type) == $key ? 'checked' : $loop->index == 0 ? 'checked' : '') }} value="{{ $key }}"> {{ $label }}
-                                            <span></span>
-                                        </label>
-                                        @endforeach
+										<select class="form-control" disabled>
+											@foreach ($menuTypeEnumLabels as $key => $label)
+											<option value="{{ $key }}" {{ (old('type', $menu->type) == $key ? 'selected' : $loop->index == 0 ? 'selected' : '') }}>{{ $label }}</option>
+											@endforeach
+										</select>
                                     </div>
                                 </div>
 
@@ -141,12 +141,24 @@
 									</div>
 								</div>
 
+                                <div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', boolean($menu->display_on_frontend)) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', boolean($menu->status) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', boolean($menu->status)) == '1'  ? 'checked' : '' }} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>

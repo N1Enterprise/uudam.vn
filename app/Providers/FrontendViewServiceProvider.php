@@ -67,7 +67,7 @@ class FrontendViewServiceProvider extends ServiceProvider
 
     public function getAppMenus()
     {
-        $menuGroups = app(MenuGroupService::class)->allAvailable(['columns' => ['id', 'name', 'redirect_url']]);
+        $menuGroups = MenuGroupService::make()->allAvailable(['columns' => ['id', 'name', 'redirect_url']]);
 
         return $menuGroups;
     }

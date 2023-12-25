@@ -5,6 +5,7 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateMenuRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\MenuTypeEnum;
+use App\Models\Collection;
 use App\Models\Inventory;
 use App\Models\MenuSubGroup;
 use App\Models\Post;
@@ -22,16 +23,13 @@ class UpdateMenuRequest extends BaseFormRequest implements UpdateMenuRequestCont
             'menu_catalogs.*' => ['required', 'integer', Rule::exists(MenuSubGroup::class, 'id')],
             'is_new' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'meta' => ['required', 'array']
+            'meta' => ['nullable', 'array'],
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
 
-        if ($this->type == MenuTypeEnum::NORMAL) {
+        if ($this->type == MenuTypeEnum::COLLECTION) {
             $rules = array_merge($rules, [
-                'meta.title' => ['required', 'string', 'max:255'],
-                'meta.redirect_url' => ['required', 'string', 'max:255'],
-                'meta.image' => ['required', 'array'],
-                'meta.image.file' => ['nullable', 'file', 'image', 'max:5200'],
-                'meta.image.path' => ['nullable', 'string'],
+                'collection_id' => ['required', 'integer', Rule::exists(Collection::class, 'id')]
             ]);
         } else if ($this->type == MenuTypeEnum::INVENTORY) {
             $rules = array_merge($rules, [
@@ -48,15 +46,10 @@ class UpdateMenuRequest extends BaseFormRequest implements UpdateMenuRequestCont
 
     public function prepareForValidation()
     {
-        $payload = $this->all();
-
-        if (! empty(data_get($payload, 'meta.image'))) {
-            $payload['meta']['image'] = empty(array_filter(data_get($this->all(), 'meta.image'))) ? null : array_filter(data_get($this->all(), 'meta.image'));
-        }
-
-        $this->merge(array_merge($payload, [
+        $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'is_new' => boolean($this->is_new) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-        ]));
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+        ]);
     }
 }

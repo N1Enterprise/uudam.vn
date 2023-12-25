@@ -57,15 +57,14 @@
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
 								</div>
 
-                                <div class="form-group">
-                                    <label>{{ __('Menu Type') }}</label>
+								<div class="form-group">
+                                    <label>{{ __('Menu Type') }} *</label>
                                     <div class="k-radio-inline">
-                                        @foreach ($menuTypeEnumLabels as $key => $label)
-                                        <label class="k-radio">
-                                            <input type="radio" name="type" {{ (old('type') == $key ? 'checked' : $loop->index == 0 ? 'checked' : '') }} value="{{ $key }}"> {{ $label }}
-                                            <span></span>
-                                        </label>
-                                        @endforeach
+										<select name="type" class="form-control">
+											@foreach ($menuTypeEnumLabels as $key => $label)
+											<option value="{{ $key }}" {{ (old('type') == $key ? 'selected' : $loop->index == 0 ? 'selected' : '') }}>{{ $label }}</option>
+											@endforeach
+										</select>
                                     </div>
                                 </div>
 
@@ -133,6 +132,18 @@
 										<span class="k-switch">
 											<label>
 												<input type="checkbox" {{ old('is_new', '0') == '1'  ? 'checked' : '' }} value="1" name="is_new"/>
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
 												<span></span>
 											</label>
 										</span>
