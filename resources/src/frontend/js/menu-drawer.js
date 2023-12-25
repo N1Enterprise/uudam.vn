@@ -5,7 +5,7 @@ $(document).ready(function() {
         const $mainHeaderHeading = $('#shopify-section-header .header__heading');
         const $appHeader = $('header.header');
 
-        const offsetLeft = $submenu.offset().left - $mainHeaderHeading.offset().left;
+        const offsetLeft = $submenu.offset()?.left - $mainHeaderHeading.offset()?.left;
         const withOfAppHeader = $appHeader.width();
 
         $submenu.css('left', `-${offsetLeft}px`);
