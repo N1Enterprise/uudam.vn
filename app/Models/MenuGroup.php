@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Common\Cache;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
 use Spatie\ResponseCache\Facades\ResponseCache;
@@ -33,15 +32,6 @@ class MenuGroup extends BaseModel
         return $this->hasMany(MenuSubGroup::class);
     }
 
-    public static function getFromCache()
-    {
-        $cacheKey = 'menu_groups';
-
-        // return Cache::tags(self::CACHE_TAG)->rememberForever($cacheKey, function() {
-            return self::get();
-        // });
-    }
-    
     protected static function booted()
     {
         static::saved(function ($model) {
