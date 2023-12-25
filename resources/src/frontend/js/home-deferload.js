@@ -33,7 +33,7 @@ const SECTION_SCROLL = {
                     }
                 }
             });
-        }, 300);
+        }, 100);
     },
     onScroll: () => {
         $(window).on('scroll', function() {
