@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}</title>
 
-        @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon') as $favicon)
+        @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon', []) as $favicon)
         <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
         @endforeach
 

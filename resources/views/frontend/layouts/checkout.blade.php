@@ -12,7 +12,7 @@
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
     <meta property="og:site_name" content="{{ __($APP_NAME) }}">
 
-    @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon') as $favicon)
+    @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon', []) as $favicon)
     <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
     @endforeach
 
