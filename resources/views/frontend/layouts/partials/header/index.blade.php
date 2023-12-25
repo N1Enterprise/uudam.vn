@@ -59,11 +59,7 @@
                                                         @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                                         <div class="mm-list-name" style="height: 37px;">
                                                             <span>
-                                                                @if(empty(data_get($menuSubGroup, 'redirect_url')))
-                                                                <span class="mm-title">{{ data_get($menuSubGroup, 'name') }}</span>
-                                                                @else
-                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url') }}" class="mm-title">{{ data_get($menuSubGroup, 'name') }}</a>
-                                                                @endif
+                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url', 'javascript:void(0)') }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                                             </span>
                                                         </div>
                                                         @endif
