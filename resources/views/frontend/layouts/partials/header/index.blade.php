@@ -30,12 +30,11 @@
                         <div class="menu-drawer__inner-container">
                             <div class="menu-drawer__navigation-container">
                                 <nav class="menu-drawer__navigation">
-                                    {{-- <ul class="menu-drawer__menu has-submenu list-menu vertical-mega-menu" role="list" menuidx="0">
+                                    <ul class="menu-drawer__menu has-submenu list-menu vertical-mega-menu" role="list" menuidx="0">
                                         @foreach ($APP_MENU_GROUPS as $menuGroup)
                                         <li class="app-menu-item" itemid="PMu22">
                                             <a
-                                                data-href="{{ data_get($menuGroup, 'redirect_url') }}"
-                                                href="{{ data_get($menuGroup, 'redirect_url') }}"
+                                                href="{{ data_get($menuGroup, 'redirect_url', 'javascript:void(0)') }}"
                                                 aria-label="{{ data_get($menuGroup, 'name') }}"
                                                 class="menu-drawer__menu-item list-menu__item link link--text"
                                             >
@@ -83,7 +82,7 @@
                                             @endif
                                         </li>
                                         @endforeach
-                                    </ul> --}}
+                                    </ul>
                                 </nav>
                                 <div class="menu-drawer__utility-links">
                                     @if(empty($AUTHENTICATED_USER))
@@ -137,8 +136,7 @@
                     @foreach ($APP_MENU_GROUPS as $menuGroup)
                     <li class="app-menu-item" itemid="menu_{{ data_get($menuGroup, 'id') }}">
                         <a
-                            data-href="{{ data_get($menuGroup, 'redirect_url') }}"
-                            href="{{ data_get($menuGroup, 'redirect_url') }}"
+                            href="{{ data_get($menuGroup, 'redirect_url', 'javascript:void(0)') }}"
                             aria-label="{{ data_get($menuGroup, 'name') }}"
                             class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"
                         >
@@ -163,11 +161,7 @@
                                     @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                     <div class="mm-list-name" style="height: 37px;">
                                         <span>
-                                            @if(empty(data_get($menuSubGroup, 'redirect_url')))
-                                            <span class="mm-title">{{ data_get($menuSubGroup, 'name') }}</span>
-                                            @else
-                                            <a href="{{ data_get($menuSubGroup, 'redirect_url') }}" class="mm-title">{{ data_get($menuSubGroup, 'name') }}</a>
-                                            @endif
+                                            <a href="{{ data_get($menuSubGroup, 'redirect_url', 'javascript:void(0)') }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                         </span>
                                     </div>
                                     @endif

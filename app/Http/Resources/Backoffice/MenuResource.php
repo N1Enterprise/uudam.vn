@@ -11,6 +11,7 @@ class MenuResource extends BaseJsonResource
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
+            'label' => $this->label,
             'is_new' => $this->is_new,
             'type' => $this->type,
             'type_name' => $this->type_name,

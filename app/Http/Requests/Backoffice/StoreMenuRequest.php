@@ -16,7 +16,8 @@ class StoreMenuRequest extends BaseFormRequest implements StoreMenuRequestContra
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'label' => ['nullable', 'string', 'max:255'],
             'order' => ['nullable', 'integer'],
             'type' => ['required', 'integer', Rule::in(MenuTypeEnum::all())],
             'menu_catalogs' => ['required', 'array'],

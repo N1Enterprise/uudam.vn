@@ -76,7 +76,7 @@
                                         <label>{{ __('Collection') }} *</label>
                                         <select name="collection_id" title="--{{ __('Select Collection') }}--" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($collections as $collection)
-                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id', $collection->id) == $collection->id ? 'selected' : '' }}>{{ $collection->name }}</option>
+                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id', $collection->id) == $collection->id ? 'selected' : '' }} data-label="{{ $collection->name }}">{{ $collection->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('collection_id')
@@ -90,7 +90,7 @@
                                         <label>{{ __('Inventory') }} *</label>
                                         <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($inventories as $inventory)
-                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id', $menu->inventory_id) == $inventory->id ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id', $menu->inventory_id) == $inventory->id ? 'selected' : '' }} data-label="{{ $inventory->title }}">{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
                                             @endforeach
                                         </select>
                                         @error('inventory_id')
@@ -104,7 +104,7 @@
                                         <label>{{ __('Post') }} *</label>
                                         <select name="post_id" title="--{{ __('Select Post') }}--" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($posts as $post)
-                                            <option value="{{ $post->id }}" data-slug="{{ $post->slug }}" {{ old('post_id', $menu->post_id) == $post->id ? 'selected' : '' }}>{{ $post->name }}</option>
+                                            <option value="{{ $post->id }}" data-slug="{{ $post->slug }}" {{ old('post_id', $menu->post_id) == $post->id ? 'selected' : '' }} data-label="{{ $post->name }}">{{ $post->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('post_id')
@@ -113,9 +113,14 @@
                                     </div>
                                 </div>
 
+								<div class="form-group">
+									<label>{{ __('Label') }}</label>
+									<input type="text" class="form-control" name="label" placeholder="{{ __('Enter label') }}" value="{{ old('label', $menu->label) }}">
+								</div>
+
                                 <div class="form-group">
                                     <label>{{ __('Groups') }} *</label>
-                                    <select name="menu_catalogs[]" title="--{{ __('Select Group') }}--" class="form-control k_selectpicker" data-size="5" multiple required>
+                                    <select name="menu_catalogs[]" title="--{{ __('Select Group') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                         @foreach($menuGroups as $menuGroup)
                                         <optgroup label="{{ $menuGroup->name }}">
                                             @foreach($menuGroup->menuSubGroups as $subGroup)
@@ -183,15 +188,27 @@
 
 @section('js_script')
 <script>
-    onChangeMenuType();
+    $(document).ready(function() {
+		onChangeMenuType();
 
-    function onChangeMenuType() {
-        $('[name="type"]').on('change', function() {
-            const type = $(this).val();
-            $('[data-menu-type-tab-key]').addClass('d-none');
-            $(`[data-menu-type-tab-key="${type}"]`).removeClass('d-none');
-        });
-    }
-    FORM_PRIMARY_IMAGE_PATH.triggerChange();
+		$('[name="type"]').trigger('change');
+		$(`[data-menu-type-tab-key="{{ $menu->type }}"] select`).trigger('change');
+
+		function onChangeMenuType() {
+			$('[name="type"]').on('change', function() {
+				const type = $(this).val();
+				$('[data-menu-type-tab-key]').addClass('d-none');
+				$(`[data-menu-type-tab-key="${type}"]`).removeClass('d-none');
+			});
+		}
+
+
+		$(`[data-menu-type-tab-key="{{ $menu->type }}"] select`).on('change', function() {
+			const value = $(this).val();
+			const label = $(`[data-menu-type-tab-key="{{ $menu->type }}"] select`).find(`option[value="${value}"]`).attr('data-label');
+
+			$('[name="label"]').val(label);
+		});
+	})
 </script>
 @endsection

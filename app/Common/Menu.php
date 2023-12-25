@@ -22,10 +22,12 @@ class Menu
         return MenuGroup::with([
             'menuSubGroups' => function($q) {
                 $q->where('status', 1)
+                    ->orderBy('order')
                     ->where('display_on_frontend', 1);
             },
             'menuSubGroups.menus' => function($q) {
                 $q->where('status', 1)
+                    ->orderBy('order')
                     ->where('display_on_frontend', 1);
             },
             'menuSubGroups.menus.collection' => function($q) {
@@ -40,6 +42,7 @@ class Menu
                     ->where('display_on_frontend', 1);
             },
         ])
+        ->orderBy('order')
         ->get([ 'id', 'name', 'order', 'params']);
     }
 }
