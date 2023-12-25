@@ -11,7 +11,7 @@ const SECTION_SCROLL = {
             const offsetHei = $(this).outerHeight();
 
             if (
-                scrollPosition >= (offsetTop - (offsetHei * 2))
+                scrollPosition >= (offsetTop - (offsetHei * 2.3))
                 && scrollPosition < offsetTop + offsetHei
             ) {
                 const sectionName = $(this).attr('data-section');
