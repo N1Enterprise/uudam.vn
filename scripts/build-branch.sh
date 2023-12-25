@@ -35,6 +35,7 @@ generate_build_version() {
 
 git pull
 
+php artisan migrate --force
 php artisan optimize:clear
 
 composer install
@@ -42,7 +43,5 @@ npm install
 npm run prod:fe
 
 generate_build_version
-
-php artisan migrate --force
 
 echo "========== Nice Done! =========="
