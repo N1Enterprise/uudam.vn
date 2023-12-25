@@ -36,15 +36,13 @@ class SystemSetting extends BaseModel
      */
     public static function from($key)
     {
-        // $cacheKey = 'system_settings_element:'.$key;
+        $cacheKey = 'system_settings_element:'.$key;
 
-        // $cacheElement = Cache::tags([self::CACHE_TAG])->rememberForever($cacheKey, function() use ($key) {
-        //     return new BaseElement(self::where('key', $key)->first());
-        // });
+        $cacheElement = Cache::tags([self::CACHE_TAG])->rememberForever($cacheKey, function() use ($key) {
+            return new BaseElement(self::where('key', $key)->first());
+        });
 
-        // return $cacheElement;
-
-        return new BaseElement(self::where('key', $key)->first());
+        return $cacheElement;
     }
 
     public function getLabelDisplayAttribute()
@@ -65,9 +63,9 @@ class SystemSetting extends BaseModel
     protected static function booted()
     {
         static::saved(function ($model) {
-            // SystemSetting::flush(self::CACHE_TAG);
+            SystemSetting::flush(self::CACHE_TAG);
             Artisan::call('cache:clear');
-            // ResponseCache::clear(['setting']);
+            ResponseCache::clear(['setting']);
         });
     }
 }

@@ -23,7 +23,7 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $homeBanners = $this->storeFrontBannerService->allAvailableBannerByType(BannerTypeEnum::HOME_BANNER);
+        $homeBanners = $this->storeFrontBannerService->allAvailableBannerByType(BannerTypeEnum::HOME_BANNER, ['columns' => ['id', 'desktop_image', 'mobile_image', 'label', 'description', 'redirect_url']]);
         $videoOutsideUI = SystemSetting::from(SystemSettingKeyEnum::VIDEO_OUTSIDE_UI)->get(null, []);
         $homePageDisplayOrders = $this->homePageDisplayOrderService->searchAvailableByGuest([]);
 
