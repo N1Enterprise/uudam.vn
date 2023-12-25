@@ -48,23 +48,23 @@ class BackofficeViewServiceProvider extends ServiceProvider
 
     private function registerViewComposer()
     {
-        // $configurableFiatCurrencies = SystemCurrency::allFiatConfigurable();
+        $configurableFiatCurrencies = SystemCurrency::allFiatConfigurable();
 
-        // View::composer('frontend.*', function ($view) {
-        //     $view->with('APP_NAME', config('name'));
-        //     $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
-        // });
+        View::composer('frontend.*', function ($view) {
+            $view->with('APP_NAME', config('name'));
+            $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
+        });
 
-        // View::composer('backoffice.*', function ($view) use ($configurableFiatCurrencies) {
-        //     $view->with('LOGO', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get('logo', []));
-        //     $view->with('APP_NAME', config('name'));
-        //     $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
-        //     $view->with('__CONFIGURABLE_FIAT_CURRENCIES', $configurableFiatCurrencies);
-        // });
+        View::composer('backoffice.*', function ($view) use ($configurableFiatCurrencies) {
+            $view->with('LOGO', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get('logo', []));
+            $view->with('APP_NAME', config('name'));
+            $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
+            $view->with('__CONFIGURABLE_FIAT_CURRENCIES', $configurableFiatCurrencies);
+        });
 
-        // View::composer('backoffice.includes.left_menu', function($view) {
-        //     $view->with('LEFT_MENU', $this->getMenuConfig());
-        // });
+        View::composer('backoffice.includes.left_menu', function($view) {
+            $view->with('LEFT_MENU', $this->getMenuConfig());
+        });
     }
 
     private function registerDirectives()
