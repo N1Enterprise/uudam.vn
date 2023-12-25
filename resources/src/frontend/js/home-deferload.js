@@ -6,32 +6,34 @@ const SECTION_SCROLL = {
     handleScroll: () => {
         var scrollPosition = $(window).scrollTop();
 
-        $('[data-section][data-section-defer="true"]').each(function() {
-            const offsetTop = $(this).offset().top;
-            const offsetHei = $(this).outerHeight();
-
-            if (
-                scrollPosition >= (offsetTop - (offsetHei * 2.3))
-                && scrollPosition < offsetTop + offsetHei
-            ) {
-                const sectionName = $(this).attr('data-section');
-                const sectionNameSplited = sectionName.split(':');
-
-                const type  = sectionNameSplited[0];
-                const value = sectionNameSplited[1];
-
-                switch (type) {
-                    case 'home_page_display_1':
-                        return SECTION_SCROLL.processHomePageDisplayInventoryScroll(sectionName, value);
-                    case 'home_page_display_2':
-                        return SECTION_SCROLL.processHomePageDisplayCollectionScroll(sectionName, value);
-                    case 'home_page_display_3':
-                        return SECTION_SCROLL.processHomePageDisplayPostScroll(sectionName, value);
-                    case 'home_page_display_4':
-                        return SECTION_SCROLL.processHomePageDisplayBlogScroll(sectionName, value);
+        setTimeout(function() {
+            $('[data-section][data-section-defer="true"]').each(function() {
+                const offsetTop = $(this).offset().top;
+                const offsetHei = $(this).outerHeight();
+    
+                if (
+                    scrollPosition >= (offsetTop - (offsetHei * 2.4))
+                    && scrollPosition < offsetTop + offsetHei
+                ) {
+                    const sectionName = $(this).attr('data-section');
+                    const sectionNameSplited = sectionName.split(':');
+    
+                    const type  = sectionNameSplited[0];
+                    const value = sectionNameSplited[1];
+    
+                    switch (type) {
+                        case 'home_page_display_1':
+                            return SECTION_SCROLL.processHomePageDisplayInventoryScroll(sectionName, value);
+                        case 'home_page_display_2':
+                            return SECTION_SCROLL.processHomePageDisplayCollectionScroll(sectionName, value);
+                        case 'home_page_display_3':
+                            return SECTION_SCROLL.processHomePageDisplayPostScroll(sectionName, value);
+                        case 'home_page_display_4':
+                            return SECTION_SCROLL.processHomePageDisplayBlogScroll(sectionName, value);
+                    }
                 }
-            }
-        });
+            });
+        }, 300);
     },
     onScroll: () => {
         $(window).on('scroll', function() {
