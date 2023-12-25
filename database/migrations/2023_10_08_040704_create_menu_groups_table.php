@@ -20,6 +20,7 @@ class CreateMenuGroupsTable extends Migration
             $table->string('redirect_url')->nullable();
             $table->integer('order')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
+            $table->json('params')->nullable();
             $table->timestamps();
         });
     }
