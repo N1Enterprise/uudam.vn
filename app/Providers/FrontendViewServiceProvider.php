@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use App\Classes\Contracts\UserAuthContract;
+use App\Common\Menu;
 use App\Enum\SystemSettingKeyEnum;
+use App\Models\MenuGroup;
 use App\Models\SystemSetting;
 use App\Services\MenuGroupService;
-use App\Services\PageService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,21 +36,7 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('APP_URL', config('app.url'));
 
-            $view->with('PAGE_SETTINGS', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get(null, []));
-
-            $view->with(
-                'SOCIAL_NETWORKS',
-                collect(SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []))
-                    ->filter(fn($item) => data_get($item, 'enable'))
-            );
-
-            $view->with('RECEIVE_NEW_POST_SETTING', SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []));
-
-            $view->with('PAGES_DISPLAY_IN_FOOTER', app(PageService::class)->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInFooter']]));
-
             $view->with('APP_MENU_GROUPS', $this->getAppMenus());
-
-            $view->with('SEARCH_SETTING', SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []));
 
             /** @var UserAuthContract */
             $userAuth = app(UserAuthContract::class);
@@ -67,7 +54,7 @@ class FrontendViewServiceProvider extends ServiceProvider
 
     public function getAppMenus()
     {
-        $menuGroups = MenuGroupService::make()->allAvailable(['columns' => ['id', 'name', 'redirect_url']]);
+        $menuGroups = Menu::getMenus();
 
         return $menuGroups;
     }
@@ -75,7 +62,11 @@ class FrontendViewServiceProvider extends ServiceProvider
     protected function getSystemSetting()
     {
         return [
-            'admin_top_navigation' => SystemSetting::from(SystemSettingKeyEnum::ADMIN_TOP_NAVIGATION)->get(null, [])
+            'admin_top_navigation' => SystemSetting::from(SystemSettingKeyEnum::ADMIN_TOP_NAVIGATION)->get(null, []),
+            'page_settings' => SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get(null, []),
+            'social_networks' => collect(SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []))->filter(fn($item) => data_get($item, 'enable')),
+            'receive_new_post_setting' => SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []),
+            'search_setting' => SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, [])
         ];
     }
 }

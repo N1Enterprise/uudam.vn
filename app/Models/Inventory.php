@@ -50,11 +50,6 @@ class Inventory extends BaseModel
         return InventoryConditionEnum::findConstantLabel($this->condition);
     }
 
-    public function display()
-    {
-        return $this->belongsTo(DisplayInventory::class, 'id', 'product_id');
-    }
-
     public function product()
     {
         return $this->belongsTo(Product::class);

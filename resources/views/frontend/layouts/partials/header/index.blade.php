@@ -30,7 +30,7 @@
                         <div class="menu-drawer__inner-container">
                             <div class="menu-drawer__navigation-container">
                                 <nav class="menu-drawer__navigation">
-                                    <ul class="menu-drawer__menu has-submenu list-menu vertical-mega-menu" role="list" menuidx="0">
+                                    {{-- <ul class="menu-drawer__menu has-submenu list-menu vertical-mega-menu" role="list" menuidx="0">
                                         @foreach ($APP_MENU_GROUPS as $menuGroup)
                                         <li class="app-menu-item" itemid="PMu22">
                                             <a
@@ -83,7 +83,7 @@
                                             @endif
                                         </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> --}}
                                 </nav>
                                 <div class="menu-drawer__utility-links">
                                     @if(empty($AUTHENTICATED_USER))
@@ -104,7 +104,7 @@
                                     </a>
                                     @endif
                                     <ul class="list list-social list-unstyled" role="list">
-                                        @foreach ($SOCIAL_NETWORKS as $network)
+                                        @foreach (data_get($SYSTEM_SETTING, 'social_networks', []) as $network)
                                         <li class="list-social__item">
                                             <a href="{{ data_get($network, 'link') }}" target="_blank" title="{{ data_get($network, 'tooltip') }}" class="link list-social__link">
                                                 @include('frontend.icons.'.data_get($network, 'icon'))
@@ -123,10 +123,10 @@
             <h1 class="header__heading">
                 <a href="{{ route('fe.web.home') }}" class="header__heading-link link link--text focus-inset">
                     <img
-                        src="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
-                        srcset="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
-                        alt="{{ data_get($PAGE_SETTINGS, 'title') }}"
-                        style="width: {{ data_get($PAGE_SETTINGS, 'logo.width', '180px') }}; height: {{ data_get($PAGE_SETTINGS, 'logo.height', '38.89447236180904px') }}"
+                        src="{{ data_get($SYSTEM_SETTING, 'page_settings.logo.image') }}"
+                        srcset="{{ data_get($SYSTEM_SETTING, 'page_settings.logo.image') }}"
+                        alt="{{ data_get($SYSTEM_SETTING, 'page_settings.title') }}"
+                        style="width: {{ data_get($SYSTEM_SETTING, 'page_settings.logo.width', '180px') }}; height: {{ data_get($SYSTEM_SETTING, 'page_settings.logo.height', '38.89447236180904px') }}"
                         class="header__heading-logo"
                     >
                 </a>
