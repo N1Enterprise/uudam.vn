@@ -78,7 +78,7 @@
     @endif
 </section>
 
-@if(!empty($PAGE_HIGHLIGHT_INFORMATION))
+@if(!empty(data_get($SYSTEM_SETTING, 'page_highlight_information', [])))
 <section class="shopify-section section">
     @include('frontend.pages.home.partials.section-our-highlights')
 </section>
