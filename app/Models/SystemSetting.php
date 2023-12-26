@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Elements\BaseElement;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class SystemSetting extends BaseModel
 {
@@ -65,7 +64,6 @@ class SystemSetting extends BaseModel
         static::saved(function ($model) {
             SystemSetting::flush(self::CACHE_TAG);
             Artisan::call('cache:clear');
-            ResponseCache::clear(['setting']);
         });
     }
 }
