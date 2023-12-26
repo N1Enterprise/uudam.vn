@@ -10,6 +10,7 @@
                     <div class="repeater-head position-relative">
                         <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" aria-expanded="'false" aria-controls="variant_{{ $loop->index }}">
                             <b>
+                                <span>[{{ $parentIndex + 1 }}]</span>
                                 @foreach($combination as $attrId => $attrValue)
                                     <input type="hidden" name="variants[attribute][{{ $parentIndex }}][{{ $attrId }}]" value="{{ key($attrValue) }}">
                                     {{ $attributes[$attrId] .' : '. current($attrValue) }}
