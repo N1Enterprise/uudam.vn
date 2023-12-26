@@ -34,6 +34,9 @@ $(document).ready(function() {
                     },
                     error: () => {
                         toastr.error('Đăng nhập không thành công.');
+
+                        utils_helper.urlParams('auth_code').del();
+                        utils_helper.urlParams('provider').del();
                     }
                 });
             },
@@ -87,6 +90,10 @@ $(document).ready(function() {
                         },
                         error: () => {
                             toastr.error('Đăng nhập không thành công.');
+
+                            utils_helper.urlParams('auth_code').del();
+                            utils_helper.urlParams('provider').del();
+
                             $('[data-oauth-provider]').removeClass('disabled');
                         }
                     });
