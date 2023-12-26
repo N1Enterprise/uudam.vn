@@ -1,5 +1,6 @@
 <?php
 
+use App\Classes\AdminAuth;
 use App\Common\Money;
 use App\Enum\BaseEnum;
 use App\Enum\TimeZoneEnum;
@@ -273,6 +274,13 @@ if (! function_exists('has_data')) {
         }
 
         return false;
+    }
+}
+
+if (! function_exists('is_webmaster')) {
+    function is_webmaster()
+    {
+        return optional(AdminAuth::user())->id == 1;
     }
 }
 
