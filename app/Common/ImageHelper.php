@@ -86,8 +86,9 @@ class ImageHelper
         $now = now();
 
         $dateNow = $now->format('d-m-Y');
+        $hash    = $now->timestamp;
 
-        $pathname = implode('/', [$dateNow, $cfFolder, "{$filename}.{$cfExt}"]);
+        $pathname = implode('/', [$dateNow, $cfFolder, "{$filename}-{$hash}.{$cfExt}"]);
 
         $filename = $this->disk->put($pathname, $imageIntervention->stream()->__toString());
 

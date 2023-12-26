@@ -51,13 +51,13 @@ class BackofficeViewServiceProvider extends ServiceProvider
         $configurableFiatCurrencies = SystemCurrency::allFiatConfigurable();
 
         View::composer('frontend.*', function ($view) {
-            $view->with('APP_NAME', config('name'));
+            $view->with('APP_NAME', config('app.name'));
             $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
         });
 
         View::composer('backoffice.*', function ($view) use ($configurableFiatCurrencies) {
             $view->with('LOGO', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get('logo', []));
-            $view->with('APP_NAME', config('name'));
+            $view->with('APP_NAME', config('app.name'));
             $view->with('AUTHENTICATED_ADMIN', AdminAuth::user());
             $view->with('__CONFIGURABLE_FIAT_CURRENCIES', $configurableFiatCurrencies);
         });

@@ -188,13 +188,6 @@
                             <x-content-editor id="description" label="Description" name="description" value="{{ old('description', $product->description) }}" />
                         </div>
                     </div>
-
-                    <div class="k-portlet__foot">
-                        <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Cancel') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-4">
