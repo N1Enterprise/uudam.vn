@@ -104,7 +104,7 @@
                         @foreach ($attributes as $attribute)
                         <div class="form-group">
                             <label>{{ $attribute->name }}</label>
-                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Select Values') }}--" class="form-control k_selectpicker" data-size="5" multiple>
+                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Select Values') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
                                 @foreach ($attribute->attributeValues as $value)
                                 <option value="{{ $value->id }}">{{ $value->value }}</option>
                                 @endforeach

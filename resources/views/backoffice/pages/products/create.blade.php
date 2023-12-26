@@ -183,7 +183,7 @@
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label>{{ __('Categories') }} *</label>
-                            <select name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker" data-size="5" multiple required>
+                            <select name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                 @foreach($categoryGroups as $categoryGroup)
                                 <optgroup label="{{ $categoryGroup->name }}">
                                     @foreach($categoryGroup->categories as $category)
