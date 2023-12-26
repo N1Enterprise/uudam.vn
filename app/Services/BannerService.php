@@ -6,6 +6,7 @@ use App\Common\ImageHelper;
 use App\Models\Banner;
 use App\Repositories\Contracts\BannerRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class BannerService extends BaseService
@@ -31,6 +32,40 @@ class BannerService extends BaseService
         return $this->bannerRepository->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function searchAvailabelByGuest($data = [])
+    {
+        $now = now();
+
+        $banners = $this->bannerRepository
+            ->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($data, $now)  {
+                $types = Arr::wrap(data_get($data, 'type', []));
+
+                if (! empty($types)) {
+                    $q->whereIn('type', $types);
+                }
+
+                $q->where(function($q) use ($now) {
+                    $q->where('start_at', '<=', $now)
+                        ->where('end_at', '>=', $now)
+                        ->orWhereNull('end_at');
+                });
+            })
+            ->addSort('order', 'asc')
+            ->addSort('id', 'asc')
+            ->all([
+                'id', 
+                'desktop_image',
+                'mobile_image', 
+                'cta_label', 
+                'label', 
+                'description', 
+                'redirect_url'
+            ]);
+
+        return $banners;
     }
 
     public function create($attributes = [])
