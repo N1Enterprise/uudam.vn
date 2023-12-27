@@ -24,9 +24,7 @@ div.ls-recommendation-box,limespot-box {
     position: relative;
     text-align: center;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     width: 100%
 }
@@ -510,21 +508,16 @@ limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
 }
 
 .limespot-recommendation-box:hover .limespot-recommendation-box-carousel-indicator.indicator-left {
-    -webkit-transform: translateX(-40px);
     transform: translateX(-40px);
-    -webkit-transition-delay: 0s;
     transition-delay: 0s
 }
 
 .limespot-recommendation-box:hover .limespot-recommendation-box-carousel-indicator.indicator-right {
-    -webkit-transform: translateX(40px);
     transform: translateX(40px);
-    -webkit-transition-delay: 0s;
     transition-delay: 0s
 }
 
 .limespot-recommendation-box:hover .limespot-recommendation-box-carousel-indicator.static-arrow {
-    -webkit-transform: none;
     transform: none
 }
 
@@ -557,10 +550,6 @@ img[data-lazy-src] {
 }
 
 .notransition {
-    -webkit-transition: none!important;
-    -moz-transition: none!important;
-    -o-transition: none!important;
-    -ms-transition: none!important;
     transition: none!important
 }
 
@@ -585,8 +574,8 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         /* padding: 0 10px; */
     }
     limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-price-wrap {
-        display: flex;
-        flex-direction: column;
+        /* display: flex; */
+        /* flex-direction: column; */
     }
     .ls-original-price.ls-original-price {
         order: 1;
