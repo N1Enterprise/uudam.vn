@@ -1,10 +1,10 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-404 Not Found - {{ $APP_NAME }}
+404 không tìm thấy trang | {{ config('app.user_domain') }}
 @endsection
 
-@section('page_title')
+@section('style_pages')
 <style type="text/css">
     .template-404 .title + * {
         margin-top: 1rem;

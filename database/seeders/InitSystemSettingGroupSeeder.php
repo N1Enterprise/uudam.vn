@@ -42,19 +42,19 @@ class InitSystemSettingGroupSeeder extends Seeder
             ],
             [
                 'name' => 'Email Setting',
-                'order' => 9,
+                'order' => 5,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
                 'name' => 'Shop Setting',
-                'order' => 11,
+                'order' => 6,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
                 'name' => 'Image',
-                'order' => 12,
+                'order' => 7,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],

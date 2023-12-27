@@ -12,9 +12,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 @endsection
 
 @section('profile_style')
@@ -186,13 +186,13 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                     <div>Để huỷ đơn vui lòng liên hệ với chúng tôi qua:</div>
                     <div>
                         <small>Số điện thoại:</small>
-                        <a href="tel:{{ data_get($PAGE_SETTINGS, 'phone_support.phone') }}">{{ data_get($PAGE_SETTINGS, 'phone_support.phone') }}</a>
-                        <span>({{ data_get($PAGE_SETTINGS, 'phone_support.label') }})</span>
+                        <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
+                        <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.label') }})</span>
                     </div>
                     <div>
                         <small>Zalo:</small>
-                        <a href="https://zalo.me/{{ data_get($PAGE_SETTINGS, 'phone_zalo.phone') }}" target="_blank">{{ data_get($PAGE_SETTINGS, 'phone_zalo.phone') }}</a>
-                        <span>({{ data_get($PAGE_SETTINGS, 'phone_zalo.label') }})</span>
+                        <a href="https://zalo.me/{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}" target="_blank">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
+                        <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.label') }})</span>
                     </div>
                 </div>
                 @endif

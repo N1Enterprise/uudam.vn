@@ -61,11 +61,6 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateInventoryResponseContract::class => Responses\UpdateInventoryResponse::class,
         Contracts\DeleteInventoryResponseContract::class => Responses\DeleteInventoryResponse::class,
 
-        Contracts\ListDisplayInventoryResponseContract::class => Responses\ListDisplayInventoryResponse::class,
-        Contracts\StoreDisplayInventoryResponseContract::class => Responses\StoreDisplayInventoryResponse::class,
-        Contracts\UpdateDisplayInventoryResponseContract::class => Responses\UpdateDisplayInventoryResponse::class,
-        Contracts\DeleteDisplayInventoryResponseContract::class => Responses\DeleteDisplayInventoryResponse::class,
-
         Contracts\ListBannerResponseContract::class => Responses\ListBannerResponse::class,
         Contracts\StoreBannerResponseContract::class => Responses\StoreBannerResponse::class,
         Contracts\UpdateBannerResponseContract::class => Responses\UpdateBannerResponse::class,

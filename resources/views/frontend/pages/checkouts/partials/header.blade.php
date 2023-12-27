@@ -11,10 +11,10 @@
                                     <span>
                                         <a href="{{ route('fe.web.home') }}" class="s2kwpi1 _1frageme0 _1fragemlr _1fragemm0 s2kwpi3 _1fragemli _1fragemlm">
                                             <img
-                                                src="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
-                                                srcset="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
-                                                alt="{{ data_get($PAGE_SETTINGS, 'title') }}"
-                                                style="width: {{ data_get($PAGE_SETTINGS, 'logo.width', '180px') }}; height: {{ data_get($PAGE_SETTINGS, 'logo.height', '38.89447236180904px') }}"
+                                                src="{{ data_get($SYSTEM_SETTING, 'page_settings.logo.image') }}"
+                                                srcset="{{ data_get($SYSTEM_SETTING, 'page_settings.logo.image') }}"
+                                                alt="{{ data_get($SYSTEM_SETTING, 'page_settings.title') }}"
+                                                style="width: {{ data_get($SYSTEM_SETTING, 'page_settings.logo.width', '180px') }}; height: {{ data_get($SYSTEM_SETTING, 'page_settings.logo.height', '38.89447236180904px') }}"
                                                 class="header__heading-logo"
                                             >
                                         </a>

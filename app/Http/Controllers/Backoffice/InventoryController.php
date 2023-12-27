@@ -46,7 +46,7 @@ class InventoryController extends BaseController
             ->filter(fn($category) => !$category->products->isEmpty());
 
         $attributes = $this->attributeService
-            ->allAvailable(['with' => 'attributeValues', 'columns' => ['id', 'name']])
+            ->allAvailable(['with' => 'attributeValues', 'columns' => ['id', 'name', 'supported_categories']])
             ->filter(fn($attribute) => !$attribute->attributeValues->isEmpty());
 
         return view('backoffice.pages.inventories.index', compact('categories', 'attributes'));

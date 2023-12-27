@@ -15,9 +15,10 @@ class UpdateMenuSubGroupRequest extends BaseFormRequest implements UpdateMenuSub
             'name' => ['required', 'max:255'],
             'menu_group_id' => ['required', 'integer', Rule::exists(MenuGroup::class, 'id')],
             'redirect_url' => ['nullable', 'string', 'max:255'],
-            'order' => ['required', 'integer'],
+            'order' => ['nullable', 'integer'],
             'params' => ['nullable'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }
 
@@ -26,6 +27,7 @@ class UpdateMenuSubGroupRequest extends BaseFormRequest implements UpdateMenuSub
         $this->merge([
             'params' => !empty($this->params) ? json_decode($this->params) : null,
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
         ]);
     }
 }

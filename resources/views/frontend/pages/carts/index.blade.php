@@ -5,8 +5,9 @@ Giỏ hàng | {{ config('app.user_domain') }}
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/upsell.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-cart.css') }}">
+<link href="{{ asset_with_version('frontend/bundle/css/component-cart.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset_with_version('frontend/bundle/css/component-cart-drawer.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset_with_version('frontend/bundle/css/component-cart-items.min.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('page_seo')
@@ -17,9 +18,9 @@ Giỏ hàng | {{ config('app.user_domain') }}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 @endsection
 
 @section('content_body')
@@ -34,5 +35,5 @@ Giỏ hàng | {{ config('app.user_domain') }}
 @endsection
 
 @section('js_script')
-@include('frontend.pages.carts.js-pages.my-cart')
+<script src="{{ asset_with_version('frontend/bundle/js/cart-index.min.js') }}" type="text/javascript"></script>
 @endsection

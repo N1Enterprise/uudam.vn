@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Frontend\Api;
 
+use App\Contracts\Responses\Frontend\ListLinkedBlogResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedCollectionResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedInventoryResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedPostResponseContract;
 use App\Services\CollectionService;
 use App\Services\HomePageDisplayItemService;
 use App\Services\InventoryService;
+use App\Services\PostCategoryService;
 use App\Services\PostService;
 use Illuminate\Support\Arr;
 
@@ -17,12 +19,14 @@ class UserHomePageDisplayItemController extends BaseApiController
     public $inventoryService;
     public $collectionService;
     public $postService;
+    public $postCategoryService;
 
     public function __construct(
         HomePageDisplayItemService $homePageDisplayItemService, 
         InventoryService $inventoryService, 
         CollectionService $collectionService,
-        PostService $postService
+        PostService $postService,
+        PostCategoryService $postCategoryService
     ) {
         parent::__construct();
 
@@ -30,6 +34,7 @@ class UserHomePageDisplayItemController extends BaseApiController
         $this->inventoryService = $inventoryService;
         $this->collectionService = $collectionService;
         $this->postService = $postService;
+        $this->postCategoryService = $postCategoryService;
     }
 
     public function getInventories($id)
@@ -63,5 +68,16 @@ class UserHomePageDisplayItemController extends BaseApiController
         $posts = $this->postService->searchByUser(['filter_ids' => $postIds]);
 
         return $this->response(ListLinkedPostResponseContract::class, $posts);
+    }
+
+    public function getBlogs($id)
+    {
+        $displayItem = $this->homePageDisplayItemService->show($id);
+
+        $blogIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
+
+        $blogs = $this->postCategoryService->searchByUser(['filter_ids' => $blogIds]);
+
+        return $this->response(ListLinkedBlogResponseContract::class, $blogs);
     }
 }

@@ -24,6 +24,7 @@ class Collection extends BaseModel
         'linked_inventories',
         'linked_featured_inventories',
         'display_on_frontend',
+        'allow_frontend_search',
         'order',
         'meta_title',
         'meta_description'

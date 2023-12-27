@@ -46,7 +46,7 @@
                         <th data-property="name">{{ __('Name') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-orderable="false" data-name="attribute_type" data-property="attribute_type_name">{{ __('Attribute Type') }}</th>
-                        <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Categories') }}</th>
+                        <th data-orderable="false" data-property="supported_categories_names" data-render-callback="renderCallbackCategories">{{ __('Categories') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
                         <th data-property="updated_at">{{ __('Updated At') }}</th>
@@ -75,7 +75,7 @@
 
         const categoriesBadge = data.map((category, index) => {
             return $('<span>', { class: `mr-1 mt-1` })
-                    .append(`<span class="k-badge k-badge--brand k-badge--inline k-badge--outline k-badge--pill">${data_get(category, 'name')}</span>`).prop('outerHTML');
+                    .append(`<span class="k-badge k-badge--brand k-badge--inline k-badge--outline k-badge--pill">${category}</span>`).prop('outerHTML');
         });
 
         const container = $('<div>', { class: 'category-see-more' }).append(categoriesBadge.join(''));

@@ -74,7 +74,7 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -191,7 +191,7 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -201,6 +201,18 @@
 										</span>
 									</div>
 								</div>
+
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">{{ __('FE Search') }}</label>
+                                    <div class="col-3">
+                                        <span class="k-switch">
+                                            <label>
+                                                <input type="checkbox" {{ old('allow_frontend_search', '1') == '1'  ? 'checked' : '' }} value="1" name="allow_frontend_search"/>
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
 
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>

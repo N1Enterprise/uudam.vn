@@ -108,7 +108,7 @@
 											@foreach($collections as $collection)
 											<option
 												value="{{ $collection->id }}"
-												data-tokens="{{ $collection->id }} | {{ $collection->title }}}"
+												data-tokens="{{ $collection->id }} | {{ $collection->name }}}"
 												data-slug="{{ $collection->slug }}"
 												data-collection-id="{{ $collection->id }}"
 												data-collection-name="{{ $collection->name }}"
@@ -130,7 +130,7 @@
 											@foreach($posts as $post)
 											<option
 												value="{{ $post->id }}"
-												data-tokens="{{ $post->id }} | {{ $post->title }}}"
+												data-tokens="{{ $post->id }} | {{ $post->name }}}"
 												data-slug="{{ $post->slug }}"
 												data-post-id="{{ $post->id }}"
 												data-post-name="{{ $post->name }}"
@@ -145,8 +145,30 @@
 									</div>
 								</div>
 
+								<div data-type="4" class="d-none">
+									<div class="form-group">
+										<label>{{ __('Blogs') }} *</label>
+										<select data-actions-box="true" name="linked_items[]" title="--{{ __('Select Blogs') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Blog_Selector" multiple data-selected-text-format="count > 5">
+											@foreach($postCategories as $postCategory)
+											<option
+												value="{{ $postCategory->id }}"
+												data-tokens="{{ $postCategory->id }} | {{ $postCategory->name }}}"
+												data-slug="{{ $postCategory->slug }}"
+												data-post-category-id="{{ $postCategory->id }}"
+												data-post-category-name="{{ $postCategory->name }}"
+												{{ in_array($postCategory->id, old('linked_items', [])) ? 'selected' : '' }}
+											>{{ $postCategory->name }}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group Display_Blog_Allowed_Holder mb-0">
+										<div class="Display_Blog_Holder_Content">
+										</div>
+									</div>
+								</div>
+
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -189,6 +211,7 @@
 @include('backoffice.pages.home-page-display-items.js-pages.display-inventories')
 @include('backoffice.pages.home-page-display-items.js-pages.display-collections')
 @include('backoffice.pages.home-page-display-items.js-pages.display-posts')
+@include('backoffice.pages.home-page-display-items.js-pages.display-blogs')
 
 <script>
 	$(document).ready(function() {

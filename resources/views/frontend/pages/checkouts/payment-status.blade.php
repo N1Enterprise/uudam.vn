@@ -135,15 +135,15 @@
                                         <li style="display: flex; align-items: center;">
                                             <span style="margin-right: 3px;">Số điện thoại:</span>
                                             <div>
-                                                <a href="tel:{{ data_get($PAGE_SETTINGS, 'phone_support.phone') }}" class="contact_link">{{ data_get($PAGE_SETTINGS, 'phone_support.phone') }}</a>
-                                                <span>({{ data_get($PAGE_SETTINGS, 'phone_support.label') }})</span>
+                                                <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
+                                                <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.label') }})</span>
                                             </div>
                                         </li>
                                         <li style="display: flex; align-items: center;">
                                             <span style="margin-right: 3px;">Zalo:</span>
                                             <div>
-                                                <a href="https://zalo.me/{{ data_get($PAGE_SETTINGS, 'phone_zalo.phone') }}" target="_blank" class="contact_link">{{ data_get($PAGE_SETTINGS, 'phone_zalo.phone') }}</a>
-                                                <span>({{ data_get($PAGE_SETTINGS, 'phone_zalo.label') }})</span>
+                                                <a href="https://zalo.me/{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}" target="_blank" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
+                                                <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.label') }})</span>
                                             </div>
                                         </li>
                                     </ul>

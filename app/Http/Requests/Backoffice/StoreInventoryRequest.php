@@ -25,6 +25,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'product_slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')],
                 'available_from' => ['nullable', 'date'],
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+                'display_on_frontend' => ['required'],
+                'allow_frontend_search' => ['required'],
                 'min_order_quantity' => ['required', 'integer', 'gt:0'],
                 'condition_note' => ['nullable'],
                 'key_features' => ['nullable', 'array'],
@@ -64,6 +66,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend),
+            'allow_frontend_search' => boolean($this->allow_frontend_search),
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray()

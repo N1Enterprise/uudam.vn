@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Enum\ActivationStatusEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PostCategory extends BaseModel
 {
     use Activatable;
     use SoftDeletes;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',

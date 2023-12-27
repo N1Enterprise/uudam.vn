@@ -59,15 +59,8 @@ class HomePageDisplayOrderService extends BaseService
                         ->orderBy('order');
             }])
             ->modelScopes(['active', 'feDisplay'])
-            ->scopeQuery(function($q) use ($data) {
-
-            })
             ->orderBy('order')
-            ->all();
-
-        // dd(
-        //     $data
-        // );
+            ->all(['id', 'name']);
 
         return $data;
     }

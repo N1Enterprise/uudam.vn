@@ -44,7 +44,7 @@
                             <th data-property="name">{{ __('Name') }}</th>
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Displaying') }}</th>
+                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
                             <th data-property="group.name">{{ __('Group') }}</th>
                             <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Status') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>

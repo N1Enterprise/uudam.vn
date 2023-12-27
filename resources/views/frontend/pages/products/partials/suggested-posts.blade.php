@@ -6,10 +6,10 @@
         <div class="slider-mobile-gutter">
             <div class="owl-carousel owl-theme blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" style="margin: 0 0;" data-owl-id="Inventory_Related_Post" data-owl-items="3">
                 @foreach ($suggestedPosts as $post)
-                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
+                <div class="blog__post article slider__slide slider__slide--full-width">
                     <div class="card-wrapper underline-links-hover">
                         <div class="card article-card card--standard card--media">
-                            <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
+                            <div class="card__inner  color-background-2 gradient ratio">
                                 <div class="article-card__image-wrapper card__media">
                                     <div class="article-card__image media media--hover-effect">
                                         <img srcset="{{ $post->image }}" src="{{ $post->image }}" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="What Do You Think About All Day? - Koun Franz" class="motion-reduce" loading="lazy" width="2727" height="1818">

@@ -15,22 +15,22 @@
         @foreach ($homeBanners as $banner)
         <div class="slideshow__slide grid__item grid--1-col slider__slide" id="{{ $banner->id }}" role="group" aria-roledescription="Slide" aria-label="1 of 4" aria-hidden="true" tabindex="-1">
             <div class="slideshow__media banner__media media">
-                <img data-device="desktop" class="image-lazy" src="{{ $banner->desktop_image }}" srcset="{{ $banner->desktop_image }}" loading="lazy" alt="{{ data_get($banner, 'name') }}">
-                <img data-device="mobile" class="image-lazy" src="{{ data_get($banner, 'mobile_image', data_get($banner, 'desktop_image')) }}" srcset="{{ data_get($banner, 'mobile_image', data_get($banner, 'desktop_image')) }}" loading="lazy" alt="{{ data_get($banner, 'name') }}">
+                <img data-device="desktop" class="image-lazy" src="{{ $banner->desktop_image }}" srcset="{{ $banner->desktop_image }}" loading="lazy" alt="{{ $banner->label }}">
+                <img data-device="mobile" class="image-lazy" src="{{ data_get($banner, 'mobile_image', data_get($banner, 'desktop_image')) }}" srcset="{{ data_get($banner, 'mobile_image', data_get($banner, 'desktop_image')) }}" loading="lazy" alt="{{ $banner->label }}">
             </div>
             <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
                 <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-accent-1 gradient slideshow__text--center slideshow__text-mobile--center">
-                    @if (has_data($banner->label))
+                    @if ($banner->label)
                     <h2 class="banner__heading h1">{{ $banner->label }}</h2>
                     @endif
 
-                    @if (has_data($banner->description))
+                    @if ($banner->description)
                     <div class="banner__text">
                         <span>{{ $banner->description }}</span>
                     </div>
                     @endif
 
-                    @if (has_data($banner->redirect_url))
+                    @if ($banner->redirect_url && $banner->cta_label)
                     <div class="banner__buttons">
                         <a href="{{ $banner->redirect_url }}" class="button button--primary" tabindex="-1" style="background: none; color: #fff;">{{ $banner->cta_label }}</a>
                     </div>

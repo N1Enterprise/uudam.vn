@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\InventoryConditionEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
 use App\Models\Traits\HasMoney;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ class Inventory extends BaseModel
     use SoftDeletes;
     use HasImpactor;
     use HasMoney;
+    use HasFeUsage;
 
     protected $fillable = [
         'title',
@@ -39,6 +41,8 @@ class Inventory extends BaseModel
         'created_by_id',
         'updated_by_type',
         'updated_by_id',
+        'display_on_frontend',
+        'allow_frontend_search'
     ];
 
     protected $casts = [
@@ -48,11 +52,6 @@ class Inventory extends BaseModel
     public function getConditionNameAttribute()
     {
         return InventoryConditionEnum::findConstantLabel($this->condition);
-    }
-
-    public function display()
-    {
-        return $this->belongsTo(DisplayInventory::class, 'id', 'product_id');
     }
 
     public function product()

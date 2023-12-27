@@ -27,7 +27,8 @@ class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestCont
             'meta' => ['nullable', 'array'],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
-            'display_on_frontend' => ['required', 'boolean']
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'allow_frontend_search' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }
 
@@ -36,7 +37,8 @@ class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestCont
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'display_on_frontend' => boolval($this->display_on_frontend),
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'allow_frontend_search' => boolean($this->allow_frontend_search) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
         ]);
     }

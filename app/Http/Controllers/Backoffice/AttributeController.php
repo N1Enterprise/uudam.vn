@@ -36,7 +36,7 @@ class AttributeController extends BaseController
 
     public function edit($id)
     {
-        $attribute = $this->attributeService->show($id, ['with' => 'categories']);
+        $attribute = $this->attributeService->show($id);
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
         $productAttributeTypeEnum = ProductAttributeTypeEnum::labels();
 

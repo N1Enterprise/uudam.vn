@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Backoffice;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 class AttributeResource extends BaseJsonResource
@@ -18,11 +19,8 @@ class AttributeResource extends BaseJsonResource
             'status_name' => $this->status_name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'categories' => $this->whenLoaded('categories', function() {
-                return optional($this->categories)->map(function($category) {
-                    return $category->only(['id', 'name']);
-                });
-            }, []),
+            'supported_categories' => $this->supported_categories,
+            'supported_categories_names' => Category::whereIn('id', $this->supported_categories ?? [])->pluck('name')->toArray(),
         ], $this->generateActionPermissions());
     }
 

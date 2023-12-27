@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thanh toán - {{ data_get($PAGE_SETTINGS, 'title') }}</title>
+    <title>Thanh toán - {{ data_get($SYSTEM_SETTING, 'page_settings.title') }}</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,7 +12,7 @@
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
     <meta property="og:site_name" content="{{ __($APP_NAME) }}">
 
-    @foreach (data_get($PAGE_SETTINGS, 'favicon') as $favicon)
+    @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon', []) as $favicon)
     <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
     @endforeach
 
@@ -35,9 +35,9 @@
     </script>
 </head>
 <body>
-    <link href="{{ asset('frontend/assets/css/common/latest/199.latest.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/latest/661.latest.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('frontend/assets/css/common/latest/669.latest.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/latest-199.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/latest-661.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/latest-669.min.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('style')
 
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
 
     @yield('js_scipt')
 </body>

@@ -1,14 +1,12 @@
 <?php
 
+use App\Classes\AdminAuth;
 use App\Common\Money;
 use App\Enum\BaseEnum;
-use App\Enum\SystemSettingKeyEnum;
 use App\Enum\TimeZoneEnum;
-use App\Models\SystemSetting;
 use App\Vendors\Localization\Money as LocalizationMoney;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
@@ -276,6 +274,13 @@ if (! function_exists('has_data')) {
         }
 
         return false;
+    }
+}
+
+if (! function_exists('is_webmaster')) {
+    function is_webmaster()
+    {
+        return optional(AdminAuth::user())->id == 1;
     }
 }
 

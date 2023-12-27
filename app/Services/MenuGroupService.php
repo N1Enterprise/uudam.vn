@@ -25,7 +25,17 @@ class MenuGroupService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->menuGroupRepository->modelScopes(['active'])
+        return $this->menuGroupRepository
+            ->modelScopes(['active'])
+            ->with(data_get($data, 'with', []))
+            ->addSort('order', 'asc')
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function allAvailableByUser($data = [])
+    {
+        return $this->menuGroupRepository
+            ->modelScopes(['active', 'feDisplay'])
             ->with(data_get($data, 'with', []))
             ->addSort('order', 'asc')
             ->all(data_get($data, 'columns', ['*']));

@@ -18,6 +18,9 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
+
+    @include('backoffice.pages.inventories.partials.search-form')
+
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
@@ -47,6 +50,8 @@
                         <th data-property="sku">{{ __('Sku') }}</th>
                         <th data-property="slug">{{ __('Slug') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
+                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
                         <th data-orderable="false" data-badge data-name="condition" data-property="condition_name">{{ __('Condition') }}</th>
                         <th data-property="purchase_price">{{ __('Purchase Price') }}</th>
                         <th data-property="sale_price">{{ __('Sale Price') }}</th>
@@ -90,7 +95,7 @@
                             @foreach($categories as $category)
                             <optgroup label="{{ $category->name }}">
                                 @foreach($category->products as $product)
-                                <option value="{{ $product->id }}" data-product-type="{{ $product->type }}">{{ $product->name }} ({{ $product->type_name }})</option>
+                                <option value="{{ $product->id }}" data-product-type="{{ $product->type }}" data-categories='@json($product->categories->pluck('id')->toArray())'>{{ $product->name }} ({{ $product->type_name }})</option>
                                 @endforeach
                             </optgroup>
                             @endforeach
@@ -100,11 +105,11 @@
                         @enderror
                     </div>
 
-                    <div class="has_attributes d-none">
+                    <div class="has_attributes">
                         @foreach ($attributes as $attribute)
-                        <div class="form-group">
+                        <div class="form-group attribute-item d-none" data-supported-categories='@json($attribute->supported_categories ?? [])'>
                             <label>{{ $attribute->name }}</label>
-                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Select Values') }}--" class="form-control k_selectpicker" data-size="5" multiple>
+                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Select Values') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
                                 @foreach ($attribute->attributeValues as $value)
                                 <option value="{{ $value->id }}">{{ $value->value }}</option>
                                 @endforeach
@@ -142,7 +147,19 @@
             const productId = $(this).val();
             const productType = $('#form_create_inventory').find(`option[value="${productId}"]`).attr('data-product-type');
 
-            $('#form_create_inventory').find('.has_attributes').toggleClass('d-none', productType != PRODUCT_TYPE_ENUM.VARIABLE);
+            const productCategories = JSON.parse($('#form_create_inventory').find(`option[value="${productId}"]`).attr('data-categories') || '[]');
+
+            $.each($('#form_create_inventory').find('.attribute-item'), function(index, element) {
+                const supportedCategories = JSON.parse($(element).attr('data-supported-categories') || '[]');
+
+                for (const item of supportedCategories) {
+                    if (productCategories.includes(item)) {
+                        $(element).removeClass('d-none');
+                    } else {
+                        $(element).addClass('d-none');
+                    }
+                }
+            });
         });
     }
 

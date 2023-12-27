@@ -24,10 +24,10 @@
                 @endif
             </div>
             <div class="footer-block--newsletter">
-				@if(data_get($RECEIVE_NEW_POST_SETTING, 'enable'))
+				@if(data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
                 <div class="footer-block__newsletter">
-                    <h2 class="footer-block__heading">{{ data_get($RECEIVE_NEW_POST_SETTING, 'title') }}</h2>
-                    <p>{{ data_get($RECEIVE_NEW_POST_SETTING, 'description') }}</p>
+                    <h2 class="footer-block__heading">{{ data_get($SYSTEM_SETTING, 'receive_new_post_setting.title') }}</h2>
+                    <p>{{ data_get($SYSTEM_SETTING, 'receive_new_post_setting.description') }}</p>
                     <form method="post" action="{{ route('fe.api.user.subscribe.news-letter') }}" id="ContactFooter" accept-charset="UTF-8"
                         class="footer__newsletter newsletter-form">
                         <div class="newsletter-form__field-wrapper">
@@ -53,7 +53,7 @@
                 </div>
 				@endif
                 <ul class="footer__list-social list-unstyled list-social" role="list">
-					@foreach ($SOCIAL_NETWORKS as $network)
+					@foreach (data_get($SYSTEM_SETTING, 'social_networks', []) as $network)
 					<li class="list-social__item">
 						<a href="{{ data_get($network, 'link') }}" target="_blank" title="{{ data_get($network, 'tooltip') }}" class="link list-social__link">
 							@include('frontend.icons.'.data_get($network, 'icon'))
@@ -69,7 +69,7 @@
                 <div class="footer__column footer__localization isolate"></div>
                 <div class="footer__column footer__column--info">
                     <div class="footer__copyright caption">
-                        <small class="copyright__content" style="display: flex;">© {{ now()->year }}, <a href="{{ route('fe.web.home') }}" title="{{ data_get($PAGE_SETTINGS, 'title') }}">{{ $APP_URL }}</a></small>
+                        <small class="copyright__content" style="display: flex;">© {{ now()->year }}, <a href="{{ route('fe.web.home') }}" title="{{ data_get($SYSTEM_SETTING, 'page_settings.title') }}">{{ $APP_URL }}</a></small>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
 </div>
 
 @push('js_pages')
-    @if(data_get($RECEIVE_NEW_POST_SETTING, 'enable'))
+    @if(data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
     <script>
         $('#ContactFooter').on('submit', function(e) {
             e.preventDefault();

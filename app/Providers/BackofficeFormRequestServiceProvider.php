@@ -51,9 +51,6 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreInventoryRequestContract::class => Requests\StoreInventoryRequest::class,
         Contracts\UpdateInventoryRequestContract::class => Requests\UpdateInventoryRequest::class,
 
-        Contracts\StoreDisplayInventoryRequestContract::class => Requests\StoreDisplayInventoryRequest::class,
-        Contracts\UpdateDisplayInventoryRequestContract::class => Requests\UpdateDisplayInventoryRequest::class,
-
         Contracts\StoreBannerRequestContract::class => Requests\StoreBannerRequest::class,
         Contracts\UpdateBannerRequestContract::class => Requests\UpdateBannerRequest::class,
 

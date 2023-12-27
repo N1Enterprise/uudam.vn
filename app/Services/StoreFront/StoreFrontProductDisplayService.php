@@ -2,21 +2,16 @@
 
 namespace App\Services\StoreFront;
 
-use App\Enum\ActivationStatusEnum;
 use App\Exceptions\ModelNotFoundException;
 use App\Services\BaseService;
-use App\Services\DisplayInventoryService;
 use App\Services\InventoryService;
-use Illuminate\Support\Facades\DB;
 
 class StoreFrontProductDisplayService extends BaseService
 {
-    public $displayInventoryService;
     public $inventoryService;
 
-    public function __construct(DisplayInventoryService $displayInventoryService, InventoryService $inventoryService)
+    public function __construct(InventoryService $inventoryService)
     {
-        $this->displayInventoryService = $displayInventoryService;
         $this->inventoryService = $inventoryService;
     }
 

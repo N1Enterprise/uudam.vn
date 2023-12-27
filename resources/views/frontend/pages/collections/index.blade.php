@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($collection, 'meta_title', data_get($collection, 'name')) }}
+{{ data_get($collection, 'meta_title', data_get($collection, 'name')) }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
@@ -16,22 +16,21 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-collection-hero.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/template-collection.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-rte.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/custom.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-facets.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-collection-hero.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/template-collection.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-price.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-rte.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-facets.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 <style>
 @media screen and (max-width: 749px) {
     .collection-hero--with-image .collection-hero__inner {
@@ -109,6 +108,7 @@
 @endpush
 
 @section('content_body')
+<input type="hidden" id="collection_resource" data-id="{{ $collection->id }}">
 <div class="shopify-section section">
     @include('frontend.pages.collections.partials.information')
 </div>
@@ -123,8 +123,9 @@
 @endsection
 
 @push('js_pages')
-<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/collection-index.min.js') }}"></script>
 
 <script>
     $('[data-collection-mobile-filter-open]').on('click', function() {
@@ -145,6 +146,4 @@
         $('.mobile-facets__close--no-js').trigger('click');
     });
 </script>
-
-@include('frontend.pages.collections.js-pages.collection-inventory')
 @endpush
