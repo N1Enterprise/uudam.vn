@@ -77,7 +77,7 @@ const MAIN_INVENTORY = {
             $(this).prop('checked', true);
             $(this).parents('.label').addClass('active');
 
-            // const product = MAIN_INVENTORY.findProductByAttribute();
+            MAIN_INVENTORY.findProductByAttribute();
 
             MAIN_INVENTORY.calculateInventoryPrice();
             // MAIN_INVENTORY_QUANTITY.setValue(1);
