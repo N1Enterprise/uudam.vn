@@ -103,6 +103,7 @@ body#buddha-preview {
 li.app-menu-item {
     position: relative!important;
     z-index: 1000!important;
+    margin-top: 15px;
 }
 
 li.app-menu-item.mega-hover,li.app-menu-item:hover {
