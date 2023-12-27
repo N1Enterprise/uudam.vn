@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
-<meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
+<meta property="og:price:amount" content="{{ round_money(data_get($inventory, 'final_price')) }}">
 <meta property="og:price:currency" content="VND">
 <meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 <meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
@@ -138,19 +138,19 @@
     @include('frontend.pages.products.partials.product-review')
 </section>
 
-@if(has_data($suggestedInventories))
+{{-- @if(has_data($suggestedInventories))
 <limespot>
     <limespot-container>
         @include('frontend.pages.products.partials.suggested-products')
     </limespot-container>
 </limespot>
-@endif
+@endif --}}
 
-@if(has_data($suggestedPosts))
+{{-- @if(has_data($suggestedPosts))
 <section class="shopify-section section">
     @include('frontend.pages.products.partials.suggested-posts')
 </section>
-@endif
+@endif --}}
 
 @include('frontend.pages.products.partials.gallery-image-modal')
 @endsection

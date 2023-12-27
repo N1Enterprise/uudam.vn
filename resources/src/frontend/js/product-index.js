@@ -32,7 +32,7 @@ const MAIN_INVENTORY = {
     })(),
     inventory_combos: [],
     firstTrigger: () => {
-        $('.attributes-values-item label.active').find('[name="attribute_value"]').trigger('change');
+        // $('.attributes-values-item label.active').find('[name="attribute_value"]').trigger('change');
         FORM_ORDER.setDataOrder();
     },
     getFullData: () => {
@@ -119,25 +119,30 @@ const MAIN_INVENTORY = {
         MAIN_INVENTORY.inventory_combos = inventory?.product_combos || [];
     },
     renderInventory: (inventory) => {
-        const { id, title, sku, sale_price, stock_quantity, image, slug } = inventory;
+        // const { id, title, sku, sale_price, final_price, sub_price, stock_quantity, image, slug } = inventory;
 
-        const newHref = PRODUCT_ROUTES.web_detail.replace(':slug', slug);
+        // console.log({ final_price, sub_price });
 
-        $('[data-title]').text(title);
-        $('[data-sku]').text(sku);
-        $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
-        $('[data-sale-price]').attr('data-price-value', sale_price);
-        $('[data-inventory-id]').text(id);
-        $('[data-stock-quantity]').attr('max', stock_quantity);
-        $('[data-image-index="0"]').attr('src', image);
-        $('[data-image-index="0"]').attr('srcset', image);
-        $('[data-url]').val(newHref);
+        // const newHref = PRODUCT_ROUTES.web_detail.replace(':slug', slug);
 
-        $(document).prop('title', title);
+        // $('[data-title]').text(title);
+        // $('[data-sku]').text(sku);
+        // $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
+        // $('[data-sale-price]').attr('data-price-value', sale_price);
+        // $('[data-inventory-id]').text(id);
+        // $('[data-stock-quantity]').attr('max', stock_quantity);
+        // $('[data-image-index="0"]').attr('src', image);
+        // $('[data-image-index="0"]').attr('srcset', image);
+        // $('[data-url]').val(newHref);
 
-        COMBO_INVENTORY.renderInventoryCombos(inventory?.product_combos || []);
+        // $(document).prop('title', title);
 
-        window.history.pushState('', '', newHref);
+        // COMBO_INVENTORY.renderInventoryCombos(inventory?.product_combos || []);
+
+        // window.history.pushState('', '', newHref);
+        const href = PRODUCT_ROUTES.web_detail.replace(':slug', inventory.slug);
+
+        window.location.href = href;
     },
 };
 
@@ -167,34 +172,11 @@ const MAIN_INVENTORY_REVIEW = {
     init: () => {
         MAIN_INVENTORY_REVIEW.onToggle();
         MAIN_INVENTORY_REVIEW.onReview();
-        MAIN_INVENTORY_REVIEW.onKeyDownContent();
     },
     onToggle: () => {
         $('.spr-summary-actions-newreview').on('click', function() {
             $('[data-product-review]').toggleClass('d-none');
         });
-    },
-    onKeyDownContent: () => {
-		const maxLength = 1000;
-
-        $('.charactersremaining-count').text(maxLength);
-
-        $('#Review_Product_Content').on('keydown', function() {
-            count($(this).val());
-        });
-
-        $('#Review_Product_Content').on('paste', function() {
-            count($(this).val());
-        });
-
-        function count(value) {
-            const length = value.length;
-            const charactersremaining = maxLength - length;
-
-            if (charactersremaining >= 0) {
-                $('.charactersremaining-count').text(charactersremaining);
-            }
-        }
     },
     onReview: () => {
         $('#User_Product_Review').on('submit', function(e) {

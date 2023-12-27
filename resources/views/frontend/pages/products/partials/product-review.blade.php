@@ -33,7 +33,7 @@
                             <fieldset class="spr-form-contact">
                                 <div class="spr-form-contact-name">
                                     <label class="spr-form-label" for="user_name">Tên của bạn *</label>
-                                    <input class="spr-form-input spr-form-input-text " type="text" name="user_name" placeholder="Nhập tên bạn" style="padding: 5px;" required>
+                                    <input class="spr-form-input spr-form-input-text" type="text" name="user_name" placeholder="Nhập tên bạn" style="padding: 5px;" value="{{ data_get($AUTHENTICATED_USER, 'name') }}" disabled required>
                                 </div>
                             </fieldset>
                             <fieldset class="spr-form-review">
@@ -48,14 +48,9 @@
                                     </div>
                                 </div>
                                 <div class="spr-form-review-body">
-                                    <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *
-                                        <span role="status" aria-live="polite" aria-atomic="true">
-                                            <span class="spr-form-review-body-charactersremaining">(<span class="charactersremaining-count">1000</span>)</span>
-                                            <span class="visuallyhidden">ký tự còn lại</span>
-                                        </span>
-                                    </label>
+                                    <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *</label>
                                     <div class="spr-form-input">
-                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây" style="padding: 5px;" required></textarea>
+                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây (cho phép 1000 ký tự)" style="padding: 5px;" required></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -65,7 +60,7 @@
                         </form>
                     </div>
                     <div class="spr-reviews">
-                        @if($productReviews->count())
+                        @if(has_data($productReviews))
                             @foreach ($productReviews as $review)
                             <div class="spr-review" data-status="{{ $review->status }}" data-status-name="{{ $review->status_name }}">
                                 <div class="spr-review-header">
@@ -86,8 +81,8 @@
                     </div>
                 </div>
                 @else
-                <a href="?overlay=signin" data-overlay-action-button="signin">Đăng Nhập</a>
-                <span>để bình luận</span>
+                <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng Nhập</a>
+                <span style="font-size: 1.4rem;">để bình luận</span>
                 @endif
 
             </div>

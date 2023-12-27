@@ -264,16 +264,48 @@ class InventoryService extends BaseService
         return true;
     }
 
-    public function listAvailableByProduct($product, $data = [])
+    public function searchVariantsByProductForGuest($productId)
     {
         $inventories = $this->inventoryRepository
-            ->modelScopes(['active'])
-            ->with(data_get($data, 'with', []))
-            ->scopeQuery(function($q) use ($product) {
-                $q->where('product_id', BaseModel::getModelKey($product));
+            ->modelScopes(['active', 'feDisplay'])
+            ->with(['attributeValues:id', 'attributes:id'])
+            ->scopeQuery(function($q) use ($productId) {
+                $q->where('product_id', BaseModel::getModelKey($productId));
             })
-            ->all(data_get($data, 'columns', ['*']));
+            ->all(['id', 'slug']);
 
         return $inventories;
+    }
+
+    public function showBySlugForGuest($slug)
+    {
+        $inventory = $this->inventoryRepository
+            ->modelScopes(['feDisplay', 'active'])
+            ->with(['product', 'attributeValues', 'attributes', 'productCombos'])
+            ->scopeQuery(function($q) use ($slug) {
+                $q->where('slug', $slug);
+            })
+            ->first([
+                'available_from',
+                'condition',
+                'condition_note',
+                'id',
+                'image',
+                'key_features',
+                'meta_description',
+                'meta_title',
+                'min_order_quantity',
+                'offer_end',
+                'offer_price',
+                'offer_start',
+                'product_id',
+                'sale_price',
+                'sku',
+                'slug',
+                'stock_quantity',
+                'title',
+            ]);
+
+        return $inventory;
     }
 }
