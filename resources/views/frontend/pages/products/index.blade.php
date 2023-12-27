@@ -117,19 +117,28 @@
     </div>
 </section>
 
+@if (has_data(data_get($inventory, 'product.description')))
 <section class="shopify-section section review-section">
     <div class="page-width">
-        <div class="product__description rte quick-add-hidden" tagable>
-            <div class="product-description">{!! data_get($inventory, 'product.description') !!}</div>
+        <div class="rte quick-add-hidden" tagable>
+            <div class="spr-container">
+                <div class="spr-header">
+                    <h2 class="spr-header-title" style="text-align: left;">Mô tả sản phẩm</h2>
+                </div>
+                <div class="spr-content product-description-content">
+                    {!! data_get($inventory, 'product.description') !!}
+                </div>
+            </div>
         </div>
     </div>
 </section>
+@endif
 
 <section class="shopify-section section review-section">
     @include('frontend.pages.products.partials.product-review')
 </section>
 
-@if(! empty($suggestedInventories))
+@if(has_data($suggestedInventories))
 <limespot>
     <limespot-container>
         @include('frontend.pages.products.partials.suggested-products')
@@ -137,7 +146,7 @@
 </limespot>
 @endif
 
-@if(! empty($suggestedPosts))
+@if(has_data($suggestedPosts))
 <section class="shopify-section section">
     @include('frontend.pages.products.partials.suggested-posts')
 </section>

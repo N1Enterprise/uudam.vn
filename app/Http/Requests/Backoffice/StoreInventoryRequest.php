@@ -70,7 +70,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'allow_frontend_search' => boolean($this->allow_frontend_search),
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray()
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray()
         ]);
     }
 

@@ -1307,10 +1307,10 @@ a.product__text {
 }
 
 .product__description {
-    background-color: #fcfcfc;
     padding: 1rem;
     margin-bottom: 2rem;
     border-radius: 0.5px;
+    border: 1px solid #ECECEC;
 }
 
 /* Product Combo */
@@ -1379,4 +1379,57 @@ a.product__text {
 .product-combos__item-image img {
     width: 100%;
     height: 100%;
+}
+
+
+.product-promotion {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px dashed #B00002;
+    margin-top: 30px;
+    position: relative;
+}
+
+.product-promotion__heading {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 5px 10px;
+    color: #B00002;
+    background: #fff;
+    position: absolute;
+    top: -31px;
+}
+
+.product-promotion > ul, .product-promotion > div {
+    margin-bottom: 0;
+    border-radius: 4px;
+    padding: 0px 0px 0px 5px;
+    list-style-position: inside;
+    background: #fff;
+    font-size: 14px;
+}
+
+.product-promotion ul li, .product-promotion > div > * {
+    padding: 3px 0;
+    margin: 0;
+}
+
+.product-promotion ul li {
+    list-style-type: disc;
+}
+
+.product-description-content * {
+    padding: inherit;
+    margin: inherit;
+}
+
+.product-description-content br {
+    display: none;
+}
+
+.product-description-content img {
+    width: 100%;
+    height: auto;
+    margin-top: 5px;
 }
