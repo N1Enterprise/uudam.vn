@@ -20,7 +20,7 @@ class AttributeResource extends BaseJsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'supported_categories' => $this->supported_categories,
-            'supported_categories_names' => Category::whereIn('id', $this->supported_categories)->pluck('name')->toArray(),
+            'supported_categories_names' => Category::whereIn('id', $this->supported_categories ?? [])->pluck('name')->toArray(),
         ], $this->generateActionPermissions());
     }
 
