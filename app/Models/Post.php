@@ -30,6 +30,7 @@ class Post extends BaseModel
         'order',
         'status',
         'display_on_frontend',
+        'allow_frontend_search',
         'meta',
         'meta_title',
         'meta_description',

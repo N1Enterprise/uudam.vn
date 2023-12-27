@@ -26,7 +26,9 @@ class UserSearchService extends BaseService
         if (in_array('post', $resourcesTypes)) {
             $posts = DB::table('posts')
                 ->select(['id', 'slug', 'name', 'image'])
-                ->where('status', ActivationStatusEnum::ACTIVE)
+                ->where('status', 1)
+                ->where('display_on_frontend', 1)
+                ->where('allow_frontend_search', 1)
                 ->where(function($q) use ($query) {
                     $q->where('name', 'LIKE', '%'.$query.'%')
                         ->orWhere('slug', 'LIKE', '%'.$query.'%');
@@ -38,7 +40,9 @@ class UserSearchService extends BaseService
         if (in_array('product', $resourcesTypes)) {
             $inventories = DB::table('inventories')
                 ->select(['id', 'slug', 'title', 'image'])
-                ->where('status', ActivationStatusEnum::ACTIVE)
+                ->where('status', 1)
+                ->where('display_on_frontend', 1)
+                ->where('allow_frontend_search', 1)
                 ->where(function($q) use ($query) {
                     $q->where('title', 'LIKE', '%'.$query.'%')
                         ->orWhere('slug', 'LIKE', '%'.$query.'%')
@@ -51,7 +55,9 @@ class UserSearchService extends BaseService
         if (in_array('collection', $resourcesTypes)) {
             $collections = DB::table('collections')
                 ->select(['id', 'name', 'slug', 'primary_image'])
-                ->where('status', ActivationStatusEnum::ACTIVE)
+                ->where('status', 1)
+                ->where('display_on_frontend', 1)
+                ->where('allow_frontend_search', 1)
                 ->where(function($q) use ($query) {
                     $q->where('name', 'LIKE', '%'.$query.'%')
                         ->orWhere('slug', 'LIKE', '%'.$query.'%');

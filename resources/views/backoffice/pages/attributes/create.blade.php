@@ -78,16 +78,16 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Categories') }}</label>
-                                    <select data-actions-box="true" name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker {{ $errors->has('categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true">
+                                    <select data-actions-box="true" name="supported_categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true">
                                         @foreach($categoryGroups as $categoryGroup)
                                         <optgroup label="{{ $categoryGroup->name }}">
                                             @foreach($categoryGroup->categories as $category)
-                                            <option value="{{ $category->id }}" {{ in_array($category->id, old('categories', [])) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" {{ in_array($category->id, old('supported_categories', [])) ? 'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </optgroup>
                                         @endforeach
                                     </select>
-                                    @error('categories')
+                                    @error('supported_categories')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

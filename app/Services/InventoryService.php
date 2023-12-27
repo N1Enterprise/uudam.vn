@@ -24,6 +24,13 @@ class InventoryService extends BaseService
         $result = $this->inventoryRepository
             ->with(['product', 'createdBy', 'updatedBy'])
             ->whereColumnsLike($data['query'] ?? null, ['id', 'slug', 'sku', 'title'])
+            ->scopeQuery(function($q) use ($data) {
+                $productId = data_get($data, 'product_id');
+
+                if ($productId) {
+                    $q->where('product_id', $productId);
+                }
+            })
             ->search([]);
 
         return $result;

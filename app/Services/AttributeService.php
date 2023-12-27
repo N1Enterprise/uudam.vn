@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Attribute;
 use App\Repositories\Contracts\AttributeRepositoryContract;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +19,6 @@ class AttributeService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->attributeRepository
-            ->with(['categories'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 
@@ -46,7 +44,7 @@ class AttributeService extends BaseService
         return DB::transaction(function () use ($attributes) {
             $attribute = $this->attributeRepository->create($attributes);
 
-            $this->syncCategories($attribute, data_get($attributes, 'categories', []));
+            // $this->syncCategories($attribute, data_get($attributes, 'categories', []));
 
             return $attribute;
         });
@@ -57,7 +55,7 @@ class AttributeService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $attribute = $this->attributeRepository->update($attributes, $id);
 
-            $this->syncCategories($attribute, data_get($attributes, 'categories', []));
+            // $this->syncCategories($attribute, data_get($attributes, 'categories', []));
 
             return $attribute;
         });
@@ -80,10 +78,10 @@ class AttributeService extends BaseService
         return $results;
     }
 
-    protected function syncCategories(Attribute $attribute, $categories = [])
-    {
-        return $attribute->categories()->sync($categories);
-    }
+    // protected function syncCategories(Attribute $attribute, $categories = [])
+    // {
+    //     return $attribute->categories()->sync($categories);
+    // }
 
     public function getAttributesByInventories($inventoryIds = [])
     {

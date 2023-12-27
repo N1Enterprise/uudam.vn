@@ -21,6 +21,8 @@ class PostResource extends BaseJsonResource
             'status_name' => $this->status_name,
             'display_on_frontend' => $this->display_on_frontend,
             'display_on_frontend_name' => $this->display_on_frontend_name,
+            'allow_frontend_search' => $this->allow_frontend_search,
+            'allow_frontend_search_name' => $this->allow_frontend_search_name,
             'meta' => $this->meta,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,

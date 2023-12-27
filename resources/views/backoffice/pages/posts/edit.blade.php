@@ -171,19 +171,31 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('display_on_frontend', boolean($post->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
+												<input type="checkbox" {{ old('display_on_frontend', boolean($post->display_on_frontend)) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
 												<span></span>
 											</label>
 										</span>
 									</div>
 								</div>
 
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">{{ __('FE Search') }}</label>
+                                    <div class="col-3">
+                                        <span class="k-switch">
+                                            <label>
+                                                <input type="checkbox" {{ old('allow_frontend_search',  boolean($post->allow_frontend_search)) == '1'  ? 'checked' : '' }} value="1" name="allow_frontend_search"/>
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', boolean($post->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', boolean($post->status)) == '1'  ? 'checked' : ''}} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>

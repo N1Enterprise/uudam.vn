@@ -17,6 +17,8 @@ class CollectionResource extends BaseJsonResource
             'description' => $this->description,
             'display_on_frontend' => $this->display_on_frontend,
             'display_on_frontend_name' => $this->display_on_frontend_name,
+            'allow_frontend_search' => $this->allow_frontend_search,
+            'allow_frontend_search_name' => $this->allow_frontend_search_name,
             'status' => $this->status,
             'status_name' => $this->status_name,
             'linked_inventories' => $this->linked_inventories,
