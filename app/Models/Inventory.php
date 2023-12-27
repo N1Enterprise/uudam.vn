@@ -7,6 +7,7 @@ use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
 use App\Models\Traits\HasMoney;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends BaseModel
@@ -49,6 +50,12 @@ class Inventory extends BaseModel
         'key_features' => 'json',
     ];
 
+    protected $appends = [
+        'final_price',
+        'sub_price',
+        'has_offer_price'
+    ];
+
     public function getConditionNameAttribute()
     {
         return InventoryConditionEnum::findConstantLabel($this->condition);
@@ -78,5 +85,28 @@ class Inventory extends BaseModel
         return $this->belongsToMany(ProductCombo::class, 'product_combo_inventories')
             ->withPivot('quantity')
             ->withTimestamps();
+    }
+
+    public function getHasOfferPriceAttribute()
+    {
+        if ($this->offer_price) {
+            $now       = now();
+            $startDate = !empty($this->offer_start) ? Carbon::parse($this->offer_start) : $now;
+            $endDate   = !empty($this->offer_end) ? Carbon::parse($this->offer_end) : $now->addDay();
+
+            return $now->between($startDate, $endDate);
+        }
+
+        return 0;
+    }
+
+    public function getSubPriceAttribute()
+    {
+        return  $this->has_offer_price ? $this->sale_price : 0;
+    }
+
+    public function getFinalPriceAttribute()
+    {
+        return $this->has_offer_price ? $this->offer_price : $this->sale_price;
     }
 }

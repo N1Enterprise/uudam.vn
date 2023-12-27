@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Repositories\Contracts\ShippingRateRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Support\Facades\DB;
 
 class ShippingRateService extends BaseService
 {
@@ -28,7 +27,7 @@ class ShippingRateService extends BaseService
         return $result;
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $result = $this->shippingRateRepository
             ->with(['shippingZone', 'carrier'])

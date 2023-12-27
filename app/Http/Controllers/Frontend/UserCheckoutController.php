@@ -73,7 +73,7 @@ class UserCheckoutController extends AuthenticatedController
 
         $countries = Country::make()->all(['columns' => ['native']]);
 
-        $paymentOptions = $this->paymentOptionService->searchByUser(['currency_code' => $user->currency_code]);
+        $paymentOptions = $this->paymentOptionService->searchForGuest(['currency_code' => $user->currency_code]);
 
         $checkoutPages = $this->pageService->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInCheckout']]);
         $shippingRatesCarriers = $this->carrierService->searchCarrierShippingRatePriceGroupedByCart($cart, []);
@@ -101,7 +101,7 @@ class UserCheckoutController extends AuthenticatedController
 
         $countries = Country::make()->all(['columns' => ['native']]);
 
-        $paymentOptions = $this->paymentOptionService->searchByUser(['currency_code' => $user->currency_code]);
+        $paymentOptions = $this->paymentOptionService->searchForGuest(['currency_code' => $user->currency_code]);
 
         $checkoutPages = $this->pageService->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInCheckout']]);
         $shippingRatesCarriers = $this->carrierService->searchCarrierShippingRatePriceGroupedByCart($cart, []);

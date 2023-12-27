@@ -1,3 +1,5 @@
+import USER_ORDER_CART from './user-order-cart';
+
 const MY_CART = {
     init: () => {
         MY_CART.onRemove();

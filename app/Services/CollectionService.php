@@ -28,7 +28,7 @@ class CollectionService extends BaseService
         return $result;
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $where = [];
 
@@ -67,7 +67,7 @@ class CollectionService extends BaseService
 
         $linkedInventories = data_get($collection, 'linked_inventories', []);
 
-        $inventories = $this->inventoryService->searchByUser(array_merge(['filter_ids' => $linkedInventories], $data));
+        $inventories = $this->inventoryService->searchForGuest(array_merge(['filter_ids' => $linkedInventories], $data));
 
         return $inventories;
     }

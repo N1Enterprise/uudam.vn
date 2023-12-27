@@ -32,7 +32,7 @@ const MAIN_INVENTORY = {
     })(),
     inventory_combos: [],
     firstTrigger: () => {
-        $('.attributes-values-item label.active').find('[name="attribute_value"]').trigger('change');
+        // $('.attributes-values-item label.active').find('[name="attribute_value"]').trigger('change');
         FORM_ORDER.setDataOrder();
     },
     getFullData: () => {
@@ -77,11 +77,13 @@ const MAIN_INVENTORY = {
             $(this).prop('checked', true);
             $(this).parents('.label').addClass('active');
 
-            const product = MAIN_INVENTORY.findProductByAttribute();
+            // const product = MAIN_INVENTORY.findProductByAttribute();
 
             MAIN_INVENTORY.calculateInventoryPrice();
             // MAIN_INVENTORY_QUANTITY.setValue(1);
             FORM_ORDER.setDataOrder();
+
+            $('[data-stock-quantity]').trigger('change');
         });
     },
     findProductByAttribute: () => {
@@ -119,25 +121,30 @@ const MAIN_INVENTORY = {
         MAIN_INVENTORY.inventory_combos = inventory?.product_combos || [];
     },
     renderInventory: (inventory) => {
-        const { id, title, sku, sale_price, stock_quantity, image, slug } = inventory;
+        // const { id, title, sku, sale_price, final_price, sub_price, stock_quantity, image, slug } = inventory;
 
-        const newHref = PRODUCT_ROUTES.web_detail.replace(':slug', slug);
+        // console.log({ final_price, sub_price });
 
-        $('[data-title]').text(title);
-        $('[data-sku]').text(sku);
-        $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
-        $('[data-sale-price]').attr('data-price-value', sale_price);
-        $('[data-inventory-id]').text(id);
-        $('[data-stock-quantity]').attr('max', stock_quantity);
-        $('[data-image-index="0"]').attr('src', image);
-        $('[data-image-index="0"]').attr('srcset', image);
-        $('[data-url]').val(newHref);
+        // const newHref = PRODUCT_ROUTES.web_detail.replace(':slug', slug);
 
-        $(document).prop('title', title);
+        // $('[data-title]').text(title);
+        // $('[data-sku]').text(sku);
+        // $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
+        // $('[data-sale-price]').attr('data-price-value', sale_price);
+        // $('[data-inventory-id]').text(id);
+        // $('[data-stock-quantity]').attr('max', stock_quantity);
+        // $('[data-image-index="0"]').attr('src', image);
+        // $('[data-image-index="0"]').attr('srcset', image);
+        // $('[data-url]').val(newHref);
 
-        COMBO_INVENTORY.renderInventoryCombos(inventory?.product_combos || []);
+        // $(document).prop('title', title);
 
-        window.history.pushState('', '', newHref);
+        // COMBO_INVENTORY.renderInventoryCombos(inventory?.product_combos || []);
+
+        // window.history.pushState('', '', newHref);
+        const href = PRODUCT_ROUTES.web_detail.replace(':slug', inventory.slug);
+
+        window.location.href = href;
     },
 };
 
@@ -167,34 +174,11 @@ const MAIN_INVENTORY_REVIEW = {
     init: () => {
         MAIN_INVENTORY_REVIEW.onToggle();
         MAIN_INVENTORY_REVIEW.onReview();
-        MAIN_INVENTORY_REVIEW.onKeyDownContent();
     },
     onToggle: () => {
         $('.spr-summary-actions-newreview').on('click', function() {
             $('[data-product-review]').toggleClass('d-none');
         });
-    },
-    onKeyDownContent: () => {
-		const maxLength = 1000;
-
-        $('.charactersremaining-count').text(maxLength);
-
-        $('#Review_Product_Content').on('keydown', function() {
-            count($(this).val());
-        });
-
-        $('#Review_Product_Content').on('paste', function() {
-            count($(this).val());
-        });
-
-        function count(value) {
-            const length = value.length;
-            const charactersremaining = maxLength - length;
-
-            if (charactersremaining >= 0) {
-                $('.charactersremaining-count').text(charactersremaining);
-            }
-        }
     },
     onReview: () => {
         $('#User_Product_Review').on('submit', function(e) {
@@ -258,38 +242,39 @@ const COMBO_INVENTORY = {
     },
     onCheckedBuyWithCombo: () => {
         $('[data-product-combo-confirm]').on('change', function() {
-            $('[data-product-combo-list]').toggleClass('d-none', !$(this).is(':checked'));
             MAIN_INVENTORY.calculateInventoryPrice();
             FORM_ORDER.setDataOrder();
+
+            $('[data-stock-quantity]').trigger('change');
         });
     },
-    renderInventoryCombos: (productCombos) => {
-        $('.product-combos').toggleClass('d-none', !productCombos.length);
+    // renderInventoryCombos: (productCombos) => {
+    //     $('.product-combos').toggleClass('d-none', !productCombos.length);
 
-        const html = productCombos?.map(function(item) {
-            return `
-            <div class="product-combos__item">
-                <div class="product-combos__item-image" title="${item.description}">
-                    <img src="${item.image}" alt="test">
-                </div>
+    //     const html = productCombos?.map(function(item) {
+    //         return `
+    //         <div class="product-combos__item">
+    //             <div class="product-combos__item-image" title="${item.description}">
+    //                 <img src="${item.image}" alt="test">
+    //             </div>
 
-                <div class="product-combos__item-info">
-                    <div>
-                        <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
-                        <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
-                    </div>
-                    <div class="product-combos__item-sale">
-                        <div class="product-form__input product-form__quantity">
-                            <span>${item.pivot.quantity} ${item.unit}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-        }).join('');
+    //             <div class="product-combos__item-info">
+    //                 <div>
+    //                     <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
+    //                     <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
+    //                 </div>
+    //                 <div class="product-combos__item-sale">
+    //                     <div class="product-form__input product-form__quantity">
+    //                         <span>${item.pivot.quantity} ${item.unit}</span>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //         `;
+    //     }).join('');
 
-        $('[data-product-combo-list]').html(html);
-    },
+    //     $('[data-product-combo-list]').html(html);
+    // },
     recalculatePrice: (productQuantity) => {
         const { product_combos } = MAIN_INVENTORY.inventory_selected;
 
@@ -301,7 +286,7 @@ const COMBO_INVENTORY = {
         });
 
         MAIN_INVENTORY.inventory_combos = newProductCombos;
-        COMBO_INVENTORY.renderInventoryCombos(newProductCombos);
+        // COMBO_INVENTORY.renderInventoryCombos(newProductCombos);
     },
 };
 

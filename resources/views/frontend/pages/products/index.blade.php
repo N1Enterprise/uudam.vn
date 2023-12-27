@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
-<meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
+<meta property="og:price:amount" content="{{ round_money(data_get($inventory, 'final_price')) }}">
 <meta property="og:price:currency" content="VND">
 <meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 <meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
@@ -53,31 +53,6 @@
 <link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
 <link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
 <link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
-@endpush
-
-@push('style_pages')
-<style>
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
-    padding: 5px!important;
-    border: none;
-}
-
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
-    border: 2px solid #000;
-}
-.confirm-buy-with-combo {
-    background-color: #fff;
-    border: 1px solid #000;
-    padding: 4px 9px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    width: 173px;
-    justify-content: space-between;
-}
-</style>
 @endpush
 
 @section('content_body')
@@ -138,19 +113,19 @@
     @include('frontend.pages.products.partials.product-review')
 </section>
 
-@if(has_data($suggestedInventories))
+{{-- @if(has_data($suggestedInventories))
 <limespot>
     <limespot-container>
         @include('frontend.pages.products.partials.suggested-products')
     </limespot-container>
 </limespot>
-@endif
+@endif --}}
 
-@if(has_data($suggestedPosts))
+{{-- @if(has_data($suggestedPosts))
 <section class="shopify-section section">
     @include('frontend.pages.products.partials.suggested-posts')
 </section>
-@endif
+@endif --}}
 
 @include('frontend.pages.products.partials.gallery-image-modal')
 @endsection

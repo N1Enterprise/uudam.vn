@@ -3,29 +3,26 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Enum\ProductReviewRatingEnum;
+use App\Exceptions\ModelNotFoundException;
 use App\Services\AttributeService;
 use App\Services\InventoryService;
 use App\Services\PostService;
 use App\Services\ProductReviewService;
 use Illuminate\Http\Request;
-use App\Services\StoreFront\StoreFrontProductDisplayService;
 
 class ProductController extends BaseController
 {
-    public $storeFrontProductDisplayService;
     public $inventoryService;
     public $attributeService;
     public $postService;
     public $productReviewService;
 
     public function __construct(
-        StoreFrontProductDisplayService $storeFrontProductDisplayService,
         InventoryService $inventoryService,
         AttributeService $attributeService,
         PostService $postService,
         ProductReviewService $productReviewService
     ) {
-        $this->storeFrontProductDisplayService = $storeFrontProductDisplayService;
         $this->inventoryService = $inventoryService;
         $this->attributeService = $attributeService;
         $this->postService = $postService;
@@ -34,11 +31,11 @@ class ProductController extends BaseController
 
     public function index(Request $request, $slug)
     {
-        $inventory = $this->storeFrontProductDisplayService->showBySlug($slug);
-        $variants  = $this->inventoryService->listAvailableByProduct($inventory->product_id, [
-            'with' => ['attributeValues:id,value,color', 'attributes:id,name,attribute_type,order', 'productCombos:id,name,image,sale_price,description,unit'],
-            'columns' => ['id', 'title', 'stock_quantity', 'image', 'sale_price', 'slug', 'sku', 'condition_note', 'condition']
-        ]);
+        $inventory = $this->inventoryService->showBySlugForGuest($slug);
+
+        if (empty($inventory)) throw new ModelNotFoundException();
+
+        $variants = $this->inventoryService->searchVariantsByProductForGuest($inventory->product_id);
 
         $imageGalleries = collect([$inventory->image])
             ->merge(collect(data_get($inventory, 'product.media.image', []))->map(fn($item) => data_get($item, 'path')))
@@ -52,14 +49,12 @@ class ProductController extends BaseController
 
         $attributes = $this->attributeService->getAttributesByInventories($variants->pluck('id')->toArray());
 
-        $suggestedPosts = $this->postService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.posts'));
-        $suggestedInventories = $this->inventoryService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.inventories'), ['with' => 'product:id,media,primary_image']);
+        // $suggestedPosts = $this->postService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.posts'));
+        // $suggestedInventories = $this->inventoryService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.inventories'), ['with' => 'product:id,media,primary_image']);
 
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
         $productReviews = $this->productReviewService->allAvailable(['columns' => ['id', 'user_name', 'rating_type', 'status', 'created_at', 'content']]);
-
-        // dd(data_get($inventory, 'product.id'));
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',
@@ -68,8 +63,8 @@ class ProductController extends BaseController
             'mediaVideos',
             'attributes',
             'inventoryAttributes',
-            'suggestedPosts',
-            'suggestedInventories',
+            // 'suggestedPosts',
+            // 'suggestedInventories',
             'productReviewRatingEnumLabels',
             'productReviews',
         ));

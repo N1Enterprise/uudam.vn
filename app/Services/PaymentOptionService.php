@@ -47,7 +47,7 @@ class PaymentOptionService extends BaseService
         })->groupBy('type_name')->all();
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $result = $this->paymentOptionRepository
             ->modelScopes(['active', 'feDisplay'])

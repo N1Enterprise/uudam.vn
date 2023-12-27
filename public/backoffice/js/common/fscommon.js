@@ -212,7 +212,7 @@ var fscommon = {
 			self.initDateRangePicker($(this), config);
 		});
 	},
-    formatPrice: function(money, symbol = 'VND') {
+    formatPrice: function(money, symbol = '₫') {
         return this.formatNumber(money, '.', ',') + ' ' + symbol;
     },
 	formatMoney: function(value, currency = null, includeSymbol = true, fixedDecimals = true, minDecimals = 2, codeAsSymbol = true) {

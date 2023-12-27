@@ -28,7 +28,7 @@ class PostService extends BaseService
         return $result;
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $where = [];
 

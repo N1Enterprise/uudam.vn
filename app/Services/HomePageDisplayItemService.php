@@ -26,7 +26,8 @@ class HomePageDisplayItemService extends BaseService
 
     public function allAvailable($data = [])
     {
-        return $this->homePageDisplayItemRepository->modelScopes(['active'])
+        return $this->homePageDisplayItemRepository
+            ->modelScopes(['active'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }

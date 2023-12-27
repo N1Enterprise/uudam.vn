@@ -1,6 +1,6 @@
 <div class="k-footer k-grid__item k-grid k-grid--desktop k-grid--ver-desktop">
 	<div class="k-footer__copyright">
-		{{ today()->year }}&nbsp;&copy;&nbsp;<a href="javascript:;" class="k-link">{{ __($APP_NAME) }}</a>
+		{{ today()->year }}&nbsp;&copy;&nbsp;<a href="javascript:;" class="k-link">{{ config('app.user_domain') }}</a>
 	</div>
     @if($footerMenu)
     <div class="k-footer__menu">
