@@ -43,7 +43,7 @@ class UserHomePageDisplayItemController extends BaseApiController
 
         $inventoryIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
 
-        $inventories = $this->inventoryService->searchByUser(['filter_ids' => $inventoryIds, 'with' => 'product']);
+        $inventories = $this->inventoryService->searchForGuest(['filter_ids' => $inventoryIds, 'with' => 'product']);
 
         return $this->response(ListLinkedInventoryResponseContract::class, $inventories);
     }
@@ -54,7 +54,7 @@ class UserHomePageDisplayItemController extends BaseApiController
 
         $collectionIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
 
-        $collections = $this->collectionService->searchByUser(['filter_ids' => $collectionIds]);
+        $collections = $this->collectionService->searchForGuest(['filter_ids' => $collectionIds]);
 
         return $this->response(ListLinkedCollectionResponseContract::class, $collections);
     }
@@ -65,7 +65,7 @@ class UserHomePageDisplayItemController extends BaseApiController
 
         $postIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
 
-        $posts = $this->postService->searchByUser(['filter_ids' => $postIds]);
+        $posts = $this->postService->searchForGuest(['filter_ids' => $postIds]);
 
         return $this->response(ListLinkedPostResponseContract::class, $posts);
     }
@@ -76,7 +76,7 @@ class UserHomePageDisplayItemController extends BaseApiController
 
         $blogIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
 
-        $blogs = $this->postCategoryService->searchByUser(['filter_ids' => $blogIds]);
+        $blogs = $this->postCategoryService->searchForGuest(['filter_ids' => $blogIds]);
 
         return $this->response(ListLinkedBlogResponseContract::class, $blogs);
     }

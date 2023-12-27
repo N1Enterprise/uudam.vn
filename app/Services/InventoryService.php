@@ -36,7 +36,7 @@ class InventoryService extends BaseService
         return $result;
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $where = [];
 
@@ -84,6 +84,7 @@ class InventoryService extends BaseService
 
         $result = $this->inventoryRepository
             ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
             ->whereColumnsLike($data['query'] ?? null, ['sku', 'title', 'slug'])
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);

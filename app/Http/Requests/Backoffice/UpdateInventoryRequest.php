@@ -7,6 +7,7 @@ use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
 use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\ProductCombo;
 use App\Services\InventoryService;
 use Illuminate\Validation\Rule;
 
@@ -53,7 +54,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                     'after:offer_start'
                 ],
                 'product_combos' => ['nullable', 'array'],
-                'product_combos.*.product_combo_id' => ['required', Rule::exists(Inventory::class, 'id')],
+                'product_combos.*.product_combo_id' => ['required', Rule::exists(ProductCombo::class, 'id')],
                 'product_combos.*.quantity' => ['required', 'integer'],
             ],
             $this->defineSimpleRules($inventory) ?? []

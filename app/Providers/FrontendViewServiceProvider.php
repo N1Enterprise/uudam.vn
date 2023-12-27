@@ -5,9 +5,7 @@ namespace App\Providers;
 use App\Classes\Contracts\UserAuthContract;
 use App\Common\Menu;
 use App\Enum\SystemSettingKeyEnum;
-use App\Models\MenuGroup;
 use App\Models\SystemSetting;
-use App\Services\MenuGroupService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -68,6 +66,7 @@ class FrontendViewServiceProvider extends ServiceProvider
             'receive_new_post_setting' => SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []),
             'search_setting' => SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []),
             'page_highlight_information' => SystemSetting::from(SystemSettingKeyEnum::PAGE_HIGHLIGHT_INFORMATION)->get(null, []),
+            'pages_display_in_footer' => SystemSetting::from(SystemSettingKeyEnum::PAGES_DISPLAY_IN_FOOTER)->get(null, [])
         ];
     }
 }

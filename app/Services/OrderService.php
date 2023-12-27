@@ -18,7 +18,6 @@ use App\Models\ShippingRate;
 use App\Models\User;
 use App\Models\Cart;
 use App\Vendors\Localization\Money;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Order;
 use Illuminate\Support\Arr;

@@ -77,11 +77,13 @@ const MAIN_INVENTORY = {
             $(this).prop('checked', true);
             $(this).parents('.label').addClass('active');
 
-            const product = MAIN_INVENTORY.findProductByAttribute();
+            // const product = MAIN_INVENTORY.findProductByAttribute();
 
             MAIN_INVENTORY.calculateInventoryPrice();
             // MAIN_INVENTORY_QUANTITY.setValue(1);
             FORM_ORDER.setDataOrder();
+
+            $('[data-stock-quantity]').trigger('change');
         });
     },
     findProductByAttribute: () => {
@@ -240,38 +242,39 @@ const COMBO_INVENTORY = {
     },
     onCheckedBuyWithCombo: () => {
         $('[data-product-combo-confirm]').on('change', function() {
-            $('[data-product-combo-list]').toggleClass('d-none', !$(this).is(':checked'));
             MAIN_INVENTORY.calculateInventoryPrice();
             FORM_ORDER.setDataOrder();
+
+            $('[data-stock-quantity]').trigger('change');
         });
     },
-    renderInventoryCombos: (productCombos) => {
-        $('.product-combos').toggleClass('d-none', !productCombos.length);
+    // renderInventoryCombos: (productCombos) => {
+    //     $('.product-combos').toggleClass('d-none', !productCombos.length);
 
-        const html = productCombos?.map(function(item) {
-            return `
-            <div class="product-combos__item">
-                <div class="product-combos__item-image" title="${item.description}">
-                    <img src="${item.image}" alt="test">
-                </div>
+    //     const html = productCombos?.map(function(item) {
+    //         return `
+    //         <div class="product-combos__item">
+    //             <div class="product-combos__item-image" title="${item.description}">
+    //                 <img src="${item.image}" alt="test">
+    //             </div>
 
-                <div class="product-combos__item-info">
-                    <div>
-                        <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
-                        <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
-                    </div>
-                    <div class="product-combos__item-sale">
-                        <div class="product-form__input product-form__quantity">
-                            <span>${item.pivot.quantity} ${item.unit}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-        }).join('');
+    //             <div class="product-combos__item-info">
+    //                 <div>
+    //                     <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
+    //                     <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
+    //                 </div>
+    //                 <div class="product-combos__item-sale">
+    //                     <div class="product-form__input product-form__quantity">
+    //                         <span>${item.pivot.quantity} ${item.unit}</span>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //         `;
+    //     }).join('');
 
-        $('[data-product-combo-list]').html(html);
-    },
+    //     $('[data-product-combo-list]').html(html);
+    // },
     recalculatePrice: (productQuantity) => {
         const { product_combos } = MAIN_INVENTORY.inventory_selected;
 
@@ -283,7 +286,7 @@ const COMBO_INVENTORY = {
         });
 
         MAIN_INVENTORY.inventory_combos = newProductCombos;
-        COMBO_INVENTORY.renderInventoryCombos(newProductCombos);
+        // COMBO_INVENTORY.renderInventoryCombos(newProductCombos);
     },
 };
 

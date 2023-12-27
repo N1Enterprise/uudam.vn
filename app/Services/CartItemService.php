@@ -77,7 +77,7 @@ class CartItemService extends BaseService
                 throw new BusinessLogicException('Unable to update quantity this item.', ExceptionCode::INVALID_CART_ITEM);
             }
 
-            $inventorySalePrice = $cartItem->inventory->toMoney('sale_price');
+            $inventorySalePrice = $cartItem->inventory->toMoney('final_price');
             $updateTotalPrice = Money::make($inventorySalePrice, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             /** @var Cart */

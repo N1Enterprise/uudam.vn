@@ -52,7 +52,8 @@ class Inventory extends BaseModel
 
     protected $appends = [
         'final_price',
-        'sub_price'
+        'sub_price',
+        'has_offer_price'
     ];
 
     public function getConditionNameAttribute()
@@ -86,21 +87,26 @@ class Inventory extends BaseModel
             ->withTimestamps();
     }
 
-    public function getSubPriceAttribute()
+    public function getHasOfferPriceAttribute()
     {
         if ($this->offer_price) {
             $now       = now();
             $startDate = !empty($this->offer_start) ? Carbon::parse($this->offer_start) : $now;
             $endDate   = !empty($this->offer_end) ? Carbon::parse($this->offer_end) : $now->addDay();
 
-            return $now->between($startDate, $endDate) ? $this->offer_price : 0;
+            return $now->between($startDate, $endDate);
         }
 
         return 0;
     }
 
+    public function getSubPriceAttribute()
+    {
+        return  $this->has_offer_price ? $this->sale_price : 0;
+    }
+
     public function getFinalPriceAttribute()
     {
-        return $this->sub_price ? $this->sub_price : $this->sale_price;
+        return $this->has_offer_price ? $this->offer_price : $this->sale_price;
     }
 }

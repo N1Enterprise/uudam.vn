@@ -80,8 +80,8 @@ const utils_helper = {
 
             return x1 + (! !Object.keys(x2).length ? dec_point + x2 : '');
     },
-    formatPrice: (money, symbol = 'VND') => {
-        return utils_helper.formatNumber(money) + ' ' + symbol;
+    formatPrice: (money, symbol = '₫') => {
+        return utils_helper.formatNumber(money) + '' + symbol;
     },
     appendErrorMessages: ($parent, errorMessages) => {
         $parent.find('.form-errors').removeClass('show');

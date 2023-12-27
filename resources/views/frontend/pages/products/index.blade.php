@@ -55,31 +55,6 @@
 <link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 @endpush
 
-@push('style_pages')
-<style>
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
-    padding: 5px!important;
-    border: none;
-}
-
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
-    border: 2px solid #000;
-}
-.confirm-buy-with-combo {
-    background-color: #fff;
-    border: 1px solid #000;
-    padding: 4px 9px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    width: 173px;
-    justify-content: space-between;
-}
-</style>
-@endpush
-
 @section('content_body')
 <section class="shopify-section section">
     <section class="page-width section-template__main-padding">

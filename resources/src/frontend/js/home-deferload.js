@@ -61,7 +61,14 @@ const SECTION_SCROLL = {
                                         <div class="ls-vendor">${ item.product.branch }</div>
                                         <div class="ls-price-wrap">
                                             <span class="ls-original-price" style="display: none;"></span>
-                                            <span class="ls-price money" data-numeric-value="${ item.sale_price }" data-money-convertible="">${ item.sale_price }</span>
+                                            <span class="ls-price money" data-numeric-value="${ item.final_price }" data-money-convertible="">${ item.final_price }</span>
+                                            ${
+                                                item.has_offer_price ? `
+                                                    <del class="price-item--sub">${ item.sub_price }</del>   
+                                                    <span class="price-discount-percent">-${ item.discount_percent }%</span>
+                                                    <div class="price-for-saving">(Tiết kiệm <span>${ item.price_for_saving }</span>)</div>
+                                                ` : ''
+                                            }
                                         </div>
                                     </div>
                                 </a>

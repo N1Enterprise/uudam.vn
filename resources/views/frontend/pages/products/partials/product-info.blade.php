@@ -1,9 +1,6 @@
 <div class="product__info-container product__info-container--sticky" data-inventory='@json($inventory)'>
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
-        <a href="/products/teaching-garden-buddha-statue" class="product__title">
-            <h2 class="h1" data-title>{{ $inventory->title }}</h2>
-        </a>
     </div>
     <div style="margin-top: -15px;">
         <p>SKU: <span data-sku>{{ $inventory->sku }}</span></p>
@@ -15,6 +12,11 @@
                 <div class="price__regular">
                     <span class="visually-hidden visually-hidden--inline">Giá Bán</span>
                     <span class="price-item price-item--regular" data-price-value="{{ data_get($inventory, 'final_price') }}" data-sale-price>{{ format_price(data_get($inventory, 'final_price')) }}</span>
+                    @if ($inventory->has_offer_price)
+                    <del class="price-item--sub">{{ format_price(data_get($inventory, 'sub_price')) }}</del>
+                    <span class="price-discount-percent">-{{ get_percent(data_get($inventory, 'final_price'), data_get($inventory, 'sub_price')) }}%</span>
+                    <div class="price-for-saving">(Tiết kiệm <span>{{ format_price( (float) data_get($inventory, 'sub_price') - (float) data_get($inventory, 'final_price') ) }}</span>)</div>
+                    @endif
                 </div>
             </div>
             <span class="badge price__badge-sale color-accent-2">Giảm Giá</span>
@@ -89,7 +91,9 @@
             </variant-radios>
             @endif
 
+            @if (has_data(data_get($inventory, 'productCombos', [])))
             @include('frontend.pages.products.partials.product-combos')
+            @endif
 
             <div class="inventory-price-area" style="padding: 15px 0;">
                 <div class="product-form__input product-form__quantity">

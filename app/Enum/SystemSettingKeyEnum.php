@@ -22,6 +22,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const VIDEO_OUTSIDE_UI = 'video_outside_ui';
     public const SEARCH_SETTING = 'search_setting';
     public const ADMIN_TOP_NAVIGATION = 'admin_top_navigation';
+    public const PAGES_DISPLAY_IN_FOOTER = 'PAGES_DISPLAY_IN_FOOTER';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';

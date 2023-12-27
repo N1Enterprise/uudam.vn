@@ -119,8 +119,8 @@ class CartService extends BaseService
                 'user_id' => $user->getKey(),
                 'currency_code' => $currency->getKey(),
                 'order_id' => null,
-            ], [
                 'ip_address' => data_get($attributes, 'ip_address'),
+            ], [
                 'total_quantity' => 0,
                 'total_price' => 0,
                 'uuid' => Str::uuid(),
@@ -148,11 +148,11 @@ class CartService extends BaseService
 
             $quantity = (int) data_get($attributes, 'quantity', 0);
 
-            $totalPrice = Money::make($inventory->sale_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
+            $totalPrice = Money::make($inventory->final_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             $cartItem->update([
                 'quantity' => DB::raw('quantity + ' . $quantity),
-                'price' => $inventory->sale_price,
+                'price' => $inventory->final_price,
                 'total_price' => DB::raw('total_price + ' . (string) $totalPrice),
             ]);
 

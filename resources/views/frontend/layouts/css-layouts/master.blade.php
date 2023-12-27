@@ -470,6 +470,19 @@
         padding: 0 7px;
     }
 
+    .recommendation-target .ls-link {
+        position: relative;
+    }
+
+    .recommendation-target .price-discount-percent {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1px 7px;
+        border-radius: 0;
+        border-bottom-left-radius: 10px;
+    }
+
     .multicolumn-card__image-wrapper .media--adapt {
         padding-bottom: 59.78043912175649%;
     }

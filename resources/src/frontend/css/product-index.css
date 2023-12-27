@@ -110,6 +110,10 @@
     letter-spacing: 0.07rem;
 }
 
+.shopify-payment-button__button--unbranded::-moz-selection {
+    background-color: rgba(var(--color-button-text), 0.3);
+}
+
 .shopify-payment-button__button--unbranded::selection {
     background-color: rgba(var(--color-button-text), 0.3);
 }
@@ -159,6 +163,7 @@
     padding: 0;
     margin: 0 0 1.2rem 0;
     max-width: 37rem;
+    min-width: -moz-fit-content;
     min-width: fit-content;
     border: none;
 }
@@ -235,6 +240,10 @@ fieldset.product-form__input .form__label {
     .product-form__input input[type="radio"]:checked + label {
         text-decoration: underline;
     }
+}
+
+.product-form__input input[type="radio"]:checked + label::-moz-selection {
+    background-color: rgba(var(--color-background), 0.3);
 }
 
 .product-form__input input[type="radio"]:checked + label::selection {
@@ -919,6 +928,7 @@ a.product__text {
 @media screen and (max-width: 749px) {
     .product-popup-modal__content table {
         display: block;
+        max-width: -moz-fit-content;
         max-width: fit-content;
         overflow-x: auto;
         white-space: nowrap;
@@ -1300,12 +1310,6 @@ a.product__text {
     }
 }
 
-.product-combos {
-    padding: 1rem;
-    margin-bottom: 2rem;
-    border-radius: 0.5px;
-}
-
 .product__description {
     padding: 1rem;
     margin-bottom: 2rem;
@@ -1316,10 +1320,6 @@ a.product__text {
 /* Product Combo */
 .product-combos__item {
     display: flex;
-    margin: 3px 0;
-    border: 1px solid #ECECEC;
-    padding: 5px;
-    background: #fcfcfc;
 }
 
 .product-combos__item-info {
@@ -1347,7 +1347,9 @@ a.product__text {
     text-decoration: none;
     color: #000;
     transition: box-shadow var(--duration-short) ease;
-    appearance: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     border: 1px solid #000;
     height: 32px;
     margin-left: 10px;
@@ -1436,4 +1438,30 @@ a.product__text {
 
 .product-condition-note {
     font-size: 14px;
+}
+
+[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
+    padding: 5px!important;
+    border: none;
+}
+
+[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
+    border: 2px solid #000;
+}
+.confirm-buy-with-combo {
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 15px;
+    border: 1px solid #ECECEC;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+[data-product-combo-list] {
+    border-bottom: 1px solid #ECECEC;
+    border-right: 1px solid #ECECEC;
+    border-left: 1px solid #ECECEC;
+    padding: 10px 10px;
 }

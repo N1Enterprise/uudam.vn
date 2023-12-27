@@ -615,3 +615,32 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         min-width: 180px!important;
     }
 }
+
+.price-discount-percent {
+    border-radius: 999px;
+    background: #d84144;
+    color: #ffffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 2px 4px;
+    margin-left: 7px;
+}
+
+.price-for-saving {
+    font-size: 13px;
+    width: 100%;
+    color: #3c3c3c;
+}
+
+.price-for-saving span {
+    color: #d84144;
+}
+
+.price-item--sub {
+    font-size: 14px;
+    color: #979797 !important;
+    margin-left: 5px;
+    font-weight: normal;
+}
