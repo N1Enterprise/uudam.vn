@@ -58,16 +58,13 @@
     .vertical-mega-menu[menuIdx="0"]>li.app-menu-item ul.mm-submenu.simple>li.mm-right-item {
         padding-right: 32px !important;
     }
-    .vertical-mega-menu ul.mm-submenu.simple > li .mm-list-name {
-        border-bottom: 1px solid #ffffff !important;
-    }
     .vertical-mega-menu ul.mm-submenu, .vertical-mega-menu ul.mm-submenu li.mm-contact-column span, .vertical-mega-menu ul.mm-submenu li a, .vertical-mega-menu ul.mm-submenu span, .vertical-mega-menu ul.mm-submenu>li>a>.toggle-menu-btn>.fa {
         color: #ffffff !important;
     }
     .vertical-mega-menu ul.mm-submenu, .vertical-mega-menu ul.mm-submenu span, .vertical-mega-menu ul.mm-submenu.simple>li ul.mm-product-list>li .mm-list-info {
         font-size: 13px !important;
     }
-    .vertical-mega-menu ul.mm-submenu.simple > li .mm-list-name {
+    .vertical-mega-menu ul.mm-submenu.simple > li:not(:last-child) .mm-list-name {
         border-bottom: 1px solid #ffffff !important;
     }
     .vertical-mega-menu ul.mm-submenu, .vertical-mega-menu ul.mm-submenu li.mm-contact-column span, .vertical-mega-menu ul.mm-submenu li a, .vertical-mega-menu ul.mm-submenu span, .vertical-mega-menu ul.mm-submenu>li>a>.toggle-menu-btn>.fa {
