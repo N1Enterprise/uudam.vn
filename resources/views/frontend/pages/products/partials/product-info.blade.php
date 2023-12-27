@@ -21,6 +21,19 @@
             <span class="badge price__badge-sold-out color-inverse">Hết Hàng</span>
         </div>
     </div>
+    @if (has_data(data_get($inventory, 'key_features', [])))
+    <div class="product-promotion rounded-sm" id="ega-salebox">
+        <h3 class="product-promotion__heading" style="display: flex; align-items: center;">
+            <img src="{{ asset_with_version('frontend/assets/images/icons/icon-product-promotion.webp') }}" alt="{{ $inventory->title }}" width="22" height="22" style="margin-right: 7px; margin-bottom: 2px;">
+            CAM KẾT - CHẤT LƯỢNG - AN TOÀN
+        </h3>
+        <ul class="promotion-box">
+            @foreach (data_get($inventory, 'key_features', []) as $keyFeature)
+            <li>{{ data_get($keyFeature, 'title') }}</li>    
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div>
         <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="installment caption-large">
             <input type="hidden" name="form_type" value="product">

@@ -14,7 +14,7 @@
             </style>
             <div class="spr-container">
                 <div class="spr-header">
-                    <h2 class="spr-header-title">Phản hồi khách hàng</h2>
+                    <h2 class="spr-header-title" style="text-align: left;">Phản hồi khách hàng</h2>
                     @if($AUTHENTICATED_USER)
                     <div class="spr-summary rte">
                         <span class="spr-summary-actions">

@@ -5,7 +5,6 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
-use App\Models\ProductCombo;
 use App\Models\Inventory;
 use App\Models\Product;
 use App\Services\InventoryService;
@@ -72,7 +71,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             'allow_frontend_search' => boolean($this->allow_frontend_search),
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray(),
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
             'product_combos' => collect($this->product_combos ?? [])
                 ->filter(function($item) {
                     return data_get($item, 'product_combo_id') && data_get($item, 'quantity') > 0;
