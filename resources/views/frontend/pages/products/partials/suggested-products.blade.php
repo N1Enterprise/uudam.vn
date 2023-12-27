@@ -13,7 +13,6 @@
                             <div class="ls-title">{{ $inventory->title }}</div>
                             <div class="ls-vendor">{{ optional($inventory->product)->branch }}</div>
                             <div class="ls-price-wrap">
-                                <span class="ls-original-price" style="display: none;"></span>
                                 <span class="ls-price money" data-numeric-value="{{ format_price($inventory->sale_price) }}" data-money-convertible="">{{ format_price($inventory->sale_price) }}</span>
                             </div>
                         </div>
