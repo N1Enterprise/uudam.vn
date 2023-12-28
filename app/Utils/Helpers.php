@@ -279,6 +279,8 @@ if (! function_exists('has_data')) {
             return !$data->isEmpty();
         } else if (is_array($data) || is_string($data) || is_numeric($data)) {
             return $data == 0 ? true : !empty($data);
+        } else if (is_bool($data)) {
+            return $data;
         }
 
         return false;

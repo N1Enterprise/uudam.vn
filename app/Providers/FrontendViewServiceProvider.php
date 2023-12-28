@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Classes\Contracts\UserAuthContract;
 use App\Common\Menu;
+use App\Enum\PageDisplayInEnum;
 use App\Enum\SystemSettingKeyEnum;
+use App\Models\Page;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -42,6 +44,11 @@ class FrontendViewServiceProvider extends ServiceProvider
             $view->with('AUTHENTICATED_USER', optional($userAuth->user())->only(['id', 'email', 'birthday', 'name', 'phone_number']));
 
             $view->with('SYSTEM_SETTING', $this->getSystemSetting());
+
+            $feAvailabelPages = Page::allFromCache(PageDisplayInEnum::FOOTER)->where('status', 1)->where('display_on_frontend', 1);
+
+            $view->with('FOOTER_PAGES', $feAvailabelPages->where('slug', '!=', 'gioi-thieu'));
+            $view->with('ABOUT_US', $feAvailabelPages->where('slug', 'gioi-thieu')->first());
         });
     }
 
@@ -66,7 +73,6 @@ class FrontendViewServiceProvider extends ServiceProvider
             'receive_new_post_setting' => SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []),
             'search_setting' => SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []),
             'page_highlight_information' => SystemSetting::from(SystemSettingKeyEnum::PAGE_HIGHLIGHT_INFORMATION)->get(null, []),
-            'pages_display_in_footer' => SystemSetting::from(SystemSettingKeyEnum::PAGES_DISPLAY_IN_FOOTER)->get(null, [])
         ];
     }
 }
