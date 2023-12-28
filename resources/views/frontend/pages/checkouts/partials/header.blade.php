@@ -1,5 +1,5 @@
 <div class="_1frageme0 _1fragemfi _1mrl40q2 _1fragemgb _1fragemgs _1fragem2o _1fragem2c _1fragem34 _1fragem20 _16s97g7d _16s97g7e _16s97g7k _16s97g719 _16s97g71a _16s97g71g" style="--_16s97g79: 1fr; --_16s97g7a: 1fr; --_16s97g7g: minmax(0, 1fr); --_16s97g715: minmax(0, 1fr) minmax(0, 61rem) minmax(0, 1fr); --_16s97g716: minmax(0, 1fr) minmax(0, 110.5rem) minmax(0, 1fr); --_16s97g71c: minmax(0, 1fr);">
-    <div></div>
+    <div class="checkout-header-side-item"></div>
     <div class="_1fragemfc _1fragem8c _1fragema8 _1fragem6g _1fragemc4 _1frageme0">
         <div class="_1fragemfc _1fragem9a _1fragemaa _1fragem7e _1fragemc6 _1frageme0 _16s97g7ac">
             <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg2 _1fragemgj">
@@ -40,5 +40,5 @@
             </div>
         </div>
     </div>
-    <div></div>
+    <div class="checkout-header-side-item"></div>
 </div>
