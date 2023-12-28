@@ -94,6 +94,8 @@
             <div class="k-form__actions">
                 <div class="row">
                     <div class="col-lg-6">
+                        <input type="hidden" name="status" value="">
+
                         <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Search') }}</button>
                         <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Reset') }}</button>
                     </div>
