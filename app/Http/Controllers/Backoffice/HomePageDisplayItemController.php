@@ -49,7 +49,7 @@ class HomePageDisplayItemController extends BaseController
     public function create(Request $request)
     {
         $homePageDisplayTypeEnumLabels = HomePageDisplayType::labels();
-        $inventories = $this->inventoryService->allAvailable();
+        $inventories = $this->inventoryService->allAvailable(['scopes' => ['feDisplay']]);
         $collections = $this->collectionService->allAvailable(['scopes' => ['feDisplay']]);
         $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $postCategories = $this->postCategoryService->allAvailable(['scopes' => ['feDisplay']]);
@@ -62,7 +62,7 @@ class HomePageDisplayItemController extends BaseController
     {
         $homePageDisplayItem = $this->homePageDisplayItemService->show($id);
         $homePageDisplayTypeEnumLabels = HomePageDisplayType::labels();
-        $inventories = $this->inventoryService->allAvailable();
+        $inventories = $this->inventoryService->allAvailable(['scopes' => ['feDisplay']]);
         $collections = $this->collectionService->allAvailable(['scopes' => ['feDisplay']]);
         $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $postCategories = $this->postCategoryService->allAvailable(['scopes' => ['feDisplay']]);
