@@ -14,6 +14,14 @@ const MY_CART = {
             utils_quantity(quantityID, {
                 callbacks: {
                     onChange: (value) => {
+
+                        $cartItem.find('[data-value-cart-item-total-price]').text('đang tính...');
+                        $cartItem.find('[cart-remove-button]').addClass('prevent');
+
+
+                        $('[data-value-cart-total-price]').text('đang tính...');
+                        $('#checkout').prop('disabled', true);
+
                         utils_helper.debounce(process, 1000)();
 
                         function process() {
@@ -21,6 +29,9 @@ const MY_CART = {
                                 $cartItem.find('[data-value-cart-item-price]').text(utils_helper.formatPrice(price));
                                 $cartItem.find('[data-value-cart-item-total-price]').text(utils_helper.formatPrice(total_price));
                                 USER_ORDER_CART.updateCartInfo();
+
+                                $('#checkout').prop('disabled', false);
+                                $cartItem.find('[cart-remove-button]').removeClass('prevent');
                             });
                         }
                     }

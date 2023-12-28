@@ -15,6 +15,7 @@ const USER_ORDER_CART = {
             url: CART_ROUTES.api_cart_info,
             method: 'GET',
             success: (response) => {
+                console.log({ response });
                 $('[data-value-cart-total-quantity]').text(response?.total_quantity || 0);
                 $('[data-value-cart-total-price]').text(utils_helper.formatPrice(response?.total_price || 0));
 

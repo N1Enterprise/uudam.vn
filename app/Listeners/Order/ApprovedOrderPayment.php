@@ -2,9 +2,11 @@
 
 namespace App\Listeners\Order;
 
+use App\Enum\PaymentStatusEnum;
 use App\Events\Deposit\DepositApproved;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\DepositTransaction;
+use App\Services\OrderPaymentService;
 use App\Services\OrderService;
 
 class ApprovedOrderPayment implements ShouldQueue
@@ -28,13 +30,15 @@ class ApprovedOrderPayment implements ShouldQueue
         /** @var DepositTransaction */
         $transaction = $event->transaction;
 
-        OrderService::make()->approvePayment($transaction->order->id);
+        OrderPaymentService::make()->approve($transaction->order);
     }
 
     public function shouldQueue($event)
     {
         $transaction = $event->transaction;
 
-        return $transaction->order_id;
+        $order = OrderService::make()->show($transaction->order->id);
+
+        return boolean($transaction->order_id) && $order->payment_status == PaymentStatusEnum::PENDING;
     }
 }

@@ -84,9 +84,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                         <tbody>
                             @foreach (data_get($order, 'orderItems', []) as $item)
                             <tr class="cart-item order-history__items-item">
-                                <td class="cart-item__media">
+                                <td class="cart-item__media" width="150">
                                     <div class="cart-item__image-container gradient global-media-settings">
-                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="100" height="100">
+                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="150" height="150">
                                         <span class="order-history-item-quantity">x{{ data_get($item, 'quantity') }}</span>
                                     </div>
                                 </td>
@@ -102,8 +102,8 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                         @endphp
                                         @foreach (data_get($item, 'inventory.attributes', []) as $attribute)
                                         <div class="product-option">
-                                            <dt>{{ data_get($attribute, 'name') }}: </dt>
-                                            <dd>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</dd>
+                                            <span>{{ data_get($attribute, 'name') }}: </span>
+                                            <span>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</span>
                                         </div>
                                         @endforeach
                                     </dl>

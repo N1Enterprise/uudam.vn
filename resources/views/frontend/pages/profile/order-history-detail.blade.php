@@ -64,6 +64,12 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         bottom: 0px;
         border-top-left-radius: 10px;
     }
+    .order-info__item {
+        border: 1px solid #e8e8e8;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 3px;
+    }
 </style>
 @endsection
 
@@ -156,8 +162,8 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                     @endphp
                                     @foreach (data_get($item, 'inventory.attributes', []) as $attribute)
                                     <div class="product-option">
-                                        <dt>{{ data_get($attribute, 'name') }}: </dt>
-                                        <dd>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</dd>
+                                        <span>{{ data_get($attribute, 'name') }}: </dt>
+                                        <span>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</span>
                                     </div>
                                     @endforeach
                                 </dl>

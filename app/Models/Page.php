@@ -35,14 +35,16 @@ class Page extends BaseModel
         'display_on_frontend',
     ];
 
-    public static function allFromCache($displayIn)
+    public static function allFromCacheForGuest($displayIn)
     {
         $cacheKey = 'page:'.$displayIn;
 
         return Cache::tags([self::CACHE_TAG])->rememberForever($cacheKey, function() use ($displayIn) {
             return self::whereJsonContains('display_in', $displayIn)
+                ->where('status', 1)
+                ->where('display_on_frontend', 1)
                 ->orderBy('order')
-                ->get(['name', 'slug', 'status', 'title', 'content', 'display_on_frontend']);
+                ->get(['name', 'slug']);
         });
     }
 

@@ -4,6 +4,7 @@ use App\Classes\AdminAuth;
 use App\Common\Money;
 use App\Enum\BaseEnum;
 use App\Enum\TimeZoneEnum;
+use App\Models\BaseModel;
 use App\Vendors\Localization\Money as LocalizationMoney;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+
+if (! function_exists('get_model_key')) {
+    function get_model_key($model)
+    {
+        return BaseModel::getModelKey($model);
+    }
+}
 
 if (! function_exists('get_utc_offset')) {
     function getUtcOffset($decryptCookie = false)

@@ -45,10 +45,9 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('SYSTEM_SETTING', $this->getSystemSetting());
 
-            $feAvailabelPages = Page::allFromCache(PageDisplayInEnum::FOOTER)->where('status', 1)->where('display_on_frontend', 1);
+            $feAvailabelPages = Page::allFromCacheForGuest(PageDisplayInEnum::FOOTER);
 
-            $view->with('FOOTER_PAGES', $feAvailabelPages->where('slug', '!=', 'gioi-thieu'));
-            $view->with('ABOUT_US', $feAvailabelPages->where('slug', 'gioi-thieu')->first());
+            $view->with('FOOTER_PAGES', $feAvailabelPages);
         });
     }
 

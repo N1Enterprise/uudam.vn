@@ -68,13 +68,6 @@ class DepositService extends BaseService
                 $transaction = DB::transaction(function() use ($transaction, &$approvedTimes, $data, $quietly) {
                     $approvedTimes = $this->depositTransactionService->getApprovedTimesForUser($transaction->user_id);
 
-                    // $user = $transaction->user;
-                    // $wallet = $this->userWalletService->getWalletByCurrency($user->getKey(), $transaction->currency_code);
-
-                    // $this->userWalletService
-                    //     ->allowVoidTransfer()
-                    //     ->transfer();
-
                     $updateParams = array_merge(['status' => DepositStatusEnum::APPROVED], $data);
 
                     ++$approvedTimes;

@@ -2,12 +2,14 @@
 
 namespace App\Listeners\Order;
 
+use App\Enum\PaymentStatusEnum;
 use App\Events\Deposit\DepositDeclined;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\DepositTransaction;
+use App\Services\OrderPaymentService;
 use App\Services\OrderService;
 
-class CancelOrderPayment implements ShouldQueue
+class DeclineOrderPayment implements ShouldQueue
 {
     public $timeout = 300;
 
@@ -28,15 +30,15 @@ class CancelOrderPayment implements ShouldQueue
         /** @var DepositTransaction */
         $transaction = $event->transaction;
 
-        OrderService::make()->declined($transaction->order->id, [
-            'log' => [["[".now()."] DECLINED BY DEPOSIT DECLINED"]]
-        ]);
+        OrderPaymentService::make()->decline($transaction->order);
     }
 
     public function shouldQueue($event)
     {
         $transaction = $event->transaction;
 
-        return $transaction->order_id;
+        $order = OrderService::make()->show($transaction->order->id);
+
+        return boolean($transaction->order_id) && $order->payment_status == PaymentStatusEnum::PENDING;
     }
 }

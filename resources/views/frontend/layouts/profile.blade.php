@@ -34,6 +34,12 @@
     .profile-tabs-nav .profile-tabs-nav__tab.active {
         text-decoration: underline!important;
     }
+
+    .product-option {
+        font-size: 1.4rem;
+        word-break: break-all;
+        line-height: calc(1 + 0.5 / var(--font-body-scale));
+    }
 </style>
 
 @yield('profile_style')
