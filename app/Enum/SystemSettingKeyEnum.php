@@ -10,6 +10,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MAINTENANCE_START_DATE = 'maintenance_start_date';
     public const MAINTENANCE_END_DATE = 'maintenance_end_date';
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
+    public const MAINTENANCE_ALLOW_IPS_ACCESS = 'maintenance_allow_ips_access';
 
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
     public const ENABLE_USER_EMAIL_VERIFICATION = 'enable_user_email_verification';
@@ -48,6 +49,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::IMAGE_CONFIGURATION,
             self::ADMIN_TOP_NAVIGATION,
             self::SUPPORTED_OAUTH_PROVIDERS,
+            self::MAINTENANCE_ALLOW_IPS_ACCESS,
         ];
     }
 }
