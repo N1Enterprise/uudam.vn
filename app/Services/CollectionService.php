@@ -22,7 +22,7 @@ class CollectionService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->collectionRepository
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['name', 'slug', 'cta_label'])
             ->search([]);
 
         return $result;

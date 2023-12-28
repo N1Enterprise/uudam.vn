@@ -168,25 +168,15 @@ const COLLECTION_LINKED_INVENTORIES = {
                                         <div class="price__container">
                                             <div class="price__regular">
                                                 <span class="visually-hidden visually-hidden--inline">Giá cả phải chăng</span>
-                                                <span class="price-item price-item--regular"> Giá từ ${inventory.sale_price} </span>
+                                                <span class="price-item price-item--regular"> Giá từ ${inventory.final_price} </span>
+                                                ${
+                                                    inventory.has_offer_price ? `
+                                                        <del class="price-item--sub">${ inventory.sub_price }</del>   
+                                                        <span class="price-discount-percent">-${ inventory.discount_percent }%</span>
+                                                        <div class="price-for-saving">(Tiết kiệm <span>${ inventory.price_for_saving }</span>)</div>
+                                                    ` : ''
+                                                }
                                             </div>
-                                            <div class="price__sale">
-                                                <span class="visually-hidden visually-hidden--inline">Giá cả phải chăng</span>
-                                                <span>
-                                                <s class="price-item price-item--regular"></s>
-                                                </span>
-                                                <span class="visually-hidden visually-hidden--inline">Sale price</span>
-                                                <span class="price-item price-item--sale price-item--last"> Giá từ ${inventory.sale_price} </span>
-                                            </div>
-                                            <small class="unit-price caption hidden">
-                                            <span class="visually-hidden">Unit price</span>
-                                            <span class="price-item price-item--last">
-                                            <span></span>
-                                            <span aria-hidden="true">/</span>
-                                            <span class="visually-hidden">&nbsp;per&nbsp;</span>
-                                            <span></span>
-                                            </span>
-                                            </small>
                                         </div>
                                     </div>
                                 </div>

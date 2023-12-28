@@ -4,9 +4,6 @@
             width: 40%;
         }
     }
-</style>
-
-<style>
     header-drawer {
         justify-self: start;
         margin-left: -1.2rem;
@@ -360,17 +357,6 @@
         display: flex;
     }
 
-    .ls-box-title {
-        text-align: left;
-        font-family: Poppins, sans-serif;
-        font-size: 24px;
-        font-weight: 400;
-    }
-
-    .ls-box-title {
-        margin: 10px 0;
-    }
-
     .slick-prev.slick-arrow {
         display: none!important;
     }
@@ -430,7 +416,6 @@
         border: 1px solid #d80101;
     }
 
-    /* read more in collection description */
     .read_more_span {
         overflow: hidden;
         display: block;
@@ -452,22 +437,13 @@
         margin: 0 auto;
     }
 
-    /* Modal force z-index*/
     .modal__content {
         z-index: 1000;
     }
 
-    /*Infinite Scroll*/
     .Infinite-Scroll-Pagination {
         display: flex;
         justify-content: center;
-    }
-
-    .recommendation-items {
-        margin: 0 -5px;
-    }
-    .recommendation-target {
-        padding: 0 7px;
     }
 
     .recommendation-target .ls-link {

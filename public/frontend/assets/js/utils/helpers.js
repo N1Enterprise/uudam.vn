@@ -171,6 +171,14 @@ const utils_quantity = (selector, config = {}) => {
         FINAL_CONFIG.callbacks.onChange(value);
     }
 
+    ELEMENT_INCREASE.on('dblclick', function(e) {
+        e.preventDefault();
+    });
+
+    ELEMENT_INCREASE.on('dblclick', function(e) {
+        e.preventDefault();
+    });
+
     ELEMENT_INCREASE.on('click', function() {
         const value    = +ELEMENT_INPUT.val();
         const maxValue = +ELEMENT_INPUT.attr('max');

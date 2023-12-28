@@ -335,6 +335,7 @@ const FORM_ORDER = {
                     $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
                     $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
                     USER_ORDER_CART.updateCartInfo();
+                    toastr.success('Đã thêm sản phẩm vào giỏ.');
                 },
             });
         });

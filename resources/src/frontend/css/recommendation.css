@@ -36,8 +36,6 @@ div.ls-recommendation-box .limespot-recommendation-box-item,limespot-box .limesp
     margin-left: 0;
     margin-top: 0;
     max-width: 200px;
-    /* padding: 0 5px; */
-    /* padding: 0; */
     position: relative;
     transition: transform .5s;
     -webkit-transition: -webkit-transform .5s;
@@ -68,14 +66,12 @@ div.ls-recommendation-box div.limespot-recommendation-box-carousel,limespot-box 
     margin: 0!important;
     overflow-x: auto!important;
     overflow-y: hidden;
-    /* padding: 10px 0; */
     position: relative;
     width: 100%
 }
 
 div.ls-recommendation-box div.limespot-recommendation-box-carousel-container,limespot-box div.limespot-recommendation-box-carousel-container {
     display: block;
-    /* margin: 0 0 10px!important; */
     position: relative;
     width: 100%
 }
@@ -567,16 +563,6 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
 }
 
 @media screen and (max-width: 749px) {
-    div.ls-recommendation-box .limespot-recommendation-box-item, limespot-box .limespot-recommendation-box-item {
-        /* padding: 0 5px; */
-    }
-    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
-        /* padding: 0 10px; */
-    }
-    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-price-wrap {
-        /* display: flex; */
-        /* flex-direction: column; */
-    }
     .ls-original-price.ls-original-price {
         order: 1;
     }
@@ -590,10 +576,6 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         flex: 1;
         min-width: 190px!important;
     }
-
-    /* limespot-box[data-box-style=carousel] .limespot-recommendation-box-item img {
-        object-fit: cover!important;
-    } */
 }
 
 @media screen and (max-width: 400px) {
@@ -632,4 +614,27 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
     color: #979797 !important;
     margin-left: 5px;
     font-weight: normal;
+}
+
+.ls-info-wrap {
+    text-align: left;
+}
+
+.ls-box-title {
+    text-align: left;
+    font-family: Poppins, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.ls-box-title {
+    margin: 10px 0;
+}
+
+.recommendation-items {
+    margin: 0 -5px;
+}
+
+.recommendation-target {
+    padding: 0 7px;
 }

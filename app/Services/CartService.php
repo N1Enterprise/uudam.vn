@@ -45,10 +45,6 @@ class CartService extends BaseService
                     $q->where('user_id', $userId);
                 }
 
-                if ($createdAtRange = data_get($data, 'created_at_range', [])) {
-                    $q->whereBetween('created_at', $createdAtRange);
-                }
-
                 $q->whereRelation('user', function($q) use ($data) {
                     $userUsernameOrEmail = data_get($data, 'user_username_or_email');
 
@@ -65,14 +61,14 @@ class CartService extends BaseService
                     }
                 });
 
-                $q->whereRelation('order', function($q) use ($data) {
-                    $orderCode = data_get($data, 'order_code');
+                // $q->whereRelation('order', function($q) use ($data) {
+                //     $orderCode = data_get($data, 'order_code');
 
-                    if (! empty($orderCode)) {
-                        $q->where('order_code', $orderCode)
-                            ->orWhere('uuid', $orderCode);
-                    }
-                });
+                //     if (! empty($orderCode)) {
+                //         $q->where('order_code', $orderCode)
+                //             ->orWhere('uuid', $orderCode);
+                //     }
+                // });
             })
             ->search([]);
 
