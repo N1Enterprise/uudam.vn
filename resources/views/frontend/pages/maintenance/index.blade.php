@@ -54,6 +54,15 @@
             .master-image {
                 width: 100%!important;
             }
+
+            .allow-ip-button {
+                padding: 4px 10px;
+                background: #fff;
+                border-radius: 3px;
+                margin-top: 10px;
+                font-weight: bold;
+                color: #025b50!important;
+            }
         </style>
     </head>
     <body class="home page-template page-template-page-blank page-template-page-blank-php page page-id-18 theme-flatsome woo-variation-swatches wvs-behavior-blur wvs-theme-flatsome wvs-show-label lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
@@ -75,6 +84,11 @@
                                         <div style="font-size: 14px; text-align: center;">
                                             <span style="font-weight: bold;">Từ ngày <u>{{ ($maintenanceStartDate)->format('d/m/Y H:i') }}</u> đến ngày <u>{{ ($maintenanceEndDate)->format('d/m/Y H:i') }}</u></span>
                                         </div>
+                                        @if ($isMaintenanceAllowIp)
+                                        <div style="font-size: 14px; text-align: center; display: flex; justify-content: center;">
+                                            <a href="{{ route('fe.web.home') }}" class="allow-ip-button">IP của bạn có thể truy cập vào trang chủ</a>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

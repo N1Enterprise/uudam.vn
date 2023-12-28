@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Common\Cache;
 use App\Enum\PageDisplayInEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Artisan;
 
 class Page extends BaseModel
 {
@@ -14,6 +16,8 @@ class Page extends BaseModel
     use SoftDeletes;
     use HasImpactor;
     use HasFeUsage;
+
+    public const CACHE_TAG = 'page';
 
     protected $fillable = [
         'name',
@@ -32,6 +36,17 @@ class Page extends BaseModel
         'display_on_frontend',
     ];
 
+    public static function allFromCache($displayIn)
+    {
+        $cacheKey = 'page:'.$displayIn;
+
+        return Cache::tags([self::CACHE_TAG])->rememberForever($cacheKey, function() use ($displayIn) {
+            return self::whereJsonContains('display_in', $displayIn)
+                ->orderBy('order')
+                ->get(['name', 'slug', 'status', 'title', 'content', 'display_on_frontend']);
+        });
+    }
+
     protected $casts = [
         'display_in' => 'json'
     ];
@@ -44,5 +59,17 @@ class Page extends BaseModel
     public function scopeDisplayInCheckout($query)
     {
         return $query->whereJsonContains('display_in', PageDisplayInEnum::CHECKOUT);
+    }
+
+    public static function flush($tags = [])
+    {
+        Cache::tags($tags)->flush();
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            SystemSetting::flush(self::CACHE_TAG);
+        });
     }
 }
