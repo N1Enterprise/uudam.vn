@@ -134,6 +134,7 @@
                 <input type="hidden" name="quantity" value="1">
                 <input type="hidden" name="has_combo" value="0">
                 <div class="product-form__buttons">
+                    <a href="{{ route('fe.web.user.checkout.confirmation') }}" class="link" style="margin-bottom: 10px;">Trang Thanh Toán</a>
                     <button type="submit" name="add" class="product-form__submit button button--full-width button--primary">
                         <span>Thêm Vào Giỏ Hàng</span>
                         <div class="loading-overlay__spinner hidden">

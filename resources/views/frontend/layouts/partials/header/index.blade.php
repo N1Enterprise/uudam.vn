@@ -59,7 +59,7 @@
                                                         @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                                         <div class="mm-list-name" style="height: 37px;">
                                                             <span>
-                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url', 'javascript:void(0)') }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
+                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url') ?? 'javascript:void(0)' }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                                             </span>
                                                         </div>
                                                         @endif
@@ -157,7 +157,7 @@
                                     @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                     <div class="mm-list-name" style="height: 37px;">
                                         <span>
-                                            <a href="{{ data_get($menuSubGroup, 'redirect_url', 'javascript:void(0)') }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
+                                            <a href="{{ data_get($menuSubGroup, 'redirect_url') ?? 'javascript:void(0)' }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                         </span>
                                     </div>
                                     @endif
