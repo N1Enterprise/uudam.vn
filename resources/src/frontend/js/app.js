@@ -1,4 +1,8 @@
-const appEnv = utils_helper.boDataShared().app_env;
+const appEnv = (() => {
+    const boShared = JSON.parse($('[data-bo-shared]').attr('data-bo-shared') || '{}');
+
+    return boShared?.app_env;
+})();
 
 $(document).ready(function() {
 

@@ -40,6 +40,9 @@
     <link href="{{ asset_with_version('frontend/bundle/css/latest-661.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/latest-669.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <input type="hidden" data-bo-shared='@json($CONSTANTS_SHARED)'>
+    <input type="hidden" data-canprocessasthesame="{{ !empty($AUTHENTICATED_USER) }}" data-authenticated-user='@json($AUTHENTICATED_USER)'>
+
     @yield('style')
 
     <div class="app">
@@ -67,6 +70,7 @@
     </div>
 
     <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_with_version('frontend/bundle/js/app.min.js') }}" type="text/javascript"></script>
 
     @yield('js_scipt')
 </body>
