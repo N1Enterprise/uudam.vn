@@ -15,11 +15,11 @@ const MY_CART = {
                 callbacks: {
                     onChange: (value) => {
 
-                        $cartItem.find('[data-value-cart-item-total-price]').text('đang tính...');
+                        $cartItem.find('[data-value-cart-item-total-price]').text('...');
                         $cartItem.find('[cart-remove-button]').addClass('prevent');
 
 
-                        $('[data-value-cart-total-price]').text('đang tính...');
+                        $('[data-value-cart-total-price]').text('...');
                         $('#checkout').prop('disabled', true);
 
                         utils_helper.debounce(process, 1000)();
