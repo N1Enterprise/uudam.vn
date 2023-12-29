@@ -11,6 +11,22 @@
 			'label' => __('Edit Product Review'),
 		]
 	];
+
+	$statusClass = 'alert-primary';
+
+	switch ($productReview->status) {
+		case enum('ProductReviewStatusEnum')::PENDING:
+			$statusClass = 'alert-primary';
+			break;
+		case enum('ProductReviewStatusEnum')::APPROVED:
+			$statusClass = 'alert-success';
+			break;
+		case enum('ProductReviewStatusEnum')::DECLINED:
+			$statusClass = 'alert-danger';
+			break;
+		default:
+			break;
+	}
 @endphp
 
 @section('header')
@@ -21,6 +37,12 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
+	<div class="alert {{ $statusClass }}" role="alert">
+		<div class="alert-text">
+			<span style="text-transform: uppercase; font-weight: bold;">{{ $productReview->status_name }}!</span>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 
@@ -78,6 +100,11 @@
                                     @error('product_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+
+									<div class="mt-3">
+										<a href="{{ route('fe.web.products.index', data_get($productReview, 'product.slug')) }}" target="_blank" class="btn btn-outline-secondary btn-sm">{{ __('FE Review') }}</a>
+										<a href="{{ route('bo.web.products.edit', data_get($productReview, 'product.id')) }}" target="_blank" class="btn btn-outline-secondary btn-sm">{{ __('BO Review') }}</a>
+									</div>
                                 </div>
 
                                 <div class="form-group">
@@ -102,14 +129,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Status') }} *</label>
-                                    <select name="status" title="--{{ __('Select Status') }}--" class="form-control k_selectpicker" {{ $productReview->status == $productReviewStatusEnum::DECLINED ? 'disabled' : '' }}>
-                                        @foreach($productReviewStatusEnumLabels as $key => $label)
-                                        <option value="{{ $key }}" {{ old('status', $productReview->status) == $key ? 'selected' : '' }}>{{ $label }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('type')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <input type="text" value="{{ $productReview->status_name }}" class="form-control" disabled>
                                 </div>
 
                                 <div class="form-group">
@@ -119,10 +139,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="k-portlet__foot">
+					<div class="k-portlet__foot d-flex justify-content-between">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
 							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+						</div>
+						<div class="k-form__actions">
+							<button type="button" class="btn btn-danger" id="btn_decline" data-route="{{ route('bo.api.product-reviews.decline', $productReview->id) }}" {{ $productReview->isDeclined() ? 'disabled' : '' }}>{{ __('Decline') }}</button>
+							<button type="button" class="btn btn-success" id="btn_approve" data-route="{{ route('bo.api.product-reviews.approve', $productReview->id) }}" {{ $productReview->isApproved() ? 'disabled' : '' }}>{{ __('Approve') }}</button>
 						</div>
 					</div>
 				</form>
@@ -131,4 +155,37 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+
+@section('js_script')
+<script>
+    $('#btn_decline').on('click', function() {
+		if (!confirm("{{ __('Are you sure to decline?') }}")) {
+			return;
+		}
+
+		$.ajax({
+			url: $(this).attr('data-route'),
+			method: 'PUT',
+			success: () => {
+				location.reload();
+			},
+		});
+	});
+
+	$('#btn_approve').on('click', function() {
+		if (!confirm("{{ __('Are you sure to approve?') }}")) {
+			return;
+		}
+
+		$.ajax({
+			url: $(this).attr('data-route'),
+			method: 'PUT',
+			success: () => {
+				location.reload();
+			},
+		});
+	});
+</script>
 @endsection

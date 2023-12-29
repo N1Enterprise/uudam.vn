@@ -62,16 +62,16 @@
                     <div class="spr-reviews">
                         @if(has_data($productReviews))
                             @foreach ($productReviews as $review)
-                            <div class="spr-review" data-status="{{ $review->status }}" data-status-name="{{ $review->status_name }}">
+                            <div class="spr-review" data-status="{{ data_get($review, 'status') }}" data-status-name="{{ data_get($review, 'status_name') }}">
                                 <div class="spr-review-header">
-                                    <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, $review->rating_type, $review->rating_type_name) }}</span>
-                                    <h3 class="spr-review-header-title">{{ $review->user_name }}</h3>
+                                    <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, data_get($review, 'rating_type'), data_get($review, 'rating_type_name')) }}</span>
+                                    <h3 class="spr-review-header-title">{{ data_get($review, 'user_name') }}</h3>
                                     <span class="spr-review-header-byline">
-                                        <strong>{{ date('d/m/Y H:i', strtotime($review->created_at)) }}</strong>
+                                        <strong>{{ date('d/m/Y H:i', strtotime(data_get($review, 'created_at'))) }}</strong>
                                     </span>
                                 </div>
                                 <div class="spr-review-content">
-                                    <p class="spr-review-content-body">{{ $review->content }}</p>
+                                    <p class="spr-review-content-body">{{ data_get($review, 'content') }}</p>
                                 </div>
                             </div>
                             @endforeach

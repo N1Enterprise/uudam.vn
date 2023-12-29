@@ -99,7 +99,7 @@
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 10px;">
-                                        <input type="password" name="password" id="signup-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng Nhập" autocomplete="current-password">
+                                        <input type="text" name="password" id="signup-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng Nhập" autocomplete="current-password">
                                         <label class="field__label" for="signup-password">Mật Khẩu <span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="password"></div>

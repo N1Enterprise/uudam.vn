@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Cms\MenuCms;
 use App\Enum\MenuTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
-use Illuminate\Support\Facades\Artisan;
 
 class Menu extends BaseModel
 {
@@ -60,8 +60,7 @@ class Menu extends BaseModel
     protected static function booted()
     {
         static::saved(function ($model) {
-            SystemSetting::flush(self::CACHE_TAG);
-            Artisan::call('cache:clear');
+            MenuCms::flush();
         });
     }
 }

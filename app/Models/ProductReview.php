@@ -46,6 +46,16 @@ class ProductReview extends BaseModel
         return $query->where('status', ProductReviewStatusEnum::PENDING);
     }
 
+    public function isApproved()
+    {
+        return $this->status == ProductReviewStatusEnum::APPROVED;
+    }
+
+    public function isDeclined()
+    {
+        return $this->status == ProductReviewStatusEnum::DECLINED;
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

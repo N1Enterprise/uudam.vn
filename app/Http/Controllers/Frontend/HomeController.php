@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Enum\BannerTypeEnum;
+use App\Cms\BannerCms;
+use App\Cms\HomePageDisplayOrderCms;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
 use App\Services\BannerService;
@@ -23,9 +24,9 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $homeBanners = $this->bannerService->searchAvailabelByGuest(['type' => BannerTypeEnum::HOME_BANNER]);
+        $homeBanners = BannerCms::make()->homeBanners();
         $videoOutsideUI = SystemSetting::from(SystemSettingKeyEnum::VIDEO_OUTSIDE_UI)->get(null, []);
-        $homePageDisplayOrders = $this->homePageDisplayOrderService->searchAvailableByGuest([]);
+        $homePageDisplayOrders = HomePageDisplayOrderCms::make()->available();
 
         return $this->view('frontend.pages.home.index', compact(
             'homeBanners',

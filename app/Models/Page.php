@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Cms\PageCms;
 use App\Common\Cache;
 use App\Enum\PageDisplayInEnum;
 use App\Models\Traits\Activatable;
@@ -15,8 +16,6 @@ class Page extends BaseModel
     use SoftDeletes;
     use HasImpactor;
     use HasFeUsage;
-
-    public const CACHE_TAG = 'page';
 
     protected $fillable = [
         'name',
@@ -34,19 +33,6 @@ class Page extends BaseModel
         'updated_by_id',
         'display_on_frontend',
     ];
-
-    public static function allFromCacheForGuest($displayIn)
-    {
-        $cacheKey = 'page:'.$displayIn;
-
-        return Cache::tags([self::CACHE_TAG])->rememberForever($cacheKey, function() use ($displayIn) {
-            return self::whereJsonContains('display_in', $displayIn)
-                ->where('status', 1)
-                ->where('display_on_frontend', 1)
-                ->orderBy('order')
-                ->get(['name', 'slug']);
-        });
-    }
 
     protected $casts = [
         'display_in' => 'json'
@@ -70,7 +56,7 @@ class Page extends BaseModel
     protected static function booted()
     {
         static::saved(function ($model) {
-            SystemSetting::flush(self::CACHE_TAG);
+            PageCms::flush();
         });
     }
 }

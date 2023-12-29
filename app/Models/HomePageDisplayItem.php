@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Cms\HomePageDisplayOrderCms;
 use App\Enum\HomePageDisplayType;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
@@ -33,5 +34,12 @@ class HomePageDisplayItem extends BaseModel
     public function group()
     {
         return $this->belongsTo(HomePageDisplayOrder::class, 'group_id', 'id');
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            HomePageDisplayOrderCms::flush();
+        });
     }
 }

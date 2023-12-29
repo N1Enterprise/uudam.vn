@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Cms\ProductReviewCms;
 use App\Enum\ProductReviewRatingEnum;
 use App\Exceptions\ModelNotFoundException;
 use App\Services\AttributeService;
 use App\Services\InventoryService;
 use App\Services\PostService;
-use App\Services\ProductReviewService;
 use Illuminate\Http\Request;
 
 class ProductController extends BaseController
@@ -20,13 +20,11 @@ class ProductController extends BaseController
     public function __construct(
         InventoryService $inventoryService,
         AttributeService $attributeService,
-        PostService $postService,
-        ProductReviewService $productReviewService
+        PostService $postService
     ) {
         $this->inventoryService = $inventoryService;
         $this->attributeService = $attributeService;
         $this->postService = $postService;
-        $this->productReviewService = $productReviewService;
     }
 
     public function index(Request $request, $slug)
@@ -54,7 +52,7 @@ class ProductController extends BaseController
 
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
-        $productReviews = $this->productReviewService->allAvailable(['columns' => ['id', 'user_name', 'rating_type', 'status', 'created_at', 'content']]);
+        $productReviews = ProductReviewCms::make()->allApproved();
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',

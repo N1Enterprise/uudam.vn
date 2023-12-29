@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Cms\MenuCms;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
-use Illuminate\Support\Facades\Artisan;
 
 class MenuSubGroup extends BaseModel
 {
@@ -40,8 +40,7 @@ class MenuSubGroup extends BaseModel
     protected static function booted()
     {
         static::saved(function ($model) {
-            SystemSetting::flush(self::CACHE_TAG);
-            Artisan::call('cache:clear');
+            MenuCms::flush();
         });
     }
 }

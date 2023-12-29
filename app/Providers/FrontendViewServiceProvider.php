@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use App\Classes\Contracts\UserAuthContract;
-use App\Common\Menu;
+use App\Cms\MenuCms;
+use App\Cms\PageCms;
 use App\Enum\PageDisplayInEnum;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\Page;
@@ -36,7 +37,7 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('APP_URL', config('app.url'));
 
-            $view->with('APP_MENU_GROUPS', $this->getAppMenus());
+            $view->with('APP_MENU_AVAILABEL', MenuCms::make()->availabel());
 
             /** @var UserAuthContract */
             $userAuth = app(UserAuthContract::class);
@@ -45,7 +46,7 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('SYSTEM_SETTING', $this->getSystemSetting());
 
-            $feAvailabelPages = Page::allFromCacheForGuest(PageDisplayInEnum::FOOTER);
+            $feAvailabelPages = PageCms::make()->ofFooter();
 
             $view->with('FOOTER_PAGES', $feAvailabelPages);
 
@@ -61,13 +62,6 @@ class FrontendViewServiceProvider extends ServiceProvider
     private function registerDirectives()
     {
 
-    }
-
-    public function getAppMenus()
-    {
-        $menuGroups = Menu::getMenus();
-
-        return $menuGroups;
     }
 
     protected function getSystemSetting()

@@ -32,9 +32,11 @@
 @endpush
 
 @section('content_body')
+@if (has_data($homeBanners))
 <section class="shopify-section section">
     @include('frontend.pages.home.partials.section-banner')
 </section>
+@endif
 
 @if (has_data($homePageDisplayOrders))
     @foreach ($homePageDisplayOrders as $homePageDisplayOrder)
