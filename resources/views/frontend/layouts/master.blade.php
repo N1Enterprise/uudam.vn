@@ -51,11 +51,7 @@
         @stack('modals')
     </main>
 
-    <input type="hidden" data-bo-shared='@json([
-        'bo_host' => config('app.url'),
-        'fe_host' => config('app.user_host'),
-        'app_id'  => config('app.app_id')
-    ])'>
+    <input type="hidden" data-bo-shared='@json($CONSTANTS_SHARED)'>
     <input type="hidden" data-canprocessasthesame="{{ !empty($AUTHENTICATED_USER) }}" data-authenticated-user='@json($AUTHENTICATED_USER)'>
 
     @include('frontend.layouts.partials.footer.index')
@@ -75,6 +71,7 @@
     <script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/assets/js/utils/router.js') }}" type="text/javascript"></script>
 
+    <script src="{{ asset_with_version('frontend/bundle/js/app.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/bundle/js/authentication.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/bundle/js/menu-drawer.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('frontend/bundle/js/predictive-search.min.js') }}" type="text/javascript"></script>

@@ -61,5 +61,6 @@
     "/frontend/bundle/css/section-multicolumn.min.css": "/frontend/bundle/css/section-multicolumn.min.css",
     "/frontend/bundle/css/section-featured-blog.min.css": "/frontend/bundle/css/section-featured-blog.min.css",
     "/frontend/bundle/css/component-slider-1.min.css": "/frontend/bundle/css/component-slider-1.min.css",
-    "/frontend/bundle/css/section-image-banner.min.css": "/frontend/bundle/css/section-image-banner.min.css"
+    "/frontend/bundle/css/section-image-banner.min.css": "/frontend/bundle/css/section-image-banner.min.css",
+    "/frontend/bundle/js/app.min.js": "/frontend/bundle/js/app.min.js"
 }

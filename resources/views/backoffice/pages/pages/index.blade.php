@@ -76,8 +76,6 @@
     function renderDisplayInCallback(data, type, full) {
         const displayInList = data || [];
 
-        console.log({ displayInList });
-
         const count = displayInList?.length || 0;
 
         if (! count) {

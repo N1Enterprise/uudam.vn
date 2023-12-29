@@ -48,6 +48,13 @@ class FrontendViewServiceProvider extends ServiceProvider
             $feAvailabelPages = Page::allFromCacheForGuest(PageDisplayInEnum::FOOTER);
 
             $view->with('FOOTER_PAGES', $feAvailabelPages);
+
+            $view->with('CONSTANTS_SHARED', [
+                'bo_host' => config('app.url'),
+                'fe_host' => config('app.user_host'),
+                'app_id'  => config('app.app_id'),
+                'app_env' => config('app.env') 
+            ]);
         });
     }
 

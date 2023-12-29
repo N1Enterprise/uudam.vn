@@ -475,4 +475,7 @@
             --ratio-percent: 70%;
         }
     }
+    .overlay-prevent {
+        opacity: 0.3;
+    }
 </style>

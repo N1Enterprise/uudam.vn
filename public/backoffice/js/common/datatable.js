@@ -573,9 +573,6 @@ function parseMoneyColumn(obj, currencyField = 'currency_code') {
 }
 
 function renderMoneyElement(money, currencyCode) {
-
-    console.log({ money, currencyCode });
-
     [formattedMoney, formattedCurrencyCode] = fscommon.formatMoney(money, currencyCode).split(' ');
 
     return $('<span>').text(formattedMoney).append(

@@ -35,6 +35,7 @@ mix.webpackConfig({
 });
 
 mix
+    .js('resources/src/frontend/js/app.js', 'public/frontend/bundle/js/app.min.js')
     .js('resources/src/frontend/js/home-deferload.js', 'public/frontend/bundle/js/home-deferload.min.js')
     .js('resources/src/frontend/js/checkout-index.js', 'public/frontend/bundle/js/checkout-index.min.js')
     .js('resources/src/frontend/js/profile-user-info.js', 'public/frontend/bundle/js/profile-user-info.min.js')

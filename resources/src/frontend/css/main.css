@@ -97,3 +97,12 @@
     --variant-pills-shadow-vertical-offset: 4px;
     --variant-pills-shadow-blur-radius: 5px;
 }
+
+body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

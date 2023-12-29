@@ -226,6 +226,7 @@
 
         $table.DataTable().ajax.reload(function(data) {
             $form.find(':submit').prop('disabled', false);
+            DEPOSIT_TRANSACTION.loadTotalDeposit();
         });
     }
 

@@ -255,8 +255,6 @@
 
         const type = $(this).val();
 
-        console.log({ type });
-
         if (type == PAYMENT_OPTION_TYPE.PAYMENT_PROVIDER) {
             $('[name="payment_provider_id"]').trigger('change');
             $('[name="payment_provider_id"]').parents('.depent_on_type').removeClass('d-none');

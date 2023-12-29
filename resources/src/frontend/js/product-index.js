@@ -32,7 +32,6 @@ const MAIN_INVENTORY = {
     })(),
     inventory_combos: [],
     firstTrigger: () => {
-        // $('.attributes-values-item label.active').find('[name="attribute_value"]').trigger('change');
         FORM_ORDER.setDataOrder();
     },
     getFullData: () => {
@@ -121,27 +120,6 @@ const MAIN_INVENTORY = {
         MAIN_INVENTORY.inventory_combos = inventory?.product_combos || [];
     },
     renderInventory: (inventory) => {
-        // const { id, title, sku, sale_price, final_price, sub_price, stock_quantity, image, slug } = inventory;
-
-        // console.log({ final_price, sub_price });
-
-        // const newHref = PRODUCT_ROUTES.web_detail.replace(':slug', slug);
-
-        // $('[data-title]').text(title);
-        // $('[data-sku]').text(sku);
-        // $('[data-sale-price]').text(utils_helper.formatPrice(sale_price));
-        // $('[data-sale-price]').attr('data-price-value', sale_price);
-        // $('[data-inventory-id]').text(id);
-        // $('[data-stock-quantity]').attr('max', stock_quantity);
-        // $('[data-image-index="0"]').attr('src', image);
-        // $('[data-image-index="0"]').attr('srcset', image);
-        // $('[data-url]').val(newHref);
-
-        // $(document).prop('title', title);
-
-        // COMBO_INVENTORY.renderInventoryCombos(inventory?.product_combos || []);
-
-        // window.history.pushState('', '', newHref);
         const href = PRODUCT_ROUTES.web_detail.replace(':slug', inventory.slug);
 
         window.location.href = href;
@@ -248,33 +226,6 @@ const COMBO_INVENTORY = {
             $('[data-stock-quantity]').trigger('change');
         });
     },
-    // renderInventoryCombos: (productCombos) => {
-    //     $('.product-combos').toggleClass('d-none', !productCombos.length);
-
-    //     const html = productCombos?.map(function(item) {
-    //         return `
-    //         <div class="product-combos__item">
-    //             <div class="product-combos__item-image" title="${item.description}">
-    //                 <img src="${item.image}" alt="test">
-    //             </div>
-
-    //             <div class="product-combos__item-info">
-    //                 <div>
-    //                     <h3 class="product-combos-info-name" style="margin: 0">${item.name}</h3>
-    //                     <span class="product-combos-info-price">${utils_helper.formatPrice(item.sale_price)}</span>
-    //                 </div>
-    //                 <div class="product-combos__item-sale">
-    //                     <div class="product-form__input product-form__quantity">
-    //                         <span>${item.pivot.quantity} ${item.unit}</span>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         `;
-    //     }).join('');
-
-    //     $('[data-product-combo-list]').html(html);
-    // },
     recalculatePrice: (productQuantity) => {
         const { product_combos } = MAIN_INVENTORY.inventory_selected;
 
@@ -286,7 +237,6 @@ const COMBO_INVENTORY = {
         });
 
         MAIN_INVENTORY.inventory_combos = newProductCombos;
-        // COMBO_INVENTORY.renderInventoryCombos(newProductCombos);
     },
 };
 

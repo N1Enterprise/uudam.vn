@@ -144,7 +144,8 @@ const utils_helper = {
         return {
             bo_host: BO_DATA_SHARED?.bo_host,
             fe_host: BO_DATA_SHARED?.fe_host,
-            app_id: BO_DATA_SHARED?.app_id
+            app_id: BO_DATA_SHARED?.app_id,
+            app_env: BO_DATA_SHARED?.app_env,
         };
     },
 };
@@ -175,7 +176,7 @@ const utils_quantity = (selector, config = {}) => {
         e.preventDefault();
     });
 
-    ELEMENT_INCREASE.on('dblclick', function(e) {
+    ELEMENT_DECREASE.on('dblclick', function(e) {
         e.preventDefault();
     });
 
