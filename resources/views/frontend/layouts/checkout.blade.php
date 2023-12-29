@@ -19,21 +19,13 @@
 
     @yield('page_seo')
 
-    <!--begin::Web font -->
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-    <script>
-        WebFont.load({
-            google: {
-                "families": ["Poppins:300,400,500,600,700"]
-            },
-            active: function() {
-                sessionStorage.fonts = true;
+    <style>
+        @media screen and (max-width: 750px) {
+            .checkout-header-side-item {
+                display: none;
             }
-        });
-    </script>
-    <script nomodule="">
-        document.documentMode <= 11 && location.replace("/unsupported.html")
-    </script>
+        }
+    </style>
 </head>
 <body>
     <link href="{{ asset_with_version('frontend/bundle/css/latest-199.min.css') }}" rel="stylesheet" type="text/css" />

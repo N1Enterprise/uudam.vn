@@ -24,12 +24,6 @@ Thanh toán | {{ config('app.user_domain') }}
     select:disabled {
         background: #f9f9f9;
     }
-
-    @media screen and (max-width: 750px) {
-        .checkout-header-side-item {
-            display: none;
-        }
-    }
 </style>
 @endsection
 
