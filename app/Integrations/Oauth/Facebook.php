@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 
 class Facebook extends OauthTwoAbstractProvider
 {
-/**
+    /**
      * The base Facebook Graph URL.
      *
      * @var string
