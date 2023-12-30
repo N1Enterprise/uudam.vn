@@ -35,3 +35,7 @@ Route::middleware(['auth:user'])->group(function() {
     Route::get('checkout/payment/failure/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentFailure'])->name('user.checkout.payment.failure');
     Route::get('checkout/payment/success/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentSuccess'])->name('user.checkout.payment.success');
 });
+
+Route::get('/zalo_verifierOTYN8wBvB1TvsFi8gSLu1LJLgJ-uetjaEJCq.html', function() {
+    return view('frontend.3rd.zalo-dev-verify');
+});

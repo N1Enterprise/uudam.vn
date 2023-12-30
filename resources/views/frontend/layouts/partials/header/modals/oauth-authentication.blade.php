@@ -1,14 +1,14 @@
+@if (has_data( data_get($SYSTEM_SETTING, 'oauth_providers', []) ))
 <div class="social-authentication">
     <div class="social-authentication__title" style="padding: 10px 0; text-align: center;">
         <span>Đăng nhập với mạng xã hội</span>
     </div>
     <div style="display: flex; justify-content: center;">
-        <div class="social-authentication__item facebook" data-oauth-provider="facebook" data-oauth-login-route="{{ route('fe.api.user.oauth.providers') }}">
-            <img src="{{ asset_with_version('frontend/assets/images/shared/facebook.png') }}" alt="Facebook Login">
+        @foreach (data_get($SYSTEM_SETTING, 'oauth_providers', []) as $provider => $config)
+        <div class="social-authentication__item {{ $provider }}" data-oauth-provider="{{ $provider }}" data-oauth-login-route="{{ route('fe.api.user.oauth.providers') }}">
+            <img src="{{ data_get($config, 'logo') }}" alt="{{ $provider }} Login">
         </div>
-
-        <div class="social-authentication__item google" data-oauth-provider="google" data-oauth-login-route="{{ route('fe.api.user.oauth.providers') }}">
-            <img src="{{ asset_with_version('frontend/assets/images/shared/google.png') }}" alt="Google Login">
-        </div>
+        @endforeach
     </div>
 </div>
+@endif

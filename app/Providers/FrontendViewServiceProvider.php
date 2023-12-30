@@ -73,6 +73,14 @@ class FrontendViewServiceProvider extends ServiceProvider
             'receive_new_post_setting' => SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []),
             'search_setting' => SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []),
             'page_highlight_information' => SystemSetting::from(SystemSettingKeyEnum::PAGE_HIGHLIGHT_INFORMATION)->get(null, []),
+            'oauth_providers' => collect(SystemSetting::from(SystemSettingKeyEnum::SUPPORTED_OAUTH_PROVIDERS)->get(null, []))
+                ->filter(fn($provider) => boolean(data_get($provider, 'enable')))
+                ->sortBy('order')
+                ->map(function($provider) {
+                    return [
+                        'logo' => data_get($provider, 'logo'),
+                    ];
+                })
         ];
     }
 }
