@@ -14,9 +14,9 @@ class NotificationEventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        // Events\Order\OrderCreated::class => [
-            
-        // ],
+        Events\Order\OrderCreated::class => [
+            Listeners\Notifications\ProcessSendMailNewOrderToAdmin::class,  
+        ],
     ];
 
     /**
