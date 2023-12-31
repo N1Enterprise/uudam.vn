@@ -186,18 +186,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                 </div>
 
                 @if($order->canCancel())
-                <div class="buttons">
-                    <div>Để huỷ đơn vui lòng liên hệ với chúng tôi qua:</div>
-                    <div>
-                        <small>Số điện thoại:</small>
-                        <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
-                        <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.label') }})</span>
-                    </div>
-                    <div>
-                        <small>Zalo:</small>
-                        <a href="https://zalo.me/{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}" target="_blank">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
-                        <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.label') }})</span>
-                    </div>
+                <div class="buttons" style="text-align: right; font-size: 14px;">
+                    <div>Để huỷ đơn vui lòng liên hệ với chúng tôi qua</div>
+                    <div>Số điện thoại/zalo <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a></div>
                 </div>
                 @endif
             </div>
