@@ -31,7 +31,7 @@ class SystemSettingKeyEnum extends BaseEnum
     // OAuth
     public const SUPPORTED_OAUTH_PROVIDERS = 'supported_oauth_providers';
 
-    public const ENABLE_SEND_MAIL_WHEN_USER_ORDERED = 'enable_send_mail_when_user_ordered';
+    public const ENABLE_SEND_NEW_ORDER_TO_ADMIN = 'enable_send_new_order_to_admin';
 
     public static function all(): array
     {
@@ -54,7 +54,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SUPPORTED_OAUTH_PROVIDERS,
             self::MAINTENANCE_ALLOW_IPS_ACCESS,
             self::USER_FE_RESET_PASSWORD_LINK,
-            self::ENABLE_SEND_MAIL_WHEN_USER_ORDERED,
+            self::ENABLE_SEND_NEW_ORDER_TO_ADMIN,
         ];
     }
 }

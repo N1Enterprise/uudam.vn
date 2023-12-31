@@ -29,7 +29,7 @@ class ProcessSendMailNewOrderToAdmin implements ShouldQueue
      */
     public function handle(OrderCreated $event)
     {
-        $receivers = Arr::wrap(SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_MAIL_WHEN_USER_ORDERED)->get('receivers', []) ?? []);
+        $receivers = Arr::wrap(SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_NEW_ORDER_TO_ADMIN)->get('receivers', []) ?? []);
 
         /** @var Order */
         $order = $event->order;
@@ -43,8 +43,8 @@ class ProcessSendMailNewOrderToAdmin implements ShouldQueue
 
     public function shouldQueue()
     {
-        $enableSendMail = SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_MAIL_WHEN_USER_ORDERED)->get('enable');
-        $receivers = Arr::wrap(SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_MAIL_WHEN_USER_ORDERED)->get('receivers', []));
+        $enableSendMail = SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_NEW_ORDER_TO_ADMIN)->get('enable');
+        $receivers = Arr::wrap(SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_NEW_ORDER_TO_ADMIN)->get('receivers', []));
 
         return boolean($enableSendMail) && !empty($receivers);
     }
