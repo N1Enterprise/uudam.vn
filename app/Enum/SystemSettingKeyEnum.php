@@ -31,8 +31,6 @@ class SystemSettingKeyEnum extends BaseEnum
     // OAuth
     public const SUPPORTED_OAUTH_PROVIDERS = 'supported_oauth_providers';
 
-    public const SUPPORTED_LANGUAGES = 'supported_languages';
-
     public const MAIL_CONFIGURATION = 'mail_configuration';
 
     public static function all(): array
@@ -56,7 +54,6 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SUPPORTED_OAUTH_PROVIDERS,
             self::MAINTENANCE_ALLOW_IPS_ACCESS,
             self::USER_FE_RESET_PASSWORD_LINK,
-            self::SUPPORTED_LANGUAGES,
             self::MAIL_CONFIGURATION,
         ];
     }
