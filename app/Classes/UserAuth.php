@@ -3,7 +3,7 @@
 namespace App\Classes;
 
 use App\Classes\Contracts\UserAuthContract;
-use App\Models\User;
+use Illuminate\Support\Facades\Password;
 use Closure;
 
 class UserAuth implements UserAuthContract
@@ -22,7 +22,9 @@ class UserAuth implements UserAuthContract
 
     public function guardAs(string $guard)
     {
+        $this->guard = $guard;
 
+        return $this;
     }
 
     public function attempt(array $credentials = [])
@@ -47,16 +49,20 @@ class UserAuth implements UserAuthContract
 
     public function password()
     {
-
+        return Password::broker($this->passwordBroker);
     }
 
     public function forgotPassword($credentials = [], $callback = null)
     {
+        $status = $this->password()->sendResetLink($credentials, $callback);
 
+        return $status;
     }
 
     public function resetPassword($credentials, Closure $callback)
     {
+        $status = $this->password()->reset($credentials, $callback);
 
+        return $status;
     }
 }

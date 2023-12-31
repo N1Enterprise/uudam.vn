@@ -106,7 +106,7 @@ $(document).ready(function() {
     
     (() => {
         const AUTHENTICATION = {
-            actions: ['signin', 'signup', 'forgot-password'],
+            actions: ['signin', 'signup', 'forgot-password', 'reset-password'],
             is_logged: $('[data-canprocessasthesame]').attr('data-canprocessasthesame'),
             elements: {
                 close: $('[data-overlay-close]'),
@@ -124,6 +124,85 @@ $(document).ready(function() {
                 AUTHENTICATION.onSignup();
                 AUTHENTICATION.onSignin();
                 AUTHENTICATION.onSignout();
+                AUTHENTICATION.onForgetPassword();
+                AUTHENTICATION.onChangePassword();
+            },
+            onChangePassword: () => {
+                $('#reset_password_form').on('submit', function(e) {
+                    e.preventDefault();
+
+                    const _self = $(this);
+
+                    $.ajax({
+                        url: _self.attr('action'),
+                        method: 'PUT',
+                        data: _self.serialize(),
+                        beforeSend: () => {
+                            _self.find('[type="submit"]').prop('disabled', true);
+                            _self.find('[type="submit"]').text('Đang xử lí...');
+                        },
+                        success: () => {
+                            toastr.success('Thay đổi mật khẩu thành công.');
+
+                            _self.find('[data-overlay-action-button="signin"]').trigger('click');
+                        },
+                        error: (request, status, error) => {
+                            _self.find('[type="submit"]').prop('disabled', false);
+                            _self.find('[type="submit"]').text('Xác nhận thay đổi');
+
+                            toastr.error('Thay đổi mật khẩu không thành công.');
+
+                            if (request.status == 422) {
+                                const errorMessage = request.responseJSON.errors;
+        
+                                utils_helper.appendErrorMessages(_self, errorMessage);
+                            }
+                        },
+                    });
+                });
+            },
+            onForgetPassword: () => {
+                $('#forgot_password_form').on('submit', function(e) {
+                    e.preventDefault();
+
+                    const _self = $(this);
+
+                    const payload = {
+                        email: _self.find('[name="email"]').val(),
+                    };
+
+                    $.ajax({
+                        url: _self.attr('action'),
+                        method: 'POST',
+                        data: payload,
+                        beforeSend: () => {
+                            _self.find('[type="submit"]').prop('disabled', true);
+                            _self.find('.form-errors').removeClass('show');
+
+                            $('.password-reset-sent-success').addClass('d-none');
+                            $('.password-reset-pending').removeClass('d-none');
+                        },
+                        success: (response) => {
+                            $('.password-reset-sent-success').find('a.user-mail').text(payload.email);
+
+                            $('.password-reset-sent-success').removeClass('d-none');
+                            $('.password-reset-pending').addClass('d-none');
+
+                            utils_helper.urlParams('overlay').del();
+                            utils_helper.urlParams('redirect').del();
+                        },
+                        error: (request, status, error) => {
+                            _self.find('[type="submit"]').prop('disabled', false);
+                            toastr.error('Xử lí quên mật khẩu không thành công.');
+
+                            if (request.status == 422) {
+                                const errorMessage = request.responseJSON.errors;
+        
+                                utils_helper.appendErrorMessages(_self, errorMessage);
+                            }
+                        },
+                    });
+                });
             },
             onSignout: () => {
                 $('#User_SignOut').on('click', function(e) {
@@ -231,6 +310,11 @@ $(document).ready(function() {
         
                     utils_helper.urlParams('overlay').del();
                     utils_helper.urlParams('redirect').del();
+                    utils_helper.urlParams('token').del();
+                    utils_helper.urlParams('email').del();
+                    
+                    $('.password-reset-sent-success').addClass('d-none');
+                    $('.password-reset-pending').removeClass('d-none');
                 });
             },
             onGoPage: () => {
@@ -259,7 +343,7 @@ $(document).ready(function() {
             },
             detectOverlay: () => {
                 const overlay = utils_helper.urlParams('overlay').get();
-        
+
                 AUTHENTICATION.elements.wrapper.hide();
                 AUTHENTICATION.elements.action_wrapper.hide();
         

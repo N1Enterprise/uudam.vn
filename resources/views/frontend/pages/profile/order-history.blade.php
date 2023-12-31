@@ -107,8 +107,6 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                         </div>
                                         @endforeach
                                     </dl>
-                                    <p class="product-option"></p>
-                                    <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                                 </td>
 
                                 <td class="cart-item__totals right small-hide">

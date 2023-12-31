@@ -12,7 +12,7 @@ class FrontendAuthenticationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
+        $this->configureRateLimiting();
     }
 
     /**
@@ -20,13 +20,13 @@ class FrontendAuthenticationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        $this->configureRateLimiting();
     }
 
     protected function configureRateLimiting()
     {
-        RateLimiter::for('user.login', function($request) {
-            dd($request);
+        RateLimiter::for('fe.api.user.signin', function($request) {
+           
         });
     }
 }

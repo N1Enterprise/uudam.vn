@@ -302,6 +302,32 @@ if (! function_exists('is_webmaster')) {
     }
 }
 
+if (!function_exists('coalesce')) {
+    function coalesce(...$args)
+    {
+        $args = array_filter_empty($args);
+
+        return array_shift($args);
+    }
+}
+
+if (!function_exists('to_timestamp')) {
+    function to_timestamp($date, $precision = 0)
+    {
+        return (int) round((Carbon::make($date)->rawFormat('Uu')) / pow(10, 6 - $precision));
+    }
+}
+
+/**
+ * parse a string into laravel Stringable
+ */
+if (!function_exists('to_stringable')) {
+    function to_stringable($string)
+    {
+        return Str::of($string);
+    }
+}
+
 if (!function_exists('parse_expression')) {
     function parse_expression($string, $replacements, $emptyOnParseError = false, $pattern = '/\$\{([^}]*)\}/')
     {
@@ -317,7 +343,9 @@ if (!function_exists('parse_expression')) {
                 $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('to_timestamp'));
                 $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('to_stringable'));
 
+
                 $expression = $matches[1] ?? $matches[0]; // remove string expression wrapper (ex: ${expression} => expression)
+
                 try {
                     $parsed = $expressionLanguage->evaluate(
                         $expression,
@@ -350,5 +378,4 @@ if (!function_exists('parse_expression')) {
         return $parsed;
     }
 }
-
 

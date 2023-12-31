@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 @else
-                <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng Nhập</a>
+                <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng nhập</a>
                 <span style="font-size: 1.4rem;">để bình luận</span>
                 @endif
 

@@ -81,7 +81,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
     </h4>
     <div class="order-info">
         <div class="order-info__item">
-            <h3>#1. Thông tin người nhận</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#1. Thông tin người nhận</h3>
             <div>
                 <small>Họ và tên:</small>
                 <span>{{ $order->fullname }}</span>
@@ -109,7 +109,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         </div>
 
         <div class="order-info__item">
-            <h3>#2. Hình thức giao hàng</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#2. Hình thức giao hàng</h3>
             <div>
                 <div style="display: flex; align-items: center;">
                     <img src="{{ data_get($order, ['shippingRate', 'carrier', 'logo']) }}" width="30" height="30" alt="{{ data_get($order, ['shippingRate', 'carrier', 'name']) }}">
@@ -126,7 +126,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         </div>
 
         <div class="order-info__item">
-            <h3>#3. Hình thức thanh toán</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#3. Hình thức thanh toán</h3>
             <div>
                 <div style="display: flex; align-items: center;">
                     @if(data_get($order, ['paymentOption', 'logo']))
@@ -138,7 +138,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         </div>
 
         <div class="order-info__item">
-            <h3>#4. Chi tiết đơn hàng</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#4. Chi tiết đơn hàng</h3>
             <div>
                 <table class="cart-items">
                     <tbody>
@@ -151,7 +151,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                 </div>
                             </td>
 
-                            <td class="cart-item__details">
+                            <td class="cart-item__details" style="flex-direction: column;">
                                 <div>
                                     <a href="{{ route('fe.web.products.index', data_get($item, 'inventory.slug')) }}" class="cart-item__name h4 break">{{ data_get($item, 'inventory.title') }}</a>
                                     <div class="product-option order-item-price" style="margin-top: 10px;">{{ format_price(data_get($item, 'price')) }}</div>
@@ -167,8 +167,6 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                     </div>
                                     @endforeach
                                 </dl>
-                                <p class="product-option"></p>
-                                <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                             </td>
 
                             <td class="cart-item__totals right small-hide">

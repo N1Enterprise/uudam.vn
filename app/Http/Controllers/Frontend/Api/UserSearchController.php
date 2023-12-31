@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend\Api;
 
 use App\Contracts\Responses\Frontend\ListLinkedInventoryResponseContract;
 use App\Services\InventoryService;
-use App\Services\StoreFront\UserSearchService;
+use App\Services\UserSearchService;
 use Illuminate\Http\Request;
 
 class UserSearchController extends BaseApiController
