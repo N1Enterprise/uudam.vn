@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class UserResetPassword extends Notification
+class SendUserResetPassword extends Notification
 {
     use Queueable;
     use Dispatchable;
@@ -21,10 +21,6 @@ class UserResetPassword extends Notification
     public $url;
 
     public $user;
-
-    protected $emailIntegrationService;
-
-    protected $service;
 
     /**
      * Create a new notification instance.
@@ -57,7 +53,7 @@ class UserResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('[Ưu Đàm] Gửi Mail Cập Nhật Mật Khẩu')
+            ->subject('[uudam.vn] Gửi Mail Cập Nhật Mật Khẩu')
             ->markdown('frontend.mail.user.password-reset', [
                 'url'  => $this->url,
                 'user' => optional($this->user)->name

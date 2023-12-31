@@ -64,7 +64,8 @@
                     </div>
                 </div>
                 <div class="password-reset-sent-success d-none">
-                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <a href="javascript:void(0)" class="user-mail">phamdinhhung28@gmail.com</a>, vui lòng kiểm tra e-mail để tiến hành cập nhật mật khẩu mới.</p>
+                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <a href="javascript:void(0)" class="user-mail">phamdinhhung28@gmail.com</a>,</p>
+                    <p>vui lòng kiểm tra e-mail để tiến hành cập nhật mật khẩu mới.</p>
                     <p>
                         Nếu bạn không nhận e-mail vui lòng kiểm tra phần
                         <b>email spam,</b>

@@ -31,7 +31,7 @@ class SystemSettingKeyEnum extends BaseEnum
     // OAuth
     public const SUPPORTED_OAUTH_PROVIDERS = 'supported_oauth_providers';
 
-    public const MAIL_CONFIGURATION = 'mail_configuration';
+    public const ENABLE_SEND_MAIL_WHEN_USER_ORDERED = 'enable_send_mail_when_user_ordered';
 
     public static function all(): array
     {
@@ -54,7 +54,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SUPPORTED_OAUTH_PROVIDERS,
             self::MAINTENANCE_ALLOW_IPS_ACCESS,
             self::USER_FE_RESET_PASSWORD_LINK,
-            self::MAIL_CONFIGURATION,
+            self::ENABLE_SEND_MAIL_WHEN_USER_ORDERED,
         ];
     }
 }

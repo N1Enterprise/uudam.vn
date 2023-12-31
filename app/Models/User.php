@@ -9,7 +9,7 @@ use App\Enum\SystemSettingKeyEnum;
 use App\Enum\UserStatusEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasCurrency;
-use App\Notifications\UserResetPassword;
+use App\Notifications\SendUserResetPassword;
 use Carbon\Carbon;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -59,7 +59,7 @@ class User extends BaseAuthenticateModel implements MustVerifyEmail
             ]
         );
 
-        return $this->notify(new UserResetPassword($this, $link));
+        return $this->notify(new SendUserResetPassword($this, $link));
     }
 
     public function generateEmailVerificationUrl($verificationUrl = null)
