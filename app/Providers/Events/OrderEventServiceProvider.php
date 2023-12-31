@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers\Events;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use App\Events;
 use App\Listeners;
 
-class EventOrderServiceProvider extends ServiceProvider
+class OrderEventServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.
@@ -19,7 +19,7 @@ class EventOrderServiceProvider extends ServiceProvider
         ],
         Events\Deposit\DepositApproved::class => [
             Listeners\Order\ApprovedOrderPayment::class
-        ]
+        ],
     ];
 
     /**
