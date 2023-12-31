@@ -12,7 +12,6 @@ class FrontendAuthenticationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->configureRateLimiting();
     }
 
     /**
@@ -20,7 +19,6 @@ class FrontendAuthenticationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureRateLimiting();
     }
 
     protected function configureRateLimiting()
