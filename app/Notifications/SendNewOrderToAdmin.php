@@ -55,7 +55,7 @@ class SendNewOrderToAdmin extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('[uudam.vn] Có đơn hàng mới #' . data_get($this->order, 'order_code'). ' vào lúc '. format_datetime(data_get($this->order, 'created_at'), 'd/m/Y H:i'))
+            ->subject('UUDAM.VN - Có đơn hàng mới #' . data_get($this->order, 'order_code'). ' vào lúc '. format_datetime(data_get($this->order, 'created_at'), 'd/m/Y H:i'))
             ->markdown('frontend.mail.admin.new-order', [
                 'admin_name'    => data_get($this->admin, 'name'),
                 'url'           => route('bo.web.orders.edit', data_get($this->order, 'id')),

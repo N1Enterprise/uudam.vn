@@ -53,7 +53,7 @@ class SendUserResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('[uudam.vn] Gửi Mail Cập Nhật Mật Khẩu')
+            ->subject('UUDAM.VN - Gửi Mail Cập Nhật Mật Khẩu')
             ->markdown('frontend.mail.user.password-reset', [
                 'url'  => $this->url,
                 'user' => optional($this->user)->name
