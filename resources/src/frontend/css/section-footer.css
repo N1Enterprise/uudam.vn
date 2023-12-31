@@ -28,8 +28,6 @@
 
     .footer__content-top {
         padding-bottom: 3rem;
-        padding-left: calc(2.5rem / var(--font-body-scale));
-        padding-right: calc(2.5rem / var(--font-body-scale));
     }
 }
 
@@ -169,7 +167,7 @@
 }
 
 .footer-block__newsletter {
-    text-align: center;
+    text-align: left;
 }
 
 .newsletter-form__field-wrapper {

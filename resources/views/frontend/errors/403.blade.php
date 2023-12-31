@@ -22,7 +22,7 @@
     <div class="template-404 page-width page-margin center">
         <p>403</p>
         <h1 class="title">Vui lòng đăng nhập!</h1>
-        <a href="?overlay=signin" class="button" data-overlay-action-button="signin">Đăng Nhập</a>
+        <a href="?overlay=signin" class="button" data-overlay-action-button="signin">Đăng nhập</a>
     </div>
 </div>
 @endsection

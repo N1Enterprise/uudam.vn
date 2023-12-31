@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Services\StoreFront;
+namespace App\Services;
 
-use App\Enum\ActivationStatusEnum;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
 class UserSearchService extends BaseService
 {
-    public function __construct()
-    {
-
-    }
-
     public function suggest($data = [])
     {
         $query = data_get($data, 'q', '');

@@ -15,6 +15,8 @@ Route::post('user/signup', [Controllers\UserAuthenticationController::class, 'si
 Route::post('user/signin', [Controllers\UserAuthenticationController::class, 'signin'])->name('user.signin');
 Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
 Route::get('user/email/verify/{id}', [Controllers\UserAuthenticationController::class, 'verifyEmail'])->name('user.email_verification.verify')->middleware('system.feature_toggle:'.SystemSettingKeyEnum::ENABLE_USER_EMAIL_VERIFICATION);
+Route::post('user/forgot-password', [Controllers\UserAuthenticationController::class, 'forgotPassword'])->name('user.forgot-password');
+Route::put('user/reset-password', [Controllers\UserAuthenticationController::class, 'resetPassword'])->name('user.reset-password');
 
 Route::get('user/oauth/providers', [Controllers\OauthController::class, 'providers'])->name('user.oauth.providers');
 Route::get('user/oauth/{provider}/callback', [Controllers\OauthController::class, 'callback'])->name('user.oauth.callback');

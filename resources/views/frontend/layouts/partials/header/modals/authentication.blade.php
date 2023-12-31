@@ -6,32 +6,79 @@
             </svg>
         </button>
         <div class="quick-add-modal__content-info">
-            <div data-overlay-action-wrapper="forgot-password" style="display: none;">
+            @if(request()->get('overlay') == 'reset-password' && !empty(request()->get('token')) && !empty(request()->get('email')))
+            <div data-overlay-action-wrapper="reset-password" style="display: none;">
                 <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
-                    <h3 class="ls-box-title text-left">Quên Mật Khẩu</h3>
+                    <h3 class="ls-box-title text-left">Nhập mật khẩu mới</h3>
                 </div>
                 <div class="quick-add-modal__content-content">
-                    <div class="form-basic-forgot-password customer">
-                        <form method="POST" action="" id="forgot_password_form" accept-charset="UTF-8" class="forgot-password-form">
+                    <div class="form-basic-reset-password customer">
+                        <form method="POST" action="{{ route('fe.api.user.reset-password') }}" id="reset_password_form" accept-charset="UTF-8" class="reset-password-form">
+                            <input type="hidden" name="token" value="{{ request()->get('token') }}">
+                            <input type="hidden" name="email" value="{{ request()->get('email') }}">
+
                             <div class="form-fields">
-                                <div class="field field--with-error" style="margin-bottom: 15px;">
-                                    <input type="text" name="email" id="forgot-password-email" class="field__input" autocomplete="email" value="" aria-required="true" required="" placeholder="Nhập E-mail">
-                                    <label class="field__label" for="forgot-password-email">E-mail <span aria-hidden="true">*</span></label>
+                                <div>
+                                    <div class="field field--with-error" style="margin-bottom: 15px;">
+                                        <input type="text" name="password" id="reset-password-password" class="field__input" autocomplete="password" value="" aria-required="true" required="" placeholder="Nhập mật khẩu mới">
+                                        <label class="field__label" for="reset-password-password">Mật khẩu mới <span aria-hidden="true">*</span></label>
+                                    </div>
+                                    <div class="form-errors" data-name="password"></div>
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng Nhập?</a>
+                                <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
                             </div>
-                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Khôi Phục Mật Khẩu</button>
+                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Xác nhận thay đổi</button>
                         </form>
                     </div>
                     <div class="form-social-signup"></div>
                 </div>
             </div>
+            @endif
+
+            <div data-overlay-action-wrapper="forgot-password" style="display: none;">
+                <div class="password-reset-pending">
+                    <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
+                        <h3 class="ls-box-title text-left">Quên mật khẩu</h3>
+                    </div>
+                    <div class="quick-add-modal__content-content">
+                        <div class="form-basic-forgot-password customer">
+                            <form method="POST" action="{{ route('fe.api.user.forgot-password') }}" id="forgot_password_form" accept-charset="UTF-8" class="forgot-password-form">
+                                <div class="form-fields">
+                                    <div>
+                                        <div class="field field--with-error" style="margin-bottom: 15px;">
+                                            <input type="text" name="email" id="forgot-password-email" class="field__input" autocomplete="email" value="" aria-required="true" required="" placeholder="Nhập E-mail">
+                                            <label class="field__label" for="forgot-password-email">E-mail <span aria-hidden="true">*</span></label>
+                                        </div>
+                                        <div class="form-errors" data-name="email"></div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
+                                </div>
+                                <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Khôi phục mật khẩu</button>
+                            </form>
+                        </div>
+                        <div class="form-social-signup"></div>
+                    </div>
+                </div>
+                <div class="password-reset-sent-success d-none">
+                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <a href="javascript:void(0)" class="user-mail">phamdinhhung28@gmail.com</a>, vui lòng kiểm tra e-mail để tiến hành cập nhật mật khẩu mới.</p>
+                    <p>
+                        Nếu bạn không nhận e-mail vui lòng kiểm tra phần
+                        <b>email spam,</b>
+                        hoặc liên hệ với chúng tôi qua số điện thoại/zalo: 
+                        <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
+                    </p>
+                    <a href="javascript:void(0)" class="link"></a>
+                    <h4>Ưu Đàm xin chân trọng cảm ơn!</h4>
+                </div>
+            </div>
 
             <div data-overlay-action-wrapper="signin" style="display: none;">
                 <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
-                    <h3 class="ls-box-title text-left">Đăng Nhập</h3>
+                    <h3 class="ls-box-title text-left">Đăng nhập</h3>
                 </div>
                 <div class="quick-add-modal__content-content">
                     <div class="form-basic-signin customer">
@@ -47,17 +94,17 @@
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 15px;">
-                                        <input type="password" name="password" id="signin-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng Nhập" autocomplete="current-password">
-                                        <label class="field__label" for="signin-password">Mật Khẩu <span aria-hidden="true">*</span></label>
+                                        <input type="password" name="password" id="signin-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng nhập" autocomplete="current-password">
+                                        <label class="field__label" for="signin-password">Mật khẩu <span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="password"></div>
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="?overlay=signup" data-overlay-action-button="signup" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng Ký Tài Khoản?</a>
-                                <a href="?overlay=forgot-password" data-overlay-action-button="forgot-password" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Quên Mật Khẩu?</a>
+                                <a href="?overlay=signup" data-overlay-action-button="signup" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng ký tài khoản?</a>
+                                <a href="?overlay=forgot-password" data-overlay-action-button="forgot-password" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Quên mật khẩu?</a>
                             </div>
-                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng Nhập</button>
+                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng nhập</button>
                             @include('frontend.layouts.partials.header.modals.oauth-authentication')
                         </form>
                     </div>
@@ -99,14 +146,14 @@
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 10px;">
-                                        <input type="text" name="password" id="signup-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng Nhập" autocomplete="current-password">
+                                        <input type="text" name="password" id="signup-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng nhập" autocomplete="current-password">
                                         <label class="field__label" for="signup-password">Mật Khẩu <span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="password"></div>
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng Nhập?</a>
+                                <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
                             </div>
                             <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng Ký</button>
                             @include('frontend.layouts.partials.header.modals.oauth-authentication')

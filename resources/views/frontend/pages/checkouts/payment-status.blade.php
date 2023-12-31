@@ -114,7 +114,7 @@
                                 <div class="order-info">
                                     <div class="order-info__left">Phương thức thanh toán</div>
                                     <div class="order-info__right">
-                                        <div style="display: flex; align-items: center;">
+                                        <div style="display: flex; align-items: center; text-align: right;">
                                             @if(optional($order->paymentOption)->logo)
                                             <img class="method-icon" src="{{ optional($order->paymentOption)->logo }}">
                                             @endif
@@ -132,14 +132,14 @@
                                 <div>
                                     <div style="margin-bottom: 4px; text-decoration: underline;">Liên hệ bên dưới để được hỗ trợ</div>
                                     <ul>
-                                        <li style="display: flex; align-items: center;">
+                                        <li style="display: flex; align-items: center; text-align: right;">
                                             <span style="margin-right: 3px;">Số điện thoại:</span>
                                             <div>
                                                 <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
                                                 <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.label') }})</span>
                                             </div>
                                         </li>
-                                        <li style="display: flex; align-items: center;">
+                                        <li style="display: flex; align-items: center; text-align: right;">
                                             <span style="margin-right: 3px;">Zalo:</span>
                                             <div>
                                                 <a href="https://zalo.me/{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}" target="_blank" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
