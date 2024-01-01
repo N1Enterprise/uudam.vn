@@ -226,29 +226,4 @@ class OrderService extends BaseService
             })
             ->count();
     }
-
-    public function declined($id, $data = [])
-    {
-        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, $id);
-
-        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
-            ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($id, $data) {
-                /** @var Order */
-                $order = $this->show($id);
-
-                if (! $order->isProcessing()) {
-                    throw new BusinessLogicException("Unable to update order #{$order->id}.", ExceptionCode::INVALID_ORDER);
-                }
-
-                $updateResource = array_merge(['order_status' => OrderStatusEnum::DECLINED], [
-                    'log' => array_merge($order->log ?? [], Arr::wrap(data_get($data, 'log', [])))
-                ], $data);
-
-                $order = $this->orderRepository->update($updateResource, $order);
-
-                OrderDeclined::dispatch($order);
-
-                return $order;
-            });
-    }
 }

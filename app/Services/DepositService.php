@@ -55,6 +55,11 @@ class DepositService extends BaseService
 
     public function approve($transactionId, $data = [], $quietly = false)
     {
+        logger('DepositService:approve 1', [
+            'transaction_id' => $transactionId,
+            'data' => $data,
+        ]);
+
         $cacheKey = TransactionCacheKeyEnum::getTransactionCacheKey(TransactionCacheKeyEnum::DEPOSIT_TRANSACTION, BaseModel::getModelKey($transactionId));
 
         $transaction = Cache::lock($cacheKey, TransactionCacheKeyEnum::TTL)
@@ -75,6 +80,10 @@ class DepositService extends BaseService
                     $transaction = $this->depositTransactionService->update(array_merge($updateParams, [
                         'approved_index' => $approvedTimes,
                     ]), $transaction->getKey(), $quietly);
+
+                    logger('DepositService:approve 2', [
+                        'transaction' => $transaction
+                    ]);
 
                     DepositApproved::dispatch($transaction);
 

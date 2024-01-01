@@ -27,6 +27,7 @@ class ApprovedOrderPayment implements ShouldQueue
      */
     public function handle(DepositApproved $event)
     {
+        logger('ApprovedOrderPayment:handle');
         /** @var DepositTransaction */
         $transaction = $event->transaction;
 
@@ -35,6 +36,8 @@ class ApprovedOrderPayment implements ShouldQueue
 
     public function shouldQueue($event)
     {
+        logger('ApprovedOrderPayment:shouldQueue');
+
         $transaction = $event->transaction;
 
         $order = OrderService::make()->show($transaction->order->id);

@@ -20,6 +20,7 @@ class DepositApproved
      */
     public function __construct(DepositTransaction $transaction)
     {
+        logger('DepositApproved:__construct');
         $this->transaction = $transaction;
     }
 }
