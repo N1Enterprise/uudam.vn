@@ -80,12 +80,19 @@ Route::get('inventories/{id}', [Controllers\InventoryController::class, 'edit'])
 Route::put('inventories/{id}', [Controllers\InventoryController::class, 'update'])->name('inventories.update')->middleware(['can:inventories.update']);
 Route::delete('inventories/{id}', [Controllers\InventoryController::class, 'destroy'])->name('inventories.delete')->middleware(['can:inventories.delete']);
 
-Route::get('display-inventories', [Controllers\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
-Route::get('display-inventories/create/{type}', [Controllers\DisplayInventoryController::class, 'create'])->name('display-inventories.create')->middleware(['can:display-inventories.store']);
-Route::post('display-inventories', [Controllers\DisplayInventoryController::class, 'store'])->name('display-inventories.store')->middleware(['can:display-inventories.store']);
-Route::get('display-inventories/{id}/{type}', [Controllers\DisplayInventoryController::class, 'edit'])->name('display-inventories.edit')->middleware(['can:display-inventories.update']);
-Route::put('display-inventories/{id}', [Controllers\DisplayInventoryController::class, 'update'])->name('display-inventories.update')->middleware(['can:display-inventories.update']);
-Route::delete('display-inventories/{id}', [Controllers\DisplayInventoryController::class, 'destroy'])->name('display-inventories.delete')->middleware(['can:display-inventories.delete']);
+Route::get('home-page-display-orders', [Controllers\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+Route::get('home-page-display-orders/create', [Controllers\HomePageDisplayOrderController::class, 'create'])->name('home-page-display-orders.create')->middleware(['can:home-page-display-orders.store']);
+Route::post('home-page-display-orders', [Controllers\HomePageDisplayOrderController::class, 'store'])->name('home-page-display-orders.store')->middleware(['can:home-page-display-orders.store']);
+Route::get('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'edit'])->name('home-page-display-orders.edit')->middleware(['can:home-page-display-orders.update']);
+Route::put('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'update'])->name('home-page-display-orders.update')->middleware(['can:home-page-display-orders.update']);
+Route::delete('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'destroy'])->name('home-page-display-orders.delete')->middleware(['can:home-page-display-orders.delete']);
+
+Route::get('home-page-display-items', [Controllers\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
+Route::get('home-page-display-items/create', [Controllers\HomePageDisplayItemController::class, 'create'])->name('home-page-display-items.create')->middleware(['can:home-page-display-items.store']);
+Route::post('home-page-display-items', [Controllers\HomePageDisplayItemController::class, 'store'])->name('home-page-display-items.store')->middleware(['can:home-page-display-items.store']);
+Route::get('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'edit'])->name('home-page-display-items.edit')->middleware(['can:home-page-display-items.update']);
+Route::put('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'update'])->name('home-page-display-items.update')->middleware(['can:home-page-display-items.update']);
+Route::delete('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'destroy'])->name('home-page-display-items.delete')->middleware(['can:home-page-display-items.delete']);
 
 Route::get('banners', [Controllers\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
 Route::get('banners/create', [Controllers\BannerController::class, 'create'])->name('banners.create')->middleware(['can:banners.store']);

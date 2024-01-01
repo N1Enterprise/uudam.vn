@@ -5,9 +5,9 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
-use App\Models\ProductCombo;
 use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\ProductCombo;
 use App\Services\InventoryService;
 use Illuminate\Validation\Rule;
 
@@ -25,6 +25,8 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')->ignore($inventory->getKey())],
                 'available_from' => ['nullable', 'date'],
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+                'display_on_frontend' => ['required'],
+                'allow_frontend_search' => ['required'],
                 'min_order_quantity' => ['required', 'integer', 'gt:0'],
                 'condition_note' => ['nullable'],
                 'key_features' => ['nullable', 'array'],
@@ -52,7 +54,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                     'after:offer_start'
                 ],
                 'product_combos' => ['nullable', 'array'],
-                'product_combos.*.product_combo_id' => ['required', Rule::exists(Inventory::class, 'id')],
+                'product_combos.*.product_combo_id' => ['required', Rule::exists(ProductCombo::class, 'id')],
                 'product_combos.*.quantity' => ['required', 'integer'],
             ],
             $this->defineSimpleRules($inventory) ?? []
@@ -66,9 +68,11 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend),
+            'allow_frontend_search' => boolean($this->allow_frontend_search),
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray(),
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
             'product_combos' => collect($this->product_combos ?? [])
                 ->filter(function($item) {
                     return data_get($item, 'product_combo_id') && data_get($item, 'quantity') > 0;

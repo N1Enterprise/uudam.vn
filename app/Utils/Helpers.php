@@ -1,18 +1,26 @@
 <?php
 
+use App\Classes\AdminAuth;
 use App\Common\Money;
 use App\Enum\BaseEnum;
-use App\Enum\SystemSettingKeyEnum;
 use App\Enum\TimeZoneEnum;
-use App\Models\SystemSetting;
+use App\Models\BaseModel;
 use App\Vendors\Localization\Money as LocalizationMoney;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+
+if (! function_exists('get_model_key')) {
+    function get_model_key($model)
+    {
+        return BaseModel::getModelKey($model);
+    }
+}
 
 if (! function_exists('get_utc_offset')) {
     function getUtcOffset($decryptCookie = false)
@@ -158,9 +166,21 @@ if (! function_exists('round_money')) {
 if (! function_exists('format_price')) {
     function format_price($money, $currencyCode = null)
     {
+        if (empty($money)) {
+            return;
+        }
+
         return LocalizationMoney::make($money, $currencyCode ?? SystemCurrency::getDefaultCurrency()->getKey())->format(0, true);
     }
 }
+
+if (! function_exists('get_percent')) {
+    function get_percent($firstNumber, $secondNumber = null)
+    {
+        return round(LocalizationMoney::make($secondNumber,  SystemCurrency::getDefaultCurrency()->getKey())->percentOf($firstNumber));
+    }
+}
+
 
 if (! function_exists('generate_combinations'))
 {
@@ -259,3 +279,103 @@ if (! function_exists('asset_with_version')) {
         return asset($pathname) . '?v=' . config('app.build_version');
     }
 }
+
+if (! function_exists('has_data')) {
+    function has_data($data)
+    {
+        if ($data instanceof Collection) {
+            return !$data->isEmpty();
+        } else if (is_array($data) || is_string($data) || is_numeric($data)) {
+            return $data == 0 ? true : !empty($data);
+        } else if (is_bool($data)) {
+            return $data;
+        }
+
+        return false;
+    }
+}
+
+if (! function_exists('is_webmaster')) {
+    function is_webmaster()
+    {
+        return optional(AdminAuth::user())->id == 1;
+    }
+}
+
+if (!function_exists('coalesce')) {
+    function coalesce(...$args)
+    {
+        $args = array_filter_empty($args);
+
+        return array_shift($args);
+    }
+}
+
+if (!function_exists('to_timestamp')) {
+    function to_timestamp($date, $precision = 0)
+    {
+        return (int) round((Carbon::make($date)->rawFormat('Uu')) / pow(10, 6 - $precision));
+    }
+}
+
+/**
+ * parse a string into laravel Stringable
+ */
+if (!function_exists('to_stringable')) {
+    function to_stringable($string)
+    {
+        return Str::of($string);
+    }
+}
+
+if (!function_exists('parse_expression')) {
+    function parse_expression($string, $replacements, $emptyOnParseError = false, $pattern = '/\$\{([^}]*)\}/')
+    {
+        $parsed = preg_replace_callback(
+            $pattern,
+            function ($matches) use ($replacements, $string, $emptyOnParseError) {
+                $expressionLanguage = new Symfony\Component\ExpressionLanguage\ExpressionLanguage();
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('array_search'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('in_array'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('data_get'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('implode'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('coalesce'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('to_timestamp'));
+                $expressionLanguage->addFunction(Symfony\Component\ExpressionLanguage\ExpressionFunction::fromPhp('to_stringable'));
+
+
+                $expression = $matches[1] ?? $matches[0]; // remove string expression wrapper (ex: ${expression} => expression)
+
+                try {
+                    $parsed = $expressionLanguage->evaluate(
+                        $expression,
+                        $replacements
+                    );
+                } catch (\Throwable $th) {
+                    Log::warning('Expression Unable to Parse: ' . $th->getMessage(), ['string' => $string, 'expression' => $expression, 'replacements' => $replacements]);
+
+                    return $emptyOnParseError ? null : $matches[0];
+                }
+
+                return $parsed;
+            },
+            $string
+        );
+
+        // cast parsed expression string to another type
+        // example expression "${parsedString} $| float"
+        // the cast type will get after last `$|` character
+        $castType = trim(Str::afterLast($parsed, '$|'));
+
+        $possibleTypes = ['boolean', 'bool', 'integer', 'int', 'float', 'double', 'string', 'array', 'object'];
+
+        if (!in_array($castType, $possibleTypes)) {
+            return $parsed;
+        }
+
+        settype($parsed, $castType);
+
+        return $parsed;
+    }
+}
+

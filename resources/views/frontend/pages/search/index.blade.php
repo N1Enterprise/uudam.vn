@@ -1,0 +1,148 @@
+@extends('frontend.layouts.master')
+
+@section('page_title')
+Tìm kiếm | {{ config('app.user_domain') }}
+@endsection
+
+@section('page_seo')
+<meta property="og:title" content="Tìm kiếm | {{ config('app.user_domain') }}">
+<meta property="og:description" content="Tìm kiếm | {{ config('app.user_domain') }}">
+<meta property="og:url" content="{{ request()->url() }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:price:currency" content="VND">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+@endsection
+
+@push('style_pages')
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-collection-hero.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/template-collection.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-price.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-rte.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-facets.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<style>
+@media screen and (max-width: 749px) {
+    .collection-hero--with-image .collection-hero__inner {
+        padding-bottom: calc(4px + 2rem);
+    }
+}
+.ls-add-to-cart-wrap {
+    font-size: 1rem;
+    width: 80%;
+    margin: auto;
+    display: inline-block;
+    position: relative;
+}
+.ls-add-to-cart-wrap {
+    display: inline-block;
+    font-size: 1rem;
+    margin: auto;
+    position: relative;
+    width: 80%;
+}
+.ls-recommendation-box[data-host-page=Collection] .ls-add-to-cart-wrap {
+    width: 100%;
+}
+.ls-button {
+    position: relative;
+    border: 1px solid #444;
+    outline: none;
+    border-radius: 3px;
+    background-color: #212121;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 0.1em 0.5em;
+    margin: 0;
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 2em;
+    display: inline-block;
+    width: 100%;
+    background-image: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+.ls-add-to-cart {
+    -webkit-appearance: none;
+    background: #fff;
+    background-image: none;
+    border: thin solid #444;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    line-height: 2em;
+    margin: 0;
+    outline: none;
+    padding: 0.1em 0.5em;
+    width: 100%;
+}
+.ls-add-to-cart {
+    border-radius: 0px;
+    background-color: #ffffff;
+    color: #121212;
+    border-color: #121212;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Assistant, sans-serif;
+}
+.ls-recommendation-box:not([data-host-page='OrderStatus']) .ls-add-to-cart {
+    padding: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.search-header {
+    padding: 20px 0;
+    margin: 0 auto;
+    display: flex;
+}
+</style>
+@endpush
+
+@section('content_body')
+<div class="shopify-section section">
+    <div class="collection-hero__inner page-width" style="padding-top: 20px; padding-bottom: 20px;">
+        kết quả tìm kiếm: <b style="margin-left: 5px;" data-search-query>{{ $query }}</b>
+    </div>
+</div>
+
+<div class="shopify-section section">
+    @include('frontend.pages.search.partials.product-items')
+</div>
+@endsection
+
+@push('js_pages')
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/component-search.min.js') }}"></script>
+
+<script>
+    $('[data-collection-mobile-filter-open]').on('click', function() {
+        $('details.disclosure-has-popup').addClass('menu-opening');
+
+        setTimeout(() => {
+            $('[data-collection-mobile-filter-close]').on('click', function() {
+                if ($('details.disclosure-has-popup').hasClass('menu-opening')) {
+                    $('details.disclosure-has-popup').removeClass('menu-opening');
+                }
+
+                $('[data-collection-mobile-filter-close]').off('click');
+            });
+        }, 200);
+    });
+
+    $('#SortBy-mobile[data-collection-linked-inventory="sort_by"]').on('change', function() {
+        $('.mobile-facets__close--no-js').trigger('click');
+    });
+</script>
+@endpush

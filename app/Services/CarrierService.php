@@ -81,7 +81,7 @@ class CarrierService extends BaseService
     {
         $cart = $this->cartService->show($cartId);
 
-        $shippingRates = $this->shippingRateService->searchByUser([
+        $shippingRates = $this->shippingRateService->searchForGuest([
             'type' => ShippingRateTypeEnum::PRICE,
             'value' => Money::make($cart->total_price, $cart->currency_code)->toFloat(),
         ]);

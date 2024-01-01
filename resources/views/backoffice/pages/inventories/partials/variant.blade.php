@@ -8,8 +8,9 @@
             <div data-repeater-item-custom class="k-repeater__item" data-repeater-index="{{ $loop->index }}">
                 <div class="repeater-wrapper">
                     <div class="repeater-head position-relative">
-                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" aria-expanded="{{ $errors->isEmpty() && empty($inventory) ? 'false' : 'true' }}" aria-controls="variant_{{ $loop->index }}">
+                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" aria-expanded="'false" aria-controls="variant_{{ $loop->index }}">
                             <b>
+                                <span>[{{ $parentIndex + 1 }}]</span>
                                 @foreach($combination as $attrId => $attrValue)
                                     <input type="hidden" name="variants[attribute][{{ $parentIndex }}][{{ $attrId }}]" value="{{ key($attrValue) }}">
                                     {{ $attributes[$attrId] .' : '. current($attrValue) }}
@@ -25,7 +26,7 @@
                         </div>
                     </div>
 
-                    <div class="collapse {{ $errors->isEmpty() && empty($inventory) ? '' : 'show' }} repeater-body" id="variant_{{ $loop->index }}">
+                    <div class="collapse repeater-body" id="variant_{{ $loop->index }}">
                         <div class="form-group">
                             <label>{{ __('Image') }}
                                 <i

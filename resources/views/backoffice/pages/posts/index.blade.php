@@ -48,7 +48,8 @@
                         <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Display On FE') }}</th>
+                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
+                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
                         <th data-orderable="false" data-property="post_category.name">{{ __('Category') }}</th>
                         <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
                         <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>

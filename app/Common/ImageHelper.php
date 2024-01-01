@@ -18,12 +18,6 @@ class ImageHelper
 
     public $hasOptimization = false;
 
-    protected $validExtension = [
-        'png',
-        'jpg',
-        'jpeg',
-    ];
-
     public function __construct($disk)
     {
         $this->disk  = Storage::disk($disk);
@@ -69,31 +63,32 @@ class ImageHelper
     {
         $filename   = Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME));
         $config     = $this->getConfig();
+
         $cfWidth   = data_get($config, 'width');
         $cfHeight  = data_get($config, 'height');
         $cfRatio   = data_get($config, 'ratio');
-        $cfExt     = data_get($config, 'ext');
+        $cfExt     = data_get($config, 'ext', 'webp');
         $cfFolder  = data_get($config, 'folder', '');
 
-        if (! in_array($cfExt, $this->validExtension)) {
-            throw new BusinessLogicException('Invalid config image extension: '.$cfExt.'. Just supported: '.implode(', ', $this->validExtension).'. Please check system setting config.');
+        if (! in_array($cfExt, $this->getExtensionSupported())) {
+            throw new BusinessLogicException('Invalid config image extension: '.$cfExt.'. Just supported: '.implode(', ', $this->getExtensionSupported()).'. Please check system setting config.');
         }
 
         $imageIntervention = ImageIntervention::make($image);
         $imageIntervention = $imageIntervention->encode($cfExt);
-        // $imageIntervention = $imageIntervention->resize($cfWidth, $cfHeight, function($constraint) use ($cfRatio) {
-        //     $constraint->aspectRatio();
-        // });
 
-        $imageIntervention->fit($cfWidth, $cfHeight, function($constraint) use ($cfRatio) {
-            $constraint->aspectRatio();
-        });
+        if (! empty($cfWidth) && !empty($cfHeight)) {
+            $imageIntervention->fit($cfWidth, $cfHeight, function($constraint) use ($cfRatio) {
+                $constraint->aspectRatio();
+            });
+        }
 
         $now = now();
 
         $dateNow = $now->format('d-m-Y');
+        $hash    = $now->timestamp;
 
-        $pathname = implode('/', [$dateNow, $cfFolder, "{$filename}.{$cfExt}"]);
+        $pathname = implode('/', [$dateNow, $cfFolder, "{$filename}-{$hash}.{$cfExt}"]);
 
         $filename = $this->disk->put($pathname, $imageIntervention->stream()->__toString());
 
@@ -102,10 +97,15 @@ class ImageHelper
 
     public function getConfig()
     {
-        $imageConfiguration = SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get(null, []);
+        $imageConfiguration = SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get('model_definitionation', []);
 
         $config = data_get($imageConfiguration, $this->configKey);
 
         return $config;
+    }
+
+    public function getExtensionSupported() 
+    {
+        return SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get('extension_supported', []);
     }
 }

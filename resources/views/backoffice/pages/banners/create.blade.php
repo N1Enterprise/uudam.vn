@@ -82,6 +82,11 @@
 								</div>
 
                                 <div class="form-group">
+									<label>{{ __('Label') }}</label>
+									<input type="text" class="form-control" name="label" placeholder="{{ __('Enter label') }}" value="{{ old('label') }}">
+								</div>
+
+                                <div class="form-group">
                                     <label>{{ __('Select Display Type') }} *</label>
                                     <select name="type" title="--{{ __('Select Display Type') }}--" class="form-control k_selectpicker" required>
                                         @foreach ($bannerTypeEnumLabels as $key => $label)
@@ -97,7 +102,7 @@
 
                                 <div class="form-group">
 									<label>{{ __('Redirect Url') }}</label>
-									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Cta Label') }}" value="{{ old('redirect_url') }}" required>
+									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Cta Label') }}" value="{{ old('redirect_url') }}">
 								</div>
 
                                 <div class="form-group">

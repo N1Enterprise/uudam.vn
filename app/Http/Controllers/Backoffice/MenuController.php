@@ -61,13 +61,14 @@ class MenuController extends BaseController
         $menu = $this->menuService->show($id, ['with' => 'menuCatalogs']);
         $inventories = $this->inventoryService->allAvailable();
         $posts = $this->postService->allAvailable();
+        $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
             ->allAvailable(['with' => 'menuSubGroups', 'columns' => ['id', 'name']])
             ->filter(fn($item) => !$item->menuSubGroups->isEmpty());
 
         $menuTypeEnumLabels = MenuTypeEnum::labels();
 
-        return view('backoffice.pages.menus.edit', compact('menu', 'menuTypeEnumLabels', 'inventories', 'posts', 'menuGroups'));
+        return view('backoffice.pages.menus.edit', compact('menu', 'menuTypeEnumLabels', 'inventories', 'posts', 'menuGroups', 'collections'));
     }
 
     public function store(StoreMenuRequestContract $request)

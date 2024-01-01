@@ -12,9 +12,9 @@ Thanh toán | {{ config('app.user_domain') }}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 @endsection
 
 @section('style')
@@ -33,9 +33,9 @@ Thanh toán | {{ config('app.user_domain') }}
 @endsection
 
 @section('js_scipt')
-<script src="{{ asset('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/validate/custom.js') }}" type="text/javascript"></script>
-<script src="{{ mix('frontend/bundle/js/checkout/index.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/common/main.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/utils/helpers.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('vendor/validate/custom.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/checkout-index.min.js') }}" type="text/javascript"></script>
 @endsection

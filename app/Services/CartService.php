@@ -45,10 +45,6 @@ class CartService extends BaseService
                     $q->where('user_id', $userId);
                 }
 
-                if ($createdAtRange = data_get($data, 'created_at_range', [])) {
-                    $q->whereBetween('created_at', $createdAtRange);
-                }
-
                 $q->whereRelation('user', function($q) use ($data) {
                     $userUsernameOrEmail = data_get($data, 'user_username_or_email');
 
@@ -65,14 +61,14 @@ class CartService extends BaseService
                     }
                 });
 
-                $q->whereRelation('order', function($q) use ($data) {
-                    $orderCode = data_get($data, 'order_code');
+                // $q->whereRelation('order', function($q) use ($data) {
+                //     $orderCode = data_get($data, 'order_code');
 
-                    if (! empty($orderCode)) {
-                        $q->where('order_code', $orderCode)
-                            ->orWhere('uuid', $orderCode);
-                    }
-                });
+                //     if (! empty($orderCode)) {
+                //         $q->where('order_code', $orderCode)
+                //             ->orWhere('uuid', $orderCode);
+                //     }
+                // });
             })
             ->search([]);
 
@@ -119,8 +115,8 @@ class CartService extends BaseService
                 'user_id' => $user->getKey(),
                 'currency_code' => $currency->getKey(),
                 'order_id' => null,
-            ], [
                 'ip_address' => data_get($attributes, 'ip_address'),
+            ], [
                 'total_quantity' => 0,
                 'total_price' => 0,
                 'uuid' => Str::uuid(),
@@ -141,6 +137,7 @@ class CartService extends BaseService
             ], [
                 'quantity' => 0,
                 'price' => 0,
+                'total_price' => 0,
                 'uuid' => Str::uuid(),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -148,12 +145,12 @@ class CartService extends BaseService
 
             $quantity = (int) data_get($attributes, 'quantity', 0);
 
-            $totalPrice = Money::make($inventory->sale_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
+            $totalPrice = Money::make($inventory->final_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             $cartItem->update([
-                'quantity' => DB::raw('quantity + ' . $quantity),
-                'price' => $inventory->sale_price,
-                'total_price' => DB::raw('total_price + ' . (string) $totalPrice),
+                'quantity'    => (int) $cartItem->quantity + $quantity,
+                'price'       => $inventory->final_price,
+                'total_price' => $totalPrice->plus($cartItem->total_price),
             ]);
 
             $items = $cart->availableItems;

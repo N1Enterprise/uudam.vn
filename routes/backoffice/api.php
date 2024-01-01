@@ -41,13 +41,18 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== SUPPORT DESKS ======================== */
     Route::get('product-reviews', [Api\ProductReviewController::class, 'index'])->name('product-reviews.index')->middleware(['can:product-reviews.index']);
+    Route::put('product-reviews/{id}/approve', [Api\ProductReviewController::class, 'approve'])->name('product-reviews.approve')->middleware(['can:product-reviews.update']);
+    Route::put('product-reviews/{id}/decline', [Api\ProductReviewController::class, 'decline'])->name('product-reviews.decline')->middleware(['can:product-reviews.update']);
+    Route::get('subscribers', [Api\SubscriberController::class, 'index'])->name('subscribers.index')->middleware(['can:subscribers.index']);
 
     /* ======================== APPEARANCE ======================== */
-    Route::get('display-inventories', [Api\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
     Route::get('banners', [Api\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
     Route::get('menu-groups', [Api\MenuGroupController::class, 'index'])->name('menu-groups.index')->middleware(['can:menu-groups.index']);
     Route::get('menu-sub-groups', [Api\MenuSubGroupController::class, 'index'])->name('menu-sub-groups.index')->middleware(['can:menu-sub-groups.index']);
     Route::get('menus', [Api\MenuController::class, 'index'])->name('menus.index')->middleware(['can:menus.index']);
+
+    Route::get('home-page-display-orders', [Api\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+    Route::get('home-page-display-items', [Api\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
 
     /* ======================== UTILITIES ======================== */
     Route::get('post-categories', [Api\PostCategoryController::class, 'index'])->name('post-categories.index')->middleware(['can:post-categories.index']);
@@ -80,6 +85,11 @@ Route::prefix('v1')->group(function () {
     Route::get('orders', [Api\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
     Route::post('orders/{id}/change-status', [Api\OrderController::class, 'changeStatus'])->name('orders.change-status')->middleware('can:orders.manage');
     Route::get('orders/statistic/order-status/{orderStatus}', [Api\OrderController::class, 'statisticOrderStatus'])->name('orders.statistic.order-status')->middleware(['can:orders.index']);
+
+    Route::put('orders/{id}/delivery', [Api\OrderController::class, 'delivery'])->name('orders.delivery')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/complete', [Api\OrderController::class, 'complete'])->name('orders.complete')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/cancel', [Api\OrderController::class, 'cancel'])->name('orders.cancel')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/refund', [Api\OrderController::class, 'refund'])->name('orders.refund')->middleware(['can:orders.manage']);
 
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 

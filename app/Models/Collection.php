@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Enum\ActivationStatusEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Collection extends BaseModel
 {
     use Activatable;
     use SoftDeletes;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',
@@ -18,11 +20,11 @@ class Collection extends BaseModel
         'cover_image',
         'cta_label',
         'description',
-        'featured',
         'status',
         'linked_inventories',
         'linked_featured_inventories',
         'display_on_frontend',
+        'allow_frontend_search',
         'order',
         'meta_title',
         'meta_description'
@@ -32,11 +34,6 @@ class Collection extends BaseModel
         'linked_inventories' => 'json',
         'linked_featured_inventories' => 'json',
     ];
-
-    public function getFeaturedNameAttribute()
-    {
-        return ActivationStatusEnum::findConstantLabel($this->featured);
-    }
 
     public function getDisplayOnFrontendNameAttribute()
     {

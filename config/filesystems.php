@@ -106,6 +106,17 @@ return [
             'root'     => env('SFTP_ROOT_FOLDER') . '/payment',
         ],
 
+        'file_manager' => [
+            'driver'   => 'sftp',
+            'port'     => env('SFTP_PORT'),
+            'host'     => env('SFTP_HOST'),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+            'url'      => env('SFTP_URL'),
+            'url'      => env('SFTP_URL') . '/file_manager',
+            'root'     => env('SFTP_ROOT_FOLDER') . '/file_manager',
+        ],
+
         'sftp' => [
             'driver'   => 'sftp',
             'port'     => env('SFTP_PORT'),

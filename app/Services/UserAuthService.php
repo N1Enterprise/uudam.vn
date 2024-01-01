@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Classes\Contracts\UserAuthContract;
+use App\Models\User;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -63,5 +64,14 @@ class UserAuthService extends BaseService
         }
 
         return $this->userAuth->login($user);
+    }
+
+    public function signinByUser(User $user)
+    {
+        $this->userAuth->login($user);
+
+        $user->setLoggedInAt(now());
+
+        return $user;
     }
 }

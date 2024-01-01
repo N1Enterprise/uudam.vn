@@ -51,9 +51,6 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreInventoryRequestContract::class => Requests\StoreInventoryRequest::class,
         Contracts\UpdateInventoryRequestContract::class => Requests\UpdateInventoryRequest::class,
 
-        Contracts\StoreDisplayInventoryRequestContract::class => Requests\StoreDisplayInventoryRequest::class,
-        Contracts\UpdateDisplayInventoryRequestContract::class => Requests\UpdateDisplayInventoryRequest::class,
-
         Contracts\StoreBannerRequestContract::class => Requests\StoreBannerRequest::class,
         Contracts\UpdateBannerRequestContract::class => Requests\UpdateBannerRequest::class,
 
@@ -114,5 +111,11 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         // Order
         Contracts\UpdateOrderStatusRequestContract::class => Requests\UpdateOrderStatusRequest::class,
+
+        Contracts\StoreHomePageDisplayOrderRequestContract::class => Requests\StoreHomePageDisplayOrderRequest::class,
+        Contracts\UpdateHomePageDisplayOrderRequestContract::class => Requests\UpdateHomePageDisplayOrderRequest::class,
+
+        Contracts\StoreHomePageDisplayItemRequestContract::class => Requests\StoreHomePageDisplayItemRequest::class,
+        Contracts\UpdateHomePageDisplayItemRequestContract::class => Requests\UpdateHomePageDisplayItemRequest::class,
     ];
 }

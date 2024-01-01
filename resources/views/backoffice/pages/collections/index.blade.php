@@ -45,12 +45,12 @@
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Name') }}</th>
                         <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackImage">{{ __('Primary Image') }}</th>
-                        <th data-orderable="false" data-property="cover_image" data-render-callback="renderCallbackImage">{{ __('Primary Image') }}</th>
+                        <th data-orderable="false" data-property="cover_image" data-render-callback="renderCallbackImage">{{ __('Cover Image') }}</th>
                         <th data-property="cta_label">{{ __('Cta Label') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-badge data-name="featured" data-property="featured_name">{{ __('Featured') }}</th>
-                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Displaying') }}</th>
+                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
+                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
                         <th data-property="updated_at">{{ __('Updated At') }}</th>
                         <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>

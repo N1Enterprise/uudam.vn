@@ -166,7 +166,7 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Display On FE') }}</label>
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -176,6 +176,18 @@
 										</span>
 									</div>
 								</div>
+
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">{{ __('FE Search') }}</label>
+                                    <div class="col-3">
+                                        <span class="k-switch">
+                                            <label>
+                                                <input type="checkbox" {{ old('allow_frontend_search', '1') == '1'  ? 'checked' : '' }} value="1" name="allow_frontend_search"/>
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
 
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>

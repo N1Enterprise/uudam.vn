@@ -1,9 +1,6 @@
 <div class="product__info-container product__info-container--sticky" data-inventory='@json($inventory)'>
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
-        <a href="/products/teaching-garden-buddha-statue" class="product__title">
-            <h2 class="h1" data-title>{{ $inventory->title }}</h2>
-        </a>
     </div>
     <div style="margin-top: -15px;">
         <p>SKU: <span data-sku>{{ $inventory->sku }}</span></p>
@@ -14,13 +11,34 @@
             <div class="price__container">
                 <div class="price__regular">
                     <span class="visually-hidden visually-hidden--inline">Giá Bán</span>
-                    <span class="price-item price-item--regular" data-price-value="{{ $inventory->sale_price }}" data-sale-price>{{ format_price($inventory->sale_price) }}</span>
+                    <span class="price-item price-item--regular" data-price-value="{{ data_get($inventory, 'final_price') }}" data-sale-price>{{ format_price(data_get($inventory, 'final_price')) }}</span>
+                    @if ($inventory->has_offer_price)
+                    <del class="price-item--sub">{{ format_price(data_get($inventory, 'sub_price')) }}</del>
+                    <span class="price-discount-percent">-{{ get_percent(data_get($inventory, 'final_price'), data_get($inventory, 'sub_price')) }}%</span>
+                    <div class="price-for-saving">(Tiết kiệm <span>{{ format_price( (float) data_get($inventory, 'sub_price') - (float) data_get($inventory, 'final_price') ) }}</span>)</div>
+                    @endif
                 </div>
             </div>
             <span class="badge price__badge-sale color-accent-2">Giảm Giá</span>
             <span class="badge price__badge-sold-out color-inverse">Hết Hàng</span>
         </div>
     </div>
+    @if (has_data(data_get($inventory, 'key_features', [])))
+    <div class="product-promotion rounded-sm" id="ega-salebox">
+        <h3 class="product-promotion__heading" style="display: flex; align-items: center;">
+            <img src="{{ asset_with_version('frontend/assets/images/icons/icon-product-promotion.webp') }}" alt="{{ $inventory->title }}" width="22" height="22" style="margin-right: 7px; margin-bottom: 2px;">
+            CAM KẾT - CHẤT LƯỢNG - AN TOÀN
+        </h3>
+        <ul class="promotion-box">
+            @foreach (data_get($inventory, 'key_features', []) as $keyFeature)
+            <li>{{ data_get($keyFeature, 'title') }}</li>    
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    @if (has_data($inventory->condition_note))
+        <p class="product-condition-note">*Lưu ý: {{ $inventory->condition_note }}</p>
+    @endif
     <div>
         <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="installment caption-large">
             <input type="hidden" name="form_type" value="product">
@@ -30,36 +48,9 @@
         </form>
     </div>
 
-    <div class="inventory-price-area">
-        <div class="product-form__input product-form__quantity">
-            <label class="form__label">{{ __('Số Lượng') }}</label>
-            <quantity-input class="quantity">
-                <button data-quantity-decrease="product" class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
-                    <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
-                    </svg>
-                </button>
-                <input data-quantity-input="product" data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
-                <button data-quantity-increase="product" class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
-                    <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
-                    </svg>
-                </button>
-            </quantity-input>
-        </div>
-        <div>
-            <div class="inventory-price">
-                <label for="" data-total-cart-label>Tạm tính</label>:
-                <b class="total-cart" data-total-cart-price>{{ format_price($inventory->sale_price) }}</b>
-            </div>
-        </div>
-    </div>
-
     <div>
         <product-form class="product-form">
-            <div id="inventory_variants" data-variants='@json($variants)'></div>
+            <div id="inventory_variants" data-variants='@json($variants->toArray())'></div>
             <div class="product-form__error-message-wrapper" role="alert" hidden="">
                 <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
                     <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
@@ -70,13 +61,13 @@
                 <span class="product-form__error-message"></span>
             </div>
             @if(count($attributes))
-            <div class="product-attributes">
+            <variant-radios style="margin-top: 10px;">
                 @foreach ($attributes as $attribute)
-                <div class="attributes-item">
-                    <label for="attribute_{{ $attribute->id }}">
-                        <span class="attributes-item__name">{{ $attribute->name }}</span>
+                <fieldset class="attributes-item product-form__input">
+                    <legend for="attribute_{{ $attribute->id }}" class="form__label">
+                        <span>{{ $attribute->name }}</span>
                         <input type="radio" name="attribute" id="attribute_{{ $attribute->id }}" class="d-none" value="{{ $attribute->id }}">
-                    </label>
+                    </legend>
                     <div class="attributes-values">
                         @foreach ($attribute->attributeValues as $value)
                         <div class="attributes-values-item">
@@ -95,15 +86,44 @@
                         </div>
                         @endforeach
                     </div>
-                </div>
+                </fieldset>
                 @endforeach
-            </div>
+            </variant-radios>
             @endif
 
+            @if (has_data(data_get($inventory, 'productCombos', [])))
             @include('frontend.pages.products.partials.product-combos')
+            @endif
+
+            <div class="inventory-price-area" style="padding: 15px 0;">
+                <div class="product-form__input product-form__quantity">
+                    <label class="form__label">{{ __('Số Lượng') }}</label>
+                    <quantity-input class="quantity">
+                        <button data-quantity-decrease="product" class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
+                            <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                        <input data-quantity-input="product" data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
+                        <button data-quantity-increase="product" class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
+                            <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </quantity-input>
+                </div>
+                <div>
+                    <div class="inventory-price">
+                        <label for="" data-total-cart-label>Tạm tính</label>:
+                        <b class="total-cart" data-total-cart-price>{{ format_price(data_get($inventory, 'final_price')) }}</b>
+                    </div>
+                </div>
+            </div>
 
             @if(empty($AUTHENTICATED_USER))
-            <p>Bạn cần <a id="Add_Cart_Required_Login" href="?overlay=signin" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> trước khi mua hàng</p>
+            <p style="font-size: 1.4rem;">Bạn cần <a id="Add_Cart_Required_Login" href="?overlay=signin" class="link" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> trước khi mua hàng</p>
             @endif
 
             <form method="post" action="" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
@@ -114,6 +134,7 @@
                 <input type="hidden" name="quantity" value="1">
                 <input type="hidden" name="has_combo" value="0">
                 <div class="product-form__buttons">
+                    <a href="{{ route('fe.web.cart.index') }}" class="link" style="margin-bottom: 10px;">Xem Giỏ Hàng</a>
                     <button type="submit" name="add" class="product-form__submit button button--full-width button--primary">
                         <span>Thêm Vào Giỏ Hàng</span>
                         <div class="loading-overlay__spinner hidden">

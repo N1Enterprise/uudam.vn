@@ -17,6 +17,8 @@ class PageResource extends BaseJsonResource
             'order' => $this->order,
             'status' => $this->status,
             'status_name' => $this->status_name,
+            'display_on_frontend' => $this->display_on_frontend,
+            'display_on_frontend_name' => $this->display_on_frontend_name,
             'content' => $this->content,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,

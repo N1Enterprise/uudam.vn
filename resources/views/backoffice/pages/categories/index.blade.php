@@ -48,7 +48,6 @@
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-property="category_group.name">{{ __('Group') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-badge data-name="featured" data-property="featured_name">{{ __('Featured') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
                         <th data-property="updated_at">{{ __('Updated At') }}</th>
                         <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>

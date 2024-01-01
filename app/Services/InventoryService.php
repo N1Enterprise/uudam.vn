@@ -23,23 +23,30 @@ class InventoryService extends BaseService
     {
         $result = $this->inventoryRepository
             ->with(['product', 'createdBy', 'updatedBy'])
-            ->whereColumnsLike($data['query'] ?? null, ['id', 'slug', 'sku'])
+            ->whereColumnsLike($data['query'] ?? null, ['id', 'slug', 'sku', 'title'])
+            ->scopeQuery(function($q) use ($data) {
+                $productId = data_get($data, 'product_id');
+
+                if ($productId) {
+                    $q->where('product_id', $productId);
+                }
+            })
             ->search([]);
 
         return $result;
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $where = [];
 
-        $orderBy  = 'featured';
+        $orderBy = 'sale_price';
         $sortBy = 'asc';
 
         if (! empty(data_get($data, 'sort_by'))) {
             switch (data_get($data, 'sort_by')) {
                 case 'manual';
-                    $orderBy = 'featured';
+                    $orderBy = 'sale_price';
                     $sortBy = 'asc';
                     break;
                 case 'best-selling';
@@ -76,6 +83,9 @@ class InventoryService extends BaseService
         }
 
         $result = $this->inventoryRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->whereColumnsLike($data['query'] ?? null, ['sku', 'title', 'slug'])
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);
 
@@ -91,7 +101,7 @@ class InventoryService extends BaseService
     public function allAvailable($data = [])
     {
         return $this->inventoryRepository
-            ->modelScopes(['active'])
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -168,7 +178,6 @@ class InventoryService extends BaseService
             $variant['product_slug'] = data_get($attributes, 'product_slug');
             $variant['offer_start'] = data_get($attributes, 'offer_start');
             $variant['offer_end'] = data_get($attributes, 'offer_end');
-            $variant['featured'] = data_get($attributes, 'featured');
 
             $variantsCreated = [];
 
@@ -256,16 +265,48 @@ class InventoryService extends BaseService
         return true;
     }
 
-    public function listAvailableByProduct($product, $data = [])
+    public function searchVariantsByProductForGuest($productId)
     {
         $inventories = $this->inventoryRepository
-            ->modelScopes(['active'])
-            ->with(data_get($data, 'with', []))
-            ->scopeQuery(function($q) use ($product) {
-                $q->where('product_id', BaseModel::getModelKey($product));
+            ->modelScopes(['active', 'feDisplay'])
+            ->with(['attributeValues:id', 'attributes:id'])
+            ->scopeQuery(function($q) use ($productId) {
+                $q->where('product_id', BaseModel::getModelKey($productId));
             })
-            ->all(data_get($data, 'columns', ['*']));
+            ->all(['id', 'slug']);
 
         return $inventories;
+    }
+
+    public function showBySlugForGuest($slug)
+    {
+        $inventory = $this->inventoryRepository
+            ->modelScopes(['feDisplay', 'active'])
+            ->with(['product', 'attributeValues', 'attributes', 'productCombos'])
+            ->scopeQuery(function($q) use ($slug) {
+                $q->where('slug', $slug);
+            })
+            ->first([
+                'available_from',
+                'condition',
+                'condition_note',
+                'id',
+                'image',
+                'key_features',
+                'meta_description',
+                'meta_title',
+                'min_order_quantity',
+                'offer_end',
+                'offer_price',
+                'offer_start',
+                'product_id',
+                'sale_price',
+                'sku',
+                'slug',
+                'stock_quantity',
+                'title',
+            ]);
+
+        return $inventory;
     }
 }

@@ -13,10 +13,10 @@
                 <div class="modal-overlay" close-modal-search></div>
                 <div class="search-modal__content search-modal__content-bottom" tabindex="-1">
                     <predictive-search class="search-modal__form" data-loading-text="Loading..." results="true">
-                        <form id="Form_Search_Master" action="/search" method="get" role="search" class="search search-modal__form" data-search-setting='@json($SEARCH_SETTING)'>
+                        <form id="Form_Search_Master" action="/search" method="get" role="search" class="search search-modal__form" data-search-setting='@json(data_get($SYSTEM_SETTING, 'search_setting'))'>
                             <div class="field">
-                                <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
-                                <label class="field__label" for="Search-In-Modal">{{ data_get($SEARCH_SETTING, 'placeholder', 'Tìm kiếm...') }}</label>
+                                <input class="search__input field__input Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
+                                <label class="field__label" for="Search-In-Modal">{{ data_get($SYSTEM_SETTING, 'search_setting.placeholder', 'Tìm kiếm...') }}</label>
                                 <input type="hidden" name="options[prefix]" value="last">
                                 <button class="search__button field__button" aria-label="Search">
                                     <svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 32 32" version="1.1">

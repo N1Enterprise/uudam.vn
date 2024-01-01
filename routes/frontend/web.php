@@ -7,9 +7,9 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');
 
-Route::get('blogs', [Controllers\BlogController::class, 'index']);
+Route::get('blogs/{slug}', [Controllers\BlogController::class, 'index'])->name('blogs.index');
 
-Route::get('blogs/posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
 
 Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index'])->name('collections.index');
 
@@ -18,6 +18,8 @@ Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('
 Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');
 
 Route::get('maintenance', [Controllers\MaintenanceController::class, 'index'])->name('maintenance');
+
+Route::get('search', [Controllers\UserSearchController::class, 'index'])->name('search');
 
 Route::middleware(['auth:user'])->group(function() {
     Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
@@ -32,4 +34,8 @@ Route::middleware(['auth:user'])->group(function() {
 
     Route::get('checkout/payment/failure/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentFailure'])->name('user.checkout.payment.failure');
     Route::get('checkout/payment/success/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentSuccess'])->name('user.checkout.payment.success');
+});
+
+Route::get('/zalo_verifierOTYN8wBvB1TvsFi8gSLu1LJLgJ-uetjaEJCq.html', function() {
+    return view('frontend.3rd.zalo-dev-verify');
 });

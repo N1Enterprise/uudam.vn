@@ -31,17 +31,16 @@
                             <div class="menu-drawer__navigation-container">
                                 <nav class="menu-drawer__navigation">
                                     <ul class="menu-drawer__menu has-submenu list-menu vertical-mega-menu" role="list" menuidx="0">
-                                        @foreach ($APP_MENU_GROUPS as $menuGroup)
+                                        @foreach ($APP_MENU_AVAILABEL as $menuGroup)
                                         <li class="app-menu-item" itemid="PMu22">
                                             <a
-                                                data-href="{{ data_get($menuGroup, 'redirect_url') }}"
-                                                href="{{ data_get($menuGroup, 'redirect_url') }}"
+                                                href="{{ data_get($menuGroup, 'redirect_url', 'javascript:void(0)') }}"
                                                 aria-label="{{ data_get($menuGroup, 'name') }}"
                                                 class="menu-drawer__menu-item list-menu__item link link--text"
                                             >
                                                 <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 
-                                                @if(! optional($menuGroup->menuSubGroups)->isEmpty())
+                                                @if(has_data(data_get($menuGroup, 'menu_sub_groups', [])))
                                                 <i class="mm-arrow mm-angle-down" aria-hidden="true"></i>
                                                 <span class="toggle-menu-btn fa-visible" style="display:none;" title="Toggle menu">
                                                     <span class="mm-arrow-icon">
@@ -52,27 +51,23 @@
                                                 @endif
                                             </a>
 
-                                            @if(! optional($menuGroup->menuSubGroups)->isEmpty())
+                                            @if(has_data(data_get($menuGroup, 'menu_sub_groups', [])))
                                             <ul class="mm-submenu simple mm-last-level height-transition" style="left: auto; right: auto; width: auto !important; margin-bottom: 0px; max-height: 0px;" columns="1">
-                                                @foreach (data_get($menuGroup, 'menuSubGroups', []) as $menuSubGroup)
+                                                @foreach (data_get($menuGroup, 'menu_sub_groups', []) as $menuSubGroup)
                                                 <li submenu-columns="{{ data_get($menuSubGroup, 'params.submenu_columns') }}" item-type="{{ data_get($menuSubGroup, 'params.item_type') }}" style="z-index: 10;" class="mm-right-item mm-left-item">
                                                     <div class="mega-menu-item-container">
                                                         @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                                         <div class="mm-list-name" style="height: 37px;">
                                                             <span>
-                                                                @if(empty(data_get($menuSubGroup, 'redirect_url')))
-                                                                <span class="mm-title">{{ data_get($menuSubGroup, 'name') }}</span>
-                                                                @else
-                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url') }}" class="mm-title">{{ data_get($menuSubGroup, 'name') }}</a>
-                                                                @endif
+                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url') ?? 'javascript:void(0)' }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                                             </span>
                                                         </div>
                                                         @endif
 
-                                                        @if(! optional($menuSubGroup->menus)->isEmpty())
+                                                        @if(has_data(data_get($menuSubGroup, 'menus', [])))
                                                         <ul class="mm-product-list mm-last-level">
-                                                            @foreach ($menuSubGroup->menus as $menu)
-                                                            @include('frontend.layouts.partials.header.partials.menu-'.$menu->type)
+                                                            @foreach (data_get($menuSubGroup, 'menus', []) as $menu)
+                                                            @include('frontend.layouts.partials.header.partials.menu-'.data_get($menu, 'type'))
                                                             @endforeach
                                                         </ul>
                                                         @endif
@@ -104,7 +99,7 @@
                                     </a>
                                     @endif
                                     <ul class="list list-social list-unstyled" role="list">
-                                        @foreach ($SOCIAL_NETWORKS as $network)
+                                        @foreach (data_get($SYSTEM_SETTING, 'social_networks', []) as $network)
                                         <li class="list-social__item">
                                             <a href="{{ data_get($network, 'link') }}" target="_blank" title="{{ data_get($network, 'tooltip') }}" class="link list-social__link">
                                                 @include('frontend.icons.'.data_get($network, 'icon'))
@@ -123,10 +118,10 @@
             <h1 class="header__heading">
                 <a href="{{ route('fe.web.home') }}" class="header__heading-link link link--text focus-inset">
                     <img
-                        src="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
-                        srcset="{{ data_get($PAGE_SETTINGS, 'logo.image') }}"
-                        alt="{{ data_get($PAGE_SETTINGS, 'title') }}"
-                        style="width: {{ data_get($PAGE_SETTINGS, 'logo.width', '180px') }}; height: {{ data_get($PAGE_SETTINGS, 'logo.height', '38.89447236180904px') }}"
+                        src="{{ data_get($SYSTEM_SETTING, 'page_settings.logo.image') }}"
+                        srcset="{{ data_get($SYSTEM_SETTING, 'page_settings.logo.image') }}"
+                        alt="{{ data_get($SYSTEM_SETTING, 'page_settings.title') }}"
+                        style="width: {{ data_get($SYSTEM_SETTING, 'page_settings.logo.width', '180px') }}; height: {{ data_get($SYSTEM_SETTING, 'page_settings.logo.height', '38.89447236180904px') }}"
                         class="header__heading-logo"
                     >
                 </a>
@@ -134,17 +129,16 @@
 
             <nav class="header__inline-menu">
                 <ul class="list-menu list-menu--inline horizontal-mega-menu" role="list">
-                    @foreach ($APP_MENU_GROUPS as $menuGroup)
+                    @foreach ($APP_MENU_AVAILABEL as $menuGroup)
                     <li class="app-menu-item" itemid="menu_{{ data_get($menuGroup, 'id') }}">
                         <a
-                            data-href="{{ data_get($menuGroup, 'redirect_url') }}"
-                            href="{{ data_get($menuGroup, 'redirect_url') }}"
+                            href="{{ data_get($menuGroup, 'redirect_url', 'javascript:void(0)') }}"
                             aria-label="{{ data_get($menuGroup, 'name') }}"
                             class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"
                         >
                             <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 
-                            @if(! optional($menuGroup->menuSubGroups)->isEmpty())
+                            @if(has_data(data_get($menuGroup, 'menu_sub_groups', [])))
                             <i class="mm-arrow mm-angle-down" aria-hidden="true"></i>
                             <span class="toggle-menu-btn" style="display:none;" title="Toggle menu">
                                 <span class="mm-arrow-icon">
@@ -155,27 +149,23 @@
                             @endif
                         </a>
 
-                        @if(! optional($menuGroup->menuSubGroups)->isEmpty())
+                        @if(has_data(data_get($menuGroup, 'menu_sub_groups', [])))
                         <ul class="mm-submenu simple mm-last-level" style="width: 1500px !important; right: auto; max-width: none; min-width: 400px !important; max-height: none; overflow: hidden;" columns="5">
-                            @foreach (data_get($menuGroup, 'menuSubGroups', []) as $menuSubGroup)
+                            @foreach (data_get($menuGroup, 'menu_sub_groups', []) as $menuSubGroup)
                             <li submenu-columns="{{ data_get($menuSubGroup, 'params.submenu_columns') }}" item-type="{{ data_get($menuSubGroup, 'params.item_type') }}" style="z-index: 10; margin-bottom: 10px !important;">
                                 <div class="mega-menu-item-container">
                                     @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                     <div class="mm-list-name" style="height: 37px;">
                                         <span>
-                                            @if(empty(data_get($menuSubGroup, 'redirect_url')))
-                                            <span class="mm-title">{{ data_get($menuSubGroup, 'name') }}</span>
-                                            @else
-                                            <a href="{{ data_get($menuSubGroup, 'redirect_url') }}" class="mm-title">{{ data_get($menuSubGroup, 'name') }}</a>
-                                            @endif
+                                            <a href="{{ data_get($menuSubGroup, 'redirect_url') ?? 'javascript:void(0)' }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                         </span>
                                     </div>
                                     @endif
 
-                                    @if(! optional($menuSubGroup->menus)->isEmpty())
+                                    @if(has_data(data_get($menuSubGroup, 'menus', [])))
                                     <ul class="mm-product-list mm-last-level">
-                                        @foreach ($menuSubGroup->menus as $menu)
-                                            @include('frontend.layouts.partials.header.partials.menu-'.$menu->type)
+                                        @foreach (data_get($menuSubGroup, 'menus', []) as $menu)
+                                            @include('frontend.layouts.partials.header.partials.menu-'.data_get($menu, 'type'))
                                         @endforeach
                                     </ul>
                                     @endif

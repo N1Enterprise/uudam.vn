@@ -11,10 +11,9 @@ class ProductResource extends BaseJsonResource
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'code' => $this->code,
             'branch' => $this->branch,
-            'min_amount' => $this->min_amount,
-            'max_amount' => $this->max_amount,
             'type' => $this->type,
             'type_name' => $this->type_name,
             'status' => $this->status,

@@ -15,8 +15,10 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\RoleRepositoryContract::class => Repositories\RoleRepository::class,
         Contracts\AdminRepositoryContract::class => Repositories\AdminRepository::class,
         Contracts\UserRepositoryContract::class => Repositories\UserRepository::class,
-        Contracts\UserDetailRepositoryContract::class => Repositories\UserDetailRepository::class,
         Contracts\UserWalletRepositoryContract::class => Repositories\UserWalletRepository::class,
+
+        // Oauth User
+        Contracts\OauthUserRepositoryContract::class => Repositories\OauthUserRepository::class,
 
         // System Setting
         Contracts\SystemSettingRepositoryContract::class => Repositories\SystemSettingRepository::class,
@@ -30,7 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\AttributeRepositoryContract::class => Repositories\AttributeRepository::class,
         Contracts\AttributeValueRepositoryContract::class => Repositories\AttributeValueRepository::class,
         Contracts\InventoryRepositoryContract::class => Repositories\InventoryRepository::class,
-        Contracts\DisplayInventoryRepositoryContract::class => Repositories\DisplayInventoryRepository::class,
         Contracts\BannerRepositoryContract::class => Repositories\BannerRepository::class,
         Contracts\MenuGroupRepositoryContract::class => Repositories\MenuGroupRepository::class,
         Contracts\MenuSubGroupRepositoryContract::class => Repositories\MenuSubGroupRepository::class,
@@ -66,5 +67,8 @@ class RepositoryServiceProvider extends ServiceProvider
         // Order
         Contracts\OrderRepositoryContract::class => Repositories\OrderRepository::class,
         Contracts\OrderItemRepositoryContract::class => Repositories\OrderItemRepository::class,
+        
+        Contracts\HomePageDisplayOrderRepositoryContract::class => Repositories\HomePageDisplayOrderRepository::class,
+        Contracts\HomePageDisplayItemRepositoryContract::class => Repositories\HomePageDisplayItemRepository::class,
     ];
 }

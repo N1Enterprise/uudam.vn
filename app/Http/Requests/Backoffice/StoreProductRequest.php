@@ -7,6 +7,7 @@ use App\Contracts\Requests\Backoffice\StoreProductRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductTypeEnum;
 use App\Models\Inventory;
+use App\Models\Post;
 use App\Models\Product;
 
 class StoreProductRequest extends BaseFormRequest implements StoreProductRequestContract

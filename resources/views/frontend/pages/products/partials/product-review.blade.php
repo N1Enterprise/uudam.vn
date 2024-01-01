@@ -14,13 +14,17 @@
             </style>
             <div class="spr-container">
                 <div class="spr-header">
-                    <h2 class="spr-header-title">Phản hồi khách hàng</h2>
+                    <h2 class="spr-header-title" style="text-align: left;">Phản hồi khách hàng</h2>
+                    @if($AUTHENTICATED_USER)
                     <div class="spr-summary rte">
                         <span class="spr-summary-actions">
                             <a href="javascript:void(0)" class="spr-summary-actions-newreview" onclick="">Viết đánh giá</a>
                         </span>
                     </div>
+                    @endif
                 </div>
+
+                @if($AUTHENTICATED_USER)
                 <div class="spr-content">
                     <div data-product-review class="spr-form d-none">
                         <form id="User_Product_Review" method="post" action="{{ route('fe.api.user.product.review') }}" class="new-review-form">
@@ -29,7 +33,7 @@
                             <fieldset class="spr-form-contact">
                                 <div class="spr-form-contact-name">
                                     <label class="spr-form-label" for="user_name">Tên của bạn *</label>
-                                    <input class="spr-form-input spr-form-input-text " type="text" name="user_name" placeholder="Nhập tên bạn" style="padding: 5px;" required>
+                                    <input class="spr-form-input spr-form-input-text" type="text" name="user_name" placeholder="Nhập tên bạn" style="padding: 5px;" value="{{ data_get($AUTHENTICATED_USER, 'name') }}" disabled required>
                                 </div>
                             </fieldset>
                             <fieldset class="spr-form-review">
@@ -44,14 +48,9 @@
                                     </div>
                                 </div>
                                 <div class="spr-form-review-body">
-                                    <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *
-                                        <span role="status" aria-live="polite" aria-atomic="true">
-                                            <span class="spr-form-review-body-charactersremaining">(<span class="charactersremaining-count">1000</span>)</span>
-                                            <span class="visuallyhidden">ký tự còn lại</span>
-                                        </span>
-                                    </label>
+                                    <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *</label>
                                     <div class="spr-form-input">
-                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây" style="padding: 5px;" required></textarea>
+                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây (cho phép 1000 ký tự)" style="padding: 5px;" required></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -61,18 +60,18 @@
                         </form>
                     </div>
                     <div class="spr-reviews">
-                        @if($productReviews->count())
+                        @if(has_data($productReviews))
                             @foreach ($productReviews as $review)
-                            <div class="spr-review" data-status="{{ $review->status }}" data-status-name="{{ $review->status_name }}">
+                            <div class="spr-review" data-status="{{ data_get($review, 'status') }}" data-status-name="{{ data_get($review, 'status_name') }}">
                                 <div class="spr-review-header">
-                                    <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, $review->rating_type, $review->rating_type_name) }}</span>
-                                    <h3 class="spr-review-header-title">{{ $review->user_name }}</h3>
+                                    <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, data_get($review, 'rating_type'), data_get($review, 'rating_type_name')) }}</span>
+                                    <h3 class="spr-review-header-title">{{ data_get($review, 'user_name') }}</h3>
                                     <span class="spr-review-header-byline">
-                                        <strong>{{ date('d/m/Y H:i', strtotime($review->created_at)) }}</strong>
+                                        <strong>{{ date('d/m/Y H:i', strtotime(data_get($review, 'created_at'))) }}</strong>
                                     </span>
                                 </div>
                                 <div class="spr-review-content">
-                                    <p class="spr-review-content-body">{{ $review->content }}</p>
+                                    <p class="spr-review-content-body">{{ data_get($review, 'content') }}</p>
                                 </div>
                             </div>
                             @endforeach
@@ -81,6 +80,11 @@
                         @endif
                     </div>
                 </div>
+                @else
+                <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng nhập</a>
+                <span style="font-size: 1.4rem;">để bình luận</span>
+                @endif
+
             </div>
         </div>
         <style>

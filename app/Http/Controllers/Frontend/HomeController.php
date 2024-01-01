@@ -2,56 +2,35 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Enum\BannerTypeEnum;
-use App\Enum\DisplayInventoryTypeEnum;
+use App\Cms\BannerCms;
+use App\Cms\HomePageDisplayOrderCms;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
-use App\Services\CollectionService;
-use App\Services\PostCategoryService;
-use App\Services\StoreFront\StoreFrontBannerService;
-use App\Services\StoreFront\StoreFrontProductDisplayService;
+use App\Services\BannerService;
+use App\Services\HomePageDisplayOrderService;
 
 class HomeController extends BaseController
 {
-    public $storeFrontBannerService;
-    public $storeFrontProductDisplayService;
-    public $collectionService;
-    public $postCategoryService;
+    public $bannerService;
+    public $homePageDisplayOrderService;
 
     public function __construct(
-        StoreFrontBannerService $storeFrontBannerService,
-        StoreFrontProductDisplayService $storeFrontProductDisplayService,
-        CollectionService $collectionService,
-        PostCategoryService $postCategoryService
+        BannerService $bannerService,
+        HomePageDisplayOrderService $homePageDisplayOrderService
     ) {
-        $this->storeFrontBannerService = $storeFrontBannerService;
-        $this->storeFrontProductDisplayService = $storeFrontProductDisplayService;
-        $this->collectionService = $collectionService;
-        $this->postCategoryService = $postCategoryService;
+        $this->bannerService = $bannerService;
+        $this->homePageDisplayOrderService = $homePageDisplayOrderService;
     }
 
     public function index()
     {
-        $homeBanners = $this->storeFrontBannerService->allAvailableBannerByType(BannerTypeEnum::HOME_BANNER);
-        $popularInventories = $this->storeFrontProductDisplayService->allAvailableInventoryDisplayedByType(DisplayInventoryTypeEnum::POPULAR);
-        $youMayLikeInventories = $this->storeFrontProductDisplayService->allAvailableInventoryDisplayedByType(DisplayInventoryTypeEnum::YOU_MAY_LIKE);
-        $collections = $this->collectionService
-            ->allAvailable(['columns' => ['id', 'slug', 'name', 'primary_image', 'cta_label', 'featured', 'display_on_frontend']])
-            ->sortBy('order');
-
-        $displayOnFrontendCollections = $collections->where('display_on_frontend', 1);
-        $featuredCollections = $collections->where('featured', 1);
-
-        $postCategories = $this->postCategoryService->getAvailableDisplayOnFE(['with' => 'posts']);
+        $homeBanners = BannerCms::make()->homeBanners();
         $videoOutsideUI = SystemSetting::from(SystemSettingKeyEnum::VIDEO_OUTSIDE_UI)->get(null, []);
+        $homePageDisplayOrders = HomePageDisplayOrderCms::make()->available();
 
         return $this->view('frontend.pages.home.index', compact(
             'homeBanners',
-            'popularInventories',
-            'youMayLikeInventories',
-            'displayOnFrontendCollections',
-            'featuredCollections',
-            'postCategories',
+            'homePageDisplayOrders',
             'videoOutsideUI'
         ));
     }

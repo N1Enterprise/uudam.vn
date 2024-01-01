@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Cms\ProductReviewCms;
+use App\Enum\ProductReviewStatusEnum;
 use App\Exceptions\BusinessLogicException;
 use App\Repositories\Contracts\ProductReviewRepositoryContract;
 use App\Services\BaseService;
@@ -79,12 +81,21 @@ class ProductReviewService extends BaseService
         return $this->productReviewRepository->delete($id);
     }
 
-    public function allAvailable($data = [])
+    public function approve($id)
     {
-        return $this->productReviewRepository
-            ->modelScopes(['approved'])
-            ->with(data_get($data, 'with', []))
-            ->orderBy('created_at', 'desc')
-            ->all(data_get($data, 'columns', ['*']));
+        $productReview = $this->show($id);
+
+        $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::APPROVED], $productReview);
+
+        ProductReviewCms::flush();
+    }
+
+    public function decline($id)
+    {
+        $productReview = $this->show($id);
+
+        $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::DECLINED], $productReview);
+
+        ProductReviewCms::flush();
     }
 }

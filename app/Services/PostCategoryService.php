@@ -27,6 +27,24 @@ class PostCategoryService extends BaseService
         return $result;
     }
 
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $result = $this->postCategoryRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+    }
+
     public function allAvailable($data = [])
     {
         if (data_get($data, 'with.posts')) {
@@ -35,7 +53,8 @@ class PostCategoryService extends BaseService
             }];
         }
 
-        return $this->postCategoryRepository->modelScopes(['active'])
+        return $this->postCategoryRepository
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -50,7 +69,7 @@ class PostCategoryService extends BaseService
         }
 
         return $this->postCategoryRepository
-            ->modelScopes(['active', 'displayOnFE'])
+            ->modelScopes(['active', 'feDisplay'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -67,9 +86,19 @@ class PostCategoryService extends BaseService
         });
     }
 
-    public function show($id, $columns = ['*'])
+    public function show($id, $data = [])
     {
-        return $this->postCategoryRepository->findOrFail($id, $columns);
+        return $this->postCategoryRepository
+            ->modelScopes(data_get($data, 'scopes', []))
+            ->findOrFail($id, data_get($data, 'columns', ['*']));
+    }
+
+    public function findByUser($slug, $data = [])
+    {
+        return $this->postCategoryRepository
+            ->with(['posts'])
+            ->modelScopes(['active', 'feDisplay'])
+            ->firstWhere(['slug' => $slug], data_get($data, 'columns', ['*']));
     }
 
     public function update($attributes = [], $id)

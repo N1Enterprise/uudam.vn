@@ -22,15 +22,19 @@
             $orderStatusClass = 'badge badge-warning';
             break;
         case enum('OrderStatusEnum')::PROCESSING:
-        case enum('OrderStatusEnum')::DELIVERY:
             $orderStatusClass = 'badge badge-primary';
+            break;
+        case enum('OrderStatusEnum')::DELIVERY:
+            $orderStatusClass = 'badge badge-secondary';
             break;
         case enum('OrderStatusEnum')::COMPLETED:
             $orderStatusClass = 'badge badge-success';
             break;
         case enum('OrderStatusEnum')::CANCELED:
-        case enum('OrderStatusEnum')::REFUNDED:
             $orderStatusClass = 'badge badge-danger';
+            break;
+        case enum('OrderStatusEnum')::REFUNDED:
+            $orderStatusClass = 'badge badge-warning';
             break;
         default:
             break;
@@ -293,19 +297,10 @@
                 <div class="k-portlet__body">
                     <div class="btns d-flex justify-content-end">
                         @can('orders.manage')
-                        <button class="btn btn-secondary mr-2" data-toggle="modal" data-target="#change_payment_status" {{ !$order->canChangePaymentStatus() ? 'disabled' : '' }}>{{ __('Change Payment Status') }}</button>
-
-                        <button class="btn btn-info mr-2" data-toggle="modal" data-target="#change_order_status" {{ !$order->canChangeOrderStatus() ? 'disabled' : '' }}>{{ __('Change Order Status') }}</button>
-
-                        <form action="{{ route('bo.api.orders.change-status', $order->id) }}" data-form="change_status" method="POST" class="mr-2" data-confirmation="{{ __('Are you sure to complete this order?') }}" data-msg-success="{{ __('Complete order success.') }}" data-msg-error="{{ __('Complete order error.') }}">
-                            <input type="hidden" name="order_status" value="{{ enum('OrderStatusEnum')::COMPLETED }}">
-                            <button type="submit" class="btn btn-success" {{ !$order->canChangeOrderStatus() ? 'disabled' : '' }}>{{ __('Complete Order') }}</button>
-                        </form>
-
-                        <form action="{{ route('bo.api.orders.change-status', $order->id) }}" data-form="change_status" method="POST" data-confirmation="{{ __('Are you sure to cancel this order?') }}" data-msg-success="{{ __('Cancen order success.') }}" data-msg-error="{{ __('Cancen order error.') }}">
-                            <input type="hidden" name="order_status" value="{{ enum('OrderStatusEnum')::CANCELED }}">
-                            <button type="submit" class="btn btn-danger" {{ !$order->canChangeOrderStatus() ? 'disabled' : '' }}>{{ __('Cancel Order') }}</button>
-                        </form>
+                        <button type="submit" data-btn-change-order-status="update-to-delivery" class="btn btn-secondary ml-2" data-route="{{ route('bo.api.orders.delivery', $order->id) }}" {{ !$order->canDelivery() ? 'disabled' : '' }}>{{ __('DELIVERY ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-complete" class="btn btn-success ml-2" data-route="{{ route('bo.api.orders.complete', $order->id) }}" {{ !$order->canComplete() ? 'disabled' : '' }}>{{ __('COMPLETE ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-refund" class="btn btn-warning ml-2" data-route="{{ route('bo.api.orders.refund', $order->id) }}" {{ !$order->canRefund() ? 'disabled' : '' }}>{{ __('REFUND ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-cancel" class="btn btn-danger ml-2" data-route="{{ route('bo.api.orders.cancel', $order->id) }}" {{ !$order->canCancel() ? 'disabled' : '' }}>{{ __('CANCEL ORDER') }}</button>
                         @endcan
                     </div>
                 </div>
@@ -315,79 +310,32 @@
 </div>
 @endsection
 
+@can('orders.manage')
 @push('modals')
-@can('orders.manage')
-<div class="modal fade" id="change_order_status" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-        <form action="{{ route('bo.api.orders.change-status', $order->id) }}" data-form="change_status" method="POST" data-msg-success="{{ __('Change payment status success.') }}" data-msg-error="{{ __('Change payment status error.') }}">
-            <div class="modal-content">
+<div class="modal fade" id="update_order_status_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border:none;">
+            <form id="update_order_status_form" method="GET" action="">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Change Order Status') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title"></h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">{{ __('Order Status') }}</label>
-                        <select name="order_status" id="" class="form-control k_selectpicker" data-live-search="true" data-size="5">
-                            @foreach ($orderStatusEnumLabels as $key => $label)
-                            <option value="{{ $key }}" {{ $order->order_status == $key ? 'selected' : '' }}>{{ $label }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="admin_note">{{ __('Admin Note') }}</label>
-                        <textarea name="admin_note" id="admin_note" rows="4" class="form-control">{{ $order->admin_note }}</textarea>
+                        <textarea name="admin_note" id="admin_note" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer" style="border-top: none;">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
                     <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-@endcan
-
-@can('orders.manage')
-<div class="modal fade" id="change_payment_status" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-        <form action="{{ route('bo.api.orders.change-status', $order->id) }}" data-form="change_status" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Change Payment Status') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="">{{ __('Payment Status') }}</label>
-                        <select name="payment_status" class="form-control k_selectpicker" data-live-search="true" data-size="5">
-                            @foreach ($paymentStatusEnumLabels as $key => $label)
-                            <option value="{{ $key }}" {{ $order->payment_status == $key ? 'selected' : '' }}>{{ $label }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="admin_note">{{ __('Admin Note') }}</label>
-                        <textarea name="admin_note" id="admin_note" rows="4" class="form-control">{{ $order->admin_note }}</textarea>
-                    </div>
-                </div>
-                <div class="modal-footer" style="border-top: none;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-@endcan
 @endpush
+@endcan
+
 
 @component('backoffice.partials.datatable') @endcomponent
 
@@ -402,6 +350,38 @@
 
         return image.prop('outerHTML');
     }
+
+    $.each($('[data-btn-change-order-status]'), function(index, element) {
+        $(element).on('click', function() {
+            $('#update_order_status_modal').find('.modal-title').text($(this).text());
+            $('#update_order_status_modal').find('form').attr('action', $(this).attr('data-route'));
+            $('#update_order_status_modal').modal('show');
+        });
+    });
+
+    $('#update_order_status_form').on('submit', function(e) {
+        e.preventDefault();
+
+        const _self = $(this);
+
+        $.ajax({
+            url: _self.attr('action'),
+            method: 'PUT',
+            data: _self.serialize(),
+            beforeSend: () => {
+                _self.find('[type="submit"]').prop('disabled', true);
+            },
+            success: () => {
+                fstoast.success("{{ __('Success to change order status.') }}");
+                _self.find('[type="submit"]').prop('disabled', false);
+                location.reload();
+            },
+            error: () => {
+                fstoast.error("{{ __('Fail to change order status.') }}");
+                _self.find('[type="submit"]').prop('disabled', false);
+            },
+        });
+    });
 </script>
 @include('backoffice.pages.orders.js-pages.edit')
 @endsection

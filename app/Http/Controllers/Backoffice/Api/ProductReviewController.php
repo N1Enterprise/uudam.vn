@@ -21,4 +21,18 @@ class ProductReviewController extends BaseApiController
 
         return $this->response(ListProductReviewResponseContract::class, $productReviews);
     }
+
+    public function approve(Request $request, $id)
+    {
+        $this->productReviewService->approve($id);
+
+        return $this->responseNoContent();
+    }
+
+    public function decline(Request $request, $id)
+    {
+        $this->productReviewService->decline($id);
+
+        return $this->responseNoContent();
+    }
 }

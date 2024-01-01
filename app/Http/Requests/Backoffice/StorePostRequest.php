@@ -25,10 +25,10 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
             'order' => ['nullable', 'integer', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta' => ['nullable', 'array'],
-            'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
-            'display_on_frontend' => ['required', 'boolean']
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'allow_frontend_search' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
     }
 
@@ -37,8 +37,8 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'display_on_frontend' => boolval($this->display_on_frontend),
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'allow_frontend_search' => boolean($this->allow_frontend_search) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
         ]);
     }

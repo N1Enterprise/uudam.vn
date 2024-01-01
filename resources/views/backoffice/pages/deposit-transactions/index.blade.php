@@ -222,10 +222,11 @@
 
         removeRequestParams('table_deposit_transactions_index', 'reset_form');
 
-        $form.find('input[name="order_status"]').val(orderStatus);
+        $form.find('input[name="status"]').val(orderStatus);
 
         $table.DataTable().ajax.reload(function(data) {
             $form.find(':submit').prop('disabled', false);
+            DEPOSIT_TRANSACTION.loadTotalDeposit();
         });
     }
 
@@ -233,7 +234,7 @@
         $(document).ready(function() {
             const data = $('#table_deposit_transactions_index').DataTable().ajax.params();
 
-            $(`[data-status="${data?.order_status}"]`).addClass('active');
+            $(`[data-status="${data?.status}"]`).addClass('active');
         });
     }
 

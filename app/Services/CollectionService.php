@@ -22,16 +22,34 @@ class CollectionService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->collectionRepository
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['name', 'slug', 'cta_label'])
             ->search([]);
 
         return $result;
     }
 
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $result = $this->collectionRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+    }
+
     public function allAvailable($data = [])
     {
         return $this->collectionRepository
-            ->modelScopes(['active'])
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -49,7 +67,7 @@ class CollectionService extends BaseService
 
         $linkedInventories = data_get($collection, 'linked_inventories', []);
 
-        $inventories = $this->inventoryService->searchByUser(array_merge(['filter_ids' => $linkedInventories], $data));
+        $inventories = $this->inventoryService->searchForGuest(array_merge(['filter_ids' => $linkedInventories], $data));
 
         return $inventories;
     }

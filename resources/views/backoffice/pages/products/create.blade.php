@@ -58,7 +58,7 @@
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label for="">{{ __('Name') }} *</label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Name') }}" required>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Name') }}" data-reference-slug="slug" required>
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -183,7 +183,7 @@
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label>{{ __('Categories') }} *</label>
-                            <select name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker" data-size="5" multiple required>
+                            <select name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                 @foreach($categoryGroups as $categoryGroup)
                                 <optgroup label="{{ $categoryGroup->name }}">
                                     @foreach($categoryGroup->categories as $category)

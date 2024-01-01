@@ -12,9 +12,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 @endsection
 
 @section('profile_style')
@@ -64,6 +64,12 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         bottom: 0px;
         border-top-left-radius: 10px;
     }
+    .order-info__item {
+        border: 1px solid #e8e8e8;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 3px;
+    }
 </style>
 @endsection
 
@@ -75,7 +81,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
     </h4>
     <div class="order-info">
         <div class="order-info__item">
-            <h3>#1. Thông tin người nhận</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#1. Thông tin người nhận</h3>
             <div>
                 <small>Họ và tên:</small>
                 <span>{{ $order->fullname }}</span>
@@ -103,7 +109,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         </div>
 
         <div class="order-info__item">
-            <h3>#2. Hình thức giao hàng</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#2. Hình thức giao hàng</h3>
             <div>
                 <div style="display: flex; align-items: center;">
                     <img src="{{ data_get($order, ['shippingRate', 'carrier', 'logo']) }}" width="30" height="30" alt="{{ data_get($order, ['shippingRate', 'carrier', 'name']) }}">
@@ -120,7 +126,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         </div>
 
         <div class="order-info__item">
-            <h3>#3. Hình thức thanh toán</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#3. Hình thức thanh toán</h3>
             <div>
                 <div style="display: flex; align-items: center;">
                     @if(data_get($order, ['paymentOption', 'logo']))
@@ -132,7 +138,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         </div>
 
         <div class="order-info__item">
-            <h3>#4. Chi tiết đơn hàng</h3>
+            <h3 style="margin: 5px 0; margin-bottom: 7px;">#4. Chi tiết đơn hàng</h3>
             <div>
                 <table class="cart-items">
                     <tbody>
@@ -145,7 +151,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                 </div>
                             </td>
 
-                            <td class="cart-item__details">
+                            <td class="cart-item__details" style="flex-direction: column;">
                                 <div>
                                     <a href="{{ route('fe.web.products.index', data_get($item, 'inventory.slug')) }}" class="cart-item__name h4 break">{{ data_get($item, 'inventory.title') }}</a>
                                     <div class="product-option order-item-price" style="margin-top: 10px;">{{ format_price(data_get($item, 'price')) }}</div>
@@ -156,13 +162,11 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                     @endphp
                                     @foreach (data_get($item, 'inventory.attributes', []) as $attribute)
                                     <div class="product-option">
-                                        <dt>{{ data_get($attribute, 'name') }}: </dt>
-                                        <dd>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</dd>
+                                        <span>{{ data_get($attribute, 'name') }}: </dt>
+                                        <span>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</span>
                                     </div>
                                     @endforeach
                                 </dl>
-                                <p class="product-option"></p>
-                                <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                             </td>
 
                             <td class="cart-item__totals right small-hide">
@@ -182,18 +186,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                 </div>
 
                 @if($order->canCancel())
-                <div class="buttons">
-                    <div>Để huỷ đơn vui lòng liên hệ với chúng tôi qua:</div>
-                    <div>
-                        <small>Số điện thoại:</small>
-                        <a href="tel:{{ data_get($PAGE_SETTINGS, 'phone_support.phone') }}">{{ data_get($PAGE_SETTINGS, 'phone_support.phone') }}</a>
-                        <span>({{ data_get($PAGE_SETTINGS, 'phone_support.label') }})</span>
-                    </div>
-                    <div>
-                        <small>Zalo:</small>
-                        <a href="https://zalo.me/{{ data_get($PAGE_SETTINGS, 'phone_zalo.phone') }}" target="_blank">{{ data_get($PAGE_SETTINGS, 'phone_zalo.phone') }}</a>
-                        <span>({{ data_get($PAGE_SETTINGS, 'phone_zalo.label') }})</span>
-                    </div>
+                <div class="buttons" style="text-align: right; font-size: 14px;">
+                    <div>Để huỷ đơn vui lòng liên hệ với chúng tôi qua</div>
+                    <div>Số điện thoại/zalo <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a></div>
                 </div>
                 @endif
             </div>

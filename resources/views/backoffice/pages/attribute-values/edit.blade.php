@@ -52,7 +52,7 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
                                 <div class="form-group">
                                     <label>{{ __('Attribute Type') }} *</label>
-                                    <select name="attribute_id" title="--{{ __('Select Attribute Type') }}--" class="form-control k_selectpicker {{ $errors->has('attribute_id') ? 'is-invalid' : '' }}" required>
+                                    <select name="attribute_id" title="--{{ __('Select Attribute Type') }}--" class="form-control k_selectpicker {{ $errors->has('attribute_id') ? 'is-invalid' : '' }}" required data-live-search="true">
                                         @foreach($attributes as $attribute)
                                         <option value="{{ $attribute->id }}" {{ old('attribute_id', $attributeValue->attribute_id) == $attribute->id ? 'selected' : '' }}>{{ $attribute->name }}</option>
                                         @endforeach

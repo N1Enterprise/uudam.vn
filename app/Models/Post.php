@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\ActivationStatusEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,6 +13,7 @@ class Post extends BaseModel
     use Activatable;
     use SoftDeletes;
     use HasImpactor;
+    use HasFeUsage;
 
     protected $fillable = [
         'name',
@@ -28,6 +30,7 @@ class Post extends BaseModel
         'order',
         'status',
         'display_on_frontend',
+        'allow_frontend_search',
         'meta',
         'meta_title',
         'meta_description',
@@ -45,10 +48,5 @@ class Post extends BaseModel
     public function postCategory()
     {
         return $this->belongsTo(PostCategory::class, 'post_category_id');
-    }
-
-    public function scopeFeatured($query)
-    {
-        return $query->where('featured', ActivationStatusEnum::ACTIVE);
     }
 }

@@ -23,9 +23,9 @@ class StoreCollectionRequest extends BaseFormRequest implements StoreCollectionR
             'cover_image.path' => ['nullable', 'string'],
             'cta_label' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable'],
-            'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'allow_frontend_search' => ['required', Rule::in(ActivationStatusEnum::all())],
             'linked_inventories' => ['nullable', 'array'],
             'linked_inventories.*' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
             'linked_featured_inventories' => ['nullable', 'array'],
@@ -40,8 +40,8 @@ class StoreCollectionRequest extends BaseFormRequest implements StoreCollectionR
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'allow_frontend_search' => boolean($this->allow_frontend_search) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
             'cover_image' => empty(array_filter($this->cover_image)) ? null : array_filter($this->cover_image),
             'linked_inventories' => array_map('intval', array_filter($this->linked_inventories ?? [])),

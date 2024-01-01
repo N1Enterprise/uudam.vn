@@ -61,11 +61,6 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateInventoryResponseContract::class => Responses\UpdateInventoryResponse::class,
         Contracts\DeleteInventoryResponseContract::class => Responses\DeleteInventoryResponse::class,
 
-        Contracts\ListDisplayInventoryResponseContract::class => Responses\ListDisplayInventoryResponse::class,
-        Contracts\StoreDisplayInventoryResponseContract::class => Responses\StoreDisplayInventoryResponse::class,
-        Contracts\UpdateDisplayInventoryResponseContract::class => Responses\UpdateDisplayInventoryResponse::class,
-        Contracts\DeleteDisplayInventoryResponseContract::class => Responses\DeleteDisplayInventoryResponse::class,
-
         Contracts\ListBannerResponseContract::class => Responses\ListBannerResponse::class,
         Contracts\StoreBannerResponseContract::class => Responses\StoreBannerResponse::class,
         Contracts\UpdateBannerResponseContract::class => Responses\UpdateBannerResponse::class,
@@ -126,8 +121,6 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateProductComboResponseContract::class => Responses\UpdateProductComboResponse::class,
         Contracts\DeleteProductComboResponseContract::class => Responses\DeleteProductComboResponse::class,
 
-        Contracts\UploadFileManagerResponseContract::class => Responses\UploadFileManagerResponse::class,
-
         Contracts\ListSubscriberResponseContract::class => Responses\ListSubscriberResponse::class,
 
         Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,
@@ -165,5 +158,15 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         // Dashboard
         Contracts\ListReportTopUserResponseContract::class => Responses\ListReportTopUserResponse::class,
         Contracts\ListReportTopOrderResponseContract::class => Responses\ListReportTopOrderResponse::class,
+
+        Contracts\ListHomePageDisplayOrderResponseContract::class => Responses\ListHomePageDisplayOrderResponse::class,
+        Contracts\StoreHomePageDisplayOrderResponseContract::class => Responses\StoreHomePageDisplayOrderResponse::class,
+        Contracts\UpdateHomePageDisplayOrderResponseContract::class => Responses\UpdateHomePageDisplayOrderResponse::class,
+        Contracts\DeleteHomePageDisplayOrderResponseContract::class => Responses\DeleteHomePageDisplayOrderResponse::class,
+
+        Contracts\ListHomePageDisplayItemResponseContract::class => Responses\ListHomePageDisplayItemResponse::class,
+        Contracts\StoreHomePageDisplayItemResponseContract::class => Responses\StoreHomePageDisplayItemResponse::class,
+        Contracts\UpdateHomePageDisplayItemResponseContract::class => Responses\UpdateHomePageDisplayItemResponse::class,
+        Contracts\DeleteHomePageDisplayItemResponseContract::class => Responses\DeleteHomePageDisplayItemResponse::class,
     ];
 }

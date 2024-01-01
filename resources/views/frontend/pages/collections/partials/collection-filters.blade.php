@@ -1,4 +1,4 @@
-<aside aria-labelledby="verticalTitle" class="facets-wrapper page-width" id="main-collection-filters" data-id="template--16599720329466__product-grid">
+<aside aria-labelledby="verticalTitle" class="facets-wrapper page-width" id="main-collection-filters">
     <div class="facets-container">
         <facet-filters-form class="facets small-hide">
             <form id="FacetFiltersForm" class="facets__form">

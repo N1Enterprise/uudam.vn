@@ -50,6 +50,7 @@
                             <th data-property="order">{{ __('Order') }}</th>
                             <th data-property="display_in" data-render-callback="renderDisplayInCallback">{{ __('Display In') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
                             <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
                             <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
                             <th data-property="created_at">{{ __('Created At') }}</th>
@@ -74,8 +75,6 @@
 
     function renderDisplayInCallback(data, type, full) {
         const displayInList = data || [];
-
-        console.log({ displayInList });
 
         const count = displayInList?.length || 0;
 

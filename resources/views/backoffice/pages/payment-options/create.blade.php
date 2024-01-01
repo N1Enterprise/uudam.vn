@@ -181,7 +181,7 @@
 								</div>
 								<div class="row">
 									<div class="col-8 col-sm-4">
-										<label class="col-form-label">{{ __('Display on Front End') }}</label>
+										<label class="col-form-label">{{ __('FE Display') }}</label>
 									</div>
 									<div class="col-4 col-sm-3">
 										<span class="k-switch">
@@ -254,8 +254,6 @@
         $('.depent_on_type').addClass('d-none');
 
         const type = $(this).val();
-
-        console.log({ type });
 
         if (type == PAYMENT_OPTION_TYPE.PAYMENT_PROVIDER) {
             $('[name="payment_provider_id"]').trigger('change');

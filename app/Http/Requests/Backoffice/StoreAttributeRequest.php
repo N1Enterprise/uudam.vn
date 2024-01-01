@@ -5,6 +5,7 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\StoreAttributeRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductAttributeTypeEnum;
+use App\Models\Category;
 use Illuminate\Validation\Rule;
 
 class StoreAttributeRequest extends BaseFormRequest implements StoreAttributeRequestContract
@@ -16,8 +17,8 @@ class StoreAttributeRequest extends BaseFormRequest implements StoreAttributeReq
             'attribute_type' => ['required', 'integer', Rule::in(ProductAttributeTypeEnum::all())],
             'order' => ['nullable', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'categories' => ['nullable', 'array'],
-            'categories.*' => ['required', 'integer'],
+            'supported_categories' => ['nullable', 'array'],
+            'supported_categories.*' => ['required', 'integer', Rule::exists(Category::class, 'id')],
         ];
     }
 
@@ -25,7 +26,7 @@ class StoreAttributeRequest extends BaseFormRequest implements StoreAttributeReq
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'categories' => array_map('intval', $this->categories ?? []),
+            'supported_categories' => array_map('intval', $this->supported_categories ?? []),
         ]);
     }
 }

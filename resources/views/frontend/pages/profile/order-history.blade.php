@@ -12,9 +12,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 @endsection
 
 @section('profile_style')
@@ -84,9 +84,9 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                         <tbody>
                             @foreach (data_get($order, 'orderItems', []) as $item)
                             <tr class="cart-item order-history__items-item">
-                                <td class="cart-item__media">
+                                <td class="cart-item__media" width="150">
                                     <div class="cart-item__image-container gradient global-media-settings">
-                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="100" height="100">
+                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="150" height="150">
                                         <span class="order-history-item-quantity">x{{ data_get($item, 'quantity') }}</span>
                                     </div>
                                 </td>
@@ -102,13 +102,11 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                                         @endphp
                                         @foreach (data_get($item, 'inventory.attributes', []) as $attribute)
                                         <div class="product-option">
-                                            <dt>{{ data_get($attribute, 'name') }}: </dt>
-                                            <dd>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</dd>
+                                            <span>{{ data_get($attribute, 'name') }}: </span>
+                                            <span>{{ data_get($attributeValues, [data_get($attribute, 'id')]) }}</span>
                                         </div>
                                         @endforeach
                                     </dl>
-                                    <p class="product-option"></p>
-                                    <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                                 </td>
 
                                 <td class="cart-item__totals right small-hide">

@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($inventory, 'meta_title', $inventory, 'title') }}
+{{ data_get($inventory, 'meta_title', data_get($inventory, 'title')) }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
 <meta name="description" content="{{ data_get($inventory, 'meta_description') }}">
 <meta name="keywords" content="{{ data_get($inventory, 'title') }}">
-<meta property="og:title" content="{{ data_get($inventory, 'meta_title', $inventory, 'title') }}">
+<meta property="og:title" content="{{ data_get($inventory, 'meta_title', data_get($inventory, 'title')) }}">
 <meta property="og:description" content="{{ data_get($inventory, 'meta_description') }}">
 <meta property="og:image" content="{{ data_get($inventory, 'product_image') }}">
 <meta property="og:image:secure_url" content="{{ data_get($inventory, 'product_image') }}">
@@ -15,11 +15,11 @@
 <meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
-<meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
+<meta property="og:price:amount" content="{{ round_money(data_get($inventory, 'final_price')) }}">
 <meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 <meta name="brand" content="{{ data_get($inventory, 'product.branch') }}">
 <meta name="product" content="{{ data_get($inventory, 'product.id') }}">
 @endsection
@@ -37,42 +37,22 @@
             padding-bottom: 12px;
         }
     }
-</style>
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/products/index.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
-@endpush
 
-@push('style_pages')
-<style>
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
-    padding: 5px!important;
-    border: none;
-}
-
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
-    border: 2px solid #000;
-}
-.confirm-buy-with-combo {
-    background-color: #fff;
-    border: 1px solid #000;
-    padding: 4px 9px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    width: 173px;
-    justify-content: space-between;
-}
+    .product-description {
+        line-height: 1;
+        font-size: 1.5rem;
+    }
 </style>
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/product-index.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider-2.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-price.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/spr.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/product-attribute.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
 @endpush
 
 @section('content_body')
@@ -112,47 +92,46 @@
     </div>
 </section>
 
+@if (has_data(data_get($inventory, 'product.description')))
 <section class="shopify-section section review-section">
     <div class="page-width">
-        <div class="product__description rte quick-add-hidden">
-            <div class="editorjs-content product-description"></div>
+        <div class="rte quick-add-hidden" tagable>
+            <div class="spr-container">
+                <div class="spr-header">
+                    <h2 class="spr-header-title" style="text-align: left;">Mô tả sản phẩm</h2>
+                </div>
+                <div class="spr-content product-description-content">
+                    {!! data_get($inventory, 'product.description') !!}
+                </div>
+            </div>
         </div>
     </div>
 </section>
+@endif
 
 <section class="shopify-section section review-section">
     @include('frontend.pages.products.partials.product-review')
 </section>
 
-@if(! empty($suggestedInventories))
+{{-- @if(has_data($suggestedInventories))
 <limespot>
     <limespot-container>
         @include('frontend.pages.products.partials.suggested-products')
     </limespot-container>
 </limespot>
-@endif
+@endif --}}
 
-@if(! empty($suggestedPosts))
+{{-- @if(has_data($suggestedPosts))
 <section class="shopify-section section">
     @include('frontend.pages.products.partials.suggested-posts')
 </section>
-@endif
+@endif --}}
 
 @include('frontend.pages.products.partials.gallery-image-modal')
 @endsection
 
-@push('js_pages')
-@include('frontend.pages.products.js-pages.index')
-<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script>
-    $('.thumbnail-list__item').on('click', function() {
-        const index = $(this).attr('data-owl-index');
-
-        $('[data-owl-id="Slider_Product_Detail"]').trigger('to.owl.carousel', index);
-
-        $('.thumbnail-list__item').find('button.thumbnail').removeAttr('aria-current');
-        $(this).find('button.thumbnail').attr('aria-current', 'true');
-    });
-</script>
-@endpush
+@section('js_script')
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/product-index.min.js') }}" type="text/javascript"></script>
+@endsection

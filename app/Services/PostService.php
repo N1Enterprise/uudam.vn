@@ -28,9 +28,28 @@ class PostService extends BaseService
         return $result;
     }
 
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $result = $this->postRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+    }
+
     public function allAvailable($data = [])
     {
-        return $this->postRepository->modelScopes(['active'])
+        return $this->postRepository
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -45,14 +64,6 @@ class PostService extends BaseService
 
             return $this->postRepository->create($attributes);
         });
-    }
-
-    public function getListFeatured($data = [])
-    {
-        return $this->postRepository
-            ->modelScopes(['featured', 'active'])
-            ->addSort('order', 'desc')
-            ->all(data_get($data, 'columns', ['*']));
     }
 
     public function show($id, $columns = ['*'])

@@ -10,6 +10,8 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MAINTENANCE_START_DATE = 'maintenance_start_date';
     public const MAINTENANCE_END_DATE = 'maintenance_end_date';
     public const MAINTENANCE_MESSAGE = 'maintenance_message';
+    public const MAINTENANCE_ALLOW_IPS_ACCESS = 'maintenance_allow_ips_access';
+    public const USER_FE_RESET_PASSWORD_LINK = 'user_fe_reset_password_link';
 
     public const PRODUCT_ATTRIBUTE_TYPES = 'product_attribute_types';
     public const ENABLE_USER_EMAIL_VERIFICATION = 'enable_user_email_verification';
@@ -25,6 +27,11 @@ class SystemSettingKeyEnum extends BaseEnum
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
+
+    // OAuth
+    public const SUPPORTED_OAUTH_PROVIDERS = 'supported_oauth_providers';
+
+    public const ENABLE_SEND_NEW_ORDER_TO_ADMIN = 'enable_send_new_order_to_admin';
 
     public static function all(): array
     {
@@ -44,6 +51,10 @@ class SystemSettingKeyEnum extends BaseEnum
             self::ENABLE_USER_EMAIL_VERIFICATION,
             self::IMAGE_CONFIGURATION,
             self::ADMIN_TOP_NAVIGATION,
+            self::SUPPORTED_OAUTH_PROVIDERS,
+            self::MAINTENANCE_ALLOW_IPS_ACCESS,
+            self::USER_FE_RESET_PASSWORD_LINK,
+            self::ENABLE_SEND_NEW_ORDER_TO_ADMIN,
         ];
     }
 }

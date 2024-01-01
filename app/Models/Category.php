@@ -17,15 +17,9 @@ class Category extends BaseModel
         'primary_image',
         'status',
         'order',
-        'featured',
         'meta_title',
         'meta_description',
     ];
-
-    public function getFeaturedNameAttribute()
-    {
-        return ActivationStatusEnum::findConstantLabel($this->featured);
-    }
 
     public function categoryGroup()
     {

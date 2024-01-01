@@ -2,24 +2,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}</title>
+        <title>{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}</title>
 
-        @foreach (data_get($PAGE_SETTINGS, 'favicon') as $favicon)
+        @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon', []) as $favicon)
         <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
         @endforeach
 
-        <meta property="og:title" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
-        <meta property="og:description" content="{{ data_get($PAGE_SETTINGS, 'app_name') }} | {{ config('app.user_domain') }}">
+        <meta property="og:title" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}">
+        <meta property="og:description" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}">
         <meta property="og:url" content="{{ request()->url() }}">
-        <meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+        <meta property="og:site_name" content="{{ config('app.user_domain') }}">
         <meta property="og:type" content="website">
         <meta property="og:locale" content="vi_VN">
         <meta property="og:price:currency" content="VND">
-        <meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-        <meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-        <meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+        <meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+        <meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+        <meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
 
-        <link rel="stylesheet" id="flatsome-main-css" href="{{ asset('frontend/assets/css/pages/maintenance/index.css') }}" type="text/css" media="all">
+        <link rel="stylesheet" id="flatsome-main-css" href="{{ asset_with_version('frontend/bundle/css/maintenance-index.min.css') }}" type="text/css" media="all">
         <style id="custom-css" type="text/css">
             .sticky-add-to-cart--active, #wrapper, #main, #main.dark {
                 background-color: #025b50;
@@ -28,7 +28,6 @@
             body {
                 color: #fff;
                 background-color: #025b50;
-                height: 100vh!important;
                 overflow: hidden;
             }
 
@@ -53,6 +52,16 @@
             }
 
             .master-image {
+                width: 100%!important;
+            }
+
+            .allow-ip-button {
+                padding: 4px 10px;
+                background: #fff;
+                border-radius: 3px;
+                margin-top: 10px;
+                font-weight: bold;
+                color: #025b50!important;
             }
         </style>
     </head>
@@ -75,10 +84,15 @@
                                         <div style="font-size: 14px; text-align: center;">
                                             <span style="font-weight: bold;">Từ ngày <u>{{ ($maintenanceStartDate)->format('d/m/Y H:i') }}</u> đến ngày <u>{{ ($maintenanceEndDate)->format('d/m/Y H:i') }}</u></span>
                                         </div>
+                                        @if ($isMaintenanceAllowIp)
+                                        <div style="font-size: 14px; text-align: center; display: flex; justify-content: center;">
+                                            <a href="{{ route('fe.web.home') }}" class="allow-ip-button">IP của bạn có thể truy cập vào trang chủ</a>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                            <div id="col-827608374" class="col medium-8 small-12 large-8" style="padding: 4px 0;">
+                            <div id="col-827608374" class="" style="padding: 4px 10px;">
                                 <div class="col-inner text-center">
                                     <marquee>
                                         <p>
@@ -88,15 +102,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row align-center" id="row-1691135138">
-                            <div id="col-1101815550" class="col small-12 large-12">
-                                <div class="col-inner">
-                                    <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1998674865">
-                                        <div data-parallax-fade="true" data-parallax="-2" class="parallax-active">
-                                            <div data-animate="fadeInLeft" data-animated="true">
-                                                <div class="img-inner dark">
-                                                    <img class="master-image" src="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" srcset="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy">
-                                                </div>
+                        <div class="row align-center">
+                            <div class="col-inner">
+                                <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1998674865">
+                                    <div data-parallax-fade="true" data-parallax="-2" class="parallax-active">
+                                        <div data-animate="fadeInLeft" data-animated="true">
+                                            <div class="img-inner dark">
+                                                <img class="master-image" src="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" srcset="{{ asset('frontend/assets/images/shared/Banner-nenbo.jpg') }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy">
                                             </div>
                                         </div>
                                     </div>

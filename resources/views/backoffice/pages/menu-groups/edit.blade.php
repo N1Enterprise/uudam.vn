@@ -70,11 +70,23 @@
 								</div>
 
 								<div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', boolean($menuGroup->display_on_frontend)) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Active') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', boolean($menuGroup->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+												<input type="checkbox" {{ old('status', boolean($menuGroup->status)) == '1'  ? 'checked' : ''}} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>

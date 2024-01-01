@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Cms\PageCms;
+use App\Common\Cache;
 use App\Enum\PageDisplayInEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
@@ -44,5 +46,17 @@ class Page extends BaseModel
     public function scopeDisplayInCheckout($query)
     {
         return $query->whereJsonContains('display_in', PageDisplayInEnum::CHECKOUT);
+    }
+
+    public static function flush($tags = [])
+    {
+        Cache::tags($tags)->flush();
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            PageCms::flush();
+        });
     }
 }

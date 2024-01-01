@@ -41,8 +41,6 @@
                                 </div>
                                 @endforeach
                             </dl>
-                            <p class="product-option"></p>
-                            <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                         </td>
                         <td class="cart-item__totals right medium-hide large-up-hide">
                             <div class="loading-overlay hidden">
@@ -53,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="cart-item__price-wrapper">
-                                <span class="price price--end" data-value-cart-item-price>{{ format_price(data_get($item, 'price')) }}</span>
+                                <span class="price price--end" data-value-cart-item-total-price>{{ format_price($item->total_price) }}</span>
                             </div>
                         </td>
                         <td class="cart-item__quantity">

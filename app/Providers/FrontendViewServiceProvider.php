@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Classes\Contracts\UserAuthContract;
+use App\Cms\MenuCms;
+use App\Cms\PageCms;
 use App\Enum\SystemSettingKeyEnum;
 use App\Models\SystemSetting;
-use App\Services\MenuGroupService;
-use App\Services\PageService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,26 +35,25 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('APP_URL', config('app.url'));
 
-            $view->with('PAGE_SETTINGS', SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get(null, []));
-
-            $view->with(
-                'SOCIAL_NETWORKS',
-                collect(SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []))
-                    ->filter(fn($item) => data_get($item, 'enable'))
-            );
-
-            $view->with('RECEIVE_NEW_POST_SETTING', SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []));
-
-            $view->with('PAGES_DISPLAY_IN_FOOTER', app(PageService::class)->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInFooter']]));
-
-            $view->with('APP_MENU_GROUPS', $this->getAppMenus());
-
-            $view->with('SEARCH_SETTING', SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []));
+            $view->with('APP_MENU_AVAILABEL', MenuCms::make()->availabel());
 
             /** @var UserAuthContract */
             $userAuth = app(UserAuthContract::class);
 
             $view->with('AUTHENTICATED_USER', optional($userAuth->user())->only(['id', 'email', 'birthday', 'name', 'phone_number']));
+
+            $view->with('SYSTEM_SETTING', $this->getSystemSetting());
+
+            $feAvailabelPages = PageCms::make()->ofFooter();
+
+            $view->with('FOOTER_PAGES', $feAvailabelPages);
+
+            $view->with('CONSTANTS_SHARED', [
+                'bo_host' => config('app.url'),
+                'fe_host' => config('app.user_host'),
+                'app_id'  => config('app.app_id'),
+                'app_env' => config('app.env') 
+            ]);
         });
     }
 
@@ -63,10 +62,23 @@ class FrontendViewServiceProvider extends ServiceProvider
 
     }
 
-    public function getAppMenus()
+    protected function getSystemSetting()
     {
-        $menuGroups = app(MenuGroupService::class)->allAvailable(['columns' => ['id', 'name', 'redirect_url']]);
-
-        return $menuGroups;
+        return [
+            'admin_top_navigation' => SystemSetting::from(SystemSettingKeyEnum::ADMIN_TOP_NAVIGATION)->get(null, []),
+            'page_settings' => SystemSetting::from(SystemSettingKeyEnum::PAGE_SETTINGS)->get(null, []),
+            'social_networks' => collect(SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []))->filter(fn($item) => data_get($item, 'enable')),
+            'receive_new_post_setting' => SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []),
+            'search_setting' => SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []),
+            'page_highlight_information' => SystemSetting::from(SystemSettingKeyEnum::PAGE_HIGHLIGHT_INFORMATION)->get(null, []),
+            'oauth_providers' => collect(SystemSetting::from(SystemSettingKeyEnum::SUPPORTED_OAUTH_PROVIDERS)->get(null, []))
+                ->filter(fn($provider) => boolean(data_get($provider, 'enable')))
+                ->sortBy('order')
+                ->map(function($provider) {
+                    return [
+                        'logo' => data_get($provider, 'logo'),
+                    ];
+                })
+        ];
     }
 }

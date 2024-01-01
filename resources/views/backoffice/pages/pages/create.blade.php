@@ -110,7 +110,7 @@
 
                                 <div class="row">
 									<div class="col-2">
-										<label class="col-form-label">{{ __('Display on Front End') }}</label>
+										<label class="col-form-label">{{ __('FE Display') }}</label>
 									</div>
 									<div class="col-3">
 										<span class="k-switch">

@@ -57,15 +57,14 @@
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
 								</div>
 
-                                <div class="form-group">
-                                    <label>{{ __('Menu Type') }}</label>
+								<div class="form-group">
+                                    <label>{{ __('Menu Type') }} *</label>
                                     <div class="k-radio-inline">
-                                        @foreach ($menuTypeEnumLabels as $key => $label)
-                                        <label class="k-radio">
-                                            <input type="radio" name="type" {{ (old('type') == $key ? 'checked' : $loop->index == 0 ? 'checked' : '') }} value="{{ $key }}"> {{ $label }}
-                                            <span></span>
-                                        </label>
-                                        @endforeach
+										<select name="type" class="form-control">
+											@foreach ($menuTypeEnumLabels as $key => $label)
+											<option value="{{ $key }}" {{ (old('type') == $key ? 'selected' : $loop->index == 0 ? 'selected' : '') }}>{{ $label }}</option>
+											@endforeach
+										</select>
                                     </div>
                                 </div>
 
@@ -74,7 +73,7 @@
                                         <label>{{ __('Collection') }} *</label>
                                         <select name="collection_id" title="--{{ __('Select Collection') }}--" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($collections as $collection)
-                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id') == $collection->id ? 'selected' : '' }}>{{ $collection->name }}</option>
+                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id') == $collection->id ? 'selected' : '' }} data-label="{{ $collection->name }}">{{ $collection->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('collection_id')
@@ -88,7 +87,7 @@
                                         <label>{{ __('Inventory') }} *</label>
                                         <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($inventories as $inventory)
-                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id') == $inventory->id ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id') == $inventory->id ? 'selected' : '' }} data-label="{{ $inventory->title }}">{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
                                             @endforeach
                                         </select>
                                         @error('inventory_id')
@@ -97,23 +96,28 @@
                                     </div>
                                 </div>
 
-                                <div data-menu-type-tab-key="3" data-menu-type="Post" class="d-none">
+								<div data-menu-type-tab-key="3" data-menu-type="Post" class="d-none">
                                     <div class="form-group">
                                         <label>{{ __('Post') }} *</label>
                                         <select name="post_id" title="--{{ __('Select Post') }}--" class="form-control k_selectpicker" data-live-search="true">
-                                            @foreach($inventories as $inventory)
-                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('post_id') == $inventory->id ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            @foreach($posts as $post)
+                                            <option value="{{ $post->id }}" data-slug="{{ $post->slug }}" {{ old('post_id') == $post->id ? 'selected' : '' }} data-label="{{ $post->name }}">{{ $post->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('post_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+								</div>
+
+								<div class="form-group">
+									<label>{{ __('Label') }}</label>
+									<input type="text" class="form-control" name="label" placeholder="{{ __('Enter label') }}" value="{{ old('label') }}">
+								</div>
 
                                 <div class="form-group">
                                     <label>{{ __('Groups') }} *</label>
-                                    <select name="menu_catalogs[]" title="--{{ __('Select Group') }}--" class="form-control k_selectpicker" data-size="5" multiple required>
+                                    <select name="menu_catalogs[]" title="--{{ __('Select Group') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                         @foreach($menuGroups as $menuGroup)
                                         <optgroup label="{{ $menuGroup->name }}">
                                             @foreach($menuGroup->menuSubGroups as $subGroup)
@@ -133,6 +137,18 @@
 										<span class="k-switch">
 											<label>
 												<input type="checkbox" {{ old('is_new', '0') == '1'  ? 'checked' : '' }} value="1" name="is_new"/>
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('display_on_frontend', '0') == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
 												<span></span>
 											</label>
 										</span>
@@ -176,7 +192,17 @@
             const type = $(this).val();
             $('[data-menu-type-tab-key]').addClass('d-none');
             $(`[data-menu-type-tab-key="${type}"]`).removeClass('d-none');
+			$('[name="label"]').val('');
         });
     }
+
+	$.each($('[data-menu-type] select'), function(index, element) {
+		$(element).on('change', function() {
+			const value = $(this).val();
+			const label = $(element).find(`option[value="${value}"]`).attr('data-label');
+
+			$('[name="label"]').val(label);
+		});
+	});
 </script>
 @endsection
