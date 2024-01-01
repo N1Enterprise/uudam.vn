@@ -36,12 +36,15 @@ class ApprovedOrderPayment implements ShouldQueue
 
     public function shouldQueue($event)
     {
-        logger('ApprovedOrderPayment:shouldQueue');
-
         $transaction = $event->transaction;
 
         $order = OrderService::make()->show($transaction->order->id);
 
-        return boolean($transaction->order_id) && $order->payment_status == PaymentStatusEnum::PENDING;
+        logger('ApprovedOrderPayment:shouldQueue', [
+            'order' => $order,
+            'check' => $order->payment_status == PaymentStatusEnum::PENDING,
+        ]);
+
+        return $order->payment_status == PaymentStatusEnum::PENDING;
     }
 }
