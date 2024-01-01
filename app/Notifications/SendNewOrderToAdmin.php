@@ -55,7 +55,6 @@ class SendNewOrderToAdmin extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        logger('order toMail');
         return (new MailMessage)
             ->subject('UUDAM.VN - Có đơn hàng mới #' . data_get($this->order, 'order_code'). ' vào lúc '. format_datetime(data_get($this->order, 'created_at'), 'd/m/Y H:i'))
             ->markdown('frontend.mail.admin.new-order', [

@@ -34,10 +34,6 @@ class ProcessSendMailNewOrderToAdmin implements ShouldQueue
         /** @var Order */
         $order = $event->order;
 
-        logger('handle:shouldQueue', [
-            '$receivers' => $receivers,
-        ]);
-
         Admin::query()
             ->where('email', $receivers)
             ->each(function(Admin $admin) use ($order) {
@@ -49,12 +45,6 @@ class ProcessSendMailNewOrderToAdmin implements ShouldQueue
     {
         $enableSendMail = SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_NEW_ORDER_TO_ADMIN)->get('enable');
         $receivers = Arr::wrap(SystemSetting::from(SystemSettingKeyEnum::ENABLE_SEND_NEW_ORDER_TO_ADMIN)->get('receivers', []));
-
-        logger('ProcessSendMailNewOrderToAdmin:shouldQueue', [
-            '$enableSendMail' => $enableSendMail,
-            '$receivers' => $receivers,
-            'check' => boolean($enableSendMail) && !empty($receivers),
-        ]);
 
         return boolean($enableSendMail) && !empty($receivers);
     }
