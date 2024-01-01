@@ -102,7 +102,7 @@
                                         @foreach (data_get($SYSTEM_SETTING, 'social_networks', []) as $network)
                                         <li class="list-social__item">
                                             <a href="{{ data_get($network, 'link') }}" target="_blank" title="{{ data_get($network, 'tooltip') }}" class="link list-social__link">
-                                                @include('frontend.icons.'.data_get($network, 'icon'))
+                                                <img src="{{ data_get($network, 'icon.link') }}" alt="{{ data_get($network, 'name') }}" width="{{ data_get($network, 'icon.width') }}" height="{{ data_get($network, 'icon.height') }}">
                                                 <span class="visually-hidden">{{ data_get($network, 'name') }}</span>
                                             </a>
                                         </li>
