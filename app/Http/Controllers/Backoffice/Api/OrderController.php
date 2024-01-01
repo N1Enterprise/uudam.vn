@@ -36,4 +36,32 @@ class OrderController extends BaseApiController
 
         return response()->json(['count' => $count]);
     }
+
+    public function delivery(UpdateOrderStatusRequestContract $request, $id)
+    {
+        $this->orderService->delivery($id, $request->validated());
+
+        return response()->json(['success' => true]);
+    }
+
+    public function complete(UpdateOrderStatusRequestContract $request, $id)
+    {
+        $this->orderService->complete($id, $request->validated());
+
+        return response()->json(['success' => true]);
+    }
+
+    public function cancel(UpdateOrderStatusRequestContract $request, $id)
+    {
+        $this->orderService->cancel($id, $request->validated());
+
+        return response()->json(['success' => true]);
+    }
+
+    public function refund(UpdateOrderStatusRequestContract $request, $id)
+    {
+        $this->orderService->refund($id, $request->validated());
+
+        return response()->json(['success' => true]);
+    }
 }

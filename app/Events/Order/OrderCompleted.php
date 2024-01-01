@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Events\Deposit;
+namespace App\Events\Order;
 
-use App\Models\DepositTransaction;
+use App\Models\Order;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DepositApproved
+class OrderCompleted
 {
     use SerializesModels;
     use Dispatchable;
 
-    public $transaction;
+    public $order;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(DepositTransaction $transaction)
+    public function __construct(Order $order)
     {
-        $this->transaction = $transaction;
+        $this->order = $order;
     }
 }

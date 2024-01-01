@@ -105,6 +105,11 @@ class Order extends BaseModel
         return $this->hasOne(Cart::class);
     }
 
+    public function isDelivery()
+    {
+        return $this->order_statys == OrderStatusEnum::DELIVERY;
+    }
+
     public function isProcessing()
     {
         return $this->order_status == OrderStatusEnum::PROCESSING;

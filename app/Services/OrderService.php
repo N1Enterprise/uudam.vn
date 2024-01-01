@@ -6,7 +6,10 @@ use App\Common\Cache;
 use App\Enum\OrderCacheKeyEnum;
 use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
-use App\Events\Order\OrderDeclined;
+use App\Events\Order\OrderCanceled;
+use App\Events\Order\OrderCompleted;
+use App\Events\Order\OrderDelivered;
+use App\Events\Order\OrderRefuned;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
 use App\Models\BaseModel;
@@ -19,7 +22,7 @@ use App\Models\Cart;
 use App\Vendors\Localization\Money;
 use Illuminate\Support\Str;
 use App\Models\Order;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class OrderService extends BaseService
 {
@@ -225,5 +228,107 @@ class OrderService extends BaseService
                 }
             })
             ->count();
+    }
+
+    public function delivery($orderId, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
+
+            if (! $order->isProcessing()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::DELIVERY,
+                    'admin_note'   => data_get($data, 'admin_note', '')
+                ], $order->getKey());
+
+                OrderDelivered::dispatch($order);
+
+                return $order;
+            });
+        });
+    }
+
+    public function complete($orderId, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
+
+            if (! $order->isProcessing()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status'   => OrderStatusEnum::COMPLETED,
+                    'admin_note'     => data_get($data, 'admin_note', '')
+                ], $order->getKey());
+
+                DepositService::make()->approve($order->deposit_transaction_id);
+
+                OrderCompleted::dispatch($order);
+
+                return $order;
+            });
+        });
+    }
+
+    public function cancel($orderId, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
+
+            if (! $order->isProcessing()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::CANCELED,
+                    'admin_note'   => data_get($data, 'admin_note', '')
+                ], $order->getKey());
+
+                OrderCanceled::dispatch($order);
+
+                return $order;
+            });
+        });
+    }
+
+    public function refund($orderId, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
+
+            if (! $order->isProcessing()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::REFUNDED,
+                    'admin_note'   => data_get($data, 'admin_note', '')
+                ], $order->getKey());
+
+                OrderRefuned::dispatch($order);
+
+                return $order;
+            });
+        });
     }
 }

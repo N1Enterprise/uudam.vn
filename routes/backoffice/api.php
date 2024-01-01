@@ -86,6 +86,11 @@ Route::prefix('v1')->group(function () {
     Route::post('orders/{id}/change-status', [Api\OrderController::class, 'changeStatus'])->name('orders.change-status')->middleware('can:orders.manage');
     Route::get('orders/statistic/order-status/{orderStatus}', [Api\OrderController::class, 'statisticOrderStatus'])->name('orders.statistic.order-status')->middleware(['can:orders.index']);
 
+    Route::put('orders/{id}/delivery', [Api\OrderController::class, 'delivery'])->name('orders.delivery')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/complete', [Api\OrderController::class, 'complete'])->name('orders.complete')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/cancel', [Api\OrderController::class, 'cancel'])->name('orders.cancel')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/refund', [Api\OrderController::class, 'refund'])->name('orders.refund')->middleware(['can:orders.manage']);
+
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 
     Route::get('carts', [Api\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
