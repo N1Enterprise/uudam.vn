@@ -273,7 +273,9 @@ class OrderService extends BaseService
                     'admin_note'     => data_get($data, 'admin_note', '')
                 ], $order->getKey());
 
-                DepositService::make()->approve($order->deposit_transaction_id);
+                if ($order->isPendingPayment()) {
+                    DepositService::make()->approve($order->deposit_transaction_id);
+                }
 
                 OrderCompleted::dispatch($order);
 
