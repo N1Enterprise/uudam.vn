@@ -139,11 +139,44 @@ class Order extends BaseModel
         ]);
     }
 
+    public function canDelivery()
+    {
+        return in_array($this->order_status, [
+            OrderStatusEnum::PROCESSING,
+        ]);
+    }
+
+    public function canComplete()
+    {
+        $canOrder = in_array($this->order_status, [
+            OrderStatusEnum::DELIVERY,
+            OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::CANCELED,
+            OrderStatusEnum::REFUNDED,
+        ]);
+
+        $canPayment = in_array($this->payment_status, [
+            PaymentStatusEnum::PENDING,
+            PaymentStatusEnum::APPROVED,
+        ]);
+
+        return $canOrder && $canPayment;
+    }
+
     public function canCancel()
     {
         return in_array($this->order_status, [
             OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::PROCESSING,
+        ]);
+    }
+
+    public function canRefund()
+    {
+        return in_array($this->order_status, [
+            OrderStatusEnum::WAITING_FOR_PAYMENT,
+            OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::DELIVERY,
         ]);
     }
 

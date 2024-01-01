@@ -238,7 +238,7 @@ class OrderService extends BaseService
             /** @var Order */
             $order = $this->show($orderId);
 
-            if (! $order->isProcessing()) {
+            if (! $order->canDelivery()) {
                 throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
             }
 
@@ -263,7 +263,7 @@ class OrderService extends BaseService
             /** @var Order */
             $order = $this->show($orderId);
 
-            if (! $order->isProcessing()) {
+            if (! $order->canComplete()) {
                 throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
             }
 
@@ -290,7 +290,7 @@ class OrderService extends BaseService
             /** @var Order */
             $order = $this->show($orderId);
 
-            if (! $order->isProcessing()) {
+            if (! $order->canCancel()) {
                 throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
             }
 
@@ -315,7 +315,7 @@ class OrderService extends BaseService
             /** @var Order */
             $order = $this->show($orderId);
 
-            if (! $order->isProcessing()) {
+            if (! $order->canRefund()) {
                 throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
             }
 

@@ -297,10 +297,10 @@
                 <div class="k-portlet__body">
                     <div class="btns d-flex justify-content-end">
                         @can('orders.manage')
-                        <button type="submit" data-btn-change-order-status="update-to-delivery" class="btn btn-secondary ml-2" data-route="{{ route('bo.api.orders.delivery', $order->id) }}" {{ !$order->isProcessing() ? 'disabled' : '' }}>{{ __('DELIVERY ORDER') }}</button>
-                        <button type="submit" data-btn-change-order-status="update-to-complete" class="btn btn-success ml-2" data-route="{{ route('bo.api.orders.complete', $order->id) }}" {{ !$order->isProcessing() ? 'disabled' : '' }}>{{ __('COMPLETE ORDER') }}</button>
-                        <button type="submit" data-btn-change-order-status="update-to-refund" class="btn btn-warning ml-2" data-route="{{ route('bo.api.orders.refund', $order->id) }}" {{ !$order->isProcessing() ? 'disabled' : '' }}>{{ __('REFUND ORDER') }}</button>
-                        <button type="submit" data-btn-change-order-status="update-to-cancel" class="btn btn-danger ml-2" data-route="{{ route('bo.api.orders.cancel', $order->id) }}" {{ !$order->isProcessing() ? 'disabled' : '' }}>{{ __('CANCEL ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-delivery" class="btn btn-secondary ml-2" data-route="{{ route('bo.api.orders.delivery', $order->id) }}" {{ !$order->canDelivery() ? 'disabled' : '' }}>{{ __('DELIVERY ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-complete" class="btn btn-success ml-2" data-route="{{ route('bo.api.orders.complete', $order->id) }}" {{ !$order->canComplete() ? 'disabled' : '' }}>{{ __('COMPLETE ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-refund" class="btn btn-warning ml-2" data-route="{{ route('bo.api.orders.refund', $order->id) }}" {{ !$order->canRefund() ? 'disabled' : '' }}>{{ __('REFUND ORDER') }}</button>
+                        <button type="submit" data-btn-change-order-status="update-to-cancel" class="btn btn-danger ml-2" data-route="{{ route('bo.api.orders.cancel', $order->id) }}" {{ !$order->canCancel() ? 'disabled' : '' }}>{{ __('CANCEL ORDER') }}</button>
                         @endcan
                     </div>
                 </div>
