@@ -45,20 +45,20 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
-                        <th data-property="title">{{ __('Title') }}</th>
-                        <th data-property="product" data-render-callback="renderCallbackProduct">{{ __('Product') }}</th>
+                        <th data-property="title" data-width="300">{{ __('Title') }}</th>
+                        <th data-orderable="false" data-property="product" data-render-callback="renderCallbackProduct">{{ __('Product') }}</th>
                         <th data-property="sku">{{ __('Sku') }}</th>
-                        <th data-property="slug">{{ __('Slug') }}</th>
+                        {{-- <th data-property="slug">{{ __('Slug') }}</th> --}}
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                         <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
                         <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
-                        <th data-orderable="false" data-badge data-name="condition" data-property="condition_name">{{ __('Condition') }}</th>
+                        {{-- <th data-orderable="false" data-badge data-name="condition" data-property="condition_name">{{ __('Condition') }}</th> --}}
+                        <th data-property="stock_quantity">{{ __('Stock Quantity') }}</th>
                         <th data-property="purchase_price">{{ __('Purchase Price') }}</th>
                         <th data-property="sale_price">{{ __('Sale Price') }}</th>
                         <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Offer Price') }}</th>
-                        <th data-property="stock_quantity">{{ __('Stock Quantity') }}</th>
-                        <th data-property="min_order_quantity">{{ __('Min Order Quantity') }}</th>
-                        <th data-property="available_from">{{ __('Available From') }}</th>
+                        {{-- <th data-property="min_order_quantity">{{ __('Min Order Quantity') }}</th> --}}
+                        {{-- <th data-property="available_from">{{ __('Available From') }}</th> --}}
                         <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
                         <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
@@ -191,7 +191,7 @@
                         <a
                             href="${productRoute}"
                             title="${data.name}"
-                            class="d-inline-block" style="white-space: nowrap; width: 155px; overflow: hidden; text-overflow: ellipsis;"
+                            class="d-inline-block"
                         >${data.name ? '(' + data.id + ')' + data.name : 'N/A'}</a>
                     </b>
                 </div>

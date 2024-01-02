@@ -9,7 +9,7 @@
         <div class="k-portlet__body">
             <div class="row">
                 <div class="form-group col-lg-4">
-                    <label>{{ __('Product') }} *</label>
+                    <label>{{ __('Product') }}</label>
                     <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                         @foreach($categories as $category)
                         <optgroup label="{{ $category->name }}">
@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-lg-4">
-                    <label>{{ __('Status') }} *</label>
+                    <label>{{ __('Status') }}</label>
                     <select name="status" class="form-control k_selectpicker">
                         <option value="">--{{ __('Select status') }}--</option>
                         @foreach ($statusLabels as $key => $label)
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="form-group col-lg-4">
-                    <label>{{ __('FE Display') }} *</label>
+                    <label>{{ __('FE Display') }}</label>
                     <select name="display_on_frontend" class="form-control k_selectpicker">
                         <option value="">--{{ __('Select status') }}--</option>
                         @foreach ($statusLabels as $key => $label)
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-group col-lg-4">
-                    <label>{{ __('FE Search') }} *</label>
+                    <label>{{ __('FE Search') }}</label>
                     <select name="allow_frontend_search" class="form-control k_selectpicker">
                         <option value="">--{{ __('Select status') }}--</option>
                         @foreach ($statusLabels as $key => $label)
