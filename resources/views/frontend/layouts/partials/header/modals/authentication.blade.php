@@ -115,7 +115,7 @@
 
             <div data-overlay-action-wrapper="signup" style="display: none;">
                 <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
-                    <h3 class="ls-box-title text-left">Đăng Ký</h3>
+                    <h3 class="ls-box-title text-left">Đăng ký</h3>
                 </div>
                 <div class="quick-add-modal__content-content">
                     <div class="form-basic-signup customer">
@@ -156,7 +156,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
                             </div>
-                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng Ký</button>
+                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng ký</button>
                             @include('frontend.layouts.partials.header.modals.oauth-authentication')
                         </form>
                     </div>
