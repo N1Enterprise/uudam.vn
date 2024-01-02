@@ -72,5 +72,21 @@
             });
         });
     }
+
+    function renderCallbackOrder(data, type, full) {
+        const dom = $('<div class="text-center">');
+
+        if (full?.order?.edit_link) {
+            dom.append(`<a href="${full?.order?.edit_link}" target="_blank" class="mb-2 d-block">${data || 'N/A'}</a>`)
+        } else {
+            dom.append(`<span>N/A</span>`);
+        }
+
+        if (full?.order?.order_status_name) {
+            dom.append(`<small class="d-block">(${full?.order?.order_status_name})</small>`);
+        }
+
+        return dom.prop('outerHTML');
+    }
 </script>
 @endpush
