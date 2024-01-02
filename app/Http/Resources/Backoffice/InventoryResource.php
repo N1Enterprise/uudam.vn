@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Backoffice;
 
-use App\Common\Money;
 use Illuminate\Support\Facades\Route;
 
 class InventoryResource extends BaseJsonResource
@@ -26,9 +25,9 @@ class InventoryResource extends BaseJsonResource
             'sku' => $this->sku,
             'description' => $this->description,
             'key_features' => $this->key_features,
-            'purchase_price' => Money::format($this->purchase_price),
-            'sale_price' => Money::format($this->sale_price),
-            'offer_price' => Money::format($this->offer_price),
+            'purchase_price' => format_price($this->purchase_price),
+            'sale_price' => format_price($this->sale_price),
+            'offer_price' => format_price($this->offer_price),
             'offer_start' => $this->offer_start,
             'offer_end' => $this->offer_end,
             'stock_quantity' => $this->stock_quantity,

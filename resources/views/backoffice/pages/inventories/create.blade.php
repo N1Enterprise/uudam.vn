@@ -312,7 +312,7 @@
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
-                                        <input type="checkbox" {{ old('display_on_frontend', empty($inventory->id) ? '1' : boolean($inventory->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="display_on_frontend" />
+                                        <input type="checkbox" {{ boolean(old('display_on_frontend', $inventory->display_on_frontend)) ? 'checked' : '' }} value="1" name="display_on_frontend" />
                                         <span></span>
                                     </label>
                                 </span>
@@ -324,7 +324,7 @@
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
-                                        <input type="checkbox" {{ old('allow_frontend_search', empty($inventory->id) ? '1' : boolean($inventory->allow_frontend_search) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="allow_frontend_search" />
+                                        <input type="checkbox" {{ boolean(old('allow_frontend_search', $inventory->allow_frontend_search)) ? 'checked' : '' }} value="1" name="allow_frontend_search" />
                                         <span></span>
                                     </label>
                                 </span>
@@ -336,7 +336,7 @@
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
-                                        <input type="checkbox" {{ old('status', empty($inventory->id) ? '1' : boolean($inventory->status) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="status" />
+                                        <input type="checkbox" {{ boolean(empty($inventory->id) ? 1 : old('status', $inventory->status) ) ? 'checked' : '' }} value="1" name="status" />
                                         <span></span>
                                     </label>
                                 </span>
