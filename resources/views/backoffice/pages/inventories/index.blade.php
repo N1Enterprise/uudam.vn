@@ -159,7 +159,7 @@
 
                 const has = supportedCategories.some(item => productCategories.includes(item));
 
-                $(element).toggleClass('d-none', has);
+                $(element).toggleClass('d-none', !has);
             });
         });
     }
