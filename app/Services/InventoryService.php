@@ -30,6 +30,18 @@ class InventoryService extends BaseService
                 if ($productId) {
                     $q->where('product_id', $productId);
                 }
+
+                if ($status = Arr::wrap(data_get($data, 'status'))) {
+                    $q->whereIn('status', $status);
+                }
+
+                if ($feDisplay = Arr::wrap(data_get($data, 'display_on_frontend'))) {
+                    $q->whereIn('display_on_frontend', $feDisplay);
+                }
+
+                if ($feSearch = Arr::wrap(data_get($data, 'allow_frontend_search'))) {
+                    $q->whereIn('allow_frontend_search', $feSearch);
+                }
             })
             ->search([]);
 
