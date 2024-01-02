@@ -175,38 +175,40 @@ class InventoryService extends BaseService
     {
         return DB::transaction(function () use ($attributes) {
             $variants = data_get($attributes, 'variants', []);
-            $skus = array_filter(Arr::wrap(data_get($variants, 'sku', [])));
+            $skus     = array_filter(Arr::wrap(data_get($variants, 'sku', [])));
 
-            $variant['title'] = data_get($attributes, 'title');
-            $variant['product_id'] = data_get($attributes, 'product_id');
-            $variant['condition_note'] = data_get($attributes, 'condition_note');
-            $variant['status'] = data_get($attributes, 'status');
-            $variant['description'] = data_get($attributes, 'description');
-            $variant['key_features'] = Arr::wrap(data_get($attributes, 'key_features', []));
-            $variant['min_order_quantity'] = data_get($attributes, 'min_order_quantity');
-            $variant['available_from'] = data_get($attributes, 'available_from');
-            $variant['meta_title'] = data_get($attributes, 'meta_title');
-            $variant['meta_description'] = data_get($attributes, 'meta_description');
-            $variant['product_slug'] = data_get($attributes, 'product_slug');
-            $variant['offer_start'] = data_get($attributes, 'offer_start');
-            $variant['offer_end'] = data_get($attributes, 'offer_end');
+            $variant['title']                 = data_get($attributes, 'title');
+            $variant['product_id']            = data_get($attributes, 'product_id');
+            $variant['condition_note']        = data_get($attributes, 'condition_note');
+            $variant['status']                = data_get($attributes, 'status');
+            $variant['display_on_frontend']   = data_get($attributes, 'display_on_frontend');
+            $variant['allow_frontend_search'] = data_get($attributes, 'allow_frontend_search');
+            $variant['description']           = data_get($attributes, 'description');
+            $variant['key_features']          = Arr::wrap(data_get($attributes, 'key_features', []));
+            $variant['min_order_quantity']    = data_get($attributes, 'min_order_quantity');
+            $variant['available_from']        = data_get($attributes, 'available_from');
+            $variant['meta_title']            = data_get($attributes, 'meta_title');
+            $variant['meta_description']      = data_get($attributes, 'meta_description');
+            $variant['product_slug']          = data_get($attributes, 'product_slug');
+            $variant['offer_start']           = data_get($attributes, 'offer_start');
+            $variant['offer_end']             = data_get($attributes, 'offer_end');
 
             $variantsCreated = [];
 
             foreach ($skus as $index => $sku) {
-                $variant['condition'] = data_get($variants, ['condition', $index]);
-                $variant['sku'] = $sku;
+                $variant['condition']      = data_get($variants, ['condition', $index]);
+                $variant['sku']            = $sku;
                 $variant['purchase_price'] = data_get($variants, ['purchase_price', $index]);
-                $variant['sale_price'] = data_get($variants, ['sale_price', $index]);
-                $variant['offer_price'] = data_get($variants, ['offer_price', $index]);
-                $variant['offer_start'] = $variant['offer_price'] ? $variant['offer_start'] : null;
-                $variant['offer_end'] = $variant['offer_price'] ? $variant['offer_end'] : null;
+                $variant['sale_price']     = data_get($variants, ['sale_price', $index]);
+                $variant['offer_price']    = data_get($variants, ['offer_price', $index]);
+                $variant['offer_start']    = $variant['offer_price'] ? $variant['offer_start'] : null;
+                $variant['offer_end']      = $variant['offer_price'] ? $variant['offer_end'] : null;
                 $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
-                $variant['slug'] = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
-                $variant['image'] = ImageHelper::make('catalog')
-                ->hasOptimization()
-                ->setConfigKey([Inventory::class, 'image'])
-                ->uploadImage(data_get($variants, ['image', $index]));
+                $variant['slug']           = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
+                $variant['image']          = ImageHelper::make('catalog')
+                                                ->hasOptimization()
+                                                ->setConfigKey([Inventory::class, 'image'])
+                                                ->uploadImage(data_get($variants, ['image', $index]));
 
                 $inventory = $this->inventoryRepository->create($variant);
 
