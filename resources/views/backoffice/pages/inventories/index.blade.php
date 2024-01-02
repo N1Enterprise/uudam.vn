@@ -146,19 +146,20 @@
         $('#form_create_inventory').find('[name="product_id"]').on('change', function() {
             const productId = $(this).val();
             const productType = $('#form_create_inventory').find(`option[value="${productId}"]`).attr('data-product-type');
-
             const productCategories = JSON.parse($('#form_create_inventory').find(`option[value="${productId}"]`).attr('data-categories') || '[]');
+
+            $('#form_create_inventory').find('.attribute-item').addClass('d-none');
+
+            if (productType == PRODUCT_TYPE_ENUM.SIMPLE) {
+                return;
+            }
 
             $.each($('#form_create_inventory').find('.attribute-item'), function(index, element) {
                 const supportedCategories = JSON.parse($(element).attr('data-supported-categories') || '[]');
 
-                for (const item of supportedCategories) {
-                    if (productCategories.includes(item)) {
-                        $(element).removeClass('d-none');
-                    } else {
-                        $(element).addClass('d-none');
-                    }
-                }
+                const has = supportedCategories.some(item => productCategories.includes(item));
+
+                $(element).toggleClass('d-none', has);
             });
         });
     }

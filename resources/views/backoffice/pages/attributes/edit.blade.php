@@ -79,7 +79,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Categories') }}</label>
-                                    <select name="supported_categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true">
+                                    <select name="supported_categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true" data-actions-box="true">
                                         @foreach($categoryGroups as $categoryGroup)
                                         <optgroup label="{{ $categoryGroup->name }}">
                                             @foreach($categoryGroup->categories as $category)

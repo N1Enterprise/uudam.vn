@@ -74,7 +74,7 @@
         }
 
         const categoriesBadge = data.map((category, index) => {
-            return $('<span>', { class: `mr-1 mt-1` })
+            return $('<span>', { class: `mr-1 mt-1 mb-1 d-inline-block` })
                     .append(`<span class="k-badge k-badge--brand k-badge--inline k-badge--outline k-badge--pill">${category}</span>`).prop('outerHTML');
         });
 
