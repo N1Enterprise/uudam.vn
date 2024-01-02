@@ -177,7 +177,7 @@ if (! function_exists('format_price')) {
 if (! function_exists('get_percent')) {
     function get_percent($firstNumber, $secondNumber = null)
     {
-        return 100 - round(LocalizationMoney::make($secondNumber,  SystemCurrency::getDefaultCurrency()->getKey())->percentOf($firstNumber));
+        return round(100 - LocalizationMoney::make($secondNumber,  SystemCurrency::getDefaultCurrency()->getKey())->percentOf($firstNumber));
     }
 }
 
