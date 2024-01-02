@@ -88,14 +88,9 @@ class BackofficeMenuService extends BaseService
                         // ]
                     ],
                     [
-                        'name' => 'Stock',
-                        'subs' => [
-                            [
-                                'name' => 'Inventories',
-                                'link' => route('bo.web.inventories.index'),
-                                'permissions' => ['inventories.index'],
-                            ],
-                        ]
+                        'name' => 'Inventories',
+                        'link' => route('bo.web.inventories.index'),
+                        'permissions' => ['inventories.index'],
                     ],
                     [
                         'name' => 'Collections',
