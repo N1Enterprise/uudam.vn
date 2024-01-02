@@ -312,7 +312,7 @@
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
-                                        <input type="checkbox" {{ old('display_on_frontend', boolean($inventory->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="display_on_frontend"/>
+                                        <input type="checkbox" {{ old('display_on_frontend', empty($inventory->id) ? '1' : boolean($inventory->display_on_frontend) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="display_on_frontend"/>>
                                         <span></span>
                                     </label>
                                 </span>

@@ -19,9 +19,37 @@
                         </optgroup>
                         @endforeach
                     </select>
-                    @error('product_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label>{{ __('Status') }} *</label>
+                    <select name="status" class="form-control k_selectpicker">
+                        <option value="">--{{ __('Select status') }}--</option>
+                        @foreach ($statusLabels as $key => $label)
+                        <option value="{{ $key }}">{{ $label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label>{{ __('FE Display') }} *</label>
+                    <select name="display_on_frontend" class="form-control k_selectpicker">
+                        <option value="">--{{ __('Select status') }}--</option>
+                        @foreach ($statusLabels as $key => $label)
+                        <option value="{{ $key }}">{{ $label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label>{{ __('FE Search') }} *</label>
+                    <select name="allow_frontend_search" class="form-control k_selectpicker">
+                        <option value="">--{{ __('Select status') }}--</option>
+                        @foreach ($statusLabels as $key => $label)
+                        <option value="{{ $key }}">{{ $label }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>

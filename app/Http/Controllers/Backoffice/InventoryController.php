@@ -7,6 +7,7 @@ use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Contracts\Responses\Backoffice\DeleteInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\StoreInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
+use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
 use App\Enum\ProductTypeEnum;
 use App\Models\Inventory;
@@ -50,7 +51,9 @@ class InventoryController extends BaseController
             ->sortBy('order')
             ->filter(fn($attribute) => !$attribute->attributeValues->isEmpty());
 
-        return view('backoffice.pages.inventories.index', compact('categories', 'attributes'));
+        $statusLabels = ActivationStatusEnum::labels();
+
+        return view('backoffice.pages.inventories.index', compact('categories', 'attributes', 'statusLabels'));
     }
 
     public function create(Request $request)
@@ -77,7 +80,7 @@ class InventoryController extends BaseController
             'hasVariant',
             'attributes',
             'combinations',
-            'inventoryConditionEnumLabels'
+            'inventoryConditionEnumLabels',
         ));
     }
 
