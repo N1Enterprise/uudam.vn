@@ -24,6 +24,8 @@ class SystemSettingKeyEnum extends BaseEnum
     public const VIDEO_OUTSIDE_UI = 'video_outside_ui';
     public const SEARCH_SETTING = 'search_setting';
     public const ADMIN_TOP_NAVIGATION = 'admin_top_navigation';
+    public const SHOP_LOGOS = 'shop_logos';
+    public const SHOP_FAVICONS = 'shop_favicons';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
@@ -55,6 +57,8 @@ class SystemSettingKeyEnum extends BaseEnum
             self::MAINTENANCE_ALLOW_IPS_ACCESS,
             self::USER_FE_RESET_PASSWORD_LINK,
             self::ENABLE_SEND_NEW_ORDER_TO_ADMIN,
+            self::SHOP_LOGOS,
+            self::SHOP_FAVICONS
         ];
     }
 }

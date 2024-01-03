@@ -75,7 +75,10 @@
 		<link href="{{ asset('backoffice/assets/demo/default/skins/brand/navy.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/demo/default/skins/aside/navy.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Skins -->
-		<link rel="shortcut icon" href="{{ asset('backoffice/assets/img/logos/stevephamhi_favicon.png') }}" />
+
+		@foreach (data_get($SYSTEM_SETTING, 'shop_favicons', []) as $favicon)
+		<link rel="shortcut icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
+		@endforeach
     </head>
 
     <body class="k-header--fixed k-header-mobile--fixed k-aside--enabled k-aside--fixed">
@@ -104,7 +107,7 @@
 					<div class="k-aside__brand	k-grid__item " id="k_aside_brand">
 						<div class="k-aside__brand-logo">
 							<a href="{{ route('bo.web.dashboard') }}">
-								<img alt="Logo" src="{{ data_get($LOGO, 'image') }}" style="width: {{ data_get($LOGO, 'width', '0px') }}; height: {{ data_get($LOGO, 'height', '0px') }}" style="max-width: 100%; padding-right: 8px" />
+								<img alt="Logo" src="{{ data_get($SYSTEM_SETTING, 'shop_logos.master.image') }}" style="width: {{ data_get($SYSTEM_SETTING, 'shop_logos.master.width', '0px') }}; height: {{ data_get($SYSTEM_SETTING, 'shop_logos.master.height', '0px') }}" style="max-width: 100%; padding-right: 8px" />
 							</a>
 						</div>
 						<div class="k-aside__brand-tools">
