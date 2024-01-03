@@ -19,6 +19,13 @@ class AttributeValueService extends BaseService
         $result = $this->attributeValueRepository
             ->with(['attribute'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->scopeQuery(function($q) use ($data) {
+                $attributeId = data_get($data, 'attribute_id');
+
+                if ($attributeId) {
+                    $q->where('attribute_id', $attributeId);
+                }
+            })
             ->search([]);
 
         return $result;
