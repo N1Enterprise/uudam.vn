@@ -77,27 +77,6 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>{{ __('Purchase price') }}
-                    <i
-                        data-toggle="tooltip"
-                        class="flaticon-questions-circular-button"
-                        data-title="Recommended field. This will helps to calculate profits and generate reports"
-                    ></i>
-                </label>
-                <x-number-input
-                    allow-minus="false"
-                    key="purchase_price"
-                    name="purchase_price"
-                    class="form-control {{ $errors->has('purchase_price') ? 'is-invalid' : '' }}"
-                    value='{{ old("purchase_price", $inventory->purchase_price) }}'
-                />
-                @error("purchase_price")
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
                 <label for="">{{ __('Stock quantity') }} *
                     <i
                         data-toggle="tooltip"
@@ -113,6 +92,27 @@
                     placeholder="{{ __('Enter stock quantity') }}"
                 >
                 @error("stock_quantity")
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>{{ __('Purchase price') }}
+                    <i
+                        data-toggle="tooltip"
+                        class="flaticon-questions-circular-button"
+                        data-title="Recommended field. This will helps to calculate profits and generate reports"
+                    ></i>
+                </label>
+                <x-number-input
+                    allow-minus="false"
+                    key="purchase_price"
+                    name="purchase_price"
+                    class="form-control {{ $errors->has('purchase_price') ? 'is-invalid' : '' }}"
+                    value='{{ old("purchase_price", $inventory->purchase_price) }}'
+                />
+                @error("purchase_price")
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
