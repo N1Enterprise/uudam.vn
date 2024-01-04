@@ -31,16 +31,19 @@ const COLLECTION_LINKED_INVENTORIES = {
         successCb = successCb || function() {};
         errorCb = errorCb || function() {};
 
+        const payload = {
+            paging: 'simplePaginate',
+            per_page: 12,
+            sort_by: COLLECTION_LINKED_INVENTORIES.elements.sort_by.val(),
+            page: COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page'),
+            query: $('[data-search-query]').text(),
+            ...data,
+        };
+
         $.ajax({
             url: COLLECTION_LINKED_INVENTORIES.baseRoute,
             method: 'GET',
-            data: {
-                paging: 'simplePaginate',
-                per_page: 12,
-                sort_by: COLLECTION_LINKED_INVENTORIES.elements.sort_by.val(),
-                page: COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page'),
-                ...data,
-            },
+            data: payload,
             beforeSend: beforeSendCb,
             success: successCb,
             error: errorCb,
@@ -93,9 +96,7 @@ const COLLECTION_LINKED_INVENTORIES = {
             COLLECTION_LINKED_INVENTORIES.elements.sort_by.find('option').prop('selected', false);
             COLLECTION_LINKED_INVENTORIES.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
 
-            const totalCount = +(SEARCH_INVENTORY.elements.total_product.attr('data-total') || 12);
-
-            COLLECTION_LINKED_INVENTORIES.ajaxInventories({ page: currentPage, sort_by: value, per_page: totalCount }, {
+            COLLECTION_LINKED_INVENTORIES.ajaxInventories({ page: currentPage, sort_by: value }, {
                 beforeSendCb: () => {
                     COLLECTION_LINKED_INVENTORIES.elements.sort_by.prop('disabled', true);
                 },
