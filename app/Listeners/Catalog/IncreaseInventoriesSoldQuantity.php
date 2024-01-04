@@ -26,6 +26,8 @@ class IncreaseInventoriesSoldQuantity implements ShouldQueue
     {
         $order = $event->order;
 
+        logger('IncreaseInventoriesSoldQuantity');
+
         collect(data_get($order, 'orderItems', []))->each(function($item) {
             DB::table('inventories')
                 ->where('id', $item->inventory_id)
