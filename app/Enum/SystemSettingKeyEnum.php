@@ -26,6 +26,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const ADMIN_TOP_NAVIGATION = 'admin_top_navigation';
     public const SHOP_LOGOS = 'shop_logos';
     public const SHOP_FAVICONS = 'shop_favicons';
+    public const QUEUE_NAMES = 'queue_names';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
@@ -58,7 +59,8 @@ class SystemSettingKeyEnum extends BaseEnum
             self::USER_FE_RESET_PASSWORD_LINK,
             self::ENABLE_SEND_NEW_ORDER_TO_ADMIN,
             self::SHOP_LOGOS,
-            self::SHOP_FAVICONS
+            self::SHOP_FAVICONS,
+            self::QUEUE_NAMES,
         ];
     }
 }
