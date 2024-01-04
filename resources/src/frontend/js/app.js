@@ -10,6 +10,8 @@ $(document).ready(function() {
         return;
     }
 
+    return;
+
     $(document).on('keyup', function(e) {
         if (e.key == 'PrintScreen') {
             navigator.clipboard.writeText('');
