@@ -16,19 +16,21 @@ const SEARCH_INVENTORY = {
         successCb = successCb || function() {};
         errorCb = errorCb || function() {};
 
-        const totalCount = +(SEARCH_INVENTORY.elements.total_product.attr('data-total') || 0);
+        const payload = {
+            paging: 'simplePaginate',
+            per_page: 12,
+            sort_by: SEARCH_INVENTORY.elements.sort_by.val(),
+            page: SEARCH_INVENTORY.elements.btn_load_more.attr('data-current-page'),
+            query: $('[data-search-query]').text(),
+            ...data,
+        };
+
+        console.log({ payload });
 
         $.ajax({
             url: CATALOG_ROUTES.api_search_inventories,
             method: 'GET',
-            data: {
-                paging: 'simplePaginate',
-                per_page: totalCount || 12,
-                sort_by: SEARCH_INVENTORY.elements.sort_by.val(),
-                page: SEARCH_INVENTORY.elements.btn_load_more.attr('data-current-page'),
-                query: $('[data-search-query]').text(),
-                ...data,
-            },
+            data: payload,
             beforeSend: beforeSendCb,
             success: successCb,
             error: errorCb,
@@ -42,7 +44,11 @@ const SEARCH_INVENTORY = {
             SEARCH_INVENTORY.elements.sort_by.find('option').prop('selected', false);
             SEARCH_INVENTORY.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
 
-            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value }, {
+            const totalCount = +(SEARCH_INVENTORY.elements.total_product.attr('data-total') || 12);
+
+            console.log({ totalCount });
+
+            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value, per_page: totalCount }, {
                 beforeSendCb: () => {
                     SEARCH_INVENTORY.elements.sort_by.prop('disabled', true);
                 },
