@@ -31,12 +31,14 @@ const COLLECTION_LINKED_INVENTORIES = {
         successCb = successCb || function() {};
         errorCb = errorCb || function() {};
 
+        const totalCount = +(SEARCH_INVENTORY.elements.total_product.attr('data-total') || 0);
+
         $.ajax({
             url: COLLECTION_LINKED_INVENTORIES.baseRoute,
             method: 'GET',
             data: {
                 paging: 'simplePaginate',
-                per_page: 12,
+                per_page: totalCount || 12,
                 sort_by: COLLECTION_LINKED_INVENTORIES.elements.sort_by.val(),
                 page: COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page'),
                 ...data,
@@ -88,7 +90,7 @@ const COLLECTION_LINKED_INVENTORIES = {
     loadBySortInventories: () => {
         COLLECTION_LINKED_INVENTORIES.elements.sort_by.on('change', function() {
             const value = $(this).val();
-            const currentPage = COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page');
+            const currentPage  = COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page');
 
             COLLECTION_LINKED_INVENTORIES.elements.sort_by.find('option').prop('selected', false);
             COLLECTION_LINKED_INVENTORIES.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
@@ -110,14 +112,10 @@ const COLLECTION_LINKED_INVENTORIES = {
         });
     },
     countDisplayingProducts: (response) => {
-        const currentTotal = + (COLLECTION_LINKED_INVENTORIES.elements.total_product.attr('data-total') || 0);
-        const currentPage  = response?.current_page;
-        const countItems   = response?.data?.length || 0;
+        const totalCount = $('[data-collection-linked-inventory="show-up"] li').length;
 
-        const finalTotal = (12 * currentPage) - (12 - countItems);
-
-        COLLECTION_LINKED_INVENTORIES.elements.total_product.attr('data-total', finalTotal);
-        COLLECTION_LINKED_INVENTORIES.elements.total_product.text(finalTotal);
+        SEARCH_INVENTORY.elements.total_product.attr('data-total', totalCount);
+        SEARCH_INVENTORY.elements.total_product.text(totalCount);
     },
     setPagination: (response) => {
         COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page', response.current_page);
@@ -160,23 +158,25 @@ const COLLECTION_LINKED_INVENTORIES = {
                         <div class="card__content">
                             <div class="card__information">
                                 <h3 class="card__heading h5">
-                                    <a href="${ route }" class="full-unstyled-link">${ inventory?.title }</a>
+                                    <a href="${ route }" class="full-unstyled-link" style="text-decoration: none;">${ inventory?.title }</a>
                                 </h3>
-                                <div class="card-information">
-                                    <span class="caption-large light"></span>
-                                    <div class="price ">
-                                        <div class="price__container">
-                                            <div class="price__regular">
-                                                <span class="visually-hidden visually-hidden--inline">Giá cả phải chăng</span>
-                                                <span class="price-item price-item--regular"> Giá từ ${inventory.final_price} </span>
-                                                ${
-                                                    inventory.has_offer_price ? `
-                                                        <del class="price-item--sub">${ inventory.sub_price }</del>   
-                                                        <span class="price-discount-percent">-${ inventory.discount_percent }%</span>
-                                                        <div class="price-for-saving">(Tiết kiệm <span>${ inventory.price_for_saving }</span>)</div>
-                                                    ` : ''
-                                                }
+                                <div class="card-information" style="padding: 4px 0;">
+                                    <div class="price">
+                                        <div class="price__regular">
+                                            <div class="ls-price-group">
+                                                <div>
+                                                    <span class="price-item price-item--regular">${inventory.final_price} </span>
+                                                    ${ inventory.has_offer_price ? `<del class="price-item--sub">${ inventory.sub_price }</del>` : '' }
+                                                </div>
+                                                <span class="sold-count">Đã bán ${ inventory.final_sold_count }</span>
                                             </div>
+                                            
+                                            ${
+                                                inventory.has_offer_price ? `
+                                                    <span class="price-discount-percent">-${ inventory.discount_percent }%</span>
+                                                    <div class="price-for-saving">(Tiết kiệm <span>${ inventory.price_for_saving }</span>)</div>
+                                                ` : ''
+                                            }
                                         </div>
                                     </div>
                                 </div>

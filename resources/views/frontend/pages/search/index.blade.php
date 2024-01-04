@@ -111,8 +111,8 @@ Tìm kiếm | {{ config('app.user_domain') }}
 
 @section('content_body')
 <div class="shopify-section section">
-    <div class="collection-hero__inner page-width" style="padding-top: 20px; padding-bottom: 20px;">
-        kết quả tìm kiếm: <b style="margin-left: 5px;" data-search-query>{{ $query }}</b>
+    <div class="page-width" style="padding-top: 20px; padding-bottom: 20px;">
+        kết quả tìm kiếm: <span style="margin-left: 2px; display: inline-block;" data-search-query>{{ $query }}</span>
     </div>
 </div>
 

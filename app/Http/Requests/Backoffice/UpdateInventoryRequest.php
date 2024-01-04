@@ -34,6 +34,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'key_features.*.title' => ['required', 'string'],
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
+                'init_sold_count' => ['nullable'],
                 'offer_start' => [
                     Rule::requiredIf(function() {
                         $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));

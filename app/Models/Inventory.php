@@ -43,7 +43,9 @@ class Inventory extends BaseModel
         'updated_by_type',
         'updated_by_id',
         'display_on_frontend',
-        'allow_frontend_search'
+        'allow_frontend_search',
+        'init_sold_count',
+        'sold_count',
     ];
 
     protected $casts = [
@@ -53,7 +55,8 @@ class Inventory extends BaseModel
     protected $appends = [
         'final_price',
         'sub_price',
-        'has_offer_price'
+        'has_offer_price',
+        'final_sold_count'
     ];
 
     public function getConditionNameAttribute()
@@ -108,5 +111,10 @@ class Inventory extends BaseModel
     public function getFinalPriceAttribute()
     {
         return $this->has_offer_price ? $this->offer_price : $this->sale_price;
+    }
+
+    public function getFinalSoldCountAttribute()
+    {
+        return (int) $this->init_sold_count + (int) $this->sold_count;
     }
 }

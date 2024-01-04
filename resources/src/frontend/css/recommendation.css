@@ -638,3 +638,21 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
 .recommendation-target {
     padding: 0 7px;
 }
+
+.ls-price-group {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.sold-count {
+    color: #979797 !important;
+    font-size: 13px;
+}
+
+@media screen and (max-width: 400px) {
+    .sold-count {
+        order: -1;
+    }
+}
