@@ -29,9 +29,9 @@ class Kernel extends ConsoleKernel
 
         $queueNames = implode(',', $queueNames);
 
-        $schedule->command("queue:work --stop-when-empty --queue=$queueNames")
+        $schedule->command("queue:work --stop-when-empty --tries=3 --queue=$queueNames")
             ->everyMinute()
-            ->withoutOverlapping();
+            ->withoutOverlapping(5);
     }
 
     /**
