@@ -154,10 +154,6 @@
             for (var p of formData) {
                 let name = p[0];
                 let value = p[1];
-
-                console.log({
-                    [name]: value
-                });
             }
 
             return formData;

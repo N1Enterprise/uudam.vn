@@ -1805,7 +1805,6 @@ $(document).ready(function() {
 	// plugin setup
 	$.fn[pluginName] = function(options) {
 		if ($(this).length === 0) {
-			console.log('No ' + pluginName + ' element exist.');
 			return;
 		}
 
@@ -3758,7 +3757,6 @@ $(document).ready(function() {
 			log: function(text, obj) {
 				if (typeof obj === 'undefined') obj = '';
 				if (datatable.debug) {
-					console.log(text, obj);
 				}
 			},
 
@@ -5987,12 +5985,10 @@ var KMenu = function(elementId, options) {
          */
         handleSubmenuDrodownHoverEnter: function(e) {
             if ( Plugin.getSubmenuMode(this) === 'accordion' ) {
-                console.log('test111!');
                 return;
             }
 
             if ( the.resumeDropdownHover() === false ) {
-                console.log('test11111!');
                 return;
             }
 
@@ -6002,10 +5998,7 @@ var KMenu = function(elementId, options) {
                 item.removeAttribute('data-hover');
                 clearTimeout( item.getAttribute('data-timeout') );
                 item.removeAttribute('data-timeout');
-                //Plugin.hideSubmenuDropdown(item, false);
             }
-
-            // console.log('test!');
 
             Plugin.showSubmenuDropdown(item);
         },

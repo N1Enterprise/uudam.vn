@@ -12,7 +12,6 @@
         }
 
         if (!lines && !silent) {
-           console.log('code coverage data is NOT available');
         }
 
         return { 'key': key, 'lines': lines };
@@ -41,7 +40,6 @@
             if (result != null) {
                 result.innerHTML = result.innerHTML + ' ' + coverage + ' test coverage of ' + cvgInfo.key;
             } else {
-                console.log('can\'t find test-result element to update');
             }
         }
     };

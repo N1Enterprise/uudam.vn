@@ -111,13 +111,6 @@ $(document).ready(function() {
                 const start   = picker.startDate;
                 const end     = picker.endDate;
 
-                console.log({
-                    fromId,
-                    labelId,
-                    start,
-                    end,
-                });
-
                 $(this).parent().find('input[data-daterangepicker-catch=start]').val(start.format(APP_CONSTANT.DATE_TIME_FORMAT));
                 $(this).parent().find('input[data-daterangepicker-catch=end]').val(end.format(APP_CONSTANT.DATE_TIME_FORMAT));
 
