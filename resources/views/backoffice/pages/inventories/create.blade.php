@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Inventory');
+	$title = __('Inventories');
 
     $action = empty($inventory->id) ? 'Add' : 'Edit';
 
@@ -160,20 +160,42 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="">{{ __('Condition Note') }}
-                                <i
-                                    data-toggle="tooltip"
-                                    class="flaticon-questions-circular-button"
-                                    data-title="Input more details about the item condition. This will help customers to understand the item."
-                                ></i>
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="condition_note"
-                                value="{{ old('condition_note', data_get($inventory, 'condition_note')) }}"
-                            >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">{{ __('Condition Note') }}
+                                        <i
+                                            data-toggle="tooltip"
+                                            class="flaticon-questions-circular-button"
+                                            data-title="Input more details about the item condition. This will help customers to understand the item."
+                                        ></i>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="condition_note"
+                                        value="{{ old('condition_note', data_get($inventory, 'condition_note')) }}"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">{{ __('Init Sold Count') }}
+                                        <i
+                                            data-toggle="tooltip"
+                                            class="flaticon-questions-circular-button"
+                                            data-title="{{ __('This sold count is for customer use only') }}"
+                                        ></i>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        name="init_sold_count"
+                                        min="0"
+                                        value="{{ old('init_sold_count', data_get($inventory, 'init_sold_count')) }}"
+                                    >
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row {{ $inventory->offer_price ? '' : 'd-none' }}" data-toggle-reference="offer_date_setup">

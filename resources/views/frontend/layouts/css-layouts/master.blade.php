@@ -450,7 +450,7 @@
         position: relative;
     }
 
-    .recommendation-target .price-discount-percent {
+    .price-discount-percent.discount-absolute {
         position: absolute;
         top: 0;
         right: 0;

@@ -2,8 +2,11 @@
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
     </div>
-    <div style="margin-top: -15px;">
-        <p>SKU: <span data-sku>{{ $inventory->sku }}</span></p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0; margin: -10px 0;">
+        <div>SKU: <span data-sku>{{ $inventory->sku }}</span></div>
+        @if (($inventory->final_sold_count))
+        <div style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>    
+        @endif
     </div>
     <p class="product__text subtitle"></p>
     <div class="no-js-hidden" role="status">

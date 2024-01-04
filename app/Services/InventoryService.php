@@ -62,8 +62,8 @@ class InventoryService extends BaseService
                     $sortBy = 'asc';
                     break;
                 case 'best-selling';
-                    $orderBy = 'offer_price';
-                    $sortBy = 'asc';
+                    $orderBy = 'sold_count';
+                    $sortBy = 'desc';
                     break;
                 case 'title-ascending':
                     $orderBy = 'title';
@@ -319,6 +319,8 @@ class InventoryService extends BaseService
                 'slug',
                 'stock_quantity',
                 'title',
+                'init_sold_count',
+                'sold_count'
             ]);
 
         return $inventory;

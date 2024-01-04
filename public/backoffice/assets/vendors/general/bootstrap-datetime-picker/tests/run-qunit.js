@@ -23,11 +23,9 @@ function waitFor(testFx, onReady, timeOutMillis) {
             } else {
                 if(!condition) {
                     // If condition still not fulfilled (timeout but condition is 'false')
-                    console.log("'waitFor()' timeout");
                     phantom.exit(1);
                 } else {
                     // Condition fulfilled (timeout and/or condition is 'true')
-                    //console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
                     typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
                     clearInterval(interval); //< Stop this interval
                 }
@@ -36,7 +34,6 @@ function waitFor(testFx, onReady, timeOutMillis) {
 };
 
 if (system.args.length !== 2) {
-    console.log('Usage: run-qunit.js URL');
     phantom.exit(1);
 }
 
@@ -45,12 +42,9 @@ var page = require('webpage').create();
 
 // Route "console.log()" calls from within the Page context to the main Phantom context (i.e. current "this")
 page.onConsoleMessage = function(msg) {
-    console.log(msg);
 };
 page.onError = function (msg, trace) {
-    console.log(msg);
     trace.forEach(function(item) {
-        console.log('  ', item.file, ':', item.line);
     })
 }
 
@@ -80,7 +74,6 @@ if (fs.exists(basedir)){
 
 page.open(openPath, function(status){
     if (status !== "success") {
-        console.log("Unable to access network");
         phantom.exit(1);
     } else {
         // Inject instrumented sources if they exist
@@ -124,15 +117,12 @@ page.open(openPath, function(status){
                 colorized = coverageBase.replace('COLORIZED_LINE_HTML', colorized);
 
                 fs.write('coverage.html', colorized, 'w');
-
-                console.log('Coverage for ' + coverageInfo.key + ' in coverage.html');
             }
             if (_openPath != openPath)
                 fs.remove(openPath);
 
             var failedNum = page.evaluate(function(){
                 var el = document.getElementById('qunit-testresult');
-                console.log(el.innerText);
                 try {
                     return el.getElementsByClassName('failed')[0].innerHTML;
                 } catch (e) { }

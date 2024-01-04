@@ -42,6 +42,7 @@ class UserSearchService extends BaseService
                         ->orWhere('slug', 'LIKE', '%'.$query.'%')
                             ->orWhere('sku', 'LIKE', '%'.$query.'%');
                 })
+                ->orderBy('sold_count', 'desc')
                 ->limit(data_get($resourcesLimits, 'product', 4))
                 ->get();
         }

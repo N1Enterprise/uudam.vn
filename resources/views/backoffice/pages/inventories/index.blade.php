@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Inventory');
+	$title = __('Inventories');
 
 	$breadcrumbs = [
 		[
@@ -15,6 +15,14 @@
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
+
+@section('style')
+<style>
+    .group-value {
+        font-weight: bold!important;
+    }
+</style>
+@endsection
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
@@ -40,13 +48,13 @@
             </div>
         </div>
         <div class="k-portlet__body">
-            <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+            <table id="table_inventories_index" data-group-column="3" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
                         <th data-property="title" data-width="300">{{ __('Title') }}</th>
-                        <th data-orderable="false" data-property="product" data-render-callback="renderCallbackProduct">{{ __('Product') }}</th>
+                        <th data-orderable="false" data-property="product.name">{{ __('Product') }}</th>
                         <th data-property="sku">{{ __('Sku') }}</th>
                         {{-- <th data-property="slug">{{ __('Slug') }}</th> --}}
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
@@ -57,6 +65,8 @@
                         <th data-property="purchase_price">{{ __('Purchase Price') }}</th>
                         <th data-property="sale_price">{{ __('Sale Price') }}</th>
                         <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Offer Price') }}</th>
+                        <th data-property="init_sold_count">{{ __('Sold Init') }}</th>
+                        <th data-property="sold_count">{{ __('Sold') }}</th>
                         {{-- <th data-property="min_order_quantity">{{ __('Min Order Quantity') }}</th> --}}
                         {{-- <th data-property="available_from">{{ __('Available From') }}</th> --}}
                         <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
@@ -174,33 +184,6 @@
         return image.prop('outerHTML');
     }
 
-    function renderCallbackProduct(data, type, full) {
-        if (! data) {
-            return '';
-        }
-
-        const productRoute = "{{ route('bo.web.products.edit', ':id') }}".replace(':id', data?.id);
-
-        const wrapper = $(`
-            <div style="width: 200px;">
-                <div class="offer_price d-flex align-items-center">
-                    <img src="${data.primary_image}" width="30" height="30" />
-                </div>
-                <div class="d-flex align-items-center mt-2">
-                    <b>
-                        <a
-                            href="${productRoute}"
-                            title="${data.name}"
-                            class="d-inline-block"
-                        >${data.name ? '(' + data.id + ')' + data.name : 'N/A'}</a>
-                    </b>
-                </div>
-            </div>
-        `);
-
-        return wrapper.prop('outerHTML');
-    }
-
     function renderCallbackOfferPrice(data, type, full) {
         if (! data) {
             return '';
@@ -209,13 +192,19 @@
         const wrapper = $(`
             <div style="width: 200px;">
                 <div class="offer_price d-flex align-items-center">
-                    <small style="display: block; width: 40px;">Price:</small> <b>${data ? data: 'N/A'}</b>
-                </div>
-                <div class="offer_start d-flex align-items-center">
-                    <small style="display: block; width: 40px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Price:</small> <b>${data ? data: 'N/A'}</b>
                 </div>
                 <div class="offer_end d-flex align-items-center">
-                    <small style="display: block; width: 40px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Saving:</small> <b>${full.price_for_saving ? full.price_for_saving : 'N/A'}</b>
+                </div>
+                <div class="offer_end d-flex align-items-center">
+                    <small style="display: block; width: 60px;">Discount:</small> <b>${full.discount_percent ? full.discount_percent + '%' : 'N/A'}</b>
+                </div>
+                <div class="offer_start d-flex align-items-center">
+                    <small style="display: block; width: 60px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
+                </div>
+                <div class="offer_end d-flex align-items-center">
+                    <small style="display: block; width: 60px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
                 </div>
             </div>
         `);

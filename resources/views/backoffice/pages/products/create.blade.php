@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Product');
+	$title = __('Products');
 
 	$breadcrumbs = [
 		[
 			'label' => $title,
 		],
 		[
-			'label' => __('Add Product'),
+			'label' => __('Create Product'),
 		]
 	];
 @endphp

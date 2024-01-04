@@ -15,11 +15,16 @@
                                     <div class="ls-title">{{ $inventory->title }}</div>
                                     <div class="ls-vendor">{{ data_get($inventory, 'product.branch') }}</div>
                                     <div class="ls-price-wrap">
-                                        <span class="ls-original-price" style="display: none;"></span>
-                                        <span class="ls-price money" data-numeric-value="{{ format_price($inventory->final_price) }}" data-money-convertible="">{{ format_price($inventory->final_price) }}</span>
+                                        <div class="ls-price-group">
+                                            <div>
+                                                <span class="ls-price money" data-numeric-value="{{ format_price($inventory->final_price) }}" data-money-convertible="">{{ format_price($inventory->final_price) }}</span>
+                                                <del class="price-item--sub">{{ format_price(data_get($inventory, 'sub_price')) }}</del>
+                                            </div>
+                                            <span class="sold-count">Đã bán {{ $inventory->final_sold_count }}</span>
+                                        </div>
+
                                         @if ($inventory->has_offer_price)
-                                        <del class="price-item--sub">{{ format_price(data_get($inventory, 'sub_price')) }}</del>
-                                            <span class="price-discount-percent">-{{ get_percent(data_get($inventory, 'final_price'), data_get($inventory, 'sub_price')) }}%</span>
+                                            <span class="price-discount-percent discount-absolute">-{{ get_percent(data_get($inventory, 'final_price'), data_get($inventory, 'sub_price')) }}%</span>
                                             <div class="price-for-saving">(Tiết kiệm <span>{{ format_price( (float) data_get($inventory, 'sub_price') - (float) data_get($inventory, 'final_price') ) }}</span>)</div>
                                         @endif
                                     </div>

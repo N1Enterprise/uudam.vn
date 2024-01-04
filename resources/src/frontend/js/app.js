@@ -6,7 +6,7 @@ const appEnv = (() => {
 
 $(document).ready(function() {
 
-    if (['local'].includes(appEnv)) {
+    if (['local', 'development'].includes(appEnv)) {
         return;
     }
 

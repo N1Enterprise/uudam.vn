@@ -16,17 +16,19 @@ const SEARCH_INVENTORY = {
         successCb = successCb || function() {};
         errorCb = errorCb || function() {};
 
+        const payload = {
+            paging: 'simplePaginate',
+            per_page: 12,
+            sort_by: SEARCH_INVENTORY.elements.sort_by.val(),
+            page: SEARCH_INVENTORY.elements.btn_load_more.attr('data-current-page'),
+            query: $('[data-search-query]').text(),
+            ...data,
+        };
+
         $.ajax({
             url: CATALOG_ROUTES.api_search_inventories,
             method: 'GET',
-            data: {
-                paging: 'simplePaginate',
-                per_page: 12,
-                sort_by: SEARCH_INVENTORY.elements.sort_by.val(),
-                page: SEARCH_INVENTORY.elements.btn_load_more.attr('data-current-page'),
-                query: $('[data-search-query]').text(),
-                ...data,
-            },
+            data: payload,
             beforeSend: beforeSendCb,
             success: successCb,
             error: errorCb,
@@ -40,7 +42,7 @@ const SEARCH_INVENTORY = {
             SEARCH_INVENTORY.elements.sort_by.find('option').prop('selected', false);
             SEARCH_INVENTORY.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
 
-            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value }, {
+            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value, page: 1 }, {
                 beforeSendCb: () => {
                     SEARCH_INVENTORY.elements.sort_by.prop('disabled', true);
                 },
@@ -108,14 +110,10 @@ const SEARCH_INVENTORY = {
         }
     },
     countDisplayingProducts: (response) => {
-        const currentTotal = + (SEARCH_INVENTORY.elements.total_product.attr('data-total') || 0);
-        const currentPage  = response?.current_page;
-        const countItems   = response?.data?.length || 0;
+        const totalCount = $('[data-collection-linked-inventory="show-up"] li').length;
 
-        const finalTotal = (12 * currentPage) - (12 - countItems);
-
-        SEARCH_INVENTORY.elements.total_product.attr('data-total', finalTotal);
-        SEARCH_INVENTORY.elements.total_product.text(finalTotal);
+        SEARCH_INVENTORY.elements.total_product.attr('data-total', totalCount);
+        SEARCH_INVENTORY.elements.total_product.text(totalCount);
     },
     updateUrl: (response) => {
     },
@@ -145,23 +143,25 @@ const SEARCH_INVENTORY = {
                         <div class="card__content">
                             <div class="card__information">
                                 <h3 class="card__heading h5">
-                                    <a href="${ route }" class="full-unstyled-link">${ inventory?.title }</a>
+                                <a href="${ route }" class="full-unstyled-link" style="text-decoration: none;">${ inventory?.title }</a>
                                 </h3>
-                                <div class="card-information">
-                                    <span class="caption-large light"></span>
-                                    <div class="price ">
-                                        <div class="price__container">
-                                            <div class="price__regular">
-                                                <span class="visually-hidden visually-hidden--inline">Giá cả phải chăng</span>
-                                                <span class="price-item price-item--regular"> Giá từ ${inventory.final_price} </span>
-                                                ${
-                                                    inventory.has_offer_price ? `
-                                                        <del class="price-item--sub">${ inventory.sub_price }</del>   
-                                                        <span class="price-discount-percent">-${ inventory.discount_percent }%</span>
-                                                        <div class="price-for-saving">(Tiết kiệm <span>${ inventory.price_for_saving }</span>)</div>
-                                                    ` : ''
-                                                }
+                                <div class="card-information" style="padding: 4px 0;">
+                                    <div class="price">
+                                        <div class="price__regular">
+                                            <div class="ls-price-group">
+                                                <div>
+                                                    <span class="price-item price-item--regular">${inventory.final_price} </span>
+                                                    ${ inventory.has_offer_price ? `<del class="price-item--sub">${ inventory.sub_price }</del>` : '' }
+                                                </div>
+                                                <span class="sold-count">Đã bán ${ inventory.final_sold_count }</span>
                                             </div>
+                                            
+                                            ${
+                                                inventory.has_offer_price ? `
+                                                    <span class="price-discount-percent discount-absolute">-${ inventory.discount_percent }%</span>
+                                                    <div class="price-for-saving">(Tiết kiệm <span>${ inventory.price_for_saving }</span>)</div>
+                                                ` : ''
+                                            }
                                         </div>
                                     </div>
                                 </div>
