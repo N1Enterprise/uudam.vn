@@ -42,7 +42,7 @@ const SEARCH_INVENTORY = {
             SEARCH_INVENTORY.elements.sort_by.find('option').prop('selected', false);
             SEARCH_INVENTORY.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
 
-            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value }, {
+            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value, page: 1 }, {
                 beforeSendCb: () => {
                     SEARCH_INVENTORY.elements.sort_by.prop('disabled', true);
                 },

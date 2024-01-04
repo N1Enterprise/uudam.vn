@@ -96,7 +96,7 @@ const COLLECTION_LINKED_INVENTORIES = {
             COLLECTION_LINKED_INVENTORIES.elements.sort_by.find('option').prop('selected', false);
             COLLECTION_LINKED_INVENTORIES.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
 
-            COLLECTION_LINKED_INVENTORIES.ajaxInventories({ page: currentPage, sort_by: value }, {
+            COLLECTION_LINKED_INVENTORIES.ajaxInventories({ page: currentPage, sort_by: value, page: 1 }, {
                 beforeSendCb: () => {
                     COLLECTION_LINKED_INVENTORIES.elements.sort_by.prop('disabled', true);
                 },
