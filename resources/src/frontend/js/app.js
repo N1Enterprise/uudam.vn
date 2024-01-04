@@ -6,11 +6,9 @@ const appEnv = (() => {
 
 $(document).ready(function() {
 
-    if (['local'].includes(appEnv)) {
+    if (['local', 'development'].includes(appEnv)) {
         return;
     }
-
-    return;
 
     $(document).on('keyup', function(e) {
         if (e.key == 'PrintScreen') {
