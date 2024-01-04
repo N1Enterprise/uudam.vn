@@ -61,14 +61,12 @@ class CartService extends BaseService
                     }
                 });
 
-                // $q->whereRelation('order', function($q) use ($data) {
-                //     $orderCode = data_get($data, 'order_code');
-
-                //     if (! empty($orderCode)) {
-                //         $q->where('order_code', $orderCode)
-                //             ->orWhere('uuid', $orderCode);
-                //     }
-                // });
+                if ($orderCode = data_get($data, 'order_code')) {
+                    $q->whereRelation('order', function($q) use ($orderCode) {
+                        $q->where('order_code', $orderCode)
+                            ->orWhere('uuid', $orderCode);
+                    });    
+                }
             })
             ->search([]);
 

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use App\Events;
 use App\Listeners;
 
-class NotificationEventServiceProvider extends ServiceProvider
+class ProductEventServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.
@@ -15,7 +15,7 @@ class NotificationEventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Events\Order\OrderCreated::class => [
-            // Listeners\Notifications\ProcessSendMailNewOrderToAdmin::class,  
+            Listeners\Catalog\IncreaseInventoriesSoldQuantity::class
         ],
     ];
 
