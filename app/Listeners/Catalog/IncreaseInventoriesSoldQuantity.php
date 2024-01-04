@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Catalog;
 
-use App\Events\Order\OrderCreated;
+use App\Events\Order\OrderCompleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\DB;
 
@@ -22,11 +22,9 @@ class IncreaseInventoriesSoldQuantity implements ShouldQueue
      * @param  object  $event
      * @return void
      */
-    public function handle(OrderCreated $event)
+    public function handle(OrderCompleted $event)
     {
         $order = $event->order;
-
-        logger('IncreaseInventoriesSoldQuantity');
 
         collect(data_get($order, 'orderItems', []))->each(function($item) {
             DB::table('inventories')

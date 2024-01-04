@@ -24,7 +24,7 @@
                                         </div>
 
                                         @if ($inventory->has_offer_price)
-                                            <span class="price-discount-percent">-{{ get_percent(data_get($inventory, 'final_price'), data_get($inventory, 'sub_price')) }}%</span>
+                                            <span class="price-discount-percent discount-absolute">-{{ get_percent(data_get($inventory, 'final_price'), data_get($inventory, 'sub_price')) }}%</span>
                                             <div class="price-for-saving">(Tiết kiệm <span>{{ format_price( (float) data_get($inventory, 'sub_price') - (float) data_get($inventory, 'final_price') ) }}</span>)</div>
                                         @endif
                                     </div>
