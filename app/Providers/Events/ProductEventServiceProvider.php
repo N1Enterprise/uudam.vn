@@ -14,7 +14,7 @@ class ProductEventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Events\Order\OrderCreated::class => [
+        Events\Order\OrderCompleted::class => [
             Listeners\Catalog\IncreaseInventoriesSoldQuantity::class
         ],
     ];
