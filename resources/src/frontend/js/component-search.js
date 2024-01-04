@@ -25,8 +25,6 @@ const SEARCH_INVENTORY = {
             ...data,
         };
 
-        console.log({ payload });
-
         $.ajax({
             url: CATALOG_ROUTES.api_search_inventories,
             method: 'GET',
@@ -44,11 +42,7 @@ const SEARCH_INVENTORY = {
             SEARCH_INVENTORY.elements.sort_by.find('option').prop('selected', false);
             SEARCH_INVENTORY.elements.sort_by.find(`option[value="${value}"]`).prop('selected', true);
 
-            const totalCount = +(SEARCH_INVENTORY.elements.total_product.attr('data-total') || 12);
-
-            console.log({ totalCount });
-
-            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value, per_page: totalCount }, {
+            SEARCH_INVENTORY.ajaxInventories({ page: currentPage, sort_by: value }, {
                 beforeSendCb: () => {
                     SEARCH_INVENTORY.elements.sort_by.prop('disabled', true);
                 },
