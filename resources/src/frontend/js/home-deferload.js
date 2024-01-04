@@ -70,7 +70,7 @@ const SECTION_SCROLL = {
                                             
                                             ${
                                                 item.has_offer_price ? `
-                                                    <span class="price-discount-percent">-${ item.discount_percent }%</span>
+                                                    <span class="price-discount-percent discount-absolute">-${ item.discount_percent }%</span>
                                                     <div class="price-for-saving">(Tiết kiệm <span>${ item.price_for_saving }</span>)</div>
                                                 ` : ''
                                             }
