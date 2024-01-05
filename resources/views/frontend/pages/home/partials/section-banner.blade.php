@@ -21,18 +21,18 @@
             <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width banner--desktop-transparent">
                 <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-accent-1 gradient slideshow__text--center slideshow__text-mobile--center">
                     @if (data_get($banner, 'label'))
-                    <h2 class="banner__heading h1">{{ data_get($banner, 'label') }}</h2>
+                    <h2 class="banner__heading h1" style="color: {{ data_get($banner, 'color', '#ffffff') }}">{{ data_get($banner, 'label') }}</h2>
                     @endif
 
                     @if (data_get($banner, 'description'))
                     <div class="banner__text">
-                        <span>{{ data_get($banner, 'description') }}</span>
+                        <span style="color: {{ data_get($banner, 'color', '#ffffff') }}">{{ data_get($banner, 'description') }}</span>
                     </div>
                     @endif
 
                     @if (data_get($banner, 'redirect_url') && data_get($banner, 'cta_label'))
                     <div class="banner__buttons">
-                        <a href="{{ data_get($banner, 'redirect_url') }}" class="button button--primary" tabindex="-1" style="background: none; color: #fff;">{{ data_get($banner, 'cta_label') }}</a>
+                        <a href="{{ data_get($banner, 'redirect_url') }}" data-color="{{ data_get($banner, 'color', '#ffffff') }}" class="button-banner button--primary" tabindex="-1" style="background: none; color: {{ data_get($banner, 'color', '#ffffff') }}; border: 1px solid {{ data_get($banner, 'color', '#ffffff') }}">{{ data_get($banner, 'cta_label') }}</a>
                     </div>
                     @endif
                 </div>
