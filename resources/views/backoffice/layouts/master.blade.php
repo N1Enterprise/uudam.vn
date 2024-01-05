@@ -55,10 +55,9 @@
 		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/general/summernote/dist/summernote.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('backoffice/assets/vendors/general/animate.css/animate.css') }}" rel="stylesheet" type="text/css" />
+		{{-- <link href="{{ asset('backoffice/assets/vendors/general/animate.css/animate.css') }}" rel="stylesheet" type="text/css" /> --}}
 		<link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('backoffice/assets/vendors/general/socicon/css/socicon.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/flaticon/flaticon.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/flaticon2/flaticon.css') }}" rel="stylesheet" type="text/css" />
@@ -85,9 +84,7 @@
         <!-- begin:: Header Mobile -->
 		<div id="k_header_mobile" class="k-header-mobile  k-header-mobile--fixed ">
 			<div class="k-header-mobile__logo">
-				<a href="{{ route('bo.web.dashboard') }}">
-					<img alt="Logo" src="{{ asset('backoffice/assets/img/logos/stevephamhi_logo.png') }}" style="max-width: 100%; padding-right: 8px; max-height:50px" />
-				</a>
+				<a href="{{ route('bo.web.dashboard') }}"></a>
 			</div>
 			<div class="k-header-mobile__toolbar">
 				<button class="k-header-mobile__toolbar-toggler k-header-mobile__toolbar-toggler--left" id="k_aside_mobile_toggler"><span></span></button>
@@ -260,7 +257,7 @@
 		<script src="{{ asset('backoffice/assets/vendors/general/chart.js/dist/Chart.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('backoffice/assets/vendors/general/counterup/jquery.counterup.js') }}" type="text/javascript"></script>
+		{{-- <script src="{{ asset('backoffice/assets/vendors/general/counterup/jquery.counterup.js') }}" type="text/javascript"></script> --}}
 		<script src="{{ asset('backoffice/assets/vendors/general/es6-promise-polyfill/promise.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
@@ -274,7 +271,6 @@
 		<!--end::Global Theme Bundle -->
 
         <!--begin::Page Vendors -->
-		<script src="{{ asset('backoffice/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/js/common/constant.js') }}" type="text/javascript"></script>
         <script src="{{ asset('backoffice/js/common/main.js') }}" type="text/javascript"></script>
         <script src="{{ asset('backoffice/js/common/fscommon.js') }}" type="text/javascript"></script>

@@ -8,10 +8,15 @@ class UpdateAdminRequest extends BaseFormRequest implements UpdateAdminRequestCo
 {
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => ['required'],
             'password' => ['nullable', 'min:6'],
-            'roles' => ['required', 'array', 'min:1'],
         ];
+
+        if (is_webmaster()) {
+            $rules['roles'] = ['required', 'array', 'min:1'];
+        }
+
+        return $rules;
     }
 }
