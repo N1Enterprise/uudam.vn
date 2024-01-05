@@ -36,7 +36,7 @@ class BannerCms extends BaseCms
                         ->where('end_at', '>=', $now)
                         ->orWhereNull('end_at');
                 })
-                ->get(['label', 'cta_label', 'redirect_url', 'description', 'desktop_image', 'mobile_image'])
+                ->get(['label', 'cta_label', 'redirect_url', 'description', 'desktop_image', 'mobile_image', 'color'])
                 ->toArray();
         });
     }
