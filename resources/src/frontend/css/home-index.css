@@ -242,3 +242,13 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 .deferred-media__poster-button:hover {
     transform: translate(-50%,-50%) scale(1.1);
 }
+
+.button-banner {
+    padding: 7px 25px;
+    text-decoration: none;
+}
+
+.button-banner:hover {
+    border-width: 2px!important;
+    padding: 6px 24px;
+}
