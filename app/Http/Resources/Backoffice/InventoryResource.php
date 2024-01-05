@@ -61,8 +61,9 @@ class InventoryResource extends BaseJsonResource
 
         return array_filter([
             'actions' => array_filter([
-                'update' => $updatePermission ? Route::findByName('bo.web.inventories.edit', ['id' => $this->getKey()]) : null,
-                'delete' => $deletePermission ? Route::findByName('bo.web.inventories.delete', ['id' => $this->getKey()]) : null,
+                'update'  => $updatePermission ? Route::findByName('bo.web.inventories.edit', ['id' => $this->getKey()]) : null,
+                'delete'  => $deletePermission ? Route::findByName('bo.web.inventories.delete', ['id' => $this->getKey()]) : null,
+                'fe_link' => Route::findByName('fe.web.products.index', $this->slug),
             ]),
         ]);
     }

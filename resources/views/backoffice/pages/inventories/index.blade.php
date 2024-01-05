@@ -144,6 +144,20 @@
 
 @section('js_script')
 <script>
+    $('.datatable').find('th.datatable-action').attr('data-action-icon-pack', JSON.stringify({
+        fe_link: '<i class="flaticon2-link-programing-symbol-of-interface"></i>',
+    }))
+
+    $(document).on('click', '[data-action="fe_link"]', function(e) {
+        e.preventDefault();
+
+        const dataLink = $(this).attr('href');
+
+        copyToClipboard(dataLink);
+        
+        fstoast.success("{{ __('Copied!') }}");
+    });
+
     // @class App\Enum\ProductTypeEnum
     const PRODUCT_TYPE_ENUM = {
         SIMPLE: 1,
