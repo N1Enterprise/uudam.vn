@@ -2,6 +2,8 @@
 $(document).ready(function() {
     const utcOffset = 0;
 
+    $(".dateRangeFilter").trigger('apply.daterangepicker');
+
     const STATISTIC = {
         statisticUser: (params) => {
             const route = $('#report_total_user').attr('data-request-url');
