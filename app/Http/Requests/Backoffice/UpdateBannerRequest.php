@@ -26,6 +26,7 @@ class UpdateBannerRequest extends BaseFormRequest implements UpdateBannerRequest
             'end_at' => ['nullable', 'date', 'after:start_at'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'type' => ['required', 'integer', Rule::in(BannerTypeEnum::all())],
+            'color' => ['nullable']
         ];
     }
 

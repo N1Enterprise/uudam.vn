@@ -23,6 +23,7 @@ class Banner extends BaseModel
         'end_at',
         'status',
         'type',
+        'color',
     ];
 
     public function getTypeNameAttribute()

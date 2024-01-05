@@ -111,6 +111,11 @@
 								</div>
 
                                 <div class="form-group">
+									<label>{{ __('Color') }}</label>
+									<input type="color" class="form-control p-1" name="color" placeholder="{{ __('Enter Color') }}" value="{{ old('color') }}">
+								</div>
+
+                                <div class="form-group">
                                     <label>{{ __('Desktop Image') }} *</label>
                                     <div class="row">
                                         <div class="col-md-6">
