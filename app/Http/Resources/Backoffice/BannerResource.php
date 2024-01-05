@@ -22,6 +22,7 @@ class BannerResource extends BaseJsonResource
             'status' => $this->status,
             'status_name' => $this->status_name,
             'type' => $this->type,
+            'color' => $this->color,
             'type_name' => $this->type_name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

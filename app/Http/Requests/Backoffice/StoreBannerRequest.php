@@ -26,6 +26,7 @@ class StoreBannerRequest extends BaseFormRequest implements StoreBannerRequestCo
             'end_at' => ['nullable', 'date', 'after:start_at'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'type' => ['required', 'integer', Rule::in(BannerTypeEnum::all())],
+            'color' => ['nullable']
         ];
     }
 

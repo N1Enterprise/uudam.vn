@@ -50,6 +50,7 @@
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                         <th data-property="start_at">{{ __('Start At') }}</th>
+                        <th data-orderable="false" data-property="color" data-render-callback="renderCallbackColor">{{ __('Color') }}</th>
                         <th data-property="end_at">{{ __('End At') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
                         <th data-property="updated_at">{{ __('Updated At') }}</th>
@@ -79,6 +80,15 @@
         });
 
         return image.prop('outerHTML');
+    }
+
+    function renderCallbackColor(data) {
+        let div = $('<div class="d-flex align-items-center flex-column justify-content-center">');
+
+        div = div.append(`<div style="background: ${data}!important; width: 40px; height: 40px;"></div>`);
+        div = div.append(`<span class="mt-2">${data}</span>`);
+
+        return div.prop('outerHTML');
     }
 </script>
 @endsection
