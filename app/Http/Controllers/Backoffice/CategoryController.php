@@ -6,6 +6,7 @@ use App\Contracts\Requests\Backoffice\StoreCategoryRequestContract;
 use App\Contracts\Requests\Backoffice\UpdateCategoryRequestContract;
 use App\Contracts\Responses\Backoffice\StoreCategoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateCategoryResponseContract;
+use App\Enum\ActivationStatusEnum;
 use App\Services\CategoryGroupService;
 use App\Services\CategoryService;
 
@@ -22,7 +23,10 @@ class CategoryController extends BaseController
 
     public function index()
     {
-        return view('backoffice.pages.categories.index');
+        $categoryGroups = $this->categoryGroupService->allAvailable();
+        $statusLabels = ActivationStatusEnum::labels();
+
+        return view('backoffice.pages.categories.index', compact('categoryGroups', 'statusLabels'));
     }
 
     public function create()

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($inventory, 'meta_title', data_get($inventory, 'title')) }} | {{ config('app.user_domain') }}
+{{ data_get($inventory, 'title') }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
