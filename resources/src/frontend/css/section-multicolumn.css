@@ -65,7 +65,7 @@
 }
 
 .multicolumn.background-primary .multicolumn-card {
-    background: rgb(var(--color-background)) linear-gradient(rgba(var(--color-foreground), 0.04), rgba(var(--color-foreground), 0.04));
+    background: rgb(var(--color-background)) linear-gradient(rgba(var(--color-foreground),.04),rgba(var(--color-foreground),.04));
 }
 
 .multicolumn-list h3 {
@@ -215,5 +215,32 @@
 @media screen and (min-width: 990px) {
     .multicolumn-list__item--empty {
         display: list-item;
+    }
+}
+
+.multicolumn-card-spacingg {
+    padding-top: 2.5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+
+.multicolumn-card__info {
+    padding: 2.5rem;
+    text-align: left;
+}
+
+@media screen and (max-width: 500px) {
+    .multicolumn-card-spacingg {
+        padding-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .multicolumn-card__info {
+        padding: 1rem;
+    }
+
+    .multicolumn-card__info h3 {
+        font-size: 13px;
     }
 }

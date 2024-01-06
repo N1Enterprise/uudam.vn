@@ -47,7 +47,7 @@
             @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
                 @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
                 <div data-section="home_page_display_{{ data_get($item, 'type') }}:{{ data_get($item, 'id') }}" data-section-defer="true">
-                    <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom" data-box-style="carousel" style="display: block;">
+                    <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom multicolumn background-primary" data-box-style="carousel" style="display: block;">
                         <div class="recommendation-items" data-show="">
                             @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
                             @include('frontend.pages.home.partials.recommendation-products')

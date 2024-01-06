@@ -21,7 +21,7 @@ class CollectionController extends BaseController
     public function index(Request $request, $slug)
     {
         $collection = $this->collectionService->showBySlug($slug);
-        $linkedFeaturedInventories =$this->inventoryService->getAvailableByIds(data_get($collection, 'linked_featured_inventories', []));
+        $linkedFeaturedInventories = $this->inventoryService->getAvailableByIds(data_get($collection, 'linked_featured_inventories', []));
 
         if (empty($collection)) {
             throw new ModelNotFoundException();
