@@ -6,6 +6,7 @@ use App\Common\ImageHelper;
 use App\Models\Product;
 use App\Repositories\Contracts\ProductRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class ProductService extends BaseService
@@ -21,8 +22,25 @@ class ProductService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->productRepository
-            ->with(['createdBy', 'updatedBy'])
+            ->with(['createdBy', 'updatedBy', 'categories'])
             ->whereColumnsLike($data['query'] ?? null, ['id', 'name', 'slug', 'code'])
+            ->scopeQuery(function($q) use ($data) {
+                $categories = Arr::wrap(data_get($data, 'categories', []));
+
+                if (! empty($categories)) {
+                    $q->whereRelation('categories', function($q) use ($categories) {
+                        $q->whereIn('category_id', $categories);
+                    });
+                }
+
+                if ($status = Arr::wrap(data_get($data, 'status'))) {
+                    $q->whereIn('status', $status);
+                }
+
+                if ($type = Arr::wrap(data_get($data, 'type'))) {
+                    $q->whereIn('type', $type);
+                }
+            })
             ->search([]);
 
         return $result;

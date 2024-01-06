@@ -21,7 +21,7 @@ class CategoryService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->categoryRepository
-            ->with(['categoryGroup'])
+            ->with(['categoryGroup', 'products'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
             ->search([]);
 

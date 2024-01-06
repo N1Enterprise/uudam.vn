@@ -46,6 +46,7 @@
                         <th data-property="name">{{ __('Name') }}</th>
                         <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackPrimaryImage">{{ __('Primary Image') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
+                        <th data-orderable="false" data-property="products_count">{{ __('Products Count') }}</th>
                         <th data-property="category_group.name">{{ __('Group') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>

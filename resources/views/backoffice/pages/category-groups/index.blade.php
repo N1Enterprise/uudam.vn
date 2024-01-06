@@ -47,6 +47,7 @@
                         <th data-property="name">{{ __('Name') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                        <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Categories') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
                         <th data-property="updated_at">{{ __('Updated At') }}</th>
                         <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
@@ -73,6 +74,23 @@
         });
 
         return image.prop('outerHTML');
+    }
+
+    function renderCallbackCategories(data, type, full) {
+        const count = data?.length || 0;
+
+        if (! count) {
+            return;
+        }
+
+        const categoriesBadge = data.map((category, index) => {
+            return $('<span>', { class: `mr-1 mt-1 mb-1 d-inline-block` })
+                    .append(`<span class="k-badge k-badge--brand k-badge--inline k-badge--outline k-badge--pill">${category.name}</span>`).prop('outerHTML');
+        });
+
+        const container = $('<div>', { class: 'category-see-more' }).append(categoriesBadge.join(''));
+
+        return container.prop('outerHTML');
     }
 </script>
 @endsection

@@ -18,6 +18,9 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
+
+    @include('backoffice.pages.products.partials.search-form')
+
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
@@ -39,7 +42,7 @@
             @endcan
         </div>
         <div class="k-portlet__body">
-            <table id="table_category_groups_index" data-searching="true" data-request-url="{{ route('bo.api.products.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+            <table id="table_products_index" data-searching="true" data-request-url="{{ route('bo.api.products.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
@@ -50,6 +53,7 @@
                         <th data-property="code">{{ __('Code') }}</th>
                         <th data-property="slug">{{ __('Slug') }}</th>
                         <th data-property="branch">{{ __('Branch') }}</th>
+                        <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Categories') }}</th>
                         <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
                         <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
                         <th data-property="created_at">{{ __('Created At') }}</th>
@@ -78,6 +82,20 @@
         });
 
         return image.prop('outerHTML');
+    }
+
+    function renderCallbackCategories(data, type, full) {
+        const count = data?.length || 0;
+
+        if (! count) {
+            return;
+        }
+
+        const categories = data.map((category, index) => {
+            return category.name;
+        }).join(', ');
+
+        return categories;
     }
 </script>
 @endsection

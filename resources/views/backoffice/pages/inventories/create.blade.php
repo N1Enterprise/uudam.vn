@@ -67,14 +67,14 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Product Name') }} *</label>
+                                            <label for="">{{ __('Name') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->name }}" required disabled>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Product Code') }} *</label>
+                                            <label for="">{{ __('Code') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->code }}" required disabled>
                                         </div>
                                     </div>
@@ -83,15 +83,31 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Product Slug') }} *</label>
+                                            <label for="">{{ __('Slug') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->slug }}" required disabled>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Product Branch') }} *</label>
+                                            <label for="">{{ __('Branch') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->branch }}" required disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">{{ __('Categories') }} *</label>
+                                            <input type="text" class="form-control" value="{{ implode(', ', $product->categories->pluck('name')->toArray()) }}" required disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">{{ __('Status') }} *</label>
+                                            <input type="text" class="form-control" value="{{ $product->status_name }}" required disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +126,21 @@
                             <h3 class="k-portlet__head-title">{{ __('INVENTORY') }}</h3>
                         </div>
                     </div>
+
                     <div class="k-portlet__body">
+                        @if ($inventory->id)
+                        <div class="form-group">
+                            <label for="">{{ __('FE Link') }} *</label>
+                            <input
+                                type="text"
+                                name="slug"
+                                class="form-control"
+                                value="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}"
+                                disabled
+                            >
+                        </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="">{{ __('Title') }} *</label>
                             <input
@@ -118,9 +148,23 @@
                                 name="title"
                                 class="form-control"
                                 value="{{ old('title', data_get($inventory, 'title', $product->name)) }}"
+                                data-reference-slug="slug"
                                 required
                             >
                         </div>
+
+                        @if ($inventory->id)
+                        <div class="form-group">
+                            <label for="">{{ __('Slug') }} *</label>
+                            <input
+                                type="text"
+                                name="slug"
+                                class="form-control"
+                                value="{{ old('slug', data_get($inventory, 'slug')) }}"
+                                required
+                            >
+                        </div>
+                        @endif
 
                         <div class="row">
                             <div class="col-md-6">
@@ -401,7 +445,7 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/lib.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
-<script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script>
+{{-- <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script> --}}
 @include('backoffice.pages.inventories.js-pages.handle')
 @include('backoffice.pages.inventories.js-pages.product-combos')
 <script>
