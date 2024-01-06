@@ -20,10 +20,17 @@ class ProductResource extends BaseJsonResource
             'status_name' => $this->status_name,
             'primary_image' => $this->primary_image,
             'media' => $this->media,
-            'created_by' => new CreatedByResource($this->createdBy),
-            'updated_by' => new UpdatedByResource($this->updatedBy),
+            'created_by' => $this->whenLoaded('createdBy', function() {
+                return new CreatedByResource($this->createdBy);
+            }),
+            'updated_by' => $this->whenLoaded('updatedBy', function() {
+                return new UpdatedByResource($this->updatedBy);
+            }),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'categories' => $this->whenLoaded('categories', function() {
+                return CategoryResource::collection($this->categories);
+            }),
         ], $this->generateActionPermissions());
     }
 

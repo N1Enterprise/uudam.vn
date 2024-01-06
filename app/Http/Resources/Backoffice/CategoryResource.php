@@ -21,6 +21,9 @@ class CategoryResource extends BaseJsonResource
             'meta_description' => $this->meta_description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'products_count' => $this->whenLoaded('products', function() {
+                return optional($this->products)->count();
+            }),
             'category_group' => $this->whenLoaded('categoryGroup', function() {
                 return [
                     'id' => $this->categoryGroup->id,

@@ -14,7 +14,11 @@
                         @foreach($categories as $category)
                         <optgroup label="{{ $category->name }}">
                             @foreach($category->products as $product)
-                            <option value="{{ $product->id }}" data-product-type="{{ $product->type }}" data-categories='@json($product->categories->pluck('id')->toArray())'>{{ $product->name }} ({{ $product->type_name }})</option>
+                            <option 
+                                value="{{ $product->id }}" 
+                                data-product-type="{{ $product->type }}" 
+                                data-tokens="{{ (string) $product->id }} | {{ $product->name }} | {{ $category->name }}"
+                                data-categories='@json($product->categories->pluck('id')->toArray())'>{{ $product->name }} ({{ $product->type_name }})</option>
                             @endforeach
                         </optgroup>
                         @endforeach
