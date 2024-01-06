@@ -12,7 +12,7 @@
         <a data-href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" aria-label="{{ data_get($menu, 'name') }}" class="mm-product-name">
             <span class="mm-title">
                 {{ data_get($menu, 'label', data_get($inventory, 'title')) }}
-                @if (data_get($menu, 'is_new'))
+                @if(data_get($menu, 'is_new'))
                 <span class="mm-label new">MỚI</span>
                 @endif
             </span>

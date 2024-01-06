@@ -10,7 +10,12 @@
     </div>
     <div class="mm-list-info">
         <a data-href="{{ route('fe.web.collections.index', data_get($collection, 'slug')) }}" href="{{ route('fe.web.collections.index', data_get($collection, 'slug')) }}" aria-label="{{ data_get($menu, 'name') }}" class="mm-product-name">
-            <span class="mm-title">{{ data_get($menu, 'label', data_get($collection, 'name')) }}</span>
+            <span class="mm-title">
+                {{ data_get($menu, 'label', data_get($collection, 'name')) }}
+                @if(data_get($menu, 'is_new'))
+                <span class="mm-label new">MỚI</span>
+                @endif
+            </span>
         </a>
         <div class="mega-menu-prices get-mega-menu-prices" data-id="{{ data_get($collection, 'id') }}"></div>
     </div>
