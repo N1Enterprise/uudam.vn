@@ -99,7 +99,9 @@ class InventoryService extends BaseService
             ->modelScopes(['active', 'feDisplay'])
             ->whereColumnsLike($data['query'] ?? null, ['sku', 'title', 'slug'])
             ->scopeQuery(function($q) use ($data) {
-                $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
+                if (array_key_exists('filter_ids', $data)) {
+                    $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
+                }
             })
             ->addSort($orderBy, $sortBy);
 

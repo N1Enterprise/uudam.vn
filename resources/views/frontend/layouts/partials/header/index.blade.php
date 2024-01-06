@@ -132,7 +132,7 @@
                     @foreach ($APP_MENU_AVAILABEL as $menuGroup)
                     <li class="app-menu-item" itemid="menu_{{ data_get($menuGroup, 'id') }}">
                         <a
-                            href="{{ data_get($menuGroup, 'redirect_url', 'javascript:void(0)') }}"
+                            href="{{ data_get($menuGroup, 'redirect_url') ?? 'javascript:void(0)' }}"
                             aria-label="{{ data_get($menuGroup, 'name') }}"
                             class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"
                         >
