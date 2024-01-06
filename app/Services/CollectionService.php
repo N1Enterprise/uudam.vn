@@ -37,7 +37,9 @@ class CollectionService extends BaseService
             ->with(data_get($data, 'with', []))
             ->modelScopes(['active', 'feDisplay'])
             ->scopeQuery(function($q) use ($data) {
-                $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
+                if (array_key_exists('filter_ids', $data)) {
+                    $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
+                }
             })
             ->orderBy('order');
 
