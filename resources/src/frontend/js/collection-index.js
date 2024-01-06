@@ -115,8 +115,8 @@ const COLLECTION_LINKED_INVENTORIES = {
     countDisplayingProducts: (response) => {
         const totalCount = $('[data-collection-linked-inventory="show-up"] li').length;
 
-        SEARCH_INVENTORY.elements.total_product.attr('data-total', totalCount);
-        SEARCH_INVENTORY.elements.total_product.text(totalCount);
+        COLLECTION_LINKED_INVENTORIES.elements.total_product.attr('data-total', totalCount);
+        COLLECTION_LINKED_INVENTORIES.elements.total_product.text(totalCount);
     },
     setPagination: (response) => {
         COLLECTION_LINKED_INVENTORIES.elements.btn_load_more.attr('data-current-page', response.current_page);

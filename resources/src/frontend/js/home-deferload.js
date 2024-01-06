@@ -97,15 +97,16 @@ const SECTION_SCROLL = {
                         $(`[data-recommendation-collection-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
                                 <div class="multicolumn-list__item grid__item slider__slide center" style="width: 100%;">
-                                    <a href="${ CATALOG_ROUTES.web_collection_detail.replace(':slug', item.slug) }" style="text-decoration: none;">
+                                    <a href="${ CATALOG_ROUTES.web_collection_detail.replace(':slug', item.slug) }" style="text-decoration: none;" class="multicolumn-card">
                                         <div class="multicolumn-card content-container">
-                                            <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width">
+                                            <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width multicolumn-card-spacingg">
                                                 <div class="media media--transparent media--adapt">
                                                     <img class="multicolumn-card__image image-lazy" srcset="${ item.primary_image }" src="${ item.primary_image }" style="width: 100%; height: 100%;" alt="${ item.name }" loading="lazy">
                                                 </div>
                                             </div>
-                                            <div class="multicolumn-card__info" style="padding: 10px 0; text-align: left;">
-                                                <div class="link animate-arrow" style="margin-top: 0; font-size: 18px;">
+                                            <div class="multicolumn-card__info">
+                                                <h3 style="text-transform: uppercase;">${item.name}</h3>
+                                                <div class="link animate-arrow" style="margin-top: 0;">
                                                     ${item.cta_label ? `
                                                         <span>${ item.cta_label }</span>
                                                         <span class="icon-wrap">&nbsp;
