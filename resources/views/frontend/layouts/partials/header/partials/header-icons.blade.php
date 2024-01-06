@@ -44,6 +44,10 @@
                                         <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Bộ sưu tập</h2>
                                         <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
                                     </div>
+                                    <div id="Predictive_Search_Other_Results" class="d-none">
+                                        <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Kết quả khác</h2>
+                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
+                                    </div>
                                 </div>
                             </div>
                         </form>
