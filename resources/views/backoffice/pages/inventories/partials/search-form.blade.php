@@ -12,12 +12,12 @@
                     <label>{{ __('Product') }}</label>
                     <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                         @foreach($categories as $category)
-                        <optgroup label="{{ $category->name }}">
+                        <optgroup label="{{ $category->name }} ({{ $category->categoryGroup->name }})">
                             @foreach($category->products as $product)
                             <option 
                                 value="{{ $product->id }}" 
                                 data-product-type="{{ $product->type }}" 
-                                data-tokens="{{ (string) $product->id }} | {{ $product->name }} | {{ $category->name }}"
+                                data-tokens="{{ (string) $product->id }} | {{ $product->name }} | {{ $category->name }} | {{ $category->categoryGroup->name }}"
                                 data-categories='@json($product->categories->pluck('id')->toArray())'>{{ $product->name }} ({{ $product->type_name }})</option>
                             @endforeach
                         </optgroup>
