@@ -10,11 +10,16 @@
     </div>
     <div class="mm-list-info">
         <a data-href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" aria-label="{{ data_get($menu, 'name') }}" class="mm-product-name">
-            <span class="mm-title">{{ data_get($menu, 'label', data_get($inventory, 'title')) }}</span>
+            <span class="mm-title">
+                {{ data_get($menu, 'label', data_get($inventory, 'title')) }}
+                @if (data_get($menu, 'is_new'))
+                <span class="mm-label new">MỚI</span>
+                @endif
+            </span>
         </a>
         <div class="mega-menu-prices ">
             <span class="mega-menu-price">
-                <span class="money">{{ format_price(data_get($inventory, 'sale_price')) }}</span>
+                <span class="money">{{ format_price(data_get($inventory, 'final_price')) }}</span>
             </span>
         </div>
     </div>
