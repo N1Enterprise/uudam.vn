@@ -77,8 +77,6 @@
 
             FORM_COVER_IMAGE_FILE.onDelete();
             FORM_COVER_IMAGE_PATH.onDelete();
-
-            FORM_NAME.onChange();
         },
     };
 
