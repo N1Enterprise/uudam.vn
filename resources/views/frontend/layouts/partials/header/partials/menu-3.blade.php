@@ -12,7 +12,12 @@
             <div class="mm-label-wrap" style="width: 570px; height: 298.359px;"></div>
         </div>
         <a data-href="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" href="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" aria-label="{{ data_get($menu, 'name', data_get($post, 'name')) }}" class="mm-featured-title" style="min-height: 18px;">
-            <span class="mm-title">{{ data_get($menu, 'label', data_get($post, 'name')) }}</span>
+            <span class="mm-title">
+                {{ data_get($menu, 'label', data_get($post, 'name')) }}
+                @if(data_get($menu, 'is_new'))
+                <span class="mm-label new">MỚI</span>
+                @endif
+            </span>
         </a>
         <div class="mega-menu-prices get-mega-menu-prices" data-id="{{ data_get($post, 'id') }}" style="height: 0px;"></div>
     </div>
