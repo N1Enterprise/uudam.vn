@@ -37,10 +37,6 @@ class FrontendViewServiceProvider extends ServiceProvider
 
             $view->with('APP_MENU_AVAILABEL', MenuCms::make()->availabel());
 
-            // dd([
-            //     'menu' =>  MenuCms::make()->availabel()
-            // ]);
-
             /** @var UserAuthContract */
             $userAuth = app(UserAuthContract::class);
 
