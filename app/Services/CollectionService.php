@@ -6,6 +6,7 @@ use App\Common\ImageHelper;
 use App\Models\Collection;
 use App\Repositories\Contracts\CollectionRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class CollectionService extends BaseService
@@ -36,12 +37,9 @@ class CollectionService extends BaseService
             ->with(data_get($data, 'with', []))
             ->modelScopes(['active', 'feDisplay'])
             ->scopeQuery(function($q) use ($data) {
-                $filterIds = data_get($data, 'filter_ids', []);
-
-                if (! empty($filterIds)) {
-                    $q->whereIn('id', $filterIds);
-                }
-            });
+                $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
+            })
+            ->orderBy('order');
 
         return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
     }

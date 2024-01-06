@@ -1,7 +1,7 @@
 <div class="collection-hero color-background-1 gradient">
     @if(! empty(data_get($collection, 'cover_image')))
     <div class="collection-hero__inner page-width" style="margin-top: 2.5rem;">
-        <img srcset="{{ data_get($collection, 'cover_image') }}" src="{{ data_get($collection, 'cover_image') }}" alt="{{ data_get($collection, 'name') }}" style="width: 100%; height: 250px; object-fit: cover;">
+        <img srcset="{{ data_get($collection, 'cover_image') }}" src="{{ data_get($collection, 'cover_image') }}" alt="{{ data_get($collection, 'name') }}" style="width: 100%; object-fit: cover;">
     </div>
     @endif
 
