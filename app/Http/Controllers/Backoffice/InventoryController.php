@@ -43,7 +43,7 @@ class InventoryController extends BaseController
     public function index()
     {
         $categories = $this->categoryService
-            ->allAvailable(['with' => 'products', 'columns' => ['id', 'name']])
+            ->allAvailable(['with' => ['products', 'categoryGroup'], 'columns' => ['id', 'name', 'category_group_id']])
             ->filter(fn($category) => !$category->products->isEmpty());
 
         $attributes = $this->attributeService
