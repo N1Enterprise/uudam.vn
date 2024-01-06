@@ -1,5 +1,5 @@
 @php
-    $collection = optional($menu->collection);
+    $collection = optional(data_get($menu, 'collection'));
 @endphp
 
 <li data-menu-type="collection">
