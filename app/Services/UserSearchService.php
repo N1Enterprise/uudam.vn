@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Enum\SystemSettingKeyEnum;
+use App\Models\SystemSetting;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +18,8 @@ class UserSearchService extends BaseService
         $posts = [];
         $inventories = [];
         $collections = [];
+
+        $customSearchKeyworkds = SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get('custom_search_keyworkds', []);
 
         if (in_array('post', $resourcesTypes)) {
             $posts = DB::table('posts')
@@ -61,10 +65,29 @@ class UserSearchService extends BaseService
                 ->get();
         }
 
+        $otherSearch = collect($customSearchKeyworkds)
+            ->filter(function($item) use ($query) {
+                $filtered = array_filter(data_get($item, 'keywords', []), function($keyword) use ($query) {
+                    return str_contains(strtolower($keyword), strtolower($query));
+                });
+
+                return data_get($item, 'active') && !empty($filtered);
+            })
+            ->map(function($item) {
+                return [
+                    'image'         => data_get($item, 'image'),
+                    'name'          => data_get($item, 'name'),
+                    'link'          => data_get($item, 'link'),
+                    'open_new_tab'  => data_get($item, 'open_new_tab'),
+                ];
+            })
+            ->values();
+
         return [
             'posts' => $posts,
             'inventories' => $inventories,
             'collections' => $collections,
+            'othersearch' => $otherSearch,
         ];
     }
 }
