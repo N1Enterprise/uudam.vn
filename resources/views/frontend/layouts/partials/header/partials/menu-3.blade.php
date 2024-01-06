@@ -1,5 +1,5 @@
 @php
-    $post = optional($menu->post);
+    $post = optional(data_get($menu, 'post'));
 @endphp
 
 <div data-menu-type="post">
