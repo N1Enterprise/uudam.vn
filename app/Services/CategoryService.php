@@ -7,6 +7,7 @@ use App\Enum\ActivationStatusEnum;
 use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class CategoryService extends BaseService
@@ -23,6 +24,15 @@ class CategoryService extends BaseService
         $result = $this->categoryRepository
             ->with(['categoryGroup', 'products'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->scopeQuery(function($q) use ($data) {
+                if ($status = Arr::wrap(data_get($data, 'status'))) {
+                    $q->whereIn('status', $status);
+                }
+
+                if ($groupId = data_get($data, 'category_group_id')) {
+                    $q->where('category_group_id', $groupId);
+                }
+            })
             ->search([]);
 
         return $result;

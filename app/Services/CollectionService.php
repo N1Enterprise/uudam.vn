@@ -49,6 +49,7 @@ class CollectionService extends BaseService
         return $this->collectionRepository
             ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
+            ->orderBy('order')
             ->all(data_get($data, 'columns', ['*']));
     }
 
