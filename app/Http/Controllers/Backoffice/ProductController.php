@@ -6,6 +6,7 @@ use App\Contracts\Requests\Backoffice\StoreProductRequestContract;
 use App\Contracts\Requests\Backoffice\UpdateProductRequestContract;
 use App\Contracts\Responses\Backoffice\StoreProductResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateProductResponseContract;
+use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductTypeEnum;
 use App\Services\CategoryGroupService;
 use App\Services\CategoryService;
@@ -37,7 +38,11 @@ class ProductController extends BaseController
 
     public function index()
     {
-        return view('backoffice.pages.products.index');
+        $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
+        $statusLabels = ActivationStatusEnum::labels();
+        $productTypeLabels = ProductTypeEnum::labels();
+
+        return view('backoffice.pages.products.index', compact('categoryGroups', 'statusLabels', 'productTypeLabels'));
     }
 
     public function create()
