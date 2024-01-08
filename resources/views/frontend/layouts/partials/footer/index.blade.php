@@ -3,7 +3,7 @@
         <div class="footer__content-top page-width">
             <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet ">
                 <div class="footer-block grid__item">
-                    <h2 class="footer-block__heading">CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI NẾN ƯU ĐÀM</h2>
+                    <h2 class="footer-block__heading">GIỚI THIỆU VỀ ƯU ĐÀM</h2>
                     <div class="footer-block__details-content rte">
                         <p style="text-align: justify;">Ở Ưu Đàm, chúng tôi tự hào là một đơn vị chuyên nghiệp cung cấp các sản phẩm và nguyên liệu từ nến độc đáo và chất lượng. Với cam kết đem đến trải nghiệm mua sắm tốt nhất cho khách hàng, chúng tôi không chỉ cung cấp những sản phẩm chất lượng mà còn mang đến sự đa dạng và sáng tạo trong thế giới của nghệ thuật làm đẹp và trang trí.</p>
                     </div>
