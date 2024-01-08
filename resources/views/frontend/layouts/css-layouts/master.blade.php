@@ -506,4 +506,14 @@
         font-size: 2rem!important;
     }
 
+    .footer-block-about {
+        padding-right: 40px;
+    }
+
+    @media screen and (max-width: 500px) {
+        .footer-block-about {
+            padding-right: 0;
+        }
+    }
+
 </style>
