@@ -146,6 +146,7 @@ const utils_helper = {
             fe_host: BO_DATA_SHARED?.fe_host,
             app_id: BO_DATA_SHARED?.app_id,
             app_env: BO_DATA_SHARED?.app_env,
+            fe_view_only_mode: BO_DATA_SHARED?.fe_view_only_mode
         };
     },
 };
