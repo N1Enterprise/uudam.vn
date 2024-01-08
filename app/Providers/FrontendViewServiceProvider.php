@@ -52,7 +52,8 @@ class FrontendViewServiceProvider extends ServiceProvider
                 'bo_host' => config('app.url'),
                 'fe_host' => config('app.user_host'),
                 'app_id'  => config('app.app_id'),
-                'app_env' => config('app.env') 
+                'app_env' => config('app.env'),
+                'fe_view_only_mode' => config('app.fe_view_only_mode')
             ]);
         });
     }

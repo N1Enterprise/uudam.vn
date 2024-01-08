@@ -63,6 +63,8 @@ return [
 
     'app_id' => env('APP_ID'),
 
+    'fe_view_only_mode' => env('FE_VIEW_ONLY_MODE', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

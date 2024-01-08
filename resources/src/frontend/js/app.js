@@ -1,13 +1,11 @@
-const appEnv = (() => {
+const viewOnlyMode = (() => {
     const boShared = JSON.parse($('[data-bo-shared]').attr('data-bo-shared') || '{}');
-
-    return boShared?.app_env;
+    return boShared?.fe_view_only_mode;
 })();
 
 $(document).ready(function() {
-
-    if (['local', 'development'].includes(appEnv)) {
-        return;
+    if (! viewOnlyMode) {
+        return false;
     }
 
     $(document).on('keyup', function(e) {
