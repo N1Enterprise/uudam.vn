@@ -478,4 +478,32 @@
     .overlay-prevent {
         opacity: 0.3;
     }
+
+    .contentview * {
+        font-family: var(--font-body-family)!important;
+        font-size: 1.6rem!important;
+        font-weight: 400;
+        line-height: calc(1 + 0.8 / var(--font-body-scale))!important;
+        margin: 0!important;
+    }
+
+    .contentview br {
+        display: block;
+        padding: 3px 0;
+    }
+
+    .contentview p {
+        line-height: 0;
+    }
+
+    .contentview h3 {
+        margin: 6px 0!important;
+        font-size: 2rem!important;
+    }
+
+    .contentview h3,
+    .contentview h3 span {
+        font-size: 2rem!important;
+    }
+
 </style>

@@ -77,7 +77,7 @@
                 </details>
             </share-button>
         </div>
-        <div class="article-template__content page-width page-width--narrow rte" itemprop="articleBody">
+        <div class="article-template__content page-width page-width--narrow rte contentview" itemprop="articleBody">
             {!! $post->content !!}
         </div>
         <div class="article-template__back element-margin-top center">
