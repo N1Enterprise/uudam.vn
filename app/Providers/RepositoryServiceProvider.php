@@ -70,5 +70,8 @@ class RepositoryServiceProvider extends ServiceProvider
         
         Contracts\HomePageDisplayOrderRepositoryContract::class => Repositories\HomePageDisplayOrderRepository::class,
         Contracts\HomePageDisplayItemRepositoryContract::class => Repositories\HomePageDisplayItemRepository::class,
+
+        // Address
+        Contracts\AddressRepositoryContract::class => Repositories\AddressRepository::class,
     ];
 }

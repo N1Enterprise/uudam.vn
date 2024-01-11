@@ -51,3 +51,9 @@ const COLLECTION_ROUTES = {
 const BLOG_ROUTES = {
     web_detail: boHost + '/blogs/:slug',
 };
+
+const LOCALIZATION_ROUTES = {
+    api_provinces: boHost + '/fe/api/localization/provinces',
+    api_districts_by_province: boHost + '/fe/api/localization/:province/districts',
+    api_wards_by_district: boHost + '/fe/api/localization/:district/wards',
+};

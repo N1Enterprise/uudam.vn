@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class District extends Model
+class Province extends BaseModel
 {
     protected $primaryKey = 'code';
 
@@ -19,7 +17,7 @@ class District extends Model
         'full_name',
         'full_name_en',
         'code_name',
-        'province_code',
-        'administrative_unit_id'
+        'administrative_unit_id',
+        'administrative_region_id',
     ];
 }

@@ -1,9 +1,4 @@
 <style>
-    @media screen and (min-width: 990px) {
-        .modal-authentication .quick-add-modal__content {
-            width: 40%;
-        }
-    }
     header-drawer {
         justify-self: start;
         margin-left: -1.2rem;
