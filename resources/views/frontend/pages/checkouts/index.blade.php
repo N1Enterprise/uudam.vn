@@ -66,6 +66,20 @@ Thanh toán | {{ config('app.user_domain') }}
             right: 1.5rem;
         }
     }
+
+    @media screen and (max-width: 400px) {
+        .quick-add-modal__content {
+            margin-top: 0;
+            height: 100%;
+            overflow: scroll;
+            width: 100%;
+        }
+    }
+
+    .create-address-form .msg-error {
+        display: block;
+        margin-top: 5px;
+    }
 </style>
 @endsection
 
