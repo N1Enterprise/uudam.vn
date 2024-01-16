@@ -20,7 +20,15 @@ class StoreUserAddressRequest extends BaseFormRequest implements StoreUserAddres
             'province_code' => ['required', Rule::in(Province::make()->all()->pluck('code'))],
             'district_code' => ['required', Rule::in(District::make()->all()->pluck('code'))],
             'ward_code' => ['required', Rule::in(Ward::make()->all()->pluck('code'))],
-            'address_line' => ['nullable', 'string'],
+            'address_line' => ['required', 'string'],
+            'is_default' => ['required', 'boolean'],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'is_default' => boolean($this->is_default),
+        ]);
     }
 }

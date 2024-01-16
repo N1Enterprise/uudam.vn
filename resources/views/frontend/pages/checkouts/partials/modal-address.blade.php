@@ -76,8 +76,7 @@
                                     </div>
                                     <div class="form-group field field-required field--with-error">
                                         <button type="submit" class="step-footer-continue-btn btn" style="width: 100%; margin-top: 10px; padding: 13px; font-weight: 400;">
-                                            <span class="btn-content">Thêm địa chỉ</span>
-                                            <i class="btn-spinner icon icon-button-spinner"></i>
+                                            <span data-button-submit-text>Thêm địa chỉ</span>
                                         </button>
                                     </div>
                                 </div>

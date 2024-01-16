@@ -2,46 +2,6 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/profile-index.min.css') }}">
-<style>
-    .profile-tabs-nav {
-        display: flex;
-    }
-
-    .profile-tabs-content form[data-form] {
-        margin-top: 20px;
-        width: 100%;
-    }
-
-    @media screen and (min-width: 750px) {
-        .profile-tabs-content form[data-form] {
-            width: 50%;
-        }
-    }
-
-    .profile-tabs-nav .profile-tabs-nav__tab {
-        display: block;
-        padding: 10px;
-        margin: 5px 0;
-        text-decoration: auto;
-        /* border: 1px solid #000; */
-        margin-right: 10px;
-    }
-
-    .profile-tabs-nav .profile-tabs-nav__tab:first-child {
-        padding-left: 0;
-    }
-
-    .profile-tabs-nav .profile-tabs-nav__tab.active {
-        text-decoration: underline!important;
-    }
-
-    .product-option {
-        font-size: 1.4rem;
-        word-break: break-all;
-        line-height: calc(1 + 0.5 / var(--font-body-scale));
-    }
-</style>
-
 @yield('profile_style')
 @endsection
 
@@ -49,9 +9,10 @@
 <section class="shopify-section section page-width">
     <div class="profile-tabs customer account" style="margin-top: 20px;">
         <nav class="profile-tabs-nav">
-            <a href="{{ route('fe.web.user.profile.info') }}" class="profile-tabs-nav__tab">Thông tin tài khoản</a>
-            <a href="{{ route('fe.web.user.profile.order-history') }}" class="profile-tabs-nav__tab">Lịch sử đơn hàng</a>
-            <a href="{{ route('fe.web.user.profile.change-password') }}" class="profile-tabs-nav__tab">Thay đổi mật khẩu</a>
+            <a href="{{ route('fe.web.user.profile.info') }}" class="profile-tabs-nav__tab">Tài khoản</a>
+            <a href="{{ route('fe.web.user.profile.password-change') }}" class="profile-tabs-nav__tab">Mật khẩu</a>
+            <a href="{{ route('fe.web.user.profile.order-histories') }}" class="profile-tabs-nav__tab">Đơn hàng</a>
+            <a href="{{ route('fe.web.user.profile.address') }}" class="profile-tabs-nav__tab">Sổ địa chỉ</a>
         </nav>
         <div class="profile-tabs-content">
             @yield('profile_content')

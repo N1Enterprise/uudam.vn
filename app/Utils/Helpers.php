@@ -285,6 +285,8 @@ if (! function_exists('has_data')) {
     {
         if ($data instanceof Collection) {
             return !$data->isEmpty();
+        } else if ($data instanceof Model) {
+            return true;
         } else if (is_array($data) || is_string($data) || is_numeric($data)) {
             return $data == 0 ? true : !empty($data);
         } else if (is_bool($data)) {

@@ -215,7 +215,7 @@ $(() => {
                 required: true,
             },
             address_line: {
-                required: false,
+                required: true,
                 minlength: 2,
                 maxlength: 255,
             },
@@ -250,12 +250,33 @@ $(() => {
                 validate_phone: "Số điện thoại không hợp lệ"
             },
             address_line: {
+                required: 'Vui lòng nhập địa chỉ',
                 maxlength: 'Không lớn hơn 255 ký tự',
                 minlength: 'Địa chỉ nhận bạn quá ngắn'
             },
         },
         submitHandler: function(form) {
-            console.log({ form });
+            const formData = $(form).serialize();
+            const route = $(form).attr('action');
+            const $self = $(form);
+
+            $.ajax({
+                url: route,
+                method: 'POST',
+                data: formData,
+                beforeSend: () => {
+                    $self.find('button[type="submit"]').prop('disabled', true);
+                    $self.find('[data-button-submit-text]').text('Đang xử lý...');
+                },
+                success: (response) => {
+                    toastr.success('Thêm thành công.');
+                    window.location.reload();
+                },
+                error: () => {
+                    $self.find('button[type="submit"]').prop('disabled', false);
+                    $self.find('[data-button-submit-text]').text(originalButtonText);
+                },
+            });
         }
     });
 });

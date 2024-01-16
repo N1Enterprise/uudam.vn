@@ -17,6 +17,7 @@ class UserAddressResource extends BaseJsonResource
             'district_code' => $this->district_code,
             'ward_code'     => $this->ward_code,
             'address_line'  => $this->address_line,
+            'is_default'    => $this->is_default,
             'province'      => $this->whenLoaded('province', function() {
                 return optional($this->province)->only(['code', 'name', 'full_name']);
             }),

@@ -19,7 +19,6 @@
                                             >
                                         </a>
                                     </span>
-                                    <span class="_1fragemle">Thanh toán</span>
                                 </h1>
                             </div>
                             <div class="_1fragemfe _1fragemfk _1fragemed _1frageme0">

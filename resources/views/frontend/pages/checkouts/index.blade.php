@@ -30,11 +30,11 @@ Thanh toán | {{ config('app.user_domain') }}
         background: #f9f9f9;
     }
 
-    @media screen and (min-width: 990px) {
+    /* @media screen and (min-width: 990px) {
         .quick-add-modal__content {
             width: 40%;
         }
-    }
+    } */
 
     .quick-add-modal__toggle .icon {
         width: 1rem;

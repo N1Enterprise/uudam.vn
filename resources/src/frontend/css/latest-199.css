@@ -1,56 +1,56 @@
 .btn {
-    display: inline-block;
-    border-radius: 4px;
-    font-weight: 500;
-    padding: 1em 1.7em;
-    box-sizing: border-box;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    position: relative;
-    background: #000000;
-    color: white;
-    font-size: 18px;
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 1em 1.7em;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  position: relative;
+  background: #000000;
+  color: white;
+  font-size: 18px;
 }
 .fieldset .field .field-input-wrapper .field-input {
-    box-shadow: 0 0 0 1px #d9d9d9;
-    transition: all 0.2s ease-out;
-    background-color: white ;
-    color: #333333;
-    border-radius: 4px;
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0.94em 2.8em 0.94em 0.8em;
-    word-break: normal;
+  box-shadow: 0 0 0 1px #d9d9d9;
+  transition: all 0.2s ease-out;
+  background-color: white ;
+  color: #333333;
+  border-radius: 4px;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.94em 2.8em 0.94em 0.8em;
+  word-break: normal;
 }
 
 body {
-    color: #737373;
-    background: white !important;
-    
-    font-size: 14px;
-    font-family:Helvetica Neue, sans-serif;
-    line-height: 1.3em;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    -webkit-font-smoothing: subpixel-antialiased;
-    overflow-x: hidden;
+  color: #737373;
+  background: white !important;
+  
+  font-size: 14px;
+  font-family:Helvetica Neue, sans-serif;
+  line-height: 1.3em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -webkit-font-smoothing: subpixel-antialiased;
+  overflow-x: hidden;
 }
 
 
 .radio-wrapper .radio-input .input-radio:checked,
-    .checkbox-wrapper .checkbox-input .input-checkbox:checked {
-    border: none;
-    box-shadow: 0 0 0 10px #cac4c4 inset;
+  .checkbox-wrapper .checkbox-input .input-checkbox:checked {
+  border: none;
+  box-shadow: 0 0 0 10px #cac4c4 inset;
 }
 
 .fieldset .field.field-error .field-input-wrapper .field-input {
-    box-shadow: 0 0 0 2px #ff6d6d;
-    outline: none;
+  box-shadow: 0 0 0 2px #ff6d6d;
+  outline: none;
 }
-    
+  
 html, body {
 margin: 0;
 width: 100%;
@@ -61,12 +61,7 @@ width: 100%;
 
 
 
-a {
-text-decoration: none;
-color:  #338dbc;
-transition: color 0.2s ease-in-out;
-display: inline-block;
-}
+a {text-decoration: none;color: #0181b2;transition: color 0.2s ease-in-out;}
 
 .banner {
 padding: 1.5em 0;
@@ -252,35 +247,35 @@ border-color: #cccccc;
 .radio-wrapper .radio-input .input-radio {
 border-radius: 50%;
 }
-        .radio-wrapper .radio-content-input {
+      .radio-wrapper .radio-content-input {
 display: flex;
-                        align-items: center;
+                      align-items: center;
 }
-        .radio-content-input .content-wrapper {
-            display: grid
-        }
-        .radio-wrapper .radio-content-input .main-img {
+      .radio-content-input .content-wrapper {
+          display: grid
+      }
+      .radio-wrapper .radio-content-input .main-img {
 margin-right: 10px;
-                    display: flex;
-        align-self: center;
-                    width: 40px;
-                    height: 40px;
+                  display: flex;
+      align-self: center;
+                  width: 40px;
+                  height: 40px;
 }
 .radio-wrapper .radio-content-input-no-icon {
 margin: 0.8em 0.8em 0.8em 0;
 }
-        .radio-wrapper .radio-content-input .child-img {
+      .radio-wrapper .radio-content-input .child-img {
 max-height: 30px
 }
-        .radio-wrapper .radio-content-input .quick-tagline {
+      .radio-wrapper .radio-content-input .quick-tagline {
 color: #338dbc;
-                    display:flex;
-                    align-items: center;
-                    margin-top: 2px;
+                  display:flex;
+                  align-items: center;
+                  margin-top: 2px;
 }
-        .radio-wrapper .radio-content-input .quick-tagline svg{
+      .radio-wrapper .radio-content-input .quick-tagline svg{
 fill: #338dbc;
-                    margin-left: 10px;
+                  margin-left: 10px;
 }
 .radio-wrapper .radio-input .input-radio:checked:focus,
 .checkbox-wrapper .checkbox-input .input-checkbox:checked:focus {
@@ -1001,48 +996,48 @@ position: relative;
 }
 
 .sidebar .sidebar-content .order-summary .product .product-image .product-thumbnail .product-thumbnail-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-    .sidebar .sidebar-content .order-summary .product .product-image .product-thumbnail .product-thumbnail-wrapper .product-thumbnail-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-width: 100%;
-        max-height: 100%;
-        margin: auto;
-    }
+  .sidebar .sidebar-content .order-summary .product .product-image .product-thumbnail .product-thumbnail-wrapper .product-thumbnail-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+  }
 
 .sidebar .sidebar-content .order-summary .product .product-image .product-thumbnail .product-thumbnail-quantity {
-    font-size: 0.85714em;
-    font-weight: 500;
-    white-space: nowrap;
-    padding: 0.15em 0.65em;
-    border-radius: 2em;
-    background-color: rgba(153,153,153,0.9);
-    color: #fff;
-    position: absolute;
-    right: -0.75em;
-    top: -0.75em;
-    z-index: 2;
+  font-size: 0.85714em;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0.15em 0.65em;
+  border-radius: 2em;
+  background-color: rgba(153,153,153,0.9);
+  color: #fff;
+  position: absolute;
+  right: -0.75em;
+  top: -0.75em;
+  z-index: 2;
 }
 
 .sidebar .sidebar-content .order-summary .product .product-image .product-thumbnail::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    border-radius: 8px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.1) inset;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1) inset;
 }
 
 .sidebar .sidebar-content .order-summary .product .product-description {
@@ -1739,7 +1734,7 @@ margin-top:1em;
 z-index: 2;
 visibility: visible;
 opacity: 1;
-        padding-top: 25px;
+      padding-top: 25px;
 padding-bottom: 25px;
 }
 
@@ -2262,70 +2257,71 @@ max-block-size: 100%;
 
 /* The container */
 .container {
-    display: block;
-    position: relative;
-    padding-left: 29px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked ~ .checkmark {
-    background-color: #000000;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .container input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: 8px;
-    top: 3px;
-    width: 3px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-  }
+  display: block;
+  position: relative;
+  padding-left: 29px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #000000;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 8px;
+  top: 3px;
+  width: 3px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
 
 
 .field-input:focus-visible {
-    outline: #0000!important;
-    border: #000!important;
+  outline: #0000!important;
+  border: #000!important;
 }
+

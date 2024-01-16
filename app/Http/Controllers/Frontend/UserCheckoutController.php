@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Order;
+use App\Services\AddressService;
 use App\Services\CarrierService;
 use App\Services\CartItemService;
 use App\Services\CartService;
@@ -22,6 +23,7 @@ class UserCheckoutController extends AuthenticatedController
     public $pageService;
     public $carrierService;
     public $orderService;
+    public $addressService;
 
     public function __construct(
         CartService $cartService,
@@ -30,7 +32,8 @@ class UserCheckoutController extends AuthenticatedController
         ShippingRateService $shippingRateService,
         PageService $pageService,
         CarrierService $carrierService,
-        OrderService $orderService
+        OrderService $orderService,
+        AddressService $addressService
     ) {
         parent::__construct();
 
@@ -41,6 +44,7 @@ class UserCheckoutController extends AuthenticatedController
         $this->pageService = $pageService;
         $this->carrierService = $carrierService;
         $this->orderService = $orderService;
+        $this->addressService = $addressService;
     }
 
     public function index(Request $request)
@@ -80,7 +84,19 @@ class UserCheckoutController extends AuthenticatedController
 
         $editable = true;
 
-        return $this->view('frontend.pages.checkouts.index', compact('editable', 'order', 'cart', 'cartItems', 'paymentOptions', 'shippingRatesCarriers', 'countries', 'checkoutPages'));
+        $address = $this->addressService->getDefaultByUserId($user);
+
+        return $this->view('frontend.pages.checkouts.index', compact(
+            'editable', 
+            'order', 
+            'cart', 
+            'cartItems', 
+            'paymentOptions', 
+            'shippingRatesCarriers', 
+            'countries', 
+            'checkoutPages',
+            'address'
+        ));
     }
 
     public function rePayment(Request $request, $orderCode)
