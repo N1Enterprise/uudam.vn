@@ -242,7 +242,7 @@ Thanh toán | {{ config('app.user_domain') }}
 
                             @include('frontend.pages.checkouts.partials.shipment-details')
 
-                            <div class="section-content">
+                            {{-- <div class="section-content">
                                 <div class="fieldset">
                                     <form autocomplete="off" id="form_update_shipping_method" class="field " accept-charset="UTF-8" method="post">
                                         <input name="utf8" type="hidden" value="✓">
@@ -333,7 +333,8 @@ Thanh toán | {{ config('app.user_domain') }}
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
+
                             <div id="change_pick_location_or_shipping">
                                 <div class="inventory_location"></div>
                                 <div id="section-shipping-rate">

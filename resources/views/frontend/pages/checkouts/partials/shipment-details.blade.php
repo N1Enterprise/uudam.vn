@@ -3,24 +3,6 @@
 </div>
 <div class="section-content section-customer-information">
     <div class="fieldset">
-        <div class="field field-required">
-            <div class="field-input-wrapper">
-                <label class="field-label" for="billing_address_full_name">Họ và tên</label>
-                <input placeholder="Họ và tên" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="text" id="billing_address_full_name" name="billing_address[full_name]" value="{{ data_get($AUTHENTICATED_USER, 'name') ?? '' }}" autocomplete="false">
-            </div>
-        </div>
-        <div class="field  field-two-thirds">
-            <div class="field-input-wrapper">
-                <label class="field-label" for="checkout_user_email">Email</label>
-                <input autocomplete="false" placeholder="Email" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="email" id="checkout_user_email" name="checkout_user[email]" value="{{ data_get($AUTHENTICATED_USER, 'email') ?? '' }}">
-            </div>
-        </div>
-        <div class="field field-required field-third">
-            <div class="field-input-wrapper">
-                <label class="field-label" for="billing_address_phone">Số điện thoại</label>
-                <input autocomplete="false" placeholder="Số điện thoại" autocapitalize="off" spellcheck="false" class="field-input" size="30" maxlength="15" type="tel" id="billing_address_phone" name="billing_address[phone]" value="{{ data_get($AUTHENTICATED_USER, 'phone_number') ?? '' }}">
-            </div>
-        </div>
         <div class="field">
             @if(has_data($address))
             <div>
