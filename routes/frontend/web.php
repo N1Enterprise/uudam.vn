@@ -28,8 +28,9 @@ Route::middleware(['auth:user'])->group(function() {
     Route::get('profile/password', [Controllers\UserProfileController::class, 'passwordChange'])->name('user.profile.password-change');
     Route::get('sales/order/histories', [Controllers\UserOrderController::class, 'orderHistory'])->name('user.profile.order-histories');
     Route::get('sales/order/{orderCode}', [Controllers\UserOrderController::class, 'orderHistoryDetail'])->name('user.profile.order-history-detail');
-    Route::get('localization/address', [Controllers\UserAddressController::class, 'address'])->name('user.profile.address');
+    Route::get('localization/address', [Controllers\UserAddressController::class, 'address'])->name('user.localization.address');
     Route::get('localization/address/edit/{code}', [Controllers\UserAddressController::class, 'edit'])->name('user.localization.address.edit');
+    Route::get('localization/address/create', [Controllers\UserAddressController::class, 'create'])->name('user.localization.address.create');
 
     Route::get('checkout-confirmation', [Controllers\UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');
     Route::get('checkout/{cartUuid}', [Controllers\UserCheckoutController::class, 'checkout'])->name('user.checkout.index');

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\ModelNotFoundException;
 use App\Models\BaseModel;
 use App\Models\User;
 use App\Repositories\Contracts\AddressRepositoryContract;
@@ -39,6 +40,17 @@ class AddressService extends BaseService
         });
     }
 
+    public function updateByUserAndCode($attributes = [], $user, $code)
+    {
+        $address = $this->findByUserAndCode($user, $code);
+        
+        if (empty($address)) {
+            throw new ModelNotFoundException();
+        }
+
+        return $this->addressRepository->update($attributes, $address->getKey());
+    }
+
     public function getDefaultByUserId($userId)
     {
         $user = UserService::make()->show($userId);
@@ -63,6 +75,16 @@ class AddressService extends BaseService
             ->addSort('is_default')
             ->addSort('id')
             ->all();
+    }
+
+    public function findByUserAndCode($user, $code)
+    {
+        return $this->addressRepository
+            ->scopeQuery(function($q) use ($user, $code) {
+                $q->where('addressable_id', BaseModel::getModelKey($user))
+                    ->where('code', $code);
+            })
+            ->first();
     }
 
     public function generateAddressCode()

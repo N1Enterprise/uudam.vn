@@ -51,5 +51,7 @@ Route::middleware(['auth:user'])->group(function() {
     Route::post('user/product/review', [Controllers\UserProductReviewController::class, 'review'])->name('user.product.review');
 
     // ADDRESS
-    Route::post('user/address', [Controllers\AddressController::class, 'store'])->name('user.address.store');
+    Route::post('user/localization/address', [Controllers\AddressController::class, 'store'])->name('user.address.store');
+    Route::put('user/localization/address/{code}', [Controllers\AddressController::class, 'update'])->name('user.address.update');
+    Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('localization.address.show');
 });

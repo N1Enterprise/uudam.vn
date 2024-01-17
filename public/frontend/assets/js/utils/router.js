@@ -56,4 +56,5 @@ const LOCALIZATION_ROUTES = {
     api_provinces: boHost + '/fe/api/localization/provinces',
     api_districts_by_province: boHost + '/fe/api/localization/:province/districts',
     api_wards_by_district: boHost + '/fe/api/localization/:district/wards',
+    api_address_detail: boHost + '/fe/api/user/localization/address/:code',
 };

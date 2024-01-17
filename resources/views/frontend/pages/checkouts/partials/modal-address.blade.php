@@ -8,11 +8,11 @@
         <div class="quick-add-modal__content-info">
             <div data-overlay-action-wrapper="create-address">
                 <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
-                    <h3 class="ls-box-title text-left">Thêm địa chỉ</h3>
+                    <h3 class="ls-box-title text-left" data-form-title-text></h3>
                 </div>
                 <div class="quick-add-modal__content-content">
                     <div class="form-basic-create-address customer">
-                        <form method="POST" action="{{ route('fe.api.user.address.store') }}" id="create_address_form" accept-charset="UTF-8" class="create-address-form" data-form="create-address">
+                        <form method="{{ empty($address) ? 'POST' : 'PUT' }}" action="{{ empty($address) ? route('fe.api.user.address.store') : route('fe.api.user.address.update', data_get($address, 'code')) }}" id="address-form" accept-charset="UTF-8" class="create-address-form" data-form="create-address">
                             <div class="section-content section-customer-information">
                                 <div class="fieldset">
                                     <div class="form-group field field-required field--with-error">
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="form-group field field-required field--with-error">
                                         <button type="submit" class="step-footer-continue-btn btn" style="width: 100%; margin-top: 10px; padding: 13px; font-weight: 400;">
-                                            <span data-button-submit-text>Thêm địa chỉ</span>
+                                            <span data-button-submit-text></span>
                                         </button>
                                     </div>
                                 </div>

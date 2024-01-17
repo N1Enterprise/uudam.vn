@@ -1,12 +1,12 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Cập nhật địa chỉ | {{ config('app.user_domain') }}
+Thêm địa chỉ mới | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-<meta property="og:title" content="Cập nhật địa chỉ | {{ config('app.user_domain') }}">
-<meta property="og:description" content="Cập nhật địa chỉ | {{ config('app.user_domain') }}">
+<meta property="og:title" content="Thêm địa chỉ mới | {{ config('app.user_domain') }}">
+<meta property="og:description" content="Thêm địa chỉ mới | {{ config('app.user_domain') }}">
 <meta property="og:url" content="{{ request()->url() }}">
 <meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
 <meta property="og:type" content="website">
@@ -24,13 +24,12 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
 
 @section('profile_content')
 <div class="">
-    <button address-editable-btn style="display: none;" data-address-code="{{ data_get($address, 'code') }}"></button>
     <div class="navigation-wrapper">
         <a href="{{ route('fe.web.user.localization.address') }}" class="navigation-item">Sổ địa chỉ</a>
-        <a href="javascript:void(0)" class="navigation-item">Cập nhật địa chỉ</a>
+        <a href="javascript:void(0)" class="navigation-item">Thêm địa chỉ</a>
     </div>
-    <div class="address-form modal-add-address">
-        <form action="{{ route('fe.api.user.address.update', data_get($address, 'code')) }}" method="PUT" data-form="user-info" novalidate="novalidate" id="address-form" data-redirect="{{ $redirectUrl }}">
+    <div class="address-form">
+        <form action="{{ route('fe.api.user.address.store') }}" method="POST" data-form="user-info" novalidate="novalidate" id="address-form" data-redirect="{{ $redirectUrl }}">
             <div class="form-fields">
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
@@ -61,8 +60,8 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
 
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
-                        <select class="field-input" id="address_new_shipping_district" name="district_code">
-                            <option value="">Chọn quận / huyện</option>
+                        <select class="field-input" id="address_new_shipping_district" name="district_code" disabled>
+                            <option value="" selected="">Chọn quận / huyện</option>
                         </select>
                     </div>
                 </div>
@@ -91,9 +90,4 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
 
 @section('profile_js')
 <script src="{{ asset_with_version('frontend/bundle/js/address.min.js') }}" type="text/javascript"></script>
-<script>
-    setTimeout(() => {
-        $('[address-editable-btn]').trigger('click');
-    }, 300);
-</script>
 @endsection

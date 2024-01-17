@@ -23,7 +23,6 @@ Thanh toán | {{ config('app.user_domain') }}
 <link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
 
-
 <style>
     input:disabled,
     select:disabled {
@@ -430,7 +429,6 @@ Thanh toán | {{ config('app.user_domain') }}
 </div>
 
 @include('frontend.pages.checkouts.partials.modal-address')
-
 @endsection
 
 @section('js_scipt')
@@ -438,4 +436,5 @@ Thanh toán | {{ config('app.user_domain') }}
 <script src="{{ asset_with_version('vendor/validate/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('vendor/validate/custom.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/checkout-index.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/address.min.js') }}" type="text/javascript"></script>
 @endsection

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Frontend\Api;
 
 use App\Contracts\Requests\Frontend\StoreUserAddressRequestContract;
+use App\Contracts\Requests\Frontend\UpdateUserAddressRequestContract;
 use App\Contracts\Responses\Frontend\StoreUserAddressResponseContract;
+use App\Http\Responses\Frontend\ShowUserAddressResponse;
 use App\Services\AddressService;
 use App\Vendors\Localization\District;
 use App\Vendors\Localization\Province;
 use App\Vendors\Localization\Ward;
+use Illuminate\Http\Request;
 
 class AddressController extends BaseApiController
 {
@@ -46,5 +49,19 @@ class AddressController extends BaseApiController
         $address = $this->addressService->createByUser($request->validated(), $this->user());
 
         return $this->response(StoreUserAddressResponseContract::class, $address);        
+    }
+
+    public function update(UpdateUserAddressRequestContract $request, $code)
+    {
+        $address = $this->addressService->updateByUserAndCode($request->validated(), $this->user(), $code);
+
+        return $this->response(ShowUserAddressResponse::class, $address);
+    }
+
+    public function show(Request $request, $code)
+    {
+        $address = $this->addressService->findByUserAndCode($this->user(), $code);
+
+        return $this->response(ShowUserAddressResponse::class, $address);
     }
 }

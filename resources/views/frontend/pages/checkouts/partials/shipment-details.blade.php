@@ -28,7 +28,7 @@
                 <div>
                     <span>{{ data_get($address, 'name') }}</span> | <span>{{ data_get($address, 'phone') }}</span>
                     <p>{{ data_get($address, 'full_address') }}</p>
-                    <a href="{{ route('fe.web.user.localization.address.edit', ['code' => data_get($address, 'code'), 'callback_url' => request()->url()]) }}" style="margin-top: 5px;">Thay đổi</a>
+                    <a href="javascript:void(0)" address-editable-btn style="margin-top: 5px;" data-address-code="{{ data_get($address, 'code') }}">Chỉnh sửa</a>
                 </div>
             </div>
             @else

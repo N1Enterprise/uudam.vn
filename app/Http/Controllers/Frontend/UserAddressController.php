@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Services\AddressService;
+use App\Vendors\Localization\District;
+use App\Vendors\Localization\Province;
+use App\Vendors\Localization\Ward;
 use Illuminate\Http\Request;
 
 class UserAddressController extends AuthenticatedController
@@ -25,6 +28,16 @@ class UserAddressController extends AuthenticatedController
 
     public function edit(Request $request, $code)
     {
-        dd($code);
+        $address   = $this->addressService->findByUserAndCode($this->user(), $code);
+        $provinces = Province::make()->all();
+        $districts = District::make()->getByProviceCode(data_get($address, 'province_code'));
+        $wards     = Ward::make()->getByDistrictCode(data_get($address, 'district_code')); 
+
+        return $this->view('frontend.pages.profile.address.edit', compact('address', 'provinces', 'districts', 'wards'));
+    }
+
+    public function create(Request $request)
+    {
+        return $this->view('frontend.pages.profile.address.create');
     }
 }

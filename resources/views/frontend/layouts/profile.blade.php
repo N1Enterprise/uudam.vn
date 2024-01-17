@@ -12,7 +12,7 @@
             <a href="{{ route('fe.web.user.profile.info') }}" class="profile-tabs-nav__tab">Tài khoản</a>
             <a href="{{ route('fe.web.user.profile.password-change') }}" class="profile-tabs-nav__tab">Mật khẩu</a>
             <a href="{{ route('fe.web.user.profile.order-histories') }}" class="profile-tabs-nav__tab">Đơn hàng</a>
-            <a href="{{ route('fe.web.user.profile.address') }}" class="profile-tabs-nav__tab">Sổ địa chỉ</a>
+            <a href="{{ route('fe.web.user.localization.address') }}" class="profile-tabs-nav__tab">Sổ địa chỉ</a>
         </nav>
         <div class="profile-tabs-content">
             @yield('profile_content')

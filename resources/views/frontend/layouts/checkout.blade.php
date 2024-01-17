@@ -31,7 +31,6 @@
 </head>
 <body>
     <link href="{{ asset_with_version('frontend/bundle/css/latest-199.min.css') }}" rel="stylesheet" type="text/css" />
-
     <input type="hidden" data-bo-shared='@json($CONSTANTS_SHARED)'>
     <input type="hidden" data-canprocessasthesame="{{ !empty($AUTHENTICATED_USER) }}" data-authenticated-user='@json($AUTHENTICATED_USER)'>
 
