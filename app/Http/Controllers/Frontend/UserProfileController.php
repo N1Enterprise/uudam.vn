@@ -2,29 +2,39 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Services\AddressService;
 use App\Services\UserService;
 
 class UserProfileController extends AuthenticatedController
 {
     public $userService;
     public $orderService;
+    public $addressService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, AddressService $addressService)
     {
         parent::__construct();
 
         $this->userService = $userService;
+        $this->addressService = $addressService;
     }
 
-    public function profile()
+    public function account()
     {
         $user = $this->user();
 
-        return $this->view('frontend.pages.profile.user-info', compact('user'));
+        return $this->view('frontend.pages.profile.account.index', compact('user'));
     }
 
-    public function changePassword()
+    public function passwordChange()
     {
-        return $this->view('frontend.pages.profile.change-password');
+        return $this->view('frontend.pages.profile.password-change.index');
+    }
+
+    public function address()
+    {
+        $addresses = $this->addressService->listByUser($this->user());
+
+        return $this->view('frontend.pages.profile.address.index', compact('addresses'));
     }
 }

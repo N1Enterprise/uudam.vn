@@ -26,5 +26,9 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
 
         // Order
         Contracts\UserOrderRequestContract::class => Requests\UserOrderRequest::class,
+
+        // Address
+        Contracts\StoreUserAddressRequestContract::class => Requests\StoreUserAddressRequest::class,
+        Contracts\UpdateUserAddressRequestContract::class => Requests\UpdateUserAddressRequest::class,
     ];
 }

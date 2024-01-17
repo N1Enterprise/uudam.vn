@@ -4,13 +4,13 @@ use App\Enum\SystemSettingKeyEnum;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Api as Controllers;
 
-// Catalog
+// CATALOG
 Route::post('user/subscribe/news-letter', [Controllers\UserSubscribeController::class, 'subscribeNewsLetter'])->name('user.subscribe.news-letter');
 Route::get('user/collections/{id}/linked-inventories', [Controllers\CollectionController::class, 'getLinkedInventories'])->name('user.collections.linked-inventories');
 Route::get('user/search/suggest', [Controllers\UserSearchController::class, 'suggest'])->name('user.search.suggest');
 Route::get('user/search/inventories', [Controllers\UserSearchController::class, 'searchInventories'])->name('user.search.inventories');
 
-// Authentication
+// AUTHENTICATION
 Route::post('user/signup', [Controllers\UserAuthenticationController::class, 'signup'])->name('user.signup');
 Route::post('user/signin', [Controllers\UserAuthenticationController::class, 'signin'])->name('user.signin');
 Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
@@ -27,22 +27,31 @@ Route::get('user/display-item/{id}/collections', [Controllers\UserHomePageDispla
 Route::get('user/display-item/{id}/posts', [Controllers\UserHomePageDisplayItemController::class, 'getPosts']);
 Route::get('user/display-item/{id}/blogs', [Controllers\UserHomePageDisplayItemController::class, 'getBlogs']);
 
+Route::get('localization/provinces', [Controllers\AddressController::class, 'getProvinces'])->name('localization.provinces');
+Route::get('localization/{proviceCode}/districts', [Controllers\AddressController::class, 'getDistrictsByProvince'])->name('localization.districts-by-province');
+Route::get('localization/{districtCode}/wards', [Controllers\AddressController::class, 'getWardsByDistrict'])->name('localization.wards-by-district');
+
 Route::middleware(['auth:user'])->group(function() {
-    // Authentication
+    // AUTHENTICATION
     Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
     Route::post('user/update-info', [Controllers\UserController::class, 'updateInfo'])->name('user.update-info');
     Route::post('user/update-password', [Controllers\UserController::class, 'updatePassword'])->name('user.update-password');
 
-    // Order
+    // ORDER
     Route::post('user/order/{cartUuid}', [Controllers\UserOrderController::class, 'order'])->name('user.order.store');
     Route::post('user/order/reorder/{orderCode}', [Controllers\UserOrderController::class, 'reorder'])->name('user.order.reorder');
 
-    // Cart
+    // CART
     Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
     Route::get('user/carts-info', [Controllers\UserCartController::class, 'cartInfo'])->name('user.cart.info');
     Route::put('user/carts/{id}/delete', [Controllers\UserCartController::class, 'cancel'])->name('user.cart.delete');
     Route::put('user/carts/{id}/item-update-quantity', [Controllers\UserCartController::class, 'updateItemQuantity'])->name('user.cart-item.update-quantity');
 
-    // Support Desks
+    // SUPPORT DESKS
     Route::post('user/product/review', [Controllers\UserProductReviewController::class, 'review'])->name('user.product.review');
+
+    // ADDRESS
+    Route::post('user/localization/address', [Controllers\AddressController::class, 'store'])->name('user.address.store');
+    Route::put('user/localization/address/{code}', [Controllers\AddressController::class, 'update'])->name('user.address.update');
+    Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('localization.address.show');
 });

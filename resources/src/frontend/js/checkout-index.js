@@ -1,115 +1,88 @@
-// ==== VALIDATION ==== //
+// ==== ADDRESS_FOR_CHECKOUT LOGIC ==== //
 $(() => {
-    $('[data-form="checkout"]').validate({
-        rules: {
-            fullname: {
-                required: true,
-                minlength: 2,
-                maxlength: 255,
-            },
-            address_line: {
-                required: true,
-                minlength: 2,
-                maxlength: 255,
-            },
-            city_name: {
-                required: true,
-                minlength: 2,
-                maxlength: 255,
-            },
-            phone: {
-                required: true,
-                minlength: 8,
-                maxlength: 13,
-                validate_phone: true
-            }
+    const ADDRESS_FOR_CHECKOUT = {
+        elements: {
+            shipping_province: $('#customer_shipping_province'),
+            shipping_district: $('#customer_shipping_district'),
+            shipping_ward: $('#customer_shipping_ward'),
         },
-        messages: {
-            fullname: {
-                required: 'Vui lòng nhập họ và tên',
-                maxlength: 'Không lớn hơn 255 ký tự',
-                minlength: 'Tên bạn quá ngắn'
-            },
-            address_line: {
-                required: 'Vui lòng nhập địa chỉ nhận',
-                maxlength: 'Không lớn hơn 255 ký tự',
-                minlength: 'Địa chỉ nhận bạn quá ngắn'
-            },
-            city_name: {
-                required: 'Vui lòng nhập thành phố',
-                maxlength: 'Không lớn hơn 255 ký tự',
-                minlength: 'Tên Thành phố quá ngắn'
-            },
-            phone: {
-                required: 'Vui lòng nhập số điện thoại',
-                maxlength: 'Không lớn hơn 13 ký tự',
-                minlength: 'Số điện thoại quá ngắn',
-                validate_phone: "Số điện thoại không hợp lệ"
-            }
+        init: () => {
+            ADDRESS_FOR_CHECKOUT.loadProvinces();
+            ADDRESS_FOR_CHECKOUT.onChangeProvince();
+            ADDRESS_FOR_CHECKOUT.onChangeDistrict();
         },
-        submitHandler: function(form) {
-            handleOrder(form);
-        }
-    });
+        buildHTMLOptions: (data, emptyLabel = '') => {
+            if (! data?.length) {
+                return `<option value="" selected>${emptyLabel}</option>`;
+            }
 
-    function handleOrder(form) {
-        const formData = $(form).serialize();
-        const route = $(form).attr('action');
-        const $self = $(form);
+            const options = data.map((item) => `<option value="${item.code}">${item.full_name}</option>`);
+            
+            return [`<option value="" selected>${emptyLabel}</option>`, ...options].join('');
+        },
+        onChangeProvince: () => {
+            ADDRESS_FOR_CHECKOUT.elements.shipping_province.on('change', function() {
+                const code = $(this).val();
 
-        $.ajax({
-            url: route,
-            method: 'POST',
-            data: formData,
-            beforeSend: () => {
-                $self.find('button[type="submit"]').prop('disabled', true);
-                $self.find('[data-button-btn-process-order-text]').text('Đang xử lý...');
-            },
-            success: (response) => {
-                const { paying_confirmed, end_of_redirect_at } = response;
+                ADDRESS_FOR_CHECKOUT.loadDistrictByProvinceCode(code);
+            });
+        },
+        onChangeDistrict: () => {
+            ADDRESS_FOR_CHECKOUT.elements.shipping_district.on('change', function() {
+                const code = $(this).val();
 
-                if (paying_confirmed) {
-                    window.location.href = end_of_redirect_at?.success;
+                ADDRESS_FOR_CHECKOUT.loadWardsByProvinceCode(code);
+            });
+        },
+        loadProvinces: () => {
+            $.ajax({
+                url: LOCALIZATION_ROUTES.api_provinces,
+                method: 'GET',
+                beforeSend: () => {
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.prop('disabled', true);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_district.prop('disabled', true);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_ward.prop('disabled', true);
+                },
+                success: (response) => {
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.html(ADDRESS_FOR_CHECKOUT.buildHTMLOptions(response?.data, 'Chọn tỉnh / thành'));
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.prop('disabled', false);
                 }
-            },
-            error: () => {
-                $self.find('button[type="submit"]').prop('disabled', false);
-                $self.find('[data-button-btn-process-order-text]').text('Đặt hàng');
-            },
-        });
-    }
-});
+            });
+        },
+        loadDistrictByProvinceCode: (code)  => {
+            $.ajax({
+                url: LOCALIZATION_ROUTES.api_districts_by_province.replace(':province', code),
+                method: 'GET',
+                beforeSend: () => {
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.prop('disabled', true);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_district.prop('disabled', true);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_ward.prop('disabled', true);
+                },
+                success: (response) => {
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_district.html(ADDRESS_FOR_CHECKOUT.buildHTMLOptions(response?.data, 'Chọn quận / huyện'));
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.prop('disabled', false);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_district.prop('disabled', false);
+                }
+            });
+        },
+        loadWardsByProvinceCode: (code) => {
+            $.ajax({
+                url: LOCALIZATION_ROUTES.api_wards_by_district.replace(':district', code),
+                method: 'GET',
+                beforeSend: () => {
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.prop('disabled', true);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_district.prop('disabled', true);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_ward.prop('disabled', true);
+                },
+                success: (response) => {
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_ward.html(ADDRESS_FOR_CHECKOUT.buildHTMLOptions(response?.data, 'Chọn phường / xã'));
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_province.prop('disabled', false);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_district.prop('disabled', false);
+                    ADDRESS_FOR_CHECKOUT.elements.shipping_ward.prop('disabled', false);
+                }
+            });
+        },
+    };
 
-// ==== CHECKOUT LOGIC ==== //
-$(() => {
-    $(document).ready(function() {
-        $('[name="shipping_rate_id"]').trigger('change');
-        $('[name="payment_option_id"]').trigger('change');
-    })
-
-    $('[name="shipping_rate_id"]').on('change', function() {
-        calculateTransportFee();
-        calculateTotalPayment();
-    });
-
-    $('[name="payment_option_id"]').on('change', function() {
-        calculateTransportFee();
-        calculateTotalPayment();
-    });
-
-    $('[data-form="checkout"]').on('submit', function(e) {
-        e.preventDefault();
-    });
-
-    function calculateTransportFee() {
-        const shippingRate = $('[name="shipping_rate_id"]:checked').attr('data-rate');
-
-        $('[data-value-transport-fee]').text(utils_helper.formatPrice(shippingRate));
-    }
-
-    function calculateTotalPayment() {
-        const totalPriceHasShipping = $('[name="shipping_rate_id"]:checked').attr('data-total-price-has-shipping');
-
-        $('[data-value-total-payment]').text(utils_helper.formatPrice(totalPriceHasShipping));
-    }
+    ADDRESS_FOR_CHECKOUT.init();
 });
