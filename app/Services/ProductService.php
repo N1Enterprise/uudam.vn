@@ -118,4 +118,24 @@ class ProductService extends BaseService
             ];
         }, $mediaImages);
     }
+
+    public function getCatalogueBasedOnProducts()
+    {
+        $products = $this->productRepository
+            ->with([
+                'inventories' => function($q) {
+                    $q->where('status', 1);
+                },
+                'categories' => function($q) {
+                    $q->where('status', 1);
+                }
+            ])
+            ->modelScopes(['active'])
+            ->scopeQuery(function() {
+
+            })
+            ->all();
+
+        return $products;
+    }
 }

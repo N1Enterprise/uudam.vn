@@ -21,6 +21,8 @@ Route::get('maintenance', [Controllers\MaintenanceController::class, 'index'])->
 
 Route::get('search', [Controllers\UserSearchController::class, 'index'])->name('search');
 
+Route::get('/catalogue', [Controllers\CatalogueController::class, 'index'])->name('catalogue');
+
 Route::middleware(['auth:user'])->group(function() {
     Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
 
