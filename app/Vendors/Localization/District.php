@@ -28,10 +28,16 @@ class District
         return app(DistrictEntity::class);
     }
 
+    public function all($data = [])
+    {
+        return $this->model()->query()
+            ->get(array_merge(['code', 'name', 'full_name'], data_get($data, 'columns', [])));
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all()
+    public function allInCache()
     {
         $cacheKey = 'district:all';
 
@@ -47,7 +53,7 @@ class District
 
     public function getByProviceCode($provinceCode)
     {
-        $districts = $this->all()->groupBy('province_code');
+        $districts = $this->allInCache()->groupBy('province_code');
 
         return $districts[$provinceCode] ?? [];
     }

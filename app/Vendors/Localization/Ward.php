@@ -28,10 +28,16 @@ class Ward
         return app(WardEntity::class);
     }
 
+    public function all($data = [])
+    {
+        return $this->model()->query()
+            ->get(array_merge(['code', 'name', 'full_name'], data_get($data, 'columns', [])));
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all()
+    public function allInCache()
     {
         $cacheKey = 'ward:all';
 
@@ -47,7 +53,7 @@ class Ward
 
     public function getByDistrictCode($districtCode)
     {
-        $wards = $this->all()->groupBy('district_code');
+        $wards = $this->allInCache()->groupBy('district_code');
 
         return $wards[$districtCode] ?? [];
     }

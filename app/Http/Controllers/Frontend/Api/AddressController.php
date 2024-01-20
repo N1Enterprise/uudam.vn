@@ -25,7 +25,7 @@ class AddressController extends BaseApiController
 
     public function getProvinces()
     {
-        $provinces = Province::make()->all();
+        $provinces = Province::make()->allInCache();
 
         return response()->json([ 'data' => $provinces ]);
     }

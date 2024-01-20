@@ -42,6 +42,7 @@ class CartItemService extends BaseService
     {
         return $this->cartItemRepository
             ->modelScopes(['pending'])
+            ->with(['inventory'])
             ->scopeQuery(function($q) use ($userId, $data) {
 
                 if ($currencyCode = data_get($data, 'currency_code')) {

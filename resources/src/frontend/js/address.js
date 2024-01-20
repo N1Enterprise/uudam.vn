@@ -21,8 +21,6 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
             const code = $(this).attr('data-address-code');
 
-            console.log({ code });
-
             ADDRESS_FOR_NEW.fetchAddressById(code, (address) => {
                 ADDRESS_FOR_NEW.updateModalTextByAction(true);
                 ADDRESS_FOR_NEW.elements.modal.find('[name="name"]').val(address.name);
@@ -267,7 +265,12 @@ $(document).ready(function() {
                 },
                 success: (response) => {
                     toastr.success(method == 'POST' ? 'Thêm thành công,' : 'Cập nhật thành công.');
-                    window.location.href = redirectUrl;
+
+                    if (redirectUrl) {
+                        return window.location.href = redirectUrl;
+                    }
+
+                    window.location.reload();
                 },
                 error: () => {
                     $self.find('button[type="submit"]').prop('disabled', false);

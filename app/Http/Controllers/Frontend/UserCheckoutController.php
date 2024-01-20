@@ -10,6 +10,7 @@ use App\Services\CartService;
 use App\Services\OrderService;
 use App\Services\PageService;
 use App\Services\PaymentOptionService;
+use App\Services\ShippingProviderService;
 use App\Services\ShippingRateService;
 use App\Vendors\Localization\Country;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ class UserCheckoutController extends AuthenticatedController
     public $carrierService;
     public $orderService;
     public $addressService;
+    public $shippingProviderService;
 
     public function __construct(
         CartService $cartService,
@@ -33,7 +35,8 @@ class UserCheckoutController extends AuthenticatedController
         PageService $pageService,
         CarrierService $carrierService,
         OrderService $orderService,
-        AddressService $addressService
+        AddressService $addressService,
+        ShippingProviderService $shippingProviderService
     ) {
         parent::__construct();
 
@@ -45,6 +48,8 @@ class UserCheckoutController extends AuthenticatedController
         $this->carrierService = $carrierService;
         $this->orderService = $orderService;
         $this->addressService = $addressService;
+        $this->shippingProviderService = $shippingProviderService;
+
     }
 
     public function index(Request $request)
@@ -80,11 +85,13 @@ class UserCheckoutController extends AuthenticatedController
         $paymentOptions = $this->paymentOptionService->searchForGuest(['currency_code' => $user->currency_code]);
 
         $checkoutPages = $this->pageService->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInCheckout']]);
-        $shippingRatesCarriers = $this->carrierService->searchCarrierShippingRatePriceGroupedByCart($cart, []);
+        // $shippingRatesCarriers = $this->carrierService->searchCarrierShippingRatePriceGroupedByCart($cart, []);
 
         $editable = true;
 
         $address = $this->addressService->getDefaultByUserId($user);
+
+        $shippingProviders = $this->shippingProviderService->getAvailabelByProvinceCode(optional($address)->province_code);
 
         return $this->view('frontend.pages.checkouts.index', compact(
             'editable', 
@@ -92,8 +99,9 @@ class UserCheckoutController extends AuthenticatedController
             'cart', 
             'cartItems', 
             'paymentOptions', 
-            'shippingRatesCarriers', 
-            'countries', 
+            // 'shippingRatesCarriers', 
+            'shippingProviders',
+            'countries',
             'checkoutPages',
             'address'
         ));

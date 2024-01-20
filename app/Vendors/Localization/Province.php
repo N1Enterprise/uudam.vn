@@ -3,6 +3,7 @@
 namespace App\Vendors\Localization;
 
 use App\Common\Cache;
+use App\Enum\ActivationStatusEnum;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use App\Models\Province as ProvinceEntity;
 
@@ -28,10 +29,16 @@ class Province
         return app(ProvinceEntity::class);
     }
 
+    public function all($data = [])
+    {
+        return $this->model()->query()
+            ->get(array_merge(['code', 'name', 'full_name'], data_get($data, 'columns', [])));
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all()
+    public function allInCache()
     {
         $cacheKey = 'province:all';
 

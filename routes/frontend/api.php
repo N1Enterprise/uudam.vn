@@ -40,6 +40,7 @@ Route::middleware(['auth:user'])->group(function() {
     // ORDER
     Route::post('user/order/{cartUuid}', [Controllers\UserOrderController::class, 'order'])->name('user.order.store');
     Route::post('user/order/reorder/{orderCode}', [Controllers\UserOrderController::class, 'reorder'])->name('user.order.reorder');
+    Route::get('user/order/providers-shipping-rate', []);
 
     // CART
     Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
@@ -53,5 +54,8 @@ Route::middleware(['auth:user'])->group(function() {
     // ADDRESS
     Route::post('user/localization/address', [Controllers\AddressController::class, 'store'])->name('user.address.store');
     Route::put('user/localization/address/{code}', [Controllers\AddressController::class, 'update'])->name('user.address.update');
-    Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('localization.address.show');
+    Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('user.localization.address.show');
+
+    // Checkout
+    Route::get('user/checkout/{cartUuid}/providers-shipping-rate', [Controllers\UserCheckoutController::class, 'getProvidersShippingRate'])->name('user.checkout.provider-shipping-rate');
 });

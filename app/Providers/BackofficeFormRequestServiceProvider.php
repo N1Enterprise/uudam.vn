@@ -99,6 +99,9 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreShippingRateRequestContract::class => Requests\StoreShippingRateRequest::class,
         Contracts\UpdateShippingRateRequestContract::class => Requests\UpdateShippingRateRequest::class,
 
+        Contracts\StoreShippingProviderRequestContract::class => Requests\StoreShippingProviderRequest::class,
+        Contracts\UpdateShippingProviderRequestContract::class => Requests\UpdateShippingProviderRequest::class,
+
         // Payment
         Contracts\StorePaymentProviderRequestContract::class => Requests\StorePaymentProviderRequest::class,
         Contracts\UpdatePaymentProviderRequestContract::class => Requests\UpdatePaymentProviderRequest::class,

@@ -58,3 +58,7 @@ const LOCALIZATION_ROUTES = {
     api_wards_by_district: boHost + '/fe/api/localization/:district/wards',
     api_address_detail: boHost + '/fe/api/user/localization/address/:code',
 };
+
+const CHECKOUT_ROUTES = {
+    user_checkout_provider_shipping_rate: boHost + '/fe/api/user/checkout/:cartUuid/providers-shipping-rate',
+};
