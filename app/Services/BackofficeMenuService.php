@@ -135,21 +135,26 @@ class BackofficeMenuService extends BaseService
                 'name' => 'Shipping',
                 'icon' => 'fa fa-truck',
                 'subs' => [
+                    // [
+                    //     'name' => 'Carriers',
+                    //     'link' => route('bo.web.carriers.index'),
+                    //     'permissions' => ['carriers.index'],
+                    // ],
                     [
-                        'name' => 'Carriers',
-                        'link' => route('bo.web.carriers.index'),
-                        'permissions' => ['carriers.index'],
+                        'name' => 'Shipping Providers',
+                        'link' => route('bo.web.shipping-providers.index'),
+                        'permissions' => ['shipping-providers.index'],
                     ],
-                    [
-                        'name' => 'Shipping Zones',
-                        'link' => route('bo.web.shipping-zones.index'),
-                        'permissions' => ['shipping-zones.index'],
-                    ],
-                    [
-                        'name' => 'Shipping Rates',
-                        'link' => route('bo.web.shipping-rates.index'),
-                        'permissions' => ['shipping-rates.index'],
-                    ],
+                    // [
+                    //     'name' => 'Shipping Zones',
+                    //     'link' => route('bo.web.shipping-zones.index'),
+                    //     'permissions' => ['shipping-zones.index'],
+                    // ],
+                    // [
+                    //     'name' => 'Shipping Rates',
+                    //     'link' => route('bo.web.shipping-rates.index'),
+                    //     'permissions' => ['shipping-rates.index'],
+                    // ],
                 ],
             ],
             [

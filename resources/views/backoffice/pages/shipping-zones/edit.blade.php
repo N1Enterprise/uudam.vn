@@ -67,9 +67,30 @@
                                                 value="{{ $country->iso2 }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
+
+									<div class="Supported_Countries_Allowed_Holder mb-0 mt-1">
+										<div class="Supported_Countries_Holder_Content">
+										</div>
+									</div>
                                 </div>
-                                <div class="form-group Supported_Countries_Allowed_Holder mb-0">
-                                    <div class="Supported_Countries_Holder_Content">
+                                
+
+								<div class="form-group">
+                                    <label>{{ __('Supported Provinces') }}</label>
+                                    <select data-actions-box="true" name="supported_provinces[]" title="--{{ __('Select Country') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Provinces_Selector" multiple data-selected-text-format="count > 5" multiple>
+                                        @foreach($provinces as $province)
+                                            <option
+                                                {{ in_array($province->code, old("supported_provinces", $shippingZone->supported_provinces ?? [])) ? 'selected' : '' }}
+                                                data-tokens="{{ $province->code }} | {{ $province->full_name }}"
+                                                data-subtext="{{ $province->code }}"
+                                                data-province-code="{{ $province->code }}"
+                                                data-province-name="{{ $province->full_name }}"
+                                                value="{{ $province->code }}">{{ $province->full_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group Supported_Provinces_Allowed_Holder mb-0">
+                                    <div class="Supported_Provinces_Holder_Content">
                                     </div>
                                 </div>
 

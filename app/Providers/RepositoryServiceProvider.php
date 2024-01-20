@@ -58,6 +58,7 @@ class RepositoryServiceProvider extends ServiceProvider
         // Shipping
         Contracts\ShippingZoneRepositoryContract::class => Repositories\ShippingZoneRepository::class,
         Contracts\ShippingRateRepositoryContract::class => Repositories\ShippingRateRepository::class,
+        Contracts\ShippingProviderRepositoryContract::class => Repositories\ShippingProviderRepository::class,
 
         // Payment
         Contracts\PaymentProviderRepositoryContract::class => Repositories\PaymentProviderRepository::class,

@@ -97,4 +97,9 @@ class AddressService extends BaseService
 
         return $addressCode;
     }
+
+    public function show($id)
+    {
+        return $this->addressRepository->findOrFail($id);
+    }
 }

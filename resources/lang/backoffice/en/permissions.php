@@ -189,6 +189,11 @@ return [
     'shipping-rates.update' => 'Update Shipping Rate',
     'shipping-rates.delete' => 'Delete Shipping Rate',
 
+    'shipping-providers' => 'Shipping Providers',
+    'shipping-providers.index' => 'View Shipping Provoders',
+    'shipping-providers.store' => 'Create Shipping Provider',
+    'shipping-providers.update' => 'Update Shipping Provider',
+
     'payments' => 'Payments',
     'payment-providers' => 'Payment Providers',
     'payment-providers.index' => 'View Payment Provider List',

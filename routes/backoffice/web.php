@@ -206,6 +206,13 @@ Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'e
 Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
 Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
 
+Route::get('shipping-providers', [Controllers\ShippingProviderController::class, 'index'])->name('shipping-providers.index')->middleware(['can:shipping-providers.index']);
+Route::get('shipping-providers/create', [Controllers\ShippingProviderController::class, 'create'])->name('shipping-providers.create')->middleware(['can:shipping-providers.store']);
+Route::post('shipping-providers', [Controllers\ShippingProviderController::class, 'store'])->name('shipping-providers.store')->middleware(['can:shipping-providers.store']);
+Route::get('shipping-providers/{id}', [Controllers\ShippingProviderController::class, 'edit'])->name('shipping-providers.edit')->middleware(['can:shipping-providers.update']);
+Route::put('shipping-providers/{id}', [Controllers\ShippingProviderController::class, 'update'])->name('shipping-providers.update')->middleware(['can:shipping-providers.update']);
+
+
 /* ======================== PAYMENT ======================== */
 Route::get('payment-providers', [Controllers\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);
 Route::get('payment-providers/create', [Controllers\PaymentProviderController::class, 'create'])->name('payment-providers.create')->middleware(['can:payment-providers.store']);

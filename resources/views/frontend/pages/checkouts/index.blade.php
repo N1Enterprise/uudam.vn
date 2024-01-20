@@ -29,12 +29,6 @@ Thanh toán | {{ config('app.user_domain') }}
         background: #f9f9f9;
     }
 
-    /* @media screen and (min-width: 990px) {
-        .quick-add-modal__content {
-            width: 40%;
-        }
-    } */
-
     .quick-add-modal__toggle .icon {
         width: 1rem;
     }
@@ -84,6 +78,7 @@ Thanh toán | {{ config('app.user_domain') }}
 
 @section('content_body')
 <div class="content">
+    <input type="hidden" name="checkout_cart_uuid" value="{{ request()->cartUuid }}">
     <div class="wrap">
         <div class="sidebar">
             <div class="sidebar-content">
@@ -205,7 +200,7 @@ Thanh toán | {{ config('app.user_domain') }}
             <div class="main-header">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/cart">Giỏ hàng</a>
+                        <a href="{{ route('fe.web.cart.index') }}">Giỏ hàng</a>
                     </li>
                     <li class="breadcrumb-item breadcrumb-item-current">Thanh toán</li>
                 </ul>
@@ -237,163 +232,13 @@ Thanh toán | {{ config('app.user_domain') }}
                     </p>
                 </div>
                 <div class="step">
-                    <div class="step-sections steps-onepage" step="1">
+                    <div class="step-sections steps-onepage">
                         <div class="section">
-
                             @include('frontend.pages.checkouts.partials.shipment-details')
 
-                            {{-- <div class="section-content">
-                                <div class="fieldset">
-                                    <form autocomplete="off" id="form_update_shipping_method" class="field " accept-charset="UTF-8" method="post">
-                                        <input name="utf8" type="hidden" value="✓">
-                                        <div class="content-box mt0">
-                                            <div class="radio-wrapper content-box-row">
-                                                <label class="radio-label">
-                                                    <div class="radio-input">
-                                                        <input type="radio" id="customer_pick_at_location_false" name="customer_pick_at_location" class="input-radio" value="false" checked="">
-                                                    </div>
-                                                    <span class="radio-label-primary">Giao tận nơi</span>
-                                                </label>
-                                            </div>
-                                            <div id="form_update_location_customer_shipping" class="order-checkout__loading radio-wrapper content-box-row content-box-row-padding content-box-row-secondary " for="customer_pick_at_location_false">
-                                                <input name="utf8" type="hidden" value="✓">
-                                                <div class="order-checkout__loading--box">
-                                                    <div class="order-checkout__loading--circle"></div>
-                                                </div>
-                                                <div class="field field-required  ">
-                                                    <div class="field-input-wrapper">
-                                                        <label class="field-label" for="billing_address_address1">Địa chỉ</label>
-                                                        <input placeholder="Địa chỉ" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="text" id="billing_address_address1" name="billing_address[address1]" value="">
-                                                    </div>
-                                                </div>
-                                                <input name="selected_customer_shipping_country" type="hidden" value="">
-                                                <input name="selected_customer_shipping_province" type="hidden" value="">
-                                                <input name="selected_customer_shipping_district" type="hidden" value="">
-                                                <input name="selected_customer_shipping_ward" type="hidden" value="">
-                                                <div class="field field-show-floating-label field-required field-third ">
-                                                    <div class="field-input-wrapper field-input-wrapper-select">
-                                                        <label class="field-label" for="customer_shipping_province"> Tỉnh / thành </label>
-                                                        <select class="field-input" id="customer_shipping_province" name="customer_shipping_province">
-                                                            <option data-code="null" value="null" selected=""> Chọn tỉnh / thành </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="field field-show-floating-label field-required field-third ">
-                                                    <div class="field-input-wrapper field-input-wrapper-select">
-                                                        <label class="field-label" for="customer_shipping_district">Quận / huyện</label>
-                                                        <select class="field-input" id="customer_shipping_district" name="customer_shipping_district">
-                                                            <option data-code="null" value="null" selected="">Chọn quận / huyện</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="field field-show-floating-label field-required  field-third  ">
-                                                    <div class="field-input-wrapper field-input-wrapper-select">
-                                                        <label class="field-label" for="customer_shipping_ward">Phường / xã</label>
-                                                        <select class="field-input" id="customer_shipping_ward" name="customer_shipping_ward">
-                                                            <option data-code="null" value="null" selected="">Chọn phường / xã</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div id="div_location_country_not_vietnam" class="section-customer-information " style="display: none;">
-                                                    <div class="field field-two-thirds">
-                                                        <div class="field-input-wrapper">
-                                                            <label class="field-label" for="billing_address_city">Thành phố</label>
-                                                            <input placeholder="Thành phố" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="text" id="billing_address_city" name="billing_address[city]" value="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field field-third">
-                                                        <div class="field-input-wrapper">
-                                                            <label class="field-label" for="billing_address_zip">Mã bưu chính</label>
-                                                            <input placeholder="Mã bưu chính" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="text" id="billing_address_zip" name="billing_address[zip]" value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="radio-wrapper content-box-row">
-                                                <label class="radio-label">
-                                                    <div class="radio-input">
-                                                        <input type="radio" id="customer_pick_at_location_true" name="customer_pick_at_location" class="input-radio" value="true">
-                                                    </div>
-                                                    <span class="radio-label-primary">Nhận tại cửa hàng</span>
-                                                </label>
-                                            </div>
-                                            <div id="form_update_location_customer_pick_at_location" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary hidden" for="customer_pick_at_location_true">
-                                                <input name="utf8" type="hidden" value="✓">
-                                                <input name="inventory_location_country_id" type="hidden" value="241">
-                                                <div class="field field-third ">
-                                                    <div class="field-input-wrapper field-input-wrapper-select">
-                                                        <label class="field-label" for="inventory_location_province">Tỉnh / thành</label>
-                                                        <select class="field-input" id="inventory_location_province" name="inventory_location_province">
-                                                            <option data-code="null" value="null" selected="">Chọn tỉnh / thành</option>
-                                                            <option data-code="DA" value="32">Đà Nẵng</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div> --}}
-
                             <div id="change_pick_location_or_shipping">
-                                <div class="inventory_location"></div>
-                                <div id="section-shipping-rate">
-                                    <div class="order-checkout__loading--box">
-                                        <div class="order-checkout__loading--circle"></div>
-                                    </div>
-                                    <div class="section-header">
-                                        <h2 class="section-title">Phương thức vận chuyển</h2>
-                                    </div>
-                                    <div class="section-content">
-                                        <div class="content-box  blank-slate">
-                                            <i class="blank-slate-icon icon icon-closed-box "></i>
-                                            <p>Vui lòng chọn tỉnh / thành để có danh sách phương thức vận chuyển.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="section-payment-method" class="section">
-                                    <div class="order-checkout__loading--box">
-                                        <div class="order-checkout__loading--circle"></div>
-                                    </div>
-                                    <div class="section-header">
-                                        <h2 class="section-title">Phương thức thanh toán</h2>
-                                    </div>
-                                    <div class="section-content">
-                                        <div class="content-box">
-                                            <div class="radio-wrapper content-box-row">
-                                                <label class="radio-label" for="payment_method_id_1002148193">
-                                                    <div class="radio-input payment-method-checkbox">
-                                                        <input type-id="1" id="payment_method_id_1002148193" class="input-radio" name="payment_method_id" type="radio" value="1002148193" checked="">
-                                                    </div>
-                                                    <div class="radio-content-input">
-                                                        <img class="main-img" src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=6">
-                                                        <div>
-                                                            <span class="radio-label-primary">Thanh toán khi giao hàng (COD)</span>
-                                                            <span class="quick-tagline hidden"></span>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div class="radio-wrapper content-box-row">
-                                                <label class="radio-label" for="payment_method_id_1002574592">
-                                                    <div class="radio-input payment-method-checkbox">
-                                                        <input type-id="2" id="payment_method_id_1002574592" class="input-radio" name="payment_method_id" type="radio" value="1002574592">
-                                                    </div>
-                                                    <div class="radio-content-input">
-                                                        <img class="main-img" src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=6">
-                                                        <div>
-                                                            <span class="radio-label-primary">Chuyển khoản qua ngân hàng</span>
-                                                            <span class="quick-tagline hidden"></span>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div class="radio-wrapper content-box-row content-box-row-secondary hidden" for="payment_method_id_1002574592">
-                                                <div class="blank-slate"> Thông tin tài khoản ngân hàng: Ngân hàng: ACB CHI NHÁNH ĐÀ NẴNG Tên tài khoản: CÔNG TY CP LERUSTIQUE VIỆT NAM Số tài khoản: 2707918888 Nội dung: [số điện thoại] – [tên khách hàng] Sau khi hoàn tất đơn hàng, nhân viên Le Rustique sẽ liên hệ xác nhận đơn cho bạn nhé. Le Rustique cảm ơn bạn rất nhiều. </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('frontend.pages.checkouts.partials.shipping-methods')
+                                @include('frontend.pages.checkouts.partials.payment-methods')
                             </div>
                         </div>
                     </div>

@@ -247,20 +247,11 @@ border-color: #cccccc;
 .radio-wrapper .radio-input .input-radio {
 border-radius: 50%;
 }
-      .radio-wrapper .radio-content-input {
-display: flex;
-                      align-items: center;
-}
+      .radio-wrapper .radio-content-input {display: flex;align-items: center;flex: 1;}
       .radio-content-input .content-wrapper {
           display: grid
       }
-      .radio-wrapper .radio-content-input .main-img {
-margin-right: 10px;
-                  display: flex;
-      align-self: center;
-                  width: 40px;
-                  height: 40px;
-}
+      .radio-wrapper .radio-content-input .main-img {margin-right: 10px;display: flex;align-self: center;width: 35px;height: 35px;border: 1px solid #f0f0f0;border-radius: 4px;padding: 3px;}
 .radio-wrapper .radio-content-input-no-icon {
 margin: 0.8em 0.8em 0.8em 0;
 }
@@ -2324,4 +2315,6 @@ max-block-size: 100%;
   outline: #0000!important;
   border: #000!important;
 }
+
+
 
