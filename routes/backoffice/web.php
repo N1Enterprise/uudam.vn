@@ -80,19 +80,19 @@ Route::get('inventories/{id}', [Controllers\InventoryController::class, 'edit'])
 Route::put('inventories/{id}', [Controllers\InventoryController::class, 'update'])->name('inventories.update')->middleware(['can:inventories.update']);
 Route::delete('inventories/{id}', [Controllers\InventoryController::class, 'destroy'])->name('inventories.delete')->middleware(['can:inventories.delete']);
 
-Route::get('home-page-display-orders', [Controllers\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
-Route::get('home-page-display-orders/create', [Controllers\HomePageDisplayOrderController::class, 'create'])->name('home-page-display-orders.create')->middleware(['can:home-page-display-orders.store']);
-Route::post('home-page-display-orders', [Controllers\HomePageDisplayOrderController::class, 'store'])->name('home-page-display-orders.store')->middleware(['can:home-page-display-orders.store']);
-Route::get('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'edit'])->name('home-page-display-orders.edit')->middleware(['can:home-page-display-orders.update']);
-Route::put('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'update'])->name('home-page-display-orders.update')->middleware(['can:home-page-display-orders.update']);
-Route::delete('home-page-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'destroy'])->name('home-page-display-orders.delete')->middleware(['can:home-page-display-orders.delete']);
+Route::get('homepage-display-orders', [Controllers\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+Route::get('homepage-display-orders/create', [Controllers\HomePageDisplayOrderController::class, 'create'])->name('home-page-display-orders.create')->middleware(['can:home-page-display-orders.store']);
+Route::post('homepage-display-orders', [Controllers\HomePageDisplayOrderController::class, 'store'])->name('home-page-display-orders.store')->middleware(['can:home-page-display-orders.store']);
+Route::get('homepage-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'edit'])->name('home-page-display-orders.edit')->middleware(['can:home-page-display-orders.update']);
+Route::put('homepage-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'update'])->name('home-page-display-orders.update')->middleware(['can:home-page-display-orders.update']);
+Route::delete('homepage-display-orders/{id}', [Controllers\HomePageDisplayOrderController::class, 'destroy'])->name('home-page-display-orders.delete')->middleware(['can:home-page-display-orders.delete']);
 
-Route::get('home-page-display-items', [Controllers\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
-Route::get('home-page-display-items/create', [Controllers\HomePageDisplayItemController::class, 'create'])->name('home-page-display-items.create')->middleware(['can:home-page-display-items.store']);
-Route::post('home-page-display-items', [Controllers\HomePageDisplayItemController::class, 'store'])->name('home-page-display-items.store')->middleware(['can:home-page-display-items.store']);
-Route::get('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'edit'])->name('home-page-display-items.edit')->middleware(['can:home-page-display-items.update']);
-Route::put('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'update'])->name('home-page-display-items.update')->middleware(['can:home-page-display-items.update']);
-Route::delete('home-page-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'destroy'])->name('home-page-display-items.delete')->middleware(['can:home-page-display-items.delete']);
+Route::get('homepage-display-items', [Controllers\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
+Route::get('homepage-display-items/create', [Controllers\HomePageDisplayItemController::class, 'create'])->name('home-page-display-items.create')->middleware(['can:home-page-display-items.store']);
+Route::post('homepage-display-items', [Controllers\HomePageDisplayItemController::class, 'store'])->name('home-page-display-items.store')->middleware(['can:home-page-display-items.store']);
+Route::get('homepage-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'edit'])->name('home-page-display-items.edit')->middleware(['can:home-page-display-items.update']);
+Route::put('homepage-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'update'])->name('home-page-display-items.update')->middleware(['can:home-page-display-items.update']);
+Route::delete('homepage-display-items/{id}', [Controllers\HomePageDisplayItemController::class, 'destroy'])->name('home-page-display-items.delete')->middleware(['can:home-page-display-items.delete']);
 
 Route::get('banners', [Controllers\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
 Route::get('banners/create', [Controllers\BannerController::class, 'create'])->name('banners.create')->middleware(['can:banners.store']);
@@ -187,24 +187,24 @@ Route::get('countries', [Controllers\CountryController::class, 'index'])->name('
 Route::get('currencies', [Controllers\CurrencyController::class, 'index'])->name('currencies.index')->middleware(['can:currencies.index']);
 
 /* ======================== SHIPPINGS ======================== */
-Route::get('carriers', [Controllers\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
-Route::get('carriers/create', [Controllers\CarrierController::class, 'create'])->name('carriers.create')->middleware(['can:carriers.store']);
-Route::post('carriers', [Controllers\CarrierController::class, 'store'])->name('carriers.store')->middleware(['can:carriers.store']);
-Route::get('carriers/{id}', [Controllers\CarrierController::class, 'edit'])->name('carriers.edit')->middleware(['can:carriers.update']);
-Route::put('carriers/{id}', [Controllers\CarrierController::class, 'update'])->name('carriers.update')->middleware(['can:carriers.update']);
+// Route::get('carriers', [Controllers\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
+// Route::get('carriers/create', [Controllers\CarrierController::class, 'create'])->name('carriers.create')->middleware(['can:carriers.store']);
+// Route::post('carriers', [Controllers\CarrierController::class, 'store'])->name('carriers.store')->middleware(['can:carriers.store']);
+// Route::get('carriers/{id}', [Controllers\CarrierController::class, 'edit'])->name('carriers.edit')->middleware(['can:carriers.update']);
+// Route::put('carriers/{id}', [Controllers\CarrierController::class, 'update'])->name('carriers.update')->middleware(['can:carriers.update']);
 
-Route::get('shipping-zones', [Controllers\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
-Route::get('shipping-zones/create', [Controllers\ShippingZoneController::class, 'create'])->name('shipping-zones.create')->middleware(['can:shipping-zones.store']);
-Route::post('shipping-zones', [Controllers\ShippingZoneController::class, 'store'])->name('shipping-zones.store')->middleware(['can:shipping-zones.store']);
-Route::get('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'edit'])->name('shipping-zones.edit')->middleware(['can:shipping-zones.update']);
-Route::put('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'update'])->name('shipping-zones.update')->middleware(['can:shipping-zones.update']);
+// Route::get('shipping-zones', [Controllers\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
+// Route::get('shipping-zones/create', [Controllers\ShippingZoneController::class, 'create'])->name('shipping-zones.create')->middleware(['can:shipping-zones.store']);
+// Route::post('shipping-zones', [Controllers\ShippingZoneController::class, 'store'])->name('shipping-zones.store')->middleware(['can:shipping-zones.store']);
+// Route::get('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'edit'])->name('shipping-zones.edit')->middleware(['can:shipping-zones.update']);
+// Route::put('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'update'])->name('shipping-zones.update')->middleware(['can:shipping-zones.update']);
 
-Route::get('shipping-rates', [Controllers\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
-Route::get('shipping-rates/create', [Controllers\ShippingRateController::class, 'create'])->name('shipping-rates.create')->middleware(['can:shipping-rates.store']);
-Route::post('shipping-rates', [Controllers\ShippingRateController::class, 'store'])->name('shipping-rates.store')->middleware(['can:shipping-rates.store']);
-Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'edit'])->name('shipping-rates.edit')->middleware(['can:shipping-rates.update']);
-Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
-Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
+// Route::get('shipping-rates', [Controllers\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
+// Route::get('shipping-rates/create', [Controllers\ShippingRateController::class, 'create'])->name('shipping-rates.create')->middleware(['can:shipping-rates.store']);
+// Route::post('shipping-rates', [Controllers\ShippingRateController::class, 'store'])->name('shipping-rates.store')->middleware(['can:shipping-rates.store']);
+// Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'edit'])->name('shipping-rates.edit')->middleware(['can:shipping-rates.update']);
+// Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
+// Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
 
 Route::get('shipping-providers', [Controllers\ShippingProviderController::class, 'index'])->name('shipping-providers.index')->middleware(['can:shipping-providers.index']);
 Route::get('shipping-providers/create', [Controllers\ShippingProviderController::class, 'create'])->name('shipping-providers.create')->middleware(['can:shipping-providers.store']);
@@ -212,6 +212,11 @@ Route::post('shipping-providers', [Controllers\ShippingProviderController::class
 Route::get('shipping-providers/{id}', [Controllers\ShippingProviderController::class, 'edit'])->name('shipping-providers.edit')->middleware(['can:shipping-providers.update']);
 Route::put('shipping-providers/{id}', [Controllers\ShippingProviderController::class, 'update'])->name('shipping-providers.update')->middleware(['can:shipping-providers.update']);
 
+Route::get('shipping-options', [Controllers\ShippingOptionController::class, 'index'])->name('shipping-options.index')->middleware(['can:shipping-options.index']);
+Route::get('shipping-options/create', [Controllers\ShippingOptionController::class, 'create'])->name('shipping-options.create')->middleware(['can:shipping-options.store']);
+Route::post('shipping-options', [Controllers\ShippingOptionController::class, 'store'])->name('shipping-options.store')->middleware(['can:shipping-options.store']);
+Route::get('shipping-options/{id}', [Controllers\ShippingOptionController::class, 'edit'])->name('shipping-options.edit')->middleware(['can:shipping-options.update']);
+Route::put('shipping-options/{id}', [Controllers\ShippingOptionController::class, 'update'])->name('shipping-options.update')->middleware(['can:shipping-options.update']);
 
 /* ======================== PAYMENT ======================== */
 Route::get('payment-providers', [Controllers\PaymentProviderController::class, 'index'])->name('payment-providers.index')->middleware(['can:payment-providers.index']);

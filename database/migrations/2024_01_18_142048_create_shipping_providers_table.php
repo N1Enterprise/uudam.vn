@@ -18,11 +18,8 @@ class CreateShippingProvidersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
-            $table->text('logo')->nullable();
             $table->json('params')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->json('supported_countries')->nullable();
-            $table->json('supported_provinces')->nullable();
             $table->timestamps();
         });
     }

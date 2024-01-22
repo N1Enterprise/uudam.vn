@@ -145,6 +145,11 @@ class BackofficeMenuService extends BaseService
                         'link' => route('bo.web.shipping-providers.index'),
                         'permissions' => ['shipping-providers.index'],
                     ],
+                    [
+                        'name' => 'Shipping Options',
+                        'link' => route('bo.web.shipping-options.index'),
+                        'permissions' => ['shipping-options.index'],
+                    ],
                     // [
                     //     'name' => 'Shipping Zones',
                     //     'link' => route('bo.web.shipping-zones.index'),

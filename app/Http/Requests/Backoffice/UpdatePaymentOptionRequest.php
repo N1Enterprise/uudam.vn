@@ -50,7 +50,7 @@ class UpdatePaymentOptionRequest extends BaseFormRequest implements UpdatePaymen
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'display_on_frontend' => boolean($this->display_on_frontend),
-            'params' => !empty($this->params) ? json_decode($this->params) : null,
+            'params' => !empty($this->params) ? json_decode($this->params, true) : null,
             'logo' => empty(array_filter($this->logo)) ? null : array_filter($this->logo),
         ]);
     }

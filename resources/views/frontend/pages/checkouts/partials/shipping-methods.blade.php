@@ -6,24 +6,28 @@
         <h2 class="section-title">Phương thức vận chuyển</h2>
     </div>
     @if (has_data($address))
-        @if (has_data($shippingProviders))
+        @if (has_data($shippingOptions))
         <div class="section-content">
             <div class="content-box">
                 <div class="content-box-row">
-                    @foreach ($shippingProviders as $provider)
+                    @foreach ($shippingOptions as $option)
                     <div class="radio-wrapper content-box-row">
-                        <label class="radio-label" for="shipping_provider_{{ data_get($provider, 'id') }}">
+                        <label class="radio-label" for="shipping_option_{{ data_get($option, 'id') }}">
                             <div class="radio-input">
-                                <input id="shipping_provider_{{ data_get($provider, 'id') }}" class="input-radio" name="shipping_provider" type="radio" value="{{ data_get($provider, 'id') }}" {{ $loop->index == 0 ? 'checked' : '' }}>
+                                <input id="shipping_option_{{ data_get($option, 'id') }}" class="input-radio" name="shipping_option_id" type="radio" value="{{ data_get($option, 'id') }}" {{ $loop->index == 0 ? 'checked' : '' }}>
                             </div>
                             <div class="radio-content-input">
-                                <img class="main-img" src="{{ data_get($provider, 'logo') }}" alt="{{ data_get($provider, 'name') }}">
-                                <span class="radio-label-primary">{{ data_get($provider, 'name') }}</span>
-                                <span class="quick-tagline hidden"></span>
-                                <span class="radio-accessory content-box-emphasis" shipping-rate-value-by-provider="{{ data_get($provider, 'id') }}">...</span>
+                                <img class="main-img" src="{{ data_get($option, 'logo') }}" alt="{{ data_get($option, 'name') }}">
+                                <span class="radio-label-primary">{{ data_get($option, 'name') }}</span>
+                                <span class="radio-accessory content-box-emphasis" shipping-rate-value-by-option="{{ data_get($option, 'id') }}">...</span>
                             </div>
                         </label>
                     </div>
+                    @if (data_get($option, 'expanded_content'))
+                    <div id="expanded_content_{{ data_get($option, 'id') }}" data-expanded-content-shipping-option-id="{{ data_get($option, 'id') }}" style="display: none;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
+                        <p>{{ data_get($option, 'expanded_content') }}</p>
+                    </div>
+                    @endif
                     @endforeach
                 </div>
             </div>

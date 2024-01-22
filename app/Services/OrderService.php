@@ -16,7 +16,7 @@ use App\Models\BaseModel;
 use App\Repositories\Contracts\OrderRepositoryContract;
 use App\Services\BaseService;
 use App\Models\PaymentOption;
-use App\Models\ShippingRate;
+use App\Models\ShippingOption;
 use App\Models\User;
 use App\Models\Cart;
 use App\Vendors\Localization\Money;
@@ -28,20 +28,20 @@ class OrderService extends BaseService
 {
     public $orderRepository;
     public $paymentOptionService;
-    public $shippingRateService;
+    public $shippingOptionService;
     public $cartService;
     public $userService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
         PaymentOptionService $paymentOptionService,
-        ShippingRateService $shippingRateService,
+        ShippingOptionService $shippingOptionService,
         CartService $cartService,
         UserService $userService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
-        $this->shippingRateService = $shippingRateService;
+        $this->shippingOptionService = $shippingOptionService;
         $this->cartService = $cartService;
         $this->userService = $userService;
     }
@@ -147,7 +147,7 @@ class OrderService extends BaseService
             ->findOrFail($id);
     }
 
-    public function createFromCartByUser($user, $cart, $paymentOption, $shippingRate, $createdBy, $meta = [])
+    public function createFromCartByUser($user, $cart, $paymentOption, $shippingOption, $createdBy, $data = [])
     {
         /** @var Cart */
         $cart = $this->cartService->show($cart);
@@ -155,8 +155,8 @@ class OrderService extends BaseService
         /** @var User */
         $user = $this->userService->show($user);
 
-        /** @var ShippingRate */
-        $shippingRate = $this->shippingRateService->show($shippingRate);
+        /** @var ShippingOption */
+        $shippingOption = $this->shippingOptionService->show($shippingOption);
 
         /** @var PaymentOption */
         $paymentOption = $this->paymentOptionService->show($paymentOption);
@@ -171,12 +171,13 @@ class OrderService extends BaseService
             throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_USER);
         }
 
-        $grandTotal = Money::make($cart->total_price, $cart->currency_code)->plus($shippingRate->rate);
+        $grandTotal = Money::make($cart->total_price, $cart->currency_code);
 
-        $meta = array_merge($meta, [
-            'payment_option_id' => $paymentOption->getKey(),
-            'shipping_rate_id'  => $shippingRate->getKey()
-        ]);
+        $meta = [
+            'footprint' => data_get($data, 'footprint', []),
+        ];
+
+        dd($meta);
 
         $data = array_merge(
             [
@@ -191,6 +192,8 @@ class OrderService extends BaseService
                 'payment_status' => PaymentStatusEnum::PENDING,
                 'order_status' => OrderStatusEnum::WAITING_FOR_PAYMENT,
                 'is_sent_invoice_to_user' => 0,
+                'payment_option_id'  => $paymentOption->getKey(),
+                'shipping_option_id' => $shippingOption->getKey()
             ],
             BaseModel::getMorphProperty('created_by', $createdBy),
             BaseModel::getMorphProperty('updated_by', $createdBy),

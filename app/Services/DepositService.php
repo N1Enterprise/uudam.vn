@@ -12,21 +12,65 @@ use App\Exceptions\ExceptionCode;
 use App\Models\BaseModel;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
+use App\Models\PaymentOption;
+use App\Models\User;
+use App\Payment\PaymentIntegrationService;
 
 class DepositService extends BaseService
 {
     public $depositTransactionService;
     public $paymentOptionService;
     public $userWalletService;
+    public $userService;
+    public $paymentIntegrationService;
 
     public function __construct(
         DepositTransactionService $depositTransactionService,
         PaymentOptionService $paymentOptionService,
-        UserWalletService $userWalletService
+        UserWalletService $userWalletService,
+        UserService $userService,
+        PaymentIntegrationService $paymentIntegrationService
     ) {
         $this->depositTransactionService = $depositTransactionService;
         $this->paymentOptionService = $paymentOptionService;
         $this->userWalletService = $userWalletService;
+        $this->userService = $userService;
+        $this->paymentIntegrationService = $paymentIntegrationService;
+    }
+
+    public function deposit($userId, $amount, $paymentOptionId, $createdBy, $data = [])
+    {
+        /** @var User */
+        $user = $this->userService->show($userId);
+
+        /** @var PaymentOption */
+        $paymentOption = $this->paymentOptionService->show($paymentOptionId);
+
+        if ($paymentOption->currency_code != $user->currency_code) {
+            throw new BusinessLogicException('[Deposit] Invalid User.', ExceptionCode::INVALID_USER);
+        }
+
+        $paymentIntegrationService = null;
+
+        if ($paymentOption->isThirdParty()) {
+            $paymentIntegrationService = $this->paymentIntegrationService->resolveServiceClassByPaymentOption($paymentOption);
+        }
+
+        $depositTransaction = DB::transaction(function() use ($user, $amount, $paymentOption, $createdBy, $data, $paymentIntegrationService) {
+            $currencyCode = data_get($data, 'currency_code');
+            $uniqueKey = data_get($data, 'unique_key');
+            $log = data_get($data, 'log');
+            $referenceId = data_get($data, 'reference_id');
+
+            $meta = [
+                'footprint' => data_get($data, 'footprint', []),
+                'unique_key' => $uniqueKey,
+                'log' => $log,
+                'reference_id' => $referenceId,
+            ];
+
+            dd($meta);
+        });
     }
 
     public function decline($transactionId, $data = [])

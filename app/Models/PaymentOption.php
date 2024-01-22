@@ -28,6 +28,8 @@ class PaymentOption extends BaseModel
         'payment_provider_id',
         'params',
         'display_on_frontend',
+        'description',
+        'order'
     ];
 
     protected $casts = [

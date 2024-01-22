@@ -190,9 +190,14 @@ return [
     'shipping-rates.delete' => 'Delete Shipping Rate',
 
     'shipping-providers' => 'Shipping Providers',
-    'shipping-providers.index' => 'View Shipping Provoders',
+    'shipping-providers.index' => 'View Shipping Providers',
     'shipping-providers.store' => 'Create Shipping Provider',
     'shipping-providers.update' => 'Update Shipping Provider',
+
+    'shipping-options' => 'Shipping Options',
+    'shipping-options.index' => 'View Shipping Provoders',
+    'shipping-options.store' => 'Create Shipping Option',
+    'shipping-options.update' => 'Update Shipping Option',
 
     'payments' => 'Payments',
     'payment-providers' => 'Payment Providers',

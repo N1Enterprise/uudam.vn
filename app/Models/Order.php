@@ -31,6 +31,7 @@ class Order extends BaseModel
         'postal_code',
         'shipping_rate_id',
         'payment_option_id',
+        'shipping_option_id',
         'total_item',
         'total_quantity',
         'taxrate',

@@ -10,7 +10,7 @@ use App\Services\CartService;
 use App\Services\OrderService;
 use App\Services\PageService;
 use App\Services\PaymentOptionService;
-use App\Services\ShippingProviderService;
+use App\Services\ShippingOptionService;
 use App\Services\ShippingRateService;
 use App\Vendors\Localization\Country;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class UserCheckoutController extends AuthenticatedController
     public $carrierService;
     public $orderService;
     public $addressService;
-    public $shippingProviderService;
+    public $shippingOptionService;
 
     public function __construct(
         CartService $cartService,
@@ -36,7 +36,7 @@ class UserCheckoutController extends AuthenticatedController
         CarrierService $carrierService,
         OrderService $orderService,
         AddressService $addressService,
-        ShippingProviderService $shippingProviderService
+        ShippingOptionService $shippingOptionService
     ) {
         parent::__construct();
 
@@ -48,7 +48,7 @@ class UserCheckoutController extends AuthenticatedController
         $this->carrierService = $carrierService;
         $this->orderService = $orderService;
         $this->addressService = $addressService;
-        $this->shippingProviderService = $shippingProviderService;
+        $this->shippingOptionService = $shippingOptionService;
 
     }
 
@@ -91,7 +91,7 @@ class UserCheckoutController extends AuthenticatedController
 
         $address = $this->addressService->getDefaultByUserId($user);
 
-        $shippingProviders = $this->shippingProviderService->getAvailabelByProvinceCode(optional($address)->province_code);
+        $shippingOptions = $this->shippingOptionService->allAvailableByProvinceCodeForUser(optional($address)->province_code);
 
         return $this->view('frontend.pages.checkouts.index', compact(
             'editable', 
@@ -100,7 +100,7 @@ class UserCheckoutController extends AuthenticatedController
             'cartItems', 
             'paymentOptions', 
             // 'shippingRatesCarriers', 
-            'shippingProviders',
+            'shippingOptions',
             'countries',
             'checkoutPages',
             'address'

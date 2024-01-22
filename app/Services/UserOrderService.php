@@ -16,7 +16,9 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\DepositTransaction;
+use App\Payment\PaymentIntegrationService;
 use Illuminate\Support\Arr;
+use App\Models\ShippingOption;
 
 class UserOrderService extends BaseService
 {
@@ -28,6 +30,9 @@ class UserOrderService extends BaseService
     public $orderService;
     public $depositTransactionService;
     public $orderItemService;
+    public $paymentIntegrationService;
+    public $shippingOptionService;
+    public $depositService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
@@ -37,7 +42,10 @@ class UserOrderService extends BaseService
         UserService $userService,
         OrderService $orderService,
         OrderItemService $orderItemService,
-        DepositTransactionService $depositTransactionService
+        DepositTransactionService $depositTransactionService,
+        PaymentIntegrationService $paymentIntegrationService,
+        ShippingOptionService $shippingOptionService,
+        DepositService $depositService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
@@ -47,38 +55,37 @@ class UserOrderService extends BaseService
         $this->orderService = $orderService;
         $this->depositTransactionService = $depositTransactionService;
         $this->orderItemService = $orderItemService;
+        $this->paymentIntegrationService = $paymentIntegrationService;
+        $this->shippingOptionService = $shippingOptionService;
+        $this->depositService = $depositService;
     }
 
-    public function order($userId, $cartUuid, $paymentOptionId, $shippingRateId, $createdBy, $data = [])
+    public function order($userId, $cartUuid, $paymentOptionId, $shippingOptionId, $createdBy, $data = [])
     {
         /** @var PaymentOption */
         $paymentOption = $this->paymentOptionService->show($paymentOptionId);
-        /** @var ShippingRate */
-        $shippingRate = $this->shippingRateService->show($shippingRateId);
+
+        /** @var ShippingOption */
+        $shippingOption = $this->shippingOptionService->show($shippingOptionId);
+
         /** @var Cart */
         $cart = $this->cartService->findByUser($userId, ['uuid' => $cartUuid]);
+        dd($cartUuid);
+
         /** @var User */
         $user = $this->userService->show($userId);
 
         if (empty($cart)) {
-            throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_CART);
-        }
-
-        if ($user->currency_code != $paymentOption->currency_code) {
-            throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_USER);
-        }
-
-        if ($cart->order_id) {
             throw new BusinessLogicException('[Payment] Invalid Cart.', ExceptionCode::INVALID_CART);
         }
 
-        if ($paymentOption->isThirdParty()) {
-
+        if ($cart->order_id) {
+            throw new BusinessLogicException('[Payment] Invalid Order.', ExceptionCode::INVALID_CART);
         }
 
-        return DB::transaction(function() use ($user, $paymentOption, $shippingRate, $cart, $data, $createdBy) {
+        return DB::transaction(function() use ($user, $paymentOption, $shippingOption, $cart, $data, $createdBy) {
             /** @var Order */
-            $order = $this->orderService->createFromCartByUser($user, $cart, $paymentOption, $shippingRate, $createdBy, $data);
+            $order = $this->orderService->createFromCartByUser($user, $cart, $paymentOption, $shippingOption, $createdBy, $data);
 
             $this->orderItemService->createListFormCartByUser($user, $cart, $order, $data);
 
@@ -88,34 +95,44 @@ class UserOrderService extends BaseService
                 'bank_slip_document' => data_get($data, 'bank_slip_document'),
             ] : null;
 
-            /** @var DepositTransaction */
-            $depositTransaction = $this->depositTransactionService->createByUser(
+            $deposit = $this->depositService->deposit(
                 $user,
                 $order->grand_total,
-                $order->currency_code,
                 $paymentOption,
-                $order,
-                $createdBy,
-                $bankTransferInfo,
-                [],
+                $user,
+                $data
             );
 
-            $depositTransaction = $depositTransaction->fresh();
+            // /** @var DepositTransaction */
+            // $depositTransaction = $this->depositTransactionService->createByUser(
+            //     $user,
+            //     $order->grand_total,
+            //     $order->currency_code,
+            //     $paymentOption,
+            //     $order,
+            //     $createdBy,
+            //     $bankTransferInfo,
+            //     [],
+            // );
 
-            $order->deposit_transaction_id = $depositTransaction->getKey();
+            // dd($depositTransaction);
 
-            if ($paymentOption->isCashOnDelivery()) {
-                $order->order_status = OrderStatusEnum::PROCESSING;
-                $order->save();
-            }
+            // $depositTransaction = $depositTransaction->fresh();
 
-            $order = $order->fresh();
+            // $order->deposit_transaction_id = $depositTransaction->getKey();
 
-            $this->cartService->purchased($cart, $order);
+            // if ($paymentOption->isCashOnDelivery()) {
+            //     $order->order_status = OrderStatusEnum::PROCESSING;
+            //     $order->save();
+            // }
 
-            OrderCreated::dispatch($order);
+            // $order = $order->fresh();
 
-            return $order;
+            // $this->cartService->purchased($cart, $order);
+
+            // OrderCreated::dispatch($order);
+
+            // return $order;
         });
     }
 

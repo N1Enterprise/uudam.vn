@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\Api;
 
+use App\Common\RequestHelper;
 use App\Contracts\Requests\Frontend\UserOrderRequestContract;
 use App\Contracts\Responses\Frontend\UserOrderResponseContract;
 use App\Services\UserOrderService;
@@ -20,14 +21,16 @@ class UserOrderController extends BaseApiController
 
     public function order(UserOrderRequestContract $request, $cartUuid)
     {
-        $user = $this->user();
+        $dataValidated = $request->validated();
+        $dataValidated['footprint'] = RequestHelper::getDataFromRequest($request, config('security.footprint_fields'));
+
         $order = $this->userOrderService->order(
-            $user->getKey(),
+            $this->user(),
             $cartUuid,
             $request->payment_option_id,
-            $request->shipping_rate_id,
-            $user,
-            $request->validated()
+            $request->shipping_option_id,
+            $this->user(),
+            $dataValidated
         );
 
         return $this->response(UserOrderResponseContract::class, $order);

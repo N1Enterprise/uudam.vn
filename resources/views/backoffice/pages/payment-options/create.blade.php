@@ -22,18 +22,6 @@
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
-@section('style')
-<style>
-.upload_image_custom_append_icon {
-    top: 50%;
-    right: 0;
-    transform: translate(-6%, -50%);
-    color: #4346ce!important;
-    border: 1px solid #4346ce!important;
-}
-</style>
-@endsection
-
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 	<div class="row">

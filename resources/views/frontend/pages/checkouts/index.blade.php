@@ -73,6 +73,10 @@ Thanh toán | {{ config('app.user_domain') }}
         display: block;
         margin-top: 5px;
     }
+
+    .prevent {
+        opacity: .5;
+    }
 </style>
 @endsection
 
@@ -243,7 +247,7 @@ Thanh toán | {{ config('app.user_domain') }}
                         </div>
                     </div>
                     <div class="step-footer" id="step-footer-checkout">
-                        <form id="form_next_step" accept-charset="UTF-8" method="post" style="width: 100%;">
+                        <form id="form-order" action="{{ empty($order->id) ? route('fe.api.user.order.store', request()->cartUuid) : route('fe.api.user.order.reorder', $order->order_code) }}" data-form="order" accept-charset="UTF-8" method="post" style="width: 100%;">
                             <input name="utf8" type="hidden" value="✓">
                             <button type="submit" class="step-footer-continue-btn btn" style="width: 100%;">
                                 <span class="btn-content">Đặt hàng</span>
