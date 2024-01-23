@@ -7,6 +7,7 @@ use App\Enum\DepositStatusEnum;
 use App\Enum\TransactionCacheKeyEnum;
 use App\Events\Deposit\DepositApproved;
 use App\Events\Deposit\DepositDeclined;
+use App\Events\Deposit\Deposited;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
 use App\Models\BaseModel;
@@ -61,12 +62,14 @@ class DepositService extends BaseService
             $paymentIntegrationService = $this->paymentIntegrationService->resolveServiceClassByPaymentOption($paymentOption);
         }
 
-        $depositTransaction = DB::transaction(function() use ($user, $amount, $paymentOption, $createdBy, $data, $paymentIntegrationService) {
+        $order = $this->orderService->find(data_get($data, 'order_id'));
+
+        $depositTransaction = DB::transaction(function() use ($user, $order, $amount, $paymentOption, $createdBy, $data, $paymentIntegrationService) {
             $currencyCode = data_get($data, 'currency_code');
             $uniqueKey    = data_get($data, 'unique_key');
             $log          = data_get($data, 'log');
             $referenceId  = data_get($data, 'reference_id');
-            $orderId      = data_get($data, 'order_id');
+            $orderId      = BaseModel::getModelKey($order);
 
             $meta = [
                 'footprint'    => data_get($data, 'footprint', []),
@@ -99,27 +102,29 @@ class DepositService extends BaseService
             if ($order instanceof Order) {
                 $depositTransaction->update([
                     'log' => array_merge(data_get($depositTransaction, 'log', []), [
-                        'order_describing_payment_content' => $order->getDescribingPaymentContent()
+                        'order_describing_payment_content' => $order->getDescribingPaymentContent(),
                     ])
                 ]);
             }
 
             $paymentOption = $depositTransaction->paymentOption;
 
-            $extraData = [];
-
             if ($paymentOption && $paymentOption->isThirdParty() && ! data_get($data, 'only_internal_transaction', false)) {
                 if ($paymentIntegrationService instanceof BasePaymentIntegration) {
                     if (! $paymentIntegrationService->shouldHandleTransactionAfterCommit()) {
                         return $paymentIntegrationService->handleTransaction($depositTransaction);
                     }
-                } else {
-                    // $extraData = $this->paymentIntegrationService->handleTransaction($depositTransaction);
                 }
             }
 
-            dd(111);
+            return $depositTransaction;
         });
+
+        $freshDepositTransaction = $depositTransaction->fresh();
+
+        Deposited::dispatch($freshDepositTransaction);
+
+        return $freshDepositTransaction;
     }
 
     public function decline($transactionId, $data = [])

@@ -29,33 +29,19 @@ abstract class BaseDepositHandle extends BaseHandler
     {
         $requestPayload = $this->parseProviderRequestPayload($transaction);
 
-        $queryString = http_build_query($requestPayload);
+        $queryString = $this->parseQueryString($requestPayload);
 
-        dd(
-            $this->service->getProviderParam('base_api_url') . $this->service->generateUrl($this->getDepositEndpoint()) . '?' . $queryString
-        );
+        $redirectUrl = $this->service->generateUrl($this->service->getProviderParam('base_api_url') . $this->getDepositEndpoint()). '?' . $queryString;
 
-        $response = $this->service->sendRequest(
-            $this->service->generateUrl($this->getDepositEndpoint()) . '?' . $queryString,
-            $requestPayload,
-            [],
-            ['method' => 'GET'],
-            $this->service->getBaseApiURL($transaction)
-        );
+        $redirectOutput = $this->parseRedirectOutput(['redirect_url' => $redirectUrl]);
 
-        dd($response);
+        $transaction = $this->appendProviderResponseMeta($transaction, [
+            'redirect_output' => $redirectOutput,
+        ]);
 
-        // $transaction = $transaction->fresh();
+        $transaction->save();
 
-        // if ($response->failed()) {
-        //     dd(1);
-        // }
-
-        // dd(
-        //     $response->json()
-        // );
-
-
+        return $transaction;
     }
 
     public function verifyTransactionProactively($transaction)
@@ -67,22 +53,29 @@ abstract class BaseDepositHandle extends BaseHandler
         return [];
     }
 
-    public function calculateSecureHash($payload)
+    public function parseQueryString($payload)
     {
+        ksort($payload);
+
+        $query = "";
         $i = 0;
-        $hashData = '';
+        $hashdata = "";
 
         foreach ($payload as $key => $value) {
             if ($i == 1) {
-                $hashData .= '&' . $key . "=" . $value;
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
             } else {
-                $hashData .= $key . "=" . $value;
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
                 $i = 1;
             }
+
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
 
-        $secureHash = hash_hmac('sha512', $hashData, $this->service->getProviderParam('credentials.vnp_hash_secret'));
+        $vnpSecureHash = hash_hmac('sha512', $hashdata, $this->service->getProviderParam('credentials.vnp_hash_secret'));
 
-        return $secureHash;
+        $query .= 'vnp_SecureHash=' . $vnpSecureHash;
+
+        return $query;
     }
 }

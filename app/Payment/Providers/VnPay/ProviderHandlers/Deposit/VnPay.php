@@ -5,15 +5,14 @@ namespace App\Payment\Providers\VnPay\ProviderHandlers\Deposit;
 use App\Payment\Concerns\DepositByApi;
 use App\Payment\Providers\VnPay\Constants\OrderType;
 use App\Payment\Providers\VnPay\Constants\PaymentChannel;
-use App\Payment\Providers\VnPay\Constants\VnpBankCode;
 use App\Payment\Providers\VnPay\ProviderHandlers\HandlerHelper;
 use Carbon\Carbon;
 
-class VnPayqr extends BaseDepositHandle implements DepositByApi
+class VnPay extends BaseDepositHandle implements DepositByApi
 {
     public function paymentChannel()
     {
-        return PaymentChannel::VNPAYQR;
+        return PaymentChannel::VNPAY;
     }
 
     public function getValidationRules($data = []): array
@@ -34,7 +33,6 @@ class VnPayqr extends BaseDepositHandle implements DepositByApi
             'vnp_Version'    => $this->service->getProviderParam('vnp_version'),
             'vnp_Command'    => $this->service->getProviderParam('vnp_command'),
             'vnp_TmnCode'    => $this->service->getProviderParam('credentials.vnp_tmn_code'),
-            'vnp_BankCode'   => VnpBankCode::VNPAYQR,
             'vnp_Amount'     => $transaction->toMoney('amount')->toFloat(),
             'vnp_CreateDate' => Carbon::parse()->format('YmdHis'),
             'vnp_CurrCode'   => $this->service->parseToProviderCurrency($transaction->currency_code),

@@ -4,6 +4,7 @@ namespace App\Payment;
 
 use App\Http\Middleware\HttpClientMiddleware;
 use App\Models\BaseModel;
+use App\Models\Order;
 use App\Payment\Contracts\ProviderNamingContract;
 use App\Models\PaymentProvider;
 use App\Models\PaymentOption;
@@ -133,6 +134,17 @@ abstract class BasePaymentIntegration implements ProviderNamingContract
         return $retry ? $this->getTransactionRetryPrefix($transaction) : $this->addPrefix($transaction);
     }
 
+    public function getTransactionRefWithPrefix($transaction, $retry = false)
+    {
+        $order = optional($transaction)->order;
+
+        if ($order instanceof Order) {
+            return $retry ? $this->getTransactionRetryPrefix($transaction) : $this->addPrefix($transaction);
+        }
+
+        
+    }
+
     public function getTransactionRetryPrefix($transaction)
     {
         $transaction = $this->depositTransactionService->show($transaction);
@@ -212,5 +224,23 @@ abstract class BasePaymentIntegration implements ProviderNamingContract
     public function generateUrl($url, $params = [])
     {
         return strtr($url, $params);
+    }
+
+    public function getRedirectOutput($container, $method = null, $url = null, $parameters = [], $html = null, $width = null, $height = null, $sizeUnit = null)
+    {
+        if ($container === null) {
+            return [];
+        }
+
+        return [
+            'container'  => $container,
+            'method'     => $method ?? 'GET',
+            'url'        => $url,
+            'parameters' => $parameters ?? [],
+            'html'       => $html,
+            'width'      => $width ?? 600,
+            'height'     => $height ?? 600,
+            'size_unit'  => $sizeUnit ?? 'px',
+        ];
     }
 }

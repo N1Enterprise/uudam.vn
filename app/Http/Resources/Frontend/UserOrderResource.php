@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Frontend;
 
+use App\Enum\DepositStatusEnum;
 use App\Enum\PaymentOptionTypeEnum;
 use App\Http\Resources\Frontend\BaseJsonResource;
 
@@ -9,6 +10,8 @@ class UserOrderResource extends BaseJsonResource
 {
     public function toArray($request)
     {
+        $depositTransaction = $this->depositTransaction;
+
         return [
             'order_code' => $this->order_code,
             'order_status_name' => $this->order_status_name,
@@ -19,11 +22,12 @@ class UserOrderResource extends BaseJsonResource
             ],
             'paying_confirmed' => optional($this->paymentOption)->type == PaymentOptionTypeEnum::CASH_ON_DELIVERY,
             'payment' => [
-                'data' => '',
-                'redirect_output' => [
-                    'url' => '',
-                    'container' => 'redirect'
-                ]
+                'data' => [
+                    'status_name' => DepositStatusEnum::findConstantLabel($depositTransaction->status),
+                    'amount' => $depositTransaction->toMoney('amount')->toFloat(),
+                    'currency_code' => $depositTransaction->currency_code,
+                ],
+                'redirect_output' => data_get($depositTransaction, 'log.provider_response_meta.redirect_output', []) ?? []
             ],
         ];
     }

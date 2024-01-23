@@ -55,8 +55,18 @@ $(() => {
                         $form.find('[type="submit"]').prop('disabled', true);
                         $form.find('[type="submit"]').addClass('prevent');
                     },
-                    success: () => {
+                    success: (response) => {
+                        const { payment } = response;
 
+                        if (payment?.redirect_output) {
+                            const { container } = payment.redirect_output;
+
+                            if (container == 'redirect') {
+                                return HANDLE_CHECKOUT.handlePaymentRedirect(payment.redirect_output);
+                            } else if (container == 'html') {
+                                return HANDLE_CHECKOUT.handlePaymentHtml(payment.redirect_output);
+                            }
+                        }
                     },               
                 });
             });
@@ -68,6 +78,12 @@ $(() => {
                 $('[data-expanded-content-shipping-option-id]').hide();
                 $(`[data-expanded-content-shipping-option-id="${option}"]`).show();
             });
+        },
+        handlePaymentRedirect: ({ url }) => {
+            window.open(url, '_blank');
+        },
+        handlePaymentHtml: ({ html, width, height, method }) => {
+
         },
     };
 

@@ -9,4 +9,6 @@ class PaymentChannel
     public const VNBANK = 'vnbank';
 
     public const INTCARD = 'intcard';
+
+    public const VNPAY = 'vnpay';
 }

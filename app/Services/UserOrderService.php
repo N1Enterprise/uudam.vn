@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Enum\DepositStatusEnum;
 use App\Enum\OrderStatusEnum;
+use App\Enum\PaymentStatusEnum;
 use App\Events\Order\OrderCreated;
 use App\Events\Order\OrderUpdated;
 use App\Exceptions\BusinessLogicException;
@@ -90,52 +92,26 @@ class UserOrderService extends BaseService
 
             $this->orderItemService->createListFormCartByUser($user, $cart, $order, $data);
 
-            $bankTransferInfo = $paymentOption->isLocalBank() ? [
-                'account_name' => data_get($data, 'account_name'),
-                'account_number' => data_get($data, 'account_number'),
-                'bank_slip_document' => data_get($data, 'bank_slip_document'),
-            ] : null;
-
+            /** @var DepositTransaction */
             $deposit = $this->depositService->deposit(
                 $user,
                 $order->grand_total,
                 $paymentOption,
                 $user,
-                array_merge($data, ['order_id' => $order->getKey()])
+                array_merge($data, ['order_id' => $order])
             );
 
-            dd(4);
+            $order->payment_status = $this->parseDepositStatusToOrderPaymentStatus($deposit->status);
 
-            // /** @var DepositTransaction */
-            // $depositTransaction = $this->depositTransactionService->createByUser(
-            //     $user,
-            //     $order->grand_total,
-            //     $order->currency_code,
-            //     $paymentOption,
-            //     $order,
-            //     $createdBy,
-            //     $bankTransferInfo,
-            //     [],
-            // );
+            $order->save();
 
-            // dd($depositTransaction);
+            $order = $order->fresh();
 
-            // $depositTransaction = $depositTransaction->fresh();
+            $this->cartService->purchased($cart, $order);
 
-            // $order->deposit_transaction_id = $depositTransaction->getKey();
+            OrderCreated::dispatch($order);
 
-            // if ($paymentOption->isCashOnDelivery()) {
-            //     $order->order_status = OrderStatusEnum::PROCESSING;
-            //     $order->save();
-            // }
-
-            // $order = $order->fresh();
-
-            // $this->cartService->purchased($cart, $order);
-
-            // OrderCreated::dispatch($order);
-
-            // return $order;
+            return $order;
         });
     }
 
@@ -171,5 +147,29 @@ class UserOrderService extends BaseService
 
             return $order;
         });
+    }
+
+    /**
+     * @param mixed $depositStatus
+     * @param bool $throwIfNotFound
+     * @return array
+     */
+    public function parseDepositStatusToOrderPaymentStatus($depositStatus, $throwIfNotFound = true)
+    {
+        $mappers = [
+            DepositStatusEnum::DECLINED => PaymentStatusEnum::DECLINED,
+            DepositStatusEnum::PENDING  => PaymentStatusEnum::PENDING,
+            DepositStatusEnum::APPROVED => PaymentStatusEnum::APPROVED,
+            DepositStatusEnum::CANCELED => PaymentStatusEnum::CANCELED,
+            DepositStatusEnum::FAILED   => PaymentStatusEnum::FAILED,
+        ];
+
+        $status = $mappers[$depositStatus] ?? null;
+
+        if ($status === null && $throwIfNotFound) {
+            throw new BusinessLogicException("Invalid payment status.");
+        }
+
+        return $status;
     }
 }

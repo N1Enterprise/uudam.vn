@@ -20,6 +20,8 @@ class HandlerHelper
                     return Deposit\IntCard::class;
                 case PaymentChannel::VNBANK:
                     return Deposit\VnBank::class;
+                case PaymentChannel::VNPAY:
+                    return Deposit\VnPay::class;
                 default:
                     throw new \Exception('Invalid Payment Channel.');
             }

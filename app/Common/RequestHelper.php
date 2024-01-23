@@ -50,6 +50,11 @@ class RequestHelper
         return $request->header(config('api.language_header_key'), $default);
     }
 
+    public function isUserRequest(Request $request)
+    {
+        return $request->is('fe/api/user/*');
+    }
+
     public static function getDataFromRequest($request, $properties = [])
     {
         $output = [];

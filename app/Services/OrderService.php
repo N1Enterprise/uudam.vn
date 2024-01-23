@@ -147,6 +147,13 @@ class OrderService extends BaseService
             ->findOrFail($id);
     }
 
+    public function find($id, $data = [])
+    {
+        return $this->orderRepository
+            ->with(data_get($data, 'with', []))
+            ->find($id);
+    }
+
     public function createFromCartByUser($user, $cart, $paymentOption, $shippingOption, $createdBy, $data = [])
     {
         /** @var Cart */
