@@ -3,6 +3,7 @@
 namespace App\Payment;
 
 use App\Exceptions\ExceptionCode;
+use App\Models\BaseTransaction;
 use App\Services\PaymentOptionService;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
@@ -57,5 +58,14 @@ class PaymentIntegrationService
         }
 
         return $providerInstance;
+    }
+
+    public function handleTransaction(BaseTransaction $transaction, $providerCode = null)
+    {
+        dd(111);
+        // $providerCode = $providerCode ?? $transaction->paymentProvider->code;
+        // $provider = $this->resolveProvider($providerCode);
+
+        // return $provider->handle($transaction);
     }
 }

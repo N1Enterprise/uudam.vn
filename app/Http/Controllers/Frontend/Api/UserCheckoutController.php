@@ -36,6 +36,6 @@ class UserCheckoutController extends BaseApiController
             throw new ModelNotFoundException();
         }
 
-        $shippingRates = $this->userCheckoutService->getShippingRateByProviders($this->user(), $request->providers, $cart);
+        $shippingRates = $this->userCheckoutService->getShippingRateByProviders($this->user(), $request->providers ?? [], $cart);
     }
 }

@@ -177,8 +177,6 @@ class OrderService extends BaseService
             'footprint' => data_get($data, 'footprint', []),
         ];
 
-        dd($meta);
-
         $data = array_merge(
             [
                 'order_code' => $orderCode,

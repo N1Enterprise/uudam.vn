@@ -55,10 +55,12 @@ class Order extends BaseModel
         'created_by_type',
         'updated_by_id',
         'updated_by_type',
+        'footprint'
     ];
 
     protected $casts = [
-        'log' => 'json'
+        'log' => 'json',
+        'footprint' => 'json'
     ];
 
     public function getPaymentStatusNameAttribute()
@@ -201,5 +203,14 @@ class Order extends BaseModel
     public function isPaymentError()
     {
         return $this->order_status == OrderStatusEnum::PAYMENT_ERROR;
+    }
+
+    public function getDescribingPaymentContent()
+    {
+        return vsprintf('PAY FOR ORDER CODE %s. AMOUNT IS %s %s', [
+            $this->order_code,
+            $this->toMoney('grand_total')->__toString(),
+            $this->currency_code,
+        ]);
     }
 }

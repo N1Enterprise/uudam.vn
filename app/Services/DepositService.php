@@ -14,7 +14,9 @@ use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 use App\Models\PaymentOption;
 use App\Models\User;
+use App\Payment\BasePaymentIntegration;
 use App\Payment\PaymentIntegrationService;
+use App\Models\Order;
 
 class DepositService extends BaseService
 {
@@ -23,19 +25,22 @@ class DepositService extends BaseService
     public $userWalletService;
     public $userService;
     public $paymentIntegrationService;
+    public $orderService;
 
     public function __construct(
         DepositTransactionService $depositTransactionService,
         PaymentOptionService $paymentOptionService,
         UserWalletService $userWalletService,
         UserService $userService,
-        PaymentIntegrationService $paymentIntegrationService
+        PaymentIntegrationService $paymentIntegrationService,
+        OrderService $orderService
     ) {
         $this->depositTransactionService = $depositTransactionService;
         $this->paymentOptionService = $paymentOptionService;
         $this->userWalletService = $userWalletService;
         $this->userService = $userService;
         $this->paymentIntegrationService = $paymentIntegrationService;
+        $this->orderService = $orderService;
     }
 
     public function deposit($userId, $amount, $paymentOptionId, $createdBy, $data = [])
@@ -58,18 +63,62 @@ class DepositService extends BaseService
 
         $depositTransaction = DB::transaction(function() use ($user, $amount, $paymentOption, $createdBy, $data, $paymentIntegrationService) {
             $currencyCode = data_get($data, 'currency_code');
-            $uniqueKey = data_get($data, 'unique_key');
-            $log = data_get($data, 'log');
-            $referenceId = data_get($data, 'reference_id');
+            $uniqueKey    = data_get($data, 'unique_key');
+            $log          = data_get($data, 'log');
+            $referenceId  = data_get($data, 'reference_id');
+            $orderId      = data_get($data, 'order_id');
 
             $meta = [
-                'footprint' => data_get($data, 'footprint', []),
-                'unique_key' => $uniqueKey,
-                'log' => $log,
+                'footprint'    => data_get($data, 'footprint', []),
+                'unique_key'   => $uniqueKey,
+                'log'          => $log,
                 'reference_id' => $referenceId,
+                'order_id'     => $orderId
             ];
 
-            dd($meta);
+            if ($paymentOption->isThirdParty() && $paymentIntegrationService instanceof BasePaymentIntegration) {
+                $meta['provider_payload'] = $paymentIntegrationService->parsePayload(array_merge($data, [
+                    'user' => $user
+                ]));
+            }
+
+            $bankTransferInfo = [];
+
+            $depositTransaction = $this->depositTransactionService->createByUser(
+                $user,
+                $amount,
+                $currencyCode,
+                $paymentOption,
+                $createdBy,
+                $bankTransferInfo,
+                $meta
+            );
+
+            $order = $depositTransaction->order;
+
+            if ($order instanceof Order) {
+                $depositTransaction->update([
+                    'log' => array_merge(data_get($depositTransaction, 'log', []), [
+                        'order_describing_payment_content' => $order->getDescribingPaymentContent()
+                    ])
+                ]);
+            }
+
+            $paymentOption = $depositTransaction->paymentOption;
+
+            $extraData = [];
+
+            if ($paymentOption && $paymentOption->isThirdParty() && ! data_get($data, 'only_internal_transaction', false)) {
+                if ($paymentIntegrationService instanceof BasePaymentIntegration) {
+                    if (! $paymentIntegrationService->shouldHandleTransactionAfterCommit()) {
+                        return $paymentIntegrationService->handleTransaction($depositTransaction);
+                    }
+                } else {
+                    // $extraData = $this->paymentIntegrationService->handleTransaction($depositTransaction);
+                }
+            }
+
+            dd(111);
         });
     }
 

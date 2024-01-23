@@ -70,7 +70,6 @@ class UserOrderService extends BaseService
 
         /** @var Cart */
         $cart = $this->cartService->findByUser($userId, ['uuid' => $cartUuid]);
-        dd($cartUuid);
 
         /** @var User */
         $user = $this->userService->show($userId);
@@ -82,6 +81,8 @@ class UserOrderService extends BaseService
         if ($cart->order_id) {
             throw new BusinessLogicException('[Payment] Invalid Order.', ExceptionCode::INVALID_CART);
         }
+
+        $data['currency_code'] = $user->currency_code;
 
         return DB::transaction(function() use ($user, $paymentOption, $shippingOption, $cart, $data, $createdBy) {
             /** @var Order */
@@ -100,8 +101,10 @@ class UserOrderService extends BaseService
                 $order->grand_total,
                 $paymentOption,
                 $user,
-                $data
+                array_merge($data, ['order_id' => $order->getKey()])
             );
+
+            dd(4);
 
             // /** @var DepositTransaction */
             // $depositTransaction = $this->depositTransactionService->createByUser(
