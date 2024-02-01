@@ -18,5 +18,6 @@ class FrontendResponseServiceProvider extends ServiceProvider
         Contracts\ListLinkedBlogResponseContract::class => Responses\ListLinkedBlogResponse::class,
         Contracts\StoreUserAddressResponseContract::class => Responses\StoreUserAddressResponse::class,
         Contracts\ShowUserAddressResponseContract::class => Responses\ShowUserAddressResponse::class,
+        Contracts\UserCheckoutShippingFeeHistoryResponseContract::class => Responses\UserCheckoutShippingFeeHistoryResponse::class,
     ];
 }

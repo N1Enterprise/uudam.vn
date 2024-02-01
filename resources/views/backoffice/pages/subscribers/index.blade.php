@@ -46,7 +46,7 @@
                         <th data-property="email">{{ __('Email') }}</th>
                         <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Source') }}</th>
                         <th data-property="created_at">{{ __('Subscribed At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

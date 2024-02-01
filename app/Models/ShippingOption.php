@@ -40,4 +40,14 @@ class ShippingOption extends BaseModel
     {
         return $this->belongsTo(ShippingProvider::class);
     }
+
+    public function isAtStore()
+    {
+        return $this->type == ShippingOptionTypeEnum::AT_STORE;
+    }
+
+    public function isThirdParty()
+    {
+        return $this->type == ShippingOptionTypeEnum::SHIPPING_PROVIDER;
+    }
 }

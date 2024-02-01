@@ -175,10 +175,6 @@ return [
     'faq-topics.delete' => 'Delete Faq Topic',
 
     'shippings' => 'Shippings',
-    'carriers' => 'Carriers',
-    'carriers.index' => 'View Carrier List',
-    'carriers.store' => 'Create Carrier',
-    'carriers.update' => 'Update Carrier',
     'shipping-zones' => 'Shipping Zones',
     'shipping-zones.index' => 'View Shipping Zone List',
     'shipping-zones.store' => 'Create Shipping Zone',

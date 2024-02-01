@@ -1,7 +1,7 @@
 $(() => {
     const HANDLE_CHECKOUT = {
         init: () => {
-            HANDLE_CHECKOUT.getShippingRateByProviders();
+            HANDLE_CHECKOUT.getShippingRateByShippingOptions();
             HANDLE_CHECKOUT.onSubmit();
             HANDLE_CHECKOUT.onExpandContent();
             HANDLE_CHECKOUT.onBeforeLoad();
@@ -9,34 +9,56 @@ $(() => {
             HANDLE_CHECKOUT.initEventTrigger();
         },
         initEventTrigger: () => {
-            $('[name="shipping_option"]:checked').trigger('change');
+            $('[name="shipping_option_id"]:checked').trigger('change');
         },
         onBeforeLoad: () => {
-            $(window).on('beforeunload', function(){
-                
+            
+        },
+        getShippingRateByShippingOptions: () => {
+            const cartUuid = $('[name="checkout_cart_uuid"]').val();
+            const countPaymentOptions = $('[name="shipping_option_id"]').length;
+            const addressId = $('#user_address').attr('data-address-id');
+
+            let calculated = 0;
+
+            $('[name="shipping_option_id"]').each(function(_, element) {
+                const option = $(element).val();
+
+                $.ajax({
+                    url: CHECKOUT_ROUTES.api_user_checkout_provider_shipping_free.replace(':cartUuid', cartUuid),
+                    method: 'GET',
+                    data: { 
+                        shipping_option_id: option, 
+                        address_id: addressId,
+                    },
+                    beforeSend: () => {
+                        $(`[shipping-rate-value-by-option="${option}"]`).text('đang tính...');
+                    },
+                    success: (response) => {
+                        HANDLE_CHECKOUT.calculateOrderByShippingRate(response, option);
+                        HANDLE_CHECKOUT.canorder(countPaymentOptions == ++calculated);
+                    },
+                });
             });
         },
-        getShippingRateByProviders: () => {
-            const cartUuid = $('[name="checkout_cart_uuid"]').val();
-            const providers = [];
+        canorder: (bool = false) => {
+            $('[id="form-order"]').find('[type="submit"]').prop('disabled', !bool);
+            $('[id="form-order"]').find('[type="submit"]').toggleClass('prevent', !bool);
+            $('[id="form-order"]').find('[type="submit"] .btn-content').text(bool ? 'Đặt hàng' : 'Đang cập nhật');
+        },
+        calculateOrderByShippingRate: (response, shoppingOptionId) => {
+            const { transport_fee_formatted, total_estimated_amount_formatted } = response;
 
-            $('[name="shipping_provider"]').each(function(_, element) {
-                providers.push($(element).val());
-            });
-
-            $.ajax({
-                url: CHECKOUT_ROUTES.user_checkout_provider_shipping_rate.replace(':cartUuid', cartUuid),
-                method: 'GET',
-                data: { providers },
-                beforeSend: () => {
-                    $('[shipping-rate-value-by-provider]').text('đang tính...');
-                },
-                success: (response) => {},
-            });
+            $(`[shipping-rate-value-by-option="${shoppingOptionId}"]`).text(transport_fee_formatted);
+            $(`[name="shipping_option_id"][value="${shoppingOptionId}"]`).attr('data-fee-formatted', transport_fee_formatted);
+            $(`[name="shipping_option_id"][value="${shoppingOptionId}"]`).attr('data-order-estimate-grand-total', total_estimated_amount_formatted);
+            $(`[name="shipping_option_id"]:checked`).trigger('change');
         },
         onSubmit: () => {
             $('[data-form="order"]').on('submit', function(e) {
                 e.preventDefault();
+
+                const cartUuid = $('[name="checkout_cart_uuid"]').val();
 
                 const $form = $(this);
 
@@ -45,6 +67,9 @@ $(() => {
                 const payload = {
                     shipping_option_id: $('[name="shipping_option_id"]:checked').val(),
                     payment_option_id: $('[name="payment_option_id"]:checked').val(),
+                    redirect_urls: {
+                        payment_success: CHECKOUT_ROUTES.web_user_checkout_with_payment_success.replace(':cart_uuid', cartUuid)
+                    }
                 };
 
                 $.ajax({
@@ -72,15 +97,21 @@ $(() => {
             });
         },
         onExpandContent: () => {
-            $('[name="shipping_option"]').on('change', function() {
+            $('[name="shipping_option_id"]').on('change', function() {
                 const option = $(this).val();
 
                 $('[data-expanded-content-shipping-option-id]').hide();
                 $(`[data-expanded-content-shipping-option-id="${option}"]`).show();
+
+                const grandTotal = $(this).attr('data-order-estimate-grand-total');
+                const fee = $(this).attr('data-fee-formatted');
+
+                $('[data-checkout-total-shipping-target]').text(fee);
+                $('[data-checkout-payment-due-target]').text(grandTotal);
             });
         },
         handlePaymentRedirect: ({ url }) => {
-            window.open(url, '_blank');
+            window.location.href = url;
         },
         handlePaymentHtml: ({ html, width, height, method }) => {
 

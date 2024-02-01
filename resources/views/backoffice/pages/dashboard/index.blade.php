@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @section('header')
-{{ __('Dashboard') }}
+Tổng Quan
 @endsection
 
 @section('breadcrumb')

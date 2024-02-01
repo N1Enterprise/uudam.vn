@@ -12,9 +12,10 @@ class UserOrderRequest extends BaseFormRequest implements UserOrderRequestContra
     public function rules(): array
     {
         return [
-            'user_note' => ['nullable', 'string'],
+            'user_note'          => ['nullable', 'string'],
             'shipping_option_id' => ['required', 'integer', Rule::exists(ShippingOption::class, 'id')],
-            'payment_option_id' => ['required', 'integer', Rule::exists(PaymentOption::class, 'id')],
+            'payment_option_id'  => ['required', 'integer', Rule::exists(PaymentOption::class, 'id')],
+            'redirect_urls'      => ['nullable', 'array'],
         ];
     }
 }

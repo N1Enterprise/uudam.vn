@@ -29,6 +29,17 @@ class Service extends BasePaymentIntegration implements WithHook
         return self::PROVIDER_CODE;
     }
 
+    public function parsePayload($data = []): array
+    {
+        $parsed = parent::parsePayload($data);
+
+        return array_merge($parsed, [
+            'attributes' => array_filter([
+                'successUrl' => data_get($data, 'redirect_urls.payment_success'),
+            ])
+        ]);
+    }
+
     public function getBaseApiURL($transaction = null, $data = [])
     {
         return $this->getHttpClient()

@@ -1,7 +1,7 @@
 <div class="k-portlet">
     <div class="k-portlet__head">
         <div class="k-portlet__head-label">
-            <h3 class="k-portlet__head-title">{{ __('Search') }}</h3>
+            <h3 class="k-portlet__head-title">{{ __('Tìm kiếm') }}</h3>
         </div>
     </div>
     <!--begin::Form-->
@@ -15,17 +15,6 @@
                             <option value="shipping_zone_id">--- {{ __('Select Shipping Zone') }} ---</option>
                             @foreach($shippingZones as $shippingZone)
                             <option value="{{ $shippingZone->id }}">{{ $shippingZone->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <label>{{ __('Carrier') }}</label>
-                    <div class="form-group">
-                        <select name="carrier_id" title="--{{ __('Select Carrier') }}--" class="form-control k_selectpicker">
-                            <option value="">--- {{ __('Select Carrier') }} ---</option>
-                            @foreach($carriers as $carrier)
-                            <option value="{{ $carrier->id }}">{{ $carrier->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -47,8 +36,8 @@
             <div class="k-form__actions">
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Search') }}</button>
-                        <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Reset') }}</button>
+                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Tìm kiếm') }}</button>
+                        <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Làm mới') }}</button>
                     </div>
                 </div>
             </div>

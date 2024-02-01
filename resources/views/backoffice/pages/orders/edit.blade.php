@@ -193,13 +193,13 @@
                                         <tr>
                                             <th data-property="id">{{ __('ID') }}</th>
                                             <th data-orderable="false" data-property="inventory.image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
-                                            <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Name') }}</th>
+                                            <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Tên') }}</th>
                                             <th data-property="currency_code">{{ __('Currency Code') }}</th>
                                             <th data-property="quantity">{{ __('Quantity') }}</th>
                                             <th data-property="price">{{ __('Price') }}</th>
                                             <th data-property="total_price">{{ __('Total Price') }}</th>
-                                            <th data-property="created_at">{{ __('Created At') }}</th>
-                                            <th data-property="updated_at">{{ __('Updated At') }}</th>
+                                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -269,9 +269,6 @@
                                         <input type="text" class="form-control" value="{{ $order->shippingRate->name }} ({{ format_price($order->shippingRate->rate) }})" disabled>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>
-                                            <a href="{{ route('bo.web.carriers.edit', $order->shippingRate->carrier->id) }}" target="_blank">{{ __('Carrier') }}</a>
-                                        </label>
                                         <input type="text" class="form-control" value="{{ $order->shippingRate->carrier->name }}" disabled>
                                     </div>
                                 </div>
@@ -326,8 +323,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="border-top: none;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                 </div>
             </form>
         </div>

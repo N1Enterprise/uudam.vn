@@ -61,6 +61,13 @@ abstract class BasePaymentIntegration implements ProviderNamingContract
     }
 
     /**
+     * @return BasePaymentProviderHandle
+     */
+    public abstract function getHandleClass($data = []);
+
+    public abstract function handleTransaction($transaction, $data = []);
+
+    /**
      * parse data before save transaction
      * @param array $data
      * @return array
@@ -71,13 +78,6 @@ abstract class BasePaymentIntegration implements ProviderNamingContract
 
         return $parsed;
     }
-
-    /**
-     * @return BasePaymentProviderHandle
-     */
-    public abstract function getHandleClass($data = []);
-
-    public abstract function handleTransaction($transaction, $data = []);
 
     public function resolveHandleClass(string $handleClass)
     {
@@ -133,18 +133,7 @@ abstract class BasePaymentIntegration implements ProviderNamingContract
     {
         return $retry ? $this->getTransactionRetryPrefix($transaction) : $this->addPrefix($transaction);
     }
-
-    public function getTransactionRefWithPrefix($transaction, $retry = false)
-    {
-        $order = optional($transaction)->order;
-
-        if ($order instanceof Order) {
-            return $retry ? $this->getTransactionRetryPrefix($transaction) : $this->addPrefix($transaction);
-        }
-
-        
-    }
-
+    
     public function getTransactionRetryPrefix($transaction)
     {
         $transaction = $this->depositTransactionService->show($transaction);

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Order;
 use App\Services\AddressService;
-use App\Services\CarrierService;
 use App\Services\CartItemService;
 use App\Services\CartService;
 use App\Services\OrderService;
@@ -33,7 +32,6 @@ class UserCheckoutController extends AuthenticatedController
         PaymentOptionService $paymentOptionService,
         ShippingRateService $shippingRateService,
         PageService $pageService,
-        CarrierService $carrierService,
         OrderService $orderService,
         AddressService $addressService,
         ShippingOptionService $shippingOptionService
@@ -45,7 +43,6 @@ class UserCheckoutController extends AuthenticatedController
         $this->paymentOptionService = $paymentOptionService;
         $this->shippingRateService = $shippingRateService;
         $this->pageService = $pageService;
-        $this->carrierService = $carrierService;
         $this->orderService = $orderService;
         $this->addressService = $addressService;
         $this->shippingOptionService = $shippingOptionService;
@@ -85,7 +82,6 @@ class UserCheckoutController extends AuthenticatedController
         $paymentOptions = $this->paymentOptionService->searchForGuest(['currency_code' => $user->currency_code]);
 
         $checkoutPages = $this->pageService->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInCheckout']]);
-        // $shippingRatesCarriers = $this->carrierService->searchCarrierShippingRatePriceGroupedByCart($cart, []);
 
         $editable = true;
 
@@ -99,7 +95,6 @@ class UserCheckoutController extends AuthenticatedController
             'cart', 
             'cartItems', 
             'paymentOptions', 
-            // 'shippingRatesCarriers', 
             'shippingOptions',
             'countries',
             'checkoutPages',
@@ -128,11 +123,18 @@ class UserCheckoutController extends AuthenticatedController
         $paymentOptions = $this->paymentOptionService->searchForGuest(['currency_code' => $user->currency_code]);
 
         $checkoutPages = $this->pageService->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInCheckout']]);
-        $shippingRatesCarriers = $this->carrierService->searchCarrierShippingRatePriceGroupedByCart($cart, []);
 
         $editable = false;
 
-        return $this->view('frontend.pages.checkouts.index', compact('editable', 'order', 'cart', 'cartItems', 'paymentOptions', 'shippingRatesCarriers', 'countries', 'checkoutPages'));
+        return $this->view('frontend.pages.checkouts.index', compact(
+            'editable', 
+            'order', 
+            'cart', 
+            'cartItems', 
+            'paymentOptions', 
+            'countries', 
+            'checkoutPages'
+        ));
     }
 
     public function paymentFailure(Request $request, $orderCode)

@@ -24,7 +24,7 @@
 	<div class="k-portlet">
 		<div class="k-portlet__head">
 			<div class="k-portlet__head-label">
-				<h3 class="k-portlet__head-title">{{ __('Search') }}</h3>
+				<h3 class="k-portlet__head-title">{{ __('Tìm kiếm') }}</h3>
 			</div>
 		</div>
 
@@ -64,8 +64,8 @@
 				<div class="k-form__actions">
 					<div class="row">
 						<div class="col-lg-6">
-							<button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Search') }}</button>
-							<button type="reset" class="btn btn-secondary">{{ __('Reset') }}</button>
+							<button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Tìm kiếm') }}</button>
+							<button type="reset" class="btn btn-secondary">{{ __('Làm mới') }}</button>
 						</div>
 					</div>
 				</div>
@@ -90,10 +90,10 @@
 						<th data-name="requested_by_id" data-property="requested_by.display">{{ __('Export By') }}</th>
 						<th data-property="page">{{ __('Page') }}</th>
 						<th data-property="file_name">{{ __('File Name') }}</th>
-						<th data-property="created_at">{{ __('Created At') }}</th>
-						<th data-property="updated_at">{{ __('Updated At') }}</th>
-						<th data-badge="true" data-property="status">{{ __('Status') }}</th>
-						<th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+						<th data-property="created_at">{{ __('Ngày tạo') }}</th>
+						<th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+						<th data-badge="true" data-property="status">{{ __('Trạng thái') }}</th>
+						<th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
 					</tr>
 				</thead>
 				<tbody>

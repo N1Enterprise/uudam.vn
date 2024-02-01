@@ -36,11 +36,6 @@ class ShippingRate extends BaseModel
         return $this->belongsTo(ShippingZone::class);
     }
 
-    public function carrier()
-    {
-        return $this->belongsTo(Carrier::class);
-    }
-
     public function isFreeShipping()
     {
         return (int) $this->rate == 0;

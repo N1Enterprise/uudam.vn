@@ -31,11 +31,11 @@ class PaymentIntegrationService
      */
     public function resolveServiceClassByPaymentOption($paymentOption)
     {
-        $paymentOption = app(PaymentOptionService::class)->show($paymentOption);
+        $paymentOption = PaymentOptionService::make()->show($paymentOption);
 
         $paymentProvider = $paymentOption->paymentProvider;
 
-        if(! ($paymentOption->isThirdParty() && $paymentProvider)) {
+        if (! ($paymentOption->isThirdParty() && $paymentProvider)) {
             throw new \Exception('Invalid payment option.', ExceptionCode::INVALID_PAYMENT_OPTION);
         }
 
@@ -63,9 +63,9 @@ class PaymentIntegrationService
     public function handleTransaction(BaseTransaction $transaction, $providerCode = null)
     {
         dd(111);
-        // $providerCode = $providerCode ?? $transaction->paymentProvider->code;
-        // $provider = $this->resolveProvider($providerCode);
+        $providerCode = $providerCode ?? $transaction->paymentProvider->code;
+        $provider = $this->resolveProvider($providerCode);
 
-        // return $provider->handle($transaction);
+        return $provider->handle($transaction);
     }
 }

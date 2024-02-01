@@ -28,17 +28,17 @@
 
                     <div class="collapse repeater-body" id="variant_{{ $loop->index }}">
                         <div class="form-group">
-                            <label>{{ __('Image') }}
+                            <label>{{ __('Hình ảnh') }}
                                 <i
                                     data-toggle="tooltip"
                                     class="flaticon-questions-circular-button"
-                                    data-title="The image of the variant"
+                                    data-title="Hình ảnh của biến thể."
                                 ></i>
                             </label>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="upload_image_custom position-relative">
-                                        <input type="text" data-image-ref-path="variant" data-image-ref-index="{{ $loop->index }}" class="form-control variant_image_path" name="variants[image][{{ $loop->index }}][path]" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;" value="{{ old("variants.image.$loop->index.path", data_get($inventory, 'image', data_get($product, 'primary_image'))) }}">
+                                        <input type="text" data-image-ref-path="variant" data-image-ref-index="{{ $loop->index }}" class="form-control variant_image_path" name="variants[image][{{ $loop->index }}][path]" placeholder="{{ __('Tải lên hình ảnh hoặc URL đầu vào') }}" style="padding-right: 104px;" value="{{ old("variants.image.$loop->index.path", data_get($inventory, 'image', data_get($product, 'primary_image'))) }}">
                                         <div data-image-ref-wrapper="variant" data-image-ref-index="{{ $loop->index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                             <div class="d-flex align-items-center h-100">
                                                 <img data-image-ref-img="variant" data-image-ref-index="{{ $loop->index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -48,7 +48,7 @@
                                         <label for="variant_image_file_{{ $loop->index }}" class="variant_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                             <input type="file" name="variants[image][{{ $loop->index }}][file]" data-image-ref-file="variant" data-image-ref-index="{{ $loop->index }}" id="variant_image_file_{{ $loop->index }}" class="d-none variant_image_file">
                                             <i class="flaticon2-image-file"></i>
-                                            <span>{{ __('Upload') }}</span>
+                                            <span>{{ __('Tải lên') }}</span>
                                         </label>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="SKU (Stock Keeping Unit) is the seller specific identifier. It will help to manage your inventory"
+                                            data-title="SKU (Đơn vị lưu kho) là mã nhận dạng cụ thể của người bán. Nó sẽ giúp quản lý hàng tồn kho của bạn"
                                         ></i>
                                     </label>
                                     <input
@@ -89,11 +89,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ __('Condition') }} *
+                                    <label>{{ __('Tình trạng') }} *
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="What is the current condition of the product?"
+                                            data-title="Tình trạng hiện tại của sản phẩm là gì?"
                                         ></i>
                                     </label>
                                     <select name="variants[condition][{{ $loop->index }}]" class="form-control k_selectpicker {{ $errors->has("variants.condition.$loop->index") }}">
@@ -111,11 +111,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Stock quantity') }} *
+                                    <label for="">{{ __('Số lượng') }} *
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="Number of items you have on your warehouse"
+                                            data-title="Số lượng mặt hàng bạn có trong kho của mình"
                                         ></i>
                                     </label>
                                     <input
@@ -133,11 +133,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ __('Purchase price') }}
+                                    <label>{{ __('Giá mua') }}
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="Recommended field. This will helps to calculate profits and generate reports"
+                                            data-title="Trường được đề xuất. Điều này sẽ giúp tính toán lợi nhuận và tạo báo cáo"
                                         ></i>
                                     </label>
                                     <x-number-input
@@ -157,11 +157,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ __('Sale Price') }} *
+                                    <label>{{ __('Giá bán') }} *
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="The price without any tax. Tax will be calculated autometically based on shipping zone."
+                                            data-title="Giá chưa có thuế. Thuế sẽ được tính tự động dựa trên khu vực vận chuyển."
                                         ></i>
                                     </label>
                                     <x-number-input
@@ -179,11 +179,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group variant_offer_price">
-                                    <label>{{ __('Offer price') }}
+                                    <label>{{ __('Giá khuyến mãi') }}
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="The offer price will be effected between the offer start and end dates"
+                                            data-title="Giá ưu đãi sẽ được thực hiện giữa ngày bắt đầu và ngày kết thúc ưu đãi"
                                         ></i>
                                     </label>
                                     <x-number-input

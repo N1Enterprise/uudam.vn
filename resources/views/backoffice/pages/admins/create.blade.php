@@ -43,8 +43,8 @@
                                 <input type="text"  class="form-control" name="email" placeholder="{{ __('Enter email') }}" value="{{ old('email') }}" required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Name') }} *</label>
-                                <input type="text" class="form-control"  name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
+                                <label>{{ __('Tên') }} *</label>
+                                <input type="text" class="form-control"  name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" required>
                             </div>
                             <div class="form-group">
                                 <label>{{ __('Roles') }} * <div class="invalid-feedback">{{__('Please select a role')}}</div></label>
@@ -69,8 +69,8 @@
                         </div>
                         <div class="k-portlet__foot">
                             <div class="k-form__actions">
-                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                                <button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+                                <button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
                             </div>
                         </div>
                     </form>

@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Inventories');
+	$title = __('Sản phẩm tồn kho');
 
 	$breadcrumbs = [
 		[
@@ -33,7 +33,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Inventory') }}
+                    {{ __('Danh sách sản phẩm tồn kho') }}
                 </h3>
             </div>
             <div class="k-portlet__head-toolbar">
@@ -41,7 +41,7 @@
                     @can('inventories.store')
                     <a href="javascript:void(0)" class="btn btn-brand btn-bold btn-upper btn-font-sm" data-toggle="modal" data-target="#modal_create_inventory">
                         <i class="la la-plus"></i>
-                        {{ __('Create Inventory') }}
+                        {{ __('Thêm sản phẩm vào kho') }}
                     </a>
                     @endcan
                 </div>
@@ -52,28 +52,23 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
-                        <th data-property="title" data-width="300">{{ __('Title') }}</th>
-                        <th data-orderable="false" data-property="product.name">{{ __('Product') }}</th>
+                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
+                        <th data-property="title" data-width="300">{{ __('Tiêu đề') }}</th>
+                        <th data-orderable="false" data-property="product.name">{{ __('Sản phẩm') }}</th>
                         <th data-property="sku">{{ __('Sku') }}</th>
-                        {{-- <th data-property="slug">{{ __('Slug') }}</th> --}}
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
-                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
-                        {{-- <th data-orderable="false" data-badge data-name="condition" data-property="condition_name">{{ __('Condition') }}</th> --}}
-                        <th data-property="stock_quantity">{{ __('Stock Quantity') }}</th>
-                        <th data-property="purchase_price">{{ __('Purchase Price') }}</th>
-                        <th data-property="sale_price">{{ __('Sale Price') }}</th>
-                        <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Offer Price') }}</th>
-                        <th data-property="init_sold_count">{{ __('Sold Init') }}</th>
-                        <th data-property="sold_count">{{ __('Sold') }}</th>
-                        {{-- <th data-property="min_order_quantity">{{ __('Min Order Quantity') }}</th> --}}
-                        {{-- <th data-property="available_from">{{ __('Available From') }}</th> --}}
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển Thị FE') }}</th>
+                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('Tìm kiếm FE') }}</th>
+                        <th data-property="stock_quantity">{{ __('Số lượng') }}</th>
+                        <th data-property="purchase_price">{{ __('Giá mua') }}</th>
+                        <th data-property="sale_price">{{ __('Giá bán') }}</th>
+                        <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
+                        <th data-property="sold_count">{{ __('Đã bán') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,13 +90,13 @@
             <form id="form_create_inventory" method="GET" action="{{ route('bo.web.inventories.create') }}">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        {{ __('Create Inventory') }}
+                        {{ __('Thêm sản phẩm vào kho') }}
                     </h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ __('Product') }} *</label>
-                        <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                        <label>{{ __('Sản phẩm') }} *</label>
+                        <select name="product_id" title="--{{ __('Chọn sản phẩm') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                             @foreach($categories as $category)
                             <optgroup label="{{ $category->name }}">
                                 @foreach($category->products as $product)
@@ -119,7 +114,7 @@
                         @foreach ($attributes as $attribute)
                         <div class="form-group attribute-item d-none" data-supported-categories='@json($attribute->supported_categories ?? [])'>
                             <label>{{ $attribute->name }}</label>
-                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Select Values') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
+                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Chọn biến thể') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
                                 @foreach ($attribute->attributeValues as $value)
                                 <option value="{{ $value->id }}">{{ $value->value }}</option>
                                 @endforeach
@@ -132,8 +127,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="border-top: none;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                 </div>
             </form>
         </div>
@@ -155,7 +150,7 @@
 
         copyToClipboard(dataLink);
         
-        fstoast.success("{{ __('Copied!') }}");
+        fstoast.success("{{ __('Đã sao chép !') }}");
     });
 
     // @class App\Enum\ProductTypeEnum

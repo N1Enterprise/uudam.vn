@@ -56,7 +56,7 @@
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -128,7 +128,7 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Status') }} *</label>
+                                    <label>{{ __('Trạng thái') }} *</label>
                                     <input type="text" value="{{ $productReview->status_name }}" class="form-control" disabled>
                                 </div>
 
@@ -141,8 +141,8 @@
 					</div>
 					<div class="k-portlet__foot d-flex justify-content-between">
 						<div class="k-form__actions">
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
 						</div>
 						<div class="k-form__actions">
 							<button type="button" class="btn btn-danger" id="btn_decline" data-route="{{ route('bo.api.product-reviews.decline', $productReview->id) }}" {{ $productReview->isDeclined() ? 'disabled' : '' }}>{{ __('Decline') }}</button>

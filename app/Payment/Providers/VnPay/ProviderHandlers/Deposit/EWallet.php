@@ -8,11 +8,11 @@ use App\Payment\Providers\VnPay\Constants\PaymentChannel;
 use App\Payment\Providers\VnPay\ProviderHandlers\HandlerHelper;
 use Carbon\Carbon;
 
-class VnPay extends BaseDepositHandle implements DepositByApi
+class EWallet extends BaseDepositHandle implements DepositByApi
 {
     public function paymentChannel()
     {
-        return PaymentChannel::VNPAY;
+        return PaymentChannel::E_WALLET;
     }
 
     public function getValidationRules($data = []): array
@@ -33,7 +33,7 @@ class VnPay extends BaseDepositHandle implements DepositByApi
             'vnp_Version'    => $this->service->getProviderParam('vnp_version'),
             'vnp_Command'    => $this->service->getProviderParam('vnp_command'),
             'vnp_TmnCode'    => $this->service->getProviderParam('credentials.vnp_tmn_code'),
-            'vnp_Amount'     => $transaction->toMoney('amount')->toFloat(),
+            'vnp_Amount'     => $transaction->toMoney('amount')->multipliedBy(100)->toFloat(),
             'vnp_CreateDate' => Carbon::parse()->format('YmdHis'),
             'vnp_CurrCode'   => $this->service->parseToProviderCurrency($transaction->currency_code),
             'vnp_IpAddr'     => data_get($transaction, 'footprint.ip'),

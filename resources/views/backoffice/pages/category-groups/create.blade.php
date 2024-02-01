@@ -1,20 +1,23 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Category Group');
+	$title = __('Quản lí nhóm danh mục');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Kho sản phẩm'),
+        ],
+        [
+			'label' => __('Danh mục'),
+        ],
+        [
 			'label' => $title,
-		],
-		[
-			'label' => __('Add Category Group'),
-		]
+        ],
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -40,13 +43,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Category Group') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Tạo nhóm danh mục') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -61,22 +64,22 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Slug') }} *</label>
-									<input type="text" class="form-control" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug') }}" required>
+									<label>{{ __('Đường dẫn') }} *</label>
+									<input type="text" class="form-control" name="slug" placeholder="{{ __('Nhập đường dẫn') }}" value="{{ old('slug') }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Primary Image') }} *</label>
+                                    <label>{{ __('Ảnh hiển thị') }} *</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
@@ -109,21 +112,21 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <x-content-editor id="description" label="Description" name="description" value="{{ old('description') }}" />
+                                    <x-content-editor id="description" label="{{ __('Mô tả') }}" name="description" />
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Title') }}</label>
-									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title') }}">
+									<label>{{ __('[SEO] Tiêu đề') }}</label>
+									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('meta_title') }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Description') }}</label>
-									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description') }}">
+									<label>{{ __('[SEO] Mô tả') }}</label>
+									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Nhập [SEO] mô tả') }}" value="{{ old('meta_description') }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -138,8 +141,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>
@@ -152,4 +155,7 @@
 
 @section('js_script')
 @include('backoffice.pages.category-groups.js-pages.handle')
+<script>
+    FORM_PRIMARY_IMAGE_PATH.triggerChange();
+</script>
 @endsection

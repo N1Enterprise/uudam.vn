@@ -10,5 +10,5 @@ class PaymentChannel
 
     public const INTCARD = 'intcard';
 
-    public const VNPAY = 'vnpay';
+    public const E_WALLET = 'e_wallet';
 }

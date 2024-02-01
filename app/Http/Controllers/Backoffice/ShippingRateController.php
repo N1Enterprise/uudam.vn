@@ -8,7 +8,6 @@ use App\Contracts\Responses\Backoffice\DeleteShippingRateResponseContract;
 use App\Contracts\Responses\Backoffice\StoreShippingRateResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateShippingRateResponseContract;
 use App\Enum\ShippingRateTypeEnum;
-use App\Services\CarrierService;
 use App\Services\ShippingRateService;
 use App\Services\ShippingZoneService;
 
@@ -20,12 +19,10 @@ class ShippingRateController extends BaseController
 
     public function __construct(
         ShippingRateService $shippingRateService,
-        ShippingZoneService $shippingZoneService,
-        CarrierService $carrierService
+        ShippingZoneService $shippingZoneService
     ) {
         $this->shippingRateService = $shippingRateService;
         $this->shippingZoneService = $shippingZoneService;
-        $this->carrierService = $carrierService;
     }
 
     public function index()

@@ -65,8 +65,8 @@
 						</div>
 
 						<div class="form-group">
-							<label>{{ __('Name') }} *</label>
-							<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
+							<label>{{ __('Tên') }} *</label>
+							<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" required>
 						</div>
 
 						<div class="form-group row">
@@ -94,7 +94,7 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-2 col-form-label">{{ __('Status') }}</label>
+							<label class="col-2 col-form-label">{{ __('Trạng thái') }}</label>
 							<div class="col-3">
 								<span class="k-switch">
 									<label>
@@ -107,8 +107,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

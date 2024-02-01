@@ -46,18 +46,17 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
                         <th data-property="delivery_takes">{{ __('Delivery Takes') }}</th>
                         <th data-orderable="false" data-property="shipping_zone.name">{{ __('Shipping Zone') }}</th>
-                        <th data-orderable="false" data-property="carrier.name">{{ __('Carrier') }}</th>
                         <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
                         <th data-name="minimum" data-property="minimum_formatted">{{ __('Minimum') }}</th>
                         <th data-name="maximum" data-property="maximum_formatted">{{ __('Maximum') }}</th>
                         <th data-property="rate" data-render-callback="renderRateCallback">{{ __('Rate') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

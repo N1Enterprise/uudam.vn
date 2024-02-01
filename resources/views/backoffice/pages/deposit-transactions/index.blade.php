@@ -50,11 +50,11 @@
                         <th data-property="amount">{{ __('Amount') }}</th>
                         <th data-property="payment_option.name" data-link="payment_option.edit_link" data-link-target="_blank">{{ __('Deposit Method') }}</th>
                         <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Order Code') }}</th>
-                        <th data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                        <th data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="reference_id" >{{ __('Reference Id') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Processed At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

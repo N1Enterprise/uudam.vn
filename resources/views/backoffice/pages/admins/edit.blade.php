@@ -44,8 +44,8 @@
                                 <input type="text" disabled class="form-control" name="email" placeholder="{{ __('Enter email') }}" value="{{ $admin->email }}" required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Name') }} *</label>
-                                <input type="text" class="form-control"  name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $admin->name) }}" required>
+                                <label>{{ __('Tên') }} *</label>
+                                <input type="text" class="form-control"  name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $admin->name) }}" required>
                             </div>
                             @if (is_webmaster())
                             <div class="form-group">
@@ -76,11 +76,11 @@
                         </div>
                         <div class="k-portlet__foot">
                             <div class="k-form__actions">
-                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                                <button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+                                <button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
                                 @if(is_webmaster())
                                 <a class="btn btn-danger float-right actionBtn" data-method="put" data-confirmable="{{ __('Are you sure you want to deactivate this user?') }} " href="{{ route('bo.web.admins.deactivate', $admin->getKey()) }}">{{ __('Deactivate') }}</a>
-                                <a class="btn btn-primary float-right actionBtn" data-method="put" data-confirmable="{{ __('Are you sure you want to active this user?') }} " href="{{ route('bo.web.admins.active', $admin->getKey()) }}">{{ __('Active') }}</a>
+                                <a class="btn btn-primary float-right actionBtn" data-method="put" data-confirmable="{{ __('Are you sure you want to active this user?') }} " href="{{ route('bo.web.admins.active', $admin->getKey()) }}">{{ __('Hoạt động') }}</a>
                                 @endif
                             </div>
                         </div>

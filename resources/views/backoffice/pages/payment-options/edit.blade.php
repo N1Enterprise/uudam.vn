@@ -48,7 +48,7 @@
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -169,7 +169,7 @@
 
 								<div class="row">
 									<div class="col-8 col-sm-4">
-										<label class="col-form-label">{{ __('Status') }}</label>
+										<label class="col-form-label">{{ __('Trạng thái') }}</label>
 									</div>
 									<div class="col-4 col-sm-3">
 										<span class="k-switch">
@@ -198,8 +198,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

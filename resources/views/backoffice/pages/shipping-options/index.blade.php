@@ -44,14 +44,14 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-property="logo" data-render-callback="renderLogoImage">{{ __('Logo') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
                         <th data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
                         <th data-orderable="false" data-property="shipping_provider.name" data-link-target="_blank" data-link="shipping_provider.actions.update">{{ __('Provider') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

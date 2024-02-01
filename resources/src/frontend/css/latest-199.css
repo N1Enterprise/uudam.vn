@@ -112,11 +112,6 @@ a:focus {
 outline: none;
 }
 
-a:hover {
-/* color: #2b78a0; */
-filter: brightness(1.2);
-}
-
 ul {
 margin: 0;
 padding: 0;
@@ -2195,13 +2190,7 @@ padding-top: 1em !important;
 border-bottom: 1px solid #dedede;
 }
 
-.checkout-page-header header {
-display: flex;
-padding: 16px;
-width: 69%;
-margin: 0 auto;
-justify-content: space-between;
-}
+.checkout-page-header header {display: flex;padding: 16px;width: 69%;margin: 0 auto;justify-content: space-between;align-items: center;}
 
 .checkout-page-header #cart-link {
 color: rgb(180,169,169);
@@ -2315,6 +2304,3 @@ max-block-size: 100%;
   outline: #0000!important;
   border: #000!important;
 }
-
-
-

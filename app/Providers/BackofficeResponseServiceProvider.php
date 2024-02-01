@@ -123,10 +123,6 @@ class BackofficeResponseServiceProvider extends ServiceProvider
 
         Contracts\ListSubscriberResponseContract::class => Responses\ListSubscriberResponse::class,
 
-        Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,
-        Contracts\StoreCarrierResponseContract::class => Responses\StoreCarrierResponse::class,
-        Contracts\UpdateCarrierResponseContract::class => Responses\UpdateCarrierResponse::class,
-
         Contracts\ListCountryResponseContract::class => Responses\ListCountryResponse::class,
         Contracts\ListCurrencyResponseContract::class => Responses\ListCurrencyResponse::class,
 

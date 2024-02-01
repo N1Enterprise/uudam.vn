@@ -57,5 +57,5 @@ Route::middleware(['auth:user'])->group(function() {
     Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('user.localization.address.show');
 
     // Checkout
-    Route::get('user/checkout/{cartUuid}/providers-shipping-rate', [Controllers\UserCheckoutController::class, 'getProvidersShippingRate'])->name('user.checkout.provider-shipping-rate');
+    Route::get('user/checkout/{cartUuid}/provider-shipping-fee', [Controllers\UserCheckoutController::class, 'getShippingFee'])->name('user.checkout.provider-shipping-rate');
 });

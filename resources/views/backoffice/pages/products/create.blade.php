@@ -57,7 +57,7 @@
                     </div>
                     <div class="k-portlet__body">
                         <div class="form-group">
-                            <label for="">{{ __('Name') }} *</label>
+                            <label for="">{{ __('Tên') }} *</label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Name') }}" data-reference-slug="slug" required>
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -65,8 +65,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">{{ __('Slug') }} *</label>
-                            <input type="text" name="slug" value="{{ old('slug') }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Slug') }}" required>
+                            <label for="">{{ __('Đường dẫn') }} *</label>
+                            <input type="text" name="slug" value="{{ old('slug') }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" required>
                             @error('slug')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Primary Image') }} *</label>
+                            <label>{{ __('Hình ảnh') }} *</label>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="upload_image_custom position-relative">
@@ -168,7 +168,7 @@
                         </div>
 
                         <div class="form-group">
-                            <x-content-editor id="description" label="Description" name="description" value="{{ old('description') }}" />
+                            <x-content-editor id="description" label="{{ __('Mô tả') }}" name="description" value="{{ old('description') }}" />
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('Active') }}</label>
+                            <label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
@@ -286,7 +286,7 @@
                     <div class="k-portlet__foot">
                         <div class="k-form__actions d-flex justify-content-end">
                             <button type="redirect" class="btn btn-secondary mr-2">{{ __('Cancel') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                         </div>
                     </div>
                 </div>

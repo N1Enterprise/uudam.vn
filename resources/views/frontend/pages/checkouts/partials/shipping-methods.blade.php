@@ -14,7 +14,7 @@
                     <div class="radio-wrapper content-box-row">
                         <label class="radio-label" for="shipping_option_{{ data_get($option, 'id') }}">
                             <div class="radio-input">
-                                <input id="shipping_option_{{ data_get($option, 'id') }}" class="input-radio" name="shipping_option_id" type="radio" value="{{ data_get($option, 'id') }}" {{ $loop->index == 0 ? 'checked' : '' }}>
+                                <input id="shipping_option_{{ data_get($option, 'id') }}" class="input-radio" name="shipping_option_id" data-order-estimate-grand-total=" - " data-fee-formatted=" — " type="radio" value="{{ data_get($option, 'id') }}" {{ $loop->index == 0 ? 'checked' : '' }}>
                             </div>
                             <div class="radio-content-input">
                                 <img class="main-img" src="{{ data_get($option, 'logo') }}" alt="{{ data_get($option, 'name') }}">
@@ -24,7 +24,7 @@
                         </label>
                     </div>
                     @if (data_get($option, 'expanded_content'))
-                    <div id="expanded_content_{{ data_get($option, 'id') }}" data-expanded-content-shipping-option-id="{{ data_get($option, 'id') }}" style="display: none;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
+                    <div id="expanded_content_{{ data_get($option, 'id') }}" data-expanded-content-shipping-option-id="{{ data_get($option, 'id') }}" style="display: none; text-align: center;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
                         <p>{{ data_get($option, 'expanded_content') }}</p>
                     </div>
                     @endif

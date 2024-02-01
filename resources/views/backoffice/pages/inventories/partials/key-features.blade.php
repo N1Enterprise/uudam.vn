@@ -33,7 +33,7 @@
     </div>
     <div class="k-repeater__add-data">
         <span data-repeater-create="" class="btn btn-info btn-sm">
-            <i class="la la-plus"></i> {{ __('Add') }}
+            <i class="la la-plus"></i> {{ __('Thêm') }}
         </span>
     </div>
 </div>

@@ -44,19 +44,19 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
                         <th data-property="cta_label">{{ __('Cta Label') }}</th>
                         <th data-property="redirect_url">{{ __('url') }}</th>
                         <th data-property="order">{{ __('Order') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="start_at">{{ __('Start At') }}</th>
                         <th data-orderable="false" data-property="color" data-render-callback="renderCallbackColor">{{ __('Color') }}</th>
                         <th data-property="end_at">{{ __('End At') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                         <th data-orderable="false" data-property="desktop_image" data-render-callback="renderCallbackImage">{{ __('Desktop Image') }}</th>
                         <th data-orderable="false" data-property="mobile_image" data-render-callback="renderCallbackImage">{{ __('Mobile Image') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

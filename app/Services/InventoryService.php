@@ -190,6 +190,7 @@ class InventoryService extends BaseService
             $variant['product_slug']          = data_get($attributes, 'product_slug');
             $variant['offer_start']           = data_get($attributes, 'offer_start');
             $variant['offer_end']             = data_get($attributes, 'offer_end');
+            $variant['meta']                  = data_get($attributes, 'meta');
 
             $variantsCreated = [];
 
