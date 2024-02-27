@@ -9,6 +9,7 @@ use App\Services\CartItemService;
 use App\Services\CartService;
 use App\Services\UserCheckoutService;
 use App\Vendors\Localization\Money;
+use Exception;
 
 class UserCheckoutController extends BaseApiController
 {
@@ -35,7 +36,7 @@ class UserCheckoutController extends BaseApiController
         $cart = $this->cartService->findByUser($user->getKey(), ['currency_code' => $user->currency_code]);
 
         if ($cart->uuid != $cartUuid) {
-            throw new ModelNotFoundException();
+            return ['message' => 'invalid'];
         }
 
         $shippingHistory = $this->userCheckoutService->handleCartShippingFeeByShippingOption($cart, $request->shipping_option_id, $request->address_id);

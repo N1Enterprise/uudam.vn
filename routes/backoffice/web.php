@@ -187,18 +187,18 @@ Route::get('countries', [Controllers\CountryController::class, 'index'])->name('
 Route::get('currencies', [Controllers\CurrencyController::class, 'index'])->name('currencies.index')->middleware(['can:currencies.index']);
 
 /* ======================== SHIPPINGS ======================== */
-// Route::get('shipping-zones', [Controllers\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
-// Route::get('shipping-zones/create', [Controllers\ShippingZoneController::class, 'create'])->name('shipping-zones.create')->middleware(['can:shipping-zones.store']);
-// Route::post('shipping-zones', [Controllers\ShippingZoneController::class, 'store'])->name('shipping-zones.store')->middleware(['can:shipping-zones.store']);
-// Route::get('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'edit'])->name('shipping-zones.edit')->middleware(['can:shipping-zones.update']);
-// Route::put('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'update'])->name('shipping-zones.update')->middleware(['can:shipping-zones.update']);
+Route::get('shipping-zones', [Controllers\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
+Route::get('shipping-zones/create', [Controllers\ShippingZoneController::class, 'create'])->name('shipping-zones.create')->middleware(['can:shipping-zones.store']);
+Route::post('shipping-zones', [Controllers\ShippingZoneController::class, 'store'])->name('shipping-zones.store')->middleware(['can:shipping-zones.store']);
+Route::get('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'edit'])->name('shipping-zones.edit')->middleware(['can:shipping-zones.update']);
+Route::put('shipping-zones/{id}', [Controllers\ShippingZoneController::class, 'update'])->name('shipping-zones.update')->middleware(['can:shipping-zones.update']);
 
-// Route::get('shipping-rates', [Controllers\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
-// Route::get('shipping-rates/create', [Controllers\ShippingRateController::class, 'create'])->name('shipping-rates.create')->middleware(['can:shipping-rates.store']);
-// Route::post('shipping-rates', [Controllers\ShippingRateController::class, 'store'])->name('shipping-rates.store')->middleware(['can:shipping-rates.store']);
-// Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'edit'])->name('shipping-rates.edit')->middleware(['can:shipping-rates.update']);
-// Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
-// Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
+Route::get('shipping-rates', [Controllers\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
+Route::get('shipping-rates/create', [Controllers\ShippingRateController::class, 'create'])->name('shipping-rates.create')->middleware(['can:shipping-rates.store']);
+Route::post('shipping-rates', [Controllers\ShippingRateController::class, 'store'])->name('shipping-rates.store')->middleware(['can:shipping-rates.store']);
+Route::get('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'edit'])->name('shipping-rates.edit')->middleware(['can:shipping-rates.update']);
+Route::put('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'update'])->name('shipping-rates.update')->middleware(['can:shipping-rates.update']);
+Route::delete('shipping-rates/{id}', [Controllers\ShippingRateController::class, 'destroy'])->name('shipping-rates.delete')->middleware(['can:shipping-rates.delete']);
 
 Route::get('shipping-providers', [Controllers\ShippingProviderController::class, 'index'])->name('shipping-providers.index')->middleware(['can:shipping-providers.index']);
 Route::get('shipping-providers/create', [Controllers\ShippingProviderController::class, 'create'])->name('shipping-providers.create')->middleware(['can:shipping-providers.store']);

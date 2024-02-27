@@ -16,7 +16,6 @@ class ShippingRate extends BaseModel
     protected $fillable = [
         'name',
         'shipping_zone_id',
-        'carrier_id',
         'delivery_takes',
         'type',
         'minimum',

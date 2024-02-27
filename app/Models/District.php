@@ -22,4 +22,9 @@ class District extends Model
         'province_code',
         'administrative_unit_id'
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_code', 'code');
+    }
 }

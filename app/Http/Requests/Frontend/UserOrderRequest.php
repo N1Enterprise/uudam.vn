@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Frontend;
 
 use App\Contracts\Requests\Frontend\UserOrderRequestContract;
+use App\Models\Address;
 use App\Models\PaymentOption;
 use App\Models\ShippingOption;
 use Illuminate\Validation\Rule;
@@ -16,6 +17,7 @@ class UserOrderRequest extends BaseFormRequest implements UserOrderRequestContra
             'shipping_option_id' => ['required', 'integer', Rule::exists(ShippingOption::class, 'id')],
             'payment_option_id'  => ['required', 'integer', Rule::exists(PaymentOption::class, 'id')],
             'redirect_urls'      => ['nullable', 'array'],
+            'address_id'         => ['required', Rule::exists(Address::class, 'id')],
         ];
     }
 }

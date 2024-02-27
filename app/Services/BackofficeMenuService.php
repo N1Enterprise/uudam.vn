@@ -133,16 +133,21 @@ class BackofficeMenuService extends BaseService
                         'link' => route('bo.web.shipping-options.index'),
                         'permissions' => ['shipping-options.index'],
                     ],
-                    // [
-                    //     'name' => 'Shipping Zones',
-                    //     'link' => route('bo.web.shipping-zones.index'),
-                    //     'permissions' => ['shipping-zones.index'],
-                    // ],
-                    // [
-                    //     'name' => 'Shipping Rates',
-                    //     'link' => route('bo.web.shipping-rates.index'),
-                    //     'permissions' => ['shipping-rates.index'],
-                    // ],
+                    [
+                        'name' => 'Cài đặt vận chuyển',
+                        'subs' => [
+                            [
+                                'name' => 'Khu vực vận chuyển',
+                                'link' => route('bo.web.shipping-zones.index'),
+                                'permissions' => ['shipping-zones.index'],
+                            ],
+                            [
+                                'name' => 'Giá cước vận chuyển',
+                                'link' => route('bo.web.shipping-rates.index'),
+                                'permissions' => ['shipping-rates.index'],
+                            ],
+                        ]
+                    ],
                 ],
             ],
             [

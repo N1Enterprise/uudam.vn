@@ -19,7 +19,9 @@ class ProviderShippingFeeHistory extends BaseModel
         'provider_payload',
         'log',
         'note',
-        'total_weight'
+        'total_weight',
+        'shipping_zone_id',
+        'shipping_rate_id'
     ];
 
     protected $casts = [

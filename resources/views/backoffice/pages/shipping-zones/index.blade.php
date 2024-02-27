@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Shipping Zones');
+	$title = __('Khu vực vận chuyển');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Shipping Zones') }}
+                    {{ __('Danh sách khu vực') }}
                 </h3>
             </div>
             @canAny(['shipping-zones.store'])
@@ -31,7 +31,7 @@
                     @can('shipping-zones.store')
                     <a href="{{ route('bo.web.shipping-zones.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Shipping Zones') }}
+                        {{ __('Tạo khu vực vận chuyển') }}
                     </a>
                     @endcan
                 </div>
@@ -44,7 +44,7 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
-                        <th data-property="supported_countries" data-render-callback="renderSupportedCountriesCallback">{{ __('Supported Countries') }}</th>
+                        <th data-property="supported_countries" data-render-callback="renderSupportedCountriesCallback">{{ __('Quốc gia') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>

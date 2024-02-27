@@ -9,10 +9,10 @@
         <div class="k-portlet__body">
             <div class="form-group row">
                 <div class="col-lg-4">
-                    <label>{{ __('Shipping Zone') }}</label>
+                    <label>{{ __('Khu vực vận chuyển') }}</label>
                     <div class="form-group">
-                        <select name="shipping_zone_id" title="--{{ __('Select Shipping Zone') }}--" class="form-control k_selectpicker">
-                            <option value="shipping_zone_id">--- {{ __('Select Shipping Zone') }} ---</option>
+                        <select name="shipping_zone_id" title="--{{ __('Chọn khu vực vận chuyển') }}--" class="form-control k_selectpicker">
+                            <option value="shipping_zone_id">--- {{ __('Chọn khu vực vận chuyển') }} ---</option>
                             @foreach($shippingZones as $shippingZone)
                             <option value="{{ $shippingZone->id }}">{{ $shippingZone->name }}</option>
                             @endforeach
@@ -20,10 +20,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <label>{{ __('Type') }}</label>
+                    <label>{{ __('Thể loại') }}</label>
                     <div class="form-group">
-                        <select name="type" title="--{{ __('Select Type') }}--" class="form-control k_selectpicker">
-                            <option value="">--- {{ __('Select Type') }} ---</option>
+                        <select name="type" title="--{{ __('Chọn loại') }}--" class="form-control k_selectpicker">
+                            <option value="">--- {{ __('Chọn loại') }} ---</option>
                             @foreach($shippingRateTypeEnumLabels as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach

@@ -60,6 +60,6 @@ const LOCALIZATION_ROUTES = {
 };
 
 const CHECKOUT_ROUTES = {
-    api_user_checkout_provider_shipping_free: boHost + '/fe/api/user/checkout/:cartUuid/provider-shipping-fee',
+    api_user_checkout_provider_shipping_free: boHost + '/fe/api/user/checkout/:cartUuid/shipping-fee',
     web_user_checkout_with_payment_success: boHost + '/checkout/:cart_uuid?transaction_id=:transaction_id'
 };

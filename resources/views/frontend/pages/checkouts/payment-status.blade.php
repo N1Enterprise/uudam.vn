@@ -1,7 +1,83 @@
 @extends('frontend.layouts.checkout')
 
+@section('page_title')
+Thanh toán | {{ config('app.user_domain') }}
+@endsection
+
+@section('page_seo')
+<meta property="og:title" content="Thanh toán | {{ config('app.user_domain') }}">
+<meta property="og:description" content="Thanh toán | {{ config('app.user_domain') }}">
+<meta property="og:url" content="{{ request()->url() }}">
+<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:price:currency" content="VND">
+<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+@endsection
+
 @section('style')
+<link href="{{ asset_with_version('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset_with_version('frontend/bundle/css/variable.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
+
 <style>
+    input:disabled,
+    select:disabled {
+        background: #f9f9f9;
+    }
+
+    .quick-add-modal__toggle .icon {
+        width: 1rem;
+    }
+    .quick-add-modal__toggle {
+        width: auto;
+        padding: .5rem;
+    }
+
+    .ls-box-title {
+        font-family: Poppins,sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin: 10px 0;
+        color: #000;
+    }
+
+    @media screen and (max-width: 600px) {
+        .quick-add-modal__content {
+            margin-top: 20px;
+        }
+
+        .quick-add-modal__content-info {
+            padding: 1rem;
+        }
+
+        .quick-add-modal__toggle {
+            top: 20px;
+            right: 1.5rem;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .quick-add-modal__content {
+            margin-top: 0;
+            height: 100%;
+            overflow: scroll;
+            width: 100%;
+        }
+    }
+
+    .create-address-form .msg-error {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .prevent {
+        opacity: .5;
+    }
+
     .error-block {
         padding: 12px 16px;
         width: 100%;
@@ -79,90 +155,79 @@
     .contact_link {
         color: #0043ff;
     }
+
+    .wrap-of-status {
+        flex-direction: column!important;
+        margin-top: 30px;
+    }
 </style>
 @endsection
 
 @section('content_body')
-<div class="_16s97g7s" style="--_16s97g7o: span 2;">
-    <div class="_1frageme0 _1fragemfi _1mrl40q2 _1fragemgb _1fragemgs _16s97g7c _16s97g7k _16s97g718 _16s97g71g   _16s97g788" style="--_16s97g78: minmax(0, 1fr); --_16s97g7g: 1fr; --_16s97g714: minmax(0, 1fr); --_16s97g71c: minmax(0, 1fr) minmax(auto, max-content);">
-        <div class="_1fragemfe _1fragemfk _1fragemed _1frageme0">
-            <div class="_1fragemfc _1fragem8d _1fragema9 _1fragem6h _1fragemc5 _1frageme0 _16s97g77s  _16s97g732" style="--_16s97g72y: 65rem;">
-                <main id="checkout-main" class="_1fragemfc _1fragem8e _1fragemaa _1fragem6i _1fragemc6 _1frageme0 _16s97g7ac">
-                    <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg3 _1fragemgk">
+<div class="content">
+    <div class="wrap wrap-of-status">
+        <h2>Thanh toán {{ $order->isSucceed() ? 'thành công' : 'không thành công' }}</h2>
 
-                        <section class="_1fragemf0 _1fragemex _1fragemfc _1fragem8c _1fragem99 _1fragema8 _1fragemb5 _1fragem6g _1fragem7d _1fragemc4 _1fragemd1 _1fragemm8 _1frageme0">
-                            <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemg1 _1fragemgi">
-                                <div class="_1ip0g651 _1fragemfi _1frageme0 _1fragemfx _1fragemge">
-                                    <h2 class="n8k95w1 _1frageme0 n8k95w2">Thanh toán {{ $order->isSucceed() ? 'thành công' : 'không thành công' }}</h2>
-                                </div>
+        @if($order->isFailure())
+        <div class="error-block">
+            @if($order->isPaymentError())
+            <span class="error-block__generic">Thanh toán thất bại.</span>
+            <span class="error-block__spec">Vui lòng thanh toán lại hoặc chọn phương thức thanh toán khác</span>
+            @endif
+        </div>
+        @endif
 
-                                @if($order->isFailure())
-                                <div class="error-block">
+        <div class="order-info">
+            <div class="order-info__left">Mã đơn hàng</div>
+            <div class="order-info__right">{{ $order->order_code }}</div>
+        </div>
 
-                                    @if($order->isPaymentError())
-                                    <span class="error-block__generic">Thanh toán thất bại.</span>
-                                    <span class="error-block__spec">Vui lòng thanh toán lại hoặc chọn phương thức thanh toán khác</span>
-                                    @endif
-                                </div>
-                                @endif
-
-                                <div class="order-info">
-                                    <div class="order-info__left">Mã đơn hàng</div>
-                                    <div class="order-info__right">{{ $order->order_code }}</div>
-                                </div>
-
-                                <div class="order-info">
-                                    <div class="order-info__left">Phương thức thanh toán</div>
-                                    <div class="order-info__right">
-                                        <div style="display: flex; align-items: center; text-align: right;">
-                                            @if(optional($order->paymentOption)->logo)
-                                            <img class="method-icon" src="{{ optional($order->paymentOption)->logo }}">
-                                            @endif
-                                            <span class="method-title">{{ optional($order->paymentOption)->name }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="order-info" style="box-shadow: none;">
-                                    <div class="order-info__left">Tổng tiền</div>
-                                    <div class="order-info__right">{{ format_price($order->grand_total) }}</div>
-                                </div>
-
-                                @if($order->isFailure())
-                                <div>
-                                    <div style="margin-bottom: 4px; text-decoration: underline;">Liên hệ bên dưới để được hỗ trợ</div>
-                                    <ul>
-                                        <li style="display: flex; align-items: center; text-align: right;">
-                                            <span style="margin-right: 3px;">Số điện thoại:</span>
-                                            <div>
-                                                <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
-                                                <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.label') }})</span>
-                                            </div>
-                                        </li>
-                                        <li style="display: flex; align-items: center; text-align: right;">
-                                            <span style="margin-right: 3px;">Zalo:</span>
-                                            <div>
-                                                <a href="https://zalo.me/{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}" target="_blank" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
-                                                <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.label') }})</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="button-block">
-                                        <button type="button" class="button button-left" data-href="{{ route('fe.web.user.checkout.repayment', $order->order_code) }}">Thanh toán lại</button>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="button-block">
-                                    <button type="button" class="button button-left" data-href="{{ route('fe.web.home') }}">Tiếp tục mua sắm</button>
-                                    <button type="button" class="button button-right" data-href="{{ route('fe.web.user.profile.order-history-detail', $order->order_code) }}">Chi tiết đơn hàng</button>
-                                </div>
-                                @endif
-                            </div>
-                        </section>
-                    </div>
-                </main>
+        <div class="order-info">
+            <div class="order-info__left">Phương thức thanh toán</div>
+            <div class="order-info__right">
+                <div style="display: flex; align-items: center; text-align: right;">
+                    @if(optional($order->paymentOption)->logo)
+                    <img class="method-icon" src="{{ optional($order->paymentOption)->logo }}">
+                    @endif
+                    <span class="method-title">{{ optional($order->paymentOption)->name }}</span>
+                </div>
             </div>
         </div>
+
+        <div class="order-info" style="box-shadow: none;">
+            <div class="order-info__left">Tổng tiền</div>
+            <div class="order-info__right">{{ format_price($order->grand_total) }}</div>
+        </div>
+
+        @if($order->isFailure())
+        <div>
+            <div style="margin-bottom: 4px; text-decoration: underline;">Liên hệ bên dưới để được hỗ trợ</div>
+            <ul>
+                <li style="display: flex; align-items: center; text-align: right;">
+                    <span style="margin-right: 3px;">Số điện thoại:</span>
+                    <div>
+                        <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
+                        <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.label') }})</span>
+                    </div>
+                </li>
+                <li style="display: flex; align-items: center; text-align: right;">
+                    <span style="margin-right: 3px;">Zalo:</span>
+                    <div>
+                        <a href="https://zalo.me/{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}" target="_blank" class="contact_link">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
+                        <span>({{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.label') }})</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="button-block">
+                <button type="button" class="button button-left" data-href="{{ route('fe.web.user.checkout.repayment', $order->order_code) }}">Thanh toán lại</button>
+            </div>
+        </div>
+        @else
+        <div class="button-block">
+            <button type="button" class="button button-left" data-href="{{ route('fe.web.home') }}">Tiếp tục mua sắm</button>
+            <button type="button" class="button button-right" data-href="{{ route('fe.web.user.profile.order-history-detail', $order->order_code) }}">Chi tiết đơn hàng</button>
+        </div>
+        @endif
     </div>
 </div>
 @endsection
@@ -171,7 +236,6 @@
 <script>
     $('[data-href]').on('click', function() {
         const href = $(this).attr('data-href');
-
         window.location.href = href;
     });
 </script>

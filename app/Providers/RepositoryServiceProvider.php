@@ -56,5 +56,6 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\HomePageDisplayItemRepositoryContract::class => Repositories\HomePageDisplayItemRepository::class,
         Contracts\AddressRepositoryContract::class => Repositories\AddressRepository::class,
         Contracts\ProviderShippingFeeHistoryRepositoryContract::class => Repositories\ProviderShippingFeeHistoryRepository::class,
+        Contracts\UserOrderShippingHistoryRepositoryContract::class => Repositories\UserOrderShippingHistoryRepository::class,
     ];
 }

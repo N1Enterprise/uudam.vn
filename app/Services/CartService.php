@@ -76,7 +76,7 @@ class CartService extends BaseService
     public function findByUser($userId, $data = [])
     {
         return $this->cartRepository
-            // ->modelScopes(['notOrdered'])
+            ->modelScopes(['notOrdered'])
             ->with(data_get($data, 'with', []))
             ->scopeQuery(function($q) use ($data) {
                 if ($currencyCode = data_get($data, 'currency_code')) {

@@ -31,7 +31,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Danh mục danh mục') }}
+                    {{ __('Danh sách danh mục') }}
                 </h3>
             </div>
             @canAny(['categories.store'])

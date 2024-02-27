@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Shipping Rates');
+	$title = __('Giá cước vận chuyển');
 
 	$breadcrumbs = [
 		[
@@ -19,13 +19,13 @@
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
 
-    @include('backoffice.pages.shipping-rates.partials.index-search-form')
+    @include('backoffice.pages.shipping-rates.partials.search-form')
 
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Shipping Rates') }}
+                    {{ __('Giá cước vận chuyển') }}
                 </h3>
             </div>
             @canAny(['shipping-rates.store'])
@@ -34,7 +34,7 @@
                     @can('shipping-rates.store')
                     <a href="{{ route('bo.web.shipping-rates.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Shipping Rates') }}
+                        {{ __('Tạo giá cước vận chuyển') }}
                     </a>
                     @endcan
                 </div>
@@ -47,12 +47,12 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
-                        <th data-property="delivery_takes">{{ __('Delivery Takes') }}</th>
-                        <th data-orderable="false" data-property="shipping_zone.name">{{ __('Shipping Zone') }}</th>
-                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                        <th data-name="minimum" data-property="minimum_formatted">{{ __('Minimum') }}</th>
-                        <th data-name="maximum" data-property="maximum_formatted">{{ __('Maximum') }}</th>
-                        <th data-property="rate" data-render-callback="renderRateCallback">{{ __('Rate') }}</th>
+                        <th data-property="delivery_takes">{{ __('Thời gian giao') }}</th>
+                        <th data-orderable="false" data-property="shipping_zone.name">{{ __('Khu vực') }}</th>
+                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
+                        <th data-name="minimum" data-property="minimum_formatted">{{ __('Tối thiểu') }}</th>
+                        <th data-name="maximum" data-property="maximum_formatted">{{ __('Tối đa') }}</th>
+                        <th data-property="rate" data-render-callback="renderRateCallback">{{ __('Tỷ lệ') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>

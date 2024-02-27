@@ -29,6 +29,7 @@ class UserOrderController extends BaseApiController
             $cartUuid,
             $request->payment_option_id,
             $request->shipping_option_id,
+            $request->address_id,
             $this->user(),
             $dataValidated
         );

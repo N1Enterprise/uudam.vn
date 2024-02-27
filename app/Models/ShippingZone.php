@@ -21,6 +21,5 @@ class ShippingZone extends BaseModel
         'supported_countries' => 'json',
         'supported_provinces' => 'json',
         'supported_districts' => 'json',
-        'supported_wards' => 'json',
     ];
 }

@@ -28,29 +28,26 @@ class ShippingRateController extends BaseController
     public function index()
     {
         $shippingZones = $this->shippingZoneService->allAvailable(['columns' => ['id', 'name']]);
-        $carriers = $this->carrierService->allAvailable(['columns' => ['id', 'name']]);
         $shippingRateTypeEnumLabels = ShippingRateTypeEnum::labels();
 
-        return view('backoffice.pages.shipping-rates.index', compact('shippingZones', 'carriers', 'shippingRateTypeEnumLabels'));
+        return view('backoffice.pages.shipping-rates.index', compact('shippingZones', 'shippingRateTypeEnumLabels'));
     }
 
     public function create()
     {
         $shippingZones = $this->shippingZoneService->allAvailable(['columns' => ['id', 'name']]);
-        $carriers = $this->carrierService->allAvailable(['columns' => ['id', 'name']]);
         $shippingRateTypeEnumLabels = ShippingRateTypeEnum::labels();
 
-        return view('backoffice.pages.shipping-rates.create', compact('shippingZones', 'carriers', 'shippingRateTypeEnumLabels'));
+        return view('backoffice.pages.shipping-rates.create', compact('shippingZones', 'shippingRateTypeEnumLabels'));
     }
 
     public function edit($id)
     {
         $shippingRate = $this->shippingRateService->show($id);
         $shippingZones = $this->shippingZoneService->allAvailable(['columns' => ['id', 'name']]);
-        $carriers = $this->carrierService->allAvailable(['columns' => ['id', 'name']]);
         $shippingRateTypeEnumLabels = ShippingRateTypeEnum::labels();
 
-        return view('backoffice.pages.shipping-rates.edit', compact('shippingRate', 'shippingZones', 'carriers', 'shippingRateTypeEnumLabels'));
+        return view('backoffice.pages.shipping-rates.edit', compact('shippingRate', 'shippingZones', 'shippingRateTypeEnumLabels'));
     }
 
     public function store(StoreShippingRateRequestContract $request)

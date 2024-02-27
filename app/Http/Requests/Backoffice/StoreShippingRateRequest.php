@@ -29,7 +29,7 @@ class StoreShippingRateRequest extends BaseFormRequest implements StoreShippingR
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'display_on_frontend' => boolean($this->display_on_frontend)
+            'display_on_frontend' => boolean($this->display_on_frontend),
         ]);
     }
 }

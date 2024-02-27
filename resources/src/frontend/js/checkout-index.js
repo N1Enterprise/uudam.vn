@@ -67,6 +67,7 @@ $(() => {
                 const payload = {
                     shipping_option_id: $('[name="shipping_option_id"]:checked').val(),
                     payment_option_id: $('[name="payment_option_id"]:checked').val(),
+                    address_id: $('#user_address').attr('data-address-id'),
                     redirect_urls: {
                         payment_success: CHECKOUT_ROUTES.web_user_checkout_with_payment_success.replace(':cart_uuid', cartUuid)
                     }
@@ -81,7 +82,12 @@ $(() => {
                         $form.find('[type="submit"]').addClass('prevent');
                     },
                     success: (response) => {
-                        const { payment } = response;
+                        const { payment, paying_confirmed, end_of_redirect_at } = response;
+
+                        if (paying_confirmed) {
+                            window.location.href = end_of_redirect_at;
+                            return;
+                        }
 
                         if (payment?.redirect_output) {
                             const { container } = payment.redirect_output;

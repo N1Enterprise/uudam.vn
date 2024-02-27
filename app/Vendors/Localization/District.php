@@ -31,7 +31,8 @@ class District
     public function all($data = [])
     {
         return $this->model()->query()
-            ->get(array_merge(['code', 'name', 'full_name'], data_get($data, 'columns', [])));
+            ->with(data_get($data, 'with', []))
+            ->get(array_merge(['code', 'name', 'full_name', 'province_code'], data_get($data, 'columns', [])));
     }
 
     /**

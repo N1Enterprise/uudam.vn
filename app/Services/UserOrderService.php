@@ -3,16 +3,16 @@
 namespace App\Services;
 
 use App\Enum\DepositStatusEnum;
-use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
+use App\Enum\UserOrderShippingHistoryStatusEnum;
 use App\Events\Order\OrderCreated;
 use App\Events\Order\OrderUpdated;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
+use App\Models\BaseModel;
 use App\Repositories\Contracts\OrderRepositoryContract;
 use App\Services\BaseService;
 use App\Models\PaymentOption;
-use App\Models\ShippingRate;
 use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +21,8 @@ use App\Models\DepositTransaction;
 use App\Payment\PaymentIntegrationService;
 use Illuminate\Support\Arr;
 use App\Models\ShippingOption;
+use App\Shipping\Helpers\ShippingCartHelper;
+use App\Models\Address;
 
 class UserOrderService extends BaseService
 {
@@ -35,6 +37,9 @@ class UserOrderService extends BaseService
     public $paymentIntegrationService;
     public $shippingOptionService;
     public $depositService;
+    public $userOrderShippingHistoryService;
+    public $userCheckoutService;
+    public $addressService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
@@ -47,7 +52,10 @@ class UserOrderService extends BaseService
         DepositTransactionService $depositTransactionService,
         PaymentIntegrationService $paymentIntegrationService,
         ShippingOptionService $shippingOptionService,
-        DepositService $depositService
+        DepositService $depositService,
+        UserOrderShippingHistoryService $userOrderShippingHistoryService,
+        UserCheckoutService $userCheckoutService,
+        AddressService $addressService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
@@ -60,9 +68,12 @@ class UserOrderService extends BaseService
         $this->paymentIntegrationService = $paymentIntegrationService;
         $this->shippingOptionService = $shippingOptionService;
         $this->depositService = $depositService;
+        $this->userOrderShippingHistoryService = $userOrderShippingHistoryService;
+        $this->userCheckoutService = $userCheckoutService;
+        $this->addressService = $addressService;
     }
 
-    public function order($userId, $cartUuid, $paymentOptionId, $shippingOptionId, $createdBy, $data = [])
+    public function order($userId, $cartUuid, $paymentOptionId, $shippingOptionId, $addressId, $createdBy, $data = [])
     {
         /** @var PaymentOption */
         $paymentOption = $this->paymentOptionService->show($paymentOptionId);
@@ -72,6 +83,9 @@ class UserOrderService extends BaseService
 
         /** @var Cart */
         $cart = $this->cartService->findByUser($userId, ['uuid' => $cartUuid]);
+
+        /** @var Address */
+        $address = $this->addressService->show($addressId);
 
         /** @var User */
         $user = $this->userService->show($userId);
@@ -86,11 +100,40 @@ class UserOrderService extends BaseService
 
         $data['currency_code'] = $user->currency_code;
 
-        return DB::transaction(function() use ($user, $paymentOption, $shippingOption, $cart, $data, $createdBy) {
+        return DB::transaction(function() use ($user, $paymentOption, $shippingOption, $cart, $data, $address, $createdBy) {
             /** @var Order */
             $order = $this->orderService->createFromCartByUser($user, $cart, $paymentOption, $shippingOption, $createdBy, $data);
 
             $this->orderItemService->createListFormCartByUser($user, $cart, $order, $data);
+
+            $history = $this->userCheckoutService->handleCartShippingFeeByShippingOption($cart, $shippingOption, $address);
+
+            $userOrderShippingHistory = $this->userOrderShippingHistoryService->create([
+                'user_id' => BaseModel::getModelKey($user),
+                'order_id' => BaseModel::getModelKey($order),
+                'shipping_option_id' => data_get($history, 'shipping_option_id'),
+                'shipping_provider_id' => data_get($history, 'shipping_provider_id'),
+                'shipping_zone_id' => data_get($history, 'shipping_zone_id'),
+                'shipping_rate_id' => data_get($history, 'shipping_rate_id'),
+                'status' => UserOrderShippingHistoryStatusEnum::PENDING,
+                'total_weight' => ShippingCartHelper::getTotalWeightFromItems($cart->availableItems ?? []),
+                'estimated_transport_fee' => data_get($history, 'transport_fee'),
+                'total_invoice_amount' => data_get($history, 'total_estimated_amount'),
+                'provider_shipping_fee_history_id' => data_get($history, 'id')
+            ]);
+
+            $order->total_weight = $userOrderShippingHistory->total_weight;
+            $order->grand_total  = $userOrderShippingHistory->total_invoice_amount;
+
+            $order->fill([
+                'fullname' => $user->name,
+                'email' => $address->email,
+                'phone' => $address->phone,
+                'province_name' => data_get($address, ['province', 'full_name']),
+                'district_name' => data_get($address, ['district', 'full_name']),
+                'ward_name' => data_get($address, ['ward', 'full_name']),
+                'address_line' => data_get($address, ['address_line']),
+            ]);
 
             /** @var DepositTransaction */
             $deposit = $this->depositService->deposit(
@@ -98,10 +141,11 @@ class UserOrderService extends BaseService
                 $order->grand_total,
                 $paymentOption,
                 $user,
-                array_merge($data, ['order_id' => $order])
+                array_merge($data, ['order_id' => $order->getKey()])
             );
 
             $order->payment_status = $this->parseDepositStatusToOrderPaymentStatus($deposit->status);
+            $order->deposit_transaction_id = $deposit->getKey();
 
             $order->save();
 
@@ -113,6 +157,18 @@ class UserOrderService extends BaseService
 
             return $order;
         });
+    }
+
+    /**
+     * @return Order
+     */
+    public function fillOrderUserAddressInfo(Order $order, User $user, Address $address)
+    {
+        $order->fullname = $user->name;
+        $order->email = $user->email;
+        $order->email = $user->email;
+
+        return $order;
     }
 
     public function reorderPaymentByOrderCode($userId, $orderCode, $data = [])

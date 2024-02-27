@@ -5,6 +5,7 @@ namespace App\Http\Resources\Frontend;
 use App\Enum\DepositStatusEnum;
 use App\Enum\PaymentOptionTypeEnum;
 use App\Http\Resources\Frontend\BaseJsonResource;
+use App\Models\DepositTransaction;
 
 class UserOrderResource extends BaseJsonResource
 {
@@ -12,15 +13,20 @@ class UserOrderResource extends BaseJsonResource
     {
         $depositTransaction = $this->depositTransaction;
 
+        if (! ($depositTransaction instanceof DepositTransaction)) {
+            return;
+        }
+
+        $redirectAt = in_array($depositTransaction->status, [DepositStatusEnum::PENDING, DepositStatusEnum::APPROVED])
+            ? route('fe.web.user.checkout.payment.success', $this->order_code)
+            : route('fe.web.user.checkout.payment.failure', $this->order_code);
+
         return [
             'order_code' => $this->order_code,
             'order_status_name' => $this->order_status_name,
             'grand_total' => $this->grand_total,
-            'end_of_redirect_at' => [
-                'success' => route('fe.web.user.checkout.payment.success', $this->order_code),
-                'failed'  => route('fe.web.user.checkout.payment.failure', $this->order_code),
-            ],
-            'paying_confirmed' => optional($this->paymentOption)->type == PaymentOptionTypeEnum::CASH_ON_DELIVERY,
+            'end_of_redirect_at' => $redirectAt,
+            'paying_confirmed' => optional($this->paymentOption)->type == PaymentOptionTypeEnum::NONE_AMOUNT,
             'payment' => [
                 'data' => [
                     'status_name' => DepositStatusEnum::findConstantLabel($depositTransaction->status),

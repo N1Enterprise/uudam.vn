@@ -61,9 +61,9 @@ class PaymentOption extends BaseModel
         return PaymentOptionTypeEnum::isThirdParty($this->type);
     }
 
-    public function isCashOnDelivery()
+    public function isNoneAmount()
     {
-        return PaymentOptionTypeEnum::isCashOnDelivery($this->type);
+        return PaymentOptionTypeEnum::isNoneAmount($this->type);
     }
 
     public function isLocalBank()

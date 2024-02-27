@@ -21,9 +21,6 @@ class CreateProviderShippingFeeHistoriesTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('address_id');
             $table->char('currency_code', 10);
-            $table->integer('total_item')->default(0);
-            $table->integer('total_quantity')->default(0);
-            $table->decimal('total_price', 20, 6)->default(0);
             $table->decimal('transport_fee', 20, 6)->nullable();
             $table->json('provider_payload')->nullable();
             $table->float('total_weight')->nullable();

@@ -31,19 +31,22 @@ class OrderService extends BaseService
     public $shippingOptionService;
     public $cartService;
     public $userService;
+    public $userOrderShippingHistoryService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
         PaymentOptionService $paymentOptionService,
         ShippingOptionService $shippingOptionService,
         CartService $cartService,
-        UserService $userService
+        UserService $userService,
+        UserOrderShippingHistoryService $userOrderShippingHistoryService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
         $this->shippingOptionService = $shippingOptionService;
         $this->cartService = $cartService;
         $this->userService = $userService;
+        $this->userOrderShippingHistoryService = $userOrderShippingHistoryService;
     }
 
     public function searchByAdmin($data = [])
@@ -277,8 +280,8 @@ class OrderService extends BaseService
 
             return DB::transaction(function() use ($order, $data) {
                 $order = $this->orderRepository->update([
-                    'order_status'   => OrderStatusEnum::COMPLETED,
-                    'admin_note'     => data_get($data, 'admin_note', '')
+                    'order_status' => OrderStatusEnum::COMPLETED,
+                    'admin_note' => data_get($data, 'admin_note', '')
                 ], $order->getKey());
 
                 if ($order->isPendingPayment()) {
@@ -339,6 +342,20 @@ class OrderService extends BaseService
 
                 return $order;
             });
+        });
+    }
+
+    public function updateShipping($orderId, $userOrderShippingHistoryId, $shippingProviderId, $transportFee = 0, $referenceId = null)
+    {
+        return DB::transaction(function() use ($orderId, $userOrderShippingHistoryId, $shippingProviderId, $transportFee, $referenceId) {
+            $this->userOrderShippingHistoryService
+                ->update([
+                    'shipping_provider_id' => $shippingProviderId, 
+                    'transport_fee' => $transportFee,
+                    'reference_id' => $referenceId,
+                ], $userOrderShippingHistoryId);
+
+            return $this->update(['transport_fee' => $transportFee], $orderId);
         });
     }
 }

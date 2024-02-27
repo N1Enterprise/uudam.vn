@@ -91,6 +91,7 @@ Route::prefix('v1')->group(function () {
     Route::put('orders/{id}/complete', [Api\OrderController::class, 'complete'])->name('orders.complete')->middleware(['can:orders.manage']);
     Route::put('orders/{id}/cancel', [Api\OrderController::class, 'cancel'])->name('orders.cancel')->middleware(['can:orders.manage']);
     Route::put('orders/{id}/refund', [Api\OrderController::class, 'refund'])->name('orders.refund')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/update-shipping', [Api\OrderController::class, 'updateShipping'])->name('orders.update-shipping')->middleware(['can:orders.manage']);
 
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 

@@ -55,7 +55,12 @@ class Order extends BaseModel
         'created_by_type',
         'updated_by_id',
         'updated_by_type',
-        'footprint'
+        'footprint',
+        'province_name',
+        'district_name',
+        'ward_name',
+        'transport_fee',
+        'total_weight'
     ];
 
     protected $casts = [
@@ -145,6 +150,7 @@ class Order extends BaseModel
     public function canDelivery()
     {
         return in_array($this->order_status, [
+            OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::PROCESSING,
         ]);
     }
@@ -171,15 +177,15 @@ class Order extends BaseModel
         return in_array($this->order_status, [
             OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::DELIVERY,
         ]);
     }
 
     public function canRefund()
     {
         return in_array($this->order_status, [
-            OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::PROCESSING,
-            OrderStatusEnum::DELIVERY,
+            OrderStatusEnum::COMPLETED,
         ]);
     }
 
@@ -212,5 +218,20 @@ class Order extends BaseModel
             $this->toMoney('grand_total')->__toString(),
             $this->currency_code,
         ]);
+    }
+
+    public function shippingOption()
+    {
+        return $this->belongsTo(ShippingOption::class);   
+    }
+
+    public function userOrderShippingHistory()
+    {
+        return $this->hasMany(UserOrderShippingHistory::class);
+    }
+
+    public function latestUserOrderShippingHistory()
+    {
+        return $this->hasOne(UserOrderShippingHistory::class)->latest();
     }
 }
