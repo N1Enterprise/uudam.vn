@@ -84,6 +84,8 @@ class PaymentOptionService extends BaseService
                 ->setConfigKey([PaymentOption::class, 'logo'])
                 ->uploadImage(data_get($attributes, 'logo'));
 
+            // dd($attributes);
+
             return $this->paymentOptionRepository->create($attributes);
         });
     }
@@ -119,9 +121,9 @@ class PaymentOptionService extends BaseService
             throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
         }
 
-        if (! in_array($currencyCode, $paymentProvider->supported_currencies)) {
-            throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
-        }
+        // if (! in_array($currencyCode, $paymentProvider->supported_currencies ?? [])) {
+        //     throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
+        // }
 
         return $paymentProvider;
     }

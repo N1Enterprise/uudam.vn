@@ -9,8 +9,6 @@ use App\Contracts\Responses\Backoffice\UpdateShippingProviderResponseContract;
 use App\Shipping\ShippingIntegrationService;
 use App\Services\ShippingProviderService;
 use App\Services\ShippingZoneService;
-use App\Vendors\Localization\Country;
-use App\Vendors\Localization\Province;
 
 class ShippingProviderController extends BaseController
 {
@@ -31,20 +29,16 @@ class ShippingProviderController extends BaseController
     public function create()
     {
         $providers = ShippingIntegrationService::availableProviders();
-        $countries = Country::make()->all();
-        $provinces = Province::make()->all();
 
-        return view('backoffice.pages.shipping-providers.create', compact('providers', 'countries', 'provinces'));
+        return view('backoffice.pages.shipping-providers.create', compact('providers'));
     }
 
     public function edit($id)
     {
         $shippingProvider = $this->shippingProviderService->show($id);
         $providers = ShippingIntegrationService::availableProviders();
-        $countries = Country::make()->all();
-        $provinces = Province::make()->all();
 
-        return view('backoffice.pages.shipping-providers.edit', compact('shippingProvider', 'providers', 'countries', 'provinces'));
+        return view('backoffice.pages.shipping-providers.edit', compact('shippingProvider', 'providers'));
     }
 
     public function store(StoreShippingProviderRequestContract $request)

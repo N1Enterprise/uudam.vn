@@ -10,22 +10,14 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     public $singletons = [
         Contracts\BaseRepositoryContract::class => Repositories\BaseRepository::class,
-
-        // Admin User
         Contracts\RoleRepositoryContract::class => Repositories\RoleRepository::class,
         Contracts\AdminRepositoryContract::class => Repositories\AdminRepository::class,
         Contracts\UserRepositoryContract::class => Repositories\UserRepository::class,
         Contracts\UserWalletRepositoryContract::class => Repositories\UserWalletRepository::class,
-
-        // Oauth User
         Contracts\OauthUserRepositoryContract::class => Repositories\OauthUserRepository::class,
-
-        // System Setting
         Contracts\SystemSettingRepositoryContract::class => Repositories\SystemSettingRepository::class,
         Contracts\SystemSettingGroupRepositoryContract::class => Repositories\SystemSettingGroupRepository::class,
         Contracts\SystemCurrencyRepositoryContract::class => Repositories\SystemCurrencyRepository::class,
-
-        // Catalog
         Contracts\CategoryGroupRepositoryContract::class => Repositories\CategoryGroupRepository::class,
         Contracts\CategoryRepositoryContract::class => Repositories\CategoryRepository::class,
         Contracts\ProductRepositoryContract::class => Repositories\ProductRepository::class,
@@ -49,30 +41,21 @@ class RepositoryServiceProvider extends ServiceProvider
         Contracts\UserActionLogRepositoryContract::class => Repositories\UserActionLogRepository::class,
         Contracts\CartRepositoryContract::class => Repositories\CartRepository::class,
         Contracts\CartItemRepositoryContract::class => Repositories\CartItemRepository::class,
-        Contracts\CarrierRepositoryContract::class => Repositories\CarrierRepository::class,
-
-        // Localization
         Contracts\CountryRepositoryContract::class => Repositories\CountryRepository::class,
         Contracts\CurrencyRepositoryContract::class => Repositories\CurrencyRepository::class,
-
-        // Shipping
         Contracts\ShippingZoneRepositoryContract::class => Repositories\ShippingZoneRepository::class,
         Contracts\ShippingRateRepositoryContract::class => Repositories\ShippingRateRepository::class,
         Contracts\ShippingProviderRepositoryContract::class => Repositories\ShippingProviderRepository::class,
-
-        // Payment
+        Contracts\ShippingOptionRepositoryContract::class => Repositories\ShippingOptionRepository::class,
         Contracts\PaymentProviderRepositoryContract::class => Repositories\PaymentProviderRepository::class,
         Contracts\PaymentOptionRepositoryContract::class => Repositories\PaymentOptionRepository::class,
         Contracts\DepositTransactionRepositoryContract::class => Repositories\DepositTransactionRepository::class,
-
-        // Order
         Contracts\OrderRepositoryContract::class => Repositories\OrderRepository::class,
         Contracts\OrderItemRepositoryContract::class => Repositories\OrderItemRepository::class,
-        
         Contracts\HomePageDisplayOrderRepositoryContract::class => Repositories\HomePageDisplayOrderRepository::class,
         Contracts\HomePageDisplayItemRepositoryContract::class => Repositories\HomePageDisplayItemRepository::class,
-
-        // Address
         Contracts\AddressRepositoryContract::class => Repositories\AddressRepository::class,
+        Contracts\ProviderShippingFeeHistoryRepositoryContract::class => Repositories\ProviderShippingFeeHistoryRepository::class,
+        Contracts\UserOrderShippingHistoryRepositoryContract::class => Repositories\UserOrderShippingHistoryRepository::class,
     ];
 }

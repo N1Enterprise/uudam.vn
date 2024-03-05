@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class District extends Model
+class District extends BaseModel
 {
     protected $primaryKey = 'code';
 
@@ -22,4 +20,9 @@ class District extends Model
         'province_code',
         'administrative_unit_id'
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_code', 'code');
+    }
 }

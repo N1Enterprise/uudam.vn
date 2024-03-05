@@ -15,7 +15,6 @@ class ShippingProviderResource extends BaseJsonResource
             'params' => $this->params,
             'status' => $this->status,
             'status_name' => $this->status_name,
-            'shipping_zones' => $this->shipping_zones,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ], $this->generateActionPermissions());

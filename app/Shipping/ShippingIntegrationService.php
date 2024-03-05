@@ -2,8 +2,10 @@
 
 namespace App\Shipping;
 
-use App\Services\ShippingProviderService;
-use App\Models\ShippingProvider;
+use App\Exceptions\ExceptionCode;
+use App\Services\ShippingOptionService;
+use App\Shipping\BaseShippingIntegration;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 class ShippingIntegrationService
 {
@@ -21,10 +23,21 @@ class ShippingIntegrationService
         return $providers;
     }
 
-    public function resolveServiceClassByProvider($provider)
+    /**
+     * @param mixed $shippingOption
+     * @return BaseShipping
+     * @throws Exception
+     * @throws BindingResolutionException
+     */
+    public function resolveServiceClassByOption($shippingOption)
     {
-        /** @var ShippingProvider */
-        $shippingProvider = ShippingProviderService::make()->show($provider);
+        $shippingOption = ShippingOptionService::make()->show($shippingOption);
+
+        $shippingProvider = $shippingOption->shippingProvider;
+
+        if (! ($shippingOption->isThirdParty() && $shippingProvider)) {
+            throw new \Exception('Invalid shipping option.', ExceptionCode::INVALID_PAYMENT_OPTION);
+        }
 
         if (! $shippingProvider || ! $shippingProvider->isActive()) {
             throw new \Exception("resolveProvider: shipping provider {$shippingProvider->code} is not activated");
@@ -35,12 +48,10 @@ class ShippingIntegrationService
         $providerClass = data_get($shippingProviderMappers, $shippingProvider->code, null);
 
         if (! class_exists($providerClass)) {
-            throw new \Exception("Unknown payment provider: {$shippingProvider->code}");
+            throw new \Exception("Unknown shipping provider: {$shippingProvider->code}");
         }
 
-        $providerInstance = app($providerClass, [
-            'provider' => $shippingProvider
-        ]);
+        $providerInstance = app($providerClass, ['shippingOption' => $shippingOption]);
 
         if (! $providerInstance instanceof BaseShippingIntegration) {
             throw new \Exception("Class $providerClass must be an instance of ".BaseShippingIntegration::class);

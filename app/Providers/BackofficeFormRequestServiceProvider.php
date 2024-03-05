@@ -21,7 +21,6 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\UpdateUserRequestContract::class => Requests\UpdateUserRequest::class,
         Contracts\UpdateUserActionLogRequestContract::class => Requests\UpdateUserActionLogRequest::class,
 
-        // System Setting
         Contracts\UpdateSystemSettingRequestContract::class => Requests\UpdateSystemSettingRequest::class,
         Contracts\StoreSystemSettingGroupRequestContract::class => Requests\StoreSystemSettingGroupRequest::class,
         Contracts\StoreSystemSettingKeyRequestContract::class => Requests\StoreSystemSettingKeyRequest::class,
@@ -32,7 +31,6 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreSystemCurrencyRequestContract::class => Requests\StoreSystemCurrencyRequest::class,
         Contracts\UpdateSystemCurrencyRequestContract::class => Requests\UpdateSystemCurrencyRequest::class,
 
-        // Catalog
         Contracts\StoreCategoryGroupRequestContract::class => Requests\StoreCategoryGroupRequest::class,
         Contracts\UpdateCategoryGroupRequestContract::class => Requests\UpdateCategoryGroupRequest::class,
 
@@ -89,10 +87,6 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         Contracts\UploadFileManagerRequestContract::class => Requests\UploadFileManagerRequest::class,
 
-        // Shipping
-        Contracts\StoreCarrierRequestContract::class => Requests\StoreCarrierRequest::class,
-        Contracts\UpdateCarrierRequestContract::class => Requests\UpdateCarrierRequest::class,
-
         Contracts\StoreShippingZoneRequestContract::class => Requests\StoreShippingZoneRequest::class,
         Contracts\UpdateShippingZoneRequestContract::class => Requests\UpdateShippingZoneRequest::class,
 
@@ -102,7 +96,9 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreShippingProviderRequestContract::class => Requests\StoreShippingProviderRequest::class,
         Contracts\UpdateShippingProviderRequestContract::class => Requests\UpdateShippingProviderRequest::class,
 
-        // Payment
+        Contracts\StoreShippingOptionRequestContract::class => Requests\StoreShippingOptionRequest::class,
+        Contracts\UpdateShippingOptionRequestContract::class => Requests\UpdateShippingOptionRequest::class,
+
         Contracts\StorePaymentProviderRequestContract::class => Requests\StorePaymentProviderRequest::class,
         Contracts\UpdatePaymentProviderRequestContract::class => Requests\UpdatePaymentProviderRequest::class,
 
@@ -112,13 +108,14 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\DeclineDepositTransactionRequestContract::class => Requests\DeclineDepositTransactionRequest::class,
         Contracts\ApproveDepositTransactionRequestContract::class => Requests\ApproveDepositTransactionRequest::class,
 
-        // Order
         Contracts\UpdateOrderStatusRequestContract::class => Requests\UpdateOrderStatusRequest::class,
+        Contracts\StoreOrderRequestContract::class => Requests\StoreOrderRequest::class,
 
         Contracts\StoreHomePageDisplayOrderRequestContract::class => Requests\StoreHomePageDisplayOrderRequest::class,
         Contracts\UpdateHomePageDisplayOrderRequestContract::class => Requests\UpdateHomePageDisplayOrderRequest::class,
-
         Contracts\StoreHomePageDisplayItemRequestContract::class => Requests\StoreHomePageDisplayItemRequest::class,
         Contracts\UpdateHomePageDisplayItemRequestContract::class => Requests\UpdateHomePageDisplayItemRequest::class,
+
+        Contracts\UpdateOrderShippingRequestContract::class => Requests\UpdateOrderShippingRequest::class,
     ];
 }

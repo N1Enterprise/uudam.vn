@@ -35,6 +35,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
                 'init_sold_count' => ['nullable'],
+                'meta' => ['nullable', 'array'],
+                'weight' => ['nullable', 'numeric', 'gt:0'],
                 'offer_start' => [
                     Rule::requiredIf(function() {
                         $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
@@ -71,7 +73,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'allow_frontend_search' => boolean($this->allow_frontend_search),
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray()
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
+            'meta' => !empty($this->meta) ? json_decode($this->meta, true) : null,
         ]);
     }
 

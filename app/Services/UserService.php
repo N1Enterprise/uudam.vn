@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enum\ActivationStatusEnum;
 use App\Enum\UserActionEnum;
+use App\Enum\UserStatusEnum;
 use App\Enum\UserWalletTypeEnum;
 use App\Events\User\UserCreated;
 use App\Events\User\UserCreating;
@@ -54,6 +55,15 @@ class UserService extends BaseService
             });
 
         return $builder->search([]);
+    }
+
+    public function allAvailable($data = [])
+    {
+        return $this->userRepository
+            ->scopeQuery(function($q) {
+                $q->where('status', UserStatusEnum::ACTIVE);
+            })
+            ->all();
     }
 
     public function create($attributes = [])

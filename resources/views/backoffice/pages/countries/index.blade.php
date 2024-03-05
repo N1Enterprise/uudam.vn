@@ -35,7 +35,7 @@
                         <th data-property="iso3">Iso3</th>
                         <th data-property="numeric_code">Numeric Code</th>
                         <th data-property="iso2">Iso2</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="phonecode">Phone Code</th>
                         <th data-property="capital">Capital</th>
                         <th data-property="currency">Currency</th>
@@ -53,8 +53,8 @@
                         <th data-property="emojiU">EmojiU</th>
                         <th data-property="flag">Flag</th>
                         <th data-property="wikiDataId">Wiki Data Id</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                     </tr>
                 </thead>
                 <tbody>

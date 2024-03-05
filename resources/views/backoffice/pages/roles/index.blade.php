@@ -47,8 +47,8 @@
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Role_Label') }}</th>
                         <th data-property="users_count">{{ __('Number Of Users') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -49,12 +49,12 @@
                         <th data-property="user_email">{{ __('User Email') }}</th>
                         <th data-property="product.name" data-render-callback="renderCallbackProductName">{{ __('Product Name') }}</th>
                         <th data-orderable="false" data-badge data-name="rating_type" data-property="rating_type_name">{{ __('Rating Type') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Ngày tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Ngày cập nhật') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

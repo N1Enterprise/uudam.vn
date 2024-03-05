@@ -21,4 +21,19 @@ class Service extends BaseShippingIntegration
     {
         return self::PROVIDER_CODE;
     }
+
+    public function parsePayload($data = []): array
+    {
+        return [];
+    }
+
+    public function getBaseApiURL($cart = null, $data = [])
+    {
+        return $this->getHttpClient()
+            ->baseUrl($this->getProviderParam('base_api_url'))
+            ->withHeaders([
+                'HTTP_CLIENT_IP' => data_get($cart, 'footprint.ip'),
+                'Token' => $this->getProviderParam('credentials.api_token_key')
+            ]);
+    }
 }

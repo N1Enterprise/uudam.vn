@@ -5,7 +5,7 @@
     <div class="fieldset">
         <div class="field">
             @if(has_data($address))
-            <div>
+            <div id="user_address" data-address-id="{{ data_get($address, 'id') }}">
                 <b style="margin-bottom: 4px; display: block;">Giao tới:</b>
                 <div>
                     <span>{{ data_get($address, 'name') }}</span> | <span>{{ data_get($address, 'phone') }}</span>

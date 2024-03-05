@@ -32,7 +32,7 @@
 						<input type="text" data-input-format="currency:{{ $transaction->currency_code }}" class="form-control" disabled="disabled" value="{{ $transaction->toMoney('amount')->format() }}">
 					</div>
 					<div class="col-lg-4">
-						<label class="">{{ __('Status') }}</label>
+						<label class="">{{ __('Trạng thái') }}</label>
 						<input type="text" class="form-control" disabled="disabled" value="{{ $transaction->status_name }}">
 					</div>
 				</div>
@@ -56,7 +56,7 @@
 
                 <div class="form-group row">
                     <div class="col-lg-4">
-                        <label>{{ __('Created At') }}</label>
+                        <label>{{ __('Ngày tạo') }}</label>
                         <input type="text" data-input-format="datetime" class="form-control" disabled="disabled" value="{{ format_datetime($transaction->created_at, 'Y/m/d') }}">
                     </div>
                     <div class="col-lg-4">
@@ -108,7 +108,7 @@
 			</form>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
 			@if ($transaction->isPending())
 			<button type="button" data-form="#deposit-transaction" data-datatable="table_deposit_transactions_index" data-method="put" data-url="{{ route('bo.api.deposit-transactions.decline', $transaction->getKey()) }}" class="btn btn-danger actionBtn">{{ __('Decline') }}</button>
 			<button type="button" data-form="#deposit-transaction" data-datatable="table_deposit_transactions_index" data-method="put" data-url="{{ route('bo.api.deposit-transactions.approve', $transaction->getKey()) }}" class="btn btn-primary actionBtn">{{ __('Approve') }}</button>

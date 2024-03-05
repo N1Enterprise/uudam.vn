@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Backoffice;
 
 use App\Common\Money;
+use App\Enum\ShippingRateTypeEnum;
 use Illuminate\Support\Facades\Route;
 
 class ShippingRateResource extends BaseJsonResource
@@ -18,9 +19,9 @@ class ShippingRateResource extends BaseJsonResource
             'type' => $this->type,
             'type_name' => $this->type_name,
             'minimum' => $this->minimum,
-            'minimum_formatted' => Money::format($this->minimum),
+            'minimum_formatted' => $this->type == ShippingRateTypeEnum::PRICE ? Money::format($this->minimum) : round($this->minimum, 2).'(g)',
             'maximum' => $this->maximum,
-            'maximum_formatted' => Money::format($this->maximum),
+            'maximum_formatted' => $this->type == ShippingRateTypeEnum::PRICE ? Money::format($this->maximum) : round($this->maximum, 2).'(g)',
             'rate' => $this->rate,
             'status' => $this->status,
             'status_name' => $this->status_name,

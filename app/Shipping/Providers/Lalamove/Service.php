@@ -20,5 +20,10 @@ class Service extends BaseShippingIntegration
     public static function providerCode(): string
     {
         return self::PROVIDER_CODE;
-    }   
+    }
+
+    public function getHandleClass($data = [])
+    {
+        
+    }
 }

@@ -1,7 +1,7 @@
 <div class="k-portlet">
     <div class="k-portlet__head">
         <div class="k-portlet__head-label">
-            <h3 class="k-portlet__head-title">{{ __('Search') }}</h3>
+            <h3 class="k-portlet__head-title">{{ __('Tìm kiếm') }}</h3>
         </div>
     </div>
     <!--begin::Form-->
@@ -21,7 +21,7 @@
                     </select>
                 </div>
                 <div class="col-lg-4">
-                    <label>{{ __('Status') }}</label>
+                    <label>{{ __('Trạng thái') }}</label>
                     <div class="form-group">
                         <select name="status[]" title="--{{ __('Select Status') }}--" class="form-control k_selectpicker" multiple>
                             @foreach($productReviewStatusEnumLabels as $key => $label)
@@ -47,8 +47,8 @@
             <div class="k-form__actions">
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Search') }}</button>
-                        <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Reset') }}</button>
+                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Tìm kiếm') }}</button>
+                        <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Làm mới') }}</button>
                     </div>
                 </div>
             </div>

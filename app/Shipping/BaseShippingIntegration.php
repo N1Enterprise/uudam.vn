@@ -2,14 +2,18 @@
 
 namespace App\Shipping;
 
+use App\Http\Middleware\HttpClientMiddleware;
+use App\Models\Address;
 use App\Models\Cart;
 use App\Shipping\Contracts\ProviderNamingContract;
+use App\Models\ShippingOption;
+use App\Services\ShippingOptionService;
 use App\Models\ShippingProvider;
-use App\Models\User;
-use App\Services\CartItemService;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Facades\Http;
 
 /**
- * Base payment integration class
+ * Base shipping integration class
  */
 abstract class BaseShippingIntegration implements ProviderNamingContract
 {
@@ -17,45 +21,71 @@ abstract class BaseShippingIntegration implements ProviderNamingContract
      * @var ShippingProvider
      */
     public $provider;
-    public $user = null;
-    public $cart = null;
 
-    public function __construct(ShippingProvider $provider)
-    {
-        $this->provider = $provider;
+    /**
+     * @var ShippingOption
+     */
+    public $shippingOption;
+
+    public $shippingOptionService;
+
+    public function __construct(
+        ShippingOption $shippingOption,
+        ShippingOptionService $shippingOptionService
+    ) {
+        $this->shippingOption = $shippingOption;
+
+        $this->shippingOptionService = $shippingOptionService;
+
+        $this->provider = optional($this->shippingOption)->shippingProvider;
     }
 
-    abstract public function getProviderQuotation();
+    public abstract function getShippingFee(Cart $cart, Address $address, $data = []);
 
-    public function setUser(User $user)
+    /**
+     * Send transaction to payment provider
+     */
+    public function sendRequest($url, $data = [], $headers = [], $options = [], PendingRequest $client = null)
     {
-        $this->user = $user;
+        $method  = data_get($options, 'method', 'get');
+        $timeout = data_get($options, 'timeout', 30);
 
-        return $this;
+        $httpClient = $client ?? $this->getHttpClient($data);
+
+        $httpClient = $httpClient->withHeaders($headers)->timeout($timeout);
+
+        /** @var Response */
+        $response = $httpClient->{$method}($url, $data);
+
+        return $response;
     }
 
-    public function setCart(Cart $cart)
+     /**
+     * Get Http client to call payment provider api
+     */
+    public function getHttpClient($data = [])
     {
-        $this->cart = $cart;
-
-        return $this;
-    }
-
-    public function getCartItems()
-    {
-        if (empty($this->cart)) {
-            throw new \Exception('[Shipping Service] Missing Cart.');
-        }
-
-        if (empty($this->user)) {
-            throw new \Exception('[Shipping Service] Missing User.');
-        }
-
-        $cartItems = CartItemService::make()->searchPendingItemsByUser($this->user->getKey(), [
-            'currency_code' => $this->user->currency_code,
-            'cart_id' => $this->cart->getKey(),
+        $trackingConfig = $this->getProviderParam('track_sending_request', [
+            'prefix' => static::providerCode(),
         ]);
 
-        dd($cartItems);
+        $trackingConfig = array_merge($trackingConfig, [
+            'tracking_uuid' => data_get($data, 'uuid')
+        ]);
+
+        return Http::withMiddleware(new HttpClientMiddleware($trackingConfig));
+    }
+
+    /**
+     * Get param from payment provider configuration
+     */
+    public function getProviderParam($key, $default = null)
+    {
+        return data_get($this->provider->params ?? [], $key, $default);
+    }
+
+    public function generateUrl($url, $params = [])
+    {
+        return strtr($url, $params);
     }
 }

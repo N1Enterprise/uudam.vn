@@ -53,10 +53,10 @@
 						<th data-property="name">{{ __('Payment Provider Name') }}</th>
 						<th data-property="code">{{ __('Payment Provider Code') }}</th>
 						<th data-name="payment_type" data-property="payment_type_name">{{ __('Payment Type') }}</th>
-						<th data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-						<th data-property="created_at">{{ __('Created At') }}</th>
-						<th data-property="updated_at">{{ __('Updated At') }}</th>
-						<th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+						<th data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+						<th data-property="created_at">{{ __('Ngày tạo') }}</th>
+						<th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+						<th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
 					</tr>
 				</thead>
 				<tbody>

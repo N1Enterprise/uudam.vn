@@ -44,8 +44,8 @@
                         data-url="{{ route('bo.api.system-settings.delete', ['id' => $systemSetting->id, 'tab' => $systemSetting->group_id]) }}"
                     >{{ __('Delete') }}</button>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                     </div>
                 </div>
             </form>

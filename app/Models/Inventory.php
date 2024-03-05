@@ -46,10 +46,13 @@ class Inventory extends BaseModel
         'allow_frontend_search',
         'init_sold_count',
         'sold_count',
+        'meta',
+        'weight'
     ];
 
     protected $casts = [
         'key_features' => 'json',
+        'meta' => 'json'
     ];
 
     protected $appends = [

@@ -200,7 +200,7 @@
     function handleCopySettingKey() {
         $('.copyable_settingKey').click(function() {
             copyToClipboard($(this).text());
-            fstoast.success("{{ __('Copied!') }}");
+            fstoast.success("{{ __('Đã sao chép !') }}");
         });
     }
 

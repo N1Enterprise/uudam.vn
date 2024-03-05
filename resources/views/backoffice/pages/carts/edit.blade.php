@@ -125,14 +125,14 @@
                                         <tr>
                                             <th data-property="id">{{ __('ID') }}</th>
                                             <th data-orderable="false" data-property="inventory.image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
-                                            <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Name') }}</th>
-                                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
+                                            <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Tên') }}</th>
+                                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                                             <th data-property="currency_code">{{ __('Currency Code') }}</th>
                                             <th data-property="quantity">{{ __('Quantity') }}</th>
                                             <th data-property="price">{{ __('Price') }}</th>
                                             <th data-property="total_price">{{ __('Total Price') }}</th>
-                                            <th data-property="created_at">{{ __('Created At') }}</th>
-                                            <th data-property="updated_at">{{ __('Updated At') }}</th>
+                                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

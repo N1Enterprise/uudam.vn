@@ -2,7 +2,7 @@
     <div class="k-portlet k-portlet--height-fluid">
         <div class="k-portlet__head k-portlet__head--noborder">
             <div class="k-portlet__head-label">
-                <h3 class="k-portlet__head-title">{{ __('New Users') }}</h3>
+                <h3 class="k-portlet__head-title">{{ __('Khách hàng mới') }}</h3>
             </div>
             <form method="GET" data-request-url="{{ route('bo.api.dashboard.new-users') }}" id="report_total_user"></form>
         </div>

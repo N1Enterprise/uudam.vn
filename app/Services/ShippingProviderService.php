@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Common\ImageHelper;
-use App\Models\ShippingProvider;
 use App\Repositories\Contracts\ShippingProviderRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Support\Facades\DB;
 
 class ShippingProviderService extends BaseService
 {
@@ -39,40 +36,22 @@ class ShippingProviderService extends BaseService
     public function getAvailabelByIds($ids = [], $data = [])
     {
         return $this->shippingProviderRepository
-        ->modelScopes(['active'])
-        ->scopeQuery(function($q) use ($ids) {
-            $q->whereIn('id', $ids);
-        })
-        ->with(data_get($data, 'with', []))
-        ->all(data_get($data, 'columns', ['*']));
+            ->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($ids) {
+                $q->whereIn('id', $ids);
+            })
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
     }
 
     public function create($attributes = [])
     {
-        return DB::transaction(function() use ($attributes) {
-            if ($logo = data_get($attributes, 'logo')) {
-                $attributes['logo'] = ImageHelper::make('shipping')
-                    ->hasOptimization()
-                    ->setConfigKey([ShippingProvider::class, 'logo'])
-                    ->uploadImage($logo);
-            }
-
-            return $this->shippingProviderRepository->create($attributes);
-        });
+        return $this->shippingProviderRepository->create($attributes);
     }
 
     public function update($attributes = [], $id)
     {
-        return DB::transaction(function() use ($attributes, $id) {
-            if ($logo = data_get($attributes, 'logo')) {
-                $attributes['logo'] = ImageHelper::make('shipping')
-                    ->hasOptimization()
-                    ->setConfigKey([ShippingProvider::class, 'logo'])
-                    ->uploadImage($logo);
-            }
-
-            return $this->shippingProviderRepository->update($attributes, $id);
-        });
+        return $this->shippingProviderRepository->update($attributes, $id);
     }
 
     public function show($id, $data = [])
@@ -80,15 +59,5 @@ class ShippingProviderService extends BaseService
         return $this->shippingProviderRepository
             ->with(data_get($data, 'with', []))
             ->findOrFail($id, data_get($data, 'columns', ['*']));
-    }
-
-    public function getAvailabelByProvinceCode($provinceCode)
-    {
-        return $this->shippingProviderRepository
-            ->modelScopes(['active'])
-            ->scopeQuery(function($q) use ($provinceCode) {
-                $q->whereJsonContains('supported_provinces', $provinceCode);
-            })
-            ->all();
     }
 }

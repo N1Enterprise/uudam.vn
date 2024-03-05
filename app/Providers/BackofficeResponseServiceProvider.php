@@ -123,10 +123,6 @@ class BackofficeResponseServiceProvider extends ServiceProvider
 
         Contracts\ListSubscriberResponseContract::class => Responses\ListSubscriberResponse::class,
 
-        Contracts\ListCarrierResponseContract::class => Responses\ListCarrierResponse::class,
-        Contracts\StoreCarrierResponseContract::class => Responses\StoreCarrierResponse::class,
-        Contracts\UpdateCarrierResponseContract::class => Responses\UpdateCarrierResponse::class,
-
         Contracts\ListCountryResponseContract::class => Responses\ListCountryResponse::class,
         Contracts\ListCurrencyResponseContract::class => Responses\ListCurrencyResponse::class,
 
@@ -137,6 +133,11 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\ListShippingProviderResponseContract::class => Responses\ListShippingProviderResponse::class,
         Contracts\StoreShippingProviderResponseContract::class => Responses\StoreShippingProviderResponse::class,
         Contracts\UpdateShippingProviderResponseContract::class => Responses\UpdateShippingProviderResponse::class,
+
+        Contracts\ListShippingOptionResponseContract::class => Responses\ListShippingOptionResponse::class,
+        Contracts\ListAvailableShippingOptionResponseContract::class => Responses\ListAvailableShippingOptionResponse::class,
+        Contracts\StoreShippingOptionResponseContract::class => Responses\StoreShippingOptionResponse::class,
+        Contracts\UpdateShippingOptionResponseContract::class => Responses\UpdateShippingOptionResponse::class,
 
         Contracts\ListShippingRateResponseContract::class => Responses\ListShippingRateResponse::class,
         Contracts\StoreShippingRateResponseContract::class => Responses\StoreShippingRateResponse::class,
@@ -156,8 +157,9 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         // Order
         Contracts\ListOrderResponseContract::class => Responses\ListOrderResponse::class,
         Contracts\ListOrderItemResponseContract::class => Responses\ListOrderItemResponse::class,
+        Contracts\StoreOrderResponseContract::class => Responses\StoreOrderResponse::class,
         Contracts\ListCartResponseContract::class => Responses\ListCartResponse::class,
-        Contracts\ListCartItemResponseContract::class => Responses\ListCartItemResponse::class,
+
 
         // Dashboard
         Contracts\ListReportTopUserResponseContract::class => Responses\ListReportTopUserResponse::class,

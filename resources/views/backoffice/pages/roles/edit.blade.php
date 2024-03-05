@@ -179,8 +179,8 @@
                         </div>
                         <div class="k-portlet__foot">
                             <div class="k-form__actions">
-                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                                <button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+                                <button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
                             </div>
                         </div>
                     </form>

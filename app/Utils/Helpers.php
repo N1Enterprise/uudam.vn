@@ -166,7 +166,7 @@ if (! function_exists('round_money')) {
 if (! function_exists('format_price')) {
     function format_price($money, $currencyCode = null)
     {
-        if (empty($money)) {
+        if (is_null($money)) {
             return;
         }
 

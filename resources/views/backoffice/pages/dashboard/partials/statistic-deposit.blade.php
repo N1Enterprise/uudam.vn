@@ -2,7 +2,7 @@
     <div class="k-portlet k-portlet--height-fluid">
         <div class="k-portlet__head k-portlet__head--noborder">
             <div class="k-portlet__head-label">
-                <h3 class="k-portlet__head-title">{{ __('Turnover') }}</h3>
+                <h3 class="k-portlet__head-title">{{ __('Doanh số') }}</h3>
             </div>
             <form method="GET" data-request-url="{{ route('bo.api.dashboard.total-deposit') }}" id="report_total_deposit"></form>
         </div>

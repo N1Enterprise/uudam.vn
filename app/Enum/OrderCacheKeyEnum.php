@@ -5,6 +5,7 @@ namespace App\Enum;
 class OrderCacheKeyEnum extends BaseEnum
 {
     public const ORDER = 'order';
+    public const ORDER_PAYMENT = 'order_payment';
     public const TTL = 20;
     public const MAXIMUM_WAIT = 20;
 
@@ -12,6 +13,7 @@ class OrderCacheKeyEnum extends BaseEnum
     {
         return [
             self::ORDER,
+            self::ORDER_PAYMENT
         ];
     }
 

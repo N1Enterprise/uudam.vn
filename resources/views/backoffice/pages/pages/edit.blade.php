@@ -33,7 +33,7 @@
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -49,8 +49,8 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $page->name) }}" data-reference-slug="slug" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $page->name) }}" data-reference-slug="slug" required>
 								</div>
 
                                 <div class="form-group">
@@ -68,8 +68,8 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Slug') }} *</label>
-									<input type="text" class="form-control" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug', $page->slug) }}" required>
+									<label>{{ __('Đường dẫn') }} *</label>
+									<input type="text" class="form-control" name="slug" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('slug', $page->slug) }}" required>
 								</div>
 
                                 <div class="form-group">
@@ -79,7 +79,7 @@
 
                                 <div class="form-group">
 									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order', $page->order) }}">
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $page->order) }}">
 								</div>
 
                                 <div class="form-group">
@@ -87,17 +87,17 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Title') }}</label>
-									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title', $page->meta_title) }}">
+									<label>{{ __('[SEO] Tiêu đề') }}</label>
+									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('meta_title', $page->meta_title) }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Description') }}</label>
-									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description', $page->meta_description) }}">
+									<label>{{ __('[SEO] Mô tả') }}</label>
+									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Nhập [SEO] mô tả') }}" value="{{ old('meta_description', $page->meta_description) }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -126,8 +126,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>
