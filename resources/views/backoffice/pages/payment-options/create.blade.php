@@ -146,6 +146,11 @@
                                     />
 								</div>
 
+                                <div class="form-group">
+									<label>{{ __('Nội dung mở rộng') }}</label>
+									<textarea name="expanded_content" class="form-control" cols="30" rows="3">{{ old('expanded_content') }}</textarea>
+								</div>
+
                                 <div class="tab-pane" id="advanceTab" role="tabpanel">
                                     <div class="form-group">
                                         <label for="parameters">{{ __('Tham số') }}</label>

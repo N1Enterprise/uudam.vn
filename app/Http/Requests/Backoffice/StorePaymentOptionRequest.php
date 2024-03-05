@@ -34,6 +34,7 @@ class StorePaymentOptionRequest extends BaseFormRequest implements StorePaymentO
             'display_on_frontend' => ['required', 'boolean'],
             'logo.file' => ['nullable', 'file', 'image', 'max:5200'],
             'logo.path' => ['nullable', 'string'],
+            'expanded_content' => ['nullable', 'string'],
         ];
         
         if (empty($this->min_amount)) {

@@ -3,13 +3,15 @@ $(() => {
         init: () => {
             HANDLE_CHECKOUT.getShippingRateByShippingOptions();
             HANDLE_CHECKOUT.onSubmit();
-            HANDLE_CHECKOUT.onExpandContent();
+            HANDLE_CHECKOUT.onExpandContentShippingOption();
+            HANDLE_CHECKOUT.onExpandContentPaymentOption();
             HANDLE_CHECKOUT.onBeforeLoad();
 
             HANDLE_CHECKOUT.initEventTrigger();
         },
         initEventTrigger: () => {
             $('[name="shipping_option_id"]:checked').trigger('change');
+            $('[name="payment_option_id"]:checked').trigger('change');
         },
         onBeforeLoad: () => {
             
@@ -102,7 +104,7 @@ $(() => {
                 });
             });
         },
-        onExpandContent: () => {
+        onExpandContentShippingOption: () => {
             $('[name="shipping_option_id"]').on('change', function() {
                 const option = $(this).val();
 
@@ -114,6 +116,14 @@ $(() => {
 
                 $('[data-checkout-total-shipping-target]').text(fee);
                 $('[data-checkout-payment-due-target]').text(grandTotal);
+            });
+        },
+        onExpandContentPaymentOption: () => {
+            $('[name="payment_option_id"]').on('change', function() {
+                const option = $(this).val();
+
+                $('[data-expanded-content-payment-option-id]').hide();
+                $(`[data-expanded-content-payment-option-id="${option}"]`).show();
             });
         },
         handlePaymentRedirect: ({ url }) => {

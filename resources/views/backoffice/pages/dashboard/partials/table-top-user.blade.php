@@ -16,7 +16,6 @@
                         <th data-property="email">{{ __('E mail') }}</th>
                         <th data-property="phone_number">{{ __('SĐT') }}</th>
                         <th data-property="total_turnover">{{ __('Doanh số') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody></tbody>

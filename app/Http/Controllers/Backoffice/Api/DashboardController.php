@@ -34,7 +34,7 @@ class DashboardController extends BaseApiController
     {
         $result = $this->dashboardService->getTotalDeposit($request->all());
 
-        return response()->json(['total_count' => $result]);
+        return response()->json(['total_count' => format_price($result)]);
     }
 
     public function getTopUsers(Request $request)
