@@ -80,7 +80,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Nhóm danh mục') }} *</label>
-                                    <select name="category_group_id" title="--{{ __('Chọn nhóm danh mục') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
+                                    <select name="category_group_id" title="-- {{ __('Chọn nhóm danh mục') }} --" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($categoryGroups as $cat)
                                         <option value="{{ $cat->id }}" {{ old('category_group_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                         @endforeach
@@ -103,7 +103,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -113,7 +113,7 @@
                                                 <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">

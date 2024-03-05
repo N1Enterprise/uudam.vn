@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Products');
+	$title = __('Chỉnh sửa sản phẩm');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Sản phẩm'),
 		],
 		[
-			'label' => __('Edit Product'),
+			'label' => $title,
 		]
 	];
 @endphp
@@ -51,7 +51,7 @@
         @error('*')
         <div class="alert alert-danger fade show" role="alert">
             <div class="alert-text">
-                {{ __('Submit failed. Please check the error below.') }}
+                {{ __('Gửi không thành công. Vui lòng kiểm tra lỗi bên dưới.') }}
             </div>
             <div class="alert-close">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -65,13 +65,13 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('GENERAL') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('Thông tin chung') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
                         <div class="form-group">
                             <label for="">{{ __('Tên') }} *</label>
-                            <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" data-reference-slug="slug" placeholder="{{ __('Enter Name') }}" required>
+                            <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" data-reference-slug="slug" placeholder="{{ __('Nhập tên') }}" required>
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -87,7 +87,7 @@
 
                         <div class="form-group">
                             <label for="">{{ __('Code') }} *</label>
-                            <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Code') }}" required>
+                            <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
                             @error('code')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="upload_image_custom position-relative">
-                                        <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path', $product->primary_image) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                        <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path', $product->primary_image) }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                         <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                             <div class="d-flex align-items-center h-100">
                                                 <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -108,7 +108,7 @@
                                         <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                             <input type="file" id="image_primary_image" data-image-ref-file="primary" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
                                             <i class="flaticon2-image-file"></i>
-                                            <span>{{ __('Upload') }}</span>
+                                            <span>{{ __('Tải lên') }}</span>
                                         </label>
                                     </div>
                                     <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
@@ -127,7 +127,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">{{ __('Media') }}</label>
+                            <label for="">{{ __('Bộ sưu tập ảnh') }}</label>
                             <div class="media_image_repeater">
                                 <div data-repeater-list="media[image]">
                                     @foreach (old('media.image', data_get($product->media, 'image', [])) as $index => $mediaImage)
@@ -135,7 +135,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="upload_image_custom position-relative">
-                                                    <input type="text" data-image-ref-path="media" data-image-ref-index="{{ $index }}" class="form-control media_image_path" name="path" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;" value="{{ old('primary_image.path', data_get($mediaImage, 'path')) }}">
+                                                    <input type="text" data-image-ref-path="media" data-image-ref-index="{{ $index }}" class="form-control media_image_path" name="path" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;" value="{{ old('primary_image.path', data_get($mediaImage, 'path')) }}">
                                                     <div data-image-ref-wrapper="media" data-image-ref-index="{{ $index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                         <div class="d-flex align-items-center h-100">
                                                             <img data-image-ref-img="media" data-image-ref-index="{{ $index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -145,7 +145,7 @@
                                                     <label for="media_image_file_{{ $index }}" class="media_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                         <input type="file" name="file" data-image-ref-file="media" data-image-ref-index="{{ $index }}" id="media_image_file_{{ $index }}" class="d-none media_image_file">
                                                         <i class="flaticon2-image-file"></i>
-                                                        <span>{{ __('Upload') }}</span>
+                                                        <span>{{ __('Tải lên') }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -168,17 +168,17 @@
                                 </div>
                                 <div class="k-repeater__add-data">
                                     <span data-repeater-create="" class="btn btn-info btn-sm">
-                                        <i class="la la-plus"></i> {{ __('Add') }}
+                                        <i class="la la-plus"></i> {{ __('Thêm') }}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">{{ __('Video Media') }}</label>
+                            <label for="">{{ __('Video') }}</label>
                             @foreach (old('media.video', data_get($product->media, 'video', [])) as $index => $videoImage)
                             <div class="video-media-item">
-                                <input type="text" name="media[video][0][path]" value="{{ old("media.video.$index.path", data_get($videoImage, 'path')) }}" class="form-control {{ $errors->has("media.video.$index.path") ? 'is-invalid' : '' }}" placeholder="{{ __('Enter Video URL') }}">
+                                <input type="text" name="media[video][0][path]" value="{{ old("media.video.$index.path", data_get($videoImage, 'path')) }}" class="form-control {{ $errors->has("media.video.$index.path") ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập đường dẫn video') }}">
                                 <input type="hidden" name="media[video][0][order]" value="{{ old("media.video.$index.order", data_get($videoImage, 'order')) }}">
                             </div>
                             @endforeach
@@ -194,13 +194,13 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('ORGANIZATION') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('Thông tin phân loại') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
                         <div class="form-group">
-                            <label>{{ __('Categories') }} *</label>
-                            <select name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
+                            <label>{{ __('Danh mục') }} *</label>
+                            <select name="categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                 @foreach($categoryGroups as $categoryGroup)
                                 <optgroup label="{{ $categoryGroup->name }}">
                                     @foreach($categoryGroup->categories as $category)
@@ -215,8 +215,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Product Type') }} *</label>
-                            <select name="type" title="--{{ __('Select Product Type') }}--" class="form-control k_selectpicker">
+                            <label>{{ __('Loại sản phẩm') }} *</label>
+                            <select name="type" title="-- {{ __('Chọn loại sản phẩm') }} --" class="form-control k_selectpicker">
                                 @foreach($productTypeLabels as $key => $label)
                                 <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
                                 @endforeach
@@ -227,15 +227,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Branch') }}</label>
-                            <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Enter branch') }}" value="{{ old('branch', $product->branch) }}">
+                            <label>{{ __('Thương hiệu') }}</label>
+                            <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Nhập tên thương hiệu') }}" value="{{ old('branch', $product->branch) }}">
                             @error('branch')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
+                            <label class="col-3 col-form-label">{{ __('Hoạt động') }}</label>
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
@@ -252,13 +252,13 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('ADDITIONS') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('Thông tin liên kết') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
                         <div class="form-group">
-                            <label>{{ __('Products Suggested') }}</label>
-                            <select data-actions-box="true" name="suggested_relationships[inventories][]" title="--{{ __('Select Related Products') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Selector" multiple data-selected-text-format="count > 5">
+                            <label>{{ __('Sản phẩm được đề xuất') }}</label>
+                            <select data-actions-box="true" name="suggested_relationships[inventories][]" title="-- {{ __('Chọn sản phẩm được đề xuất') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Selector" multiple data-selected-text-format="count > 5">
                                 @foreach($relatedInventories as $inventory)
                                 <option
                                     {{ in_array($inventory->id, old('suggested_relationships.inventories', data_get($product, 'suggested_relationships.inventories', []))) ? 'selected' : '' }}
@@ -277,8 +277,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Posts Suggested') }}</label>
-                            <select data-actions-box="true" name="suggested_relationships[posts][]" title="--{{ __('Select Related Posts') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
+                            <label>{{ __('Bài đăng được đề xuất') }}</label>
+                            <select data-actions-box="true" name="suggested_relationships[posts][]" title="-- {{ __('Chọn bài đăng được đề xuất') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
                                 @foreach($categoryRelatedPosts as $category)
                                 <optgroup label="{{ $category->name }}">
                                     @foreach($category->posts as $post)
@@ -302,7 +302,7 @@
 
                     <div class="k-portlet__foot">
                         <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Cancel') }}</button>
+                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
                             <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                         </div>
                     </div>
@@ -317,7 +317,6 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/lib.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
-{{-- <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script> --}}
 @include('backoffice.pages.products.js-pages.handle')
 @include('backoffice.pages.products.js-pages.products-suggested')
 @include('backoffice.pages.products.js-pages.posts-suggested')

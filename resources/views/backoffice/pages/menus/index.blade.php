@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -23,7 +23,7 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Menu') }}
+                        {{ __('Danh sách menu') }}
                     </h3>
                 </div>
                 @canAny(['menus.store'])
@@ -32,7 +32,7 @@
                         @can('menus.store')
                         <a href="{{ route('bo.web.menus.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Menu') }}
+                            {{ __('Tạo menu') }}
                         </a>
                         @endcan
                     </div>
@@ -45,11 +45,11 @@
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Tên') }}</th>
-                            <th data-property="label">{{ __('Label') }}</th>
-                            <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                            <th data-property="order">{{ __('Order') }}</th>
+                            <th data-property="label">{{ __('Nhãn') }}</th>
+                            <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
+                            <th data-property="order">{{ __('Thứ tự') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
-                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
+                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
                             <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                             <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
@@ -74,9 +74,9 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Menu?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa?') }}");
 
-            if(!confirmation) {
+            if (! confirmation) {
                 return;
             }
 
@@ -85,7 +85,7 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table_mennus_index').DataTable().ajax.reload()
+                    $('#table_mennus_index').DataTable().ajax.reload();
                 }
             });
         });

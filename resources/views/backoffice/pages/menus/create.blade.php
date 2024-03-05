@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Menu');
+	$title = __('Tạo menu');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Menu'),
 		],
 		[
-			'label' => __('Add Menu'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -27,7 +27,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Menu') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin menu') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -53,12 +53,12 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
 								<div class="form-group">
-                                    <label>{{ __('Menu Type') }} *</label>
+                                    <label>{{ __('Loại menu') }} *</label>
                                     <div class="k-radio-inline">
 										<select name="type" class="form-control">
 											@foreach ($menuTypeEnumLabels as $key => $label)
@@ -70,8 +70,8 @@
 
                                 <div data-menu-type-tab-key="1" data-menu-type="Collection">
                                     <div class="form-group">
-                                        <label>{{ __('Collection') }} *</label>
-                                        <select name="collection_id" title="--{{ __('Select Collection') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                        <label>{{ __('Bộ sưu tập') }} *</label>
+                                        <select name="collection_id" title="-- {{ __('Chọn bộ sưu tập') }} --" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($collections as $collection)
                                             <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id') == $collection->id ? 'selected' : '' }} data-label="{{ $collection->name }}">{{ $collection->name }}</option>
                                             @endforeach
@@ -84,8 +84,8 @@
 
                                 <div data-menu-type-tab-key="2" data-menu-type="Inventory" class="d-none">
                                     <div class="form-group">
-                                        <label>{{ __('Inventory') }} *</label>
-                                        <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                        <label>{{ __('Sản phẩm trong kho') }} *</label>
+                                        <select name="inventory_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($inventories as $inventory)
                                             <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id') == $inventory->id ? 'selected' : '' }} data-label="{{ $inventory->title }}">{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
                                             @endforeach
@@ -99,7 +99,7 @@
 								<div data-menu-type-tab-key="3" data-menu-type="Post" class="d-none">
                                     <div class="form-group">
                                         <label>{{ __('Post') }} *</label>
-                                        <select name="post_id" title="--{{ __('Select Post') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                        <select name="post_id" title="-- {{ __('Chọn Post') }} --" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($posts as $post)
                                             <option value="{{ $post->id }}" data-slug="{{ $post->slug }}" {{ old('post_id') == $post->id ? 'selected' : '' }} data-label="{{ $post->name }}">{{ $post->name }}</option>
                                             @endforeach
@@ -111,13 +111,13 @@
 								</div>
 
 								<div class="form-group">
-									<label>{{ __('Label') }}</label>
-									<input type="text" class="form-control" name="label" placeholder="{{ __('Enter label') }}" value="{{ old('label') }}">
+									<label>{{ __('Nhãn') }}</label>
+									<input type="text" class="form-control" name="label" placeholder="{{ __('Nhập nhãn') }}" value="{{ old('label') }}">
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Groups') }} *</label>
-                                    <select name="menu_catalogs[]" title="--{{ __('Chọn nhóm') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
+                                    <label>{{ __('Nhóm') }} *</label>
+                                    <select name="menu_catalogs[]" title="-- {{ __('Chọn nhóm') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                         @foreach($menuGroups as $menuGroup)
                                         <optgroup label="{{ $menuGroup->name }}">
                                             @foreach($menuGroup->menuSubGroups as $subGroup)
@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Is New') }}</label>
+									<label class="col-2 col-form-label">{{ __('Đánh dấu mới') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -144,7 +144,7 @@
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>

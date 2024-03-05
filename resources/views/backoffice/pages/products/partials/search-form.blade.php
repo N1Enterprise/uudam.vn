@@ -9,8 +9,8 @@
         <div class="k-portlet__body">
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <label>{{ __('Categories') }}</label>
-                    <select name="categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
+                    <label>{{ __('Danh mục') }}</label>
+                    <select name="categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                         @foreach($categoryGroups as $categoryGroup)
                         <optgroup label="{{ $categoryGroup->name }}">
                             @foreach($categoryGroup->categories as $category)
@@ -24,7 +24,7 @@
                 <div class="col-lg-4 form-group">
                     <label>{{ __('Trạng thái') }}</label>
                     <select name="status" class="form-control k_selectpicker">
-                        <option value="">--{{ __('Chọn trạng thái') }}--</option>
+                        <option value="">-- {{ __('Chọn trạng thái') }} --</option>
                         @foreach ($statusLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach
@@ -32,9 +32,9 @@
                 </div>
 
                 <div class="col-lg-4 form-group">
-                    <label>{{ __('Type') }}</label>
+                    <label>{{ __('Loại') }}</label>
                     <select name="type" class="form-control k_selectpicker">
-                        <option value="">--{{ __('Select type') }}--</option>
+                        <option value="">-- {{ __('Chọn loại') }} --</option>
                         @foreach ($productTypeLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach

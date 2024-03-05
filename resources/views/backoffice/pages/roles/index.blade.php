@@ -1,20 +1,17 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Roles';
+	$title = __('Quyền truy cập');
 
 	$breadcrumbs = [
 		[
 			'label' => $title,
-		],
-		[
-			'label' => 'Manage',
 		]
 	];
 @endphp
 
 @section('header')
-    {{ __('Roles') }}
+{{ $title }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -25,18 +22,18 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Roles') }}
+                    {{ __('Danh sách quyền quản trị') }}
                 </h3>
             </div>
             @can('roles.store')
-                <div class="k-portlet__head-toolbar">
-                    <div class="k-portlet__head-toolbar-wrapper">
-                        <a href="{{ route('bo.web.roles.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
-                            <i class="la la-plus"></i>
-                            {{ __('Create New Role') }}
-                        </a>
-                    </div>
+            <div class="k-portlet__head-toolbar">
+                <div class="k-portlet__head-toolbar-wrapper">
+                    <a href="{{ route('bo.web.roles.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
+                        <i class="la la-plus"></i>
+                        {{ __('Tạo quyền quản trị') }}
+                    </a>
                 </div>
+            </div>
             @endcan
         </div>
         <div class="k-portlet__body">
@@ -45,8 +42,8 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="name">{{ __('Role_Label') }}</th>
-                        <th data-property="users_count">{{ __('Number Of Users') }}</th>
+                        <th data-property="name">{{ __('Role') }}</th>
+                        <th data-property="users_count">{{ __('Số lượng người dùng') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>

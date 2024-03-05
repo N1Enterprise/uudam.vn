@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Home Page Display Item');
+	$title = __('Phần tử hiển thị trang chủ');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Home Page Display Item') }}
+                        {{ __('Danh sách phần tử hiển thị') }}
                     </h3>
                 </div>
                 <div class="k-portlet__head-toolbar">
@@ -30,7 +30,7 @@
                         @can('home-page-display-items.store')
                         <a href="{{ route('bo.web.home-page-display-items.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Home Page Display Item') }}
+                            {{ __('Tạo phần tử hiển thị') }}
                         </a>
                         @endcan
                     </div>
@@ -42,9 +42,9 @@
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Tên') }}</th>
-                            <th data-property="order">{{ __('Order') }}</th>
+                            <th data-property="order">{{ __('Thứ tự') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
-                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
+                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
                             <th data-property="group.name">{{ __('Group') }}</th>
                             <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Trạng thái') }}</th>
                             <th data-property="created_at">{{ __('Ngày tạo') }}</th>
@@ -71,9 +71,9 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Home Page Display Item?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa?') }}");
 
-            if(!confirmation) {
+            if (! confirmation) {
                 return;
             }
 
@@ -82,7 +82,7 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table_home_page_display_item').DataTable().ajax.reload()
+                    $('#table_home_page_display_item').DataTable().ajax.reload();
                 }
             });
         });

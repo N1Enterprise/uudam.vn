@@ -1,11 +1,11 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Create Shipping Option');
+	$title = __('Tạo phương thức vận chuyển');
 
 	$breadcrumbs = [
 		[
-			'label' => __('Shipping Options'),
+			'label' => __('Phương thức vận chuyển'),
 		],
 		[
 			'label' => $title,
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Create Shipping Option') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin phương thức') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -39,7 +39,7 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" data-toggle="tab" href="#advancedTab" role="tab">
-									{{ __('Advanced') }}
+									{{ __('Thông tin nâng cao') }}
 								</a>
 							</li>
 						</ul>
@@ -55,11 +55,11 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
                                 <div class="form-group">
 									<label>{{ __('Tên') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter shipping option name') }}" value="{{ old('name') }}" >
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" >
 								</div>
 
 								<div class="form-group">
-									<label>{{ __('Shipping Option Type') }} *</label>
+									<label>{{ __('Loại vận chuyển') }} *</label>
 									<select class="form-control k_selectpicker" id="type" name="type" required>
 										@foreach ($shippingOptionTypeEnumLabels as $key => $label)
                                         <option {{ old('type') == $key ? 'selected' : '' }} value="{{ $key }}">{{ $label }}</option>
@@ -68,7 +68,7 @@
 								</div>
 
 								<div class="form-group depent_on_type d-none" data-type="{{ enum('ShippingOptionTypeEnum')::SHIPPING_PROVIDER }}">
-									<label>{{ __('Shipping Provider') }} *</label>
+									<label>{{ __('Nhà cung cấp') }} *</label>
 									<select class="form-control k_selectpicker" id="shipping_provider_id" name="shipping_provider_id">
 										@foreach ($shippingProviders as $shippingProvider)
 										<option value="{{ $shippingProvider->id }}" {{ old('shipping_provider_id') == $shippingProvider->id ? 'selected' : '' }}>{{ $shippingProvider->name }}</option>
@@ -77,16 +77,16 @@
 								</div>
 
 								<div class="form-group">
-									<label>{{ __('Expanded Content') }}</label>
+									<label>{{ __('Nội dung mở rộng') }}</label>
 									<textarea name="expanded_content" class="form-control" cols="30" rows="3">{{ old('expanded_content') }}</textarea>
 								</div>
 
 								<div class="form-group">
-                                    <label>{{ __('Logo Image') }}</label>
+                                    <label>{{ __('Logo') }}</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="logo" data-image-ref-index="0" class="form-control image_logo_url" name="logo[path]" value="{{ old('logo.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="logo" data-image-ref-index="0" class="form-control image_logo_url" name="logo[path]" value="{{ old('logo.path') }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="logo" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="logo" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -96,7 +96,7 @@
                                                 <label for="image_logo" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_logo" data-image-ref-path="file" data-image-ref-index="0" name="logo[file]" class="d-none image_logo_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('logo, logo.file, logo.path') is-invalid @endanyerror">
@@ -116,14 +116,14 @@
 
                                 <div class="tab-pane" id="advanceTab" role="tabpanel">
                                     <div class="form-group">
-                                        <label for="parameters">{{ __('Parameters') }}</label>
+                                        <label for="parameters">{{ __('Tham số') }}</label>
                                         <div id="json_editor_params" style="height: 200px"></div>
                                         <input type="hidden" name="params" value="{{ old('params', '{}') }}">
                                     </div>
                                 </div>
 
 								<div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
@@ -140,7 +140,7 @@
 								</div>
 
 								<div class="row">
-									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -154,8 +154,8 @@
 
 							<div class="tab-pane" id="advancedTab" role="tabpanel">
                                 <div class="form-group">
-                                    <label>{{ __('Supported Countries') }}</label>
-                                    <select data-actions-box="true" name="supported_countries[]" title="--{{ __('Select Country') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
+                                    <label>{{ __('Các quốc gia được hỗ trợ') }}</label>
+                                    <select data-actions-box="true" name="supported_countries[]" title="-- {{ __('Chọn quốc gia') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($countries as $country)
                                         <option
                                             {{ in_array($country->iso2, old("supported_countries", [])) ? 'selected' : '' }}
@@ -172,8 +172,8 @@
                                 </div>
 
 								<div class="form-group">
-                                    <label>{{ __('Supported Provinces') }}</label>
-                                    <select data-actions-box="true" name="supported_provinces[]" title="--{{ __('Select Province') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Provinces_Selector" multiple data-selected-text-format="count > 5">
+                                    <label>{{ __('Các tỉnh được hỗ trợ') }}</label>
+                                    <select data-actions-box="true" name="supported_provinces[]" title="-- {{ __('Chọn tỉnh') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Provinces_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($provinces as $province)
                                         <option
                                             {{ in_array($province->code, old("supported_provinces", [])) ? 'selected' : '' }}

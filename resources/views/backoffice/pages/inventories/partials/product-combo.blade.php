@@ -6,7 +6,7 @@
                 <div class="form-group col-md-6">
                     <label for="">Product Combo</label>
                     <select name="product_combo_id" class="form-control">
-                        <option value="">---{{ __('Chọn sản phẩm combo') }}---</option>
+                        <option value="">--- {{ __('Chọn sản phẩm combo') }} ---</option>
                         @foreach($productCombos as $product)
                         <option  value="{{ $product->id }}">{{ $product->name }} ({{ format_price($product->sale_price) }} / {{ $product->unit }})</option>
                         @endforeach
@@ -35,7 +35,7 @@
                     <div class="form-group col-md-6">
                         <label for="">Product Combo</label>
                         <select name="product_combo_id" class="form-control">
-                            <option value="">---{{ __('Chọn sản phẩm combo') }}---</option>
+                            <option value="">--- {{ __('Chọn sản phẩm combo') }} ---</option>
                             @foreach($productCombos as $product)
                             <option data-test="{{ old("product_combos.$productComboIndex.product_combo_id") }}" {{ $product->id == old("product_combos.$productComboIndex.product_combo_id", data_get($productCombo, 'id')) ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }} ({{ format_price($product->sale_price) }} / {{ $product->unit }})</option>
                             @endforeach

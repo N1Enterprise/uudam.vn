@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Countries');
+	$title = __('Tiền tệ');
 
 	$breadcrumbs = [
 		[
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Countries') }}
+                    {{ __('Danh sách tiền tệ') }}
                 </h3>
             </div>
         </div>
@@ -32,11 +32,11 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">Name</th>
-                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                        <th data-property="used_countries" data-render-callback="renderUsedCurrenciesCallback">{{ __('Used Countries') }}</th>
-                        <th data-property="code">Code</th>
-                        <th data-property="symbol">Symbol</th>
-                        <th data-property="decimals">Decimals</th>
+                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
+                        <th data-property="used_countries" data-render-callback="renderUsedCurrenciesCallback">{{ __('Quốc gia đã qua sử dụng') }}</th>
+                        <th data-property="code">{{ __('Code') }}</th>
+                        <th data-property="symbol">{{ __('Symbol') }}</th>
+                        <th data-property="decimals">{{ __('Decimals') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>

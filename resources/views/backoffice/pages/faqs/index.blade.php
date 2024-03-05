@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Faq');
+	$title = __('Câu hỏi thường gặp');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Faq') }}
+                    {{ __('Danh sách câu hỏi thường gặp') }}
                 </h3>
             </div>
             @canAny(['faqs.store'])
@@ -31,7 +31,7 @@
                     @can('faqs.store')
                     <a href="{{ route('bo.web.faqs.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Faq') }}
+                        {{ __('Tạo câu hỏi thường gặp') }}
                     </a>
                     @endcan
                 </div>
@@ -43,9 +43,9 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="question">{{ __('Question') }}</th>
-                        <th data-property="order">{{ __('Order') }}</th>
-                        <th data-orderable="false" data-property="faq_topic.name">{{ __('Topic') }}</th>
+                        <th data-property="question">{{ __('Câu hỏi') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
+                        <th data-orderable="false" data-property="faq_topic.name">{{ __('Chủ đề') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
@@ -71,9 +71,9 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Faq?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa?') }}");
 
-            if(!confirmation) {
+            if (! confirmation) {
                 return;
             }
 
@@ -82,7 +82,7 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table_faqs_index').DataTable().ajax.reload()
+                    $('#table_faqs_index').DataTable().ajax.reload();
                 }
             });
         });

@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Attribute');
+	$title = __('Thuộc tính');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Attribute') }}
+                    {{ __('Danh sách thuộc tính') }}
                 </h3>
             </div>
             @canAny(['attributes.store'])
@@ -31,7 +31,7 @@
                     @can('attributes.store')
                     <a href="{{ route('bo.web.attributes.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Attribute') }}
+                        {{ __('Tạo thuộc tính') }}
                     </a>
                     @endcan
                 </div>
@@ -44,9 +44,9 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
-                        <th data-property="order">{{ __('Order') }}</th>
-                        <th data-orderable="false" data-name="attribute_type" data-property="attribute_type_name">{{ __('Attribute Type') }}</th>
-                        <th data-orderable="false" data-property="supported_categories_names" data-render-callback="renderCallbackCategories">{{ __('Categories') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
+                        <th data-orderable="false" data-name="attribute_type" data-property="attribute_type_name">{{ __('Loại') }}</th>
+                        <th data-orderable="false" data-property="supported_categories_names" data-render-callback="renderCallbackCategories">{{ __('Danh mục') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>

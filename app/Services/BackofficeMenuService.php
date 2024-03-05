@@ -84,11 +84,11 @@ class BackofficeMenuService extends BaseService
                                 'link' => route('bo.web.product-reviews.index'),
                                 'permissions' => ['product-reviews.index'],
                             ],
-                            [
-                                'name' => 'Sản phẩm theo nhóm',
-                                'link' => route('bo.web.product-combos.index'),
-                                'permissions' => ['product-combos.index']
-                            ],
+                            // [
+                            //     'name' => 'Sản phẩm theo nhóm',
+                            //     'link' => route('bo.web.product-combos.index'),
+                            //     'permissions' => ['product-combos.index']
+                            // ],
                         ]
                     ],
                     [
@@ -220,7 +220,7 @@ class BackofficeMenuService extends BaseService
                                 'permissions' => ['menu-groups.index'],
                             ],
                             [
-                                'name' => 'Nhóm menu con',
+                                'name' => 'Nhóm menu phụ',
                                 'link' => route('bo.web.menu-sub-groups.index'),
                                 'permissions' => ['menu-sub-groups.index'],
                             ],

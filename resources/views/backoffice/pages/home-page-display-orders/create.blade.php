@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Home Page Display Order');
+	$title = __('Tạo nhóm hiển thị trang chủ');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Nhóm hiển thị trang chủ'),
 		],
 		[
-			'label' => __('Add Home Page Display Order'),
-		]
+			'label' => $title,
+		],
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Home Page Display Order') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin nhóm hiển thị trang chủ') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -50,16 +50,16 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Tên') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter Name') }}" value="{{ old('name') }}" required>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>

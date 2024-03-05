@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Menu Group');
+	$title = __('Chỉnh sửa nhóm menu phụ');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Nhóm menu phụ'),
 		],
 		[
-			'label' => __('Edit Menu Group'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Menu Group') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin nhóm menu phụ') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -39,7 +39,7 @@
 							</li>
                             <li class="nav-item">
 								<a class="nav-link" data-toggle="tab" href="#advanceTab" role="tab" aria-selected="true">
-									{{ __('Advance') }}
+									{{ __('Nâng cao') }}
 								</a>
 							</li>
 						</ul>
@@ -60,8 +60,8 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Group') }} *</label>
-                                    <select name="menu_group_id" title="--{{ __('Chọn nhóm') }}--" class="form-control k_selectpicker">
+                                    <label>{{ __('Nhóm') }} *</label>
+                                    <select name="menu_group_id" title="-- {{ __('Chọn nhóm') }} --" class="form-control k_selectpicker">
                                         @foreach($menuGroups as $group)
                                         <option value="{{ $group->id }}" {{ old('menu_group_id', $menuSubGroup->menu_group_id) == $group->id ? 'selected' : '' }}>{{ $group->name }}</option>
                                         @endforeach
@@ -72,17 +72,17 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Redirect Url') }}</label>
-									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Redirect Url') }}" value="{{ old('redirect_url', $menuSubGroup->redirect_url) }}">
+									<label>{{ __('Chuyển hướng URL') }}</label>
+									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Nhập Url chuyển hướng') }}" value="{{ old('redirect_url', $menuSubGroup->redirect_url) }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $menuSubGroup->order) }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>

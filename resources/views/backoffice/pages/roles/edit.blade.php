@@ -1,15 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Roles';
+	$title = __('Chỉnh sửa quyền truy cập');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Quyền truy cập'),
+        ],
+        [
 			'label' => $title,
-            'href'  => route('bo.web.roles.index'),
-		],
-		[
-			'label' => 'Edit Role',
 		]
 	];
 @endphp
@@ -57,7 +56,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('Edit Role') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('Thông tin quyền truy cập') }}</h3>
                         </div>
                     </div>
 
@@ -68,8 +67,8 @@
                         <div class="k-portlet__body">
                             @include('backoffice.partials.message')
                             <div class="form-group">
-                                <label>{{ __('Role Name') }} *</label>
-                                <input type="text" class="form-control" disabled name="name" placeholder="{{ __('Enter Role Name') }}" value="{{ old('name', $role->name) }}" required>
+                                <label>{{ __('Tên') }} *</label>
+                                <input type="text" class="form-control" disabled name="name" placeholder="{{ __('Nhập tên role') }}" value="{{ old('name', $role->name) }}" required>
                             </div>
                             <div class="form-group">
                                 <div class="k-section">
@@ -80,7 +79,7 @@
                                                 <input type="checkbox" id="checkable_checkall" />
                                             </span>
                                             <label for="checkable_checkall" class="k-nav__link permission-navlink">
-                                                <span class="k-nav__link-text">--{{ __('Select All') }}--</span>
+                                                <span class="k-nav__link-text">-- {{ __('Select All') }} --</span>
                                             </label>
                                         </li>
                                         @foreach($groups as $key1 => $group1)

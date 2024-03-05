@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Product Review');
+	$title = __('Chỉnh sửa đánh giá');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Đánh giá sản phẩm'),
 		],
 		[
-			'label' => __('Edit Product Review'),
+			'label' => $title
 		]
 	];
 
@@ -50,7 +50,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Product Review') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin đánh giá') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -72,23 +72,23 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('User Name') }} *</label>
-									<input type="text" class="form-control" name="user_name" placeholder="{{ __('Enter user name') }}" value="{{ old('user_name', $productReview->user_name) }}" required {{ $productReview->is_real_user ? 'disabled' : '' }}>
+									<label>{{ __('Tên khách hàng') }} *</label>
+									<input type="text" class="form-control" name="user_name" placeholder="{{ __('Nhập tên khách hàng') }}" value="{{ old('user_name', $productReview->user_name) }}" required {{ $productReview->is_real_user ? 'disabled' : '' }}>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('User Phone') }}</label>
-									<input type="text" class="form-control" name="user_phone" placeholder="{{ __('Enter user phone') }}" value="{{ old('user_phone', $productReview->user_phone) }}" {{ $productReview->is_real_user ? 'disabled' : '' }}>
+									<label>{{ __('Số điện thoại') }}</label>
+									<input type="text" class="form-control" name="user_phone" placeholder="{{ __('Nhập số điện thoại') }}" value="{{ old('user_phone', $productReview->user_phone) }}" {{ $productReview->is_real_user ? 'disabled' : '' }}>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('User Email') }}</label>
-									<input type="text" class="form-control" name="user_email" placeholder="{{ __('Enter user email') }}" value="{{ old('user_email', $productReview->user_email) }}" {{ $productReview->is_real_user ? 'disabled' : '' }}>
+									<label>{{ __('E-mail') }}</label>
+									<input type="text" class="form-control" name="user_email" placeholder="{{ __('Nhập e-mail') }}" value="{{ old('user_email', $productReview->user_email) }}" {{ $productReview->is_real_user ? 'disabled' : '' }}>
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Product') }} *</label>
-                                    <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true" {{ $productReview->is_real_user ? 'disabled' : '' }}>
+                                    <label>{{ __('Sản phẩm') }} *</label>
+                                    <select name="product_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true" {{ $productReview->is_real_user ? 'disabled' : '' }}>
                                         @foreach($categories as $category)
                                         <optgroup label="{{ $category->name }}">
                                             @foreach($category->products as $product)
@@ -108,8 +108,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Rating Type') }} *</label>
-                                    <select name="rating_type" title="--{{ __('Select Rating Type') }}--" class="form-control k_selectpicker" {{ $productReview->is_real_user ? 'disabled' : '' }}>
+                                    <label>{{ __('Loại xếp hạng') }} *</label>
+                                    <select name="rating_type" title="-- {{ __('Chọn loại xếp hạng') }} --" class="form-control k_selectpicker" {{ $productReview->is_real_user ? 'disabled' : '' }}>
                                         @foreach($productReviewRatingEnumLabels as $key => $label)
                                         <option value="{{ $key }}" {{ old('rating_type', $productReview->rating_type) == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
@@ -120,8 +120,8 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Content') }} *
-                                        <div><small>({{ __('Max length 1000 charactors') }})</small></div>
+									<label>{{ __('Nội dung') }} *
+                                        <div><small>({{ __('Độ dài tối đa 1000 ký tự') }})</small></div>
                                     </label>
 
                                     <textarea name="content" rows="10" class="form-control" maxlength="1000" required {{ $productReview->is_real_user ? 'disabled' : '' }}>{{ old('content', $productReview->content) }}</textarea>

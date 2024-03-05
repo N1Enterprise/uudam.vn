@@ -41,7 +41,7 @@
                     @can('inventories.store')
                     <a href="javascript:void(0)" class="btn btn-brand btn-bold btn-upper btn-font-sm" data-toggle="modal" data-target="#modal_create_inventory">
                         <i class="la la-plus"></i>
-                        {{ __('Thêm sản phẩm vào kho') }}
+                        {{ __('Tạo sản phẩm vào kho') }}
                     </a>
                     @endcan
                 </div>
@@ -90,13 +90,13 @@
             <form id="form_create_inventory" method="GET" action="{{ route('bo.web.inventories.create') }}">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        {{ __('Thêm sản phẩm vào kho') }}
+                        {{ __('Tạo sản phẩm vào kho') }}
                     </h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label>{{ __('Sản phẩm') }} *</label>
-                        <select name="product_id" title="--{{ __('Chọn sản phẩm') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                        <select name="product_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                             @foreach($categories as $category)
                             <optgroup label="{{ $category->name }}">
                                 @foreach($category->products as $product)
@@ -114,7 +114,7 @@
                         @foreach ($attributes as $attribute)
                         <div class="form-group attribute-item d-none" data-supported-categories='@json($attribute->supported_categories ?? [])'>
                             <label>{{ $attribute->name }}</label>
-                            <select name="attribute_values[{{ $attribute->id }}][]" title="--{{ __('Chọn biến thể') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
+                            <select name="attribute_values[{{ $attribute->id }}][]" title="-- {{ __('Chọn biến thể') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
                                 @foreach ($attribute->attributeValues as $value)
                                 <option value="{{ $value->id }}">{{ $value->value }}</option>
                                 @endforeach

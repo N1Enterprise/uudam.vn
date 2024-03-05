@@ -1,18 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('System Setting');
+	$title = __('Tạo thiết lập hệ thống');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Tiền tệ hệ thống'),
+		],
+		[
 			'label' => $title,
-		],
-		[
-			'label' => __('Manage Currency'),
-			'href' => route('bo.web.system-currencies.index')
-		],
-		[
-			'label' => __('Add New Currency'),
 		]
 	];
 @endphp
@@ -32,7 +28,7 @@
 			<div class="k-portlet">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add New Currency') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin tiền tệ') }}</h3>
 					</div>
 				</div>
 
@@ -41,9 +37,9 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="form-group">
-							<label>{{ __('Currency') }} *</label>
+							<label>{{ __('Tiền tệ') }} *</label>
 							<select name="currency_id" id="currency_id" data-size="5" class="form-control k_selectpicker" data-live-search="true" required>
-								<option default value="">--{{ __('Select Currency') }}--</option>
+								<option default value="">-- {{ __('Chọn tiền tệ') }} --</option>
 								@foreach ($currencies as $type => $options)
 								<optgroup label="{{ $type }}">
 									@foreach ($options as $option)
@@ -71,7 +67,7 @@
 
 						<div class="form-group row">
 							<div class="col-md-6">
-								<label>{{ __('Order') }}</label>
+								<label>{{ __('Thứ tự') }}</label>
 								<input type="number" class="form-control" name="order" value="{{ old('order') }}">
 							</div>
 

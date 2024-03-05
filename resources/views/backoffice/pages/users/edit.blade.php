@@ -91,7 +91,7 @@ $breadcrumbs = [
                                 @can('orders.index')
                                 <li class="k-nav__item">
                                     <a href="#tab_order" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="order">
-                                        <span class="k-nav__link-text">{{ __('Order') }}</span>
+                                        <span class="k-nav__link-text">{{ __('Thứ tự') }}</span>
                                     </a>
                                 </li>
                                 @endcan

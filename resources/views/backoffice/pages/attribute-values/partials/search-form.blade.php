@@ -9,8 +9,8 @@
         <div class="k-portlet__body">
             <div class="row">
                 <div class="form-group col-lg-4">
-                    <label>{{ __('Attribute') }}</label>
-                    <select name="attribute_id" title="--{{ __('Select Attribute') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                    <label>{{ __('Thuộc tính') }}</label>
+                    <select name="attribute_id" title="-- {{ __('Chọn thuộc tính') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                         @foreach ($attributes as $attribute)
                         <option value="{{ data_get($attribute, 'id') }}">{{ data_get($attribute, 'name') }}</option>
                         @endforeach

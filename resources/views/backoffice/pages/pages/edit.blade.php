@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Page');
+	$title = __('Chỉnh sửa trang');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Trang'),
 		],
 		[
-			'label' => __('Edit Page'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -27,7 +27,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Page') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin trang') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -54,8 +54,8 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Display In') }} *</label>
-                                    <select data-actions-box="true" name="display_in[]" title="--{{ __('Select the page to display') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" multiple data-selected-text-format="count > 5" required>
+                                    <label>{{ __('Hiển thị tại') }} *</label>
+                                    <select data-actions-box="true" name="display_in[]" title="-- {{ __('Chọn trang để hiển thị') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" multiple data-selected-text-format="count > 5" required>
                                         @foreach($pageDisplayInEnumLabels as $key => $label)
                                         <option
                                             {{ in_array($key, old("display_in", data_get($page, 'display_in', []))) ? 'selected' : '' }}
@@ -73,17 +73,17 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Title') }} *</label>
-									<input type="text" class="form-control" name="title" placeholder="{{ __('Enter title') }}" value="{{ old('title', $page->title) }}" required>
+									<label>{{ __('Tiêu đề') }} *</label>
+									<input type="text" class="form-control" name="title" placeholder="{{ __('Nhập tiêu đề') }}" value="{{ old('title', $page->title) }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $page->order) }}">
 								</div>
 
                                 <div class="form-group">
-                                    <x-content-editor id="page_content" label="Content" name="content" value="{{ old('content', $page->content) }}" />
+                                    <x-content-editor id="page_content" label="{{ __('Nội dung') }}" name="content" value="{{ old('content', $page->content) }}" />
                                 </div>
 
                                 <div class="form-group">
@@ -110,7 +110,7 @@
 
                                 <div class="row">
 									<div class="col-2">
-										<label class="col-form-label">{{ __('FE Display') }}</label>
+										<label class="col-form-label">{{ __('Hiển thị FE') }}</label>
 									</div>
 									<div class="col-3">
 										<span class="k-switch">

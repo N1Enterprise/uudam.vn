@@ -159,6 +159,7 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\ListOrderItemResponseContract::class => Responses\ListOrderItemResponse::class,
         Contracts\StoreOrderResponseContract::class => Responses\StoreOrderResponse::class,
         Contracts\ListCartResponseContract::class => Responses\ListCartResponse::class,
+        Contracts\ListCartItemResponseContract::class => Responses\ListCartItemResponse::class,
 
 
         // Dashboard

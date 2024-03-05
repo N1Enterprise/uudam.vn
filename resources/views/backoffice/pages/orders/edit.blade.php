@@ -81,7 +81,7 @@
                             <b>#{{ $order->order_code }}</b>
                         </h3>
 
-                        <div data-toggle="tooltip" data-title="{{ __('Order Status') }}" class="order_status {{ $orderStatusClass }}" style="margin-left: 10px; text-transform: uppercase;">{{ $order->order_status_name }} {{ __('Order') }}</div>
+                        <div data-toggle="tooltip" data-title="{{ __('Order Status') }}" class="order_status {{ $orderStatusClass }}" style="margin-left: 10px; text-transform: uppercase;">{{ $order->order_status_name }} {{ __('Thứ tự') }}</div>
 
                         <span style="padding: 0 10px;">|</span>
 
@@ -407,7 +407,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>{{ __('Đơn vị vận chuyển') }}</label>
-                            <select name="shipping_provider_id" title="--{{ __('Chọn đơn vị vận chuyển') }}--" class="form-control k_selectpicker" data-live-search="true">
+                            <select name="shipping_provider_id" title="-- {{ __('Chọn đơn vị vận chuyển') }} --" class="form-control k_selectpicker" data-live-search="true">
                                 @foreach($shippingProviders as $provider)
                                 <option {{ old('shipping_provider_id', data_get($order->latestUserOrderShippingHistory, ['shippingProvider', 'id'])) == $provider->id ? 'selected' : '' }} value="{{ $provider->id }}">{{ $provider->name }}</option>
                                 @endforeach

@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Admin Manage';
+	$title = ('Quản trị viên');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Admins') }}
+                    {{ __('Danh sách quản trị viên') }}
                 </h3>
             </div>
             @canAny(['admins.store'])
@@ -31,7 +31,7 @@
                     @can('admins.store')
                     <a href="{{ route('bo.web.admins.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Admin') }}
+                        {{ __('Tạo quản trị viên') }}
                     </a>
                     @endcan
                 </div>
@@ -45,10 +45,10 @@
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="email">{{ __('Email') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
-                        <th data-orderable="false" data-property="role" data-render-callback="tableCallbackFnRenderRole">{{ __('Role_Label') }}</th>
+                        <th data-orderable="false" data-property="role" data-render-callback="tableCallbackFnRenderRole">{{ __('Quyền') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
-                        <th data-property="last_login_at">{{ __('Last Login At') }}</th>
+                        <th data-property="last_login_at">{{ __('Lần cuối login') }}</th>
                         <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>

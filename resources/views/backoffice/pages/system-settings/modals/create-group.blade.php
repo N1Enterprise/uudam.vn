@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('Order') }}</label>
+                        <label>{{ __('Thứ tự') }}</label>
                         <input type="number" class="form-control" name="order">
                     </div>
                 </div>

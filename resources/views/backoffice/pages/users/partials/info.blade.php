@@ -68,7 +68,7 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col-lg-4">
-                            <label>{{ __('User Name') }}</label>
+                            <label>{{ __('Tên khách hàng') }}</label>
                             <input type="text" class="form-control" name="username" value="{{ old('username', $user->username) }}">
                         </div>
                         <div class="col-lg-4">

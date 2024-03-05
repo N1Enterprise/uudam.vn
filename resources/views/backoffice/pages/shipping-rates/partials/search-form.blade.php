@@ -11,7 +11,7 @@
                 <div class="col-lg-4">
                     <label>{{ __('Khu vực vận chuyển') }}</label>
                     <div class="form-group">
-                        <select name="shipping_zone_id" title="--{{ __('Chọn khu vực vận chuyển') }}--" class="form-control k_selectpicker">
+                        <select name="shipping_zone_id" title="-- {{ __('Chọn khu vực vận chuyển') }} --" class="form-control k_selectpicker">
                             <option value="shipping_zone_id">--- {{ __('Chọn khu vực vận chuyển') }} ---</option>
                             @foreach($shippingZones as $shippingZone)
                             <option value="{{ $shippingZone->id }}">{{ $shippingZone->name }}</option>
@@ -22,7 +22,7 @@
                 <div class="col-lg-4">
                     <label>{{ __('Thể loại') }}</label>
                     <div class="form-group">
-                        <select name="type" title="--{{ __('Chọn loại') }}--" class="form-control k_selectpicker">
+                        <select name="type" title="-- {{ __('Chọn loại') }} --" class="form-control k_selectpicker">
                             <option value="">--- {{ __('Chọn loại') }} ---</option>
                             @foreach($shippingRateTypeEnumLabels as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>

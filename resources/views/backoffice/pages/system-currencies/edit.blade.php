@@ -1,24 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('System Setting');
+	$title = __('Chỉnh sửa thiết lập hệ thống');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Tiền tệ hệ thống'),
+		],
+		[
 			'label' => $title,
-		],
-		[
-			'label' => __('Manage Currency'),
-			'href' => route('bo.web.system-currencies.index')
-		],
-		[
-			'label' => __('Edit Currency'),
 		]
 	];
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -48,7 +44,7 @@
 
 						<div class="form-group row">
 							<div class="col-md-6">
-								<label>{{ __('Order') }}</label>
+								<label>{{ __('Thứ tự') }}</label>
 								<input type="number" class="form-control" name="order" value="{{ old('order', $systemCurrency->order) }}">
 							</div>
 

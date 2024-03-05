@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="form-group col-lg-4">
                     <label>{{ __('Sản phẩm') }}</label>
-                    <select name="product_id" title="--{{ __('Chọn sản phẩm') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                    <select name="product_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                         @foreach($categories as $category)
                         <optgroup label="{{ $category->name }} ({{ $category->categoryGroup->name }})">
                             @foreach($category->products as $product)
@@ -29,7 +29,7 @@
                 <div class="form-group col-lg-4">
                     <label>{{ __('Trạng thái') }}</label>
                     <select name="status" class="form-control k_selectpicker">
-                        <option value="">--{{ __('Chọn trạng thái') }}--</option>
+                        <option value="">-- {{ __('Chọn trạng thái') }} --</option>
                         @foreach ($statusLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach
@@ -39,7 +39,7 @@
                 <div class="form-group col-lg-4">
                     <label>{{ __('Hiển thị FE') }}</label>
                     <select name="display_on_frontend" class="form-control k_selectpicker">
-                        <option value="">--{{ __('Chọn trạng thái') }}--</option>
+                        <option value="">-- {{ __('Chọn trạng thái') }} --</option>
                         @foreach ($statusLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach
@@ -49,7 +49,7 @@
                 <div class="form-group col-lg-4">
                     <label>{{ __('Tìm kiếm FE') }}</label>
                     <select name="allow_frontend_search" class="form-control k_selectpicker">
-                        <option value="">--{{ __('Chọn trạng thái') }}--</option>
+                        <option value="">-- {{ __('Chọn trạng thái') }} --</option>
                         @foreach ($statusLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach

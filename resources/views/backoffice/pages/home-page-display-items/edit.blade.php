@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Home Page Display Item');
+	$title = __('Chỉnh sửa phần tử hiển thị trang chủ');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Phần tử hiển thị trang chủ'),
 		],
 		[
-			'label' => __('Edit Home Page Display Item'),
-		]
+			'label' => $title,
+		],
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Home Page Display Item') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin phần tử hiển thị') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -51,17 +51,17 @@
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
 									<label>{{ __('Tên') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter Name') }}" value="{{ old('name', $homePageDisplayItem->name) }}" required>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $homePageDisplayItem->name) }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $homePageDisplayItem->order) }}">
 								</div>
 
 								<div class="form-group">
-                                    <label>{{ __('Group') }} *</label>
-                                    <select name="group_id" title="--{{ __('Chọn nhóm') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('group_id') ? 'is-invalid' : '' }}" required>
+                                    <label>{{ __('Nhóm') }} *</label>
+                                    <select name="group_id" title="-- {{ __('Chọn nhóm') }} --" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('group_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($groups as $cat)
                                         <option value="{{ $cat->id }}" {{ old('group_id', $homePageDisplayItem->group_id) == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                         @endforeach
@@ -72,7 +72,7 @@
                                 </div>
 
 								<div class="form-group">
-                                    <label>{{ __('Type') }} *</label>
+                                    <label>{{ __('Loại') }} *</label>
 									<select name="type" class="form-control" required disabled>
 										@foreach ($homePageDisplayTypeEnumLabels as $key => $label)
 										<option value="{{ $key }}" {{ old('type', $homePageDisplayItem->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
@@ -82,8 +82,8 @@
 
 								<div data-type="1" class="d-none">
 									<div class="form-group">
-										<label>{{ __('Inventory') }} *</label>
-										<select data-actions-box="true" name="linked_items[]" title="--{{ __('Select Inventories') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
+										<label>{{ __('Sản phẩm trong kho') }} *</label>
+										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn sản phẩm') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
 											@foreach($inventories as $inventory)
 											<option
 												value="{{ $inventory->id }}"
@@ -97,15 +97,14 @@
 										</select>
 									</div>
 									<div class="form-group Display_Inventory_Allowed_Holder mb-0">
-										<div class="Display_Inventory_Holder_Content">
-										</div>
+										<div class="Display_Inventory_Holder_Content"></div>
 									</div>
 								</div>
 
 								<div data-type="2" class="d-none">
 									<div class="form-group">
-										<label>{{ __('Collection') }} *</label>
-										<select data-actions-box="true" name="linked_items[]" title="--{{ __('Select Collections') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Collection_Selector" multiple data-selected-text-format="count > 5">
+										<label>{{ __('Bộ sưu tập') }} *</label>
+										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn bộ sưu tập') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Collection_Selector" multiple data-selected-text-format="count > 5">
 											@foreach($collections as $collection)
 											<option
 												value="{{ $collection->id }}"
@@ -119,15 +118,14 @@
 										</select>
 									</div>
 									<div class="form-group Display_Collection_Allowed_Holder mb-0">
-										<div class="Display_Collection_Holder_Content">
-										</div>
+										<div class="Display_Collection_Holder_Content"></div>
 									</div>
 								</div>
 
 								<div data-type="3" class="d-none">
 									<div class="form-group">
-										<label>{{ __('Post') }} *</label>
-										<select data-actions-box="true" name="linked_items[]" title="--{{ __('Select Posts') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Post_Selector" multiple data-selected-text-format="count > 5">
+										<label>{{ __('Bài viết') }} *</label>
+										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn bài viết') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Post_Selector" multiple data-selected-text-format="count > 5">
 											@foreach($posts as $post)
 											<option
 												value="{{ $post->id }}"
@@ -141,15 +139,14 @@
 										</select>
 									</div>
 									<div class="form-group Display_Post_Allowed_Holder mb-0">
-										<div class="Display_Post_Holder_Content">
-										</div>
+										<div class="Display_Post_Holder_Content"></div>
 									</div>
 								</div>
 
 								<div data-type="4" class="d-none">
 									<div class="form-group">
 										<label>{{ __('Blogs') }} *</label>
-										<select data-actions-box="true" name="linked_items[]" title="--{{ __('Select Blogs') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Blog_Selector" multiple data-selected-text-format="count > 5">
+										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn Blogs') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Blog_Selector" multiple data-selected-text-format="count > 5">
 											@foreach($postCategories as $postCategory)
 											<option
 												value="{{ $postCategory->id }}"
@@ -163,13 +160,12 @@
 										</select>
 									</div>
 									<div class="form-group Display_Blog_Allowed_Holder mb-0">
-										<div class="Display_Blog_Holder_Content">
-										</div>
+										<div class="Display_Blog_Holder_Content"></div>
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>

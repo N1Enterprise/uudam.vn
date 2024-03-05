@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-4 form-group">
                     <label>{{ __('Nhóm danh mục') }}</label>
-                    <select name="category_group_id" title="--{{ __('Chọn nhóm danh mục') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                    <select name="category_group_id" title="-- {{ __('Chọn nhóm danh mục') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                         @foreach($categoryGroups as $categoryGroup)
                         <option value="{{ $categoryGroup->id }}">{{ $categoryGroup->name }}</option>
                         @endforeach
@@ -20,7 +20,7 @@
                 <div class="col-lg-4 form-group">
                     <label>{{ __('Trạng thái') }}</label>
                     <select name="status" class="form-control k_selectpicker">
-                        <option value="">--{{ __('Chọn trạng thái') }}--</option>
+                        <option value="">-- {{ __('Chọn trạng thái') }} --</option>
                         @foreach ($statusLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach

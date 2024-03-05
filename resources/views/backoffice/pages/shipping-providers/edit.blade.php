@@ -1,11 +1,11 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Edit Shipping Provider');
+	$title = __('Chỉnh sửa đơn vị vận chuyển');
 
 	$breadcrumbs = [
 		[
-			'label' => __('Shipping Providers'),
+			'label' => __('Đơn vị vận chuyển'),
 		],
 		[
 			'label' => $title,
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Shipping Provider') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin đơn vị vận chuyển') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -56,9 +56,9 @@
 								</div>
 
 								<div class="form-group">
-                                    <label>{{ __('Shipping Provider') }} *</label>
+                                    <label>{{ __('Nhà cung cấp') }} *</label>
                                     <select class="form-control k_selectpicker" name="code">
-                                        <option value="">-- {{ __('Select Shipping Provider') }} --</option>
+                                        <option value="">-- {{ __('Chọn nhà cung cấp') }} --</option>
                                         @foreach ($providers as $provider)
                                         <option {{ old('code', $shippingProvider->code) == data_get($provider, 'code') ? 'selected' : '' }} value="{{ data_get($provider, 'code') }}">{{ data_get($provider, 'name') }}</option>
                                         @endforeach
@@ -67,7 +67,7 @@
 
                                 <div class="tab-pane" id="advanceTab" role="tabpanel">
                                     <div class="form-group">
-                                        <label for="parameters">{{ __('Parameters') }}</label>
+                                        <label for="parameters">{{ __('Tham số') }}</label>
                                         <div id="json_editor_params" style="height: 200px"></div>
                                         <input type="hidden" name="params" value="{{ old('params', display_json_value($shippingProvider->params)) }}">
                                     </div>

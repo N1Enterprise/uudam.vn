@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Home Page Display Order');
+	$title = __('Nhóm hiển thị trang chủ');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Home Page Display Order') }}
+                        {{ __('Danh sách nhóm hiển thị') }}
                     </h3>
                 </div>
                 <div class="k-portlet__head-toolbar">
@@ -30,7 +30,7 @@
                         @can('home-page-display-orders.store')
                         <a href="{{ route('bo.web.home-page-display-orders.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Home Page Display Order') }}
+                            {{ __('Tạo nhóm hiển thị trang chủ') }}
                         </a>
                         @endcan
                     </div>
@@ -42,9 +42,9 @@
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
                             <th data-property="name">{{ __('Tên') }}</th>
-                            <th data-property="order">{{ __('Order') }}</th>
+                            <th data-property="order">{{ __('Thứ tự') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
-                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('FE Display') }}</th>
+                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
                             <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                             <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
@@ -69,9 +69,9 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Home Page Display Order?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa hiển thị trang chủ này không?') }}");
 
-            if(!confirmation) {
+            if (! confirmation) {
                 return;
             }
 
@@ -80,7 +80,7 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table_home_page_display_order').DataTable().ajax.reload()
+                    $('#table_home_page_display_order').DataTable().ajax.reload();
                 }
             });
         });

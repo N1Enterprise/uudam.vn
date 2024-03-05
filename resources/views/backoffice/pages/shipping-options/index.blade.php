@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Shipping Options');
+	$title = __('Phương thức vận chuyển');
 
 	$breadcrumbs = [
 		[
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Shipping Option') }}
+                    {{ __('Danh sách phương thức vận chuyển ') }}
                 </h3>
             </div>
             @canAny(['shipping-options.store'])
@@ -31,7 +31,7 @@
                     @can('shipping-options.store')
                     <a href="{{ route('bo.web.shipping-options.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Shipping Option') }}
+                        {{ __('Tạo phương thức vận chuyển') }}
                     </a>
                     @endcan
                 </div>
@@ -45,9 +45,9 @@
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-property="logo" data-render-callback="renderLogoImage">{{ __('Logo') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
-                        <th data-property="order">{{ __('Order') }}</th>
-                        <th data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                        <th data-orderable="false" data-property="shipping_provider.name" data-link-target="_blank" data-link="shipping_provider.actions.update">{{ __('Provider') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
+                        <th data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
+                        <th data-orderable="false" data-property="shipping_provider.name" data-link-target="_blank" data-link="shipping_provider.actions.update">{{ __('Nhà cung cấp') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>

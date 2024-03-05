@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Attribute');
+	$title = __('Chỉnh sửa thuộc tính');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Thuộc tính'),
 		],
 		[
-			'label' => __('Edit Attribute'),
+			'label' => $title,
 		]
 	];
 @endphp
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Attribute') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin thuộc tính') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -58,7 +58,7 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $attribute->order) }}">
                                     @error('order')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -66,8 +66,8 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Attribute Type') }} *</label>
-                                    <select name="attribute_type" title="--{{ __('Select Attribute Type') }}--" class="form-control k_selectpicker {{ $errors->has('attribute_type') ? 'is-invalid' : '' }}" required>
+                                    <label>{{ __('Loại thuộc tính') }} *</label>
+                                    <select name="attribute_type" title="-- {{ __('Chọn loại thuộc tính') }} --" class="form-control k_selectpicker {{ $errors->has('attribute_type') ? 'is-invalid' : '' }}" required>
                                         @foreach($productAttributeTypeEnum as $key => $label)
                                         <option value="{{ $key }}" {{ old('attribute_type', $attribute->attribute_type) == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
@@ -78,8 +78,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Categories') }}</label>
-                                    <select name="supported_categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true" data-actions-box="true">
+                                    <label>{{ __('Danh mục') }}</label>
+                                    <select name="supported_categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true" data-actions-box="true">
                                         @foreach($categoryGroups as $categoryGroup)
                                         <optgroup label="{{ $categoryGroup->name }}">
                                             @foreach($categoryGroup->categories as $category)

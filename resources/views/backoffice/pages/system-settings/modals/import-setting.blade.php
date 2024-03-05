@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group">
                         <label>
-                            {{ __('System Setting') }}
+                            {{ __('Thiết lập hệ thống') }}
                             <a data-toggle="collapse" href="#class_hint">
                                 <i class="la flaticon-light"></i>
                             </a>

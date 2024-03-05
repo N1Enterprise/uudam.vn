@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Faq Topic');
+	$title = __('Chỉnh sửa chủ đề hỏi đáp');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Chủ đề hỏi đáp'),
 		],
 		[
-			'label' => __('Edit Faq Topic'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,7 +28,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Faq Topic') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin chủ đề hỏi đáp') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -55,7 +55,7 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $faqTopic->order) }}">
 								</div>
 

@@ -56,7 +56,7 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label>{{ __('Khu vực') }} *</label>
-                                        <select name="shipping_zone_id" title="--{{ __('Chọn khu vực vận chuyển') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
+                                        <select name="shipping_zone_id" title="-- {{ __('Chọn khu vực vận chuyển') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
                                             @foreach($shippingZones as $shippingZone)
                                             <option {{ $shippingZone->id == old('shipping_zone_id') ? 'selected' : '' }} data-tokens="{{ $shippingZone->name }}" value="{{ $shippingZone->id }}">{{ $shippingZone->name }}</option>
                                             @endforeach

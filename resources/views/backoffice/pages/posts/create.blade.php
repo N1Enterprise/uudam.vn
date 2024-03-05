@@ -1,24 +1,23 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Post');
+	$title = __('Tạo bài viết');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Bài viết'),
 		],
 		[
-			'label' => __('Add Post'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
-
 
 @section('style')
 <style>
@@ -41,7 +40,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Post') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin bài viết') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -78,8 +77,8 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Category') }} *</label>
-                                    <select name="post_category_id" title="--{{ __('Select Category') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('post_category_id') ? 'is-invalid' : '' }}" required>
+                                    <label>{{ __('Danh mục') }} *</label>
+                                    <select name="post_category_id" title="-- {{ __('Chọn danh mục') }} --" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('post_category_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($postCategories as $category)
                                         <option value="{{ $category->id }}" {{ old('post_category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                         @endforeach
@@ -90,7 +89,7 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
                                     @error('order')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -98,11 +97,11 @@
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Image') }} *</label>
+                                    <label>{{ __('Hình ảnh') }} *</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="image[path]" value="{{ old('image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="image[path]" value="{{ old('image.path') }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -112,7 +111,7 @@
                                                 <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="image[file]" class="d-none image_primary_image_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('image, image.file,image.path') is-invalid @endanyerror">
@@ -131,7 +130,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Description') }}</label>
+                                    <label for="">{{ __('Mô tả') }}</label>
                                     <textarea name="description" id="" rows="3" class="form-control">{{ old('description') }}</textarea>
                                 </div>
 
@@ -140,7 +139,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Post At') }}</label>
+                                    <label for="">{{ __('Được viết lúc') }}</label>
                                     <input
                                         type="datetimepicker"
                                         class="form-control @error('post_at') is-invalid @enderror"
@@ -166,7 +165,7 @@
 								</div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -178,7 +177,7 @@
 								</div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">{{ __('FE Search') }}</label>
+                                    <label class="col-2 col-form-label">{{ __('Tìm kiếm FE') }}</label>
                                     <div class="col-3">
                                         <span class="k-switch">
                                             <label>

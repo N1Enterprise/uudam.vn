@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Banner');
+	$title = __('Tạo banner');
 
 	$breadcrumbs = [
+        [
+			'label' => __('Banner'),
+        ],
 		[
 			'label' => $title,
-		],
-		[
-			'label' => __('Add Banner'),
 		]
 	];
 @endphp
@@ -56,7 +56,7 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Banner') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin banner') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
@@ -82,13 +82,13 @@
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Label') }}</label>
-									<input type="text" class="form-control" name="label" placeholder="{{ __('Enter label') }}" value="{{ old('label') }}">
+									<label>{{ __('Nhãn') }}</label>
+									<input type="text" class="form-control" name="label" placeholder="{{ __('Nhập nhãn') }}" value="{{ old('label') }}">
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Select Display Type') }} *</label>
-                                    <select name="type" title="--{{ __('Select Display Type') }}--" class="form-control k_selectpicker" required>
+                                    <label>{{ __('Loại hiển thị') }} *</label>
+                                    <select name="type" title="-- {{ __('Chọn loại hiển thị') }} --" class="form-control k_selectpicker" required>
                                         @foreach ($bannerTypeEnumLabels as $key => $label)
                                         <option value="{{ $key }}" {{ old('type') == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
@@ -96,31 +96,31 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Cta Label') }}</label>
-									<input type="text" class="form-control" name="cta_label" placeholder="{{ __('Enter Cta Label') }}" value="{{ old('cta_label') }}">
+									<label>{{ __('Nhãn CTA') }}</label>
+									<input type="text" class="form-control" name="cta_label" placeholder="{{ __('Nhập nhãn Cta') }}" value="{{ old('cta_label') }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Redirect Url') }}</label>
-									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Enter Cta Label') }}" value="{{ old('redirect_url') }}">
+									<label>{{ __('Chuyển hướng URL') }}</label>
+									<input type="text" class="form-control" name="redirect_url" placeholder="{{ __('Nhập chuyển hướng url') }}" value="{{ old('redirect_url') }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
+									<label>{{ __('Thứ tự') }}</label>
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Color') }}</label>
-									<input type="color" class="form-control p-1" name="color" placeholder="{{ __('Enter Color') }}" value="{{ old('color') }}">
+									<label>{{ __('Màu sắc') }}</label>
+									<input type="color" class="form-control p-1" name="color" placeholder="{{ __('Nhập màu sắc') }}" value="{{ old('color') }}">
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Desktop Image') }} *</label>
+                                    <label>{{ __('Ảnh Desktop') }} *</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="desktop" data-image-ref-index="0" class="form-control image_desktop_image_url" name="desktop_image[path]" value="{{ old('desktop_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="desktop" data-image-ref-index="0" class="form-control image_desktop_image_url" name="desktop_image[path]" value="{{ old('desktop_image.path') }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="desktop" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="desktop" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -130,7 +130,7 @@
                                                 <label for="image_desktop_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_desktop_image" data-image-ref-path="file" data-image-ref-index="0" name="desktop_image[file]" class="d-none image_desktop_image_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('desktop_image, desktop_image.file, desktop_image.path') is-invalid @endanyerror">
@@ -149,11 +149,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Mobile Image') }}</label>
+                                    <label>{{ __('Ảnh Mobile') }}</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="mobile" data-image-ref-index="0" class="form-control image_mobile_image_url" name="mobile_image[path]" value="{{ old('mobile_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="mobile" data-image-ref-index="0" class="form-control image_mobile_image_url" name="mobile_image[path]" value="{{ old('mobile_image.path') }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="mobile" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="mobile" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -163,7 +163,7 @@
                                                 <label for="image_mobile_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_mobile_image" data-image-ref-path="file" data-image-ref-index="0" name="mobile_image[file]" class="d-none image_mobile_image_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('mobile_image, mobile_image.file, mobile_image.path') is-invalid @endanyerror">
@@ -182,14 +182,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">{{ __('Description') }}</label>
+                                    <label for="">{{ __('Mô tả') }}</label>
                                     <textarea name="description" id="" rows="3" class="form-control">{{ old('description') }}</textarea>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Start Date') }} *</label>
+                                            <label for="">{{ __('Ngày bắt đầu') }} *</label>
                                             <input type="datetimepicker" class="form-control @error('start_at') is-invalid @enderror" name="start_at" value="{{ old('start_at', now()) }}" required>
                                             @error('start_at')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -199,7 +199,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('End Date') }}</label>
+                                            <label for="">{{ __('Ngày kết thúc') }}</label>
                                             <input type="datetimepicker" class="form-control @error('end_at') is-invalid @enderror" name="end_at" value="{{ old('end_at') }}">
                                             @error('end_at')
                                             <div class="invalid-feedback">{{ $message }}</div>

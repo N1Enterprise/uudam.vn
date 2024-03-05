@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Shipping Providers');
+	$title = __('Đơn vị vận chuyển');
 
 	$breadcrumbs = [
 		[
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Shipping Provider') }}
+                    {{ __('Danh sách đơn vị vận chuyển') }}
                 </h3>
             </div>
             @canAny(['shipping-providers.store'])
@@ -31,7 +31,7 @@
                     @can('shipping-providers.store')
                     <a href="{{ route('bo.web.shipping-providers.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Shipping Provider') }}
+                        {{ __('Tạo đơn vị vận chuyển') }}
                     </a>
                     @endcan
                 </div>

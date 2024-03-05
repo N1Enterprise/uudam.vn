@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-    $title = 'Systems Manage';
+    $title = __('Quản lý hệ thống');
 
     $breadcrumbs = [
         [
             'label' => $title,
         ],
         [
-            'label' => 'System Setting',
+            'label' => __('Thiết lập hệ thống'),
         ],
     ];
 @endphp

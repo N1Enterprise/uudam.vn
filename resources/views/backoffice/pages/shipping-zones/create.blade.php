@@ -55,7 +55,7 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Quốc gia hỗ trợ') }}</label>
-                                    <select data-actions-box="true" name="supported_countries[]" title="--{{ __('Chọn quốc gia') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
+                                    <select data-actions-box="true" name="supported_countries[]" title="-- {{ __('Chọn quốc gia') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($countries as $country)
                                         <option
                                             {{ in_array($country->iso2, old("supported_countries", [])) ? 'selected' : '' }}
@@ -74,7 +74,7 @@
 
 								<div class="form-group">
                                     <label>{{ __('Tỉnh/TP hỗ trợ') }}</label>
-                                    <select data-actions-box="true" name="supported_provinces[]" title="--{{ __('Chọn Tỉnh/TP') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Provinces_Selector" multiple data-selected-text-format="count > 5" multiple>
+                                    <select data-actions-box="true" name="supported_provinces[]" title="-- {{ __('Chọn Tỉnh/TP') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Provinces_Selector" multiple data-selected-text-format="count > 5" multiple>
                                         @foreach($provinces as $province)
 										<option
 											{{ in_array($province->code, old("supported_provinces", [])) ? 'selected' : '' }}
@@ -91,7 +91,7 @@
 
 								<div class="form-group">
                                     <label>{{ __('Quận/Huyện hỗ trợ') }}</label>
-                                    <select data-actions-box="true" name="supported_districts[]" title="--{{ __('Chọn Quận/Huyện') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Districts_Selector" multiple data-selected-text-format="count > 5" multiple disabled data-districts='@json($districts)'>
+                                    <select data-actions-box="true" name="supported_districts[]" title="-- {{ __('Chọn Quận/Huyện') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Districts_Selector" multiple data-selected-text-format="count > 5" multiple disabled data-districts='@json($districts)'>
 										{{-- Render --}}
 									</select>
 									<div class="form-group Supported_Districts_Allowed_Holder mb-0">

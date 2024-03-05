@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Thêm đơn hàng');
+	$title = __('Tạo đơn hàng');
 
 	$breadcrumbs = [
 		[
@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label>{{ __('Khách hàng') }} *</label>
-                                <select data-actions-box="true" name="user_id" title="--{{ __('Chọn khách hàng') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
+                                <select data-actions-box="true" name="user_id" title="-- {{ __('Chọn khách hàng') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
                                     @foreach($users as $user)
                                     <option
                                         data-tokens="{{ (string) $user->name }} | {{ (string) $user->email }} | {{ (string) $user->phone_number ?? 'N/A' }}"
@@ -53,14 +53,14 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">2. {{ __('Thêm giỏ hàng') }}</h3>
+                            <h3 class="k-portlet__head-title">2. {{ __('Tạo giỏ hàng') }}</h3>
                         </div>
                     </div>
 
                     <div class="k-portlet__body">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <select name="inventory_id" title="--{{ __('Chọn sản phẩm thêm vào giỏ hàng') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
+                                <select name="inventory_id" title="-- {{ __('Chọn sản phẩm thêm vào giỏ hàng') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
                                     @foreach($inventories as $inventory)
                                     <option
                                         value="{{ $inventory->id }}"
@@ -74,7 +74,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <button type="button" class="btn btn-primary btn-block" id="btn_add_to_cart">{{ __('Thêm vào giỏ hàng') }}</button>
+                                <button type="button" class="btn btn-primary btn-block" id="btn_add_to_cart">{{ __('Tạo vào giỏ hàng') }}</button>
                             </div>
                         </div>
 
@@ -173,7 +173,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>{{ __('Tỉnh/Thành Phố') }} *</label>
-                                <select data-actions-box="true" name="province_code" title="--{{ __('Chọn Tỉnh/TP') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
+                                <select data-actions-box="true" name="province_code" title="-- {{ __('Chọn Tỉnh/TP') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
                                     @foreach($provinces as $province)
                                     <option
                                         {{ in_array($province->code, old("supported_provinces", [])) ? 'selected' : '' }}
@@ -187,14 +187,14 @@
 
                             <div class="form-group col-md-4">
                                 <label>{{ __('Quận/Huyện') }} *</label>
-                                <select data-actions-box="true" name="district_code" title="--{{ __('Chọn Quận/Huyện') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5" disabled data-districts='@json($districts)'>
+                                <select data-actions-box="true" name="district_code" title="-- {{ __('Chọn Quận/Huyện') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5" disabled data-districts='@json($districts)'>
                                     {{-- Render --}}
                                 </select>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>{{ __('Phường/Xã') }} *</label>
-                                <select data-actions-box="true" name="ward_code" title="--{{ __('Chọn Phường/Xã') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5" disabled data-wards='@json($wards)'>
+                                <select data-actions-box="true" name="ward_code" title="-- {{ __('Chọn Phường/Xã') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5" disabled data-wards='@json($wards)'>
                                     {{-- Render --}}
                                 </select>
                             </div>
@@ -213,7 +213,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>{{ __('Tùy chọn vận chuyển') }} *</label>
-                                <select name="shipping_option_id" title="--{{ __('Chọn tuỳ chọn vận chuyển') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5" disabled>
+                                <select name="shipping_option_id" title="-- {{ __('Chọn tuỳ chọn vận chuyển') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5" disabled>
                                     {{--  --}}
                                 </select>
                             </div>
@@ -232,7 +232,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>{{ __('Tùy chọn thanh toán') }} *</label>
-                                <select title="--{{ __('Chọn tùy chọn thanh toán') }}--" name="payment_option_id" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
+                                <select title="-- {{ __('Chọn tùy chọn thanh toán') }} --" name="payment_option_id" data-size="5" data-live-search="true" class="form-control k_selectpicker" data-selected-text-format="count > 5">
                                     @foreach($paymentOptions as $option)
                                     <option value="{{ $option->id }}" data-tokens="{{ $option->id }} | {{ $option->name }}">{{ $option->name }}</option>
                                     @endforeach
