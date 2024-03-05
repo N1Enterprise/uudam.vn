@@ -47,6 +47,7 @@ class Inventory extends BaseModel
         'init_sold_count',
         'sold_count',
         'meta',
+        'weight'
     ];
 
     protected $casts = [

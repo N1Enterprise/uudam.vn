@@ -135,7 +135,6 @@
                     name="sale_price"
                     class="form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}"
                     value='{{ old("sale_price", $inventory->sale_price) }}'
-
                 />
                 @error("sale_price")
                 <div class="invalid-feedback">{{ $message }}</div>

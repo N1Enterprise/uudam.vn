@@ -29,6 +29,11 @@ class Province
         return app(ProvinceEntity::class);
     }
 
+    public function find($id)
+    {
+        return $this->model()->find($id);
+    }
+
     public function all($data = [])
     {
         return $this->model()->query()

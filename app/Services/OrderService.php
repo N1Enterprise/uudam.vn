@@ -32,6 +32,7 @@ class OrderService extends BaseService
     public $cartService;
     public $userService;
     public $userOrderShippingHistoryService;
+    public $inventoryService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
@@ -39,7 +40,8 @@ class OrderService extends BaseService
         ShippingOptionService $shippingOptionService,
         CartService $cartService,
         UserService $userService,
-        UserOrderShippingHistoryService $userOrderShippingHistoryService
+        UserOrderShippingHistoryService $userOrderShippingHistoryService,
+        InventoryService $inventoryService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
@@ -47,6 +49,7 @@ class OrderService extends BaseService
         $this->cartService = $cartService;
         $this->userService = $userService;
         $this->userOrderShippingHistoryService = $userOrderShippingHistoryService;
+        $this->inventoryService = $inventoryService;
     }
 
     public function searchByAdmin($data = [])
@@ -155,6 +158,55 @@ class OrderService extends BaseService
         return $this->orderRepository
             ->with(data_get($data, 'with', []))
             ->find($id);
+    }
+
+    public function createFromInventoryDataByUser($user, $items, $paymentOption, $shippingOption, $createdBy, $data = [])
+    {
+       /** @var User */
+       $user = $this->userService->show($user);
+
+       /** @var ShippingOption */
+       $shippingOption = $this->shippingOptionService->show($shippingOption);
+
+       /** @var PaymentOption */
+       $paymentOption = $this->paymentOptionService->show($paymentOption);
+
+       $orderCode = $this->generateOrderCode(); 
+
+        if ($user->currency_code != $paymentOption->currency_code) {
+            throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_USER);
+        }
+
+        $grandTotal = $items->reduce(function($curr, $item) use ($user) {
+            return Money::make(data_get($item, 'final_price'), $user->currency_code)
+                ->multipliedBy(data_get($item, ['quantity'], 0))
+                ->plus($curr);
+        }, 0);
+
+        $data = array_merge(
+            [
+                'order_code' => $orderCode,
+                'uuid' => (string) Str::uuid(),
+                'user_id' => $user->getKey(),
+                'currency_code' => $user->currency_code,
+                'total_item' => $items->count(),
+                'total_price' => (string) $grandTotal,
+                'total_quantity' => $items->sum('quantity'),
+                'grand_total' => (string) $grandTotal,
+                'payment_status' => PaymentStatusEnum::PENDING,
+                'order_status' => OrderStatusEnum::WAITING_FOR_PAYMENT,
+                'is_sent_invoice_to_user' => 0,
+                'payment_option_id'  => $paymentOption->getKey(),
+                'shipping_option_id' => $shippingOption->getKey()
+            ],
+            BaseModel::getMorphProperty('created_by', $createdBy),
+            BaseModel::getMorphProperty('updated_by', $createdBy),
+            []
+        );
+
+        $order = $this->orderRepository->create($data);
+
+        return $order;
     }
 
     public function createFromCartByUser($user, $cart, $paymentOption, $shippingOption, $createdBy, $data = [])

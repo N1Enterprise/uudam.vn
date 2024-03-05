@@ -9,7 +9,7 @@
         <div class="k-portlet__body">
             <div class="form-group row">
                 <div class="col-lg-4">
-                    <label>{{ __('Order Code') }}</label>
+                    <label>{{ __('Mã đơn hàng') }}</label>
                     <input type="text" class="form-control" name="order_code">
                 </div>
 
@@ -19,32 +19,32 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{{ __('Company') }}</label>
+                    <label>{{ __('Công ty') }}</label>
                     <input type="text" class="form-control" name="company">
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-lg-4">
-                    <label>{{ __('User Full Name') }}</label>
+                    <label>{{ __('Tên khách hàng') }}</label>
                     <input type="text" class="form-control" name="fullname">
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{{ __('User Email') }}</label>
+                    <label>{{ __('E-mail khách hàng') }}</label>
                     <input type="text" class="form-control" name="email">
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{{ __('User Phone') }}</label>
+                    <label>{{ __('SĐT khách hàng') }}</label>
                     <input type="text" class="form-control" name="phone">
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-lg-4">
-                    <label>{{ __('Order Status') }}</label>
-                    <select name="order_statuses[]" class="form-control k_selectpicker" data-title="{{ __('Select Order Status') }}" multiple>
+                    <label>{{ __('Trạng thái đơn') }}</label>
+                    <select name="order_statuses[]" class="form-control k_selectpicker" data-title="{{ __('Chọn trạng thái đơn') }}" multiple>
                         @foreach ($orderStatusEnumLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach
@@ -52,8 +52,8 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{{ __('Payment Status') }}</label>
-                    <select name="payment_status[]" class="form-control k_selectpicker" data-title="{{ __('Select Payment Status') }}" multiple>
+                    <label>{{ __('Trạng thái thanh toán') }}</label>
+                    <select name="payment_status[]" class="form-control k_selectpicker" data-title="{{ __('Chọn trạng thái thanh toán') }}" multiple>
                         @foreach ($paymentStatusEnumLabels as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
                         @endforeach
@@ -66,7 +66,6 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <input type="hidden" name="order_status" value="">
-
                         <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Tìm kiếm') }}</button>
                         <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Làm mới') }}</button>
                     </div>

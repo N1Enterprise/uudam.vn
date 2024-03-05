@@ -242,6 +242,27 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">{{ __('Khối lượng(g)') }}</label>
+                                    <div class="input-group">
+                                        <x-number-input
+                                            name="weight"
+                                            key="weight"
+                                            class='form-control {{ $errors->has("weight") ? "is-invalid" : "" }}'
+                                            placeholder="{{ __('10,01') }}"
+                                            value='{{ old("weight", $inventory->weight) }}'
+                                        />
+                                        <div class="input-group-append"><span class="input-group-text">{{ __('gam(g)') }}</span></div>
+                                    </div>
+                                    @error('weight')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row {{ $inventory->offer_price ? '' : 'd-none' }}" data-toggle-reference="offer_date_setup">
                             <div class="col-md-6">
                                 <div class="form-group">

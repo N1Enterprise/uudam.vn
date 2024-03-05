@@ -20,4 +20,9 @@ class Ward extends BaseModel
         'district_code',
         'administrative_unit_id',
     ];
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_code', 'code');
+    }
 }

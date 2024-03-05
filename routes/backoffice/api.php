@@ -67,6 +67,7 @@ Route::prefix('v1')->group(function () {
     Route::get('shipping-rates', [Api\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
     Route::get('shipping-providers', [Api\ShippingProviderController::class, 'index'])->name('shipping-providers.index')->middleware(['can:shipping-providers.index']);
     Route::get('shipping-options', [Api\ShippingOptionController::class, 'index'])->name('shipping-options.index')->middleware(['can:shipping-options.index']);
+    Route::get('shipping-options/available', [Api\ShippingOptionController::class, 'getAvailable'])->name('shipping-options.available')->middleware(['can:shipping-options.index']);
 
     /* ======================== LOCALIZATION ======================== */
     Route::get('countries', [Api\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);

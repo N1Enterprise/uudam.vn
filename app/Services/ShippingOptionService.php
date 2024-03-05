@@ -22,9 +22,41 @@ class ShippingOptionService extends BaseService
         $result = $this->shippingOptionRepository
             ->with(['shippingProvider'])
             ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->scopeQuery(function($q) use ($data) {
+                $status = data_get($data, 'status');
+                $provinceCode = data_get($data, 'province_code');
+
+                if ($status) {
+                    $q->where('status', $status);
+                }
+
+                if ($provinceCode) {
+                    $q->whereJsonContains('supported_provinces', $provinceCode);
+                }
+            })
             ->search([]);
 
         return $result;
+    }
+
+    public function allAvailable($data = [])
+    {
+        return $this->shippingOptionRepository
+            ->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($data) {
+                $status = data_get($data, 'status');
+                $provinceCode = data_get($data, 'province_code');
+
+                if ($status) {
+                    $q->where('status', $status);
+                }
+
+                if ($provinceCode) {
+                    $q->whereJsonContains('supported_provinces', $provinceCode);
+                }
+            })
+            ->orderBy('order')
+            ->all();
     }
 
     public function create($attributes = [])

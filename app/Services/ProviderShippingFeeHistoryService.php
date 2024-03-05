@@ -14,6 +14,11 @@ class ProviderShippingFeeHistoryService extends BaseService
         $this->providerShippingFeeHistoryRepository = $providerShippingFeeHistoryRepository;
     }
 
+    public function create($attributes = [])
+    {
+        return $this->providerShippingFeeHistoryRepository->create($attributes);
+    }
+
     public function firstOrCreate($attributes = [], $values = [])
     {
         return $this->providerShippingFeeHistoryRepository->firstOrCreate($attributes, $values);

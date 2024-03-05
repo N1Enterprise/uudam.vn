@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Order');
+	$title = __('Chi tiết đơn hàng');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Quản lí đơn hàng'),
 		],
 		[
-			'label' => __('Edit Order'),
+			'label' => $title,
 		]
 	];
 
@@ -77,7 +77,7 @@
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
 						<h3 class="k-portlet__head-title">
-                            <span>{{ __('Order') }}</span>
+                            <span>{{ __('Thông tin đơn hàng') }}</span>
                             <b>#{{ $order->order_code }}</b>
                         </h3>
 
@@ -321,7 +321,7 @@
                                         <input type="text" class="form-control" value="{{ data_get($order->depositTransaction, 'reference_id') }}" disabled>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <label>{{ __('Số lược phê duyệt') }}</label>
+                                        <label>{{ __('Số lần phê duyệt') }}</label>
                                         <input type="text" class="form-control" value="{{ data_get($order->depositTransaction, 'approved_index') }}" disabled>
                                     </div>
                                 </div>
@@ -399,7 +399,7 @@
                         @if ($order->shippingOption->isShippingZone())
                         <div class="form-group col-md-12">
                             <label>{{ __('Khu vực vận chuyển') }}</label>
-                            <input type="text" class="form-control" value="{{ data_get($order->latestUserOrderShippingHistory, ['shippingZone', 'name']) }} ({{ data_get($order->latestUserOrderShippingHistory, ['shippingRate', 'name']) }})" disabled>
+                            <input type="text" class="form-control" value="{{ data_get($order->latestUserOrderShippingHistory, ['shippingZone', 'name']) }} ({{ data_get($order->latestUserOrderShippingHistory, ['shippingRate', 'name'], 'N/A') }})" disabled>
                         </div>
                         @endif
                     </div>

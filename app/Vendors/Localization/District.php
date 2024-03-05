@@ -35,6 +35,11 @@ class District
             ->get(array_merge(['code', 'name', 'full_name', 'province_code'], data_get($data, 'columns', [])));
     }
 
+    public function find($id)
+    {
+        return $this->model()->find($id);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */

@@ -230,6 +230,8 @@ Route::get('deposit-transactions/{id}', [Controllers\DepositTransactionControlle
 
 /* ======================== ORDER ======================== */
 Route::get('orders', [Controllers\OrderController::class, 'index'])->name('orders.index')->middleware(['can:orders.index']);
+Route::get('orders/create', [Controllers\OrderController::class, 'create'])->name('orders.create')->middleware(['can:orders.manage']);
+Route::post('orders', [Controllers\OrderController::class, 'store'])->name('orders.store')->middleware(['can:orders.manage']);
 Route::get('orders/{id}', [Controllers\OrderController::class, 'edit'])->name('orders.edit')->middleware(['can:orders.manage']);
 
 Route::get('carts', [Controllers\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);

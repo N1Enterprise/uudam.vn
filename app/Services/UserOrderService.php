@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enum\DepositStatusEnum;
 use App\Enum\PaymentStatusEnum;
+use App\Enum\ShippingRateTypeEnum;
 use App\Enum\UserOrderShippingHistoryStatusEnum;
 use App\Events\Order\OrderCreated;
 use App\Events\Order\OrderUpdated;
@@ -23,6 +24,15 @@ use Illuminate\Support\Arr;
 use App\Models\ShippingOption;
 use App\Shipping\Helpers\ShippingCartHelper;
 use App\Models\Address;
+use App\Vendors\Localization\Province;
+use App\Vendors\Localization\District;
+use App\Vendors\Localization\Ward;
+use App\Models\Province as ProvinceEntity;
+use App\Models\District as DistrictEntity;
+use App\Models\ShippingRate;
+use App\Models\ShippingZone;
+use App\Models\Ward as WardEntity;
+use App\Vendors\Localization\Money;
 
 class UserOrderService extends BaseService
 {
@@ -40,6 +50,9 @@ class UserOrderService extends BaseService
     public $userOrderShippingHistoryService;
     public $userCheckoutService;
     public $addressService;
+    public $inventoryService;
+    public $providerShippingFeeHistoryService;
+    public $shippingZoneService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
@@ -55,7 +68,10 @@ class UserOrderService extends BaseService
         DepositService $depositService,
         UserOrderShippingHistoryService $userOrderShippingHistoryService,
         UserCheckoutService $userCheckoutService,
-        AddressService $addressService
+        AddressService $addressService,
+        InventoryService $inventoryService,
+        ProviderShippingFeeHistoryService $providerShippingFeeHistoryService,
+        ShippingZoneService $shippingZoneService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
@@ -71,6 +87,112 @@ class UserOrderService extends BaseService
         $this->userOrderShippingHistoryService = $userOrderShippingHistoryService;
         $this->userCheckoutService = $userCheckoutService;
         $this->addressService = $addressService;
+        $this->inventoryService = $inventoryService;
+        $this->providerShippingFeeHistoryService = $providerShippingFeeHistoryService;
+        $this->shippingZoneService = $shippingZoneService;
+    }
+
+    public function orderByAdmin($userId, $inventoryData = [], $paymentOptionId, $shippingOptionId, $addressInfo = [], $createdBy, $data = [])
+    {
+        /** @var PaymentOption */
+        $paymentOption = $this->paymentOptionService->show($paymentOptionId);
+
+        /** @var ShippingOption */
+        $shippingOption = $this->shippingOptionService->show($shippingOptionId);
+
+        /** @var User */
+        $user = $this->userService->show($userId);
+
+        /** @var ProvinceEntity */
+        $province = Province::make()->find(data_get($addressInfo, 'province_code'));
+
+        /** @var DistrictEntity */
+        $district = District::make()->find(data_get($addressInfo, 'district_code'));
+
+        /** @var WardEntity */
+        $ward = Ward::make()->find(data_get($addressInfo, 'ward_code'));
+
+        $data['currency_code'] = $user->currency_code;
+
+        return DB::transaction(function() use ($user, $paymentOption, $shippingOption, $inventoryData, $province, $district, $ward, $data, $createdBy) {
+            $collectionInvs = collect($inventoryData)->keyBy('inventory_id');
+            $inventories = $this->inventoryService->getAvailableByIds($collectionInvs->keys()->toArray());
+
+            $items = $inventories->map(function($inventory) use ($collectionInvs) {
+                return [
+                    'inventory_id' => $inventory->id,
+                    'final_price' => $inventory->final_price,
+                    'quantity' => data_get($collectionInvs, [$inventory->id, 'quantity'], 0),
+                    'inventory' => $inventory
+                ];
+            });
+
+            /** @var Order */
+            $order = $this->orderService->createFromInventoryDataByUser($user, $items, $paymentOption, $shippingOption, $createdBy, $data);
+
+            $this->orderItemService->createListFormInventoryDataByUser($user, $items, $order, $data);
+
+            $totalWeight = ShippingCartHelper::getTotalWeightFromItems($items ?? []);
+
+            $shippingZone = null;
+            $shippingRate = null;
+            $estimatedTransportFee = 0;
+
+            if ($shippingOption->isShippingZone()) {
+                $shippingZone = $this->shippingZoneService->getByProvinceAndDistrict($province->code, $district->code);
+                $shippingRate = empty($shippingZone) ? null : $this->shippingRateService->getByShippingZone($shippingOption, ShippingRateTypeEnum::WEIGHT, $totalWeight);
+                $estimatedTransportFee = empty($shippingRate) ? 0 : $shippingRate->rate;
+            }
+
+            $userOrderShippingHistory = $this->userOrderShippingHistoryService->create([
+                'user_id' => BaseModel::getModelKey($user),
+                'order_id' => BaseModel::getModelKey($order),
+                'shipping_option_id' => $shippingOption->id,
+                'shipping_provider_id' => $shippingOption->shipping_provider_id,
+                'shipping_zone_id' => $shippingZone instanceof ShippingZone ? BaseModel::getModelKey($shippingZone) : null,
+                'shipping_rate_id' => $shippingRate instanceof ShippingRate ? BaseModel::getModelKey($shippingRate) : null,
+                'status' => UserOrderShippingHistoryStatusEnum::PENDING,
+                'total_weight' => $totalWeight,
+                'estimated_transport_fee' => $estimatedTransportFee,
+                'total_invoice_amount' => (string) Money::make($order->grand_total, $user->currency_code)->plus($estimatedTransportFee),
+                'provider_shipping_fee_history_id' => null
+            ]);
+
+            $order->total_weight = $userOrderShippingHistory->total_weight;
+            $order->grand_total  = $userOrderShippingHistory->total_invoice_amount;
+
+            $order->fill([
+                'fullname' => data_get($data, 'fullname'),
+                'email' => data_get($data, 'email'),
+                'phone' => data_get($data, 'phone'),
+                'company' => data_get($data, 'company'),
+                'postal_code' => data_get($data, 'postal_code'),
+                'address_line' => data_get($data, 'address_line'),
+                'province_name' => $province->full_name,
+                'district_name' => $district->full_name,
+                'ward_name' => $ward->ward_name,
+            ]);
+
+            /** @var DepositTransaction */
+            $deposit = $this->depositService->deposit(
+                $user,
+                $order->grand_total,
+                $paymentOption,
+                $user,
+                array_merge($data, ['order_id' => $order->getKey()])
+            );
+
+            $order->payment_status = $this->parseDepositStatusToOrderPaymentStatus($deposit->status);
+            $order->deposit_transaction_id = $deposit->getKey();
+
+            $order->save();
+
+            $order = $order->fresh();
+
+            OrderCreated::dispatch($order);
+
+            return $order;
+        });
     }
 
     public function order($userId, $cartUuid, $paymentOptionId, $shippingOptionId, $addressId, $createdBy, $data = [])

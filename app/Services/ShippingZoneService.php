@@ -51,15 +51,13 @@ class ShippingZoneService extends BaseService
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
 
-    public function getByAddressId($addressId)
+    public function getByProvinceAndDistrict($provinceCode, $districtCode)
     {
-        $address = $this->addressService->show($addressId);
-
         return $this->shippingZoneRepository
             ->modelScopes(['active'])
-            ->scopeQuery(function($q) use ($address) {
-                $q->whereJsonContains('supported_provinces', $address->province_code)
-                    ->whereJsonContains('supported_districts', $address->district_code);
+            ->scopeQuery(function($q) use ($provinceCode, $districtCode) {
+                $q->whereJsonContains('supported_provinces', $provinceCode)
+                    ->whereJsonContains('supported_districts', $districtCode);
             })
             ->addSort('created_at')
             ->first();

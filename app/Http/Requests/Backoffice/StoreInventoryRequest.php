@@ -36,6 +36,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'meta_description' => ['nullable'],
                 'init_sold_count' => ['nullable'],
                 'meta' => ['nullable', 'array'],
+                'weight' => ['nullable', 'numeric', 'gt:0'],
                 'offer_start' => [
                     Rule::requiredIf(function() {
                         $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));

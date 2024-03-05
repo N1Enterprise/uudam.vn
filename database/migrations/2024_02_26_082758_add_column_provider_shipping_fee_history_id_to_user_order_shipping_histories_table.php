@@ -14,7 +14,7 @@ class AddColumnProviderShippingFeeHistoryIdToUserOrderShippingHistoriesTable ext
     public function up()
     {
         Schema::table('user_order_shipping_histories', function (Blueprint $table) {
-            $table->foreignId('provider_shipping_fee_history_id');
+            $table->foreignId('provider_shipping_fee_history_id')->nullable();
         });
     }
 

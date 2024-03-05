@@ -135,6 +135,7 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateShippingProviderResponseContract::class => Responses\UpdateShippingProviderResponse::class,
 
         Contracts\ListShippingOptionResponseContract::class => Responses\ListShippingOptionResponse::class,
+        Contracts\ListAvailableShippingOptionResponseContract::class => Responses\ListAvailableShippingOptionResponse::class,
         Contracts\StoreShippingOptionResponseContract::class => Responses\StoreShippingOptionResponse::class,
         Contracts\UpdateShippingOptionResponseContract::class => Responses\UpdateShippingOptionResponse::class,
 
@@ -156,8 +157,9 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         // Order
         Contracts\ListOrderResponseContract::class => Responses\ListOrderResponse::class,
         Contracts\ListOrderItemResponseContract::class => Responses\ListOrderItemResponse::class,
+        Contracts\StoreOrderResponseContract::class => Responses\StoreOrderResponse::class,
         Contracts\ListCartResponseContract::class => Responses\ListCartResponse::class,
-        Contracts\ListCartItemResponseContract::class => Responses\ListCartItemResponse::class,
+
 
         // Dashboard
         Contracts\ListReportTopUserResponseContract::class => Responses\ListReportTopUserResponse::class,

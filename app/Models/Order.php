@@ -158,6 +158,7 @@ class Order extends BaseModel
     public function canComplete()
     {
         $canOrder = in_array($this->order_status, [
+            OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::DELIVERY,
             OrderStatusEnum::PROCESSING,
             OrderStatusEnum::CANCELED,

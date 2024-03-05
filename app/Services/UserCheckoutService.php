@@ -92,7 +92,7 @@ class UserCheckoutService extends BaseService
             }
 
             if ($shippingOption->isShippingZone()) {
-                $shippingZone = $this->shippingZoneService->getByAddressId($address);
+                $shippingZone = $this->shippingZoneService->getByProvinceAndDistrict($address->province_code, $address->district_code);
 
                 if (empty($shippingZone)) {
                     throw new \Exception('Unspecified Zone');
