@@ -27,11 +27,16 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
     }
 
     .order-history-status {
-        padding: 2px 10px;
+        padding: 2px 6px;
         border-radius: 5px;
-        font-weight: bold;
         background: rgb(60 75 77 / 20%);
         line-height: 19px;
+        font-size: 14px;
+    }
+
+    [data-order-status="5"] {
+        background-color: #1dc9b7 !important;
+        color: #fff;
     }
 
     .cart__items {
@@ -75,7 +80,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
             @foreach ($orders as $order)
             <div class="order-history">
                 <div class="order-history__basic-info" style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div class="order-history-status">{{ enum('OrderStatusEnum')::findConstantLabelVn($order->order_status) }}</div>
+                    <div class="order-history-status" data-order-status="{{ $order->order_status }}">{{ enum('OrderStatusEnum')::findConstantLabelVn($order->order_status) }}</div>
                     <span style="padding: 0 10px;">|</span>
                     <div class="order-history-created_at">Ngày đặt: {{ format_datetime($order->created_at, 'd/m/Y H:i') }}</div>
                 </div>

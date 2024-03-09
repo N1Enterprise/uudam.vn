@@ -111,16 +111,14 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
         <div class="order-info__item">
             <h3 style="margin: 5px 0; margin-bottom: 7px;">#2. Hình thức giao hàng</h3>
             <div>
-                <div style="display: flex; align-items: center;">
-                    <img src="{{ data_get($order, ['shippingRate', 'carrier', 'logo']) }}" width="30" height="30" alt="{{ data_get($order, ['shippingRate', 'carrier', 'name']) }}">
-                    <span style="margin-left: 10px;">{{ data_get($order, ['shippingRate', 'carrier', 'name']) }}</span>
+                <div>
+                    <small style="margin-top: 10px;">Phương thức vận chuyển:</small>
+                    <span>{{ data_get($order->shippingOption, 'name') }}</span>
                 </div>
 
-                <small style="margin-top: 5px; display: block;">{{ data_get($order, ['shippingRate', 'name']) }}</small>
-
                 <div>
-                    <small style="margin-top: 5px;">Phí vận chuyển:</small>
-                    <span>{{ format_price(data_get($order, ['shippingRate', 'rate'])) }}</span>
+                    <small style="margin-top: 10px;">Phí vận chuyển:</small>
+                    <span>{{ format_price(data_get($order->latestUserOrderShippingHistory, ['estimated_transport_fee'])) }}</span>
                 </div>
             </div>
         </div>
@@ -134,6 +132,22 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                     @endif
                     <small style="display: block; margin-left: 10px;">{{ data_get($order, ['paymentOption', 'name']) }}</small>
                 </div>
+
+                @if (data_get($order->paymentOption, 'expanded_content'))
+                <div id="expanded_content_{{ data_get($order->paymentOption, 'id') }}" data-expanded-content-payment-option-id="{{ data_get($order->paymentOption, 'id') }}" style="background-color: #f9f9f9; padding: 10px; margin-top: 10px;">
+                    @php
+                        $orderTransferContent = implode('', [
+                            data_get($order->cart, 'id'),
+                            data_get($order->cart, 'currency_code'),
+                            data_get($order->cart, 'total_quantity'),
+                        ]);
+                        
+                        $expandedContent = str_replace('${order_transfer_content}', $orderTransferContent, data_get($order->paymentOption, 'expanded_content'));
+                    @endphp
+
+                    <p style="font-size: 13px; margin: 0;">{!! nl2br($expandedContent) !!}</p>
+                </div>
+                @endif
             </div>
         </div>
 

@@ -140,7 +140,6 @@ Thanh toán | {{ config('app.user_domain') }}
         justify-content: center;
         outline: 0px;
         cursor: pointer;
-        text-transform: capitalize;
     }
     .button-left {
         background: #000;

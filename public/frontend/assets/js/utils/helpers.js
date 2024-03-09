@@ -266,3 +266,26 @@ const openWindow = (url, title, w, h) => {
 
     return windowInstance;
 }
+
+const fstoast = {
+    options: {
+        closeButton: true
+    },
+    success: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.success(message, title);
+    },
+
+    error: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.error(message, title);
+    },
+    info: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.info(message, title);
+    },
+    warning: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.warning(message, title);
+    }
+}

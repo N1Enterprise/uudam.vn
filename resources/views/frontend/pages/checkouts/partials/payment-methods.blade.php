@@ -24,7 +24,17 @@
             </div>
             @if (data_get($paymentOption, 'expanded_content'))
             <div id="expanded_content_{{ data_get($paymentOption, 'id') }}" data-expanded-content-payment-option-id="{{ data_get($paymentOption, 'id') }}" style="display: none; text-align: center;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
-                <p>{!! nl2br(data_get($paymentOption, 'expanded_content')) !!}</p>
+                @php
+                    $orderTransferContent = implode('', [
+                        data_get($cart, 'id'),
+                        data_get($cart, 'currency_code'),
+                        data_get($cart, 'total_quantity'),
+                    ]);
+                    
+                    $expandedContent = str_replace('${order_transfer_content}', $orderTransferContent, data_get($paymentOption, 'expanded_content'));
+                @endphp
+
+                <p>{!! nl2br($expandedContent) !!}</p>
             </div>
             @endif
             @endforeach
