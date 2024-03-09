@@ -100,6 +100,9 @@ const ADDRESS_FOR_NEW = {
         });
     },
     loadDistrictByProvinceCode: (code, callback = () => undefined)  => {
+        ADDRESS_FOR_NEW.elements.shipping_district.html('');
+        ADDRESS_FOR_NEW.elements.shipping_ward.html('');
+
         $.ajax({
             url: LOCALIZATION_ROUTES.api_districts_by_province.replace(':province', code),
             method: 'GET',
