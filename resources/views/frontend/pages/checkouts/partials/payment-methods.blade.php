@@ -23,7 +23,7 @@
                 </label>
             </div>
             @if (data_get($paymentOption, 'expanded_content'))
-            <div id="expanded_content_{{ data_get($paymentOption, 'id') }}" data-expanded-content-payment-option-id="{{ data_get($paymentOption, 'id') }}" style="display: none; text-align: center;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
+            <div id="expanded_content_{{ data_get($paymentOption, 'id') }}" data-expanded-content-payment-option-id="{{ data_get($paymentOption, 'id') }}" style="display: none;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
                 @php
                     $orderTransferContent = implode('', [
                         data_get($cart, 'id'),

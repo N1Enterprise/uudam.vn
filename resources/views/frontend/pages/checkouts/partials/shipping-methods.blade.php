@@ -24,7 +24,7 @@
                         </label>
                     </div>
                     @if (data_get($option, 'expanded_content'))
-                    <div id="expanded_content_{{ data_get($option, 'id') }}" data-expanded-content-shipping-option-id="{{ data_get($option, 'id') }}" style="display: none; text-align: center;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
+                    <div id="expanded_content_{{ data_get($option, 'id') }}" data-expanded-content-shipping-option-id="{{ data_get($option, 'id') }}" style="display: none;" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary">
                         <p>{!! nl2br(data_get($option, 'expanded_content')) !!}</p>
                     </div>
                     @endif
