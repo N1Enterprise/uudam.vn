@@ -219,6 +219,13 @@
             value: $(`input[name="params"]`).val()
         });
 
+		/** @class App\Enum\ShippingOptionTypeEnum */
+		const SHIPPING_OPTION_TYPE_ENUM = {
+			NONE_AMOUNT: 1,
+			SHIPPING_PROVIDER: 2,
+			SHIPPING_ZONE: 3,
+		};
+
         $('form#form_shipping_options').on('submit', function(e) {
             e.preventDefault();
             let editorMetaElement = $(`input[name="params"]`).val(editorMeta.getValue());
@@ -231,6 +238,8 @@
 
 			$('.depent_on_type').addClass('d-none');
 			$(`.depent_on_type[data-type="${type}"]`).removeClass('d-none');
+
+			$('[name="shipping_provider_id"]').prop('disabled', type != SHIPPING_OPTION_TYPE_ENUM.SHIPPING_PROVIDER);
 		});
 
 		$('[name="type"]').trigger('change');
