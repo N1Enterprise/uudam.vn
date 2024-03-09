@@ -275,6 +275,8 @@ $(document).ready(function() {
                 error: () => {
                     $self.find('button[type="submit"]').prop('disabled', false);
                     $self.find('[data-button-submit-text]').text(originalButtonText);
+
+                    toastr.error(method == 'POST' ? 'Thêm không thành công,' : 'Cập nhật không thành công.');
                 },
             });
         }

@@ -145,6 +145,7 @@ Thanh toán | {{ config('app.user_domain') }}
                         </div>
                     </div>
                     <div class="step-footer" id="step-footer-checkout">
+                        @if(has_data($address))
                         <form id="form-order" action="{{ empty($order->id) ? route('fe.api.user.order.store', request()->cartUuid) : route('fe.api.user.order.reorder', $order->order_code) }}" data-form="order" accept-charset="UTF-8" method="post" style="width: 100%;">
                             <input name="utf8" type="hidden" value="✓">
                             <button type="submit" class="step-footer-continue-btn btn prevent" style="width: 100%;" disabled>
@@ -152,6 +153,11 @@ Thanh toán | {{ config('app.user_domain') }}
                                 <i class="btn-spinner icon icon-button-spinner"></i>
                             </button>
                         </form>
+                        @else
+                        <form action="" accept-charset="UTF-8" style="width: 100%;">
+                            <a href="javascript:void(0)" class="show-modal-add-address">Bạn chưa có địa chỉ giao hàng - vui lòng nhấn vào <span style="color: #E2574C">đây</span> để cập nhật</a>
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>
