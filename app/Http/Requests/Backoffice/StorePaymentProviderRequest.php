@@ -25,7 +25,6 @@ class StorePaymentProviderRequest extends BaseFormRequest implements StorePaymen
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'params' => !empty($this->params) ? json_decode($this->params) : null,
-            'logo' => empty(array_filter($this->logo)) ? null : array_filter($this->logo),
         ]);
     }
 }
