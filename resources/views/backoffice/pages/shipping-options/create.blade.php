@@ -212,19 +212,19 @@
 @include('backoffice.pages.shipping-options.js-pages.supported-provinces')
 
 <script>
+	/** @class App\Enum\ShippingOptionTypeEnum */
+	const SHIPPING_OPTION_TYPE_ENUM = {
+		NONE_AMOUNT: 1,
+		SHIPPING_PROVIDER: 2,
+		SHIPPING_ZONE: 3,
+	};
+
     $(document).ready(function () {
         let editorMeta = ace.edit($('#json_editor_params')[0], {
             mode: "ace/mode/json",
             theme: 'ace/theme/tomorrow',
             value: $(`input[name="params"]`).val()
-        });
-
-		/** @class App\Enum\ShippingOptionTypeEnum */
-		const SHIPPING_OPTION_TYPE_ENUM = {
-			NONE_AMOUNT: 1,
-			SHIPPING_PROVIDER: 2,
-			SHIPPING_ZONE: 3,
-		};
+        });	
 
         $('form#form_shipping_options').on('submit', function(e) {
             e.preventDefault();

@@ -14,12 +14,12 @@ class StoreShippingOptionRequest extends BaseFormRequest implements StoreShippin
 {
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
             'type' => ['required', Rule::in(ShippingOptionTypeEnum::all())],
             'params' => ['nullable', 'array'],
             'status' => ['required', 'integer', Rule::in(ActivationStatusEnum::all())],
-            'shipping_provider_id' => [Rule::requiredIf(ShippingOptionTypeEnum::isThirdParty($this->type)), 'integer', Rule::exists(ShippingProvider::class, 'id')],
+            'shipping_provider_id' => ['nullable'],
             'expanded_content' => ['nullable', 'string'],
             'supported_countries' => ['nullable', 'array'],
             'supported_countries.*' => ['required', Rule::in(Country::make()->all()->pluck('iso2'))],
@@ -30,6 +30,12 @@ class StoreShippingOptionRequest extends BaseFormRequest implements StoreShippin
             'display_on_frontend' => ['required', 'boolean'],
             'order' => ['nullable', 'integer'],
         ];
+
+        if (ShippingOptionTypeEnum::isThirdParty($this->type)) {
+            $rules['shipping_provider_id'] = ['required', Rule::exists(ShippingProvider::class, 'id')];
+        }
+
+        return $rules;
     }
 
     public function prepareForValidation()
@@ -38,7 +44,8 @@ class StoreShippingOptionRequest extends BaseFormRequest implements StoreShippin
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'params' => !empty($this->params) ? json_decode($this->params, true) : null,
             'logo' => empty(array_filter($this->logo)) ? null : array_filter($this->logo),
-            'display_on_frontend' => boolean($this->display_on_frontend)
+            'display_on_frontend' => boolean($this->display_on_frontend),
+            'shipping_provider_id' => ShippingOptionTypeEnum::isThirdParty($this->type) ? $this->shipping_provider_id : null,
         ]);
     }
 }

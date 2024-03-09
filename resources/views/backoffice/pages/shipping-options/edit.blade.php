@@ -215,6 +215,13 @@
 @include('backoffice.pages.shipping-options.js-pages.supported-provinces')
 
 <script>
+	/** @class App\Enum\ShippingOptionTypeEnum */
+	const SHIPPING_OPTION_TYPE_ENUM = {
+		NONE_AMOUNT: 1,
+		SHIPPING_PROVIDER: 2,
+		SHIPPING_ZONE: 3,
+	};
+
     $(document).ready(function () {
         let editorMeta = ace.edit($('#json_editor_params')[0], {
             mode: "ace/mode/json",
@@ -234,6 +241,8 @@
 
 			$('.depent_on_type').addClass('d-none');
 			$(`.depent_on_type[data-type="${type}"]`).removeClass('d-none');
+
+			$('[name="shipping_provider_id"]').prop('disabled', type != SHIPPING_OPTION_TYPE_ENUM.SHIPPING_PROVIDER);
 		});
 
 		$('[name="type"]').trigger('change');
