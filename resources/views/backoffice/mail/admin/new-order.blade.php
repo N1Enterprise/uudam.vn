@@ -9,10 +9,10 @@
                                 <tbody>
                                     <tr>
                                         <td style="line-height:24px;font-size:16px;width:100%;margin:0;padding:40px" align="left" bgcolor="#ffffff">
-                                            <div style="padding-top:0;padding-bottom:20px;font-weight:530!important;vertical-align:baseline;font-size:18px;line-height:18px;margin:0" align="left">Thân chào {{ $admin_name }}, uudam.vn có 1 đơn hàng.</div>
+                                            <div style="padding-top:0;padding-bottom:20px;font-weight:530!important;vertical-align:baseline;font-size:18px;line-height:18px;margin:0" align="left">Thân chào {{ $admin_name }}, {{ $app_name }} có đơn hàng.</div>
                                             <div>
                                                 <p style="display: flex; align-items: center;">
-                                                    <span style="margin-right: 4px;">Mã đơn hàng: </span>
+                                                    <span style="margin-right: 4px;">Mã đơn: </span>
                                                     <span>#{{ $order_code }}</span>
                                                 </p>
                                                 <p style="display: flex; align-items: center;">
@@ -20,23 +20,23 @@
                                                     <span>{{ $order_at }}</span>
                                                 </p>
                                                 <p style="display: flex; align-items: center;">
-                                                    <span style="margin-right: 4px;">Tên khách hàng: </span>
+                                                    <span style="margin-right: 4px;">Tên kh: </span>
                                                     <span>{{ $user_fullname }}</span>
                                                 </p>
                                                 <p style="display: flex; align-items: center;">
-                                                    <span style="margin-right: 4px;">E-mail khách hàng: </span>
+                                                    <span style="margin-right: 4px;">Email kh: </span>
                                                     <span>{{ $user_email }}</span>
                                                 </p>
                                                 <p style="display: flex; align-items: center;">
-                                                    <span style="margin-right: 4px;">Số điện thoại khách hàng: </span>
+                                                    <span style="margin-right: 4px;">SĐT kh: </span>
                                                     <span>{{ $user_phone }}</span>
                                                 </p>
                                                 <p style="display: flex; align-items: center;">
-                                                    <span style="margin-right: 4px;">Tổng đơn hàng: </span>
+                                                    <span style="margin-right: 4px;">Tổng đơn: </span>
                                                     <span>{{ $grand_total }}</span>
                                                 </p>
                                                 <p style="display: flex; align-items: center;">
-                                                    <a href="{{ $url }}">Chi tiết đơn hàng</a>
+                                                    <a href="{{ $url }}">Chi tiết đơn</a>
                                                 </p>
 
                                                 <div style="padding-top:20">
