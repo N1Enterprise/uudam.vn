@@ -68,7 +68,7 @@
 
                                 <div class="form-group">
 									<label>{{ __('Thời gian vận chuyển') }} *</label>
-									<input type="text" class="form-control" name="delivery_takes" placeholder="{{ __('2-5 days') }}" value="{{ old('delivery_takes', $shippingRate->delivery_takes) }}" required>
+									<input type="text" class="form-control" name="delivery_takes" placeholder="{{ __('2-5 ngày') }}" value="{{ old('delivery_takes', $shippingRate->delivery_takes) }}" required>
 								</div>
 
                                 <div class="form-group">
