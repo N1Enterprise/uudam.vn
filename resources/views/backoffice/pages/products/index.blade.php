@@ -54,8 +54,8 @@
                         <th data-property="slug">{{ __('Đường dẫn') }}</th>
                         <th data-property="branch">{{ __('Thương hiệu') }}</th>
                         <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Danh mục') }}</th>
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Ngày tạo') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Ngày cập nhật') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                         <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>

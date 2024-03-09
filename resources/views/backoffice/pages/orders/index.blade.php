@@ -63,8 +63,8 @@
                             <th data-property="total_quantity">{{ __('Tổng số lượng') }}</th>
                             <th data-orderable="false" data-badge data-name="payment_status" data-property="payment_status_name">{{ __('Trạng thái thanh toán') }}</th>
                             <th data-orderable="false" data-badge data-name="order_status" data-property="order_status_name">{{ __('Trạng thái đơn') }}</th>
-                            <th data-orderable="false" data-property="created_by.name">{{ __('Ngày tạo') }}</th>
-                            <th data-orderable="false" data-property="updated_by.name">{{ __('Ngày cập nhật') }}</th>
+                            <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                            <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
                             <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                             <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>

@@ -51,8 +51,8 @@
                             <th data-property="display_in" data-render-callback="renderDisplayInCallback">{{ __('Hiển thị tại') }}</th>
                             <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                             <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
-                            <th data-orderable="false" data-property="created_by.name">{{ __('Ngày tạo') }}</th>
-                            <th data-orderable="false" data-property="updated_by.name">{{ __('Ngày cập nhật') }}</th>
+                            <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                            <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
                             <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                             <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>

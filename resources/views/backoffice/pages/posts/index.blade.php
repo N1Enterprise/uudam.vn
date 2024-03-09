@@ -51,8 +51,8 @@
                         <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
                         <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
                         <th data-orderable="false" data-property="post_category.name">{{ __('Danh mục') }}</th>
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Ngày tạo') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Ngày cập nhật') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
                         <th data-property="post_at">{{ __('Viết lúc') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
