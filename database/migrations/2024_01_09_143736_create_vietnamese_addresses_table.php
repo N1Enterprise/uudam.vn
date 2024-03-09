@@ -13,11 +13,7 @@ class CreateVietnameseAddressesTable extends Migration
      */
     public function up()
     {
-        DB::unprepared(file_get_contents(__DIR__.'/../administrative_regions.sql'));
-        DB::unprepared(file_get_contents(__DIR__.'/../administrative_units.sql'));
-        DB::unprepared(file_get_contents(__DIR__.'/../districts.sql'));
-        DB::unprepared(file_get_contents(__DIR__.'/../provinces.sql'));
-        DB::unprepared(file_get_contents(__DIR__.'/../wards.sql'));
+        DB::unprepared(file_get_contents(__DIR__.'/../vietnamese_addresses.sql'));
     }
 
     /**
@@ -27,10 +23,6 @@ class CreateVietnameseAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wards');
-        Schema::dropIfExists('provinces');
-        Schema::dropIfExists('districts');
-        Schema::dropIfExists('administrative_units');
-        Schema::dropIfExists('administrative_regions');
+        Schema::dropIfExists('vietnamese_addresses');
     }
 }

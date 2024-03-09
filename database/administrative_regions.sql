@@ -26,7 +26,7 @@ CREATE TABLE `administrative_regions` (
   `code_name` varchar(255) DEFAULT NULL,
   `code_name_en` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `administrative_regions` (`id`, `name`, `name_en`, `code_name`, `code_name_en`) VALUES
 (1, 'Đông Bắc Bộ', 'Northeast', 'dong_bac_bo', 'northest'),

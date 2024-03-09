@@ -33,7 +33,7 @@ CREATE TABLE `wards` (
   KEY `idx_wards_unit` (`administrative_unit_id`),
   CONSTRAINT `wards_administrative_unit_id_fkey` FOREIGN KEY (`administrative_unit_id`) REFERENCES `administrative_units` (`id`),
   CONSTRAINT `wards_district_code_fkey` FOREIGN KEY (`district_code`) REFERENCES `districts` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `wards` (`code`, `name`, `name_en`, `full_name`, `full_name_en`, `code_name`, `district_code`, `administrative_unit_id`) VALUES
 ('00001', 'Phúc Xá', 'Phuc Xa', 'Phường Phúc Xá', 'Phuc Xa Ward', 'phuc_xa', '001', 8),
