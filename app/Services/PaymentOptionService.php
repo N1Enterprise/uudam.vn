@@ -79,10 +79,10 @@ class PaymentOptionService extends BaseService
                 $attributes['online_banking_code'] = null;
             }
 
-            // $attributes['logo'] = ImageHelper::make('payment')
-            //     ->hasOptimization()
-            //     ->setConfigKey([PaymentOption::class, 'logo'])
-            //     ->uploadImage(data_get($attributes, 'logo'));
+            $attributes['logo'] = ImageHelper::make('payment')
+                ->hasOptimization()
+                ->setConfigKey([PaymentOption::class, 'logo'])
+                ->uploadImage(data_get($attributes, 'logo'));
 
             return $this->paymentOptionRepository->create($attributes);
         });
@@ -98,10 +98,10 @@ class PaymentOptionService extends BaseService
                 $attributes['online_banking_code'] = null;
             }
 
-            // $attributes['logo'] = ImageHelper::make('payment')
-            //     ->hasOptimization()
-            //     ->setConfigKey([PaymentOption::class, 'logo'])
-            //     ->uploadImage(data_get($attributes, 'logo'));
+            $attributes['logo'] = ImageHelper::make('payment')
+                ->hasOptimization()
+                ->setConfigKey([PaymentOption::class, 'logo'])
+                ->uploadImage(data_get($attributes, 'logo'));
 
             return $this->paymentOptionRepository->update($attributes, $id);
         });
