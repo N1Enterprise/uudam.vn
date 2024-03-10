@@ -16,6 +16,7 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.onCreate();
         ADDRESS_FOR_NEW.onCloseModal();
         ADDRESS_FOR_NEW.onEdit();
+        ADDRESS_FOR_NEW.onMarkAsDefault();
     },
     onEdit: () => {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
@@ -174,6 +175,29 @@ const ADDRESS_FOR_NEW = {
             ADDRESS_FOR_NEW.elements.modal.find('[data-button-submit-text]').text('Thêm mới');
             ADDRESS_FOR_NEW.elements.modal.find('[data-form]').attr('data-form', 'create-address');
         }
+    },
+    onMarkAsDefault: () => {
+        $('.mark-as-default-address').on('click', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('href'),
+                method: $(this).attr('data-method'),
+                data: {},
+                beforeSend: () => {
+                    $(this).text('Đang cập nhật');
+                    $(this).addClass('prevent');
+                },
+                success: () => {
+                    location.reload();
+                },
+                error: () => {
+                    toastr.error('Cập nhật không thành công');
+                    $(this).removeClass('prevent');
+                    $(this).text('Đặt làm mặt định');
+                },
+            });
+        });
     },
 };
 

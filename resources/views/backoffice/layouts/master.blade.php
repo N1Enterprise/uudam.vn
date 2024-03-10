@@ -143,7 +143,7 @@
 							<div class="k-header__topbar-item k-header__topbar-item--user">
 								<div class="k-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px -2px">
 									<div class="k-header__topbar-user" style="background-color: #fff;">
-										<span class="k-header__topbar-welcome k-hidden-mobile">{{__('Xin Chào')}},</span>
+										<span class="k-header__topbar-welcome k-hidden-mobile">{{ __('Xin Chào') }},</span>
 										<span class="k-header__topbar-username k-hidden-mobile">{{ $AUTHENTICATED_ADMIN->name }}</span>
 										<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
 									</div>
@@ -257,7 +257,6 @@
 		<script src="{{ asset('backoffice/assets/vendors/general/chart.js/dist/Chart.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js') }}" type="text/javascript"></script>
-		{{-- <script src="{{ asset('backoffice/assets/vendors/general/counterup/jquery.counterup.js') }}" type="text/javascript"></script> --}}
 		<script src="{{ asset('backoffice/assets/vendors/general/es6-promise-polyfill/promise.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>

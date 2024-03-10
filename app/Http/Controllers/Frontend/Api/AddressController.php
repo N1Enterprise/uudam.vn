@@ -64,4 +64,11 @@ class AddressController extends BaseApiController
 
         return $this->response(ShowUserAddressResponse::class, $address);
     }
+
+    public function markAsDefault(Request $request, $code)
+    {
+        $address = $this->addressService->markAsDefault($this->user(), $code);
+
+        return $this->response(ShowUserAddressResponse::class, $address);
+    }
 }

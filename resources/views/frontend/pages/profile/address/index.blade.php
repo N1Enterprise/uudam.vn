@@ -50,7 +50,12 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
                     </div>
                 </div>
                 <div class="action">
-                    <a class="edit" href="{{ route('fe.web.user.localization.address.edit', data_get($address, 'code')) }}">Chỉnh sửa</a>
+                    <div>
+                        <a class="edit" href="{{ route('fe.web.user.localization.address.edit', data_get($address, 'code')) }}" style="display: block; text-align: right; font-size: 12px;">Chỉnh sửa</a>
+                        @if (!data_get($address, 'is_default'))
+                        <a class="mark-as-default-address" data-method="PUT" href="{{ route('fe.api.user.address.mark-as-default', data_get($address, 'code')) }}" style="display: block; text-align: right; font-size: 12px;">Đặt làm mặt định</a>
+                        @endif
+                    </div>
                 </div>
             </div>
             @endforeach
@@ -59,4 +64,8 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
 </div>
 
 @include('frontend.pages.checkouts.partials.modal-address')
+@endsection
+
+@section('profile_js')
+<script src="{{ asset_with_version('frontend/bundle/js/address.min.js') }}" type="text/javascript"></script>
 @endsection

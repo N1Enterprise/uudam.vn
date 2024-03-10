@@ -24,8 +24,8 @@ Route::get('search', [Controllers\UserSearchController::class, 'index'])->name('
 Route::middleware(['auth:user'])->group(function() {
     Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
 
-    Route::get('profile/info', [Controllers\UserProfileController::class, 'account'])->name('user.profile.info');
-    Route::get('profile/password', [Controllers\UserProfileController::class, 'passwordChange'])->name('user.profile.password-change');
+    Route::get('profile', [Controllers\UserProfileController::class, 'account'])->name('user.profile');
+    Route::get('security/password', [Controllers\UserProfileController::class, 'passwordChange'])->name('user.security.password-change');
     Route::get('sales/order/histories', [Controllers\UserOrderController::class, 'orderHistory'])->name('user.profile.order-histories');
     Route::get('sales/order/{orderCode}', [Controllers\UserOrderController::class, 'orderHistoryDetail'])->name('user.profile.order-history-detail');
     Route::get('localization/address', [Controllers\UserAddressController::class, 'address'])->name('user.localization.address');

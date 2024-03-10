@@ -80,6 +80,14 @@ Thêm địa chỉ mới | {{ config('app.user_domain') }}
                         <label class="field__label" for="phone">Địa chỉ chi tiết <span aria-hidden="true">*</span></label>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="mark_as_default" class="custom-checkout">
+                        <div style="font-size: 15px; padding-top: 1px;">Đặt làm địa chỉ mặt định</div>
+                        <input type="checkbox" name="is_default" id="mark_as_default" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
                 
                 <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;" data-button-submit-text="">Lưu thay đổi</button>
             </div>

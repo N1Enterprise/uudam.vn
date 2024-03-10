@@ -55,6 +55,7 @@ Route::middleware(['auth:user'])->group(function() {
     Route::post('user/localization/address', [Controllers\AddressController::class, 'store'])->name('user.address.store');
     Route::put('user/localization/address/{code}', [Controllers\AddressController::class, 'update'])->name('user.address.update');
     Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('user.localization.address.show');
+    Route::put('user/localization/address/{code}/mark-as-default', [Controllers\AddressController::class, 'markAsDefault'])->name('user.address.mark-as-default');
 
     // Checkout
     Route::get('user/checkout/{cartUuid}/shipping-fee', [Controllers\UserCheckoutController::class, 'getShippingFee'])->name('user.checkout.provider-shipping-rate');

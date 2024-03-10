@@ -87,6 +87,24 @@ class AddressService extends BaseService
             ->first();
     }
 
+    public function markAsDefault($user, $code)
+    {
+        $address = $this->findByUserAndCode($user, $code);
+
+        if (empty($address)) {
+            throw new \Exception('Invalid address');
+        }
+
+        return DB::transaction(function () use ($address) {
+            $this->addressRepository->getNewModel()->query()
+                ->where('is_default', true)
+                ->where('id', '<>', $address->getKey())
+                ->update(['is_default' => false]);
+
+            return $this->addressRepository->update([ 'is_default' => true ], $address->getKey());
+        });
+    }
+
     public function generateAddressCode()
     {
         $addressCode = mt_rand(1000, 99999999);

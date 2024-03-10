@@ -11,6 +11,8 @@
                     <span>{{ data_get($address, 'name') }}</span> | <span>{{ data_get($address, 'phone') }}</span>
                     <p>{{ data_get($address, 'full_address') }}</p>
                     <a href="javascript:void(0)" address-editable-btn style="margin-top: 5px;" data-address-code="{{ data_get($address, 'code') }}">Chỉnh sửa</a>
+                    <span>|</span>
+                    <a href="{{ route('fe.web.user.localization.address.create', ['redirect_url' => request()->url()]) }}">Thêm địa chỉ mới</a>
                 </div>
             </div>
             @else
