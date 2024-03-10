@@ -20,13 +20,13 @@ class BackofficeMenuService extends BaseService
     {
         $menus = [
             [
-                'name' => 'Tổng Quan',
+                'name' => 'Tổng quan',
                 'link' => route('bo.web.dashboard'),
                 'icon' => 'flaticon2-graphic',
                 'permissions' => [],
             ],
             [
-                'name' => 'Khách Hàng',
+                'name' => 'Khách hàng',
                 'icon' => 'flaticon-users',
                 'subs' => array_filter([
                     [
@@ -37,7 +37,7 @@ class BackofficeMenuService extends BaseService
                 ]),
             ],
             [
-                'name' => 'Kho Sản Phẩm',
+                'name' => 'Kho sản phẩm',
                 'icon' => 'fa fa-tags',
                 'subs' => [
                     [
@@ -56,7 +56,7 @@ class BackofficeMenuService extends BaseService
                         ]
                     ],
                     [
-                        'name' => 'Thuộc Tính',
+                        'name' => 'Thuộc tính',
                         'subs' => [
                             [
                                 'name' => 'Thuộc tính',
@@ -92,7 +92,7 @@ class BackofficeMenuService extends BaseService
                         ]
                     ],
                     [
-                        'name' => 'Tồn kho',
+                        'name' => 'Quản lý kho',
                         'link' => route('bo.web.inventories.index'),
                         'permissions' => ['inventories.index'],
                     ],
@@ -104,7 +104,7 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Đơn Hàng',
+                'name' => 'Đơn hàng',
                 'icon' => 'fa fa-cart-plus',
                 'subs' => [
                     [
@@ -151,7 +151,7 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Thanh Toán',
+                'name' => 'Thanh toán',
                 'icon' => 'flaticon2-copy',
                 'subs' => [
                     [
@@ -177,7 +177,7 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Hỗ Trợ Khách',
+                'name' => 'Hỗ trợ khách',
                 'icon' => 'flaticon-technology-1',
                 'subs' => [
                     [
@@ -188,7 +188,7 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Giao Diện',
+                'name' => 'Giao diện',
                 'icon' => 'flaticon2-contract',
                 'subs' => [
                     [
@@ -234,7 +234,7 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Tiện Ích',
+                'name' => 'Tiện ích',
                 'icon' => 'fa fa-asterisk',
                 'subs' => [
                     [
@@ -275,7 +275,7 @@ class BackofficeMenuService extends BaseService
                 ],
             ],
             [
-                'name' => 'Khu Vực',
+                'name' => 'Khu vực',
                 'icon' => 'flaticon-placeholder-3',
                 'subs' => [
                     [
