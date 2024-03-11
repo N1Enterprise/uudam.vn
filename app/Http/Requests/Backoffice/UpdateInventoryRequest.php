@@ -35,6 +35,8 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'meta_title' => ['nullable'],
                 'meta_description' => ['nullable'],
                 'init_sold_count' => ['nullable'],
+                'meta' => ['nullable', 'array'],
+                'weight' => ['nullable', 'gt:0'],
                 'offer_start' => [
                     Rule::requiredIf(function() {
                         $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
@@ -74,6 +76,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
+            'meta' => !empty($this->meta) ? json_decode($this->meta, true) : null,
             'product_combos' => collect($this->product_combos ?? [])
                 ->filter(function($item) {
                     return data_get($item, 'product_combo_id') && data_get($item, 'quantity') > 0;

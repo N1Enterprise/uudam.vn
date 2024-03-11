@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Products');
+	$title = __('Sản phẩm');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -25,7 +25,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Product') }}
+                    {{ __('Danh sách sản phẩm') }}
                 </h3>
             </div>
             @canAny(['products.store'])
@@ -34,7 +34,7 @@
                     @can('products.store')
                     <a href="{{ route('bo.web.products.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Product') }}
+                        {{ __('Tạo sản phẩm') }}
                     </a>
                     @endcan
                 </div>
@@ -46,22 +46,22 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
-                        <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackPrimaryImage">{{ __('Primary Image') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-name="type" data-property="type_name">{{ __('Product Type') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
+                        <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackPrimaryImage">{{ __('Hình ảnh') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-name="type" data-property="type_name">{{ __('Loại') }}</th>
                         <th data-property="code">{{ __('Code') }}</th>
-                        <th data-property="slug">{{ __('Slug') }}</th>
-                        <th data-property="branch">{{ __('Branch') }}</th>
-                        <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Categories') }}</th>
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="slug">{{ __('Đường dẫn') }}</th>
+                        <th data-property="branch">{{ __('Thương hiệu') }}</th>
+                        <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Danh mục') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>x
 
                 </tbody>
             </table>

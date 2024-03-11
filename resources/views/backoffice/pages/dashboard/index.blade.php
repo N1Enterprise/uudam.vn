@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @section('header')
-{{ __('Dashboard') }}
+Tổng Quan
 @endsection
 
 @section('breadcrumb')
@@ -29,7 +29,6 @@
 
     <div class="row">
         @include('backoffice.pages.dashboard.partials.table-top-user')
-        {{-- @include('backoffice.pages.dashboard.partials.table-top-order') --}}
     </div>
 </div>
 @endsection

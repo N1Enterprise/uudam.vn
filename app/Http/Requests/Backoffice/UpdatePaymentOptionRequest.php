@@ -37,6 +37,7 @@ class UpdatePaymentOptionRequest extends BaseFormRequest implements UpdatePaymen
             'display_on_frontend' => ['required', 'boolean'],
             'logo.file' => ['nullable', 'file', 'image', 'max:5200'],
             'logo.path' => ['nullable', 'string'],
+            'expanded_content' => ['nullable', 'string'],
         ];
         if (empty($this->min_amount)) {
             $rules['max_amount'] = ['nullable', 'numeric'];
@@ -50,7 +51,7 @@ class UpdatePaymentOptionRequest extends BaseFormRequest implements UpdatePaymen
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'display_on_frontend' => boolean($this->display_on_frontend),
-            'params' => !empty($this->params) ? json_decode($this->params) : null,
+            'params' => !empty($this->params) ? json_decode($this->params, true) : null,
             'logo' => empty(array_filter($this->logo)) ? null : array_filter($this->logo),
         ]);
     }

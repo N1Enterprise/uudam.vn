@@ -50,13 +50,11 @@ class DashboardService extends BaseService
     {
         $data = $this->parseDataRequest($data);
 
-        $data = [
-            'currency_code' => SystemCurrency::getDefaultCurrency()->code
-        ];
+        $data = array_merge($data, ['currency_code' => SystemCurrency::getDefaultCurrency()->code]);
 
         $result = $this->depositReportService->getTotalDeposit($data);
 
-        return $result . ' ' . data_get($data, 'currency_code');
+        return $result;
     }
 
     public function getTopUsers($data = [])
@@ -68,7 +66,6 @@ class DashboardService extends BaseService
         $userIds = $result->pluck('user_id')->toArray();
 
         $users = User::whereIn('id', $userIds)
-            ->select('id', 'name', 'currency_code')
             ->get()
             ->keyBy('id');
 

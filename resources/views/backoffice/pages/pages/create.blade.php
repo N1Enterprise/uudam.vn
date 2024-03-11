@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Page');
+	$title = __('Tạo trang');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Trang'),
 		],
 		[
-			'label' => __('Add Page'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Page') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin trang') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -49,13 +49,13 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Display In') }} *</label>
-                                    <select data-actions-box="true" name="display_in[]" title="--{{ __('Select the page to display') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker" multiple data-selected-text-format="count > 5" required>
+                                    <label>{{ __('Hiển thị tại') }} *</label>
+                                    <select data-actions-box="true" name="display_in[]" title="-- {{ __('Chọn trang để hiển thị') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker" multiple data-selected-text-format="count > 5" required>
                                         @foreach($pageDisplayInEnumLabels as $key => $label)
                                         <option
                                             {{ in_array($key, old("display_in", [])) ? 'selected' : '' }}
@@ -68,36 +68,36 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Slug') }} *</label>
-									<input type="text" class="form-control" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug') }}" required>
+									<label>{{ __('Đường dẫn') }} *</label>
+									<input type="text" class="form-control" name="slug" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('slug') }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Title') }} *</label>
-									<input type="text" class="form-control" name="title" placeholder="{{ __('Enter title') }}" value="{{ old('title') }}" required>
+									<label>{{ __('Tiêu đề') }} *</label>
+									<input type="text" class="form-control" name="title" placeholder="{{ __('Nhập tiêu đề') }}" value="{{ old('title') }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
                                 <div class="form-group">
-                                    <x-content-editor id="page_content" label="Content" name="content" value="{{ old('content') }}" />
+                                    <x-content-editor id="page_content" label="{{ __('Nội dung') }}" name="content" value="{{ old('content') }}" />
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Title') }}</label>
-									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title') }}">
+									<label>{{ __('[SEO] Tiêu đề') }}</label>
+									<input type="text" class="form-control" name="meta_title" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('meta_title') }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Description') }}</label>
-									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description') }}">
+									<label>{{ __('[SEO] Mô tả') }}</label>
+									<input type="text" class="form-control" name="meta_description" placeholder="{{ __('Nhập [SEO] mô tả') }}" value="{{ old('meta_description') }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -110,7 +110,7 @@
 
                                 <div class="row">
 									<div class="col-2">
-										<label class="col-form-label">{{ __('FE Display') }}</label>
+										<label class="col-form-label">{{ __('Hiển thị FE') }}</label>
 									</div>
 									<div class="col-3">
 										<span class="k-switch">
@@ -126,8 +126,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

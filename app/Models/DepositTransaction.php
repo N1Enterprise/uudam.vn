@@ -7,7 +7,7 @@ use App\Models\Traits\HasCurrency;
 use App\Models\Traits\HasImpactor;
 use App\Models\Traits\HasMoney;
 
-class DepositTransaction extends BaseModel
+class DepositTransaction extends BaseTransaction
 {
     use HasCurrency;
     use HasImpactor;
@@ -32,13 +32,15 @@ class DepositTransaction extends BaseModel
         'created_by_type',
         'updated_by_id',
         'updated_by_type',
+        'footprint'
     ];
 
     protected $casts = [
         'log' => 'json',
         'provider_payload' => 'json',
         'bank_transfer_info' => 'json',
-        'provider_response' => 'json'
+        'provider_response' => 'json',
+        'footprint' => 'json'
     ];
 
     public function getStatusNameAttribute()

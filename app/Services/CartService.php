@@ -87,7 +87,7 @@ class CartService extends BaseService
                     $q->where('uuid', $uuid);
                 }
             })
-            ->firstWhere([ 'user_id' => $userId ]);
+            ->firstWhere([ 'user_id' => BaseModel::getModelKey($userId) ]);
     }
 
     public function show($id)

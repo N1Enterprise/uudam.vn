@@ -24,7 +24,7 @@ class OrderPaymentService extends BaseService
 
     public function approve($order, $data = [])
     {
-        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, get_model_key($order));
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER_PAYMENT, get_model_key($order));
 
         return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
             ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($order, $data) {
@@ -47,7 +47,7 @@ class OrderPaymentService extends BaseService
 
     public function decline($order, $data = [])
     {
-        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, get_model_key($order));
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER_PAYMENT, get_model_key($order));
 
         return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
             ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($order, $data) {

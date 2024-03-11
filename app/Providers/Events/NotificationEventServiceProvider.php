@@ -15,7 +15,7 @@ class NotificationEventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Events\Order\OrderCreated::class => [
-            // Listeners\Notifications\ProcessSendMailNewOrderToAdmin::class,  
+            Listeners\Notifications\ProcessSendMailNewOrderToAdmin::class,
         ],
     ];
 

@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Shipping Zone');
+	$title = __('Quản lí khu vực vận chuyển');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Khu vực vận chuyển'),
 		],
 		[
-			'label' => __('Edit Shipping Zone'),
-		]
+			'label' => $title
+		],
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Shipping Zone') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Chỉnh sửa khu vực vận chuyển') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -50,31 +50,59 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
                                 <div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $shippingZone->name) }}" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $shippingZone->name) }}" required>
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Supported Countries') }}</label>
-                                    <select data-actions-box="true" name="supported_countries[]" title="--{{ __('Select Country') }}--" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
+                                    <label>{{ __('Quốc gia hỗ trợ') }}</label>
+                                    <select data-actions-box="true" name="supported_countries[]" title="-- {{ __('Select Country') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($countries as $country)
-                                            <option
-                                                {{ in_array($country->iso2, old("supported_countries", $shippingZone->supported_countries)) ? 'selected' : '' }}
-                                                data-tokens="{{ $country->iso2 }} | {{ $country->name }}"
-                                                data-subtext="{{ $country->iso2 }}"
-                                                data-country-iso2="{{ $country->iso2 }}"
-                                                data-country-name="{{ $country->name }}"
-                                                value="{{ $country->iso2 }}">{{ $country->name }}</option>
+										<option
+											{{ in_array($country->iso2, old("supported_countries", $shippingZone->supported_countries)) ? 'selected' : '' }}
+											data-tokens="{{ $country->iso2 }} | {{ $country->name }}"
+											data-subtext="{{ $country->iso2 }}"
+											data-country-iso2="{{ $country->iso2 }}"
+											data-country-name="{{ $country->name }}"
+											value="{{ $country->iso2 }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
+									<div class="Supported_Countries_Allowed_Holder mb-0 mt-1">
+										<div class="Supported_Countries_Holder_Content">
+										</div>
+									</div>
                                 </div>
-                                <div class="form-group Supported_Countries_Allowed_Holder mb-0">
-                                    <div class="Supported_Countries_Holder_Content">
-                                    </div>
+
+								<div class="form-group">
+                                    <label>{{ __('Tỉnh/TP hỗ trợ') }}</label>
+                                    <select data-actions-box="true" name="supported_provinces[]" title="-- {{ __('Select Country') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Provinces_Selector" multiple data-selected-text-format="count > 5" multiple>
+                                        @foreach($provinces as $province)
+										<option
+											{{ in_array($province->code, old("supported_provinces", $shippingZone->supported_provinces ?? [])) ? 'selected' : '' }}
+											data-tokens="{{ $province->code }} | {{ $province->full_name }}"
+											data-province-code="{{ $province->code }}"
+											data-province-name="{{ $province->full_name }}"
+											value="{{ $province->code }}">{{ $province->full_name }}</option>
+                                        @endforeach
+                                    </select>
+									<div class="form-group Supported_Provinces_Allowed_Holder mb-0">
+										<div class="Supported_Provinces_Holder_Content">
+										</div>
+									</div>
+                                </div>
+
+								<div class="form-group">
+                                    <label>{{ __('Quận/Huyện hỗ trợ') }}</label>
+                                    <select data-actions-box="true" name="supported_districts[]" title="-- {{ __('Chọn Quận/Huyện') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Districts_Selector" multiple data-selected-text-format="count > 5" multiple data-original-value='@json($shippingZone->supported_districts ?? [])'  disabled data-districts='@json($districts)'>
+                                       {{-- Render --}}
+                                    </select>
+									<div class="form-group Supported_Districts_Allowed_Holder mb-0">
+										<div class="Supported_Districts_Holder_Content"></div>
+									</div>
                                 </div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -89,8 +117,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>
@@ -103,4 +131,7 @@
 
 @section('js_script')
 @include('backoffice.pages.shipping-zones.js-pages.supported-countries')
+@include('backoffice.pages.shipping-zones.js-pages.supported-provinces')
+@include('backoffice.pages.shipping-zones.js-pages.supported-districts')
+@include('backoffice.pages.shipping-zones.js-pages.handle')
 @endsection

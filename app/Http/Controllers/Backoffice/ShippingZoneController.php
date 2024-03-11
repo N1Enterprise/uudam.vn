@@ -8,6 +8,8 @@ use App\Contracts\Responses\Backoffice\StoreShippingZoneResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateShippingZoneResponseContract;
 use App\Services\ShippingZoneService;
 use App\Vendors\Localization\Country;
+use App\Vendors\Localization\District;
+use App\Vendors\Localization\Province;
 
 class ShippingZoneController extends BaseController
 {
@@ -26,16 +28,20 @@ class ShippingZoneController extends BaseController
     public function create()
     {
         $countries = Country::make()->all();
+        $provinces = Province::make()->all();
+        $districts = District::make()->all(['with' => 'province']);
 
-        return view('backoffice.pages.shipping-zones.create', compact('countries'));
+        return view('backoffice.pages.shipping-zones.create', compact('countries', 'provinces', 'districts'));
     }
 
     public function edit($id)
     {
         $shippingZone = $this->shippingZoneService->show($id);
         $countries = Country::make()->all();
+        $provinces = Province::make()->all();
+        $districts = District::make()->all(['with' => 'province']);
 
-        return view('backoffice.pages.shipping-zones.edit', compact('shippingZone', 'countries'));
+        return view('backoffice.pages.shipping-zones.edit', compact('shippingZone', 'countries', 'provinces', 'districts'));
     }
 
     public function store(StoreShippingZoneRequestContract $request)

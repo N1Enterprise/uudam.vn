@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Product Review');
+	$title = __('Tạo đánh giá');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Đánh giá sản phẩm'),
 		],
 		[
-			'label' => __('Add Product Review'),
+			'label' => $title
 		]
 	];
 @endphp
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Product Review') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin đánh giá') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -49,23 +49,23 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('User Name') }} *</label>
-									<input type="text" class="form-control" name="user_name" placeholder="{{ __('Enter user name') }}" value="{{ old('user_name') }}" required>
+									<label>{{ __('Tên khách hàng') }} *</label>
+									<input type="text" class="form-control" name="user_name" placeholder="{{ __('Nhập tên khách hàng') }}" value="{{ old('user_name') }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('User Phone') }}</label>
-									<input type="text" class="form-control" name="user_phone" placeholder="{{ __('Enter user phone') }}" value="{{ old('user_phone') }}">
+									<label>{{ __('Số điện thoại') }}</label>
+									<input type="text" class="form-control" name="user_phone" placeholder="{{ __('Nhập số điện thoại') }}" value="{{ old('user_phone') }}">
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('User Email') }}</label>
-									<input type="text" class="form-control" name="user_email" placeholder="{{ __('Enter user email') }}" value="{{ old('user_email') }}">
+									<label>{{ __('E-mail') }}</label>
+									<input type="text" class="form-control" name="user_email" placeholder="{{ __('Nhập e-mail') }}" value="{{ old('user_email') }}">
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Product') }} *</label>
-                                    <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                                    <label>{{ __('Sản phẩm') }} *</label>
+                                    <select name="product_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                                         @foreach($categories as $category)
                                         <optgroup label="{{ $category->name }}">
                                             @foreach($category->products as $product)
@@ -80,8 +80,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Rating Type') }} *</label>
-                                    <select name="rating_type" title="--{{ __('Select Rating Type') }}--" class="form-control k_selectpicker">
+                                    <label>{{ __('Loại xếp hạng') }} *</label>
+                                    <select name="rating_type" title="-- {{ __('Chọn loại xếp hạng') }} --" class="form-control k_selectpicker">
                                         @foreach($productReviewRatingEnumLabels as $key => $label)
                                         <option value="{{ $key }}" {{ old('rating_type') == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
@@ -92,8 +92,8 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Content') }} *
-                                        <div><small>({{ __('Max length 1000 charactors') }})</small></div>
+									<label>{{ __('Nội dung') }} *
+                                        <div><small>({{ __('Độ dài tối đa 1000 ký tự') }})</small></div>
                                     </label>
 
                                     <textarea name="content" rows="10" class="form-control" maxlength="1000" required>{{ old('content') }}</textarea>
@@ -103,8 +103,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

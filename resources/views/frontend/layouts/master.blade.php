@@ -24,6 +24,7 @@
 
     <!--begin::Page Common Styles -->
     <link href="{{ asset_with_version('frontend/bundle/css/reset.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/variable.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/base.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/buddha-megamenu2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/component-mega-menu.min.css') }}" rel="stylesheet" type="text/css" />
@@ -34,7 +35,6 @@
     <link href="{{ asset_with_version('frontend/bundle/css/component-predictive-search.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
-
     <!--end::Page Common Styles -->
 
     @yield('style_datatable')

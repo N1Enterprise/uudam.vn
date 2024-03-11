@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(BannerPermissionSeeder::class);
         $this->call(CartPermissionSeeder::class);
-        $this->call(CarrierPermissionSeeder::class);
         $this->call(CollectionPermissionSeeder::class);
         $this->call(CountryPermissionSeeder::class);
         $this->call(CurrencyPermissionSeeder::class);

@@ -25,4 +25,14 @@ class Service extends BasePaymentIntegration implements WithHook
     {
         return self::PROVIDER_CODE;
     }
+
+    public function getHandleClass($data = [])
+    {
+        
+    }
+
+    public function handleTransaction($transaction, $data = [])
+    {
+        
+    }
 }

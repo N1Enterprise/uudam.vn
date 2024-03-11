@@ -129,7 +129,7 @@
             <p style="font-size: 1.4rem;">Bạn cần <a id="Add_Cart_Required_Login" href="?overlay=signin" class="link" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> trước khi mua hàng</p>
             @endif
 
-            <form method="post" action="" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
+            <form method="post" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
                 <input type="hidden" name="product_id" data-value="{{ data_get($inventory, 'product.id') }}" value="{{ data_get($inventory, 'product.id') }}">
@@ -137,16 +137,20 @@
                 <input type="hidden" name="quantity" value="1">
                 <input type="hidden" name="has_combo" value="0">
                 <div class="product-form__buttons">
-                    <a href="{{ route('fe.web.cart.index') }}" class="link" style="margin-bottom: 10px;">Xem Giỏ Hàng</a>
-                    <button type="submit" name="add" class="product-form__submit button button--full-width button--primary">
-                        <span>Thêm Vào Giỏ Hàng</span>
+                    <a href="{{ route('fe.web.cart.index') }}" class="link" style="margin-bottom: 10px;">Xem giỏ hàng</a>
+
+                    <button type="button" id="buy_now" class="product-form__submit button button--full-width button--primary" data-return-url="{{ route('fe.web.user.checkout.confirmation') }}">
+                        <span>Mua ngay</span>
+                    </button>
+
+                    <button type="submit" name="add" class="product-form__submit button button--full-width button--primary" style="background-color: #fff; color: #000;">
+                        <span>Thêm vào giỏ hàng</span>
                         <div class="loading-overlay__spinner hidden">
                             <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                                 <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                             </svg>
                         </div>
                     </button>
-                    </div>
                 </div>
             </form>
 

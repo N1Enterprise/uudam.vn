@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Banner') }}
+                    {{ __('Danh sách banner') }}
                 </h3>
             </div>
             @canAny(['banners.store'])
@@ -31,7 +31,7 @@
                     @can('banners.store')
                     <a href="{{ route('bo.web.banners.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Banner') }}
+                        {{ __('Tạo banner') }}
                     </a>
                     @endcan
                 </div>
@@ -42,21 +42,21 @@
             <table id="table_banners_index" data-group-column="1" data-searching="true" data-request-url="{{ route('bo.api.banners.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                 <thead>
                     <tr>
-                        <th data-property="id">{{ __('ID') }}</th>
-                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Type') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
-                        <th data-property="cta_label">{{ __('Cta Label') }}</th>
-                        <th data-property="redirect_url">{{ __('url') }}</th>
-                        <th data-property="order">{{ __('Order') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-property="start_at">{{ __('Start At') }}</th>
-                        <th data-orderable="false" data-property="color" data-render-callback="renderCallbackColor">{{ __('Color') }}</th>
-                        <th data-property="end_at">{{ __('End At') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th data-orderable="false" data-property="desktop_image" data-render-callback="renderCallbackImage">{{ __('Desktop Image') }}</th>
-                        <th data-orderable="false" data-property="mobile_image" data-render-callback="renderCallbackImage">{{ __('Mobile Image') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="id" width="50">{{ __('ID') }}</th>
+                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
+                        <th data-orderable="false" data-property="desktop_image" data-render-callback="renderCallbackImage">{{ __('Ảnh Desktop') }}</th>
+                        <th data-orderable="false" data-property="mobile_image" data-render-callback="renderCallbackImage">{{ __('Ảnh Mobile') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
+                        <th data-property="cta_label" width="80">{{ __('Nhãn CTA') }}</th>
+                        <th data-property="redirect_url">{{ __('URL') }}</th>
+                        <th data-property="order" width="50">{{ __('Thứ tự') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name" width="80">{{ __('Trạng thái') }}</th>
+                        <th data-orderable="false" data-property="color" data-render-callback="renderCallbackColor" width="80">{{ __('Màu sắc') }}</th>
+                        <th data-property="start_at" width="150">{{ __('Ngày bắt đầu') }}</th>
+                        <th data-property="end_at" width="150">{{ __('Ngày kết thúc') }}</th>
+                        <th data-property="created_at" width="200">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at" width="200">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,9 +97,9 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this banner?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa?') }}");
 
-            if(! confirmation) {
+            if (! confirmation) {
                 return;
             }
 

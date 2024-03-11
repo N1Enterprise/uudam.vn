@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Attribute');
+	$title = __('Tạo thuộc tính');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Thuộc tính'),
 		],
 		[
-			'label' => __('Add Attribute'),
+			'label' => $title,
 		]
 	];
 @endphp
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Attribute') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin thuộc tính') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -49,24 +49,24 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
                                     @error('order')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Attribute Type') }} *</label>
-                                    <select name="attribute_type" title="--{{ __('Select Attribute Type') }}--" class="form-control k_selectpicker {{ $errors->has('attribute_type') ? 'is-invalid' : '' }}" required>
+                                    <label>{{ __('Loại thuộc tính') }} *</label>
+                                    <select name="attribute_type" title="-- {{ __('Chọn loại thuộc tính') }} --" class="form-control k_selectpicker {{ $errors->has('attribute_type') ? 'is-invalid' : '' }}" required>
                                         @foreach($productAttributeTypeEnum as $key => $label)
                                         <option value="{{ $key }}" {{ old('attribute_type') == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
@@ -77,8 +77,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Categories') }}</label>
-                                    <select data-actions-box="true" name="supported_categories[]" title="--{{ __('Select Cagegories') }}--" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true" data-actions-box="true">
+                                    <label>{{ __('Danh mục') }}</label>
+                                    <select data-actions-box="true" name="supported_categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker {{ $errors->has('supported_categories') ? 'is-invalid' : '' }}" data-size="5" multiple data-live-search="true" data-actions-box="true">
                                         @foreach($categoryGroups as $categoryGroup)
                                         <optgroup label="{{ $categoryGroup->name }}">
                                             @foreach($categoryGroup->categories as $category)
@@ -93,7 +93,7 @@
                                 </div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -108,8 +108,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

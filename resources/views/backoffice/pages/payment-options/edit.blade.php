@@ -1,17 +1,17 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Payments');
+	$title = __('Chỉnh sửa tuỳ chọn thanh toán');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Cài đặt thanh toán'),
+		],
+		[
+			'label' => __('Tuỳ chọn thanh toán'),
+		],
+		[
 			'label' => $title,
-		],
-		[
-			'label' => __('Payment Settings'),
-		],
-		[
-			'label' => __('Edit Payment Option'),
 		]
 	];
 @endphp
@@ -42,13 +42,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Payment Option') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin tuỳ chọn thanh toán') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -62,9 +62,9 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
 								<div class="form-group">
-									<label>{{ __('Currency') }} *</label>
+									<label>{{ __('Tiền tệ') }} *</label>
 									<select name="currency_code" id="currency_code" data-size="5" class="form-control k_selectpicker" data-live-search="true" required>
-										<option default value="">--{{ __('Select Currency') }}--</option>
+										<option default value="">-- {{ __('Chọn tiền tệ') }} --</option>
 										@foreach ($__CONFIGURABLE_FIAT_CURRENCIES->groupBy('type_name') as $type => $options)
 										<optgroup label="{{ $type }}">
 											@foreach ($options as $option)
@@ -81,7 +81,7 @@
 								</div>
 
 								<div class="form-group">
-									<label>{{ __('Payment Option Type') }} *</label>
+									<label>{{ __('Loại tùy chọn thanh toán') }} *</label>
 									<select class="form-control k_selectpicker" id="type" name="type" required>
 										@foreach ($paymentOptionTypeEnumLabels as $key => $label)
                                         <option {{ old('type', $paymentOption->type) == $key ? 'selected' : '' }} value="{{ $key }}">{{ $label }}</option>
@@ -90,26 +90,26 @@
 								</div>
 
 								<div class="form-group depent_on_type d-none" data-type="2">
-									<label>{{ __('Payment Provider') }} *</label>
+									<label>{{ __('Nhà cung cấp thanh toán') }} *</label>
 									<select class="form-control k_selectpicker" id="payment_provider_id" name="payment_provider_id"></select>
 								</div>
 
 								<div class="form-group online_banking_code_wrapper d-none">
-									<label>{{ __('Online Bank') }} *</label>
+									<label>{{ __('Ngân hàng trực tuyến') }} *</label>
 									<select class="form-control k_selectpicker" id="online_banking_code" name="online_banking_code"></select>
 								</div>
 
 								<div class="form-group">
-									<label>{{ __('Payment Option Name') }} *</label>
+									<label>{{ __('Tên tùy chọn thanh toán') }} *</label>
 									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter payment option name') }}" value="{{ old('name', $paymentOption->name) }}" >
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Logo Image') }}</label>
+                                    <label>{{ __('Logo') }}</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="logo" data-image-ref-index="0" class="form-control image_logo_url" name="logo[path]" value="{{ old('logo.path', $paymentOption->logo) }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="logo" data-image-ref-index="0" class="form-control image_logo_url" name="logo[path]" value="{{ old('logo.path', $paymentOption->logo) }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="logo" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="logo" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
@@ -119,7 +119,7 @@
                                                 <label for="image_logo" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_logo" data-image-ref-path="file" data-image-ref-index="0" name="logo[file]" class="d-none image_logo_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('logo, logo.file, logo.path') is-invalid @endanyerror">
@@ -138,7 +138,7 @@
                                 </div>
 
 								<div class="form-group">
-									<label>{{ __('Min Amount') }}</label>
+									<label>{{ __('Số tiền tối thiểu') }}</label>
                                     <x-number-input
                                         allow-minus="false"
                                         key="min_amount"
@@ -149,7 +149,7 @@
 								</div>
 
 								<div class="form-group">
-									<label>{{ __('Max Amount') }}</label>
+									<label>{{ __('Số tiền tối đa') }}</label>
                                     <x-number-input
                                         allow-minus="false"
                                         key="max_amount"
@@ -159,9 +159,14 @@
                                     />
 								</div>
 
+                                <div class="form-group">
+									<label>{{ __('Nội dung mở rộng') }}</label>
+									<textarea name="expanded_content" class="form-control" cols="30" rows="3">{{ old('expanded_content', $paymentOption->expanded_content) }}</textarea>
+								</div>
+
                                 <div class="tab-pane" id="advanceTab" role="tabpanel">
                                     <div class="form-group">
-                                        <label for="parameters">{{ __('Parameters') }}</label>
+                                        <label for="parameters">{{ __('Tham số') }}</label>
                                         <div id="json_editor_params" style="height: 200px"></div>
                                         <input type="hidden" name="params" value="{{ old('params', display_json_value($paymentOption->params)) }}">
                                     </div>
@@ -169,7 +174,7 @@
 
 								<div class="row">
 									<div class="col-8 col-sm-4">
-										<label class="col-form-label">{{ __('Status') }}</label>
+										<label class="col-form-label">{{ __('Trạng thái') }}</label>
 									</div>
 									<div class="col-4 col-sm-3">
 										<span class="k-switch">
@@ -182,7 +187,7 @@
 								</div>
 								<div class="row">
 									<div class="col-8 col-sm-4">
-										<label class="col-form-label">{{ __('FE Display') }}</label>
+										<label class="col-form-label">{{ __('Hiển thị FE') }}</label>
 									</div>
 									<div class="col-4 col-sm-3">
 										<span class="k-switch">
@@ -198,8 +203,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

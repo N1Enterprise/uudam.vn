@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('System Currencies');
+	$title = __('Tiền tệ hệ thống');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('System Currencies') }}
+                    {{ __('Danh sách tiền tệ hệ thống') }}
                 </h3>
             </div>
             @can('system-currencies.manage')
@@ -30,7 +30,7 @@
                 <div class="k-portlet__head-toolbar-wrapper">
                     <a href="{{ route('bo.web.system-currencies.create') }}" class="btn btn-default btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-add-1"></i>
-                        {{__('Add New Currency')}}
+                        {{__('Tạo tiền tệ hệ thống')}}
                     </a>
                 </div>
             </div>
@@ -42,16 +42,16 @@
                     <tr>
                         <th data-priority="1" data-property="key">{{ __('Code') }}</th>
                         <th data-priority="1" data-property="type_name" data-name="type">{{ __('Type') }}</th>
-                        <th data-priority="3" data-property="name">{{ __('Name') }}</th>
+                        <th data-priority="3" data-property="name">{{ __('Tên') }}</th>
                         <th data-orderable="false" data-priority="3" data-property="symbol" data-render-callback="systemCurrencyRenderSymbol">{{ __('Symbol') }}</th>
                         <th data-render-callback="systemCurrencyRenderTags" data-property="status_name">{{ __('Tags') }}</th>
                         <th data-orderable="false" data-property="decimals">{{ __('Decimals') }}</th>
-                        <th data-orderable="true" data-property="order">{{ __('Order') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-orderable="false" data-property="created_by.display">{{ __('Created By') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th data-orderable="false" data-property="updated_by.display">{{ __('Created By') }}</th>
-                        <th data-property="actions" class="datatable-action">{{ __('Action') }}</th>
+                        <th data-orderable="true" data-property="order">{{ __('Thứ tự') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-orderable="false" data-property="created_by.display">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th data-orderable="false" data-property="updated_by.display">{{ __('Ngày tạo') }}</th>
+                        <th data-property="actions" class="datatable-action">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -51,8 +51,8 @@ Route::prefix('v1')->group(function () {
     Route::get('menu-sub-groups', [Api\MenuSubGroupController::class, 'index'])->name('menu-sub-groups.index')->middleware(['can:menu-sub-groups.index']);
     Route::get('menus', [Api\MenuController::class, 'index'])->name('menus.index')->middleware(['can:menus.index']);
 
-    Route::get('home-page-display-orders', [Api\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
-    Route::get('home-page-display-items', [Api\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
+    Route::get('homepage-display-orders', [Api\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+    Route::get('homepage-display-items', [Api\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
 
     /* ======================== UTILITIES ======================== */
     Route::get('post-categories', [Api\PostCategoryController::class, 'index'])->name('post-categories.index')->middleware(['can:post-categories.index']);
@@ -63,9 +63,11 @@ Route::prefix('v1')->group(function () {
     Route::get('faqs', [Api\FaqController::class, 'index'])->name('faqs.index')->middleware(['can:faqs.index']);
 
     /* ======================== SHIPPINGS ======================== */
-    Route::get('carriers', [Api\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
     Route::get('shipping-zones', [Api\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
     Route::get('shipping-rates', [Api\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
+    Route::get('shipping-providers', [Api\ShippingProviderController::class, 'index'])->name('shipping-providers.index')->middleware(['can:shipping-providers.index']);
+    Route::get('shipping-options', [Api\ShippingOptionController::class, 'index'])->name('shipping-options.index')->middleware(['can:shipping-options.index']);
+    Route::get('shipping-options/available', [Api\ShippingOptionController::class, 'getAvailable'])->name('shipping-options.available')->middleware(['can:shipping-options.index']);
 
     /* ======================== LOCALIZATION ======================== */
     Route::get('countries', [Api\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
@@ -90,6 +92,7 @@ Route::prefix('v1')->group(function () {
     Route::put('orders/{id}/complete', [Api\OrderController::class, 'complete'])->name('orders.complete')->middleware(['can:orders.manage']);
     Route::put('orders/{id}/cancel', [Api\OrderController::class, 'cancel'])->name('orders.cancel')->middleware(['can:orders.manage']);
     Route::put('orders/{id}/refund', [Api\OrderController::class, 'refund'])->name('orders.refund')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/update-shipping', [Api\OrderController::class, 'updateShipping'])->name('orders.update-shipping')->middleware(['can:orders.manage']);
 
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 

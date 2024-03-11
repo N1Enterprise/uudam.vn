@@ -1,16 +1,16 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Inventories');
+	$title = __('Sản phẩm tồn kho');
 
-    $action = empty($inventory->id) ? 'Add' : 'Edit';
+    $action = empty($inventory->id) ? 'Tạo' : 'Chỉnh sửa';
 
 	$breadcrumbs = [
 		[
 			'label' => $title,
 		],
 		[
-			'label' => __("{$action} Inventory"),
+			'label' => __("{$action} sản phẩm kho"),
 		]
 	];
 @endphp
@@ -32,7 +32,7 @@
         @error('*')
         <div class="alert alert-danger fade show" role="alert">
             <div class="alert-text">
-                {{ __('Submit failed. Please check the error below.') }}
+                {{ __('Gửi không thành công. Vui lòng kiểm tra lỗi bên dưới.') }}
             </div>
             <div class="alert-close">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -50,7 +50,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('PRODUCT') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('SẢN PHẨM') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
@@ -67,14 +67,14 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Name') }} *</label>
+                                            <label for="">{{ __('Tên') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->name }}" required disabled>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Code') }} *</label>
+                                            <label for="">{{ __('Mã sản phẩm') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->code }}" required disabled>
                                         </div>
                                     </div>
@@ -83,14 +83,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Slug') }} *</label>
+                                            <label for="">{{ __('Đường dẫn') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->slug }}" required disabled>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Branch') }} *</label>
+                                            <label for="">{{ __('Thương hiệu') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->branch }}" required disabled>
                                         </div>
                                     </div>
@@ -99,14 +99,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Categories') }} *</label>
+                                            <label for="">{{ __('Danh mục') }} *</label>
                                             <input type="text" class="form-control" value="{{ implode(', ', $product->categories->pluck('name')->toArray()) }}" required disabled>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">{{ __('Status') }} *</label>
+                                            <label for="">{{ __('Trạng thái') }} *</label>
                                             <input type="text" class="form-control" value="{{ $product->status_name }}" required disabled>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('INVENTORY') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('SẢN PHẨM KHO') }}</h3>
                         </div>
                     </div>
 
@@ -142,7 +142,7 @@
                         @endif
 
                         <div class="form-group">
-                            <label for="">{{ __('Title') }} *</label>
+                            <label for="">{{ __('Tiêu đề') }} *</label>
                             <input
                                 type="text"
                                 name="title"
@@ -155,7 +155,7 @@
 
                         @if ($inventory->id)
                         <div class="form-group">
-                            <label for="">{{ __('Slug') }} *</label>
+                            <label for="">{{ __('Đường dẫn') }} *</label>
                             <input
                                 type="text"
                                 name="slug"
@@ -169,10 +169,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Available From') }}
+                                    <label for="">{{ __('Có sẵn từ') }}
                                         <i
                                             data-toggle="tooltip"
-                                            data-title="The date when the stock will be available. Default = immediately"
+                                            data-title="Ngày mà hàng sẽ có sẵn. Mặc định = ngay lập tức"
                                             class="flaticon-questions-circular-button"
                                         ></i>
                                     </label>
@@ -187,11 +187,11 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Min Order Quantity') }}
+                                    <label for="">{{ __('Số lượng đặt hàng tối thiểu') }}
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="The quantity allowed to take orders. Must be an integer value. Default = 1"
+                                            data-title="Số lượng cho phép nhận đặt hàng. Phải là một giá trị số nguyên. Mặc định = 1"
                                         ></i>
                                     </label>
                                     <input
@@ -207,11 +207,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Condition Note') }}
+                                    <label for="">{{ __('Ghi chép điều kiện') }}
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="Input more details about the item condition. This will help customers to understand the item."
+                                            data-title="Nhập thêm chi tiết về tình trạng mặt hàng. Điều này sẽ giúp khách hàng hiểu rõ hơn về mặt hàng."
                                         ></i>
                                     </label>
                                     <input
@@ -224,11 +224,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Init Sold Count') }}
+                                    <label for="">{{ __('Fake số lượng bán') }}
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="{{ __('This sold count is for customer use only') }}"
+                                            data-title="{{ __('Số lượng đã bán này chỉ dành cho khách hàng sử dụng.') }}"
                                         ></i>
                                     </label>
                                     <input
@@ -242,14 +242,35 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">{{ __('Khối lượng(g)') }}</label>
+                                    <div class="input-group">
+                                        <x-number-input
+                                            name="weight"
+                                            key="weight"
+                                            class='form-control {{ $errors->has("weight") ? "is-invalid" : "" }}'
+                                            placeholder="{{ __('10,01') }}"
+                                            value='{{ old("weight", $inventory->weight) }}'
+                                        />
+                                        <div class="input-group-append"><span class="input-group-text">{{ __('gam(g)') }}</span></div>
+                                    </div>
+                                    @error('weight')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row {{ $inventory->offer_price ? '' : 'd-none' }}" data-toggle-reference="offer_date_setup">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Offer Start Date ') }}
+                                    <label for="">{{ __('Ngày bắt đầu ưu đãi') }}
                                         <i
                                             data-toggle="tooltip"
                                             class="flaticon-questions-circular-button"
-                                            data-title="An offer must have a start date. Required if offer price field is given"
+                                            data-title="Một khuyến mãi phải có ngày bắt đầu. Bắt buộc nếu trường giá ưu đãi được cung cấp"
                                         ></i>
                                     </label>
                                     <input
@@ -265,13 +286,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Offer End Date ') }}
-                                        <i
-                                            data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
-                                            data-title="An offer must have a start date. Required if offer price field is given"
-                                        ></i>
-                                    </label>
+                                    <label for="">{{ __('Ngày kết thúc ưu đãi') }}</label>
                                     <input
                                         type="datetimepicker"
                                         class="form-control @error('offer_end') is-invalid @enderror"
@@ -295,7 +310,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('VARIANTS') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('CÓ BIẾN THỂ') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
@@ -310,7 +325,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('SIMPLE') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('KHÔNG CÓ BIẾN THỂ') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
@@ -326,7 +341,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('KEY KEATURES') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('ĐẶC ĐIỂM NỔI BẬC') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
@@ -341,17 +356,23 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('INFORMATION') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('THÔNG TIN') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
                         <div class="form-group">
-                            <label>{{ __('Meta Title') }}</label>
+                            <label for="">{{ __('Meta') }}</label>
+                            <div id="json_editor_meta" style="height: 200px"></div>
+                            <input type="hidden" name="meta" value="{{ old('meta', display_json_value($inventory->meta)) }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ __('[SEO] Tiêu đề') }}</label>
                             <input
                                 type="text"
                                 class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}"
                                 name="meta_title"
-                                placeholder="{{ __('Enter Slug') }}"
+                                placeholder="{{ __('Nhập [SEO] tiêu đề') }}"
                                 value="{{ old('meta_title', $inventory->meta_title) }}"
                             >
                             @error('meta_title')
@@ -360,12 +381,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Meta Description') }}</label>
+                            <label>{{ __('[SEO] Mô tả') }}</label>
                             <input
                                 type="text"
                                 class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}"
                                 name="meta_description"
-                                placeholder="{{ __('Enter Slug') }}"
+                                placeholder="{{ __('Nhập [SEO] tiêu đề') }}"
                                 value="{{ old('meta_description', $inventory->meta_description) }}"
                             >
                             @error('meta_description')
@@ -374,7 +395,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('FE Display') }}</label>
+                            <label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
@@ -386,7 +407,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('FE Search') }}</label>
+                            <label class="col-2 col-form-label">{{ __('Tìm kiếm FE') }}</label>
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
@@ -398,7 +419,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('Active') }}</label>
+                            <label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
@@ -419,7 +440,7 @@
                     @if(!empty($inventory->id))
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('PRODUCTS COMBO') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('COMBO THEO KÈO SẢN PHẨM KHO') }}</h3>
                         </div>
                     </div>
 
@@ -430,8 +451,8 @@
 
                     <div class="k-portlet__foot">
                         <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Cancel') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                         </div>
                     </div>
                 </div>
@@ -445,12 +466,27 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/lib.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
-{{-- <script src="{{ asset('backoffice/assets/demo/default/custom/components/forms/layouts/repeater.js') }}" type="text/javascript"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js" type="text/javascript"></script>
 @include('backoffice.pages.inventories.js-pages.handle')
 @include('backoffice.pages.inventories.js-pages.product-combos')
 <script>
     $(document).ready(function() {
         FORM_MEDIA_IMAGE_PATH.triggerChange();
+    });
+
+    $(document).ready(function () {
+        let editorMeta = ace.edit($('#json_editor_meta')[0], {
+            mode: "ace/mode/json",
+            theme: 'ace/theme/tomorrow',
+            value: $(`input[name="meta"]`).val()
+        });
+
+        $('form#form_inventory').on('submit', function(e) {
+            e.preventDefault();
+            let editorMetaElement = $(`input[name="meta"]`).val(editorMeta.getValue());
+            $(this).append(editorMetaElement);
+            $(this)[0].submit();
+        });
     });
 </script>
 @endsection

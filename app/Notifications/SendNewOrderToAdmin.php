@@ -57,7 +57,8 @@ class SendNewOrderToAdmin extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('UUDAM.VN - Có đơn hàng mới #' . data_get($this->order, 'order_code'). ' vào lúc '. format_datetime(data_get($this->order, 'created_at'), 'd/m/Y H:i'))
-            ->markdown('frontend.mail.admin.new-order', [
+            ->markdown('backoffice.mail.admin.new-order', [
+                'app_name'      => config('app.name'),
                 'admin_name'    => data_get($this->admin, 'name'),
                 'url'           => route('bo.web.orders.edit', data_get($this->order, 'id')),
                 'order_code'    => data_get($this->order, 'order_code'),

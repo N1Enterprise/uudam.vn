@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Name') }} *</label>
+                            <label>{{ __('Tên') }} *</label>
                             <input name="name" required type="text" class="form-control" value="{{ $AUTHENTICATED_ADMIN->name }}">
                         </div>
 
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
             </div>
         </div>
     </div>

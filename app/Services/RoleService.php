@@ -182,22 +182,32 @@ class RoleService extends BaseService
             ],
         ],
         'shippings' => [
-            'carriers' => [
-                'carriers.index',
-                'carriers.store',
-                'carriers.update',
+            // 'carriers' => [
+            //     'carriers.index',
+            //     'carriers.store',
+            //     'carriers.update',
+            // ],
+            'shipping-providers' => [
+                'shipping-providers.index',
+                'shipping-providers.store',
+                'shipping-providers.update',
             ],
-            'shipping-zones' => [
-                'shipping-zones.index',
-                'shipping-zones.store',
-                'shipping-zones.update',
+            'shipping-options' => [
+                'shipping-options.index',
+                'shipping-options.store',
+                'shipping-options.update',
             ],
-            'shipping-rates' => [
-                'shipping-rates.index',
-                'shipping-rates.store',
-                'shipping-rates.update',
-                'shipping-rates.delete',
-            ],
+            // 'shipping-zones' => [
+            //     'shipping-zones.index',
+            //     'shipping-zones.store',
+            //     'shipping-zones.update',
+            // ],
+            // 'shipping-rates' => [
+            //     'shipping-rates.index',
+            //     'shipping-rates.store',
+            //     'shipping-rates.update',
+            //     'shipping-rates.delete',
+            // ],
         ],
         'localizations' => [
             'countries' => [

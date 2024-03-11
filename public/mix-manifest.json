@@ -24,8 +24,6 @@
     "/frontend/bundle/css/profile-index.min.css": "/frontend/bundle/css/profile-index.min.css",
     "/frontend/bundle/js/profile-user-info.min.js": "/frontend/bundle/js/profile-user-info.min.js",
     "/frontend/bundle/js/profile-change-password.min.js": "/frontend/bundle/js/profile-change-password.min.js",
-    "/frontend/bundle/css/latest-669.min.css": "/frontend/bundle/css/latest-669.min.css",
-    "/frontend/bundle/css/latest-661.min.css": "/frontend/bundle/css/latest-661.min.css",
     "/frontend/bundle/css/latest-199.min.css": "/frontend/bundle/css/latest-199.min.css",
     "/frontend/bundle/css/component-cart-items.min.css": "/frontend/bundle/css/component-cart-items.min.css",
     "/frontend/bundle/css/component-cart-drawer.min.css": "/frontend/bundle/css/component-cart-drawer.min.css",
@@ -62,5 +60,7 @@
     "/frontend/bundle/css/section-featured-blog.min.css": "/frontend/bundle/css/section-featured-blog.min.css",
     "/frontend/bundle/css/component-slider-1.min.css": "/frontend/bundle/css/component-slider-1.min.css",
     "/frontend/bundle/css/section-image-banner.min.css": "/frontend/bundle/css/section-image-banner.min.css",
-    "/frontend/bundle/js/app.min.js": "/frontend/bundle/js/app.min.js"
+    "/frontend/bundle/js/app.min.js": "/frontend/bundle/js/app.min.js",
+    "/frontend/bundle/css/variable.min.css": "/frontend/bundle/css/variable.min.css",
+    "/frontend/bundle/js/address.min.js": "/frontend/bundle/js/address.min.js"
 }

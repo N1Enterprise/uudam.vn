@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Carts');
+	$title = __('Giỏ hàng');
 
 	$breadcrumbs = [
 		[
@@ -25,7 +25,7 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Cart') }}
+                        {{ __('Danh sách giỏ hàng') }}
                     </h3>
                 </div>
             </div>
@@ -34,15 +34,15 @@
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-orderable="false" data-property="user.name" data-link="user.edit_link" data-link-target="_blank">{{ __('User Name') }}</th>
-                            <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Order Code') }}</th>
-                            <th data-property="ip_address">{{ __('IP Address') }}</th>
-                            <th data-property="total_item">{{ __('Total Item') }}</th>
-                            <th data-property="total_quantity">{{ __('Total Quantity') }}</th>
-                            <th data-property="total_price">{{ __('Total Price') }}</th>
-                            <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="updated_at">{{ __('Updated At') }}</th>
-                            <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                            <th data-orderable="false" data-property="user.name" data-link="user.edit_link" data-link-target="_blank">{{ __('Tên khách hàng') }}</th>
+                            <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Mã đơn hàng') }}</th>
+                            <th data-property="ip_address">{{ __('Địa chỉ IP') }}</th>
+                            <th data-property="total_item">{{ __('Số lượng SP') }}</th>
+                            <th data-property="total_quantity">{{ __('Tổng số lượng') }}</th>
+                            <th data-property="total_price">{{ __('Tổng giá') }}</th>
+                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                         </tr>
                     </thead>
                     <tbody>

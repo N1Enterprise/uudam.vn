@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group">
                         <label>
-                            {{ __('System Setting') }}
+                            {{ __('Thiết lập hệ thống') }}
                             <a data-toggle="collapse" href="#class_hint">
                                 <i class="la flaticon-light"></i>
                             </a>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
                     <button id="button_importSettings" type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                 </div>
             </form>

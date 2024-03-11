@@ -6,14 +6,14 @@ class PaymentOptionTypeEnum extends BaseEnum
 {
     public const LOCAL_BANK = 1;
     public const PAYMENT_PROVIDER = 2;
-    public const CASH_ON_DELIVERY = 3;
+    public const NONE_AMOUNT = 3;
 
     public static function all(): array
     {
         return [
             self::LOCAL_BANK,
             self::PAYMENT_PROVIDER,
-            self::CASH_ON_DELIVERY
+            self::NONE_AMOUNT
         ];
     }
 
@@ -27,8 +27,8 @@ class PaymentOptionTypeEnum extends BaseEnum
         return $key == self::PAYMENT_PROVIDER;
     }
 
-    public static function isCashOnDelivery($key)
+    public static function isNoneAmount($key)
     {
-        return $key == self::CASH_ON_DELIVERY;
+        return $key == self::NONE_AMOUNT;
     }
 }

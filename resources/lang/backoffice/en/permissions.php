@@ -175,10 +175,6 @@ return [
     'faq-topics.delete' => 'Delete Faq Topic',
 
     'shippings' => 'Shippings',
-    'carriers' => 'Carriers',
-    'carriers.index' => 'View Carrier List',
-    'carriers.store' => 'Create Carrier',
-    'carriers.update' => 'Update Carrier',
     'shipping-zones' => 'Shipping Zones',
     'shipping-zones.index' => 'View Shipping Zone List',
     'shipping-zones.store' => 'Create Shipping Zone',
@@ -188,6 +184,16 @@ return [
     'shipping-rates.store' => 'Create Shipping Rate',
     'shipping-rates.update' => 'Update Shipping Rate',
     'shipping-rates.delete' => 'Delete Shipping Rate',
+
+    'shipping-providers' => 'Shipping Providers',
+    'shipping-providers.index' => 'View Shipping Providers',
+    'shipping-providers.store' => 'Create Shipping Provider',
+    'shipping-providers.update' => 'Update Shipping Provider',
+
+    'shipping-options' => 'Shipping Options',
+    'shipping-options.index' => 'View Shipping Provoders',
+    'shipping-options.store' => 'Create Shipping Option',
+    'shipping-options.update' => 'Update Shipping Option',
 
     'payments' => 'Payments',
     'payment-providers' => 'Payment Providers',

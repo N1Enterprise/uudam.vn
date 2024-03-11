@@ -48,6 +48,7 @@ mix
     .js('resources/src/frontend/js/user-order-cart.js', 'public/frontend/bundle/js/user-order-cart.min.js')
     .js('resources/src/frontend/js/product-index.js', 'public/frontend/bundle/js/product-index.min.js')
     .js('resources/src/frontend/js/collection-index.js', 'public/frontend/bundle/js/collection-index.min.js')
+    .js('resources/src/frontend/js/address.js', 'public/frontend/bundle/js/address.min.js')
 
     .css('resources/src/frontend/css/reset.css', 'public/frontend/bundle/css/reset.min.css')
     .css('resources/src/frontend/css/base.css', 'public/frontend/bundle/css/base.min.css')
@@ -62,8 +63,6 @@ mix
     .css('resources/src/frontend/css/main.css', 'public/frontend/bundle/css/main.min.css')
     .css('resources/src/frontend/css/profile-index.css', 'public/frontend/bundle/css/profile-index.min.css')
     .css('resources/src/frontend/css/latest-199.css', 'public/frontend/bundle/css/latest-199.min.css')
-    .css('resources/src/frontend/css/latest-661.css', 'public/frontend/bundle/css/latest-661.min.css')
-    .css('resources/src/frontend/css/latest-669.css', 'public/frontend/bundle/css/latest-669.min.css')
     .css('resources/src/frontend/css/component-cart.css', 'public/frontend/bundle/css/component-cart.min.css')
     .css('resources/src/frontend/css/component-cart-drawer.css', 'public/frontend/bundle/css/component-cart-drawer.min.css')
     .css('resources/src/frontend/css/component-cart-items.css', 'public/frontend/bundle/css/component-cart-items.min.css')
@@ -91,7 +90,8 @@ mix
     .css('resources/src/frontend/css/component-slider-1.css', 'public/frontend/bundle/css/component-slider-1.min.css')
     .css('resources/src/frontend/css/section-featured-blog.css', 'public/frontend/bundle/css/section-featured-blog.min.css')
     .css('resources/src/frontend/css/section-multicolumn.css', 'public/frontend/bundle/css/section-multicolumn.min.css')
-    .css('resources/src/frontend/css//component-slider.css', 'public/frontend/bundle/css//component-slider.min.css')
+    .css('resources/src/frontend/css/component-slider.css', 'public/frontend/bundle/css/component-slider.min.css')
+    .css('resources/src/frontend/css/variable.css', 'public/frontend/bundle/css//variable.min.css')
 
 
     .options({

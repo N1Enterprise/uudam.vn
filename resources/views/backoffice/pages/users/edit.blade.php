@@ -91,7 +91,7 @@ $breadcrumbs = [
                                 @can('orders.index')
                                 <li class="k-nav__item">
                                     <a href="#tab_order" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="order">
-                                        <span class="k-nav__link-text">{{ __('Order') }}</span>
+                                        <span class="k-nav__link-text">{{ __('Thứ tự') }}</span>
                                     </a>
                                 </li>
                                 @endcan
@@ -139,7 +139,7 @@ $breadcrumbs = [
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
                     <button type="submit" class="btn btn-primary" id="submitSetTestPlayer">{{ __('Submit') }}</button>
                 </div>
             </form>
@@ -167,7 +167,7 @@ $breadcrumbs = [
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
                     <button type="submit" class="btn btn-primary" id="submitActionBtn">{{ __('Submit') }}</button>
                 </div>
             </form>

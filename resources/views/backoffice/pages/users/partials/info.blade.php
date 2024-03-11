@@ -27,7 +27,7 @@
                 <input type="text" class="form-control" disabled="disabled" value="{{ $user->username }}">
             </div>
             <div class="col-lg-4">
-                <label>{{ __('Name') }}</label>
+                <label>{{ __('Tên') }}</label>
                 <input type="text" class="form-control" disabled="disabled" value="{{ $user->name }}">
             </div>
             <div class="col-lg-4">
@@ -68,11 +68,11 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col-lg-4">
-                            <label>{{ __('User Name') }}</label>
+                            <label>{{ __('Tên khách hàng') }}</label>
                             <input type="text" class="form-control" name="username" value="{{ old('username', $user->username) }}">
                         </div>
                         <div class="col-lg-4">
-                            <label>{{ __('Name') }}</label>
+                            <label>{{ __('Tên') }}</label>
                             <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}">
                         </div>
                         <div class="col-lg-4">
@@ -99,8 +99,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                 </div>
             </div>
         </form>

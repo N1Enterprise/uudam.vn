@@ -1,20 +1,23 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Payment Provider');
+	$title = __('Chỉnh sửa đơn vị thanh toán');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Cài đặt thanh toán'),
 		],
 		[
-			'label' => __('Edit Payment Provider'),
-		]
+			'label' => __('Đơn vị thanh toán'),
+		],
+		[
+			'label' => $title,
+		],
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,13 +31,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Payment Provider') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin đơn vị thanh toán') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -50,14 +53,14 @@
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab" role="tabpanel">
                                 <div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $paymentProvider->name) }}" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $paymentProvider->name) }}" required>
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Payment Provider') }} *</label>
+                                    <label>{{ __('Nhà cung cấp') }} *</label>
                                     <select class="form-control k_selectpicker" name="code">
-                                        <option value="">-- {{ __('Select Payment Provider') }} --</option>
+                                        <option value="">-- {{ __('Chọn nhà cung cấp') }} --</option>
                                         @foreach ($providers as $provider)
                                         <option {{ old('code', $paymentProvider->code) == data_get($provider, 'code') ? 'selected' : '' }} value="{{ data_get($provider, 'code') }}">{{ data_get($provider, 'name') }}</option>
                                         @endforeach
@@ -65,7 +68,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Payment Type') }}</label>
+                                    <label>{{ __('Loại thanh toán') }}</label>
                                     <select class="form-control k_selectpicker" id="payment_type" name="payment_type">
                                         @foreach ($paymentTypeEnumLabels as $key => $label)
                                         <option {{ old('payment_type', $paymentProvider->payment_type) == $key ? 'selected' : '' }} value="{{ $key }}">{{ $label }}</option>
@@ -75,14 +78,14 @@
 
                                 <div class="tab-pane" id="advanceTab" role="tabpanel">
                                     <div class="form-group">
-                                        <label for="parameters">{{ __('Parameters') }}</label>
+                                        <label for="parameters">{{ __('Tham số') }}</label>
                                         <div id="json_editor_params" style="height: 200px"></div>
                                         <input type="hidden" name="params" value="{{ old('params', display_json_value($paymentProvider->params)) }}">
                                     </div>
                                 </div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -97,8 +100,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

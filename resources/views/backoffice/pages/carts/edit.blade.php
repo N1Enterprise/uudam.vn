@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Carts');
+	$title = __('Thông tin giỏ hàng');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Giỏ hàng'),
 		],
 		[
-			'label' => __('Edit Cart'),
+			'label' => $title,
 		]
 	];
 @endphp
@@ -31,14 +31,14 @@
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
 						<h3 class="k-portlet__head-title">
-                            <span>{{ __('Cart') }} ({{ $cart->currency_code }})</span>
+                            <span>{{ __('Giỏ hàng') }} ({{ $cart->currency_code }})</span>
                         </h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab" aria-selected="true">
-									{{ __('General Information') }}
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -49,11 +49,11 @@
                     <div class="tab-content">
                         <div class="tab-pane active show" id="order_tab" role="tabpanel">
                             <div class="user_information">
-                                <h5 style="margin-bottom: 30px; font-weight: bold;">#1. {{ __('GENERAL INFORMATION') }}</h5>
+                                <h5 style="margin-bottom: 30px; font-weight: bold;">#1. {{ __('Thông tin chung') }}</h5>
                                 <div class="row">
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            <a href="{{ route('bo.web.users.edit', data_get($cart, 'user.id')) }}" target="_blank">{{ __('User Username') }}</a>
+                                            <a href="{{ route('bo.web.users.edit', data_get($cart, 'user.id')) }}" target="_blank">{{ __('Khách hàng') }}</a>
                                         </label>
                                         <input type="text" class="form-control" value="({{ data_get($cart, 'user.id') }}) {{ data_get($cart, 'user.name') }}" disabled>
                                     </div>
@@ -62,7 +62,7 @@
                                         <input type="text" class="form-control" value="{{ $cart->uuid }}" disabled>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <label>{{ __('Ip Address') }}</label>
+                                        <label>{{ __('Địa chỉ IP') }}</label>
                                         <input type="text" class="form-control" value="{{ $cart->ip_address }}" disabled>
                                     </div>
                                 </div>
@@ -70,24 +70,24 @@
                                 <div class="row">
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            {{ __('Actual Total Items') }}
-                                            <i data-toggle="tooltip" data-title="{{ __('Includes all statuses') }}" class="flaticon-questions-circular-button"></i>
+                                            {{ __('Tổng số mặt hàng thực tế') }}
+                                            <i data-toggle="tooltip" data-title="{{ __('Bao gồm tất cả các trạng thái') }}" class="flaticon-questions-circular-button"></i>
                                         </label>
                                         <input type="text" class="form-control" value="{{ count($cart->cartItems) }}" disabled>
                                     </div>
 
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            {{ __('Actual Total Quantity') }}
-                                            <i data-toggle="tooltip" data-title="{{ __('Includes all statuses') }}" class="flaticon-questions-circular-button"></i>
+                                            {{ __('Tổng số lượng thực tế') }}
+                                            <i data-toggle="tooltip" data-title="{{ __('Bao gồm tất cả các trạng thái') }}" class="flaticon-questions-circular-button"></i>
                                         </label>
                                         <input type="text" class="form-control" value="{{ $cart->cartItems->sum('quantity') }}" disabled>
                                     </div>
 
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            {{ __('Actual Total Price') }}
-                                            <i data-toggle="tooltip" data-title="{{ __('Includes all statuses') }}" class="flaticon-questions-circular-button"></i>
+                                            {{ __('Tổng giá thực tế') }}
+                                            <i data-toggle="tooltip" data-title="{{ __('Bao gồm tất cả các trạng thái') }}" class="flaticon-questions-circular-button"></i>
                                         </label>
                                         <input type="text" class="form-control" value="{{ format_price($cart->cartItems->sum('price')) }}" disabled>
                                     </div>
@@ -96,22 +96,22 @@
                                 <div class="row">
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            {{ __('Total Item') }}
-                                            <i data-toggle="tooltip" data-title="{{ __('Only calculate the total of items in pending status') }}" class="flaticon-questions-circular-button"></i>
+                                            {{ __('Tổng số mặt hàng') }}
+                                            <i data-toggle="tooltip" data-title="{{ __('Chỉ tính tổng số mặt hàng ở trạng thái chờ xử lý') }}" class="flaticon-questions-circular-button"></i>
                                         </label>
                                         <input type="text" class="form-control" value="{{ $cart->total_item }}" disabled>
                                     </div>
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            {{ __('Total Quantity') }}
-                                            <i data-toggle="tooltip" data-title="{{ __('Only calculate the total of items in pending status') }}" class="flaticon-questions-circular-button"></i>
+                                            {{ __('Tổng số lượng') }}
+                                            <i data-toggle="tooltip" data-title="{{ __('Chỉ tính tổng số mặt hàng ở trạng thái chờ xử lý') }}" class="flaticon-questions-circular-button"></i>
                                         </label>
                                         <input type="text" class="form-control" value="{{ $cart->total_quantity }}" disabled>
                                     </div>
                                     <div class="col-md-4 form-group">
                                         <label>
-                                            {{ __('Total Price') }}
-                                            <i data-toggle="tooltip" data-title="{{ __('Only calculate the total of items in pending status') }}" class="flaticon-questions-circular-button"></i>
+                                            {{ __('Tổng giá') }}
+                                            <i data-toggle="tooltip" data-title="{{ __('Chỉ tính tổng số mặt hàng ở trạng thái chờ xử lý') }}" class="flaticon-questions-circular-button"></i>
                                         </label>
                                         <input type="text" class="form-control" value="{{ format_price($cart->total_price) }}" disabled>
                                     </div>
@@ -119,20 +119,20 @@
                             </div>
 
                             <div class="order-items">
-                                <h5 style="margin-bottom: 30px; font-weight: bold;">#2. {{ __('CART ITEMS') }}</h5>
+                                <h5 style="margin-bottom: 30px; font-weight: bold;">#2. {{ __('Sản phẩm trong giỏ') }}</h5>
                                 <table id="table_carts_items_index" data-searching="true" data-request-url="{{ route('bo.api.cart-items.index', ['cart_id' => $cart->id]) }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                                     <thead>
                                         <tr>
                                             <th data-property="id">{{ __('ID') }}</th>
-                                            <th data-orderable="false" data-property="inventory.image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
-                                            <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Name') }}</th>
-                                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                                            <th data-property="currency_code">{{ __('Currency Code') }}</th>
-                                            <th data-property="quantity">{{ __('Quantity') }}</th>
-                                            <th data-property="price">{{ __('Price') }}</th>
-                                            <th data-property="total_price">{{ __('Total Price') }}</th>
-                                            <th data-property="created_at">{{ __('Created At') }}</th>
-                                            <th data-property="updated_at">{{ __('Updated At') }}</th>
+                                            <th data-orderable="false" data-property="inventory.image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
+                                            <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Tên') }}</th>
+                                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                                            <th data-property="currency_code">{{ __('Tiền tệ') }}</th>
+                                            <th data-property="quantity">{{ __('Số lượng') }}</th>
+                                            <th data-property="price">{{ __('Giá') }}</th>
+                                            <th data-property="total_price">{{ __('Tổng giá') }}</th>
+                                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

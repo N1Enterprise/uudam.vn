@@ -119,10 +119,6 @@ class PaymentOptionService extends BaseService
             throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
         }
 
-        if (! in_array($currencyCode, $paymentProvider->supported_currencies)) {
-            throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
-        }
-
         return $paymentProvider;
     }
 

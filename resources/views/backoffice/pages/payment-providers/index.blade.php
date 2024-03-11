@@ -1,18 +1,15 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Payments';
+	$title = __('Đơn vị thanh toán');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Cài đặt thanh toán'),
+		],
+		[
 			'label' => $title,
 		],
-		[
-			'label' => __('Payment Settings'),
-		],
-		[
-			'label' => __('Payment Provider List'),
-		]
 	];
 @endphp
 
@@ -28,7 +25,7 @@
 		<div class="k-portlet__head">
 			<div class="k-portlet__head-label">
 				<h3 class="k-portlet__head-title">
-					{{__('Payment Provider List')}}
+					{{__('Danh sách đơn vị thanh toán')}}
 				</h3>
 			</div>
 
@@ -37,7 +34,7 @@
                 <div class="k-portlet__head-toolbar-wrapper">
                     <a href="{{ route('bo.web.payment-providers.create') }}" class="btn btn-default btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-add-1"></i>
-                        {{__('Add New Payment Provider')}}
+                        {{__('Tạo đơn vị thanh toán')}}
                     </a>
 
                 </div>
@@ -50,13 +47,13 @@
 				<thead>
 					<tr>
 						<th data-property="id">{{ __('ID') }}</th>
-						<th data-property="name">{{ __('Payment Provider Name') }}</th>
-						<th data-property="code">{{ __('Payment Provider Code') }}</th>
-						<th data-name="payment_type" data-property="payment_type_name">{{ __('Payment Type') }}</th>
-						<th data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-						<th data-property="created_at">{{ __('Created At') }}</th>
-						<th data-property="updated_at">{{ __('Updated At') }}</th>
-						<th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+						<th data-property="name">{{ __('Tên') }}</th>
+						<th data-property="code">{{ __('Code') }}</th>
+						<th data-name="payment_type" data-property="payment_type_name">{{ __('Loại') }}</th>
+						<th data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+						<th data-property="created_at">{{ __('Ngày tạo') }}</th>
+						<th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+						<th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
 					</tr>
 				</thead>
 				<tbody>

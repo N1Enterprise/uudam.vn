@@ -51,3 +51,15 @@ const COLLECTION_ROUTES = {
 const BLOG_ROUTES = {
     web_detail: boHost + '/blogs/:slug',
 };
+
+const LOCALIZATION_ROUTES = {
+    api_provinces: boHost + '/fe/api/localization/provinces',
+    api_districts_by_province: boHost + '/fe/api/localization/:province/districts',
+    api_wards_by_district: boHost + '/fe/api/localization/:district/wards',
+    api_address_detail: boHost + '/fe/api/user/localization/address/:code',
+};
+
+const CHECKOUT_ROUTES = {
+    api_user_checkout_provider_shipping_free: boHost + '/fe/api/user/checkout/:cartUuid/shipping-fee',
+    web_user_checkout_with_payment_success: boHost + '/checkout/:cart_uuid?transaction_id=:transaction_id'
+};

@@ -51,11 +51,11 @@
                             <th data-property="total_quantity">{{ __('Total Quantity') }}</th>
                             <th data-orderable="false" data-badge data-name="payment_status" data-property="payment_status_name">{{ __('Payment Status') }}</th>
                             <th data-orderable="false" data-badge data-name="order_status" data-property="order_status_name">{{ __('Order Status') }}</th>
-                            <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                            <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                            <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="updated_at">{{ __('Updated At') }}</th>
-                            <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                            <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                            <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                         </tr>
                     </thead>
                 </table>
