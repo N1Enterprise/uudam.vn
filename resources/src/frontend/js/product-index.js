@@ -243,6 +243,7 @@ const COMBO_INVENTORY = {
 const FORM_ORDER = {
     init: () => {
         FORM_ORDER.onAddToCart();
+        FORM_ORDER.onBuyNow();
     },
     formOrderData: {},
     updateCookie: (data) => {
@@ -263,6 +264,15 @@ const FORM_ORDER = {
             quantity: +quantity
         };
     },
+    onBuyNow: () => {
+        $('#buy_now').on('click', function() {
+            const returnUrl = $(this).attr('data-return-url');
+
+            FORM_ORDER.handleAddToCart(() => {
+                window.location.href = returnUrl;
+            });
+        });
+    },
     onAddToCart: () => {
         $('form[form-add-to-cart]').on('submit', function(e) {
             e.preventDefault();
@@ -272,28 +282,34 @@ const FORM_ORDER = {
 
             if (!isLogged && loginRef) {
                 $(loginRef).trigger('click');
+                return;
             }
 
-            USER_ORDER_CART.addToCart({
-                ...FORM_ORDER.formOrderData
-            }, {
-                beforeSend: () => {
-                    $('form[form-add-to-cart]').find('button[type="submit"]').addClass('loading');
-                    $('form[form-add-to-cart]').find('.loading-overlay__spinner').removeClass('hidden');
-                },
-                success: (response) => {
-                    $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
-                    $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
-                    
-                    USER_ORDER_CART.updateCartInfo();
-
-                    fstoast.success('Đã thêm sản phẩm vào giỏ?', '', {
-                        onclick: () => {
-                            window.location.href = $('#cart-icon-bubble').attr('href');
-                        },
-                    });
-                },
+            FORM_ORDER.handleAddToCart(() => {
+                fstoast.success('Đã thêm sản phẩm vào giỏ?', '', {
+                    onclick: () => {
+                        window.location.href = $('#cart-icon-bubble').attr('href');
+                    },
+                });
             });
+        });
+    },
+    handleAddToCart: (callback = () => undefined) => {
+        USER_ORDER_CART.addToCart({
+            ...FORM_ORDER.formOrderData
+        }, {
+            beforeSend: () => {
+                $('form[form-add-to-cart]').find('button[type="submit"]').addClass('loading');
+                $('form[form-add-to-cart]').find('.loading-overlay__spinner').removeClass('hidden');
+            },
+            success: (response) => {
+                $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
+                $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
+                
+                USER_ORDER_CART.updateCartInfo();
+
+                return callback();               
+            },
         });
     },
 };
