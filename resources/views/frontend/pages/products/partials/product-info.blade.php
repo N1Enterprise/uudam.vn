@@ -139,7 +139,7 @@
                 <div class="product-form__buttons">
                     <a href="{{ route('fe.web.cart.index') }}" class="link" style="margin-bottom: 10px;">Xem giỏ hàng</a>
 
-                    <button type="button" id="buy_now" class="product-form__submit button button--full-width button--primary" data-return-url="{{ route('fe.web.user.checkout.confirmation') }}">
+                    <button type="button" id="buy_now" class="product-form__submit button button--full-width button--primary" data-return-url="{{ route('fe.web.user.checkout.confirmation') }}" login-ref="#Add_Cart_Required_Login">
                         <span>Mua ngay</span>
                     </button>
 

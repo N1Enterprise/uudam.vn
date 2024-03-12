@@ -268,6 +268,14 @@ const FORM_ORDER = {
         $('#buy_now').on('click', function() {
             const returnUrl = $(this).attr('data-return-url');
 
+            const isLogged = $('[data-canprocessasthesame]').attr('data-canprocessasthesame');
+            const loginRef = $(this).attr('login-ref');
+
+            if (!isLogged && loginRef) {
+                $(loginRef).trigger('click');
+                return;
+            }
+
             FORM_ORDER.handleAddToCart(() => {
                 window.location.href = returnUrl;
             });
