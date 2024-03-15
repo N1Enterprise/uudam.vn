@@ -272,6 +272,16 @@ class BackofficeMenuService extends BaseService
                             ]
                         ],
                     ],
+                    [
+                        'videos' => 'Video',
+                        'subs' => [
+                            [
+                                'name' => 'Danh mục',
+                                'link' => route('bo.web.video-categories.index'),
+                                'permissions' => ['video-categories.index'],
+                            ]
+                        ],
+                    ]
                 ],
             ],
             [

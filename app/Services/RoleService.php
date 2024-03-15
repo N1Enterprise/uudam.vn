@@ -197,17 +197,17 @@ class RoleService extends BaseService
                 'shipping-options.store',
                 'shipping-options.update',
             ],
-            // 'shipping-zones' => [
-            //     'shipping-zones.index',
-            //     'shipping-zones.store',
-            //     'shipping-zones.update',
-            // ],
-            // 'shipping-rates' => [
-            //     'shipping-rates.index',
-            //     'shipping-rates.store',
-            //     'shipping-rates.update',
-            //     'shipping-rates.delete',
-            // ],
+            'shipping-zones' => [
+                'shipping-zones.index',
+                'shipping-zones.store',
+                'shipping-zones.update',
+            ],
+            'shipping-rates' => [
+                'shipping-rates.index',
+                'shipping-rates.store',
+                'shipping-rates.update',
+                'shipping-rates.delete',
+            ],
         ],
         'localizations' => [
             'countries' => [
@@ -253,6 +253,12 @@ class RoleService extends BaseService
                     'faq-topics.update',
                     'faq-topics.delete',
                 ],
+            ],
+            'videos' => [
+                'video-categories.index',
+                'video-categories.store',
+                'video-categories.update',
+                'video-categories.delete',
             ],
         ],
     ];
