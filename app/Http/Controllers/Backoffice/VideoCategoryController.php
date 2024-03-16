@@ -51,7 +51,7 @@ class VideoCategoryController extends BaseController
 
     public function destroy(Request $request, $id)
     {
-        $videoCategory = $this->videoCategoryService->delete($request->validated(), $id);
+        $videoCategory = $this->videoCategoryService->delete($id);
 
         return $this->response(UpdateVideoCategoryResponseContract::class, $videoCategory);
     }

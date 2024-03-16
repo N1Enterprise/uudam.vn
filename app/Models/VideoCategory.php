@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasImpactor;
 
 class VideoCategory extends BaseModel
 {
     use Activatable;
+    use HasImpactor;
 
     protected $fillable = [
         'name',

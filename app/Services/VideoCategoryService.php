@@ -17,6 +17,7 @@ class VideoCategoryService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->videoCategoryRepository
+            ->with(['createdBy', 'updatedBy'])
             ->appendIdSort()
             ->whereColumnsLike($data['query'] ?? null, ['name', 'slug']);
 

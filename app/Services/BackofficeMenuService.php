@@ -273,7 +273,7 @@ class BackofficeMenuService extends BaseService
                         ],
                     ],
                     [
-                        'videos' => 'Video',
+                        'name' => 'Video',
                         'subs' => [
                             [
                                 'name' => 'Danh mục',
