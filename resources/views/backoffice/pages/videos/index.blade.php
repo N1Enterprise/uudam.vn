@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Danh mục video');
+	$title = __('Video');
 
 	$breadcrumbs = [
 		[
@@ -22,16 +22,16 @@
 		<div class="k-portlet__head">
 			<div class="k-portlet__head-label">
 				<h3 class="k-portlet__head-title">
-					{{__('Danh sách danh mục video')}}
+					{{__('Danh sách video')}}
 				</h3>
 			</div>
 
-            @can('video-categories.store')
+            @can('videos.store')
             <div class="k-portlet__head-toolbar">
                 <div class="k-portlet__head-toolbar-wrapper">
-                    <a href="{{ route('bo.web.video-categories.create') }}" class="btn btn-default btn-bold btn-upper btn-font-sm">
+                    <a href="{{ route('bo.web.videos.create') }}" class="btn btn-default btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-add-1"></i>
-                        {{__('Tạo danh mục video')}}
+                        {{__('Tạo video')}}
                     </a>
 
                 </div>
@@ -40,13 +40,17 @@
 		</div>
 		<div class="k-portlet__body">
 			<!--begin: Datatable -->
-			<table id="table-video-category" data-request-url="{{ route('bo.api.video-categories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable fs-table-object">
+			<table id="table-video" data-request-url="{{ route('bo.api.videos.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable fs-table-object">
 				<thead>
 					<tr>
 						<th data-property="id">{{ __('ID') }}</th>
 						<th data-property="name">{{ __('Tên') }}</th>
 						<th data-property="order">{{ __('Tứ tự') }}</th>
+						<th data-orderable="false" data-property="thumbnail" data-render-callback="renderCallbackThumbnail">{{ __('Thumbnail') }}</th>
+						<th data-badge data-name="video_category_id" data-link="category.actions.update" data-link-target="_blank" data-property="category.name">{{ __('Danh mục') }}</th>
+						<th data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
 						<th data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+						<th data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
 						<th data-property="created_at">{{ __('Ngày tạo') }}</th>
 						<th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
 						<th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
@@ -76,7 +80,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this video category?') }}");
+            let confirmation = confirm("{{ __('Are you sure you want to delete this video?') }}");
 
             if (! confirmation) {
                 return;
@@ -87,10 +91,20 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table-video-category').DataTable().ajax.reload();
+                    $('#table-video').DataTable().ajax.reload();
                 }
             });
         });
+    }
+
+    function renderCallbackThumbnail(data, type, full) {
+        const image = $('<img>', {
+            src: data,
+            width: 80,
+            height: 80,
+        });
+
+        return image.prop('outerHTML');
     }
 </script>
 @endsection

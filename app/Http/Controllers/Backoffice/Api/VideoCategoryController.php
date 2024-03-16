@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 
 class VideoCategoryController extends BaseApiController
 {
-    public $videoCategory;
+    public $videoCategoryService;
 
-    public function __construct(VideoCategoryService $videoCategory)
+    public function __construct(VideoCategoryService $videoCategoryService)
     {
-        $this->videoCategory = $videoCategory;
+        $this->videoCategoryService = $videoCategoryService;
     }
 
     public function index(Request $request)
     {
-        $videoCategories = $this->videoCategory->searchByAdmin($request->all());
+        $videoCategories = $this->videoCategoryService->searchByAdmin($request->all());
 
         return $this->response(ListVideoCategoryResponseContract::class, $videoCategories);
     }

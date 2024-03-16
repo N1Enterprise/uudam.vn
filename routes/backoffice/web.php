@@ -243,3 +243,10 @@ Route::post('video-categories', [Controllers\VideoCategoryController::class, 'st
 Route::get('video-categories/{id}', [Controllers\VideoCategoryController::class, 'edit'])->name('video-categories.edit')->middleware(['can:video-categories.update']);
 Route::put('video-categories/{id}', [Controllers\VideoCategoryController::class, 'update'])->name('video-categories.update')->middleware(['can:video-categories.update']);
 Route::delete('video-categories/{id}', [Controllers\VideoCategoryController::class, 'destroy'])->name('video-categories.delete')->middleware(['can:video-categories.delete']);
+
+Route::get('videos', [Controllers\VideoController::class, 'index'])->name('videos.index')->middleware(['can:videos.index']);
+Route::get('videos/create', [Controllers\VideoController::class, 'create'])->name('videos.create')->middleware(['can:videos.store']);
+Route::post('videos', [Controllers\VideoController::class, 'store'])->name('videos.store')->middleware(['can:videos.store']);
+Route::get('videos/{id}', [Controllers\VideoController::class, 'edit'])->name('videos.edit')->middleware(['can:videos.update']);
+Route::put('videos/{id}', [Controllers\VideoController::class, 'update'])->name('videos.update')->middleware(['can:videos.update']);
+Route::delete('videos/{id}', [Controllers\VideoController::class, 'destroy'])->name('videos.delete')->middleware(['can:videos.delete']);

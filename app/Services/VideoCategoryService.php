@@ -3,15 +3,18 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\VideoCategoryRepositoryContract;
+use App\Repositories\Contracts\VideoRepositoryContract;
 use Illuminate\Support\Facades\DB;
 
 class VideoCategoryService extends BaseService
 {
     public $videoCategoryRepository;
+    public $videoRepository;
 
-    public function __construct(VideoCategoryRepositoryContract $videoCategoryRepository)
+    public function __construct(VideoCategoryRepositoryContract $videoCategoryRepository, VideoRepositoryContract $videoRepository)
     {
         $this->videoCategoryRepository = $videoCategoryRepository;
+        $this->videoRepository = $videoRepository;
     }
 
     public function searchByAdmin($data = [])
@@ -48,6 +51,10 @@ class VideoCategoryService extends BaseService
     {
         return DB::transaction(function() use ($id) {
             $status = $this->videoCategoryRepository->delete($id);
+
+            $this->videoRepository->getNewModel()->query()
+                ->where('video_category_id', $id)
+                ->update(['video_category_id' => null]);
 
             return $status;
         });

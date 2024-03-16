@@ -219,10 +219,15 @@ return [
     'carts.manage' => 'Quản lý giỏ hàng',
 
     'videos' => 'Video',
-    'video-categories.index' => 'Danh mục video',
+    'video-categories' => 'Danh mục video',
+    'video-categories.index' => 'Xem danh sách danh mục video',
     'video-categories.store' => 'Tạo danh mục video',
     'video-categories.update' => 'Cập nhật danh mục video',
     'video-categories.delete' => 'Xóa danh mục video',
+    'videos.index' => 'Xem danh sách video',
+    'videos.store' => 'Tạo video',
+    'videos.update' => 'Cập nhật video',
+    'videos.delete' => 'Xóa video',
 
     'label_others' => 'Quyền khác'
 ];

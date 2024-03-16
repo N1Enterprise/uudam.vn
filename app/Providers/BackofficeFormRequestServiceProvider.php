@@ -120,5 +120,8 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
 
         Contracts\StoreVideoCategoryRequestContract::class => Requests\StoreVideoCategoryRequest::class,
         Contracts\UpdateVideoCategoryRequestContract::class => Requests\UpdateVideoCategoryRequest::class,
+
+        Contracts\StoreVideoRequestContract::class => Requests\StoreVideoRequest::class,
+        Contracts\UpdateVideoRequestContract::class => Requests\UpdateVideoRequest::class,
     ];
 }

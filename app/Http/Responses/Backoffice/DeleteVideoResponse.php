@@ -2,10 +2,10 @@
 
 namespace App\Http\Responses\Backoffice;
 
-use App\Contracts\Responses\Backoffice\DeleteVideoCategoryResponseContract;
+use App\Contracts\Responses\Backoffice\DeleteVideoResponseContract;
 use Illuminate\Http\JsonResponse;
 
-class DeleteVideoCategoryResponse extends BaseResponse implements DeleteVideoCategoryResponseContract
+class DeleteVideoResponse extends BaseResponse implements DeleteVideoResponseContract
 {
     public function toResponse($request)
     {

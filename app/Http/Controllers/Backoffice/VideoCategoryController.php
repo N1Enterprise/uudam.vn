@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Contracts\Requests\Backoffice\StoreVideoCategoryRequestContract;
 use App\Contracts\Requests\Backoffice\UpdateVideoCategoryRequestContract;
+use App\Contracts\Responses\Backoffice\DeleteVideoCategoryResponseContract;
 use App\Contracts\Responses\Backoffice\StoreVideoCategoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateVideoCategoryResponseContract;
 use App\Services\VideoCategoryService;
@@ -51,8 +52,8 @@ class VideoCategoryController extends BaseController
 
     public function destroy(Request $request, $id)
     {
-        $videoCategory = $this->videoCategoryService->delete($id);
+        $status = $this->videoCategoryService->delete($id);
 
-        return $this->response(UpdateVideoCategoryResponseContract::class, $videoCategory);
+        return $this->response(DeleteVideoCategoryResponseContract::class, $status);
     }
 }

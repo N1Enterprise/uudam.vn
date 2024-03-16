@@ -176,5 +176,10 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\StoreVideoCategoryResponseContract::class => Responses\StoreVideoCategoryResponse::class,
         Contracts\UpdateVideoCategoryResponseContract::class => Responses\UpdateVideoCategoryResponse::class,
         Contracts\DeleteVideoCategoryResponseContract::class => Responses\DeleteVideoCategoryResponse::class,
+
+        Contracts\ListVideoResponseContract::class => Responses\ListVideoResponse::class,
+        Contracts\StoreVideoResponseContract::class => Responses\StoreVideoResponse::class,
+        Contracts\UpdateVideoResponseContract::class => Responses\UpdateVideoResponse::class,
+        Contracts\DeleteVideoResponseContract::class => Responses\DeleteVideoResponse::class,
     ];
 }

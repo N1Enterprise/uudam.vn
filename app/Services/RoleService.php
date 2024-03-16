@@ -255,10 +255,16 @@ class RoleService extends BaseService
                 ],
             ],
             'videos' => [
-                'video-categories.index',
-                'video-categories.store',
-                'video-categories.update',
-                'video-categories.delete',
+                'video-categories' => [
+                    'video-categories.index',
+                    'video-categories.store',
+                    'video-categories.update',
+                    'video-categories.delete',
+                ],
+                'videos.index',
+                'videos.store',
+                'videos.update',
+                'videos.delete',
             ],
         ],
     ];
