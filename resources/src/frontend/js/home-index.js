@@ -1,18 +1,23 @@
 $(document).ready(function() {
     function handleHomeVideo() {
-        const containerHeight = $('[home_video_wrapper-resize-detection]').height();
-        const containerWidth = $('[home_video_wrapper-resize-detection]').width();
-        const videoWitdh = $("#home_video_wrapper").width();
+        $('.video-keys-featured-detection').addClass('d-none');
 
-        let styleH = `height: ${containerHeight}px;`;
-        let styleW = ``;
+        setTimeout(() => {
+            const containerHeight = $('[home_video_wrapper-resize-detection]').height();
+            const containerWidth = $('[home_video_wrapper-resize-detection]').width();
+            const videoWitdh = $("#home_video_wrapper").width();
 
-        if (videoWitdh < containerWidth) {
-            styleW = `width: 100%`;
-            styleH = 'height: auto;';
-        }
+            let styleH = `height: ${containerHeight}px;`;
+            let styleW = ``;
 
-        $("#home_video_wrapper").attr('style', `${styleH} ${styleW}`);
+            if (videoWitdh < containerWidth) {
+                styleW = `width: 100%`;
+                styleH = 'height: auto;';
+            }
+
+            $("#home_video_wrapper").attr('style', `${styleH} ${styleW}`);
+            $('.video-keys-featured-detection').removeClass('d-none');
+        }, 300);
     }
 
     handleHomeVideo();
