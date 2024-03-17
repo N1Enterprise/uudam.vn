@@ -697,3 +697,7 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         font-size: 14px;
     }
 }
+
+.limespot-recommendation-box {
+    margin-bottom: 30px;
+}
