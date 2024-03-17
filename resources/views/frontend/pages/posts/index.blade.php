@@ -29,14 +29,14 @@
     <article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="article-template__hero-container">
             <div class="article-template__hero-large media" itemprop="image">
-                <img srcset="{{ $post->image }}" src="{{ $post->image }}" loading="lazy" width="4472" height="3578" alt="{{ $post->title }}">
+                <img srcset="{{ data_get($post, 'image') }}" src="{{ data_get($post, 'image') }}" loading="lazy" width="4472" height="3578" alt="{{ data_get($post, 'title') }}">
             </div>
         </div>
         <header class="page-width page-width--narrow">
-            <h1 class="article-template__title" itemprop="headline">{{ $post->title }}</h1>
+            <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'title') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
                 <span>Cập nhật lần cuối vào lúc: </span>
-                <time datetime="{{ $post->post_at }}">{{ format_datetime($post->updated_at) }}</time>
+                <time datetime="{{ data_get($post, 'post_at') }}">{{ format_datetime(data_get($post, 'post_at')) }}</time>
             </span>
         </header>
         <div class="article-template__social-sharing page-width page-width--narrow">
@@ -58,7 +58,7 @@
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span class="share-button__message hidden" role="status"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.pages.index', $post->slug) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
@@ -78,7 +78,7 @@
             </share-button>
         </div>
         <div class="article-template__content page-width page-width--narrow rte contentview" itemprop="articleBody">
-            {!! $post->content !!}
+            {!! data_get($post, 'content') !!}
         </div>
         <div class="article-template__back element-margin-top center">
             <a href="{{ route('fe.web.home') }}" class="article-template__link link animate-arrow">

@@ -27,6 +27,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const SHOP_LOGOS = 'shop_logos';
     public const SHOP_FAVICONS = 'shop_favicons';
     public const QUEUE_NAMES = 'queue_names';
+    public const FOOTER_MENUS = 'footer_menus';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
@@ -61,6 +62,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SHOP_LOGOS,
             self::SHOP_FAVICONS,
             self::QUEUE_NAMES,
+            self::FOOTER_MENUS
         ];
     }
 }

@@ -236,3 +236,17 @@ Route::get('orders/{id}', [Controllers\OrderController::class, 'edit'])->name('o
 
 Route::get('carts', [Controllers\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
 Route::get('carts/{id}', [Controllers\CartController::class, 'edit'])->name('carts.edit')->middleware(['can:carts.manage']);
+
+Route::get('video-categories', [Controllers\VideoCategoryController::class, 'index'])->name('video-categories.index')->middleware(['can:video-categories.index']);
+Route::get('video-categories/create', [Controllers\VideoCategoryController::class, 'create'])->name('video-categories.create')->middleware(['can:video-categories.store']);
+Route::post('video-categories', [Controllers\VideoCategoryController::class, 'store'])->name('video-categories.store')->middleware(['can:video-categories.store']);
+Route::get('video-categories/{id}', [Controllers\VideoCategoryController::class, 'edit'])->name('video-categories.edit')->middleware(['can:video-categories.update']);
+Route::put('video-categories/{id}', [Controllers\VideoCategoryController::class, 'update'])->name('video-categories.update')->middleware(['can:video-categories.update']);
+Route::delete('video-categories/{id}', [Controllers\VideoCategoryController::class, 'destroy'])->name('video-categories.delete')->middleware(['can:video-categories.delete']);
+
+Route::get('videos', [Controllers\VideoController::class, 'index'])->name('videos.index')->middleware(['can:videos.index']);
+Route::get('videos/create', [Controllers\VideoController::class, 'create'])->name('videos.create')->middleware(['can:videos.store']);
+Route::post('videos', [Controllers\VideoController::class, 'store'])->name('videos.store')->middleware(['can:videos.store']);
+Route::get('videos/{id}', [Controllers\VideoController::class, 'edit'])->name('videos.edit')->middleware(['can:videos.update']);
+Route::put('videos/{id}', [Controllers\VideoController::class, 'update'])->name('videos.update')->middleware(['can:videos.update']);
+Route::delete('videos/{id}', [Controllers\VideoController::class, 'destroy'])->name('videos.delete')->middleware(['can:videos.delete']);

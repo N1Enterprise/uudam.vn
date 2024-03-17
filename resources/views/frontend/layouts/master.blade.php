@@ -54,6 +54,10 @@
     <input type="hidden" data-bo-shared='@json($CONSTANTS_SHARED)'>
     <input type="hidden" data-canprocessasthesame="{{ !empty($AUTHENTICATED_USER) }}" data-authenticated-user='@json($AUTHENTICATED_USER)'>
 
+    @if (data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
+    @include('frontend.layouts.partials.footer.subscribe')
+    @endif
+    
     @include('frontend.layouts.partials.footer.index')
 
     <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>

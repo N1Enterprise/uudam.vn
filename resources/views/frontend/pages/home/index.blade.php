@@ -42,13 +42,13 @@
     @foreach ($homePageDisplayOrders as $homePageDisplayOrder)
     <section class="shopify-section section">
         <div class="section-template-padding page-width">
-            <h3 class="ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
+            <h3 class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
 
             @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
                 @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
                 <div data-section="home_page_display_{{ data_get($item, 'type') }}:{{ data_get($item, 'id') }}" data-section-defer="true">
                     <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom multicolumn background-primary" data-box-style="carousel" style="display: block;">
-                        <div class="recommendation-items" data-show="">
+                        <div class="recommendation-items">
                             @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
                             @include('frontend.pages.home.partials.recommendation-products')
                             @endif
@@ -76,19 +76,19 @@
 
 <section class="shopify-section section">
     @if(! empty($videoOutsideUI))
-    @include('frontend.pages.home.partials.section-featured-videos')
+    @include('frontend.pages.home.partials.section-outstanding-advantages')
     @endif
 </section>
 
-@if(!empty(data_get($SYSTEM_SETTING, 'page_highlight_information', [])))
 <section class="shopify-section section">
-    @include('frontend.pages.home.partials.section-our-highlights')
+@include('frontend.pages.home.partials.section-featured-videos')
 </section>
-@endif
+
 @endsection
 
 @push('js_pages')
 <script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/home-deferload.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/home-index.min.js') }}" type="text/javascript"></script>
 @endpush
