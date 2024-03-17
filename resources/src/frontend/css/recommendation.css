@@ -701,3 +701,15 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
 .limespot-recommendation-box {
     margin-bottom: 30px;
 }
+
+.section-template-padding {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+@media screen and (max-width: 600px) {
+    .section-template-padding {
+        padding-top: 10px!important;
+        padding-bottom: 10px!important;
+    }
+}

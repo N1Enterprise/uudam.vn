@@ -273,19 +273,6 @@
     }
 
 
-    .section-template-padding {
-        padding-top: 30px !important;
-        padding-bottom: 30px !important;
-    }
-
-
-    @media screen and (min-width: 750px) {
-        .section-template-padding {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-    }
-
     .ls-title {
         color: #121212;
         font-size: 13px;
