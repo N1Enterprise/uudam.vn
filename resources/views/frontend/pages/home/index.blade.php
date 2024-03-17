@@ -80,9 +80,11 @@
     @endif
 </section>
 
+@if (! empty($videoCategories))
 <section class="shopify-section section">
-@include('frontend.pages.home.partials.section-featured-videos')
+    @include('frontend.pages.home.partials.section-featured-videos')
 </section>
+@endif
 
 @endsection
 
