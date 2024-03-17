@@ -350,6 +350,10 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     margin: 0 10px;
 }
 
+.section-template-wrapper {
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 600px) {
     .section-template-wrapper .section-template-wrapper-nav-tabs-item {
         padding: 5px;
@@ -367,5 +371,9 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 
     .section-template-wrapper .section-template-wrapper-nav-tabs {
         padding: 0;   
+    }
+
+    .section-template-wrapper {
+        margin-top: 0;
     }
 }

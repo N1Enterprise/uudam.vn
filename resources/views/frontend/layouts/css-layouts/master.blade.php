@@ -274,8 +274,8 @@
 
 
     .section-template-padding {
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
     }
 
 
