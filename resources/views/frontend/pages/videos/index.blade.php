@@ -28,8 +28,8 @@
 <section class="shopify-section section">
     <article class="article-template" itemscope>
         <div class="article-template__hero-container">
-            <div class="article-template__hero-large media" itemprop="thumbnail" style="background: none;">
-                <video style="width: 100%; height: auto;" controls>
+            <div class="article-template__hero-large media" itemprop="thumbnail" style="background: none; display: flex; justify-content: center; align-items: center;">
+                <video style="position: relative;" controls>
                     <source src="{{ data_get($video, 'source_url') }}" type="video/mp4">
                   </video>
             </div>
