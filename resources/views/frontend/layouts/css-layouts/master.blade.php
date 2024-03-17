@@ -72,8 +72,8 @@
 
     #admintopnav {
         position: relative;
-        background: #b4a9a9;
-        background-color: #b4a9a9;
+        background: rgb(116, 118, 121);
+        background-color: rgb(116, 118, 121);
         color: #c3c4c7;
         font-weight: 400;
         font-size: 13px;
@@ -86,7 +86,6 @@
     }
 
     #admintopnav a.split.highlight {
-        background-color: #a49a9a;
         color: #fff;
     }
 

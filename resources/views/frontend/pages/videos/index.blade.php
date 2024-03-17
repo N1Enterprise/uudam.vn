@@ -1,17 +1,17 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($post, 'name') }} | {{ config('app.user_domain') }}
+{{ data_get($video, 'name') }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-<meta name="description" content="{{ data_get($post, 'meta_description') }}">
-<meta name="keywords" content="{{ data_get($post, 'name') }}">
-<meta property="og:title" content="{{ data_get($post, 'meta_title', data_get($post, 'name')) }}">
-<meta property="og:description" content="{{ data_get($post, 'meta_description') }}">
-<meta property="og:image" content="{{ data_get($post, 'image') }}">
-<meta property="og:image:secure_url" content="{{ data_get($post, 'image') }}">
-<meta property="og:url" content="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}">
+<meta name="description" content="{{ data_get($video, 'meta_description') }}">
+<meta name="keywords" content="{{ data_get($video, 'name') }}">
+<meta property="og:title" content="{{ data_get($video, 'meta_title', data_get($video, 'name')) }}">
+<meta property="og:description" content="{{ data_get($video, 'meta_description') }}">
+<meta property="og:thumbnail" content="{{ data_get($video, 'thumbnail') }}">
+<meta property="og:thumbnail:secure_url" content="{{ data_get($video, 'thumbnail') }}">
+<meta property="og:url" content="{{ route('fe.web.videos.index', data_get($video, 'slug')) }}">
 <meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
@@ -26,17 +26,19 @@
 
 @section('content_body')
 <section class="shopify-section section">
-    <article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
+    <article class="article-template" itemscope>
         <div class="article-template__hero-container">
-            <div class="article-template__hero-large media" itemprop="image">
-                <img srcset="{{ data_get($post, 'image') }}" src="{{ data_get($post, 'image') }}" loading="lazy" width="4472" height="3578" alt="{{ data_get($post, 'title') }}">
+            <div class="article-template__hero-large media" itemprop="thumbnail" style="background: none;">
+                <video style="width: 100%; height: auto;" controls>
+                    <source src="{{ data_get($video, 'source_url') }}" type="video/mp4">
+                  </video>
             </div>
         </div>
         <header class="page-width page-width--narrow">
-            <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'title') }}</h1>
+            <h1 class="article-template__title" itemprop="headline">{{ data_get($video, 'name') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
                 <span>Cập nhật lần cuối vào lúc: </span>
-                <time datetime="{{ data_get($post, 'post_at') }}">{{ format_datetime(data_get($post, 'post_at')) }}</time>
+                <time datetime="{{ data_get($video, 'created_at') }}">{{ format_datetime(data_get($video, 'created_at')) }}</time>
             </span>
         </header>
         <div class="article-template__social-sharing page-width page-width--narrow">
@@ -58,7 +60,7 @@
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span class="share-button__message hidden" role="status"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.videos.index', data_get($video, 'slug')) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
@@ -78,7 +80,7 @@
             </share-button>
         </div>
         <div class="article-template__content page-width page-width--narrow rte contentview" itemprop="articleBody">
-            {!! data_get($post, 'content') !!}
+            {!! data_get($video, 'content') !!}
         </div>
         <div class="article-template__back element-margin-top center">
             <a href="{{ route('fe.web.home') }}" class="article-template__link link animate-arrow">

@@ -16,6 +16,7 @@ class UpdateVideoCategoryRequest extends BaseFormRequest implements UpdateVideoC
             'slug' => ['required', 'string', 'max:255', Rule::unique(VideoCategory::class, 'slug')->ignore($this->id)],
             'order' => ['nullable', 'integer'],
             'status' => ['required', 'integer'],
+            'display_on_frontend' => ['required', 'boolean']
         ];
     }
 
@@ -23,6 +24,7 @@ class UpdateVideoCategoryRequest extends BaseFormRequest implements UpdateVideoC
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend),
         ]);
     }
 }

@@ -59,4 +59,25 @@ class VideoCategoryService extends BaseService
             return $status;
         });
     }
+
+    public function searchByGuest($data = [])
+    {
+        $paginate = data_get($data, 'paginate', true);
+
+        $builder = $this->videoCategoryRepository
+            ->modelScopes(['active', 'feDisplay'])
+            ->with(['videos'])
+            ->scopeQuery(function($q) {
+                $q->whereHas('videos', function($q) {
+                    $q->where('status', 1)
+                        ->where('display_on_frontend', 1)
+                        ->orderBy('order', 'asc');
+                });
+            })
+            ->orderBy('order', 'asc');
+
+        return $paginate 
+            ? $builder->search()
+            : $builder->all();
+    }
 }

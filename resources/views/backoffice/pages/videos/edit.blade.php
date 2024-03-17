@@ -140,12 +140,28 @@
 
 								<div class="form-group">
 									<label>{{ __('Mô tả ngắn') }}</label>
-									<textarea name="short_description" class="form-control" id="short_description" rows="3">{{ old('short_description', $video->short_description) }}</textarea>
+									<textarea name="description" class="form-control" id="description" rows="3">{{ old('description', $video->description) }}</textarea>
                                 </div>
 
 								<div class="form-group">
-                                    <x-content-editor id="description" label="{{ __('Mô tả') }}" name="description" value="{{ old('description', $video->description) }}" />
+                                    <x-content-editor id="content" label="{{ __('Nội dung') }}" name="content" value="{{ old('content', $video->content) }}" />
                                 </div>
+
+								<div class="form-group">
+									<label>{{ __('[SEO] Tiêu đề') }}</label>
+									<input type="text" class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}" name="meta_title" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('meta_title', $video->meta_title) }}">
+                                    @error('meta_title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
+
+                                <div class="form-group">
+									<label>{{ __('[SEO] Mô tả') }}</label>
+									<input type="text" class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" name="meta_description" placeholder="{{ __('Nhập [SEO] mô tả') }}" value="{{ old('meta_description', $video->meta_description) }}">
+                                    @error('meta_description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
 
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
@@ -166,7 +182,7 @@
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('display_on_frontend', $video->display_on_frontend) || is_null(old('display_on_frontend')) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend"/>
+												<input type="checkbox" {{ old('display_on_frontend', $video->display_on_frontend) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend"/>
 												<span></span>
 											</label>
 										</span>

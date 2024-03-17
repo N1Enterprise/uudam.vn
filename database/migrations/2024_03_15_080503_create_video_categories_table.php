@@ -20,6 +20,7 @@ class CreateVideoCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->integer('order')->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
+            $table->boolean('display_on_frontend');
             $table->morphs('created_by');
             $table->morphs('updated_by');
             $table->timestamps();

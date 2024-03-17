@@ -64,4 +64,11 @@ class VideoService extends BaseService
     {
         return $this->videoRepository->delete($id);
     }
+
+    public function findByGuest($field, $value, $data = [])
+    {
+        return $this->videoRepository
+            ->modelScopes(['active', 'feDisplay'])
+            ->firstWhere([$field => $value], data_get($data, 'columns', ['*']));
+    }
 }

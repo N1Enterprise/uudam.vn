@@ -15,7 +15,7 @@ class VideoResource extends BaseJsonResource
             'order' => $this->order,
             'thumbnail' => $this->thumbnail,
             'description' => $this->description,
-            'short_description' => $this->short_description,
+            'content' => $this->content,
             'source_url' => $this->source_url,
             'status' => $this->status,
             'status_name' => $this->status_name,

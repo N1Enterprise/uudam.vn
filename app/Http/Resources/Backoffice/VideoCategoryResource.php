@@ -15,6 +15,8 @@ class VideoCategoryResource extends BaseJsonResource
             'order' => $this->order,
             'status' => $this->status,
             'status_name' => $this->status_name,
+            'display_on_frontend' => $this->display_on_frontend,
+            'display_on_frontend_name' => $this->display_on_frontend_name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->whenLoaded('createdBy', function() {

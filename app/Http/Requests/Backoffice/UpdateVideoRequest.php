@@ -21,10 +21,12 @@ class UpdateVideoRequest extends BaseFormRequest implements UpdateVideoRequestCo
             'source_url' => ['required', 'string'],
             'type' => ['required', Rule::in(VideoTypeEnum::all())],
             'status' => ['required', 'integer'],
-            'short_description' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
+            'content' => ['nullable', 'string'],
             'video_category_id' => ['nullable', 'integer', Rule::exists(VideoCategory::class, 'id')],
-            'display_on_frontend' => ['required', 'bollean']
+            'display_on_frontend' => ['required', 'boolean'],
+            'meta_title' => ['nullable', 'max:255'],
+            'meta_description' => ['nullable', 'max:255'],
         ];
     }
 

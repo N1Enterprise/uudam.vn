@@ -24,10 +24,12 @@ class CreateVideosTable extends Migration
             $table->text('source_url');
             $table->tinyInteger('type')->comment(VideoTypeEnum::class);
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->foreignId('video_category_id')->nullable();
             $table->boolean('display_on_frontend');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
             $table->morphs('created_by');
             $table->morphs('updated_by');
             $table->timestamps();
