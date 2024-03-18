@@ -6,9 +6,8 @@ use App\Enum\VideoTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
-use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Video extends BaseModel
 {
     use Activatable;
     use HasImpactor;

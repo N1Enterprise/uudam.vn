@@ -668,6 +668,7 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
     text-transform: uppercase;
     font-size: 18px;
     color: #fff;
+    margin-bottom: 15px;
 }
 
 .custom-ls-box-title::before {

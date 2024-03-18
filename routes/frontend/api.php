@@ -26,6 +26,8 @@ Route::get('user/display-item/{id}/inventories', [Controllers\UserHomePageDispla
 Route::get('user/display-item/{id}/collections', [Controllers\UserHomePageDisplayItemController::class, 'getCollections']);
 Route::get('user/display-item/{id}/posts', [Controllers\UserHomePageDisplayItemController::class, 'getPosts']);
 Route::get('user/display-item/{id}/blogs', [Controllers\UserHomePageDisplayItemController::class, 'getBlogs']);
+Route::get('user/display-item/{id}/banners-100', [Controllers\UserHomePageDisplayItemController::class, 'getBanners100']);
+Route::get('user/display-item/{id}/banners-50', [Controllers\UserHomePageDisplayItemController::class, 'getBanners50']);
 
 Route::get('localization/provinces', [Controllers\AddressController::class, 'getProvinces'])->name('localization.provinces');
 Route::get('localization/{proviceCode}/districts', [Controllers\AddressController::class, 'getDistrictsByProvince'])->name('localization.districts-by-province');

@@ -7,7 +7,9 @@ use App\Contracts\Requests\Backoffice\UpdateHomePageDisplayItemRequestContract;
 use App\Contracts\Responses\Backoffice\DeleteHomePageDisplayItemResponseContract;
 use App\Contracts\Responses\Backoffice\StoreHomePageDisplayItemResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateHomePageDisplayItemResponseContract;
+use App\Enum\BannerTypeEnum;
 use App\Enum\HomePageDisplayType;
+use App\Services\BannerService;
 use App\Services\CollectionService;
 use App\Services\HomePageDisplayItemService;
 use App\Services\HomePageDisplayOrderService;
@@ -24,6 +26,7 @@ class HomePageDisplayItemController extends BaseController
     public $homePageDisplayOrderService;
     public $postService;
     public $postCategoryService;
+    public $bannerService;
 
     public function __construct(
         HomePageDisplayItemService $homePageDisplayItemService, 
@@ -31,7 +34,8 @@ class HomePageDisplayItemController extends BaseController
         CollectionService $collectionService,
         HomePageDisplayOrderService $homePageDisplayOrderService,
         PostService $postService,
-        PostCategoryService $postCategoryService
+        PostCategoryService $postCategoryService,
+        BannerService $bannerService
     ) {
         $this->homePageDisplayItemService = $homePageDisplayItemService;
         $this->inventoryService = $inventoryService;
@@ -39,6 +43,7 @@ class HomePageDisplayItemController extends BaseController
         $this->homePageDisplayOrderService = $homePageDisplayOrderService;
         $this->postService = $postService;
         $this->postCategoryService = $postCategoryService;
+        $this->bannerService = $bannerService;
     }
 
     public function index()
@@ -54,8 +59,25 @@ class HomePageDisplayItemController extends BaseController
         $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $postCategories = $this->postCategoryService->allAvailable(['scopes' => ['feDisplay']]);
         $groups = $this->homePageDisplayOrderService->allAvailable();
+        $banners = $this->bannerService->allAvailable([
+            'condition' => [
+                'types' => [BannerTypeEnum::IN_APP_100_PERCENT, BannerTypeEnum::IN_APP_50_PERCENT]
+            ]
+        ]);
 
-        return view('backoffice.pages.home-page-display-items.create', compact('homePageDisplayTypeEnumLabels', 'inventories', 'collections', 'groups', 'posts', 'postCategories'));
+        $banners100Percent = $banners->filter(fn($item) => data_get($item, 'type') == BannerTypeEnum::IN_APP_100_PERCENT);
+        $banners50Percent = $banners->filter(fn($item) => data_get($item, 'type') == BannerTypeEnum::IN_APP_50_PERCENT);
+
+        return view('backoffice.pages.home-page-display-items.create', compact(
+            'homePageDisplayTypeEnumLabels', 
+            'inventories', 
+            'collections', 
+            'groups', 
+            'posts', 
+            'postCategories',
+            'banners100Percent',
+            'banners50Percent',
+        ));
     }
 
     public function edit($id)
@@ -67,8 +89,26 @@ class HomePageDisplayItemController extends BaseController
         $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $postCategories = $this->postCategoryService->allAvailable(['scopes' => ['feDisplay']]);
         $groups = $this->homePageDisplayOrderService->allAvailable();
+        $banners = $this->bannerService->allAvailable([
+            'condition' => [
+                'types' => [BannerTypeEnum::IN_APP_100_PERCENT, BannerTypeEnum::IN_APP_50_PERCENT]
+            ]
+        ]);
 
-        return view('backoffice.pages.home-page-display-items.edit', compact('homePageDisplayItem', 'homePageDisplayTypeEnumLabels', 'inventories', 'collections', 'groups', 'posts', 'postCategories'));
+        $banners100Percent = $banners->filter(fn($item) => data_get($item, 'type') == BannerTypeEnum::IN_APP_100_PERCENT);
+        $banners50Percent = $banners->filter(fn($item) => data_get($item, 'type') == BannerTypeEnum::IN_APP_50_PERCENT);
+
+        return view('backoffice.pages.home-page-display-items.edit', compact(
+            'homePageDisplayItem', 
+            'homePageDisplayTypeEnumLabels', 
+            'inventories', 
+            'collections', 
+            'groups', 
+            'posts', 
+            'postCategories',
+            'banners100Percent',
+            'banners50Percent',
+        ));
     }
 
     public function store(StoreHomePageDisplayItemRequestContract $request)

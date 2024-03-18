@@ -5,6 +5,7 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateHomePageDisplayItemRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\HomePageDisplayType;
+use App\Models\Banner;
 use App\Models\Collection;
 use App\Models\HomePageDisplayOrder;
 use App\Models\Inventory;
@@ -39,6 +40,10 @@ class UpdateHomePageDisplayItemRequest extends BaseFormRequest implements Update
 
         if ($this->type == HomePageDisplayType::BLOG) {
             $rules['linked_items.*'] = ['required', 'integer', Rule::exists(PostCategory::class, 'id')];
+        }
+
+        if (in_array($this->type, [HomePageDisplayType::IN_APP_BANNER_100_PERCENT, HomePageDisplayType::IN_APP_BANNER_50_PERCENT])) {
+            $rules['linked_items.*'] = ['required', 'integer', Rule::exists(Banner::class, 'id')];
         }
 
         return $rules;

@@ -377,3 +377,25 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
         margin-top: 0;
     }
 }
+
+/* in-app-banner-wrapper */
+.in-app-banner-wrapper .inapp-banner-link {
+    position: relative;
+}
+
+.in-app-banner-wrapper .inapp-banner-link .inapp-banner-desktop {
+    display: block;
+}
+
+.in-app-banner-wrapper .inapp-banner-link .inapp-banner-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    .in-app-banner-wrapper .inapp-banner-link .inapp-banner-desktop {
+        display: none!important;
+    }
+    .in-app-banner-wrapper .inapp-banner-link .inapp-banner-mobile {
+        display: block!important;
+    }
+}

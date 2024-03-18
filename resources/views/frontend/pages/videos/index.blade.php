@@ -29,10 +29,7 @@
     <article class="article-template" itemscope>
         <div class="article-template__hero-container">
             <div class="article-template__hero-large media" itemprop="thumbnail" style="background: none; display: flex; justify-content: center; align-items: center;">
-                <div class="article-template__hero-large media" itemprop="image">
-                    <img srcset="{{ data_get($post, 'image') }}" src="{{ data_get($post, 'image') }}" loading="lazy" width="4472" height="3578" alt="{{ data_get($post, 'title') }}">
-                </div>
-                <video style="position: relative;" controls>
+                <video style="position: relative; z-index: 1;" controls>
                     <source src="{{ data_get($video, 'source_url') }}" type="video/mp4">
                 </video>
             </div>

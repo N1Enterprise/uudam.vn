@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Frontend\Api;
 
+use App\Contracts\Responses\Frontend\ListLinkedBannerResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedBlogResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedCollectionResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedInventoryResponseContract;
 use App\Contracts\Responses\Frontend\ListLinkedPostResponseContract;
+use App\Enum\BannerTypeEnum;
+use App\Services\BannerService;
 use App\Services\CollectionService;
 use App\Services\HomePageDisplayItemService;
 use App\Services\InventoryService;
@@ -20,13 +23,15 @@ class UserHomePageDisplayItemController extends BaseApiController
     public $collectionService;
     public $postService;
     public $postCategoryService;
+    public $bannerService;
 
     public function __construct(
         HomePageDisplayItemService $homePageDisplayItemService, 
         InventoryService $inventoryService, 
         CollectionService $collectionService,
         PostService $postService,
-        PostCategoryService $postCategoryService
+        PostCategoryService $postCategoryService,
+        BannerService $bannerService
     ) {
         parent::__construct();
 
@@ -35,6 +40,7 @@ class UserHomePageDisplayItemController extends BaseApiController
         $this->collectionService = $collectionService;
         $this->postService = $postService;
         $this->postCategoryService = $postCategoryService;
+        $this->bannerService = $bannerService;
     }
 
     public function getInventories($id)
@@ -79,5 +85,27 @@ class UserHomePageDisplayItemController extends BaseApiController
         $blogs = $this->postCategoryService->searchForGuest(['filter_ids' => $blogIds]);
 
         return $this->response(ListLinkedBlogResponseContract::class, $blogs);
+    }
+
+    public function getBanners100($id)
+    {
+        $displayItem = $this->homePageDisplayItemService->show($id);
+
+        $bannerIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
+
+        $blogs = $this->bannerService->searchForGuest(['filter_ids' => $bannerIds, 'type' => BannerTypeEnum::IN_APP_100_PERCENT]);
+
+        return $this->response(ListLinkedBannerResponseContract::class, $blogs);
+    }
+
+    public function getBanners50($id)
+    {
+        $displayItem = $this->homePageDisplayItemService->show($id);
+
+        $bannerIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
+
+        $blogs = $this->bannerService->searchForGuest(['filter_ids' => $bannerIds, 'type' => BannerTypeEnum::IN_APP_50_PERCENT]);
+
+        return $this->response(ListLinkedBannerResponseContract::class, $blogs);
     }
 }

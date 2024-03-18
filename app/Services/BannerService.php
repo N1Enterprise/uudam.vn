@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Common\ImageHelper;
+use App\Enum\BannerTypeEnum;
 use App\Models\Banner;
 use App\Repositories\Contracts\BannerRepositoryContract;
 use App\Services\BaseService;
@@ -30,6 +31,13 @@ class BannerService extends BaseService
     public function allAvailable($data = [])
     {
         return $this->bannerRepository->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($data) {
+                $types = Arr::wrap(data_get($data, 'condition.types', []));
+
+                if (! empty($types)) {
+                    $q->whereIn('type', $types);
+                }
+            })
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }
@@ -73,12 +81,14 @@ class BannerService extends BaseService
         return DB::transaction(function () use ($attributes) {
             $imageHelper = ImageHelper::make('appearance')->hasOptimization();
 
+            $imageConfigByType = BannerTypeEnum::getImageConfigByType(data_get($attributes, 'type'));
+
             $attributes['desktop_image'] = $imageHelper
-                ->setConfigKey([Banner::class, 'desktop_image'])
+                ->setConfigKey([Banner::class, data_get($imageConfigByType, 'desktop')])
                 ->uploadImage(data_get($attributes, 'desktop_image'));
 
             $attributes['mobile_image']  = $imageHelper
-                ->setConfigKey([Banner::class, 'mobile_image'])
+                ->setConfigKey([Banner::class, data_get($imageConfigByType, 'mobile')])
                 ->uploadImage(data_get($attributes, 'mobile_image'));
 
             return $this->bannerRepository->create($attributes);
@@ -95,12 +105,14 @@ class BannerService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $imageHelper = ImageHelper::make('appearance')->hasOptimization();
 
+            $imageConfigByType = BannerTypeEnum::getImageConfigByType(data_get($attributes, 'type'));
+
             $attributes['desktop_image'] = $imageHelper
-                ->setConfigKey([Banner::class, 'desktop_image'])
+                ->setConfigKey([Banner::class, data_get($imageConfigByType, 'desktop')])
                 ->uploadImage(data_get($attributes, 'desktop_image'));
 
             $attributes['mobile_image']  = $imageHelper
-                ->setConfigKey([Banner::class, 'mobile_image'])
+                ->setConfigKey([Banner::class, data_get($imageConfigByType, 'mobile')])
                 ->uploadImage(data_get($attributes, 'mobile_image'));
 
             return $this->bannerRepository->update($attributes, $id);
@@ -110,5 +122,23 @@ class BannerService extends BaseService
     public function delete($id)
     {
         return $this->bannerRepository->delete($id);
+    }
+
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $result = $this->bannerRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
     }
 }

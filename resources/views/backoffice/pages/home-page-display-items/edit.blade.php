@@ -164,6 +164,46 @@
 									</div>
 								</div>
 
+								<div data-type="5" class="d-none">
+									<div class="form-group">
+										<label>{{ __('Banners (100%)') }}</label>
+										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn Banners') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Banner_100_Percent_Selector" multiple data-selected-text-format="count > 5">
+											@foreach($banners100Percent as $banner)
+											<option
+												value="{{ $banner->id }}"
+												data-tokens="{{ $banner->id }} | {{ $banner->name }}}"
+												data-banner-id="{{ $banner->id }}"
+												data-banner-100-percent-name="{{ $banner->name }}"
+												{{ in_array($banner->id, old('linked_items', $homePageDisplayItem->linked_items ?? [])) ? 'selected' : '' }}
+											>{{ $banner->name }}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group Display_Banner_100_Percent_Allowed_Holder mb-0">
+										<div class="Display_Banner_100_Percent_Holder_Content"></div>
+									</div>
+								</div>
+
+								<div data-type="6" class="d-none">
+									<div class="form-group">
+										<label>{{ __('Banners (50%)') }}</label>
+										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn Banners') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Banner_50_Percent_Selector" multiple data-selected-text-format="count > 5">
+											@foreach($banners50Percent as $banner)
+											<option
+												value="{{ $banner->id }}"
+												data-tokens="{{ $banner->id }} | {{ $banner->name }}}"
+												data-banner-id="{{ $banner->id }}"
+												data-banner-50-percent-name="{{ $banner->name }}"
+												{{ in_array($banner->id, old('linked_items', $homePageDisplayItem->linked_items ?? [])) ? 'selected' : '' }}
+											>{{ $banner->name }}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group Display_Banner_50_Percent_Allowed_Holder mb-0">
+										<div class="Display_Banner_50_Percent_Holder_Content"></div>
+									</div>
+								</div>
+
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
@@ -209,6 +249,8 @@
 @include('backoffice.pages.home-page-display-items.js-pages.display-collections')
 @include('backoffice.pages.home-page-display-items.js-pages.display-posts')
 @include('backoffice.pages.home-page-display-items.js-pages.display-blogs')
+@include('backoffice.pages.home-page-display-items.js-pages.display-banners-100-percent')
+@include('backoffice.pages.home-page-display-items.js-pages.display-banners-50-percent')
 
 <script>
 	$(document).ready(function() {
