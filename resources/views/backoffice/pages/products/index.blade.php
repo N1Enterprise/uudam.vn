@@ -61,7 +61,7 @@
                         <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
-                <tbody>x
+                <tbody>
 
                 </tbody>
             </table>
