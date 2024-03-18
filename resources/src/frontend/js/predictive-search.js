@@ -43,13 +43,14 @@ const PREDICTIVE_SEARCH = {
                 const htmlOfPosts = PREDICTIVE_SEARCH.buildPostHtml(response?.posts || []);
                 const htmlOfInventories = PREDICTIVE_SEARCH.buildInventoriesHtml(response?.inventories || []);
                 const htmlOfCollections = PREDICTIVE_SEARCH.buildCollectionsHtml(response?.collections || []);
+                const htmlOfVideos = PREDICTIVE_SEARCH.buildVideosHtml(response?.videos || []);
                 const htmlOfOthersearch = PREDICTIVE_SEARCH.buildOthersearchHtml(response?.othersearch || []);
 
-                PREDICTIVE_SEARCH.renderResultHTML({ htmlOfPosts, htmlOfInventories, htmlOfCollections, htmlOfOthersearch });
+                PREDICTIVE_SEARCH.renderResultHTML({ htmlOfPosts, htmlOfInventories, htmlOfCollections, htmlOfVideos, htmlOfOthersearch });
             },
         });
     },
-    renderResultHTML: ({ htmlOfPosts, htmlOfInventories, htmlOfCollections, htmlOfOthersearch }) => {
+    renderResultHTML: ({ htmlOfPosts, htmlOfInventories, htmlOfCollections, htmlOfVideos, htmlOfOthersearch }) => {
         $('#Predictive_Search_Product_Results').toggleClass('d-none', !htmlOfInventories?.length);
         $('#Predictive_Search_Product_Results').find('ul.predictive-search__results-list').html(htmlOfInventories || '');
 
@@ -58,6 +59,9 @@ const PREDICTIVE_SEARCH = {
 
         $('#Predictive_Search_Collection_Results').toggleClass('d-none', !htmlOfCollections?.length);
         $('#Predictive_Search_Collection_Results').find('ul.predictive-search__results-list').html(htmlOfCollections || '');
+
+        $('#Predictive_Search_Video_Results').toggleClass('d-none', !htmlOfVideos?.length);
+        $('#Predictive_Search_Video_Results').find('ul.predictive-search__results-list').html(htmlOfVideos || '');
 
         $('#Predictive_Search_Other_Results').toggleClass('d-none', !htmlOfOthersearch?.length);
         $('#Predictive_Search_Other_Results').find('ul.predictive-search__results-list').html(htmlOfOthersearch || '');
@@ -106,6 +110,24 @@ const PREDICTIVE_SEARCH = {
                 <li class="predictive-search__list-item" role="option" aria-selected="false">
                     <a href="${route}" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
                         <img class="predictive-search__image" src="${item.primary_image}" alt="${item.name}" width="50" height="50.0">
+                        <div class="predictive-search__item-content predictive-search__item-content--centered">
+                            <h3 class="predictive-search__item-heading h5">${item.name}</h3>
+                        </div>
+                    </a>
+                </li>
+            `;
+        });
+
+        return html.join('');
+    },
+    buildVideosHtml: (data) => {
+        const html = data.map(function(item) {
+            const route = VIDEO_ROUTES.web_detail.replace(':slug', item.slug);
+
+            return `
+                <li class="predictive-search__list-item" role="option" aria-selected="false">
+                    <a href="${route}" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
+                        <img class="predictive-search__image" src="${item.thumbnail}" alt="${item.name}" width="50" height="50.0">
                         <div class="predictive-search__item-content predictive-search__item-content--centered">
                             <h3 class="predictive-search__item-heading h5">${item.name}</h3>
                         </div>

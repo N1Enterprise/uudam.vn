@@ -40,6 +40,12 @@ class PostCategoryService extends BaseService
                 if (! empty($filterIds)) {
                     $q->whereIn('id', $filterIds);
                 }
+
+                $type = data_get($data, 'type');
+
+                if (! empty($type)) {
+                    $q->where('type', $type);
+                }
             });
 
         return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));

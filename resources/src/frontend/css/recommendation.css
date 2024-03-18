@@ -656,3 +656,61 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
         order: -1;
     }
 }
+
+.custom-ls-box-title {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    font-weight: 600;
+    padding: 8px 11px 5px 11px;
+    background: #309084;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.custom-ls-box-title::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: inherit;
+    -webkit-transform-origin: bottom;
+    -moz-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    -o-transform-origin: bottom;
+    transform-origin: bottom;
+    -webkit-transform: skew(-23deg);
+    -moz-transform: skew(-23deg);
+    -ms-transform: skew(-23deg);
+    -o-transform: skew(-23deg);
+    transform: skew(-23deg);
+    z-index: -1;
+}
+
+@media screen and (max-width: 600px) {
+    .custom-ls-box-title {
+        padding: 5px 11px 4px 11px;
+        font-size: 14px;
+    }
+}
+
+.limespot-recommendation-box {
+    margin-bottom: 30px;
+}
+
+.section-template-padding {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+@media screen and (max-width: 600px) {
+    .section-template-padding {
+        padding-top: 10px!important;
+        padding-bottom: 10px!important;
+    }
+}

@@ -18,6 +18,7 @@ class UserSearchService extends BaseService
         $posts = [];
         $inventories = [];
         $collections = [];
+        $videos = [];
 
         $customSearchKeyworkds = SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get('custom_search_keyworkds', []);
 
@@ -65,6 +66,19 @@ class UserSearchService extends BaseService
                 ->get();
         }
 
+        if (in_array('video', $resourcesTypes)) {
+            $videos = DB::table('videos')
+                ->select(['id', 'name', 'slug', 'thumbnail'])
+                ->where('status', 1)
+                ->where('display_on_frontend', 1)
+                ->where(function($q) use ($query) {
+                    $q->where('name', 'LIKE', '%'.$query.'%')
+                        ->orWhere('slug', 'LIKE', '%'.$query.'%');
+                })
+                ->limit(data_get($resourcesLimits, 'video', 4))
+                ->get();;
+        }
+
         $otherSearch = collect($customSearchKeyworkds)
             ->filter(function($item) use ($query) {
                 $filtered = array_filter(data_get($item, 'keywords', []), function($keyword) use ($query) {
@@ -75,9 +89,9 @@ class UserSearchService extends BaseService
             })
             ->map(function($item) {
                 return [
-                    'image'         => data_get($item, 'image'),
-                    'name'          => data_get($item, 'name'),
-                    'link'          => data_get($item, 'link'),
+                    'image' => data_get($item, 'image'),
+                    'name' => data_get($item, 'name'),
+                    'link' => data_get($item, 'link'),
                     'open_new_tab'  => data_get($item, 'open_new_tab'),
                 ];
             })
@@ -87,6 +101,7 @@ class UserSearchService extends BaseService
             'posts' => $posts,
             'inventories' => $inventories,
             'collections' => $collections,
+            'videos' => $videos,
             'othersearch' => $otherSearch,
         ];
     }

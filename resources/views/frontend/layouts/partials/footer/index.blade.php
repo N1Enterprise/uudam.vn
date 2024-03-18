@@ -1,128 +1,89 @@
-<div class="shopify-section">
-    <footer class="footer color-background-1 gradient section-footer-padding">
-        <div class="footer__content-top page-width">
-            <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet ">
-                <div class="footer-block grid__item footer-block-about">
-                    <h2 class="footer-block__heading">GIỚI THIỆU VỀ ƯU ĐÀM</h2>
-                    <div class="footer-block__details-content rte">
-                        <p style="text-align: justify;">Ở Ưu Đàm, chúng tôi tự hào là một đơn vị chuyên nghiệp cung cấp các sản phẩm và nguyên liệu từ nến độc đáo và chất lượng. Với cam kết đem đến trải nghiệm mua sắm tốt nhất cho khách hàng, chúng tôi không chỉ cung cấp những sản phẩm chất lượng mà còn mang đến sự đa dạng và sáng tạo trong thế giới của nghệ thuật làm đẹp và trang trí.</p>
-                    </div>
-                </div>
-                <div class="footer-block grid__item footer-block--menu">
-                    @if (has_data($FOOTER_PAGES))
-                    <h2 class="footer-block__heading">MENU</h2>
-                    <ul class="footer-block__details-content list-unstyled">
-                        @foreach ($FOOTER_PAGES as $menu)
-                        <li>
-                            <a href="{{ route('fe.web.pages.index', data_get($menu, 'slug')) }}" class="link link--text list-menu__item list-menu__item--link">{{ data_get($menu, 'name') }}</a>
-                        </li>
-                        @endforeach
-                    </ul>
-                    @endif
-                </div>
-            </div>
-            <div class="footer-block--newsletter">
-                <div class="footer-block__newsletter">
-                    @if (data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
-                    <h2 class="footer-block__heading">{{ data_get($SYSTEM_SETTING, 'receive_new_post_setting.title') }}</h2>
-                    <p>{{ data_get($SYSTEM_SETTING, 'receive_new_post_setting.description') }}</p>
-                    <form method="post" action="{{ route('fe.api.user.subscribe.news-letter') }}" id="ContactFooter" accept-charset="UTF-8"
-                        class="footer__newsletter newsletter-form">
-                        <div class="newsletter-form__field-wrapper">
-                            <div class="field">
-                                <input id="NewsletterForm--footer" type="email" name="contact[email]" class="field__input" value="" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Email" required>
-                                <label class="field__label" for="NewsletterForm--footer">Email</label>
-                                <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="Subscribe">
-                                    <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
-                                    </svg>
-                                </button>
+<div id="shopify-section-sections--16783368323330__footer" class="shopify-section shopify-section-group-footer-group">
+    <div id="FooterMobileNavWrap" class="footer__section footer__section--border medium-up--hide hide">
+        <div id="FooterMobileNav" class="page-width"></div>
+    </div>
+    <footer class="site-footer" data-section-id="sections--16783368323330__footer" data-section-type="footer-section">
+        <div id="FooterMenus" class="footer__section footer__section--menus">
+            <div class="page-width">
+                <div class="footer__blocks">
+                    @foreach (data_get($SYSTEM_SETTING, 'footer_menus') as $item)
+                    <div class="footer__block" data-type="menu">
+                        <h2 class="footer__title">{{ data_get($item, 'group') }}</h2>
+                        <ul class="footer__menu">
+                            @foreach (data_get($item, 'menus', []) as $menu)
+                            <li>
+                                <a href="{{ data_get($menu, 'url') }}">{{ data_get($menu, 'name') }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>    
+                    @endforeach
+                    <div class="footer__block" data-type="contact">
+                        <div class="footer__mobile-section">
+                            <div class="footer__blocks--mobile">
+                                <div class="footer__block--mobile">
+                                    <h2 class="footer__title">Thông tin liên hệ</h2>
+                                    <ul class="footer__menu footer__menu--underline">
+                                        <li>
+                                            <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}" target="_blank">
+                                                <span class="icon-and-text">
+                                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-phone" viewBox="0 0 64 64">
+                                                        <path d="m18.4 9.65 10.2 10.2-6.32 6.32c2.1 7 6.89 12.46 15.55 15.55l6.32-6.32 10.2 10.2-8.75 8.75C25.71 50.3 13.83 38.21 9.65 18.4Z"></path>
+                                                    </svg>
+                                                    <span>{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="mailto:{{ data_get($SYSTEM_SETTING, 'page_settings.email_support.value') }}" target="_blank">
+                                                <span class="icon-and-text">
+                                                    <svg class="icon icon-email" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="_x32_" viewBox="0 0 512 512" xml:space="preserve">
+                                                        <g><path class="st0" d="M510.746,110.361c-2.128-10.754-6.926-20.918-13.926-29.463c-1.422-1.794-2.909-3.39-4.535-5.009   c-12.454-12.52-29.778-19.701-47.531-19.701H67.244c-17.951,0-34.834,7-47.539,19.708c-1.608,1.604-3.099,3.216-4.575,5.067   c-6.97,8.509-11.747,18.659-13.824,29.428C0.438,114.62,0,119.002,0,123.435v265.137c0,9.224,1.874,18.206,5.589,26.745   c3.215,7.583,8.093,14.772,14.112,20.788c1.516,1.509,3.022,2.901,4.63,4.258c12.034,9.966,27.272,15.45,42.913,15.45h377.51   c15.742,0,30.965-5.505,42.967-15.56c1.604-1.298,3.091-2.661,4.578-4.148c5.818-5.812,10.442-12.49,13.766-19.854l0.438-1.05   c3.646-8.377,5.497-17.33,5.497-26.628V123.435C512,119.06,511.578,114.649,510.746,110.361z M34.823,99.104   c0.951-1.392,2.165-2.821,3.714-4.382c7.689-7.685,17.886-11.914,28.706-11.914h377.51c10.915,0,21.115,4.236,28.719,11.929   c1.313,1.327,2.567,2.8,3.661,4.272l2.887,3.88l-201.5,175.616c-6.212,5.446-14.21,8.443-22.523,8.443   c-8.231,0-16.222-2.99-22.508-8.436L32.19,102.939L34.823,99.104z M26.755,390.913c-0.109-0.722-0.134-1.524-0.134-2.341V128.925   l156.37,136.411L28.199,400.297L26.755,390.913z M464.899,423.84c-6.052,3.492-13.022,5.344-20.145,5.344H67.244   c-7.127,0-14.094-1.852-20.142-5.344l-6.328-3.668l159.936-139.379l17.528,15.246c10.514,9.128,23.922,14.16,37.761,14.16   c13.89,0,27.32-5.032,37.827-14.16l17.521-15.253L471.228,420.18L464.899,423.84z M485.372,388.572   c0,0.803-0.015,1.597-0.116,2.304l-1.386,9.472L329.012,265.409l156.36-136.418V388.572z"/></g>
+                                                    </svg>
+                                                    <span>{{ data_get($SYSTEM_SETTING, 'page_settings.email_support.value') }}</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <h3 class="newsletter-form__message newsletter-form__message--success form__message d-none" id="ContactFooter-success" tabindex="-1" autofocus="">
-                            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-success" viewBox="0 0 13 13">
-                                <path d="M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z" fill="#428445" stroke="white" stroke-width="0.7"></path>
-                                <path d="M5.53271 8.66357L9.25213 4.68197" stroke="white"></path>
-                                <path d="M4.10645 6.7688L6.13766 8.62553" stroke="white"></path>
-                            </svg>
-                        </h3>
-                    </form>
-
-                    @endif
-                </div>
-                <ul class="footer__list-social list-unstyled list-social" role="list">
-                    @foreach (data_get($SYSTEM_SETTING, 'social_networks', []) as $network)
-                    <li class="list-social__item">
-                        <a href="{{ data_get($network, 'link') }}" target="_blank" title="{{ data_get($network, 'tooltip') }}" class="link list-social__link">
-                            <img src="{{ data_get($network, 'icon.link') }}" alt="{{ data_get($network, 'name') }}" width="{{ data_get($network, 'icon.width') }}" height="{{ data_get($network, 'icon.height') }}">
-                            <span class="visually-hidden">{{ data_get($network, 'name') }}</span>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        @if (has_data( data_get($SYSTEM_SETTING, 'page_settings.informed_moit.enable') ) || has_data( data_get($SYSTEM_SETTING, 'page_settings.registered_moit.enable') ))
-        <div class="footer__content-bottom">
-            <div class="footer__content-bottom-wrapper page-width" style="display: flex; align-items: center; justify-content: center;">
-                @if (has_data( data_get($SYSTEM_SETTING, 'page_settings.informed_moit.enable') ))
-                <div class="item" style="padding: 5px 10px;">
-                    <a href="{{ data_get($SYSTEM_SETTING, 'page_settings.informed_moit.link') }}" target="_blank">
-                        <img width="150" src="{{ asset_with_version('frontend/assets/images/shared/bo-cong-thuong-informed.png') }}" alt="Đã thông báo bộ công thương">
-                    </a>
-                </div>
-                @endif
-                @if (has_data( data_get($SYSTEM_SETTING, 'page_settings.registered_moit.enable') ))
-                <div class="item" style="padding: 5px 10px;">
-                    <a href="{{ data_get($SYSTEM_SETTING, 'page_settings.registered_moit.link') }}" target="_blank">
-                        <img width="150" src="{{ asset_with_version('frontend/assets/images/shared/bo-cong-thuong-registered.png') }}" alt="Đã đăng ký bộ công thương">
-                    </a>
-                </div>
-                @endif
-            </div>
-        </div>
-        @endif
-        <div class="footer__content-bottom">
-            <div class="footer__content-bottom-wrapper page-width">
-                <div class="footer__column footer__localization isolate"></div>
-                <div class="footer__column footer__column--info">
-                    <div class="footer__copyright caption">
-                        <small class="copyright__content">© {{ now()->year }}, <a href="/" title="">{{ data_get($SYSTEM_SETTING, 'page_settings.title') }}</a></small>
-                        @if (has_data(data_get($SYSTEM_SETTING, 'page_settings.license')))
-                        <small class="copyright__content">
-                            <a target="_blank" rel="nofollow" href="{{ data_get($SYSTEM_SETTING, 'page_settings.license.link') }}">Được cung cấp bởi <span style="text-decoration: underline;">{{ data_get($SYSTEM_SETTING, 'page_settings.license.value') }}</span></a>
-                        </small>
-                        @endif
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__section">
+            <div class="page-width text-center small--text-left" style="text-align: center;">
+                <div class="footer__base-links">
+                    <span> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} </span>
+                    <span>|</span>
+                    <a target="_blank" rel="nofollow" href="{{ data_get($SYSTEM_SETTING, 'page_settings.license.link') }}" class="js-no-transition">Được cung cấp bởi {{ data_get($SYSTEM_SETTING, 'page_settings.license.value') }}</a>
                 </div>
             </div>
         </div>
     </footer>
 </div>
-
 @push('js_pages')
-    @if(data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
-    <script>
-        $('#ContactFooter').on('submit', function(e) {
-            e.preventDefault();
+@if(data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
+<script>
+    $('#ContactFooter').on('submit', function(e) {
+        e.preventDefault();
 
-            const email = $(this).find('[name="contact[email]"]').val();
+        const email = $(this).find('[name="contact[email]"]').val();
 
-            $.ajax({
-                url: $(this).attr('action'),
-                method: 'POST',
-                data: { email },
-                beforeSend: () => {
-                    $('#ContactFooter-success').addClass('d-none');
-                },
-                success: () => {
-                    $('#ContactFooter-success').removeClass('d-none');
-                },
-                error: function (jqXHR, status, errorThrown) {
-                    toastr.error("Đăng ký không thành công.");
-                },
-            });
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            data: { email },
+            success: () => {
+                toastr.success("Đăng ký thành công.");
+                $('#ContactFooter').find('[name="contact[email]"]').val('');
+            },
+            error: function (jqXHR, status, errorThrown) {
+                toastr.error("Đăng ký không thành công.");
+            },
         });
-    </script>
-    @endif
+    });
+</script>
+@endif
 @endpush

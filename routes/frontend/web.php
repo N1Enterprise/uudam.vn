@@ -11,6 +11,8 @@ Route::get('blogs/{slug}', [Controllers\BlogController::class, 'index'])->name('
 
 Route::get('posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
 
+Route::get('videos/{slug}', [Controllers\VideoController::class, 'index'])->name('videos.index');
+
 Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index'])->name('collections.index');
 
 Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');

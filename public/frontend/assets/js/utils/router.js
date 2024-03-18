@@ -15,6 +15,8 @@ const HOME_PAGE_DISPLAY_ITEM_ROUTES = {
     api_display_item_collection: boHost + '/fe/api/user/display-item/:id/collections',
     api_display_item_post: boHost + '/fe/api/user/display-item/:id/posts',
     api_display_item_blog: boHost + '/fe/api/user/display-item/:id/blogs',
+    api_display_item_banner_100: boHost + '/fe/api/user/display-item/:id/banners-100',
+    api_display_item_banner_50: boHost + '/fe/api/user/display-item/:id/banners-50',
 };
 
 const CATALOG_ROUTES = {
@@ -50,6 +52,10 @@ const COLLECTION_ROUTES = {
 
 const BLOG_ROUTES = {
     web_detail: boHost + '/blogs/:slug',
+};
+
+const VIDEO_ROUTES = {
+    web_detail: boHost + '/videos/:slug',
 };
 
 const LOCALIZATION_ROUTES = {

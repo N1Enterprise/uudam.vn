@@ -5,6 +5,11 @@ function getResponsive(numberOfShow) {
             600:  { items: 1 },
             1000: { items: 1 },
         },
+        2: {
+            0:    { items: 1 },
+            600:  { items: 2 },
+            1000: { items: 2 },
+        },
         3: {
             0:    { items: 2 },
             600:  { items: 2 },

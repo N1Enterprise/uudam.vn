@@ -30,6 +30,10 @@ const SECTION_SCROLL = {
                             return SECTION_SCROLL.processHomePageDisplayPostScroll(sectionName, value);
                         case 'home_page_display_4':
                             return SECTION_SCROLL.processHomePageDisplayBlogScroll(sectionName, value);
+                        case 'home_page_display_5':
+                            return SECTION_SCROLL.processHomePageDisplayInAppBanner100Scroll(sectionName, value);
+                        case 'home_page_display_6':
+                            return SECTION_SCROLL.processHomePageDisplayInAppBanner50Scroll(sectionName, value);
                     }
                 }
             });
@@ -213,7 +217,49 @@ const SECTION_SCROLL = {
                 }
             },
         });
-    }
+    },
+    processHomePageDisplayInAppBanner100Scroll: (sectionName, value) => {
+        $.ajax({
+            url: HOME_PAGE_DISPLAY_ITEM_ROUTES.api_display_item_banner_100.replace(':id', value),
+            method: 'GET',
+            beforeSend: () => {
+                $(`[data-section="${sectionName}"]`).attr('data-section-defer', 'false');
+            },
+            success: (response) => {
+                if (Array.isArray(response?.data) && response?.data?.length) {
+                    $.each(response?.data, function(index, item) {
+                        $(`[data-recommendation-in-app-banner-100-identifier=${item.id}]`).html(`
+                            <a href="${ item.redirect_url || 'javascript::void(0)' }" class="inapp-banner-link">
+                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                            </a>
+                        `);
+                    });
+                }
+            },
+        });
+    },
+    processHomePageDisplayInAppBanner50Scroll: (sectionName, value) => {
+        $.ajax({
+            url: HOME_PAGE_DISPLAY_ITEM_ROUTES.api_display_item_banner_50.replace(':id', value),
+            method: 'GET',
+            beforeSend: () => {
+                $(`[data-section="${sectionName}"]`).attr('data-section-defer', 'false');
+            },
+            success: (response) => {
+                if (Array.isArray(response?.data) && response?.data?.length) {
+                    $.each(response?.data, function(index, item) {
+                        $(`[data-recommendation-in-app-banner-50-identifier=${item.id}]`).html(`
+                            <a href="${ item.redirect_url || 'javascript::void(0)' }" class="inapp-banner-link">
+                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                            </a>
+                        `);
+                    });
+                }
+            },
+        });
+    },
 };
 
 SECTION_SCROLL.init();

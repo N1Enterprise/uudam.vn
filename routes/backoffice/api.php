@@ -105,4 +105,7 @@ Route::prefix('v1')->group(function () {
     Route::get('dashboard/total-deposit', [Api\DashboardController::class, 'getTotalDeposit'])->name('dashboard.total-deposit');
     Route::get('dashboard/top-users', [Api\DashboardController::class, 'getTopUsers'])->name('dashboard.top-users');
     Route::get('dashboard/top-orders', [Api\DashboardController::class, 'getTopOrders'])->name('dashboard.top-orders');
+
+    Route::get('video-categories', [Api\VideoCategoryController::class, 'index'])->name('video-categories.index')->middleware(['can:video-categories.index']);
+    Route::get('videos', [Api\VideoController::class, 'index'])->name('videos.index')->middleware(['can:videos.index']);
 });

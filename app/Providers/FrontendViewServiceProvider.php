@@ -72,6 +72,8 @@ class FrontendViewServiceProvider extends ServiceProvider
             'shop_logos' => SystemSetting::from(SystemSettingKeyEnum::SHOP_LOGOS)->get(null, []),
             'shop_favicons' => SystemSetting::from(SystemSettingKeyEnum::SHOP_FAVICONS)->get(null, []),
 
+            'footer_menus' => SystemSetting::from(SystemSettingKeyEnum::FOOTER_MENUS)->get(null, []),
+
             'social_networks' => collect(SystemSetting::from(SystemSettingKeyEnum::SOCIAL_NETWORKS)->get(null, []))->filter(fn($item) => data_get($item, 'enable')),
             'receive_new_post_setting' => SystemSetting::from(SystemSettingKeyEnum::RECEIVE_NEW_POST_SETTING)->get(null, []),
             'search_setting' => SystemSetting::from(SystemSettingKeyEnum::SEARCH_SETTING)->get(null, []),
