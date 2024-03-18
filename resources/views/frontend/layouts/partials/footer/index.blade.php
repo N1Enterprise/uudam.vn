@@ -68,8 +68,8 @@
         <div class="footer__section">
             <div class="page-width text-center small--text-left" style="text-align: center;">
                 <div class="footer__base-links">
-                    <span> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} </span>
-                    <span>|</span>
+                    <span style="padding: 0; margin: 0"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} </span>
+                    <span style="padding: 0; margin: 0">|</span>
                     <a target="_blank" rel="nofollow" href="{{ data_get($SYSTEM_SETTING, 'page_settings.license.link') }}" class="js-no-transition">Được cung cấp bởi {{ data_get($SYSTEM_SETTING, 'page_settings.license.value') }}</a>
                 </div>
             </div>
