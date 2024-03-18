@@ -658,7 +658,7 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
 }
 
 .custom-ls-box-title {
-    /* display: inline-block;
+    display: inline-block;
     vertical-align: top;
     position: relative;
     margin: 0;
@@ -668,10 +668,9 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
     text-transform: uppercase;
     font-size: 18px;
     color: #fff;
-    margin-bottom: 15px; */
-    /* text-transform: uppercase; */
+    margin-bottom: 15px;
 }
-/* 
+
 .custom-ls-box-title::before {
     position: absolute;
     content: '';
@@ -691,14 +690,14 @@ limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list 
     -o-transform: skew(-23deg);
     transform: skew(-23deg);
     z-index: -1;
-} */
+}
 
-/* @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .custom-ls-box-title {
         padding: 5px 11px 4px 11px;
         font-size: 14px;
     }
-} */
+}
 
 .limespot-recommendation-box {
     margin-bottom: 30px;
