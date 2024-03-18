@@ -230,8 +230,8 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-in-app-banner-100-identifier=${item.id}]`).html(`
                             <a href="${ item.redirect_url || 'javascript::void(0)' }" class="inapp-banner-link">
-                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy" width="1815" height="150">
-                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy" width="1815" height="150">
+                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
                             </a>
                         `);
                     });
@@ -251,8 +251,8 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-in-app-banner-50-identifier=${item.id}]`).html(`
                             <a href="${ item.redirect_url || 'javascript::void(0)' }" class="inapp-banner-link">
-                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy" width="1815" height="150">
-                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy" width="1815" height="150">
+                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
                             </a>
                         `);
                     });
