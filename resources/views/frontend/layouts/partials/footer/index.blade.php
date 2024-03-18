@@ -53,6 +53,19 @@
             </div>
         </div>
         <div class="footer__section">
+            <div class="page-width text-center small--text-left" style="text-align: center; padding: 5px 0px;">
+                <h4 style="color: #fff; font-weight: bold; margin: 0; padding: 10px;">{{ data_get($SYSTEM_SETTING, 'page_settings.legal_name') }}</h4>
+                <div style="font-size: 14px; padding: 10px 0;">
+                    <b>Địa chỉ:</b> <span>{{ data_get($SYSTEM_SETTING, 'page_settings.address.value') }}</span>
+                </div>
+                @if (data_get($SYSTEM_SETTING, 'page_settings.informed_moit.enable'))
+                <a href="{{ data_get($SYSTEM_SETTING, 'page_settings.informed_moit.link') }}"  style="margin: 0; padding: 10px;">
+                    <img src="{{ asset_with_version('frontend/assets/images/shared/bo-cong-thuong-informed.png') }}" alt="{{ data_get($SYSTEM_SETTING, 'page_settings.legal_name') }}" width="200">
+                </a>
+                @endif
+            </div>
+        </div>
+        <div class="footer__section">
             <div class="page-width text-center small--text-left" style="text-align: center;">
                 <div class="footer__base-links">
                     <span> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} </span>
