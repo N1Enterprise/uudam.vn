@@ -28,6 +28,10 @@
     </style>
     
     <link href="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
+    
+    @if (data_get($SYSTEM_SETTING, 'google_analytics_tag'))
+    {!! data_get($SYSTEM_SETTING, 'google_analytics_tag') !!}
+    @endif
 </head>
 <body>
     <link href="{{ asset_with_version('frontend/bundle/css/latest-199.min.css') }}" rel="stylesheet" type="text/css" />

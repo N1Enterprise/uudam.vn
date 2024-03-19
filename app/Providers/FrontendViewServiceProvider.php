@@ -85,7 +85,10 @@ class FrontendViewServiceProvider extends ServiceProvider
                     return [
                         'logo' => data_get($provider, 'logo'),
                     ];
-                })
+                }),
+            
+            // SEO
+            'google_analytics_tag' => SystemSetting::from(SystemSettingKeyEnum::GOOGLE_ANALYTICS_TAG)->get(null, ''),
         ];
     }
 }
