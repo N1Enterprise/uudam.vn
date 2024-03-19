@@ -35,6 +35,9 @@ class SystemSettingKeyEnum extends BaseEnum
     // OAuth
     public const SUPPORTED_OAUTH_PROVIDERS = 'supported_oauth_providers';
 
+    // SEO
+    public const GOOGLE_ANALYTICS_TAG = 'google_analytics_tag';
+
     public const ENABLE_SEND_NEW_ORDER_TO_ADMIN = 'enable_send_new_order_to_admin';
 
     public static function all(): array
@@ -62,7 +65,8 @@ class SystemSettingKeyEnum extends BaseEnum
             self::SHOP_LOGOS,
             self::SHOP_FAVICONS,
             self::QUEUE_NAMES,
-            self::FOOTER_MENUS
+            self::FOOTER_MENUS,
+            self::GOOGLE_ANALYTICS_TAG,
         ];
     }
 }

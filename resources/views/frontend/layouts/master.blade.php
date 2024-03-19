@@ -41,6 +41,10 @@
     @yield('style')
     @stack('style_pages')
     @include('frontend.layouts.css-layouts.master')
+
+    @if (data_get($SYSTEM_SETTING, 'google_analytics_tag'))
+    {!! data_get($SYSTEM_SETTING, 'google_analytics_tag') !!}
+    @endif
 </head>
 
 <body class="gradient swym-ready swym-buttons-loaded">
