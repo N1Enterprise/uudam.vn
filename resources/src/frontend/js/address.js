@@ -213,7 +213,7 @@ $(document).ready(function() {
                 maxlength: 255,
             },
             email: {
-                required: true,
+                required: false,
                 maxlength: 255,
                 validate_email: true,
             },

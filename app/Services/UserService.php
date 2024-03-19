@@ -87,7 +87,7 @@ class UserService extends BaseService
             return $user;
         });
 
-        $userEmailVerificationLink = $user->generateEmailVerificationUrl(data_get($attributes, 'email_verification_url'));
+        $userEmailVerificationLink = !empty($user->email) ? $user->generateEmailVerificationUrl(data_get($attributes, 'email_verification_url')) : null;
 
         UserCreated::dispatch($user, $attributes, $userEmailVerificationLink);
 

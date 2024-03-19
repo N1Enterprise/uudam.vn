@@ -48,6 +48,11 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
                     <div class="phone">
                         <span>Điện thoại: </span>{{ data_get($address, 'phone') }}
                     </div>
+                    @if (data_get($address, 'email'))
+                    <div class="phone">
+                        <span>E-mail: </span>{{ data_get($address, 'email') }}
+                    </div>
+                    @endif
                 </div>
                 <div class="action">
                     <div>

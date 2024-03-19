@@ -26,6 +26,10 @@
 
         // Validate Email valid
         $.validator.addMethod('validate_email', function(value, element) {
+            if (value?.length <= 0) {
+                return true;
+            }
+            
             if (value.match(/^[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+\/=?^_`{|}~-]*)*@[a-zA-Z]+([a-zA-Z0-9]*(_|-|\.){0,1}[a-zA-Z0-9])+(\.[a-z]{2,4})$/)) {
                 return true;
             }

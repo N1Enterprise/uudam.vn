@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="password-reset-sent-success d-none">
-                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <a href="javascript:void(0)" class="user-mail">phamdinhhung28@gmail.com</a>,</p>
+                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <a href="javascript:void(0)" class="user-mail"></a>,</p>
                     <p>vui lòng kiểm tra e-mail để tiến hành cập nhật mật khẩu mới.</p>
                     <p>
                         Nếu bạn không nhận e-mail vui lòng kiểm tra phần
@@ -87,15 +87,15 @@
                             <div class="form-fields">
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 15px;">
-                                        <input type="text" name="username" id="username" class="field__input" autocomplete="phone" value aria-required="true" required placeholder="Số Điện Thoại / Email">
-                                        <label class="field__label" for="username">Số Điện Thoại / E-mail <span aria-hidden="true">*</span></label>
+                                        <input type="text" name="username" id="username" class="field__input" autocomplete="phone" aria-required="true" required placeholder="Số điện thoại / Email">
+                                        <label class="field__label" for="username">Số điện thoại / E-mail <span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="username"></div>
                                 </div>
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 15px;">
-                                        <input type="password" name="password" id="signin-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng nhập" autocomplete="current-password">
+                                        <input type="password" name="password" id="signin-password" class="field__input" autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật khẩu Đăng nhập" autocomplete="current-password">
                                         <label class="field__label" for="signin-password">Mật khẩu <span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="password"></div>
@@ -123,7 +123,7 @@
                             <div class="form-fields">
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 10px;">
-                                        <input type="text" name="name" id="signup-name" class="field__input" autocomplete="name" value aria-required="true" required placeholder="Tên của bạn">
+                                        <input type="text" name="name" id="signup-name" class="field__input" autocomplete="name" aria-required="true" required placeholder="Tên của bạn">
                                         <label class="field__label" for="signup-name">Tên của bạn<span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="name"></div>
@@ -131,24 +131,24 @@
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 10px;">
-                                        <input type="text" name="phone_number" id="signup-phone" class="field__input" autocomplete="phone" value aria-required="true" required placeholder="Số Điện Thoại">
-                                        <label class="field__label" for="signup-phone">Số Điện Thoại<span aria-hidden="true">*</span></label>
+                                        <input type="text" name="phone_number" id="signup-phone" class="field__input" autocomplete="phone" aria-required="true" required placeholder="Số điện thoại">
+                                        <label class="field__label" for="signup-phone">Số điện thoại<span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="phone_number"></div>
                                 </div>
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 10px;">
-                                        <input type="text" name="email" id="signup-email" class="field__input" autocomplete="email" value aria-required="true" required placeholder="E-mail">
-                                        <label class="field__label" for="signup-phone">E-mail<span aria-hidden="true">*</span></label>
+                                        <input type="text" name="email" id="signup-email" class="field__input" autocomplete="email" placeholder="E-mail">
+                                        <label class="field__label" for="signup-phone">E-mail<span aria-hidden="true"> (không yêu cầu nhập)</span></label>
                                     </div>
                                     <div class="form-errors" data-name="email"></div>
                                 </div>
 
                                 <div>
                                     <div class="field field--with-error" style="margin-bottom: 10px;">
-                                        <input type="text" name="password" id="signup-password" class="field__input" value autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật Khẩu Đăng nhập" autocomplete="current-password">
-                                        <label class="field__label" for="signup-password">Mật Khẩu <span aria-hidden="true">*</span></label>
+                                        <input type="text" name="password" id="signup-password" class="field__input" autocorrect="off" autocapitalize="off" aria-required="true" required placeholder="Mật khẩu đăng nhập" autocomplete="current-password">
+                                        <label class="field__label" for="signup-password">Mật khẩu <span aria-hidden="true">*</span></label>
                                     </div>
                                     <div class="form-errors" data-name="password"></div>
                                 </div>

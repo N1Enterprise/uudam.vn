@@ -39,8 +39,8 @@ Thêm địa chỉ mới | {{ config('app.user_domain') }}
                 </div>
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
-                        <input type="text" name="email" id="email" value="" class="field__input" autocomplete="phone" aria-required="true" required="" placeholder="E-mail">
-                        <label class="field__label" for="email">E-mail <span aria-hidden="true">*</span></label>
+                        <input type="text" name="email" id="email" value="" class="field__input" autocomplete="phone" placeholder="E-mail">
+                        <label class="field__label" for="email">E-mail <span aria-hidden="true"> (không yêu cầu nhập)</span></label>
                     </div>
                 </div>
                 <div class="form-group">
