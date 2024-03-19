@@ -18,7 +18,7 @@ class PageService extends BaseService
     {
         $result = $this->pageRepository
             ->with(['createdBy', 'updatedBy'])
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['name', 'slug', 'title'])
             ->search([]);
 
         return $result;
