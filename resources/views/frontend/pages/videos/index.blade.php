@@ -29,7 +29,7 @@
     <article class="article-template" itemscope>
         <div class="article-template__hero-container">
             <div class="article-template__hero-large media" itemprop="thumbnail" style="background: none; display: flex; justify-content: center; align-items: center;">
-                <video style="position: relative; z-index: 1;" controls>
+                <video style="position: relative; z-index: 1;" controls autoplay="true">
                     <source src="{{ data_get($video, 'source_url') }}" type="video/mp4">
                 </video>
             </div>
