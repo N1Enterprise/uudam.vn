@@ -9,6 +9,9 @@
                 <b style="margin-bottom: 4px; display: block;">Giao tới:</b>
                 <div>
                     <span>{{ data_get($address, 'name') }}</span> | <span>{{ data_get($address, 'phone') }}</span>
+                    @if (data_get($address, 'email'))
+                    | <span>{{ data_get($address, 'email') }}</span>
+                    @endif
                     <p>{{ data_get($address, 'full_address') }}</p>
                     <a href="javascript:void(0)" address-editable-btn style="margin-top: 5px;" data-address-code="{{ data_get($address, 'code') }}">Chỉnh sửa</a>
                     <span>|</span>

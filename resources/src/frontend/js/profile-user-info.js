@@ -6,7 +6,7 @@ $(() => {
                 maxlength: 20,
             },
             email: {
-                required: true,
+                required: false,
                 maxlength: 255,
                 validate_email: true,
             },
@@ -50,7 +50,7 @@ $(() => {
                 success: (response) => {
                     toastr.success('Cập nhật thành công.');
 
-                    window.location.reload();
+                    setTimeout(() => window.location.reload(), 500);
                 },
                 error: () => {
                     $self.find('button[type="submit"]').prop('disabled', false);

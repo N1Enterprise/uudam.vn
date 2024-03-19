@@ -18,7 +18,7 @@ class UserUpdateInfoRequest extends BaseFormRequest implements UserUpdateInfoReq
         return [
             'name' => ['required', 'string', 'max:20'],
             'phone_number' => ['required', 'string', 'max:15', Rule::unique(User::class, 'phone_number')->ignore($user->getKey()), new PhoneNumberValidate()],
-            'email' => ['required', 'email', 'string', 'max:255', Rule::unique(User::class, 'email')->ignore($user->getKey())],
+            'email' => ['nullable', 'email', 'string', 'max:255', Rule::unique(User::class, 'email')->ignore($user->getKey())],
             'birthday' => ['nullable', 'date']
         ];
     }

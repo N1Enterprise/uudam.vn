@@ -24,8 +24,8 @@
 
                                     <div class="form-group field field-required field--with-error">
                                         <div class="field-input-wrapper">
-                                            <label class="field-label" for="">E-mail</label>
-                                            <input type="email" name="email" placeholder="E-mail" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="" autocomplete="false">
+                                            <label class="field-label" for="">E-mail (không yêu cầu nhập)</label>
+                                            <input type="email" name="email" placeholder="E-mail (không yêu cầu nhập)" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="" autocomplete="false">
                                         </div>
                                     </div>
                                     <div class="form-group field field-required field--with-error">
