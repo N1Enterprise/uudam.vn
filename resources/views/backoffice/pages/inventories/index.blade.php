@@ -63,6 +63,7 @@
                         <th data-property="purchase_price">{{ __('Giá mua') }}</th>
                         <th data-property="sale_price">{{ __('Giá bán') }}</th>
                         <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
+                        <th data-property="init_sold_count">{{ __('Fake Đã bán') }}</th>
                         <th data-property="sold_count">{{ __('Đã bán') }}</th>
                         <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
                         <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
