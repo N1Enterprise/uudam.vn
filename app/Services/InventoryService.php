@@ -55,6 +55,8 @@ class InventoryService extends BaseService
         $orderBy = 'sale_price';
         $sortBy = 'asc';
 
+        $paginate = data_get($data, 'paginate', true);
+
         if (! empty(data_get($data, 'sort_by'))) {
             switch (data_get($data, 'sort_by')) {
                 case 'manual';
@@ -105,7 +107,9 @@ class InventoryService extends BaseService
             })
             ->addSort($orderBy, $sortBy);
 
-        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+        return $paginate 
+            ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
+            : $result->all();
     }
 
     public function allAvailable($data = [])

@@ -33,6 +33,8 @@ class CollectionService extends BaseService
     {
         $where = [];
 
+        $paginate = data_get($data, 'paginate', true);
+
         $result = $this->collectionRepository
             ->with(data_get($data, 'with', []))
             ->modelScopes(['active', 'feDisplay'])
@@ -43,7 +45,9 @@ class CollectionService extends BaseService
             })
             ->orderBy('order');
 
-        return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
+        return $paginate 
+            ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
+            : $result->all();
     }
 
     public function allAvailable($data = [])

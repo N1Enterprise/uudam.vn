@@ -33,6 +33,28 @@ class PageService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $paginate = data_get($data, 'paginate', true);
+
+        $result = $this->pageRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $paginate 
+            ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
+            : $result->all();
+    }
+
     public function listByUser($data = [])
     {
         return $this->pageRepository

@@ -26,6 +26,28 @@ class VideoService extends BaseService
         return $result->search([], null, ['*'], data_get($data, 'paginate', true));
     }
 
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $paginate = data_get($data, 'paginate', true);
+
+        $result = $this->videoRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $paginate 
+            ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
+            : $result->all();
+    }
+
     public function allAvailable()
     {
         return $this->videoRepository->modelScopes(['active'])->get();
