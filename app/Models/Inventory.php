@@ -7,6 +7,7 @@ use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
 use App\Models\Traits\HasMoney;
+use App\Models\Traits\HasHtmlSEO;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -17,6 +18,7 @@ class Inventory extends BaseModel
     use HasImpactor;
     use HasMoney;
     use HasFeUsage;
+    use HasHtmlSEO;
 
     protected $fillable = [
         'title',
@@ -119,5 +121,16 @@ class Inventory extends BaseModel
     public function getFinalSoldCountAttribute()
     {
         return (int) $this->init_sold_count + (int) $this->sold_count;
+    }
+
+    public function htmlSEOProperties()
+    {
+        return [
+            'title'  => $this->meta_title ?? $this->title,
+            'desc'   => $this->meta_description ?? ($this->meta_title ?? $this->title),
+            'url'    => route('fe.web.products.index', $this->slug),
+            'image'  => $this->image,
+            'amount' => $this->final_price,
+        ];
     }
 }

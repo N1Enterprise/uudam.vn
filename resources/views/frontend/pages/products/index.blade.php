@@ -5,23 +5,7 @@
 @endsection
 
 @section('page_seo')
-<meta name="description" content="{{ data_get($inventory, 'meta_description') }}">
-<meta name="keywords" content="{{ data_get($inventory, 'title') }}">
-<meta property="og:title" content="{{ data_get($inventory, 'meta_title', data_get($inventory, 'title')) }}">
-<meta property="og:description" content="{{ data_get($inventory, 'meta_description') }}">
-<meta property="og:image" content="{{ data_get($inventory, 'product_image') }}">
-<meta property="og:image:secure_url" content="{{ data_get($inventory, 'product_image') }}">
-<meta property="og:url" content="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:price:amount" content="{{ round_money(data_get($inventory, 'final_price')) }}">
-<meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="brand" content="{{ data_get($inventory, 'product.branch') }}">
-<meta name="product" content="{{ data_get($inventory, 'product.id') }}">
+{!! $inventory->toHtmlSEO() !!}
 @endsection
 
 @push('style_pages')
