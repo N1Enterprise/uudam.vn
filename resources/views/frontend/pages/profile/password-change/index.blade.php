@@ -5,16 +5,7 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-<meta property="og:title" content="Thay đổi mật khẩu | {{ config('app.user_domain') }}">
-<meta property="og:description" content="Thay đổi mật khẩu | {{ config('app.user_domain') }}">
-<meta property="og:url" content="{{ request()->url() }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+{!! generate_seo_html(['page_name' => 'Thay đổi mật khẩu']) !!}
 @endsection
 
 @section('profile_content')

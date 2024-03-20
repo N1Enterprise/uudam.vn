@@ -5,20 +5,7 @@
 @endsection
 
 @section('page_seo')
-<meta name="description" content="{{ data_get($collection, 'meta_description') }}">
-<meta name="keywords" content="{{ data_get($collection, 'name') }}">
-<meta property="og:title" content="{{ data_get($collection, 'meta_title', data_get($collection, 'name')) }}">
-<meta property="og:description" content="{{ data_get($collection, 'meta_description') }}">
-<meta property="og:image" content="{{ data_get($collection, 'primary_image') }}">
-<meta property="og:image:secure_url" content="{{ data_get($collection, 'product_image') }}">
-<meta property="og:url" content="{{ route('fe.web.collections.index', data_get($collection, 'slug')) }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+{!! $collection->toHtmlSEO() !!}
 @endsection
 
 @push('style_pages')

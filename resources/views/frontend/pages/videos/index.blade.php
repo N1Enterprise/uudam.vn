@@ -5,19 +5,7 @@
 @endsection
 
 @section('page_seo')
-<meta name="description" content="{{ data_get($video, 'meta_description') }}">
-<meta name="keywords" content="{{ data_get($video, 'name') }}">
-<meta property="og:title" content="{{ data_get($video, 'meta_title', data_get($video, 'name')) }}">
-<meta property="og:description" content="{{ data_get($video, 'meta_description') }}">
-<meta property="og:thumbnail" content="{{ data_get($video, 'thumbnail') }}">
-<meta property="og:thumbnail:secure_url" content="{{ data_get($video, 'thumbnail') }}">
-<meta property="og:url" content="{{ route('fe.web.videos.index', data_get($video, 'slug')) }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta name="al:ios:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}">
+{!! $video->toHtmlSEO() !!}
 @endsection
 
 @push('style_pages')

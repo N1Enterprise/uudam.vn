@@ -3,8 +3,10 @@
 use App\Classes\AdminAuth;
 use App\Common\Money;
 use App\Enum\BaseEnum;
+use App\Enum\SystemSettingKeyEnum;
 use App\Enum\TimeZoneEnum;
 use App\Models\BaseModel;
+use App\Models\SystemSetting;
 use App\Vendors\Localization\Money as LocalizationMoney;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
@@ -381,3 +383,45 @@ if (!function_exists('parse_expression')) {
     }
 }
 
+/**
+ * parse a string into laravel Stringable
+ */
+if (! function_exists('generate_seo_html')) {
+
+    function generate_seo_html($properties = [])
+    {
+        $__page   = data_get($properties, 'page_name');
+        $__domain = config('app.user_domain');
+        $__image  = SystemSetting::from(SystemSettingKeyEnum::SHOP_LOGOS)->get('seo.image');
+
+        $properties = [
+            'keywords'            => data_get($properties, 'title') ?? "$__page | $__domain",
+            'og:title'            => data_get($properties, 'title') ?? "$__page | $__domain",
+            'description'         => data_get($properties, 'desc')  ?? "$__page | $__domain",
+            'og:description'      => data_get($properties, 'desc')  ?? "$__page | $__domain",
+            'og:image'            => data_get($properties, 'image') ?? $__image,
+            'og:image:secure_url' => data_get($properties, 'image') ?? $__image,
+            'url'                 => data_get($properties, 'url')   ?? request()->url(),
+            'og:price:amount'     => data_get($properties, 'amount'),
+            'og:price:currency'   => data_get($properties, 'amount') ? 'VND' : null,
+        ];
+
+        foreach ($properties as $property => $content) {
+            if ($content !== null) {
+                $tags[$property] = $content;
+            }
+        }
+
+        $tags['og:site_name'] = config('app.user_domain');
+        $tags['og:type'] = 'website';
+        $tags['og:locale'] = 'vi_VN';
+
+        $htmls = '';
+
+        foreach ($tags as $property => $content) {
+            $htmls .= '<meta name="'.$property.'" content="'.$content.'">';
+        }
+
+        return $htmls;
+    }
+}

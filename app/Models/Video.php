@@ -6,12 +6,14 @@ use App\Enum\VideoTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasFeUsage;
 use App\Models\Traits\HasImpactor;
+use App\Models\Traits\HasHtmlSEO;
 
 class Video extends BaseModel
 {
     use Activatable;
     use HasImpactor;
     use HasFeUsage;
+    use HasHtmlSEO;
 
     protected $fillable = [
         'name',
@@ -41,5 +43,15 @@ class Video extends BaseModel
     public function getTypeNameAttribute()
     {
         return VideoTypeEnum::findConstantLabel($this->type);
+    }
+
+    public function htmlSEOProperties()
+    {
+        return [
+            'title'  => $this->meta_title ?? $this->name,
+            'desc'   => $this->meta_description ?? ($this->meta_title ?? $this->name),
+            'url'    => route('fe.web.videos.index', $this->slug),
+            'image'  => $this->thumbnail,
+        ];
     }
 }
