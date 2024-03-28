@@ -21,8 +21,10 @@
     .master-mobile-menu #layout-desktop .menu-mobile-reponsive {
         display: flex;
     }
+    .shopify-section-group-footer-group {
+        margin-bottom: 60px;
+    }
 }
-
 
 @media screen and (max-width: 768px) {
     .master-mobile-menu #menu-bottom-tabs.tabs {
@@ -43,8 +45,6 @@
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
     display: flex;
-    /* flex-grow: 1; */
-    /* flex-shrink: 0; */
     justify-content: flex-start;
 }
 
