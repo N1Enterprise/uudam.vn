@@ -87,13 +87,13 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                             @foreach (data_get($order, 'orderItems', []) as $item)
                             <tr class="cart-item order-history__items-item">
                                 <td class="cart-item__media" width="150">
-                                    <div class="cart-item__image-container gradient global-media-settings">
-                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="150" height="150">
+                                    <div class="cart-item__image-container" style="margin-right: 9px;">
+                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="150" height="150" style="width: 100%; height: 100%;">
                                         <span class="order-history-item-quantity">x{{ data_get($item, 'quantity') }}</span>
                                     </div>
                                 </td>
 
-                                <td class="cart-item__details">
+                                <td class="cart-item__details" style="flex-direction: column;">
                                     <div>
                                         <a href="{{ route('fe.web.products.index', data_get($item, 'inventory.slug')) }}" class="cart-item__name h4 break">{{ data_get($item, 'inventory.title') }}</a>
                                         <div class="product-option order-item-price" style="margin-top: 10px;">{{ format_price(data_get($item, 'price')) }}</div>
