@@ -18,11 +18,17 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
     }
 
     .order-history-status {
-        padding: 2px 6px;
+        padding: 4px 4px 3px 4px;
         border-radius: 5px;
         background: rgb(60 75 77 / 20%);
         line-height: 19px;
-        font-size: 14px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .order-history-created_at {
+        font-size: 12px;
+        font-weight: bold;
     }
 
     [data-order-status="5"] {
@@ -72,8 +78,8 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
             <div class="order-history">
                 <div class="order-history__basic-info" style="display: flex; align-items: center; margin-bottom: 10px;">
                     <div class="order-history-status" data-order-status="{{ $order->order_status }}">{{ enum('OrderStatusEnum')::findConstantLabelVn($order->order_status) }}</div>
-                    <span style="padding: 0 10px;">|</span>
-                    <div class="order-history-created_at">Ngày đặt: {{ format_datetime($order->created_at, 'd/m/Y H:i') }}</div>
+                    <span style="padding: 0 4px;">|</span>
+                    <div class="order-history-created_at">Đặt lúc: {{ format_datetime($order->created_at, 'd/m/Y') }}</div>
                 </div>
                 <div class="order-history__items cart__items" id="main-cart-items">
                     <table class="cart-items">
