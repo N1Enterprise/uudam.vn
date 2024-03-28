@@ -1,6 +1,6 @@
 <div class="limespot-recommendation-box-carousel-container">
     <div class="ls-ul-container limespot-recommendation-box-carousel ls-drag-scroll v-align">
-        <div class="owl-carousel owl-theme ls-ul limespot-recommendation-box-carousel-shelf" data-owl-id="Slider_Popular_Products" data-owl-items="5">
+        <div class="owl-carousel owl-theme ls-ul limespot-recommendation-box-carousel-shelf" data-owl-id="Slider_Popular_Products" data-owl-items="4">
             @foreach (data_get($item, 'linked_items') as $linkedItem)
             <div class="limespot-recommendation-box-item" style="max-width: 100%; min-width: 100%;" data-recommendation-product-identifier="{{ $linkedItem }}">
                 <div class="recommendation-target">

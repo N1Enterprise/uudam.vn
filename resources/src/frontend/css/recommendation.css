@@ -49,10 +49,6 @@ div.ls-recommendation-box .limespot-recommendation-box-item .ls-link,limespot-bo
     text-decoration: none!important
 }
 
-div.ls-recommendation-box .limespot-recommendation-box-item .ls-link .spr-badge,limespot-box .limespot-recommendation-box-item .ls-link .spr-badge {
-    max-height: 40px
-}
-
 div.ls-recommendation-box:not(.no-zoom) .limespot-recommendation-box-item:hover .ls-image,limespot-box:not(.no-zoom) .limespot-recommendation-box-item:hover .ls-image {
     opacity: .9;
     transform: scale(1.03);
@@ -142,31 +138,13 @@ limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link
     width: 100%
 }
 
-limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image-secondary,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image-secondary {
-    left: 0;
-    max-height: 100%;
-    max-width: 100%;
-    opacity: 0;
-    position: absolute;
-    visibility: hidden
-}
-
 limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
     padding: 3px 0
-}
-
-limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-review-wrap,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-review-wrap {
-    min-height: 25px
 }
 
 limespot-box[data-box-style=carousel] .limespot-recommendation-box-item:hover .ls-link .ls-image-wrap:not(.disable-secondary-image) img.ls-image:not(:only-of-type):not(.ls-image-secondary),limespot-box[data-box-style=grid] .limespot-recommendation-box-item:hover .ls-link .ls-image-wrap:not(.disable-secondary-image) img.ls-image:not(:only-of-type):not(.ls-image-secondary) {
     opacity: 0;
     visibility: hidden
-}
-
-limespot-box[data-box-style=carousel] .limespot-recommendation-box-item:hover .ls-link .ls-image-wrap:not(.disable-secondary-image) .ls-image-secondary,limespot-box[data-box-style=grid] .limespot-recommendation-box-item:hover .ls-link .ls-image-wrap:not(.disable-secondary-image) .ls-image-secondary {
-    opacity: 1;
-    visibility: visible
 }
 
 limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
@@ -226,100 +204,9 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
     min-width: 100%
 }
 
-limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid {
-    align-content: stretch;
-    align-items: stretch;
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    list-style-type: none;
-    padding-top: 10px;
-    transform: none
-}
-
-limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
-    display: flex;
-    flex: 1 0 200px;
-    flex-direction: column;
-    margin-bottom: 50px;
-    margin-right: 20px;
-    max-height: none;
-    max-width: none;
-    position: relative;
-    width: auto
-}
-
-@media screen and (max-width: 600px) {
-    limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid {
-        margin-left:0!important;
-        margin-right: 0!important
-    }
-
-    limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
-        flex: 0 0 47%!important;
-        margin-left: 0!important;
-        margin-right: 0!important
-    }
-}
-
 .ls-original-price.ls-original-price {
     margin-right: 5px;
     text-decoration: line-through!important
-}
-
-.ls-sale-sign-wrap {
-    left: 0;
-    position: absolute;
-    text-align: center;
-    top: 20px;
-    width: 100%
-}
-
-.ls-sale-sign:before {
-    display: block;
-    line-height: 0;
-    padding-top: 100%;
-    width: 0
-}
-
-.ls-sale-sign {
-    align-items: center;
-    background-color: rgba(200,0,0,.6);
-    border: 1px solid transparent;
-    border-radius: 0 2px 2px 0;
-    color: #fff;
-    display: flex;
-    font-size: 12px;
-    font-weight: 300;
-    justify-content: center;
-    padding: 2px 10px;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    white-space: pre
-}
-
-.ls-loyalty-point-wrap {
-    bottom: 0;
-    position: absolute;
-    right: 0;
-    width: 100%
-}
-
-.ls-loyalty-point {
-    background-color: rgba(255,204,0,.6);
-    border: 1px solid transparent;
-    border-radius: 2px 0 0 2px;
-    bottom: 10px;
-    color: #111;
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.1;
-    padding: 2px 10px;
-    position: absolute;
-    right: 0
 }
 
 .ls-title {
@@ -331,127 +218,6 @@ limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
 
 .ls-vendor {
     display: none
-}
-
-.ls-li-quick-actions {
-    align-items: center;
-    display: inline-flex;
-    height: 60px;
-    margin-top: 10px
-}
-
-.ls-li-overlay {
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    max-width: none!important;
-    position: absolute;
-    text-align: center;
-    transition: opacity .3s ease-out;
-    width: 100%
-}
-
-.ls-li-overlay-container {
-    background-color: hsla(0,0%,78%,.08);
-    bottom: 0;
-    height: 100%;
-    opacity: 0;
-    position: relative;
-    transition: opacity .3s ease-out!important;
-    z-index: 1
-}
-
-.ls-li-overlay-container .ls-add-to-cart-wrap {
-    margin-bottom: 25px;
-    transform: translateY(25px);
-    transition: transform .3s ease-out!important
-}
-
-.ls-li-overlay-container:hover {
-    opacity: 1
-}
-
-.ls-li-overlay-container:hover .ls-add-to-cart-wrap {
-    transform: translateY(0)
-}
-
-.ls-li-overlay-container>* {
-    bottom: 0;
-    left: 0;
-    position: absolute!important;
-    right: 0
-}
-
-.ls-add-to-cart-wrap {
-    display: inline-block;
-    font-size: 1rem;
-    margin: auto;
-    position: relative;
-    width: 80%
-}
-
-[data-box-type=Upsell] .ls-add-to-cart-wrap {
-    width: 100%
-}
-
-.ls-add-to-cart {
-    -webkit-appearance: none;
-    background: #fff;
-    background-image: none;
-    border: thin solid #444;
-    border-radius: 3px;
-    box-sizing: border-box;
-    color: #000;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1em;
-    line-height: 2em;
-    margin: 0;
-    outline: none;
-    padding: .1em .5em;
-    width: 100%
-}
-
-.ls-add-to-cart .button {
-    text-align: center;
-    text-decoration: none
-}
-
-.ls-add-to-cart.ls-dropdown {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 30px
-}
-
-.ls-add-to-cart-arrow {
-    border-left: 1px solid #000;
-    height: 90%;
-    right: 0;
-    top: 5%;
-    width: 1.8em
-}
-
-.ls-add-to-cart-arrow,.ls-add-to-cart-arrow:after {
-    display: inline-block;
-    pointer-events: none;
-    position: absolute
-}
-
-.ls-add-to-cart-arrow:after {
-    border-left: .4em solid transparent;
-    border-right: .4em solid transparent;
-    border-top: .4em solid #444;
-    content: "";
-    right: 50%;
-    top: 50%;
-    transform: translateX(50%) translateY(-50%)
-}
-
-@media(max-width: 595px) {
-    .ls-add-to-cart {
-        padding:0 .5em
-    }
 }
 
 .limespot-recommendation-box-carousel-indicator {
@@ -531,186 +297,116 @@ limespot-box[data-box-style=grid] ul.limespot-recommendation-box-grid>li {
     border-radius: 5px 0 0 5px
 }
 
-.limespot-paginator-wrap,img[src*=curated-collection-variation] {
-    display: none
-}
-
-img[data-lazy-src] {
-    will-change: contents
-}
-
 .v-align {
     display: inline-block;
     float: none;
     vertical-align: middle!important
 }
 
-.notransition {
-    transition: none!important
-}
-
 .ls-animate {
     transition: all .2s ease-out
 }
 
-.ls-animate-hide {
-    opacity: 0;
-    visibility: hidden
-}
-
-limespot-box div.limespot-recommendation-box-carousel .slick-slider .slick-list {
-    margin: 0 -16px;
-}
-
 @media screen and (max-width: 749px) {
     .ls-original-price.ls-original-price {
-        order: 1;
+        order:1
     }
-}
 
-
-@media screen and (max-width: 749px) {
     limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+        flex: 1;
         margin-right: 10px!important;
         max-width: 150px!important;
-        flex: 1;
-        min-width: 190px!important;
+        min-width: 190px!important
     }
 }
 
 @media screen and (max-width: 400px) {
     limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+        flex:1;
         margin-right: 10px!important;
         max-width: 150px!important;
-        flex: 1;
-        min-width: 180px!important;
+        min-width: 180px!important
     }
 }
 
 .price-discount-percent {
-    border-radius: 999px;
-    background: #d84144;
-    color: #ffffff;
-    display: inline-flex;
-    justify-content: center;
     align-items: center;
+    background: #d84144;
+    border-radius: 999px;
+    color: #fff;
+    display: inline-flex;
     font-size: 14px;
-    padding: 2px 4px;
+    justify-content: center;
     margin-left: 7px;
+    padding: 2px 4px
 }
 
 .price-for-saving {
-    font-size: 13px;
-    width: 100%;
     color: #3c3c3c;
+    font-size: 13px;
+    width: 100%
 }
 
 .price-for-saving span {
-    color: #d84144;
+    color: #d84144
 }
 
 .price-item--sub {
+    color: #979797!important;
     font-size: 14px;
-    color: #979797 !important;
-    margin-left: 5px;
-    font-weight: normal;
+    font-weight: 400;
+    margin-left: 5px
 }
 
-.ls-info-wrap {
-    text-align: left;
+.ls-box-title,.ls-info-wrap {
+    text-align: left
 }
 
 .ls-box-title {
-    text-align: left;
-    font-family: Poppins, sans-serif;
+    font-family: Poppins,sans-serif;
     font-size: 24px;
     font-weight: 400;
-}
-
-.ls-box-title {
-    margin: 10px 0;
+    margin: 10px 0
 }
 
 .recommendation-items {
-    margin: 0 -5px;
+    margin: 0 -5px
 }
 
 .recommendation-target {
-    padding: 0 7px;
+    padding: 0 7px
 }
 
 .ls-price-group {
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between;
+    align-items: center;
+    display: flex;
     flex-wrap: wrap;
+    justify-content: space-between
 }
 
 .sold-count {
-    color: #979797 !important;
-    font-size: 13px;
+    color: #979797!important;
+    font-size: 13px
 }
 
 @media screen and (max-width: 400px) {
     .sold-count {
-        order: -1;
+        order:-1
     }
 }
 
-/* .custom-ls-box-title {
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    margin: 0;
-    font-weight: 600;
-    padding: 8px 11px 5px 11px;
-    background: #309084;
-    text-transform: uppercase;
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 15px;
-} */
-
-/* .custom-ls-box-title::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: inherit;
-    -webkit-transform-origin: bottom;
-    -moz-transform-origin: bottom;
-    -ms-transform-origin: bottom;
-    -o-transform-origin: bottom;
-    transform-origin: bottom;
-    -webkit-transform: skew(-23deg);
-    -moz-transform: skew(-23deg);
-    -ms-transform: skew(-23deg);
-    -o-transform: skew(-23deg);
-    transform: skew(-23deg);
-    z-index: -1;
-} */
-
-/* @media screen and (max-width: 600px) {
-    .custom-ls-box-title {
-        padding: 5px 11px 4px 11px;
-        font-size: 14px;
-    }
-} */
-
 .limespot-recommendation-box {
-    margin-bottom: 30px;
+    /* margin-bottom:30px; */
 }
 
 .section-template-padding {
-    padding-top: 30px !important;
-    padding-bottom: 30px !important;
+    padding-bottom: 20px!important;
+    padding-top: 20px!important;
 }
 
 @media screen and (max-width: 600px) {
     .section-template-padding {
-        padding-top: 10px!important;
-        padding-bottom: 10px!important;
+        padding-bottom:10px!important;
+        padding-top: 10px!important
     }
 }

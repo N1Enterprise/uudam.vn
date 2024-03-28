@@ -340,13 +340,13 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 }
 
 .video-featured-section-01 {
-    background: linear-gradient(90deg,#ffecd2 0%,#fcb69f 100%); 
+    background: linear-gradient(90deg,#ffecd2 0%,#fcb69f 100%);
     padding: 20px
 }
 
 .video-featured-section-01 .recommendation-target {
-    background-color: #fff; 
-    padding: 20px; 
+    background-color: #fff;
+    padding: 20px;
     margin: 0 10px;
 }
 
@@ -359,7 +359,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
         padding: 5px;
         font-size: 14px;
     }
-    
+
     .video-featured-section-01 {
         padding: 10px;
     }
@@ -370,7 +370,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     }
 
     .section-template-wrapper .section-template-wrapper-nav-tabs {
-        padding: 0;   
+        padding: 0;
     }
 
     .section-template-wrapper {
@@ -397,5 +397,16 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     }
     .in-app-banner-wrapper .inapp-banner-link .inapp-banner-mobile {
         display: block!important;
+    }
+}
+
+.section-content-template {
+    padding: 0 130px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .section-content-template {
+        padding: 0;
     }
 }
