@@ -21,6 +21,9 @@
     .master-mobile-menu #layout-desktop .menu-mobile-reponsive {
         display: flex;
     }
+    .shopify-section-group-footer-group {
+        margin-bottom: 60px;
+    }
 }
 
 
