@@ -26,7 +26,6 @@
     }
 }
 
-
 @media screen and (max-width: 768px) {
     .master-mobile-menu #menu-bottom-tabs.tabs {
         background: #fff;
@@ -46,8 +45,6 @@
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
     display: flex;
-    /* flex-grow: 1; */
-    /* flex-shrink: 0; */
     justify-content: flex-start;
 }
 
