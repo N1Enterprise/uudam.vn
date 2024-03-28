@@ -2,18 +2,14 @@
 
 @php
 
-$title = __('Users');
+$title = __('Thông tin khách hàng');
 
 $breadcrumbs = [
     [
+        'label' => __('Khách hàng'),
+    ],
+    [
         'label' => $title,
-    ],
-    [
-        'label' => __('Search Users'),
-        'href'  =>  route('bo.web.users.index')
-    ],
-    [
-        'label' => __('Detail User'),
     ],
 ];
 @endphp
@@ -76,14 +72,14 @@ $breadcrumbs = [
                             <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font" role="tablist">
                                 <li class="k-nav__item k-nav__item--active">
                                     <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab" aria-selected="true">
-                                        <span class="k-nav__link-text">{{ __('General Information') }}</span>
+                                        <span class="k-nav__link-text">{{ __('Thông tin chung') }}</span>
                                     </a>
                                 </li>
 
                                 @can('carts.index')
                                 <li class="k-nav__item">
                                     <a href="#tab_cart" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="cart">
-                                        <span class="k-nav__link-text">{{ __('Cart') }}</span>
+                                        <span class="k-nav__link-text">{{ __('Giỏ hàng') }}</span>
                                     </a>
                                 </li>
                                 @endcan
@@ -91,7 +87,7 @@ $breadcrumbs = [
                                 @can('orders.index')
                                 <li class="k-nav__item">
                                     <a href="#tab_order" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="order">
-                                        <span class="k-nav__link-text">{{ __('Thứ tự') }}</span>
+                                        <span class="k-nav__link-text">{{ __('Đơn hàng') }}</span>
                                     </a>
                                 </li>
                                 @endcan
@@ -101,13 +97,13 @@ $breadcrumbs = [
                     <div class="k-separator k-separator--border-dashed k-separator--height-xs"></div>
                     <div class="k-section__content action mt-4">
                         @if(! boolean($user->is_test_user))
-                        <button type="button" data-modal="#modal_set_test_user" class="btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Mark as test account') }}</button>
+                        <button type="button" data-modal="#modal_set_test_user" class="btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Đánh dấu tài khoản thử nghiệm') }}</button>
                         @endif
 
                         @if($user->status == enum('ActivationStatusEnum')::ACTIVE)
-                        <button action-url="{{ route('bo.web.users.action.deactivate', $user->id) }}" type-action="DEACTIVATE" class="actionBtn btn_user_action btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Deactivate') }}</button>
+                        <button action-url="{{ route('bo.web.users.action.deactivate', $user->id) }}" type-action="DEACTIVATE" class="actionBtn btn_user_action btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Vô hiệu hóa') }}</button>
                         @elseif($user->status == enum('ActivationStatusEnum')::INACTIVE)
-                        <button action-url="{{ route('bo.web.users.action.active', $user->id) }}" type-action="ACTIVE" class="actionBtn btn_user_action btn btn-outline-success btn-block btn-label-success btn-pill">{{ __('Activate') }}</button>
+                        <button action-url="{{ route('bo.web.users.action.active', $user->id) }}" type-action="ACTIVE" class="actionBtn btn_user_action btn btn-outline-success btn-block btn-label-success btn-pill">{{ __('Kích hoạt') }}</button>
                         @endif
                     </div>
                 </div>
@@ -135,7 +131,7 @@ $breadcrumbs = [
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ __("Upon marking this as test accounts you're unable to revert the action, are you sure?") }}</label>
+                        <label>{{ __("Khi đánh dấu đây là tài khoản thử nghiệm, bạn không thể hoàn nguyên hành động này, bạn có chắc chắn không?") }}</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -161,7 +157,7 @@ $breadcrumbs = [
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <label>{{ __('Reason') }}</label>
+                        <label>{{ __('Lí do') }}</label>
                         <textarea name="reason" class="form-control" rows="10"></textarea>
                         <input type="text" name="type" value="" hidden>
                     </div>

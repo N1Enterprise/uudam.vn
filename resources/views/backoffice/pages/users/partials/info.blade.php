@@ -1,10 +1,10 @@
 <div class="k-portlet">
     <div class="k-portlet__head">
         <div class="k-portlet__head-label">
-            <h3 class="k-portlet__head-title mr-2">{{ __('General Information') }}</h3>
+            <h3 class="k-portlet__head-title mr-2">{{ __('Thông tin chung') }}</h3>
             @if($user->is_test_user)
             <span class="btn btn-label-success btn-sm btn-pill" >
-                <span>{{ __('Test Account') }}</span>
+                <span>{{ __('Tài khoản thử nghiệm') }}</span>
             </span>
             @endif
         </div>
@@ -13,7 +13,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-primary btn-pill" data-modal="#modal_update_user">
                         <i class="la la-pencil"></i>
-                        <span>{{ __('Update') }}</span>
+                        <span>{{ __('Cập nhật') }}</span>
                     </button>
                 </div>
             </div>
@@ -23,7 +23,7 @@
     <div class="k-portlet__body">
         <div class="form-group row">
             <div class="col-lg-4">
-                <label>{{ __('UserName') }}</label>
+                <label>{{ __('Tên tài khoản') }}</label>
                 <input type="text" class="form-control" disabled="disabled" value="{{ $user->username }}">
             </div>
             <div class="col-lg-4">
@@ -37,15 +37,15 @@
         </div>
         <div class="form-group row">
             <div class="col-lg-4">
-                <label>{{ __('Phone Number') }}</label>
+                <label>{{ __('Số điện thoại') }}</label>
                 <input  class="form-control" type="text" disabled="disabled" value="{{ $user->phone_number }}">
             </div>
             <div class="col-lg-4">
-                <label>{{ __('Last Logged In At') }}</label>
+                <label>{{ __('Đăng nhập lần cuối vào lúc') }}</label>
                 <input type="text" class="form-control" disabled="disabled" value="{{ $user->last_logged_in_at }}">
             </div>
             <div class="col-lg-4">
-                <label class="">{{ __('Birthday') }}</label>
+                <label class="">{{ __('Sinh nhật') }}</label>
                 <input type="text" class="form-control" disabled="disabled" value="{{ $user->birthday }}">
             </div>
         </div>
@@ -82,11 +82,11 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-4">
-                            <label>{{ __('Phone Number') }}</label>
+                            <label>{{ __('Số điện thoại') }}</label>
                             <input type="text" class="form-control" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
                         </div>
                         <div class="col-lg-4">
-                            <label>{{ __('Birthday') }}</label>
+                            <label>{{ __('Sinh nhật') }}</label>
                             <div class="input-group">
                                 <input autocomplete="off" type="datepicker" class="form-control" name="birthday" value="{{ old('birthday', $user->birthday) }}">
                                 <div class="input-group-append">

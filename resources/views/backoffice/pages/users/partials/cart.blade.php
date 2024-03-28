@@ -1,7 +1,7 @@
 <div class="k-portlet">
     <div class="k-portlet__head">
         <div class="k-portlet__head-label">
-            <h3 class="k-portlet__head-title">{{ __('Orders') }}</h3>
+            <h3 class="k-portlet__head-title">{{ __('Danh sách giỏ hàng') }}</h3>
         </div>
     </div>
 
@@ -12,7 +12,7 @@
                     <div class="col-md-8 form-group">
                         <div class="input-group">
                             <input
-                                data-original-title="{{ __('Order Date') }}"
+                                data-original-title="{{ __('Ngày đặt hàng') }}"
                                 data-toggle="tooltip"
                                 start="{{ now()->startOfMonth()->toDateTimeString() }}"
                                 end="{{ now()->endOfMonth()->toDateTimeString() }}"
@@ -21,7 +21,7 @@
                                 class="form-control"
                                 value=""
                                 readonly
-                                placeholder="{{ __('Select Date Range') }}"
+                                placeholder="{{ __('Chọn ngày đặt hàng') }}"
                             >
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -43,11 +43,11 @@
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Order Code') }}</th>
-                            <th data-property="ip_address">{{ __('IP Address') }}</th>
-                            <th data-property="total_item">{{ __('Total Item') }}</th>
-                            <th data-property="total_quantity">{{ __('Total Quantity') }}</th>
-                            <th data-property="total_price">{{ __('Total Price') }}</th>
+                            <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Mã đơn hàng') }}</th>
+                            <th data-property="ip_address">{{ __('Địa chỉ IP') }}</th>
+                            <th data-property="total_item">{{ __('Tổng sản phẩm') }}</th>
+                            <th data-property="total_quantity">{{ __('Tổng số lượng') }}</th>
+                            <th data-property="total_price">{{ __('Tổng giá') }}</th>
                             <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                             <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                             <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>

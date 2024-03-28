@@ -150,8 +150,8 @@ Chi tiết đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') 
                     <tbody>
                         @foreach (data_get($order, 'orderItems', []) as $item)
                         <tr class="cart-item order-history__items-item">
-                            <td class="cart-item__media">
-                                <div class="cart-item__image-container gradient global-media-settings">
+                            <td class="cart-item__media" width="150">
+                                <div class="cart-item__image-container" style="margin-right: 9px;">
                                     <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="100" height="100">
                                     <span class="order-history-item-quantity">x{{ data_get($item, 'quantity') }}</span>
                                 </div>
