@@ -15,9 +15,10 @@ class HomePageDisplayOrder extends BaseModel
         'name',
         'order',
         'status',
-        'display_on_frontend'
+        'display_on_frontend',
+        'hidden_name'
     ];
-    
+
     public function items()
     {
         return $this->hasMany(HomePageDisplayItem::class, 'group_id', 'id');

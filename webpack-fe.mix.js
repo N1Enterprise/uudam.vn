@@ -93,6 +93,7 @@ mix
     .css('resources/src/frontend/css/section-multicolumn.css', 'public/frontend/bundle/css/section-multicolumn.min.css')
     .css('resources/src/frontend/css/component-slider.css', 'public/frontend/bundle/css/component-slider.min.css')
     .css('resources/src/frontend/css/variable.css', 'public/frontend/bundle/css//variable.min.css')
+    .css('resources/src/frontend/css/mobile-menu.css', 'public/frontend/bundle/css//mobile-menu.min.css')
 
 
     .options({

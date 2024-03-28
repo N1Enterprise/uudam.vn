@@ -63,5 +63,6 @@
     "/frontend/bundle/js/app.min.js": "/frontend/bundle/js/app.min.js",
     "/frontend/bundle/css/variable.min.css": "/frontend/bundle/css/variable.min.css",
     "/frontend/bundle/js/address.min.js": "/frontend/bundle/js/address.min.js",
-    "/frontend/bundle/js/home-index.min.js": "/frontend/bundle/js/home-index.min.js"
+    "/frontend/bundle/js/home-index.min.js": "/frontend/bundle/js/home-index.min.js",
+    "/frontend/bundle/css/mobile-menu.min.css": "/frontend/bundle/css/mobile-menu.min.css"
 }
