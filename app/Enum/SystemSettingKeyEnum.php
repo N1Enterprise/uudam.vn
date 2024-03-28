@@ -28,6 +28,8 @@ class SystemSettingKeyEnum extends BaseEnum
     public const SHOP_FAVICONS = 'shop_favicons';
     public const QUEUE_NAMES = 'queue_names';
     public const FOOTER_MENUS = 'footer_menus';
+    public const MOST_SEARCHED = 'most_searched';
+    public const BUSINESS_INFORMATION = 'business_information';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';

@@ -1,5 +1,5 @@
 <limespot-box data-owner="LimeSpot" data-box-type="Related" data-dynamic="true" data-host-page="Home" data-placement-order="2" class="ls-recommendation-box limespot-recommendation-box ls-animate page-width no-zoom section-template-padding" data-placement-disposition="0" data-placement-method="before" data-box-style="carousel" style="display: block;">
-    <h3 class="ls-box-title">Sản phẩm nổi bậc</h3>
+    <h3 class="ls-box-title">Sản phẩm Nổi bật</h3>
     <div class="limespot-recommendation-box-carousel-container">
         <div class="recommendation-items" data-show>
             <div class="ls-ul-container limespot-recommendation-box-carousel ls-drag-scroll v-align">

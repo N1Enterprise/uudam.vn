@@ -77,6 +77,23 @@
     @endforeach
 @endif
 
+@if (data_get($SYSTEM_SETTING, 'most_searched.enable'))
+<section class="shopify-section section">
+    <div class="section-template-padding page-width">
+        <div class="section-content-template">
+            <h3 class="ls-box-title custom-ls-box-title">Tìm kiếm nhiều</h3>
+            <div style="overflow: hidden;">
+                <div class="list-most-search">
+                    @foreach (data_get($SYSTEM_SETTING, 'most_searched.links') as $link)
+                    <a href="{{ data_get($link, 'link') }}" class="list-most-search-link" target="_blank">{{ data_get($link, 'name') }}</a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
 <section class="shopify-section section">
     @if(! empty($videoOutsideUI))
     @include('frontend.pages.home.partials.section-outstanding-advantages')

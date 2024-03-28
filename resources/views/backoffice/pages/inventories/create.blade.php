@@ -341,7 +341,7 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('ĐẶC ĐIỂM NỔI BẬC') }}</h3>
+                            <h3 class="k-portlet__head-title">{{ __('ĐẶC ĐIỂM NỔI BẬT') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">

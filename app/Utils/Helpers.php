@@ -425,3 +425,10 @@ if (! function_exists('generate_seo_html')) {
         return $htmls;
     }
 }
+
+if (! function_exists('text_without_spaces')) {
+    function text_without_spaces($string)
+    {
+        return preg_replace('/\s+/', '', $string);
+    }
+}

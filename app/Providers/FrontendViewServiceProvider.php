@@ -86,9 +86,13 @@ class FrontendViewServiceProvider extends ServiceProvider
                         'logo' => data_get($provider, 'logo'),
                     ];
                 }),
-            
+
             // SEO
             'google_analytics_tag' => SystemSetting::from(SystemSettingKeyEnum::GOOGLE_ANALYTICS_TAG)->get(null, ''),
+
+            'most_searched' => SystemSetting::from(SystemSettingKeyEnum::MOST_SEARCHED)->get(null, []),
+
+            'business_information' => SystemSetting::from(SystemSettingKeyEnum::BUSINESS_INFORMATION)->get(null, []),
         ];
     }
 }
