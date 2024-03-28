@@ -69,7 +69,6 @@ Chi tiết đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') 
     <h4>Chi tiết đơn hàng <b>#{{ $order->order_code }}</b>
         -
         <span>{{ enum('OrderStatusEnum')::findConstantLabelVn($order->order_status) }}</span>
-        -
     </h4>
     <div class="order-history-created_at" style="margin-bottom: 20px; font-size: 14px; font-weight: bold;">Đặt lúc: {{ format_datetime($order->created_at, 'd/m/Y H:i') }}</div>
     <div class="order-info">
