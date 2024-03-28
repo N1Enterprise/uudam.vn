@@ -410,3 +410,46 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
         padding: 0;
     }
 }
+
+.slider-buttons.banner-home-control {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+    border: none;
+}
+
+.slider-buttons.banner-home-control .slider-button {
+    background: #fff;
+    opacity: 0.6;
+    width: 40px;
+    height: 40px;
+}
+
+.slider-buttons.banner-home-control .slider-button .icon {
+    height: .9rem;
+}
+
+/* List most search */
+.list-most-search {
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-most-search a {
+    background: #f3f3f3;
+    border-radius: 4px;
+    padding: 5px 7px;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+
+.list-most-search a:hover {
+    background-color: #025b50;
+    color: #fff;
+}

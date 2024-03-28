@@ -11,7 +11,7 @@ class StoreSystemSettingGroupRequest extends BaseFormRequest implements StoreSys
     public function rules(): array
     {
         return [
-            'name' => ['regex:/^(?=.*[a-zA-Z]).+$/', 'alpha-dash', Rule::unique(SystemSettingGroup::class)],
+            'name' => [Rule::unique(SystemSettingGroup::class)],
             'order' => ['nullable', 'integer']
         ];
     }

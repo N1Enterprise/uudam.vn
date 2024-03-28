@@ -9,7 +9,7 @@
                         </h2>
                         <div class="select">
                             <select name="sort_by" data-collection-linked-inventory="sort_by" class="facet-filters__sort select__select caption-large" id="SortBy" aria-describedby="a11y-refresh-page-message">
-                                <option value="manual" selected="selected">Nổi bậc</option>
+                                <option value="manual" selected="selected">Nổi bật</option>
                                 <option value="best-selling">Bán chạy nhất</option>
                                 <option value="title-ascending">Theo bảng chữ cái, A-Z</option>
                                 <option value="title-descending">Theo bảng chữ cái, Z-A</option>
@@ -72,7 +72,7 @@
                                             <label for="SortBy-mobile">Lọc sản phẩm theo:</label>
                                             <div class="select">
                                                 <select name="sort_by" data-collection-linked-inventory="sort_by" class="select__select" id="SortBy-mobile" aria-describedby="a11y-refresh-page-message">
-                                                    <option value="manual" selected="selected">Nổi bậc</option>
+                                                    <option value="manual" selected="selected">Nổi bật</option>
                                                     <option value="best-selling">Bán chạy nhất</option>
                                                     <option value="title-ascending">Theo bảng chữ cái, A-Z</option>
                                                     <option value="title-descending">Theo bảng chữ cái, Z-A</option>

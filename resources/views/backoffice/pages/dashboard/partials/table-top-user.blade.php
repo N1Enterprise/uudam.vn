@@ -2,7 +2,7 @@
     <div class="k-portlet k-portlet--height-fluid">
         <div class="k-portlet__head ">
             <div class="k-portlet__head-label">
-                <h3 class="k-portlet__head-title">{{ __('Khách hàng nổi bậc') }}</h3>
+                <h3 class="k-portlet__head-title">{{ __('Khách hàng nổi bật') }}</h3>
             </div>
         </div>
         <div class="k-portlet__body">
