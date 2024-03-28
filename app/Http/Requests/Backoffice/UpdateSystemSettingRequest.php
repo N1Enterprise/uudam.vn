@@ -15,7 +15,7 @@ class UpdateSystemSettingRequest extends BaseFormRequest implements UpdateSystem
                 Rule::exists('system_setting_groups', 'id')
             ],
             'label' => ['nullable'],
-            'order' => ['required', 'integer'],
+            'order' => ['nullable', 'integer'],
         ];
     }
 }
