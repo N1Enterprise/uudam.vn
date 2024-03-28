@@ -121,7 +121,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                         </tbody>
                     </table>
                 </div>
-                <div class="order-history__sumary" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; border: 1px dashed #a3a1a1;">
+                <div class="order-history__sumary" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; border-top: 1px dashed #a3a1a1;">
                     <div style="padding: 10px 0; font-size: 18px;">
                         <span>Tổng tiền:</span>
                         <span style="font-weight: bold;">{{ format_price($order->grand_total) }}</span>
