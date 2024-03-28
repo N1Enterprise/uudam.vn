@@ -401,7 +401,6 @@
 :is(.account, .order) {
     margin: 6rem auto 9rem;
     max-width: var(--page-width);
-    /* padding: 0 2rem; */
 }
 
 @media screen and (min-width: 750px) {
@@ -773,16 +772,9 @@ li[data-address] > h2 {
     display: block;
     padding: 4px 8px;
     border-radius: 3px;
-    /* margin: 5px 0; */
-    -webkit-text-decoration: auto;
-    text-decoration: auto;
-    /* border: 1px solid #000; */
+    text-decoration: none;
     margin-right: 10px;
     border: 1px solid #ccc;
-}
-
-.profile-tabs-nav .profile-tabs-nav__tab:first-child {
-    /* padding-left: 0; */
 }
 
 .profile-tabs-nav .profile-tabs-nav__tab.active {
@@ -894,8 +886,6 @@ li[data-address] > h2 {
     }
 }
 
-
-
 /* The custom-checkout */
 .custom-checkout {
     display: block;
@@ -907,7 +897,7 @@ li[data-address] > h2 {
     -moz-user-select: none;
     user-select: none;
   }
-  
+
   /* Hide the browser's default checkbox */
   .custom-checkout input {
     position: absolute;
@@ -916,7 +906,7 @@ li[data-address] > h2 {
     height: 0;
     width: 0;
   }
-  
+
   /* Create a custom checkbox */
   .checkmark {
     position: absolute;
@@ -927,29 +917,29 @@ li[data-address] > h2 {
     transform: translate(0, 18%);
     background-color: #eee;
   }
-  
+
   /* On mouse-over, add a grey background color */
   .custom-checkout:hover input ~ .checkmark {
     background-color: #ccc;
   }
-  
+
   /* When the checkbox is checked, add a blue background */
   .custom-checkout input:checked ~ .checkmark {
     background-color: #000000;
   }
-  
+
   /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+
   /* Show the checkmark when checked */
   .custom-checkout input:checked ~ .checkmark:after {
     display: block;
   }
-  
+
   /* Style the checkmark/indicator */
   .custom-checkout .checkmark:after {
     left: 8px;
@@ -960,4 +950,3 @@ li[data-address] > h2 {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }
-  
