@@ -88,7 +88,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                             <tr class="cart-item order-history__items-item">
                                 <td class="cart-item__media" width="150">
                                     <div class="cart-item__image-container" style="margin-right: 9px;">
-                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="150" height="150" style="width: 100%; height: 100%;">
+                                        <img src="{{ data_get($item, 'inventory.image') }}" class="" alt="{{ data_get($item, 'inventory.title') }}" loading="lazy" width="100" height="100">
                                         <span class="order-history-item-quantity">x{{ data_get($item, 'quantity') }}</span>
                                     </div>
                                 </td>
@@ -121,7 +121,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
                         </tbody>
                     </table>
                 </div>
-                <div class="order-history__sumary" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end;">
+                <div class="order-history__sumary" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; border: 1px dashed #a3a1a1;">
                     <div style="padding: 10px 0; font-size: 18px;">
                         <span>Tổng tiền:</span>
                         <span style="font-weight: bold;">{{ format_price($order->grand_total) }}</span>
