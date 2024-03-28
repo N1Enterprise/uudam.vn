@@ -30,8 +30,8 @@
                         <input type="text" class="form-control" name="label" value="{{ $systemSetting->label }}" placeholder="{{ __('Label') }}">
                     </div>
                     <div class="form-group">
-                        <label>{{ __('Index') }} *</label>
-                        <input type="number" min="0" class="form-control" name="order" value="{{ $systemSetting->order }}" placeholder="{{ __('Index') }}" required>
+                        <label>{{ __('Index') }}</label>
+                        <input type="number" min="0" class="form-control" name="order" value="{{ $systemSetting->order }}" placeholder="{{ __('Index') }}">
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between align-items-center">
