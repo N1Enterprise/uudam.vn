@@ -35,6 +35,7 @@
     <link href="{{ asset_with_version('frontend/bundle/css/component-predictive-search.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset_with_version('frontend/bundle/css/mobile-menu.min.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Page Common Styles -->
 
     @yield('style_datatable')
@@ -61,8 +62,9 @@
     @if (data_get($SYSTEM_SETTING, 'receive_new_post_setting.enable'))
     @include('frontend.layouts.partials.footer.subscribe')
     @endif
-    
+
     @include('frontend.layouts.partials.footer.index')
+    @include('frontend.layouts.partials.menu-mobile.index')
 
     <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>

@@ -34,7 +34,9 @@
     <section class="shopify-section section">
         <div class="section-template-padding page-width">
             <div>
+                @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
                 <h3 class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
+                @endif
 
                 @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
                     @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
@@ -44,7 +46,7 @@
                                 @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
                                 @include('frontend.pages.home.partials.recommendation-products')
                                 @endif
-        
+
                                 @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
                                 @include('frontend.pages.home.partials.recommendation-collections')
                                 @endif

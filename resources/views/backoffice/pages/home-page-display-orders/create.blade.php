@@ -58,6 +58,18 @@
 									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
+                                <div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Ẩn hiển thị tên') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('hidden_name', '0') == '1'  ? 'checked' : ''}} value="1" name="hidden_name" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
 								<div class="form-group row">
 									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">

@@ -13,7 +13,7 @@ class HomePageDisplayOrderCms extends BaseCms
 
     /**
      * @return HomeDisplayOrder
-     * @throws BindingResolutionException 
+     * @throws BindingResolutionException
      */
     public function model()
     {
@@ -23,7 +23,7 @@ class HomePageDisplayOrderCms extends BaseCms
     public function available()
     {
         $cacheKey = 'available';
-        
+
         return Cache::tags(self::CACHE_TAG)->rememberForever($cacheKey, function() {
             return app(HomePageDisplayOrderRepositoryContract::class)
                 ->with(['items' => function($q) {
@@ -33,7 +33,7 @@ class HomePageDisplayOrderCms extends BaseCms
                 }])
                 ->modelScopes(['active', 'feDisplay'])
                 ->orderBy('order')
-                ->all(['id', 'name'])
+                ->all(['id', 'name', 'hidden_name'])
                 ->toArray();
         });
     }
