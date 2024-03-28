@@ -33,7 +33,7 @@
     @foreach ($homePageDisplayOrders as $homePageDisplayOrder)
     <section class="shopify-section section">
         <div class="section-template-padding page-width">
-            <div>
+            <div class="section-content-template">
                 @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
                 <h3 class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
                 @endif
