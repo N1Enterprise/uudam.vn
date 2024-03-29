@@ -10,23 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
-
     @foreach (data_get($SYSTEM_SETTING, 'shop_favicons', []) as $favicon)
     <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
     @endforeach
-
     @yield('page_seo')
-
-    <style>
-        @media screen and (max-width: 750px) {
-            .checkout-header-side-item {
-                display: none;
-            }
-        }
-    </style>
-
     <link href="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
-
     @if (data_get($SYSTEM_SETTING, 'google_analytics_tag'))
     {!! data_get($SYSTEM_SETTING, 'google_analytics_tag') !!}
     @endif

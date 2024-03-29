@@ -8,6 +8,10 @@ Thông tin tài khoản | {{ config('app.user_domain') }}
 {!! generate_seo_html(['page_name' => "Thông tin tài khoản - " . data_get($AUTHENTICATED_USER, 'name')]) !!}
 @endsection
 
+@section('profile_style')
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
+@endsection
+
 @section('profile_content')
 <div class="profile-user-info">
     <h4>Thông tin tài khoản</h4>
