@@ -416,7 +416,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     bottom: 0;
     right: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 2;
     border: none;
 }
 
