@@ -4,12 +4,10 @@
     <meta charset="utf-8" />
     <title>@yield('page_title', __($APP_NAME))</title>
 
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ \App::currentLocale() }}">
-    <meta property="og:site_name" content="{{ __($APP_NAME) }}">
 
     @foreach (data_get($SYSTEM_SETTING, 'shop_favicons', []) as $favicon)
     <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
