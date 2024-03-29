@@ -8,6 +8,10 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
 {!! generate_seo_html(['page_name' => 'Cập nhật địa chỉ']) !!}
 @endsection
 
+@section('profile_style')
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
+@endsection
+
 @php
     $redirectUrl = request()->get('redirect_url');
     $redirectUrl = $redirectUrl ?? route('fe.web.user.localization.address');
@@ -80,7 +84,7 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                
+
                 <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;" data-button-submit-text="">...</button>
             </div>
         </form>

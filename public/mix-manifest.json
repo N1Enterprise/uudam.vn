@@ -64,5 +64,16 @@
     "/frontend/bundle/css/variable.min.css": "/frontend/bundle/css/variable.min.css",
     "/frontend/bundle/js/address.min.js": "/frontend/bundle/js/address.min.js",
     "/frontend/bundle/js/home-index.min.js": "/frontend/bundle/js/home-index.min.js",
-    "/frontend/bundle/css/mobile-menu.min.css": "/frontend/bundle/css/mobile-menu.min.css"
+    "/frontend/bundle/css/mobile-menu.min.css": "/frontend/bundle/css/mobile-menu.min.css",
+    "/frontend/bundle/css/master.min.css": "/frontend/bundle/css/master.min.css",
+    "/frontend/bundle/css/pages/product.min.css": "/frontend/bundle/css/pages/product.min.css",
+    "/frontend/bundle/css/pages/home.min.css": "/frontend/bundle/css/pages/home.min.css",
+    "/frontend/bundle/css/pages/search.min.css": "/frontend/bundle/css/pages/search.min.css",
+    "/frontend/bundle/css/pages/collection.min.css": "/frontend/bundle/css/pages/collection.min.css",
+    "/frontend/bundle/css/pages/checkout.min.css": "/frontend/bundle/css/pages/checkout.min.css",
+    "/frontend/bundle/css/pages/cart.min.css": "/frontend/bundle/css/pages/cart.min.css",
+    "/frontend/bundle/css/pages/profile.min.css": "/frontend/bundle/css/pages/profile.min.css",
+    "/frontend/bundle/css/pages/page.min.css": "/frontend/bundle/css/pages/page.min.css",
+    "/frontend/bundle/css/pages-blog.min.css": "/frontend/bundle/css/pages-blog.min.css",
+    "/frontend/bundle/css/pages/blog.min.css": "/frontend/bundle/css/pages/blog.min.css"
 }

@@ -8,6 +8,10 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
 {!! generate_seo_html(['page_name' => 'Thay đổi mật khẩu']) !!}
 @endsection
 
+@section('profile_style')
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
+@endsection
+
 @section('profile_content')
 <div class="profile-change-password">
     <h4>Thay đổi mật khẩu</h4>

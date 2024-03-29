@@ -9,64 +9,7 @@ Lịch sử đơn hàng | {{ config('app.user_domain') }}
 @endsection
 
 @section('profile_style')
-<style>
-    .order-history {
-        background: #fafafa;
-        border-radius: 3px;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .order-history-status {
-        padding: 4px 4px 3px 4px;
-        border-radius: 5px;
-        background: rgb(60 75 77 / 20%);
-        line-height: 19px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .order-history-created_at {
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    [data-order-status="5"] {
-        background-color: #1dc9b7 !important;
-        color: #fff;
-    }
-
-    .cart__items {
-        border-bottom: none!important;
-    }
-
-    .cart-item__image-container {
-        position: relative;
-    }
-
-    .order-history-item-quantity {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 12px;
-        line-height: 16px;
-        font-weight: 400;
-        color: rgb(128, 128, 137);
-        text-align: center;
-        position: absolute;
-        width: 28px;
-        height: 28px;
-        background-color: rgb(235, 235, 240);
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        right: 0px;
-        bottom: 0px;
-        border-top-left-radius: 10px;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
 @endsection
 
 @section('profile_content')

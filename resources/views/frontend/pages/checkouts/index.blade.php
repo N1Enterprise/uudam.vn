@@ -9,66 +9,7 @@ Thanh toán | {{ config('app.user_domain') }}
 @endsection
 
 @section('style')
-<link href="{{ asset_with_version('vendor/validate/styles.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset_with_version('frontend/bundle/css/variable.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset_with_version('frontend/bundle/css/quick-add.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset_with_version('frontend/bundle/css/main.min.css') }}" rel="stylesheet" type="text/css" />
-
-<style>
-    input:disabled,
-    select:disabled {
-        background: #f9f9f9;
-    }
-
-    .quick-add-modal__toggle .icon {
-        width: 1rem;
-    }
-    .quick-add-modal__toggle {
-        width: auto;
-        padding: .5rem;
-    }
-
-    .ls-box-title {
-        font-family: Poppins,sans-serif;
-        font-size: 24px;
-        font-weight: 400;
-        margin: 10px 0;
-        color: #000;
-    }
-
-    @media screen and (max-width: 600px) {
-        .quick-add-modal__content {
-            margin-top: 20px;
-        }
-
-        .quick-add-modal__content-info {
-            padding: 1rem;
-        }
-
-        .quick-add-modal__toggle {
-            top: 20px;
-            right: 1.5rem;
-        }
-    }
-
-    @media screen and (max-width: 400px) {
-        .quick-add-modal__content {
-            margin-top: 0;
-            height: 100%;
-            overflow: scroll;
-            width: 100%;
-        }
-    }
-
-    .create-address-form .msg-error {
-        display: block;
-        margin-top: 5px;
-    }
-
-    .prevent {
-        opacity: .5;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/checkout.min.css') }}">
 @endsection
 
 @section('content_body')

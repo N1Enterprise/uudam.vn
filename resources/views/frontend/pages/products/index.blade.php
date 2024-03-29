@@ -9,34 +9,7 @@
 @endsection
 
 @push('style_pages')
-<style>
-    .section-template__main-padding {
-        padding-top: 27px;
-        padding-bottom: 9px;
-    }
-
-    @media screen and (min-width: 750px) {
-        .section-template__main-padding {
-            padding-top: 36px;
-            padding-bottom: 12px;
-        }
-    }
-
-    .product-description {
-        line-height: 1;
-        font-size: 1.5rem;
-    }
-</style>
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/product-index.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider-2.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-price.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/spr.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/product-attribute.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-loading-overlay.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/product.min.css') }}">
 @endpush
 
 @section('content_body')

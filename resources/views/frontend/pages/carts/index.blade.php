@@ -5,9 +5,7 @@ Giỏ hàng | {{ config('app.user_domain') }}
 @endsection
 
 @push('style_pages')
-<link href="{{ asset_with_version('frontend/bundle/css/component-cart.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset_with_version('frontend/bundle/css/component-cart-drawer.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset_with_version('frontend/bundle/css/component-cart-items.min.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/cart.min.css') }}">
 @endpush
 
 @section('page_seo')

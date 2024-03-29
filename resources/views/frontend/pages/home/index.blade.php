@@ -9,17 +9,7 @@
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/home-index.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider-1.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-featured-blog.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-multicolumn.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/recommendation.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slideshow.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-slider.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-image-banner.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/home.min.css') }}">
 @endpush
 
 @section('content_body')

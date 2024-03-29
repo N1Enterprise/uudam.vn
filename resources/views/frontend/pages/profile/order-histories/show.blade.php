@@ -9,59 +9,7 @@ Chi tiết đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') 
 @endsection
 
 @section('profile_style')
-<style>
-    .order-history {
-        background: #fafafa;
-        border-radius: 3px;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .order-history-status {
-        padding: 2px 10px;
-        border-radius: 5px;
-        font-weight: bold;
-        background: rgb(60 75 77 / 20%);
-        line-height: 19px;
-    }
-
-    .cart__items {
-        border-bottom: none!important;
-    }
-
-    .cart-item__image-container {
-        position: relative;
-    }
-
-    .order-history-item-quantity {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 12px;
-        line-height: 16px;
-        font-weight: 400;
-        color: rgb(128, 128, 137);
-        text-align: center;
-        position: absolute;
-        width: 28px;
-        height: 28px;
-        background-color: rgb(235, 235, 240);
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        right: 0px;
-        bottom: 0px;
-        border-top-left-radius: 10px;
-    }
-    .order-info__item {
-        border: 1px solid #e8e8e8;
-        margin-bottom: 10px;
-        padding: 15px;
-        border-radius: 3px;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
 @endsection
 
 @section('profile_content')

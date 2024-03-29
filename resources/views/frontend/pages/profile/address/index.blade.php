@@ -8,6 +8,10 @@ Quản lí địa chỉ | {{ config('app.user_domain') }}
 {!! generate_seo_html(['page_name' => 'Quản lí địa chỉ']) !!}
 @endsection
 
+@section('profile_style')
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
+@endsection
+
 @section('profile_content')
 <div class="profile-new-address">
     <h4>Sổ địa chỉ</h4>
@@ -23,7 +27,7 @@ Quản lí địa chỉ | {{ config('app.user_domain') }}
             <div class="address-item">
                 <div class="info">
                     <div class="name">
-                        <div>{{ data_get($address, 'name') }}</div> 
+                        <div>{{ data_get($address, 'name') }}</div>
                         @if (data_get($address, 'is_default'))
                         <span>
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
