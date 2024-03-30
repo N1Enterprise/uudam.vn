@@ -21,7 +21,7 @@ Thêm địa chỉ mới | {{ config('app.user_domain') }}
 <div class="">
     <div class="navigation-wrapper">
         <a href="{{ route('fe.web.user.localization.address') }}" class="navigation-item">Sổ địa chỉ</a>
-        <a href="javascript:void(0)" class="navigation-item">Thêm địa chỉ</a>
+        <a href="/" class="navigation-item prevent">Thêm địa chỉ</a>
     </div>
     <div class="address-form">
         <form action="{{ route('fe.api.user.address.store') }}" method="POST" data-form="user-info" novalidate="novalidate" id="address-form" data-redirect="{{ $redirectUrl }}">

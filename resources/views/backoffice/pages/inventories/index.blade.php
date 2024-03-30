@@ -150,7 +150,7 @@
         const dataLink = $(this).attr('href');
 
         copyToClipboard(dataLink);
-        
+
         fstoast.success("{{ __('Đã sao chép !') }}");
     });
 

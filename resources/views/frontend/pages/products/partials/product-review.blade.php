@@ -18,7 +18,7 @@
                     @if($AUTHENTICATED_USER)
                     <div class="spr-summary rte">
                         <span class="spr-summary-actions">
-                            <a href="javascript:void(0)" class="spr-summary-actions-newreview" onclick="">Viết đánh giá</a>
+                            <button type="button" class="spr-summary-actions-newreview act-button">Viết đánh giá</button>
                         </span>
                     </div>
                     @endif

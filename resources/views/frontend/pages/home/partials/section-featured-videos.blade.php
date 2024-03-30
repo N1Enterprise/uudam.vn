@@ -3,7 +3,11 @@
         <div class="section-template-wrapper video-featured-section-01">
             <div class="section-template-wrapper-nav-tabs owl-carousel owl-theme" data-owl-id="Home_Video_Featured" data-owl-items="5">
                 @foreach ($videoCategories as $category)
-                <a href="javascript:void(0)" class="section-template-wrapper-nav-tabs-item nav-tabs-item-link {{  $loop->index == 0 ? 'active' : '' }}" data-featured-video-nav-tab-id="video_category_{{ data_get($category, 'id') }}">{{ data_get($category, 'name') }}</a>
+                <div style="margin-right: 5px;">
+                    <button type="button" class="section-template-wrapper-nav-tabs-item nav-tabs-item-link act-button w-100 {{  $loop->index == 0 ? 'active' : '' }}" data-featured-video-nav-tab-id="video_category_{{ data_get($category, 'id') }}">
+                        <span>{{ data_get($category, 'name') }}</span>
+                    </button>
+                </div>
                 @endforeach
             </div>
 

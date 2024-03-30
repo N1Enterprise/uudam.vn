@@ -12,7 +12,7 @@
         <a href="{{ route('bo.web.admins.edit', $AUTHENTICATED_ADMIN->id) }}" target="_blank" class="split highlight">
             Welcome {{ $AUTHENTICATED_ADMIN->name }}
         </a>
-        <a href="javascript:void(0)" class="split" onclick="document.querySelector('#signout_form').submit()">
+        <a href="/" class="split" onclick="this.preventDefault(); document.querySelector('#signout_form').submit()">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" width="17" height="17" style="margin-right: 3px;">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

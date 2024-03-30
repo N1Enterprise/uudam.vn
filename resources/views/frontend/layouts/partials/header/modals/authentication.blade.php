@@ -64,15 +64,15 @@
                     </div>
                 </div>
                 <div class="password-reset-sent-success d-none">
-                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <a href="javascript:void(0)" class="user-mail"></a>,</p>
+                    <p>E-mail khôi phục mật khẩu đã được gửi tới e-mail <b class="user-mail a-link" style="color: #"></b>,</p>
                     <p>vui lòng kiểm tra e-mail để tiến hành cập nhật mật khẩu mới.</p>
                     <p>
                         Nếu bạn không nhận e-mail vui lòng kiểm tra phần
                         <b>email spam,</b>
-                        hoặc liên hệ với chúng tôi qua số điện thoại/zalo: 
+                        hoặc liên hệ với chúng tôi qua số điện thoại/zalo:
                         <a href="tel:{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
                     </p>
-                    <a href="javascript:void(0)" class="link"></a>
+                    <span class="link"></span>
                     <h4>Ưu Đàm xin chân trọng cảm ơn!</h4>
                 </div>
             </div>

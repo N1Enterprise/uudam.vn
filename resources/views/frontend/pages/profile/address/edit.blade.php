@@ -22,7 +22,8 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
     <button address-editable-btn style="display: none;" data-address-code="{{ data_get($address, 'code') }}"></button>
     <div class="navigation-wrapper">
         <a href="{{ route('fe.web.user.localization.address') }}" class="navigation-item">Sổ địa chỉ</a>
-        <a href="javascript:void(0)" class="navigation-item">Cập nhật địa chỉ</a>
+        <a href="/" class="navigation-item prevent">Cập nhật địa chỉ</a>
+
     </div>
     <div class="address-form modal-add-address">
         <form action="{{ route('fe.api.user.address.update', data_get($address, 'code')) }}" method="PUT" data-form="user-info" novalidate="novalidate" id="address-form" data-redirect="{{ $redirectUrl }}">

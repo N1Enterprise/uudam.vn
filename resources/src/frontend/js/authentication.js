@@ -103,7 +103,7 @@ $(document).ready(function() {
 
         SOCIAL_AUTHENTICATION.init();
     })();
-    
+
     (() => {
         const AUTHENTICATION = {
             actions: ['signin', 'signup', 'forgot-password', 'reset-password'],
@@ -154,7 +154,7 @@ $(document).ready(function() {
 
                             if (request.status == 422) {
                                 const errorMessage = request.responseJSON.errors;
-        
+
                                 utils_helper.appendErrorMessages(_self, errorMessage);
                             }
                         },
@@ -183,7 +183,7 @@ $(document).ready(function() {
                             $('.password-reset-pending').removeClass('d-none');
                         },
                         success: (response) => {
-                            $('.password-reset-sent-success').find('a.user-mail').text(payload.email);
+                            $('.password-reset-sent-success').find('user-mail').text(payload.email);
 
                             $('.password-reset-sent-success').removeClass('d-none');
                             $('.password-reset-pending').addClass('d-none');
@@ -197,7 +197,7 @@ $(document).ready(function() {
 
                             if (request.status == 422) {
                                 const errorMessage = request.responseJSON.errors;
-        
+
                                 utils_helper.appendErrorMessages(_self, errorMessage);
                             }
                         },
@@ -207,13 +207,13 @@ $(document).ready(function() {
             onSignout: () => {
                 $('#User_SignOut').on('click', function(e) {
                     e.preventDefault();
-        
+
                     $.ajax({
                         url: $(this).attr('href'),
                         method: 'POST',
                         success: () => {
                             toastr.success('Đăng xuất thành công.');
-        
+
                             window.location.href = HOME_ROUTES.web_home;
                         },
                     });
@@ -222,16 +222,16 @@ $(document).ready(function() {
             onSignup: () => {
                 $('#signup_form').on('submit', function(e) {
                     e.preventDefault();
-        
+
                     const _self = $(this);
-        
+
                     const payload = {
                         name: _self.find('[name="name"]').val(),
                         phone_number: _self.find('[name="phone_number"]').val(),
                         email: _self.find('[name="email"]').val(),
                         password: _self.find('[name="password"]').val(),
                     };
-        
+
                     $.ajax({
                         url: _self.attr('action'),
                         method: 'POST',
@@ -242,19 +242,19 @@ $(document).ready(function() {
                         },
                         success: (response) => {
                             toastr.success('Đăng ký thành công.');
-        
+
                             _self.find('[type="submit"]').prop('disabled', false);
-        
+
                             AUTHENTICATION.elements.close.trigger('click');
-        
+
                             window.location.href = HOME_ROUTES.web_home;
                         },
                         error: (request, status, error) => {
                             _self.find('[type="submit"]').prop('disabled', false);
-        
+
                             if (request.status == 422) {
                                 const errorMessage = request.responseJSON.errors;
-        
+
                                 utils_helper.appendErrorMessages(_self, errorMessage);
                             }
                         },
@@ -264,14 +264,14 @@ $(document).ready(function() {
             onSignin: () => {
                 $('#signin_form').on('submit', function(e) {
                     e.preventDefault();
-        
+
                     const _self = $(this);
-        
+
                     const payload = {
                         username: _self.find('[name="username"]').val(),
                         password: _self.find('[name="password"]').val(),
                     };
-        
+
                     $.ajax({
                         url: _self.attr('action'),
                         method: 'POST',
@@ -282,21 +282,21 @@ $(document).ready(function() {
                         },
                         success: (response) => {
                             toastr.success('Đăng nhập thành công.');
-        
+
                             _self.find('[type="submit"]').prop('disabled', false);
-        
+
                             AUTHENTICATION.elements.close.trigger('click');
-        
+
                             const routeRedirect = utils_helper.urlParams('redirect').get() || HOME_ROUTES.web_home;
-        
+
                             window.location.href = routeRedirect;
                         },
                         error: (request, status, error) => {
                             _self.find('[type="submit"]').prop('disabled', false);
-        
+
                             if (request.status == 422) {
                                 const errorMessage = request.responseJSON.errors;
-        
+
                                 utils_helper.appendErrorMessages(_self, errorMessage);
                             }
                         },
@@ -307,12 +307,12 @@ $(document).ready(function() {
                 AUTHENTICATION.elements.close.on('click', function() {
                     AUTHENTICATION.elements.wrapper.hide();
                     AUTHENTICATION.elements.action_wrapper.hide();
-        
+
                     utils_helper.urlParams('overlay').del();
                     utils_helper.urlParams('redirect').del();
                     utils_helper.urlParams('token').del();
                     utils_helper.urlParams('email').del();
-                    
+
                     $('.password-reset-sent-success').addClass('d-none');
                     $('.password-reset-pending').removeClass('d-none');
                 });
@@ -320,20 +320,20 @@ $(document).ready(function() {
             onGoPage: () => {
                 $('[data-overlay-action-button]').on('click', function(e) {
                     e.preventDefault();
-        
+
                     const overlay = $(this).attr('data-overlay-action-button');
                     const dataRedirect = $(this).attr('data-redirect');
-        
+
                     if (overlay && AUTHENTICATION.actions.includes(overlay)) {
                         AUTHENTICATION.elements.wrapper.show();
                         AUTHENTICATION.elements.action_wrapper.hide();
-        
+
                         utils_helper.urlParams('overlay').set(overlay);
-        
+
                         if (dataRedirect) {
                             utils_helper.urlParams('redirect').set(dataRedirect);
                         }
-        
+
                         $(`[data-overlay-action-wrapper="${overlay}"]`).show();
                     } else {
                         AUTHENTICATION.elements.wrapper.hide();
@@ -346,26 +346,26 @@ $(document).ready(function() {
 
                 AUTHENTICATION.elements.wrapper.hide();
                 AUTHENTICATION.elements.action_wrapper.hide();
-        
+
                 if (AUTHENTICATION.actions.includes(overlay) && AUTHENTICATION.is_logged) {
                     const redirect = utils_helper.urlParams('redirect').get();
-        
+
                     utils_helper.urlParams('overlay').del();
-        
+
                     if (redirect) {
                         window.location.href = redirect;
                     }
-        
+
                     return;
                 }
-        
+
                 if (overlay && AUTHENTICATION.actions.includes(overlay)) {
                     AUTHENTICATION.elements.wrapper.show();
                     $(`[data-overlay-action-wrapper="${overlay}"]`).show();
                 }
             },
         };
-        
+
         AUTHENTICATION.init();
     })();
 });
