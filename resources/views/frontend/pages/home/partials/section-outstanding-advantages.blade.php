@@ -13,7 +13,7 @@
                                     </svg>
                                 </div>
                                 <div class="content">
-                                    <h3 class="title">{{ data_get($item, 'title') }}</h3>
+                                    <span class="title">{{ data_get($item, 'title') }}</span>
                                     <p class="desc">{{ data_get($item, 'desc') }}</p>
                                 </div>
                             </li>
