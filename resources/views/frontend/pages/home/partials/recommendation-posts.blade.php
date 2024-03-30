@@ -1,6 +1,6 @@
 <div class="isolate">
     <div class="slider-mobile-gutter">
-        <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-owl-id="Slider_Featured_Collections" data-owl-items="3">
+        <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" data-owl-id="Slider_Featured_Collections" data-owl-items="3">
             @foreach (data_get($item, 'linked_items') as $linkedItem)
             <div class="multicolumn-list__item grid__item slider__slide center" style="width: 100%;" data-recommendation-post-identifier="{{ $linkedItem }}">
                 <div class="recommendation-target">

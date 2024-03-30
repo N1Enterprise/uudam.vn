@@ -19,7 +19,7 @@
 </head>
 <body class="gradient swym-ready swym-buttons-loaded">
     @include('frontend.layouts.partials.header.index')
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="content-for-layout focus-none" tabindex="-1">
         @yield('content_body')
         @stack('modals')
     </main>

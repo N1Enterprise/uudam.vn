@@ -8,7 +8,7 @@
         <link href="{{ asset('backoffice/assets/css/auth/login-v1.css') }}" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <main id="content" role="main" class="main" style="height: 100vh; width: 100vw; background: #387dff;">
+        <main id="content" class="main" style="height: 100vh; width: 100vw; background: #387dff;">
             <div class="container py-5 py-sm-7">
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-lg-5">

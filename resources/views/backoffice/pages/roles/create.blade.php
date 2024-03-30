@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <div class="k-section">
                                 <label>{{ __('Permissions') }}</label>
-                                <ul id="m_nav" class="k-nav k-nav--active-bg" role="tablist">
+                                <ul id="m_nav" class="k-nav k-nav--active-bg">
                                     <li class="k-nav__item custom">
                                         <span class="k-nav__link-bullet">
                                             <input class="permission-checkbox" type="checkbox" id="checkable_checkall" />
@@ -93,7 +93,7 @@
                                                     <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key1}") }}</span>
                                                     <span class="k-nav__link-arrow"></span>
                                                 </a>
-                                                <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey1 }}" role="tabpanel">
+                                                <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey1 }}">
                                                 @foreach($group1 as $key2 => $group2)
                                                     @if(is_array($group2))
                                                         @php
@@ -109,7 +109,7 @@
                                                                 <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key2}") }}</span>
                                                                 <span class="k-nav__link-arrow"></span>
                                                             </a>
-                                                            <ul class="k-nav__sub collapse mt-2" role="tabpanel" id="co_{{ $idKey2 }}">
+                                                            <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey2 }}">
                                                             @foreach($group2 as $key3 => $group3)
                                                                 @if(is_array($group3))
                                                                     @php
@@ -125,7 +125,7 @@
                                                                             <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key3}") }}</span>
                                                                             <span class="k-nav__link-arrow"></span>
                                                                         </a>
-                                                                        <ul class="k-nav__sub collapse mt-2" role="tabpanel" id="co_{{ $idKey3 }}">
+                                                                        <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey3 }}">
                                                                             @foreach($group3 as $key4 => $group4)
                                                                             <li class="custom k-nav__item">
                                                                                 <input class="permission-checkbox" parent-key="{{ $key3 }}" name="permissions[{{ $group4 }}]" type="checkbox" id="{{ $group4 }}" />

@@ -9,7 +9,7 @@ const editingArea = renderer.create('<div class="note-editing-area"/>');
 const codable = renderer.create('<textarea class="note-codable" role="textbox" aria-multiline="true"/>');
 const editable = renderer.create('<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>');
 const statusbar = renderer.create([
-  '<output class="note-status-output" role="status" aria-live="polite"/>',
+  '<output class="note-status-output" aria-live="polite"/>',
   '<div class="note-statusbar" role="resize">',
   '  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="resize">',
   '    <div class="note-icon-bar"/>',
@@ -21,12 +21,12 @@ const statusbar = renderer.create([
 
 const airEditor = renderer.create('<div class="note-editor"/>');
 const airEditable = renderer.create([
-  '<output class="note-status-output" role="status" aria-live="polite"/>',
+  '<output class="note-status-output" aria-live="polite"/>',
   '<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>'
 ].join(''));
 
 const buttonGroup = renderer.create('<div class="note-btn-group">');
-const button = renderer.create('<button type="button" class="note-btn" role="button" tabindex="-1">', function($node, options) {
+const button = renderer.create('<button type="button" class="note-btn" tabindex="-1">', function($node, options) {
   // set button type
   if (options && options.tooltip) {
     $node.attr({
@@ -48,7 +48,7 @@ const button = renderer.create('<button type="button" class="note-btn" role="but
   }
 });
 
-const dropdown = renderer.create('<div class="note-dropdown-menu" role="list">', function($node, options) {
+const dropdown = renderer.create('<div class="note-dropdown-menu">', function($node, options) {
   const markup = $.isArray(options.items) ? options.items.map(function(item) {
     const value = (typeof item === 'string') ? item : (item.value || '');
     const content = options.template ? options.template(item) : item;
@@ -75,7 +75,7 @@ const dropdown = renderer.create('<div class="note-dropdown-menu" role="list">',
   });
 });
 
-const dropdownCheck = renderer.create('<div class="note-dropdown-menu note-check" role="list">', function($node, options) {
+const dropdownCheck = renderer.create('<div class="note-dropdown-menu note-check">', function($node, options) {
   const markup = $.isArray(options.items) ? options.items.map(function(item) {
     const value = (typeof item === 'string') ? item : (item.value || '');
     const content = options.template ? options.template(item) : item;
@@ -371,7 +371,7 @@ const colorDropdownButton = function(opt, type) {
   }).render();
 };
 
-const dialog = renderer.create('<div class="note-modal" aria-hidden="false" tabindex="-1" role="dialog"/>', function($node, options) {
+const dialog = renderer.create('<div class="note-modal" aria-hidden="false" tabindex="-1"/>', function($node, options) {
   if (options.fade) {
     $node.addClass('fade');
   }

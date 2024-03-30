@@ -53,8 +53,8 @@
 </div>
 
 @can('users.update')
-<div class="modal fade" id="modal_update_user" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="modal_update_user" tabindex="-1">
+    <div class="modal-dialog modal-lg">
         <form id="form_update_user" method="POST" action="{{ route('bo.web.users.update', $user->getKey()) }}">
             @method('PUT')
             <div class="modal-content">

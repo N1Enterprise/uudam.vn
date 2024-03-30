@@ -34,9 +34,9 @@
 						<h3 class="k-portlet__head-title">{{ __('Thông tin đơn vị thanh toán') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab">
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
 									{{ __('Thông tin chung') }}
 								</a>
 							</li>
@@ -51,7 +51,7 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
                                 <div class="form-group">
 									<label>{{ __('Tên') }} *</label>
 									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $paymentProvider->name) }}" required>
@@ -76,7 +76,7 @@
                                     </select>
                                 </div>
 
-                                <div class="tab-pane" id="advanceTab" role="tabpanel">
+                                <div class="tab-pane" id="advanceTab">
                                     <div class="form-group">
                                         <label for="parameters">{{ __('Tham số') }}</label>
                                         <div id="json_editor_params" style="height: 200px"></div>

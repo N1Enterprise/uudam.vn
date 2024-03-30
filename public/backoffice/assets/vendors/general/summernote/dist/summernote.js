@@ -77,7 +77,7 @@ var codable = renderer.create('<textarea class="note-codable" role="textbox" ari
 var editable = renderer.create('<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>');
 var statusbar = renderer.create([
     '<output class="note-status-output" aria-live="polite"/>',
-    '<div class="note-statusbar" role="status">',
+    '<div class="note-statusbar">',
     '  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="Resize">',
     '    <div class="note-icon-bar"/>',
     '    <div class="note-icon-bar"/>',
@@ -91,7 +91,7 @@ var airEditable = renderer.create([
     '<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>'
 ].join(''));
 var buttonGroup = renderer.create('<div class="note-btn-group btn-group">');
-var dropdown = renderer.create('<ul class="dropdown-menu" role="list">', function ($node, options) {
+var dropdown = renderer.create('<ul class="dropdown-menu">', function ($node, options) {
     var markup = $$1.isArray(options.items) ? options.items.map(function (item) {
         var value = (typeof item === 'string') ? item : (item.value || '');
         var content = options.template ? options.template(item) : item;
@@ -105,7 +105,7 @@ var dropdown = renderer.create('<ul class="dropdown-menu" role="list">', functio
 var dropdownButtonContents = function (contents, options) {
     return contents + ' ' + icon(options.icons.caret, 'span');
 };
-var dropdownCheck = renderer.create('<ul class="dropdown-menu note-check" role="list">', function ($node, options) {
+var dropdownCheck = renderer.create('<ul class="dropdown-menu note-check">', function ($node, options) {
     var markup = $$1.isArray(options.items) ? options.items.map(function (item) {
         var value = (typeof item === 'string') ? item : (item.value || '');
         var content = options.template ? options.template(item) : item;
@@ -144,7 +144,7 @@ var palette = renderer.create('<div class="note-color-palette"/>', function ($no
         });
     }
 });
-var dialog = renderer.create('<div class="modal" aria-hidden="false" tabindex="-1" role="dialog"/>', function ($node, options) {
+var dialog = renderer.create('<div class="modal" aria-hidden="false" tabindex="-1"/>', function ($node, options) {
     if (options.fade) {
         $node.addClass('fade');
     }
@@ -212,7 +212,7 @@ var ui = {
     icon: icon,
     options: {},
     button: function ($node, options) {
-        return renderer.create('<button type="button" class="note-btn btn btn-default btn-sm" role="button" tabindex="-1">', function ($node, options) {
+        return renderer.create('<button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1">', function ($node, options) {
             if (options && options.tooltip) {
                 $node.attr({
                     title: options.tooltip,

@@ -1,6 +1,6 @@
 <div class="isolate">
     <div class="slider-mobile-gutter">
-        <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-owl-id="Slider_In_App_Banner_50" data-owl-items="2">
+        <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" data-owl-id="Slider_In_App_Banner_50" data-owl-items="2">
             @foreach (data_get($item, 'linked_items') as $linkedItem)
             <div data-recommendation-in-app-banner-50-identifier="{{ $linkedItem }}" class="in-app-banner-wrapper" style="display: block; margin: 0 5px;">
                 <a href="/" class="a-prevent">

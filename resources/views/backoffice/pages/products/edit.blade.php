@@ -49,7 +49,7 @@
         @csrf
         @method('PUT')
         @error('*')
-        <div class="alert alert-danger fade show" role="alert">
+        <div class="alert alert-danger fade show">
             <div class="alert-text">
                 {{ __('Gửi không thành công. Vui lòng kiểm tra lỗi bên dưới.') }}
             </div>

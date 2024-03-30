@@ -36,7 +36,7 @@
     <div class="multicolumn color-background-1 gradient background-primary no-heading">
         <div class="page-width section-template-padding isolate">
             <div class="slider-component slider-mobile-gutter">
-                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" role="list">
+                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop">
                     <li class="multicolumn-list__item grid__item multicolumn-list__item--empty">
                         <div class="multicolumn-card content-container">
                             <div class="multicolumn-card__info"></div>

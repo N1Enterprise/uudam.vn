@@ -46,10 +46,10 @@
             @endif
         </div>
         {{-- <div class="pagination-wrapper">
-            <nav class="pagination" role="navigation">
-                <ul class="pagination__list list-unstyled" role="list">
+            <nav class="pagination">
+                <ul class="pagination__list list-unstyled">
                     <li>
-                        <a role="link" class="pagination__item pagination__item--current light">1</a>
+                        <a" class="pagination__item pagination__item--current light">1</a>
                     </li>
                     <li>
                         <a href="/blogs/news?page=2" class="pagination__item link">2</a>
@@ -65,7 +65,7 @@
                     </li>
                     <li>
                         <a href="/blogs/news?page=2" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce">
-                            <svg focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                            <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
                             </svg>
                         </a>

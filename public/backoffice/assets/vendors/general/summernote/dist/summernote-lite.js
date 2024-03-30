@@ -251,7 +251,7 @@ var editingArea = renderer.create('<div class="note-editing-area"/>');
 var codable = renderer.create('<textarea class="note-codable" role="textbox" aria-multiline="true"/>');
 var editable = renderer.create('<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>');
 var statusbar = renderer.create([
-    '<output class="note-status-output" role="status" aria-live="polite"/>',
+    '<output class="note-status-output" aria-live="polite"/>',
     '<div class="note-statusbar" role="resize">',
     '  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="resize">',
     '    <div class="note-icon-bar"/>',
@@ -262,11 +262,11 @@ var statusbar = renderer.create([
 ].join(''));
 var airEditor = renderer.create('<div class="note-editor"/>');
 var airEditable = renderer.create([
-    '<output class="note-status-output" role="status" aria-live="polite"/>',
+    '<output class="note-status-output" aria-live="polite"/>',
     '<div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/>'
 ].join(''));
 var buttonGroup = renderer.create('<div class="note-btn-group">');
-var button = renderer.create('<button type="button" class="note-btn" role="button" tabindex="-1">', function ($node, options) {
+var button = renderer.create('<button type="button" class="note-btn" tabindex="-1">', function ($node, options) {
     // set button type
     if (options && options.tooltip) {
         $node.attr({
@@ -286,7 +286,7 @@ var button = renderer.create('<button type="button" class="note-btn" role="butto
         }));
     }
 });
-var dropdown = renderer.create('<div class="note-dropdown-menu" role="list">', function ($node, options) {
+var dropdown = renderer.create('<div class="note-dropdown-menu">', function ($node, options) {
     var markup = $.isArray(options.items) ? options.items.map(function (item) {
         var value = (typeof item === 'string') ? item : (item.value || '');
         var content = options.template ? options.template(item) : item;
@@ -307,7 +307,7 @@ var dropdown = renderer.create('<div class="note-dropdown-menu" role="list">', f
         }
     });
 });
-var dropdownCheck = renderer.create('<div class="note-dropdown-menu note-check" role="list">', function ($node, options) {
+var dropdownCheck = renderer.create('<div class="note-dropdown-menu note-check">', function ($node, options) {
     var markup = $.isArray(options.items) ? options.items.map(function (item) {
         var value = (typeof item === 'string') ? item : (item.value || '');
         var content = options.template ? options.template(item) : item;
@@ -582,7 +582,7 @@ var colorDropdownButton = function (opt, type) {
         ]
     }).render();
 };
-var dialog = renderer.create('<div class="note-modal" aria-hidden="false" tabindex="-1" role="dialog"/>', function ($node, options) {
+var dialog = renderer.create('<div class="note-modal" aria-hidden="false" tabindex="-1"/>', function ($node, options) {
     if (options.fade) {
         $node.addClass('fade');
     }

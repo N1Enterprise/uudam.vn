@@ -601,7 +601,7 @@
           : '';
       var drop =
           '<div class="dropdown bootstrap-select' + showTick + inputGroup + '">' +
-          '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + ' role="button">' +
+          '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
           '<div class="filter-option">' +
             '<div class="filter-option-inner"></div>' +
           '</div>&nbsp;' +
@@ -609,11 +609,11 @@
           this.options.template.caret +
           '</span>' +
           '</button>' +
-          '<div class="dropdown-menu ' + (version.major === '4' ? '' : classNames.SHOW) + '" role="combobox">' +
+          '<div class="dropdown-menu ' + (version.major === '4' ? '' : classNames.SHOW) + '">' +
           header +
           searchbox +
           actionsbox +
-          '<div class="inner ' + classNames.SHOW + '" role="listbox" tabindex="-1">' +
+          '<div class="inner ' + classNames.SHOW + '" tabindex="-1">' +
               '<ul class="dropdown-menu inner ' + (version.major === '4' ? classNames.SHOW : '') + '">' +
               '</ul>' +
           '</div>' +

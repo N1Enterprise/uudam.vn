@@ -18,7 +18,7 @@
         <div class="cart__items" id="main-cart-items" data-id="template--16599720296698__cart-items">
             <div class="js-contents"></div>
         </div>
-        <p class="visually-hidden" id="cart-live-region-text" role="status"></p>
-        <p class="visually-hidden" id="shopping-cart-line-item-status" role="status">Loading...</p>
+        <p class="visually-hidden" id="cart-live-region-text"></p>
+        <p class="visually-hidden" id="shopping-cart-line-item-status">Loading...</p>
     </form>
 </cart-items>

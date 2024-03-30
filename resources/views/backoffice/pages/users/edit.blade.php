@@ -25,7 +25,7 @@ $breadcrumbs = [
     <div class="row">
         <div class="col-lg-8 col-sm-8">
             @if (session('actionMessage'))
-            <div class="alert alert-success fade show" role="alert">
+            <div class="alert alert-success fade show">
                 @php $msg = 'The user was ' . __(session('actionMessage')); @endphp
                 <div class="alert-text">{{ __($msg) }}</div>
                 <div class="alert-close">
@@ -46,18 +46,18 @@ $breadcrumbs = [
             </div>
             @endif
             <div class="tab-content">
-                <div class="tab-pane active show" id="tab_general_information" role="tabpanel">
+                <div class="tab-pane active show" id="tab_general_information">
                     @include("backoffice.pages.users.partials.info")
                 </div>
 
                 @can('carts.index')
-                <div class="tab-pane" id="tab_cart" role="tabpanel">
+                <div class="tab-pane" id="tab_cart">
                     @include("backoffice.pages.users.partials.cart")
                 </div>
                 @endcan
 
                 @can('orders.index')
-                <div class="tab-pane" id="tab_order" role="tabpanel">
+                <div class="tab-pane" id="tab_order">
                     @include("backoffice.pages.users.partials.order")
                 </div>
                 @endcan
@@ -69,16 +69,16 @@ $breadcrumbs = [
                 <div class="k-portlet__body">
                     <div class="k-section" id="tabItemSection">
                         <div class="k-section__content">
-                            <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font" role="tablist">
+                            <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font">
                                 <li class="k-nav__item k-nav__item--active">
-                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab">
+                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab">
                                         <span class="k-nav__link-text">{{ __('Thông tin chung') }}</span>
                                     </a>
                                 </li>
 
                                 @can('carts.index')
                                 <li class="k-nav__item">
-                                    <a href="#tab_cart" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="cart">
+                                    <a href="#tab_cart" class="k-nav__link" data-toggle="tab"  data-tab="cart">
                                         <span class="k-nav__link-text">{{ __('Giỏ hàng') }}</span>
                                     </a>
                                 </li>
@@ -86,7 +86,7 @@ $breadcrumbs = [
 
                                 @can('orders.index')
                                 <li class="k-nav__item">
-                                    <a href="#tab_order" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="order">
+                                    <a href="#tab_order" class="k-nav__link" data-toggle="tab"  data-tab="order">
                                         <span class="k-nav__link-text">{{ __('Đơn hàng') }}</span>
                                     </a>
                                 </li>
@@ -117,8 +117,8 @@ $breadcrumbs = [
 
 @push('modals')
 @if(! boolean($user->is_test_user))
-<div class="modal fade" id="modal_set_test_user" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="modal_set_test_user" tabindex="-1">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Mark test account') }}</h5>
@@ -144,8 +144,8 @@ $breadcrumbs = [
 </div>
 @endif
 
-<div class="modal fade" id="modal_user_action" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="modal_user_action" tabindex="-1">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>

@@ -30,7 +30,7 @@
     <form id="form_inventory" method="POST" action="{{ empty($inventory->id) ? route('bo.web.inventories.store') : route('bo.web.inventories.update', $inventory->id) }}" enctype="multipart/form-data">
         @csrf
         @error('*')
-        <div class="alert alert-danger fade show" role="alert">
+        <div class="alert alert-danger fade show">
             <div class="alert-text">
                 {{ __('Gửi không thành công. Vui lòng kiểm tra lỗi bên dưới.') }}
             </div>

@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-lg" role="document">
+<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 		<div class="modal-header" style="padding-bottom: 0px;">
 			<div>

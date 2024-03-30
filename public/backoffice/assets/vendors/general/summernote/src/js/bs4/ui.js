@@ -8,7 +8,7 @@ const codable = renderer.create('<textarea class="note-codable" role="textbox" a
 const editable = renderer.create('<div class="note-editable card-block" contentEditable="true" role="textbox" aria-multiline="true"/>');
 const statusbar = renderer.create([
   '<output class="note-status-output" aria-live="polite"/>',
-  '<div class="note-statusbar" role="status">',
+  '<div class="note-statusbar">',
   '  <output class="note-status-output" aria-live="polite"></output>',
   '  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="Resize">',
   '    <div class="note-icon-bar"/>',
@@ -26,7 +26,7 @@ const airEditable = renderer.create([
 
 const buttonGroup = renderer.create('<div class="note-btn-group btn-group">');
 
-const dropdown = renderer.create('<div class="dropdown-menu" role="list">', function($node, options) {
+const dropdown = renderer.create('<div class="dropdown-menu">', function($node, options) {
   const markup = $.isArray(options.items) ? options.items.map(function(item) {
     const value = (typeof item === 'string') ? item : (item.value || '');
     const content = options.template ? options.template(item) : item;
@@ -44,7 +44,7 @@ const dropdownButtonContents = function(contents) {
   return contents;
 };
 
-const dropdownCheck = renderer.create('<div class="dropdown-menu note-check" role="list">', function($node, options) {
+const dropdownCheck = renderer.create('<div class="dropdown-menu note-check">', function($node, options) {
   const markup = $.isArray(options.items) ? options.items.map(function(item) {
     const value = (typeof item === 'string') ? item : (item.value || '');
     const content = options.template ? options.template(item) : item;
@@ -86,7 +86,7 @@ const palette = renderer.create('<div class="note-color-palette"/>', function($n
   }
 });
 
-const dialog = renderer.create('<div class="modal" aria-hidden="false" tabindex="-1" role="dialog"/>', function($node, options) {
+const dialog = renderer.create('<div class="modal" aria-hidden="false" tabindex="-1"/>', function($node, options) {
   if (options.fade) {
     $node.addClass('fade');
   }
@@ -166,7 +166,7 @@ const ui = {
   options: {},
 
   button: function($node, options) {
-    return renderer.create('<button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1">', function($node, options) {
+    return renderer.create('<button type="button" class="note-btn btn btn-light btn-sm" tabindex="-1">', function($node, options) {
       if (options && options.tooltip) {
         $node.attr({
           title: options.tooltip,

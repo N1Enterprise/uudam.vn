@@ -88,19 +88,19 @@
                         <div data-toggle="tooltip" data-title="{{ __('Payment Status') }}" class="order_status {{ $paymentStatusClass }}" style="text-transform: uppercase;">{{ $order->payment_status_name }} {{ __('Payment') }}</div>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab">
+								<a class="nav-link active show" data-toggle="tab" href="#order_tab">
 									{{ __('Thông tin đơn hàng') }}
 								</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#address_shipping_tab" role="tab">
+								<a class="nav-link" data-toggle="tab" href="#address_shipping_tab">
 									{{ __('Thông tin vận chuyển') }}
 								</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#payment_tab" role="tab">
+								<a class="nav-link" data-toggle="tab" href="#payment_tab">
 									{{ __('Thông tin thanh toán') }}
 								</a>
 							</li>
@@ -111,7 +111,7 @@
                 <div class="k-portlet__body">
                     <div class="tab-content">
                         {{-- Order Tab --}}
-                        <div class="tab-pane active show" id="order_tab" role="tabpanel">
+                        <div class="tab-pane active show" id="order_tab">
                             <div class="user_information">
                                 <h5 style="margin-bottom: 30px; font-weight: bold;">#1. {{ __('Thông tin chung') }}</h5>
                                 <div class="row">
@@ -206,7 +206,7 @@
                         </div>
 
                         {{-- Address Shipping Tab --}}
-                        <div class="tab-pane" id="address_shipping_tab" role="tabpanel">
+                        <div class="tab-pane" id="address_shipping_tab">
                             <div class="address_shipping_information">
                                 <h5 style="margin-bottom: 30px; font-weight: bold;">#3. {{ __('Địa chỉ nhận hàng') }}</h5>
                                 <div class="row">
@@ -293,7 +293,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane" id="payment_tab" role="tabpanel">
+                        <div class="tab-pane" id="payment_tab">
                             <div class="payment_information">
                                 <h5 style="margin-bottom: 30px; font-weight: bold;">#4. {{ __('Thông tin thanh toán') }}</h5>
                                 <div class="row">
@@ -350,8 +350,8 @@
 
 @can('orders.manage')
 @push('modals')
-<div class="modal fade" id="update_order_status_modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="update_order_status_modal" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content" style="border:none;">
             <form id="update_order_status_form" method="GET" action="">
                 <div class="modal-header">
@@ -372,8 +372,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="process_shipping_order" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="process_shipping_order" tabindex="-1">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="order-update-shipping-form" action="{{ route('bo.api.orders.update-shipping', $order->id) }}" method="PUT">
                 <input type="hidden" name="user_order_shipping_history_id" value="{{ $order->latestUserOrderShippingHistory->id }}">
