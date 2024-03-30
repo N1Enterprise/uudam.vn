@@ -423,11 +423,10 @@ body {
 
 .price-discount-percent.discount-absolute {
     border-radius: 0;
-    padding: 3px 8px;
+    padding: 3px 5px;
     position: absolute;
     right: 0;
     top: 0;
-    font-weight: bold;
 }
 
 .multicolumn-card__image-wrapper .media--adapt {
