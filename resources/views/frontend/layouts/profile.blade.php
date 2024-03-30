@@ -1,7 +1,6 @@
 @extends('frontend.layouts.master')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/profile-index.min.css') }}">
 @yield('profile_style')
 @endsection
 

@@ -1,5 +1,5 @@
 require('laravel-mix-merge-manifest');
-require('laravel-mix-purgecss');
+// require('laravel-mix-purgecss');
 
 const mix = require('laravel-mix');
 const path = require('path');
@@ -92,8 +92,19 @@ mix
     .css('resources/src/frontend/css/section-featured-blog.css', 'public/frontend/bundle/css/section-featured-blog.min.css')
     .css('resources/src/frontend/css/section-multicolumn.css', 'public/frontend/bundle/css/section-multicolumn.min.css')
     .css('resources/src/frontend/css/component-slider.css', 'public/frontend/bundle/css/component-slider.min.css')
-    .css('resources/src/frontend/css/variable.css', 'public/frontend/bundle/css//variable.min.css')
-    .css('resources/src/frontend/css/mobile-menu.css', 'public/frontend/bundle/css//mobile-menu.min.css')
+    .css('resources/src/frontend/css/variable.css', 'public/frontend/bundle/css/variable.min.css')
+    .css('resources/src/frontend/css/mobile-menu.css', 'public/frontend/bundle/css/mobile-menu.min.css')
+    .css('resources/src/frontend/css/master.css', 'public/frontend/bundle/css/master.min.css')
+
+    .css('resources/src/frontend/css/pages/blog.css', 'public/frontend/bundle/css/pages/blog.min.css')
+    .css('resources/src/frontend/css/pages/cart.css', 'public/frontend/bundle/css/pages/cart.min.css')
+    .css('resources/src/frontend/css/pages/checkout.css', 'public/frontend/bundle/css/pages/checkout.min.css')
+    .css('resources/src/frontend/css/pages/collection.css', 'public/frontend/bundle/css/pages/collection.min.css')
+    .css('resources/src/frontend/css/pages/home.css', 'public/frontend/bundle/css/pages/home.min.css')
+    .css('resources/src/frontend/css/pages/page.css', 'public/frontend/bundle/css/pages/page.min.css')
+    .css('resources/src/frontend/css/pages/product.css', 'public/frontend/bundle/css/pages/product.min.css')
+    .css('resources/src/frontend/css/pages/profile.css', 'public/frontend/bundle/css/pages/profile.min.css')
+    .css('resources/src/frontend/css/pages/search.css', 'public/frontend/bundle/css/pages/search.min.css')
 
 
     .options({
@@ -102,9 +113,9 @@ mix
         autoprefixer: { remove: false },
         clearConsole: true, // in watch mode, clears console after every build
       })
-    .purgeCss({
-        safelist: {
-            standard: [/-active$/, /-enter$/, /-leave-to$/, /show$/, /^el-/],
-        },
-    })
+    // .purgeCss({
+    //     safelist: {
+    //         standard: [/-active$/, /-enter$/, /-leave-to$/, /show$/, /^el-/],
+    //     },
+    // })
     .mergeManifest();

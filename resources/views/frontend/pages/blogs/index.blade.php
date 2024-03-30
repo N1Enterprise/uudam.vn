@@ -1,24 +1,7 @@
 @extends('frontend.layouts.master')
 
 @push('style_pages')
-<style>
-    .section-template__main-padding {
-        padding-top: 27px;
-        padding-bottom: 9px;
-    }
-
-    @media screen and (min-width: 750px) {
-        .section-template__main-padding {
-            padding-top: 36px;
-            padding-bottom: 12px;
-        }
-    }
-</style>
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/index.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-article-card.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-card.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/component-pagination.min.css') }}">
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/section-main-blog.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/page.min.css') }}">
 @endpush
 
 @section('page_seo')

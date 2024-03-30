@@ -9,7 +9,7 @@
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/blog-news-index.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/page.min.css') }}">
 @endpush
 
 @section('content_body')
