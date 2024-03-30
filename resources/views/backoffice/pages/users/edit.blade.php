@@ -30,7 +30,7 @@ $breadcrumbs = [
                 <div class="alert-text">{{ __($msg) }}</div>
                 <div class="alert-close">
                     <button type="button" class="close" data-dismiss="alert">
-                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                        <span><i class="la la-close"></i></span>
                     </button>
                 </div>
             </div>
@@ -71,7 +71,7 @@ $breadcrumbs = [
                         <div class="k-section__content">
                             <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font" role="tablist">
                                 <li class="k-nav__item k-nav__item--active">
-                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab" aria-selected="true">
+                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab">
                                         <span class="k-nav__link-text">{{ __('Thông tin chung') }}</span>
                                     </a>
                                 </li>
@@ -117,13 +117,13 @@ $breadcrumbs = [
 
 @push('modals')
 @if(! boolean($user->is_test_user))
-<div class="modal fade" id="modal_set_test_user" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal_set_test_user" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Mark test account') }}</h5>
                 <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
+                    <span>&times;</span>
                 </button>
             </div>
             <form method="POST" action="{{ route('bo.web.users.set-test-user', $user->id) }}">
@@ -144,13 +144,13 @@ $breadcrumbs = [
 </div>
 @endif
 
-<div class="modal fade" id="modal_user_action" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal_user_action" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
                 <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
+                    <span>&times;</span>
                 </button>
             </div>
             <form id="form_player_action" method="POST" action="">

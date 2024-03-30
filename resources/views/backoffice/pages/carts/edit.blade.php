@@ -37,7 +37,7 @@
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab" aria-selected="true">
+								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab">
 									{{ __('Thông tin chung') }}
 								</a>
 							</li>

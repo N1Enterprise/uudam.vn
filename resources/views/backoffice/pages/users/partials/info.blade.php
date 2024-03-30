@@ -61,7 +61,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">{{ __('Edit User Info') }}</h5>
                     <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
+                        <span>×</span>
                     </button>
                 </div>
                 <div class="modal-body">

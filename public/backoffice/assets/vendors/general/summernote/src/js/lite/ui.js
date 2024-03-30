@@ -382,7 +382,7 @@ const dialog = renderer.create('<div class="note-modal" aria-hidden="false" tabi
     '  <div class="note-modal-content">',
     (options.title
       ? '    <div class="note-modal-header">' +
-    '      <button type="button" class="close" aria-label="Close" aria-hidden="true"><i class="note-icon-close"></i></button>' +
+    '      <button type="button" class="close" aria-label="Close"><i class="note-icon-close"></i></button>' +
     '      <h4 class="note-modal-title">' + options.title + '</h4>' +
     '    </div>' : ''
     ),

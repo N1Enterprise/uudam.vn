@@ -12,14 +12,13 @@
                     <summary
                         class="header__icon header__icon--menu header__icon--summary link focus-inset"
                         role="button"
-                        aria-controls="menu-drawer"
                     >
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" fill="none" viewBox="0 0 18 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-hamburger" fill="none" viewBox="0 0 18 16">
                                 <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor">
                                 </path>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
                                 <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
                                 </path>
                             </svg>
@@ -39,7 +38,7 @@
                                                 <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 
                                                 @if(has_data(data_get($menuGroup, 'menu_sub_groups', [])))
-                                                <i class="mm-arrow mm-angle-down" aria-hidden="true"></i>
+                                                <i class="mm-arrow mm-angle-down"></i>
                                                 <span class="toggle-menu-btn fa-visible" style="display:none;" title="Toggle menu">
                                                     <span class="mm-arrow-icon">
                                                         <span class="bar-one"></span>
@@ -84,7 +83,7 @@
                                 <div class="menu-drawer__utility-links">
                                     @if(empty($AUTHENTICATED_USER))
                                     <button type="button" class="menu-drawer__account link focus-inset h5" data-overlay-action-button="signin">
-                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
+                                        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
                                             </path>
                                         </svg>
@@ -92,7 +91,7 @@
                                     </button>
                                     @else
                                     <a href="{{ route('fe.web.user.profile') }}" class="menu-drawer__account link focus-inset h5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
+                                        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
                                             </path>
                                         </svg>
@@ -129,7 +128,7 @@
                             <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 
                             @if(has_data(data_get($menuGroup, 'menu_sub_groups', [])))
-                            <i class="mm-arrow mm-angle-down" aria-hidden="true"></i>
+                            <i class="mm-arrow mm-angle-down"></i>
                             <span class="toggle-menu-btn" style="display:none;" title="Toggle menu">
                                 <span class="mm-arrow-icon">
                                     <span class="bar-one"></span>

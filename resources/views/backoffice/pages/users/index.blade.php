@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="form-group col-lg-3"  data-original-title="{{ __('Trạng thái khách hàng') }}" data-toggle="tooltip">
-                            <select name="status " class="form-control k_selectpicker" aria-placeholder="{{ __('Trạng thái') }}">
+                            <select name="status " class="form-control k_selectpicker">
                                 <option value="">-- {{ __('Trạng thái khách hàng') }} --</option>
                                 @foreach($userStatus as $key => $label)
                                 <option value="{{ $key }}">{{ $label }}</option>

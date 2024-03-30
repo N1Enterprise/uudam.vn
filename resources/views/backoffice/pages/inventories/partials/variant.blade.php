@@ -8,7 +8,7 @@
             <div data-repeater-item-custom class="k-repeater__item" data-repeater-index="{{ $loop->index }}">
                 <div class="repeater-wrapper">
                     <div class="repeater-head position-relative">
-                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" aria-expanded="'false" aria-controls="variant_{{ $loop->index }}">
+                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}">
                             <b>
                                 <span>[{{ $parentIndex + 1 }}]</span>
                                 @foreach($combination as $attrId => $attrValue)
@@ -42,7 +42,7 @@
                                         <div data-image-ref-wrapper="variant" data-image-ref-index="{{ $loop->index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                             <div class="d-flex align-items-center h-100">
                                                 <img data-image-ref-img="variant" data-image-ref-index="{{ $loop->index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                <span data-image-ref-delete="variant" data-image-ref-index="{{ $loop->index }}" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                <span data-image-ref-delete="variant" data-image-ref-index="{{ $loop->index }}" style="font-size: 16px; cursor: pointer;">&times;</span>
                                             </div>
                                         </div>
                                         <label for="variant_image_file_{{ $loop->index }}" class="variant_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">

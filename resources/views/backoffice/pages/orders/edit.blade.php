@@ -90,17 +90,17 @@
 					<div class="k-portlet__head-toolbar">
 						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab" aria-selected="true">
+								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab">
 									{{ __('Thông tin đơn hàng') }}
 								</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#address_shipping_tab" role="tab" aria-selected="true">
+								<a class="nav-link" data-toggle="tab" href="#address_shipping_tab" role="tab">
 									{{ __('Thông tin vận chuyển') }}
 								</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#payment_tab" role="tab" aria-selected="true">
+								<a class="nav-link" data-toggle="tab" href="#payment_tab" role="tab">
 									{{ __('Thông tin thanh toán') }}
 								</a>
 							</li>
@@ -350,7 +350,7 @@
 
 @can('orders.manage')
 @push('modals')
-<div class="modal fade" id="update_order_status_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="update_order_status_modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border:none;">
             <form id="update_order_status_form" method="GET" action="">
@@ -372,7 +372,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="process_shipping_order" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="process_shipping_order" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <form id="order-update-shipping-form" action="{{ route('bo.api.orders.update-shipping', $order->id) }}" method="PUT">
@@ -380,7 +380,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">{{ __('Thông tin vận chuyển đơn') }}</h5>
                     <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
+                        <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">

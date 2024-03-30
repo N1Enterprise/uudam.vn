@@ -5,7 +5,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0; margin: -10px 0;">
         <div>SKU: <span data-sku>{{ $inventory->sku }}</span></div>
         @if (($inventory->final_sold_count))
-        <div style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>    
+        <div style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>
         @endif
     </div>
     <p class="product__text subtitle"></p>
@@ -34,7 +34,7 @@
         </h3>
         <ul class="promotion-box">
             @foreach (data_get($inventory, 'key_features', []) as $keyFeature)
-            <li>{{ data_get($keyFeature, 'title') }}</li>    
+            <li>{{ data_get($keyFeature, 'title') }}</li>
             @endforeach
         </ul>
     </div>
@@ -55,7 +55,7 @@
         <product-form class="product-form">
             <div id="inventory_variants" data-variants='@json($variants->toArray())'></div>
             <div class="product-form__error-message-wrapper" role="alert" hidden="">
-                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                <svg focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
                     <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
                     <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"></circle>
                     <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"></path>
@@ -104,14 +104,14 @@
                     <quantity-input class="quantity">
                         <button data-quantity-decrease="product" class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
                             <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
                             </svg>
                         </button>
                         <input data-quantity-input="product" data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
                         <button data-quantity-increase="product" class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
                             <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
                             </svg>
                         </button>
@@ -146,7 +146,7 @@
                     <button type="submit" name="add" class="product-form__submit button button--full-width button--primary" style="background-color: #fff; color: #000;">
                         <span>Thêm vào giỏ hàng</span>
                         <div class="loading-overlay__spinner hidden">
-                            <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                            <svg focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                                 <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                             </svg>
                         </div>
@@ -158,8 +158,8 @@
     </div>
     <share-button class="share-button quick-add-hidden">
         <details>
-            <summary class="share-button__button" role="button" aria-expanded="false">
-                <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <summary class="share-button__button" role="button">
+                <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
                     <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"></path>
@@ -172,13 +172,13 @@
                     <label class="field__label" for="url">Link</label>
                 </div>
                 <button class="share-button__close hidden no-js-hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+                    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
                         <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
                     </svg>
                     <span class="visually-hidden">Close share</span>
                 </button>
                 <button class="share-button__copy no-js-hidden">
-                    <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 11 13">
+                    <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 11 13">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
                     </svg>
                     <span class="visually-hidden">Copy link</span>

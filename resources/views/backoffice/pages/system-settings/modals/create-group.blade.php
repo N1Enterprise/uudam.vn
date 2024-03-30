@@ -1,10 +1,10 @@
-<div class="modal fade" id="modal_storeGroup" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal_storeGroup" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Create Group') }}</h5>
                 <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
+                    <span>&times;</span>
                 </button>
             </div>
             <form id="from_storeGroup" method="POST" action="{{ route('bo.api.system-settings.create-group') }}">

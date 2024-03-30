@@ -1,10 +1,10 @@
-<div class="modal fade" id="modal_importSettings" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="modal_importSettings" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Import Setting') }}</h5>
                 <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
+                    <span>&times;</span>
                 </button>
             </div>
             <form id="form_importSettings" method="POST" action="{{ route('bo.api.system-settings.import') }}">

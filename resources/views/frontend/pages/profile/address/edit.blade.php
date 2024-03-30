@@ -30,20 +30,20 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
             <div class="form-fields">
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
-                        <input type="text" name="name" id="name" value="" class="field__input" autocomplete="name" aria-required="true" placeholder="Họ tên" required="" aria-invalid="false">
-                        <label class="field__label" for="name">Họ và tên <span aria-hidden="true">*</span></label>
+                        <input type="text" name="name" id="name" value="" class="field__input" autocomplete="name" placeholder="Họ tên" required="">
+                        <label class="field__label" for="name">Họ và tên <span>*</span></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
                         <input type="text" name="email" id="email" value="" class="field__input" autocomplete="phone" placeholder="E-mail">
-                        <label class="field__label" for="email">E-mail <span aria-hidden="true"> (không yêu cầu nhập)</span></label>
+                        <label class="field__label" for="email">E-mail <span> (không yêu cầu nhập)</span></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
-                        <input type="text" name="phone" id="phone" value="" class="field__input" autocomplete="phone" aria-required="true" required="" placeholder="Số Điện Thoại / Email">
-                        <label class="field__label" for="phone">Số điện thoại <span aria-hidden="true">*</span></label>
+                        <input type="text" name="phone" id="phone" value="" class="field__input" autocomplete="phone" required="" placeholder="Số Điện Thoại / Email">
+                        <label class="field__label" for="phone">Số điện thoại <span>*</span></label>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@ Cập nhật địa chỉ | {{ config('app.user_domain') }}
                 <div class="form-group">
                     <div class="field field--with-error" style="margin: 5px 0;">
                         <textarea name="address_line" class="field__input" cols="30" rows="5" placeholder="Địa chỉ" style="min-height: 100px;" required></textarea>
-                        <label class="field__label" for="phone">Địa chỉ chi tiết <span aria-hidden="true">*</span></label>
+                        <label class="field__label" for="phone">Địa chỉ chi tiết <span>*</span></label>
                     </div>
                 </div>
 
