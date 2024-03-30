@@ -13,7 +13,7 @@
                                     </div>
                                 </div>
                                 <div class="multicolumn-card__info" style="padding: 10px 0;">
-                                    <h3 class="skeleton"></h3>
+                                    <div class="skeleton"></div>
                                     <div class="link animate-arrow">
                                         <span class="skeleton"></span>
                                     </div>
