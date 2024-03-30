@@ -6,9 +6,9 @@ const viewOnlyMode = (() => {
 
 
 $(document).ready(function() {
-    $("img").lazyload({
-        threshold: 100
-    });
+    // $("img").lazyload({
+    //     threshold: 300
+    // });
 
     if (! viewOnlyMode) {
         return false;
