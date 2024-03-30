@@ -25,7 +25,7 @@
         <div class="section-template-padding page-width">
             <div class="section-content-template">
                 @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
-                <h3 class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
+                <div class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</div>
                 @endif
 
                 @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
@@ -71,7 +71,7 @@
 <section class="shopify-section section">
     <div class="section-template-padding page-width">
         <div class="section-content-template">
-            <h3 class="ls-box-title custom-ls-box-title">Tìm kiếm nhiều</h3>
+            <div class="ls-box-title custom-ls-box-title">Tìm kiếm nhiều</div>
             <div class="recommendation-target" style="overflow: hidden;">
                 <div class="list-most-search">
                     @foreach (data_get($SYSTEM_SETTING, 'most_searched.links') as $link)
