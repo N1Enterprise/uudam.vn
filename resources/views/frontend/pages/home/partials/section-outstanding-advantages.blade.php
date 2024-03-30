@@ -1,6 +1,6 @@
 <div class="section-content-template">
     <div class="section-template-padding page-width section-template__video-padding">
-        <div href="/" class="a-prevent">
+        <div href="/" class="recommendation-target a-prevent">
             <div class="video-section__media deferred-media no-js-hidden gradient global-media-settings">
                 <div class="video-section__media-wrapper" home_video_wrapper-resize-detection>
                     <div class="video-section__media-left_content">

@@ -72,7 +72,7 @@
     <div class="section-template-padding page-width">
         <div class="section-content-template">
             <h3 class="ls-box-title custom-ls-box-title">Tìm kiếm nhiều</h3>
-            <div style="overflow: hidden;">
+            <div class="recommendation-target" style="overflow: hidden;">
                 <div class="list-most-search">
                     @foreach (data_get($SYSTEM_SETTING, 'most_searched.links') as $link)
                     <a href="{{ data_get($link, 'link') }}" class="list-most-search-link" target="_blank">{{ data_get($link, 'name') }}</a>

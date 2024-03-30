@@ -1,5 +1,5 @@
 <div class="isolate">
-    <div class="slider-mobile-gutter" style="margin: 0 10px;">
+    <div class="slider-mobile-gutter" style="margin: 0 9px;">
         <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" role="list" data-owl-id="Slider_In_App_Banner_100" data-owl-items="1">
             @foreach (data_get($item, 'linked_items') as $linkedItem)
             <div data-recommendation-in-app-banner-100-identifier="{{ $linkedItem }}" class="in-app-banner-wrapper">
