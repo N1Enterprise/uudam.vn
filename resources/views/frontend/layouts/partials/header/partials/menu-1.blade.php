@@ -5,7 +5,7 @@
 <li data-menu-type="collection">
     <div class="mm-list-image">
         <a data-href="{{ route('fe.web.collections.index', data_get($collection, 'slug')) }}" href="{{ route('fe.web.collections.index', data_get($collection, 'slug')) }}" aria-label="{{ data_get($menu, 'name') }}">
-            <img data-src="{{ data_get($collection, 'primary_image') }}" alt="{{ data_get($menu, 'name') }}" src="{{ data_get($collection, 'primary_image') }}"class="get-collection-image mmLs-is-cached mmLazyloaded" data-id="401408360698" aspect-ratio="1.5021418372203712" style="border-radius: 50%; overflow: hidden;">
+            <img data-src="{{ data_get($collection, 'primary_image') }}" alt="{{ data_get($menu, 'name', 'menu item') }}" src="{{ data_get($collection, 'primary_image') }}"class="get-collection-image mmLs-is-cached mmLazyloaded" data-id="401408360698" aspect-ratio="1.5021418372203712" style="border-radius: 50%; overflow: hidden;">
         </a>
     </div>
     <div class="mm-list-info">
