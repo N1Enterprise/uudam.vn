@@ -10,17 +10,17 @@ const SECTION_SCROLL = {
             $('[data-section][data-section-defer="true"]').each(function() {
                 const offsetTop = $(this).offset().top;
                 const offsetHei = $(this).outerHeight();
-    
+
                 if (
                     scrollPosition >= (offsetTop - (offsetHei * 2.5))
                     && scrollPosition < offsetTop + offsetHei
                 ) {
                     const sectionName = $(this).attr('data-section');
                     const sectionNameSplited = sectionName.split(':');
-    
+
                     const type  = sectionNameSplited[0];
                     const value = sectionNameSplited[1];
-    
+
                     switch (type) {
                         case 'home_page_display_1':
                             return SECTION_SCROLL.processHomePageDisplayInventoryScroll(sectionName, value);
@@ -56,7 +56,7 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-product-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
-                                <a class="ls-link" data-product-identifier="${item.id}" href="${ CATALOG_ROUTES.web_product_detail.replace(':slug', item.slug) }">
+                                <a href="${ CATALOG_ROUTES.web_product_detail.replace(':slug', item.slug) }" class="ls-link" data-product-identifier="${item.id}">
                                     <div class="ls-image-wrap">
                                         <img class="ls-image image-lazy" alt="${ item.title }" title="${ item.title }" loading="lazy" srcset="${ item.image }" src="${ item.image }" style="border-radius: 0px;">
                                     </div>
@@ -71,7 +71,7 @@ const SECTION_SCROLL = {
                                                 </div>
                                                 <span class="sold-count">Đã bán ${ item.final_sold_count }</span>
                                             </div>
-                                            
+
                                             ${
                                                 item.has_offer_price ? `
                                                     <span class="price-discount-percent discount-absolute">-${ item.discount_percent }%</span>

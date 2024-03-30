@@ -4,7 +4,7 @@
             @foreach (data_get($item, 'linked_items') as $linkedItem)
             <div class="limespot-recommendation-box-item" style="max-width: 100%; min-width: 100%;" data-recommendation-product-identifier="{{ $linkedItem }}">
                 <div class="recommendation-target">
-                    <a class="ls-link">
+                    <a href="/" class="ls-link a-prevent">
                         <div class="ls-image-wrap">
                             <img class="ls-image image-lazy" alt="Sản phẩm ưu đàm" title="Sản phẩm ưu đàm" loading="lazy" srcset="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" src="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" style="border-radius: 0px;">
                         </div>

@@ -5,7 +5,7 @@
             <div class="owl-carousel owl-theme ls-ul limespot-recommendation-box-carousel-shelf" data-owl-id="Related_Inventories" data-owl-items="5">
                 @foreach ($suggestedInventories as $inventory)
                 <div class="limespot-recommendation-box-item" data-product-identifier="{{ $inventory->id }}" data-product-title="{{ $inventory->title }}" data-price="{{ format_price($inventory->sale_price) }}" data-original-price="{{ format_price($inventory->sale_price) }}" data-display-url="{{ route('fe.web.products.index', $inventory->slug) }}" style="margin-right: 10px; max-width: 270px; flex-basis: 270px; min-width: 270px;">
-                    <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.index', $inventory->slug) }}">
+                    <a href="{{ route('fe.web.products.index', $inventory->slug) }}" class="ls-link" data-product-identifier="{{ $inventory->id }}">
                         <div class="ls-image-wrap">
                             <img class="ls-image" alt="{{ $inventory->title }}" title="{{ $inventory->title }}" loading="lazy" sizes="270px" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="max-width: 270px; max-height: 270px; border-radius: 0px;">
                         </div>
