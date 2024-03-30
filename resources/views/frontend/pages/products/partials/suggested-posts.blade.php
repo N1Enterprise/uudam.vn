@@ -50,12 +50,12 @@
                 @endforeach
             </div>
             <div class="slider-buttons no-js-hidden medium-hide">
-                <button data-owl-prev="Inventory_Related_Post" type="button" class="slider-button slider-button--prev">
+                <button data-owl-prev="Inventory_Related_Post" type="button" class="slider-button slider-button--prev" aria-label="Button Prev">
                     <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
                     </svg>
                 </button>
-                <button data-owl-next="Inventory_Related_Post" type="button" class="slider-button slider-button--next" name="next">
+                <button data-owl-next="Inventory_Related_Post" type="button" class="slider-button slider-button--next" name="next" aria-label="Button Next">
                     <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
                     </svg>
