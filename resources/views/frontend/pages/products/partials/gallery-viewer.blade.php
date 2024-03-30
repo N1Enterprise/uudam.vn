@@ -1,5 +1,4 @@
 <div class="slider-component slider-mobile-gutter">
-    <a class="skip-to-content-link button visually-hidden quick-add-hidden"> Skip to product information </a>
     <div data-owl-id="Slider_Product_Detail" data-owl-items="1" class="owl-carousel owl-theme product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile" >
         @if(!empty($mediaVideos))
         @foreach ($mediaVideos as $video)

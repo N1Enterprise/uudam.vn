@@ -3,7 +3,13 @@ const viewOnlyMode = (() => {
     return boShared?.fe_view_only_mode;
 })();
 
+
+
 $(document).ready(function() {
+    $("img").lazyload({
+        threshold: 100
+    });
+
     if (! viewOnlyMode) {
         return false;
     }

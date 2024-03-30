@@ -533,6 +533,28 @@ body {
     min-height: 300px;
 }
 
+.play-icon-builder {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px
+}
+.play-icon-builder::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 22px;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 18px solid;
+    top: 3px;
+    left: 6px;
+}
+
 @import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
 @import url('../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../public/frontend/bundle/css/reset.min.css');
