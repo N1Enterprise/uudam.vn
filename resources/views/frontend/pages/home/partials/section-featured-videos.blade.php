@@ -1,5 +1,5 @@
-<div class="section-content-template">
-    <div class="section-template-padding page-width">
+<div class="section-template-padding page-width">
+    <div class="section-content-template">
         <div class="recommendation-target">
             <div class="section-template-wrapper video-featured-section-01">
                 <div class="section-template-wrapper-nav-tabs owl-carousel owl-theme" data-owl-id="Home_Video_Featured" data-owl-items="5">
