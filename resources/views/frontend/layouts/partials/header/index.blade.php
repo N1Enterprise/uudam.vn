@@ -34,9 +34,9 @@
                                         @foreach ($APP_MENU_AVAILABEL as $menuGroup)
                                         <li class="app-menu-item" itemid="PMu22">
                                             <a
-                                                href="{{ data_get($menuGroup, 'redirect_url', 'javascript:void(0)') }}"
+                                                href="{{ data_get($menuGroup, 'redirect_url', '/') }}"
                                                 aria-label="{{ data_get($menuGroup, 'name') }}"
-                                                class="menu-drawer__menu-item list-menu__item link link--text"
+                                                class="menu-drawer__menu-item list-menu__item link link--text {{ data_get($menuGroup, 'redirect_url') ? '' : 'prevent' }}"
                                             >
                                                 <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 
@@ -59,7 +59,10 @@
                                                         @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                                         <div class="mm-list-name" style="height: 37px;">
                                                             <span>
-                                                                <a href="{{ data_get($menuSubGroup, 'redirect_url') ?? 'javascript:void(0)' }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
+                                                                <a
+                                                                    href="{{ data_get($menuSubGroup, 'redirect_url') ?? '/' }}"
+                                                                    class="mm-title {{ data_get($menuSubGroup, 'redirect_url') ? '' : 'prevent' }}"
+                                                                    style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                                             </span>
                                                         </div>
                                                         @endif
@@ -82,13 +85,13 @@
                                 </nav>
                                 <div class="menu-drawer__utility-links">
                                     @if(empty($AUTHENTICATED_USER))
-                                    <a href="javascript:void(0);" class="menu-drawer__account link focus-inset h5" data-overlay-action-button="signin">
+                                    <button type="button" class="menu-drawer__account link focus-inset h5" data-overlay-action-button="signin">
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
                                             </path>
                                         </svg>
                                         Đăng nhập
-                                    </a>
+                                    </button>
                                     @else
                                     <a href="{{ route('fe.web.user.profile') }}" class="menu-drawer__account link focus-inset h5">
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
@@ -132,9 +135,9 @@
                     @foreach ($APP_MENU_AVAILABEL as $menuGroup)
                     <li class="app-menu-item" itemid="menu_{{ data_get($menuGroup, 'id') }}">
                         <a
-                            href="{{ data_get($menuGroup, 'redirect_url') ?? 'javascript:void(0)' }}"
+                            href="{{ data_get($menuGroup, 'redirect_url') ?? '/' }}"
                             aria-label="{{ data_get($menuGroup, 'name') }}"
-                            class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2"
+                            class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2 {{ data_get($menuGroup, 'redirect_url') ? '' : 'prevent' }}"
                         >
                             <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 
@@ -157,7 +160,10 @@
                                     @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                     <div class="mm-list-name" style="height: 37px;">
                                         <span>
-                                            <a href="{{ data_get($menuSubGroup, 'redirect_url') ?? 'javascript:void(0)' }}" class="mm-title" style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
+                                            <a
+                                                href="{{ data_get($menuSubGroup, 'redirect_url') ?? '/' }}"
+                                                class="mm-title {{ data_get($menuSubGroup, 'redirect_url') ? '' : 'prevent' }}"
+                                                style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                         </span>
                                     </div>
                                     @endif

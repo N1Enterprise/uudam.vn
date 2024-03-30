@@ -1,6 +1,6 @@
 <div class="section-content-template">
     <div class="section-template-padding page-width section-template__video-padding">
-        <div href="javascript:void(0)" target="{{ data_get($videoOutsideUI, 'open_new_tab') ? '_bank' : '_self' }}">
+        <div href="/" class="prevent">
             <div class="video-section__media deferred-media no-js-hidden gradient global-media-settings">
                 <div class="video-section__media-wrapper" home_video_wrapper-resize-detection>
                     <div class="video-section__media-left_content">

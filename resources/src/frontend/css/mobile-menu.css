@@ -83,13 +83,15 @@
     vertical-align: top;
 }
 
-.master-mobile-menu .tabs li.is-active a {
+.master-mobile-menu .tabs li.is-active a,
+.master-mobile-menu .tabs li.is-active .a-link {
     border-bottom-color: #485fc7;
     color: #485fc7;
 }
 
 @media screen and (max-width: 768px) {
-    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>.a-link {
         align-items: center;
         border: none;
         color: #707070;
@@ -104,7 +106,8 @@
 }
 
 @media screen and (max-width: 768px) {
-    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item.is-active a {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item.is-active a,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item.is-active .a-link {
         border-bottom-color: #d70018;
         color: #d70018;
     }
@@ -123,7 +126,8 @@
 }
 
 @media screen and (max-width: 768px) {
-    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a .icon {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a .icon,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>.a-link .icon {
         height: 25px;
         margin: auto;
         width: 25px;
@@ -131,7 +135,8 @@
 }
 
 @media screen and (max-width: 768px) {
-    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a .icon svg {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a .icon svg,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>.a-link .icon svg {
         height: 20px;
         margin: 5px 0;
     }

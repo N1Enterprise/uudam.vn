@@ -512,7 +512,9 @@ body {
 }
 
 .a-link {
-    color: #2f80ed!important;
+    color: #2f80ed;
+    background: none;
+    border: none;
 }
 
 .prevent {

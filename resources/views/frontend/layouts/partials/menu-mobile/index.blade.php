@@ -56,7 +56,7 @@
             </li>
             @else
             <li class="menu-bottom-item about-smember">
-                <a href="javascript:void(0);" data-overlay-action-button="signin" style="text-decoration: none;">
+                <button type="button" data-overlay-action-button="signin" class="a-link">
                     <span class="icon">
                         <svg id="icon-smember" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" width="20">
                             <defs>
@@ -77,7 +77,7 @@
                         </svg>
                     </span>
                     <span>Đăng nhập</span>
-                </a>
+                </button>
             </li>
             @endif
 
