@@ -25,7 +25,7 @@ Tìm kiếm | {{ config('app.user_domain') }}
 @endsection
 
 @push('js_pages')
-<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/component-search.min.js') }}"></script>
 
