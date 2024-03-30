@@ -54,7 +54,7 @@
                 {{ __('Gửi không thành công. Vui lòng kiểm tra lỗi bên dưới.') }}
             </div>
             <div class="alert-close">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="close" data-dismiss="alert">
                     <span aria-hidden="true"><i class="la la-close"></i></span>
                 </button>
             </div>

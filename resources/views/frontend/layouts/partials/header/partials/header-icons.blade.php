@@ -1,7 +1,7 @@
 <div class="header__icons">
     <details-modal class="header__search">
         <details>
-            <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" aria-label="Search" role="button">
+            <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" role="button">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 24 24" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -9,7 +9,7 @@
                     </svg>
                 </span>
             </summary>
-            <div class="search-modal modal__content gradient" role="dialog" aria-modal="true" aria-label="Search" style="z-index: 10000;">
+            <div class="search-modal modal__content gradient" role="dialog" aria-modal="true" style="z-index: 10000;">
                 <div class="modal-overlay" close-modal-search></div>
                 <div class="search-modal__content search-modal__content-bottom" tabindex="-1">
                     <predictive-search class="search-modal__form" data-loading-text="Loading..." results="true">
@@ -17,7 +17,7 @@
                             <div class="field">
                                 <input class="search__input field__input Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
                                 <label class="field__label" for="Search-In-Modal">{{ data_get($SYSTEM_SETTING, 'search_setting.placeholder', 'Tìm kiếm...') }}</label>
-                                <button class="search__button field__button" aria-label="Search">
+                                <button class="search__button field__button">
                                     <svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 32 32" version="1.1">
                                         <title>search</title>
                                         <desc>Created with Sketch Beta.</desc>
@@ -56,7 +56,7 @@
                             </div>
                         </form>
                     </predictive-search>
-                    <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="Close" close-modal-search>
+                    <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" close-modal-search>
                         <svg xmlns="http://www.w3.org/2000/svg"  class="icon icon-close" viewBox="-0.5 0 25 25" fill="none">
                             <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

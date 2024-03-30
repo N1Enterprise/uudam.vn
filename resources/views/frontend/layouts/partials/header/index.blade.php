@@ -11,7 +11,6 @@
                 >
                     <summary
                         class="header__icon header__icon--menu header__icon--summary link focus-inset"
-                        aria-label="Menu"
                         role="button"
                         aria-controls="menu-drawer"
                     >
@@ -35,7 +34,6 @@
                                         <li class="app-menu-item" itemid="PMu22">
                                             <a
                                                 href="{{ data_get($menuGroup, 'redirect_url', '/') }}"
-                                                aria-label="{{ data_get($menuGroup, 'name') }}"
                                                 class="menu-drawer__menu-item list-menu__item link link--text {{ data_get($menuGroup, 'redirect_url') ? '' : 'prevent' }}"
                                             >
                                                 <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
@@ -126,7 +124,6 @@
                     <li class="app-menu-item" itemid="menu_{{ data_get($menuGroup, 'id') }}">
                         <a
                             href="{{ data_get($menuGroup, 'redirect_url') ?? '/' }}"
-                            aria-label="{{ data_get($menuGroup, 'name') }}"
                             class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2 {{ data_get($menuGroup, 'redirect_url') ? '' : 'prevent' }}"
                         >
                             <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>

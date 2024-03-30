@@ -17,7 +17,7 @@
     <section class="page-width section-template__main-padding">
         <div class="product product--large product--thumbnail_slider grid grid--1-col grid--2-col-tablet">
             <div class="media-gallery grid__item product__media-wrapper">
-                <div class="product__media-gallery" aria-label="Gallery Viewer">
+                <div class="product__media-gallery">
                     <div class="visually-hidden"></div>
                     @if(! empty($imageGalleries))
                     @include('frontend.pages.products.partials.gallery-viewer')

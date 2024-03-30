@@ -3,7 +3,7 @@
         <div class="alert alert-{{ $msg }} fade show" role="alert">
             <div class="alert-text">{{ Session::get('alert_' . $msg) }}</div>
             <div class="alert-close">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="close" data-dismiss="alert">
                     <span aria-hidden="true"><i class="la la-close"></i></span>
                 </button>
             </div>
@@ -26,7 +26,7 @@
         </ul>
     </div>
     <div class="alert-close">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button type="button" class="close" data-dismiss="alert">
             <span aria-hidden="true"><i class="la la-close"></i></span>
         </button>
     </div>

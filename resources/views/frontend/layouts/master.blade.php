@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>@yield('page_title', __($APP_NAME))</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ \App::currentLocale() }}">

@@ -29,7 +29,7 @@ $breadcrumbs = [
                 @php $msg = 'The user was ' . __(session('actionMessage')); @endphp
                 <div class="alert-text">{{ __($msg) }}</div>
                 <div class="alert-close">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="alert">
                         <span aria-hidden="true"><i class="la la-close"></i></span>
                     </button>
                 </div>
@@ -122,7 +122,7 @@ $breadcrumbs = [
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Mark test account') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -149,7 +149,7 @@ $breadcrumbs = [
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

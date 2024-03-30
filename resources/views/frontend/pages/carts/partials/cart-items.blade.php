@@ -64,7 +64,7 @@
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
                                         </svg>
                                     </button>
-                                    <input data-quantity-input="cart_item_{{ data_get($item, 'id') }}" class="quantity__input" type="number" name="updates[]" value="{{ data_get($item, 'quantity') }}" min="{{ data_get($item, 'inventory.min_order_quantity') }}" max="{{ data_get($item, 'inventory.stock_quantity') }}" aria-label="Quantity for {{ data_get($item, 'inventory.title') }}" data-index="1">
+                                    <input data-quantity-input="cart_item_{{ data_get($item, 'id') }}" class="quantity__input" type="number" name="updates[]" value="{{ data_get($item, 'quantity') }}" min="{{ data_get($item, 'inventory.min_order_quantity') }}" max="{{ data_get($item, 'inventory.stock_quantity') }}" data-index="1">
                                     <button data-quantity-increase="cart_item_{{ data_get($item, 'id') }}" class="quantity__button no-js-hidden" name="plus" type="button">
                                         <span class="visually-hidden">Tăng số lượng cho {{ data_get($item, 'inventory.title') }}</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
@@ -73,7 +73,7 @@
                                     </button>
                                 </quantity-input>
                                 <cart-remove-button data-index="1">
-                                    <button type="button" cart-remove-button data-cart-id="{{ data_get($item, 'id') }}" class="button button--tertiary" aria-label="Remove {{ data_get($item, 'inventory.title') }}">
+                                    <button type="button" cart-remove-button data-cart-id="{{ data_get($item, 'id') }}" class="button button--tertiary">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
                                             <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
                                             <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>

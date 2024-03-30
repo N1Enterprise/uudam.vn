@@ -46,25 +46,25 @@
             @endif
         </div>
         {{-- <div class="pagination-wrapper">
-            <nav class="pagination" role="navigation" aria-label="Pagination">
+            <nav class="pagination" role="navigation">
                 <ul class="pagination__list list-unstyled" role="list">
                     <li>
-                        <a role="link" aria-disabled="true" class="pagination__item pagination__item--current light" aria-current="page" aria-label="Page 1">1</a>
+                        <a role="link" aria-disabled="true" class="pagination__item pagination__item--current light" aria-current="page">1</a>
                     </li>
                     <li>
-                        <a href="/blogs/news?page=2" class="pagination__item link" aria-label="Page 2">2</a>
+                        <a href="/blogs/news?page=2" class="pagination__item link">2</a>
                     </li>
                     <li>
-                        <a href="/blogs/news?page=3" class="pagination__item link" aria-label="Page 3">3</a>
+                        <a href="/blogs/news?page=3" class="pagination__item link>3</a>
                     </li>
                     <li>
                         <span class="pagination__item">…</span>
                     </li>
                     <li>
-                        <a href="/blogs/news?page=43" class="pagination__item link" aria-label="Page 43">43</a>
+                        <a href="/blogs/news?page=43" class="pagination__item link">43</a>
                     </li>
                     <li>
-                        <a href="/blogs/news?page=2" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce" aria-label="Next page">
+                        <a href="/blogs/news?page=2" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce">
                             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
                             </svg>

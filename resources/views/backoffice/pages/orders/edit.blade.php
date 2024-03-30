@@ -289,7 +289,7 @@
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#process_shipping_order">{{ __('Cập nhật thông tin vận chuyển') }}</button>
                                     </div>
                                 </div>
-                                @endif                               
+                                @endif
                             </div>
                         </div>
 
@@ -379,7 +379,7 @@
                 <input type="hidden" name="user_order_shipping_history_id" value="{{ $order->latestUserOrderShippingHistory->id }}">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ __('Thông tin vận chuyển đơn') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -403,7 +403,7 @@
                         </div>
                         @endif
                     </div>
-    
+
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>{{ __('Đơn vị vận chuyển') }}</label>
@@ -500,7 +500,7 @@
             data: payload,
             success: (response) => {
                 location.reload();
-            }, 
+            },
         });
     });
 </script>
