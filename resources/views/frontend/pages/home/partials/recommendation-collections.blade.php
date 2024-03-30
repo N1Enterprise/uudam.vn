@@ -5,7 +5,7 @@
             <div class="multicolumn-list__item grid__item slider__slide center" style="width: 100%;" data-recommendation-collection-identifier="{{ $linkedItem }}">
                 <div class="recommendation-target">
                     <div class="multicolumn-list__item grid__item slider__slide center" style="width: 100%;">
-                        <a href="/" class="a-prevent" style="text-decoration: none;">
+                        <div class="a-prevent" style="text-decoration: none;">
                             <div class="multicolumn-card content-container">
                                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width">
                                     <div class="media media--transparent media--adapt">
@@ -14,12 +14,12 @@
                                 </div>
                                 <div class="multicolumn-card__info" style="padding: 10px 0;">
                                     <h3 class="skeleton"></h3>
-                                    <a class="link animate-arrow" href="">
+                                    <div class="link animate-arrow">
                                         <span class="skeleton"></span>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
