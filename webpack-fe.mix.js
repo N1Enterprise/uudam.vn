@@ -97,14 +97,14 @@ mix
     .css('resources/src/frontend/css/master.css', 'public/frontend/bundle/css/master.min.css')
 
     .css('resources/src/frontend/css/pages/blog.css', 'public/frontend/bundle/css/pages/blog.min.css')
-    // .css('resources/src/frontend/css/pages/cart.css', 'public/frontend/bundle/css/pages/cart.min.css')
-    // .css('resources/src/frontend/css/pages/checkout.css', 'public/frontend/bundle/css/pages/checkout.min.css')
-    // .css('resources/src/frontend/css/pages/collection.css', 'public/frontend/bundle/css/pages/collection.min.css')
-    // .css('resources/src/frontend/css/pages/home.css', 'public/frontend/bundle/css/pages/home.min.css')
-    // .css('resources/src/frontend/css/pages/page.css', 'public/frontend/bundle/css/pages/page.min.css')
-    // .css('resources/src/frontend/css/pages/product.css', 'public/frontend/bundle/css/pages/product.min.css')
-    // .css('resources/src/frontend/css/pages/profile.css', 'public/frontend/bundle/css/pages/profile.min.css')
-    // .css('resources/src/frontend/css/pages/search.css', 'public/frontend/bundle/css/pages/search.min.css')
+    .css('resources/src/frontend/css/pages/cart.css', 'public/frontend/bundle/css/pages/cart.min.css')
+    .css('resources/src/frontend/css/pages/checkout.css', 'public/frontend/bundle/css/pages/checkout.min.css')
+    .css('resources/src/frontend/css/pages/collection.css', 'public/frontend/bundle/css/pages/collection.min.css')
+    .css('resources/src/frontend/css/pages/home.css', 'public/frontend/bundle/css/pages/home.min.css')
+    .css('resources/src/frontend/css/pages/page.css', 'public/frontend/bundle/css/pages/page.min.css')
+    .css('resources/src/frontend/css/pages/product.css', 'public/frontend/bundle/css/pages/product.min.css')
+    .css('resources/src/frontend/css/pages/profile.css', 'public/frontend/bundle/css/pages/profile.min.css')
+    .css('resources/src/frontend/css/pages/search.css', 'public/frontend/bundle/css/pages/search.min.css')
 
 
     .options({
