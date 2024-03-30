@@ -1,6 +1,6 @@
 <slideshow-component class="slider-mobile-gutter page-width">
     <div class="slideshow__controls slideshow__controls--top slider-buttons no-js-hidden banner-home-control">
-        <button type="button" class="slider-button slider-button--prev" name="previous" data-owl-prev="Slider_Home_Banner">
+        <button type="button" class="slider-button slider-button--prev" data-owl-prev="Slider_Home_Banner">
             <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
             </svg>
