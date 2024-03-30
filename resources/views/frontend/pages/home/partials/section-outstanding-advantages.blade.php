@@ -1,9 +1,10 @@
 <div class="section-content-template">
     <div class="section-template-padding page-width section-template__video-padding">
-        <div href="/" class="recommendation-target a-prevent">
+        <div class="recommendation-target">
             <div class="video-section__media deferred-media no-js-hidden gradient global-media-settings">
                 <div class="video-section__media-wrapper" home_video_wrapper-resize-detection>
                     <div class="video-section__media-left_content">
+                        <ul>
                             @foreach (data_get($videoOutsideUI, 'featured_keys', []) as $item)
                             <li class="video-section__media-featured_item">
                                 <div class="icon">
