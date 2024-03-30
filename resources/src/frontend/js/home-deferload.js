@@ -156,7 +156,7 @@ const SECTION_SCROLL = {
                                             <div class="card__content">
                                                 <div class="card__information">
                                                     <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
-                                                        <h3 class="card__heading h2">${ item.name }</h3>
+                                                        <h2 class="card__heading h2">${ item.name }</h2>
                                                     </a>
                                                     <div class="article-card__info caption-with-letter-spacing h5">
                                                         <span class="circle-divider">
@@ -202,7 +202,7 @@ const SECTION_SCROLL = {
                                             <div class="card__content">
                                                 <div class="card__information">
                                                     <a href="${ BLOG_ROUTES.web_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
-                                                        <h3 class="card__heading h2">${ item.name }</h3>
+                                                        <h2 class="card__heading h2">${ item.name }</h2>
                                                     </a>
                                                     <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
                                                     <div class="article-card__footer"></div>
