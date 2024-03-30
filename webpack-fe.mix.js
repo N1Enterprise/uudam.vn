@@ -1,5 +1,5 @@
 require('laravel-mix-merge-manifest');
-require('laravel-mix-purgecss');
+// require('laravel-mix-purgecss');
 
 const mix = require('laravel-mix');
 const path = require('path');
@@ -113,9 +113,9 @@ mix
         autoprefixer: { remove: false },
         clearConsole: true, // in watch mode, clears console after every build
       })
-    .purgeCss({
-        safelist: {
-            standard: [/-active$/, /-enter$/, /-leave-to$/, /show$/, /^el-/],
-        },
-    })
+    // .purgeCss({
+    //     safelist: {
+    //         standard: [/-active$/, /-enter$/, /-leave-to$/, /show$/, /^el-/],
+    //     },
+    // })
     .mergeManifest();
