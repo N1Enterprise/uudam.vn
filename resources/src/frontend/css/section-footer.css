@@ -7,12 +7,13 @@
 }
 .site-footer {
     font-size: calc(15px - 1px);
-    background-color: #f0f0f0;
+    background-color: #025951;
     color: #fff;
     font-family: inherit;
+    margin-top: 50px;
 }
 .site-footer a {
-    color: #000;
+    color: #fff;
 }
 .site-footer .faux-select {
     font-size: calc(15px - 1px);
@@ -42,7 +43,7 @@
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 15px;
-    color: #000;
+    color: #fff;
 }
 .footer__subscribe {
     font-weight: bold;
@@ -72,7 +73,7 @@
 }
 
 .footer__menu--underline a {
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-underline-offset: 2px;
 }
 .footer__newsletter {

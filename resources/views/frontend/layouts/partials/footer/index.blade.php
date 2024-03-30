@@ -23,19 +23,22 @@
                                         <h2 class="footer__title">Tổng đài hỗ trợ</h2>
                                         <ul class="footer__menu footer__menu--underline">
                                             <li style="display: flex; align-items: center;">
-                                                <span style="display: block; color: #000; margin-right: 5px; flex: 0 0 52px;">SĐT 1: </span>
-                                                <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone')) }}" style="color: #2f80ed; font-weight: bold;">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</a>
-                                                <span style="color: #000; margin-left: 5px;">(24/7)</span>
+                                                <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone')) }}" style="font-size: 17px; letter-spacing: 1.2px;">
+                                                    {{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}
+                                                    <small>(24/7)</small>
+                                                </a>
                                             </li>
                                             <li style="display: flex; align-items: center;">
-                                                <span style="display: block; color: #000; margin-right: 5px; flex: 0 0 52px;">SĐT 2: </span>
-                                                <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone')) }}" style="color: #2f80ed; font-weight: bold;">{{ data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone') }}</a>
-                                                <span style="color: #000; margin-left: 5px;">(24/7)</span>
+                                                <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone')) }}" style="font-size: 17px; letter-spacing: 1.2px;">
+                                                    {{ data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone') }}
+                                                    <small>(24/7)</small>
+                                                </a>
                                             </li>
                                             <li style="display: flex; align-items: center;">
-                                                <span style="display: block; color: #000; margin-right: 5px; flex: 0 0 52px;">Zalo: </span>
-                                                <a href="https://zalo.me/{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone')) }}" target="_blank" style="color: #2f80ed; font-weight: bold;">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}</a>
-                                                <span style="color: #000; margin-left: 5px;">(24/7)</span>
+                                                <a href="https://zalo.me/{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone')) }}" target="_blank" style="font-size: 17px; letter-spacing: 1.2px;">
+                                                    {{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}
+                                                    <small>(Zalo)</small>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -49,7 +52,7 @@
         <div class="footer__section">
             <div class="page-width text-center small--text-left" style="text-align: center;">
                 <div class="section-content-template">
-                    <div class="footer__base-links" style="color: #000;">
+                    <div class="footer__base-links">
                         <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b>{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b>, MST <b>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</b>, địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
                     </div>
                 </div>
