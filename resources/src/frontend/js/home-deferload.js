@@ -155,9 +155,9 @@ const SECTION_SCROLL = {
                                             </div>
                                             <div class="card__content">
                                                 <div class="card__information">
-                                                    <h3 class="card__heading h2">
-                                                        <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">${ item.name }</a>
-                                                    </h3>
+                                                    <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
+                                                        <h3 class="card__heading h2">${ item.name }</h3>
+                                                    </a>
                                                     <div class="article-card__info caption-with-letter-spacing h5">
                                                         <span class="circle-divider">
                                                             <time datetime="${ item.post_at }">${ item.post_at }</time>
@@ -201,9 +201,9 @@ const SECTION_SCROLL = {
                                             </div>
                                             <div class="card__content">
                                                 <div class="card__information">
-                                                    <h3 class="card__heading h2">
-                                                        <a href="${ BLOG_ROUTES.web_detail.replace(':slug', item.slug) }" class="full-unstyled-link">${ item.name }</a>
-                                                    </h3>
+                                                    <a href="${ BLOG_ROUTES.web_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
+                                                        <h3 class="card__heading h2">${ item.name }</h3>
+                                                    </a>
                                                     <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
                                                     <div class="article-card__footer"></div>
                                                 </div>

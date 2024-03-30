@@ -42,9 +42,9 @@
                                                                 </div>
                                                                 <div class="card__content">
                                                                     <div class="card__information">
-                                                                        <h3 class="card__heading h2">
-                                                                            <a href="{{ route('fe.web.videos.index', data_get($video, 'slug')) }}" class="full-unstyled-link">{{ data_get($video, 'name') }}</a>
-                                                                        </h3>
+                                                                        <a href="{{ route('fe.web.videos.index', data_get($video, 'slug')) }}" class="full-unstyled-link">
+                                                                            <h3 class="card__heading h2">{{ data_get($video, 'name') }}</h3>
+                                                                        </a>
                                                                         <div class="article-card__info caption-with-letter-spacing h5">
                                                                             <span class="circle-divider">
                                                                                 <time datetime="{{ data_get($video, 'created_at') }}">{{ format_datetime(data_get($video, 'created_at')) }}</time>

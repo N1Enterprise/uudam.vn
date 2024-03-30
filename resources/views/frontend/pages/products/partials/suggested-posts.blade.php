@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="card__content">
                                     <div class="card__information">
-                                        <h3 class="card__heading h2">
-                                            <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
-                                        </h3>
+                                        <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">
+                                            <h3 class="card__heading h2">{{ $post->name }}</h3>
+                                        </a>
                                         <div class="article-card__info caption-with-letter-spacing h5">
                                             <span class="circle-divider">
                                                 <time datetime="{{ $post->post_at }}">{{ format_datetime($post->post_at) }}</time>
@@ -32,9 +32,9 @@
                             </div>
                             <div class="card__content">
                                 <div class="card__information">
-                                    <h3 class="card__heading h2">
-                                        <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
-                                    </h3>
+                                    <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">
+                                        <h3 class="card__heading h2">{{ $post->name }}</h3>
+                                    </a>
                                     <div class="article-card__info caption-with-letter-spacing h5">
                                         <span class="circle-divider">
                                             <time datetime="{{ $post->post_at }}">{{ format_datetime($post->post_at) }}</time>

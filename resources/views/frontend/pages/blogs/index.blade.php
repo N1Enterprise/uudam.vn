@@ -27,9 +27,9 @@
                             </div>
                             <div class="card__content">
                                 <div class="card__information">
-                                    <h3 class="card__heading h2">
-                                        <a href="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" class="full-unstyled-link"> {{ data_get($post, 'name') }} </a>
-                                    </h3>
+                                    <a href="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" class="full-unstyled-link">
+                                        <h3 class="card__heading h2">{{ data_get($post, 'name') }}</h3>
+                                    </a>
                                     <div class="article-card__info caption-with-letter-spacing h5">
                                         <span class="circle-divider">
                                             <time datetime="{{ data_get($post, 'post_at') }}">{{ format_datetime(data_get($post, 'post_at')) }}</time>
