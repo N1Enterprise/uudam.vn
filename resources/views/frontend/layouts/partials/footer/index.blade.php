@@ -47,26 +47,11 @@
             </div>
         </div>
         <div class="footer__section">
-            <div class="page-width">
-                <div class=" text-center small--text-left" style="text-align: center; padding: 5px 0px;">
-                    <div class="section-content-template" style="color: #000; text-align: left;">
-                        <div>
-                            - Công ty: {{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}
-                            <br>
-                            - MST: <a href="javascript:void(0)" style="color: #2f80ed">{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</a>
-                            <br>
-                            - Tại địa chỉ: {{ data_get($SYSTEM_SETTING, 'business_information.address') }}
-                            <br>
-                            - Được quản lý bởi: {{ data_get($SYSTEM_SETTING, 'business_information.managed_by') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer__section">
             <div class="page-width text-center small--text-left" style="text-align: center;">
-                <div class="footer__base-links">
-                    <span style="padding: 0; margin: 0; color: #000;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} </span>
+                <div class="section-content-template">
+                    <div class="footer__base-links" style="color: #000;">
+                        <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b>{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b>, MST <b>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</b>, địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
+                    </div>
                 </div>
             </div>
         </div>
