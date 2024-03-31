@@ -3,8 +3,8 @@
         <div class="recommendation-target">
             <div class="video-section__media deferred-media no-js-hidden gradient global-media-settings">
                 <div class="video-section__media-wrapper" home_video_wrapper-resize-detection>
-                    <div class="video-section__media-left_content" style="padding: 0;">
-                        <ul>
+                    <div class="video-section__media-left_content">
+                        <ul style="padding: 0;">
                             @foreach (data_get($videoOutsideUI, 'featured_keys', []) as $item)
                             <li class="video-section__media-featured_item">
                                 <div class="icon">
