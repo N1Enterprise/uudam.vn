@@ -1500,13 +1500,13 @@ a.product__text {
 }
 
 .product-bottom-section .bg-article {
-    background: linear-gradient(to bottom, rgba(255 255 255 / 0), rgba(255 255 255 / 62.5), rgba(255 255 255 / 1));
-    bottom: 48px;
-    height: 128px;
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff, #fff);
+    bottom: 0;
+    display: block !important;
+    height: 139px;
     left: 0;
     position: absolute;
     width: 100%;
-    display: block !important;
 }
 
 .product-bottom-section .btn-detail {
