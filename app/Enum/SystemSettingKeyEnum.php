@@ -32,6 +32,8 @@ class SystemSettingKeyEnum extends BaseEnum
     public const BUSINESS_INFORMATION = 'business_information';
     public const ZALO_WIDGET_CHAT_SDK = 'zalo_widget_chat_sdk';
 
+    public const COMMON_INVENTORY_KEY_FEATURED = 'common_inventory_key_featured';
+
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
 
