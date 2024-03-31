@@ -1180,7 +1180,7 @@ h3.coupon_heading {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-    padding: 16px;
+    padding: 16px 0;
 }
 
 .checkout-page-header #cart-link {
