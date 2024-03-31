@@ -333,7 +333,7 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 .price-discount-percent {
     align-items: center;
     background: #025B50;
-    border-radius: 999px;
+    border-radius: 4px;
     color: #ffffff;
     display: inline-flex;
     font-size: 14px;
