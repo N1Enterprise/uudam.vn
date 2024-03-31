@@ -98,9 +98,9 @@ class Inventory extends BaseModel
     public function getHasOfferPriceAttribute()
     {
         if ($this->offer_price) {
-            $now       = now();
+            $now = now();
             $startDate = !empty($this->offer_start) ? Carbon::parse($this->offer_start) : $now;
-            $endDate   = !empty($this->offer_end) ? Carbon::parse($this->offer_end) : $now->addDay();
+            $endDate = !empty($this->offer_end) ? Carbon::parse($this->offer_end) : $now->addDay();
 
             return $now->between($startDate, $endDate);
         }
@@ -126,9 +126,9 @@ class Inventory extends BaseModel
     public function htmlSEOProperties()
     {
         return [
-            'title'  => $this->meta_title ?? $this->title,
-            'desc'   => $this->meta_description ?? ($this->meta_title ?? $this->title),
-            'url'    => route('fe.web.products.index', $this->slug),
+            'title' => $this->meta_title ?? $this->title,
+            'desc' => $this->meta_description ?? ($this->meta_title ?? $this->title),
+            'url' => route('fe.web.products.index', $this->slug),
             'image'  => $this->image,
             'amount' => $this->final_price,
         ];

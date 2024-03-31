@@ -136,14 +136,33 @@ const MAIN_INVENTORY_OPEN_IMAGE_GALERIES = {
     },
     onOpen: () => {
         MAIN_INVENTORY_OPEN_IMAGE_GALERIES.open_element.on('click', function() {
-            $('.product-media-modal').attr('open', 'true');
+            $('.product-modal-media .product-media-modal').attr('open', 'true');
         });
     },
     onClose: () => {
         MAIN_INVENTORY_OPEN_IMAGE_GALERIES.close_element.on('click', function() {
-            $('.product-media-modal').removeAttr('open');
+            $('.product-modal-media .product-media-modal').removeAttr('open');
             MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe.remove();
-            setTimeout(() => { $('.product-media-modal__video').html(MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe) }, 100);
+            setTimeout(() => { $('.product-modal-media .product-media-modal__video').html(MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe) }, 100);
+        });
+    },
+};
+
+const MAIN_INVENTORY_OPEN_DESCRIPTION = {
+    close_element: $('[data-description-modal-close]'),
+    open_element: $('[data-description-modal-open]'),
+    init: () => {
+        MAIN_INVENTORY_OPEN_DESCRIPTION.onOpen();
+        MAIN_INVENTORY_OPEN_DESCRIPTION.onClose();
+    },
+    onOpen: () => {
+        MAIN_INVENTORY_OPEN_DESCRIPTION.open_element.on('click', function() {
+            $('.product-modal-description .product-media-modal').attr('open', 'true');
+        });
+    },
+    onClose: () => {
+        MAIN_INVENTORY_OPEN_DESCRIPTION.close_element.on('click', function() {
+            $('.product-modal-description .product-media-modal').removeAttr('open');
         });
     },
 };
@@ -313,10 +332,10 @@ const FORM_ORDER = {
             success: (response) => {
                 $('form[form-add-to-cart]').find('button[type="submit"]').removeClass('loading');
                 $('form[form-add-to-cart]').find('.loading-overlay__spinner').addClass('hidden');
-                
+
                 USER_ORDER_CART.updateCartInfo();
 
-                return callback();               
+                return callback();
             },
         });
     },
@@ -339,6 +358,7 @@ const MAIN_INVENTORY_QUANTITY = {
 COMBO_INVENTORY.init();
 MAIN_INVENTORY.init();
 MAIN_INVENTORY_OPEN_IMAGE_GALERIES.init();
+MAIN_INVENTORY_OPEN_DESCRIPTION.init();
 MAIN_INVENTORY_REVIEW.init();
 MAIN_INVENTORY_QUANTITY.init();
 FORM_ORDER.init();

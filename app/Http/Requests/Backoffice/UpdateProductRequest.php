@@ -5,6 +5,7 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateProductRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductTypeEnum;
+use App\Models\Inventory;
 use App\Models\Post;
 use App\Services\ProductService;
 use Illuminate\Validation\Rule;

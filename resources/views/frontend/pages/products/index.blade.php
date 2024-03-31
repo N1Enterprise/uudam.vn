@@ -49,22 +49,34 @@
     </div>
 </section>
 
-@if (has_data(data_get($inventory, 'product.description')))
 <section class="shopify-section section review-section">
     <div class="page-width">
-        <div class="rte quick-add-hidden" tagable>
-            <div class="spr-container">
-                <div class="spr-header">
-                    <h2 class="spr-header-title" style="text-align: left;">Mô tả sản phẩm</h2>
-                </div>
-                <div class="spr-content product-description-content">
-                    {!! data_get($inventory, 'product.description') !!}
+       <div class="product-bottom-section">
+            @if (has_data(data_get($inventory, 'product.description')))
+            <div class="product-review-section">
+                <div class="rte quick-add-hidden" tagable>
+                    <div class="spr-container">
+                        <div class="spr-header">
+                            <h2 class="spr-header-title" style="text-align: left;">Mô tả sản phẩm</h2>
+                        </div>
+                        <div class="spr-content product-description-content article__content">
+                            {!! data_get($inventory, 'product.description') !!}
+                        </div>
+                        <div class="bg-article"></div>
+                        <button type="button" id="see-product-description" class="btn-detail btn jsArticle" data-description-modal-open>
+                            <span>Xem chi tiết mô tả sản phẩm</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+            @endif
+
+            <div class="product-highlight-section">
+
+            </div>
+       </div>
     </div>
 </section>
-@endif
 
 <section class="shopify-section section review-section">
     @include('frontend.pages.products.partials.product-review')
@@ -85,6 +97,7 @@
 @endif --}}
 
 @include('frontend.pages.products.partials.gallery-image-modal')
+@include('frontend.pages.products.partials.product-description-modal')
 @endsection
 
 @section('js_script')

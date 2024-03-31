@@ -107,7 +107,7 @@ class InventoryService extends BaseService
             })
             ->addSort($orderBy, $sortBy);
 
-        return $paginate 
+        return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
             : $result->all();
     }
@@ -265,7 +265,19 @@ class InventoryService extends BaseService
 
     public function delete($id)
     {
-        return $this->inventoryRepository->delete($id);
+        return DB::transaction(function() use ($id) {
+            $status = $this->inventoryRepository->delete($id);
+
+            DB::table('attribute_inventories')
+                ->where('inventory_id', $id)
+                ->delete();
+
+            DB::table('product_combo_inventories')
+                ->where('inventory_id', $id)
+                ->delete();
+
+            return $status;
+        });
     }
 
     protected function setAttributes(Inventory $inventory, $attributes = [])

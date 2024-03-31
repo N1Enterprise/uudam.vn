@@ -1,17 +1,6 @@
 <div class="page-width">
     <div class="shopify-block shopify-app-block">
         <div id="shopify-product-reviews">
-            <style scoped>
-                .spr-container {
-                    padding: 24px;
-                    border-color: #ECECEC;
-                }
-
-                .spr-review,
-                .spr-form {
-                    border-color: #ECECEC;
-                }
-            </style>
             <div class="spr-container">
                 <div class="spr-header">
                     <h2 class="spr-header-title" style="text-align: left;">Phản hồi khách hàng</h2>

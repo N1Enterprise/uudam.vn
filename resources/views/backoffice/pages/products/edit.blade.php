@@ -239,7 +239,7 @@
                             <div class="col-3">
                                 <span class="k-switch">
                                     <label>
-                                        <input type="checkbox" {{ old('status', boolean($product->status) ? '1' : '0') == '1'  ? 'checked' : ''}} value="1" name="status"/>
+                                        <input type="checkbox" {{ boolean(old('status', $product->status)) ? 'checked' : ''}} name="status"/>
                                         <span></span>
                                     </label>
                                 </span>
@@ -349,6 +349,13 @@
                 $form.find('[type="submit"]').prop('disabled', false);
             },
         });
+    });
+
+    $('[name="status"]').on('change', function() {
+        const isChecked = $(this).is(':checked');
+
+        $(this).prop('checked', isChecked);
+        $(this).val(isChecked ? '1' : '0')
     });
 </script>
 @endsection
