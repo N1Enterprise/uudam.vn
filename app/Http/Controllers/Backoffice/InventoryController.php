@@ -10,7 +10,9 @@ use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
 use App\Enum\ProductTypeEnum;
+use App\Enum\SystemSettingKeyEnum;
 use App\Models\Inventory;
+use App\Models\SystemSetting;
 use App\Services\AttributeService;
 use App\Services\CategoryService;
 use App\Services\ProductComboService;
@@ -74,6 +76,8 @@ class InventoryController extends BaseController
 
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
 
+        $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
+
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
             'product',
@@ -81,6 +85,7 @@ class InventoryController extends BaseController
             'attributes',
             'combinations',
             'inventoryConditionEnumLabels',
+            'commonInventoryKeyFeatured'
         ));
     }
 
@@ -116,6 +121,8 @@ class InventoryController extends BaseController
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
         $productCombos = $this->productComboService->allAvailable(['columns' => ['id', 'name', 'unit', 'sale_price']]);
 
+        $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
+
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
             'product',
@@ -124,6 +131,7 @@ class InventoryController extends BaseController
             'combinations',
             'inventoryConditionEnumLabels',
             'productCombos',
+            'commonInventoryKeyFeatured'
         ));
     }
 

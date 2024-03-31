@@ -26,6 +26,11 @@
             <span class="badge price__badge-sold-out color-inverse">Hết Hàng</span>
         </div>
     </div>
+
+    @if (has_data($inventory->condition_note))
+    <div class="product-condition-note">{!! $inventory->condition_note !!}</div>
+    @endif
+
     @if (has_data(data_get($inventory, 'key_features', [])))
     <div class="product-promotion rounded-sm" id="ega-salebox">
         <h3 class="product-promotion__heading" style="display: flex; align-items: center;">
@@ -38,9 +43,6 @@
             @endforeach
         </ul>
     </div>
-    @endif
-    @if (has_data($inventory->condition_note))
-        <p class="product-condition-note">*Lưu ý: {{ $inventory->condition_note }}</p>
     @endif
     <div>
         <form method="post" action="" form-add-to-cart accept-charset="UTF-8" class="installment caption-large">
