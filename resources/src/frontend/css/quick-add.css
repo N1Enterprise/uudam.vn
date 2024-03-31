@@ -202,4 +202,14 @@ quick-add-modal .product-form__buttons {
     padding: 0.8rem;
     min-width: 100%;
     box-sizing: border-box;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.quick-add__submit:hover {
+    text-decoration: none;
+}
+
+.Infinite-Scroll-Pagination {
+
 }

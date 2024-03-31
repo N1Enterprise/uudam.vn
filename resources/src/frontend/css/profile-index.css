@@ -606,7 +606,7 @@
 }
 
 .profile-tabs-nav .profile-tabs-nav__tab.active {
-    background-color: #000;
+    background-color: #025B50;
     color: #fff
 }
 
@@ -744,7 +744,7 @@
 }
 
 .custom-checkout input:checked~.checkmark {
-    background-color: #000
+    background-color: #025B50;
 }
 
 .checkmark:after {
