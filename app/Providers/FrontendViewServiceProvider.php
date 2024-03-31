@@ -93,6 +93,8 @@ class FrontendViewServiceProvider extends ServiceProvider
             'most_searched' => SystemSetting::from(SystemSettingKeyEnum::MOST_SEARCHED)->get(null, []),
 
             'business_information' => SystemSetting::from(SystemSettingKeyEnum::BUSINESS_INFORMATION)->get(null, []),
+
+            'zalo_widget_chat_sdk' => SystemSetting::from(SystemSettingKeyEnum::ZALO_WIDGET_CHAT_SDK)->get(null, []),
         ];
     }
 }
