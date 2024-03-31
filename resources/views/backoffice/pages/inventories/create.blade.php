@@ -207,19 +207,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">{{ __('Ghi chép điều kiện') }}
-                                        <i
-                                            data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
-                                            data-title="Nhập thêm chi tiết về tình trạng mặt hàng. Điều này sẽ giúp khách hàng hiểu rõ hơn về mặt hàng."
-                                        ></i>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        name="condition_note"
-                                        value="{{ old('condition_note', data_get($inventory, 'condition_note')) }}"
-                                    >
+                                    <label for="">{{ __('Khối lượng(g)') }}</label>
+                                    <div class="input-group">
+                                        <x-number-input
+                                            name="weight"
+                                            key="weight"
+                                            class='form-control {{ $errors->has("weight") ? "is-invalid" : "" }}'
+                                            placeholder="{{ __('10,01') }}"
+                                            value='{{ old("weight", $inventory->weight) }}'
+                                        />
+                                        <div class="input-group-append"><span class="input-group-text">{{ __('gam(g)') }}</span></div>
+                                    </div>
+                                    @error('weight')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -238,27 +239,6 @@
                                         min="0"
                                         value="{{ old('init_sold_count', data_get($inventory, 'init_sold_count')) }}"
                                     >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Khối lượng(g)') }}</label>
-                                    <div class="input-group">
-                                        <x-number-input
-                                            name="weight"
-                                            key="weight"
-                                            class='form-control {{ $errors->has("weight") ? "is-invalid" : "" }}'
-                                            placeholder="{{ __('10,01') }}"
-                                            value='{{ old("weight", $inventory->weight) }}'
-                                        />
-                                        <div class="input-group-append"><span class="input-group-text">{{ __('gam(g)') }}</span></div>
-                                    </div>
-                                    @error('weight')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -298,6 +278,10 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <x-content-editor id="condition_note" label="{{ __('Điều kiện mua kèm') }}" name="condition_note" value="{{ old('condition_note', data_get($inventory, 'condition_note')) }}" />
                         </div>
                     </div>
                 </div>
