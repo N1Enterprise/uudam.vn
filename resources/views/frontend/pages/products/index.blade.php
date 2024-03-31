@@ -13,7 +13,7 @@
 @endpush
 
 @section('content_body')
-<section class="shopify-section section">
+<section class="shopify-section section" style="margin-top: 10px;">
     <section class="page-width section-template__main-padding">
         <div class="product product--large product--thumbnail_slider grid grid--1-col grid--2-col-tablet">
             <div class="media-gallery grid__item product__media-wrapper">

@@ -981,7 +981,7 @@ deferred-media {
     transition: box-shadow var(--duration-short) ease;
     -webkit-appearance: none;
     appearance: none;
-    background-color: rgba(var(--color-button), var(--alpha-button-background));
+    background-color: #025B50;
 }
 .button:before, .shopify-challenge__button:before, .customer button:before, .shopify-payment-button__button--unbranded:before, .shopify-payment-button [role="button"]:before, .cart__dynamic-checkout-buttons [role='button']:before {
     content: '';
@@ -1599,7 +1599,7 @@ input[type='checkbox'] {
 }
 .cart-count-bubble {
     position: absolute;
-    background-color: rgb(2 89 81);
+    background-color: rgb(2 91 80);
     color: rgb(var(--color-button-text));
     height: 1.7rem;
     width: 1.7rem;

@@ -90,7 +90,7 @@ ul.mm-submenu {
 
 
 #admintopnav a {
-    color: #025951;
+    color: #025B50;
     text-align: center;
     text-decoration: none;
     padding: 4px 16px;
@@ -100,7 +100,7 @@ ul.mm-submenu {
 }
 
 #admintopnav a:hover {
-    background-color: #025951;
+    background-color: #025B50;
     color: #fff;
 }
 
@@ -225,7 +225,7 @@ body {
 .header {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #025951;
+    background-color: #025B50;
 }
 
 .list-menu--inline {
@@ -419,6 +419,11 @@ body {
     justify-content: center;
 }
 
+.Infinite-Scroll-Pagination .button {
+    background-color: #fff;
+    background: #fff;
+}
+
 .recommendation-target .ls-link {
     position: relative;
 }
@@ -523,12 +528,13 @@ body {
 }
 
 .act-button {
-    background-color: #000;
+    background-color: #025B50;
     cursor: pointer;
     color: #fff;
     border: none;
     border-radius: 3px;
-    padding: 4px 10px;
+    padding: 6px 13px;
+    letter-spacing: 1px;
 }
 
 #MainContent {
