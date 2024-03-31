@@ -35,9 +35,9 @@
                         </h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#order_tab" role="tab" aria-selected="true">
+								<a class="nav-link active show" data-toggle="tab" href="#order_tab">
 									{{ __('Thông tin chung') }}
 								</a>
 							</li>
@@ -47,7 +47,7 @@
 
                 <div class="k-portlet__body">
                     <div class="tab-content">
-                        <div class="tab-pane active show" id="order_tab" role="tabpanel">
+                        <div class="tab-pane active show" id="order_tab">
                             <div class="user_information">
                                 <h5 style="margin-bottom: 30px; font-weight: bold;">#1. {{ __('Thông tin chung') }}</h5>
                                 <div class="row">

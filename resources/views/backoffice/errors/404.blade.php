@@ -6,7 +6,7 @@
 		<meta charset="utf-8" />
 		<title> {{env('APP_NAME')}} | 404 - {{__('Page not Found')}} </title>
 		<meta name="description" content="Page not found page examples">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 		<!--begin::Web font -->

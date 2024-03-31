@@ -24,7 +24,7 @@
                         <div class="product-thumbnail-wrapper">
                             <img class="product-thumbnail-image" alt="{{ data_get($cartItem, 'inventory.title') }}" src="{{ data_get($cartItem, 'inventory.image') }}">
                         </div>
-                        <span class="product-thumbnail-quantity" aria-hidden="true">{{ data_get($cartItem, 'quantity') }}</span>
+                        <span class="product-thumbnail-quantity">{{ data_get($cartItem, 'quantity') }}</span>
                     </div>
                 </td>
                 <td class="product-description">

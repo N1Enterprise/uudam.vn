@@ -43,20 +43,20 @@
 						<h3 class="k-portlet__head-title">{{ __('Thông tin bộ sưu tập') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
 									{{ __('Thông tin chung') }}
 								</a>
 							</li>
                             <li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#setupInventoryTab" role="tab" aria-selected="true">
+								<a class="nav-link" data-toggle="tab" href="#setupInventoryTab">
 									{{ __('Tồn kho trong bộ sưu tập') }}
 								</a>
 							</li>
 
                             <li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#setupFeaturedInventoryTab" role="tab" aria-selected="true">
+								<a class="nav-link" data-toggle="tab" href="#setupFeaturedInventoryTab">
 									{{ __('Tồn kho (featured) trong bộ sưu tập') }}
 								</a>
 							</li>
@@ -70,7 +70,7 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
 								<div class="form-group">
 									<label>{{ __('Tên') }} *</label>
 									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
@@ -104,7 +104,7 @@
                                                 <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                        <span data-image-ref-delete="primary" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                        <span data-image-ref-delete="primary" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
                                                     </div>
                                                 </div>
                                                 <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
@@ -137,7 +137,7 @@
                                                 <div data-image-ref-wrapper="cover" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="cover" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                        <span data-image-ref-delete="cover" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                        <span data-image-ref-delete="cover" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
                                                     </div>
                                                 </div>
                                                 <label for="image_cover_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
@@ -226,7 +226,7 @@
 								</div>
 							</div>
 
-                            <div class="tab-pane" id="setupInventoryTab" role="tabpanel">
+                            <div class="tab-pane" id="setupInventoryTab">
                                 <div class="form-group">
                                     <label>{{ __('Sản phẩm tồn kho') }} *</label>
                                     <select data-actions-box="true" name="linked_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
@@ -248,7 +248,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane" id="setupFeaturedInventoryTab" role="tabpanel">
+                            <div class="tab-pane" id="setupFeaturedInventoryTab">
                                 <div class="form-group">
                                     <label>{{ __('Sản phẩm tồn kho (featured)') }} *</label>
                                     <select data-actions-box="true" name="linked_featured_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho (featured)') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Featured_Inventory_Selector" multiple data-selected-text-format="count > 5">

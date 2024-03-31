@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-lg" role="document">
+<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 		<div class="modal-header" style="padding-bottom: 0px;">
 			<div>
@@ -13,8 +13,8 @@
 					</label>
 				</div>
 			</div>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
+			<button type="button" class="close" data-dismiss="modal">
+				<span>&times;</span>
 			</button>
 		</div>
 		<div class="modal-body">

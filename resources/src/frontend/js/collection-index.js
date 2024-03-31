@@ -171,7 +171,7 @@ const COLLECTION_LINKED_INVENTORIES = {
                                                 </div>
                                                 <span class="sold-count">Đã bán ${ inventory.final_sold_count }</span>
                                             </div>
-                                            
+
                                             ${
                                                 inventory.has_offer_price ? `
                                                     <span class="price-discount-percent discount-absolute">-${ inventory.discount_percent }%</span>
@@ -183,10 +183,10 @@ const COLLECTION_LINKED_INVENTORIES = {
                                 </div>
                             </div>
                             <div class="quick-add">
-                                <a type="submit" name="add" class="quick-add__submit button button--full-width button--secondary" aria-haspopup="dialog" data-product-url="${ route }" href="${ route }">
+                                <a type="submit" name="add" class="quick-add__submit button button--full-width button--secondary" data-product-url="${ route }" href="${ route }">
                                     Xem Chi Tiết
                                     <div class="loading-overlay__spinner hidden">
-                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                        <svg focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                                             <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                                         </svg>
                                     </div>

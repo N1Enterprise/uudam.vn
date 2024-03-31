@@ -7,7 +7,7 @@
                     @foreach ($linkedFeaturedInventories as $inventory)
                     <div class="limespot-recommendation-box-item" style="max-width: 100%; min-width: 100%;" data-recommendation-product-identifier="{{ $inventory->id }}">
                         <div class="recommendation-target">
-                            <a class="ls-link" data-product-identifier="{{ $inventory->id }}" href="{{ route('fe.web.products.index', $inventory->slug) }}">
+                            <a href="{{ route('fe.web.products.index', $inventory->slug) }}" class="ls-link" data-product-identifier="{{ $inventory->id }}">
                                 <div class="ls-image-wrap">
                                     <img class="ls-image image-lazy" alt="{{ $inventory->image }}" title="{{ $inventory->image }}" loading="lazy" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="border-radius: 0px;">
                                 </div>

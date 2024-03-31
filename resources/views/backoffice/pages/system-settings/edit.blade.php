@@ -1,10 +1,10 @@
-<div class="modal fade" id="modal_editSetting" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="modal_editSetting" tabindex="-1">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Edit Setting') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
                 </button>
             </div>
             <form id="form_editSetting" method="POST" action="{{ route('bo.web.system-settings.update', ['id' => $systemSetting->id]) }}">

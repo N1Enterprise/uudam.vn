@@ -1,7 +1,7 @@
 @if(!empty($items))
 <div class="k_selectpicker_filter" data-original-title="{{ __('Add filter') }}" data-toggle="tooltip">
     <div class="dropdown dropdown-inline">
-        <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown">
             <i class="fas fa-solid fa-filter"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(29px, 29px, 0px);">

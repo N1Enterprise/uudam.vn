@@ -25,7 +25,7 @@
         <div class="section-template-padding page-width">
             <div class="section-content-template">
                 @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
-                <h3 class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</h3>
+                <div class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</div>
                 @endif
 
                 @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
@@ -71,8 +71,8 @@
 <section class="shopify-section section">
     <div class="section-template-padding page-width">
         <div class="section-content-template">
-            <h3 class="ls-box-title custom-ls-box-title">Tìm kiếm nhiều</h3>
-            <div style="overflow: hidden;">
+            <div class="ls-box-title custom-ls-box-title">Tìm kiếm nhiều</div>
+            <div class="recommendation-target" style="overflow: hidden;">
                 <div class="list-most-search">
                     @foreach (data_get($SYSTEM_SETTING, 'most_searched.links') as $link)
                     <a href="{{ data_get($link, 'link') }}" class="list-most-search-link" target="_blank">{{ data_get($link, 'name') }}</a>
@@ -99,7 +99,7 @@
 @endsection
 
 @push('js_pages')
-<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/home-deferload.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/home-index.min.js') }}" type="text/javascript"></script>

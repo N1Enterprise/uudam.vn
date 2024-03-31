@@ -86,8 +86,8 @@ Thanh toán | {{ config('app.user_domain') }}
                             </button>
                         </form>
                         @else
-                        <form action="" accept-charset="UTF-8" style="width: 100%;">
-                            <a href="javascript:void(0)" class="show-modal-add-address">Bạn chưa có địa chỉ giao hàng - vui lòng nhấn vào <span style="color: #E2574C">đây</span> để cập nhật</a>
+                        <form accept-charset="UTF-8" style="width: 100%;">
+                            <button type="button" class="show-modal-add-address" style="color: #0181b2;">Bạn chưa có địa chỉ giao hàng - vui lòng nhấn vào <span style="color: #E2574C">đây</span> để cập nhật</button>
                         </form>
                         @endif
                     </div>

@@ -31,14 +31,14 @@
 						<h3 class="k-portlet__head-title">{{ __('Thông tin phương thức') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
 									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#advancedTab" role="tab">
+								<a class="nav-link" data-toggle="tab" href="#advancedTab">
 									{{ __('Thông tin nâng cao') }}
 								</a>
 							</li>
@@ -52,7 +52,7 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
                                 <div class="form-group">
 									<label>{{ __('Tên') }} *</label>
 									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" >
@@ -90,7 +90,7 @@
                                                 <div data-image-ref-wrapper="logo" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="logo" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                        <span data-image-ref-delete="logo" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                        <span data-image-ref-delete="logo" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
                                                     </div>
                                                 </div>
                                                 <label for="image_logo" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="advanceTab" role="tabpanel">
+                                <div class="tab-pane" id="advanceTab">
                                     <div class="form-group">
                                         <label for="parameters">{{ __('Tham số') }}</label>
                                         <div id="json_editor_params" style="height: 200px"></div>
@@ -152,7 +152,7 @@
 								</div>
 							</div>
 
-							<div class="tab-pane" id="advancedTab" role="tabpanel">
+							<div class="tab-pane" id="advancedTab">
                                 <div class="form-group">
                                     <label>{{ __('Các quốc gia được hỗ trợ') }}</label>
                                     <select data-actions-box="true" name="supported_countries[]" title="-- {{ __('Chọn quốc gia') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Countries_Selector" multiple data-selected-text-format="count > 5">
@@ -224,7 +224,7 @@
             mode: "ace/mode/json",
             theme: 'ace/theme/tomorrow',
             value: $(`input[name="params"]`).val()
-        });	
+        });
 
         $('form#form_shipping_options').on('submit', function(e) {
             e.preventDefault();

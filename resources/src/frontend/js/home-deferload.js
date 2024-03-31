@@ -10,17 +10,17 @@ const SECTION_SCROLL = {
             $('[data-section][data-section-defer="true"]').each(function() {
                 const offsetTop = $(this).offset().top;
                 const offsetHei = $(this).outerHeight();
-    
+
                 if (
                     scrollPosition >= (offsetTop - (offsetHei * 2.5))
                     && scrollPosition < offsetTop + offsetHei
                 ) {
                     const sectionName = $(this).attr('data-section');
                     const sectionNameSplited = sectionName.split(':');
-    
+
                     const type  = sectionNameSplited[0];
                     const value = sectionNameSplited[1];
-    
+
                     switch (type) {
                         case 'home_page_display_1':
                             return SECTION_SCROLL.processHomePageDisplayInventoryScroll(sectionName, value);
@@ -56,7 +56,7 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-product-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
-                                <a class="ls-link" data-product-identifier="${item.id}" href="${ CATALOG_ROUTES.web_product_detail.replace(':slug', item.slug) }">
+                                <a href="${ CATALOG_ROUTES.web_product_detail.replace(':slug', item.slug) }" class="ls-link" data-product-identifier="${item.id}">
                                     <div class="ls-image-wrap">
                                         <img class="ls-image image-lazy" alt="${ item.title }" title="${ item.title }" loading="lazy" srcset="${ item.image }" src="${ item.image }" style="border-radius: 0px;">
                                     </div>
@@ -71,7 +71,7 @@ const SECTION_SCROLL = {
                                                 </div>
                                                 <span class="sold-count">Đã bán ${ item.final_sold_count }</span>
                                             </div>
-                                            
+
                                             ${
                                                 item.has_offer_price ? `
                                                     <span class="price-discount-percent discount-absolute">-${ item.discount_percent }%</span>
@@ -114,7 +114,7 @@ const SECTION_SCROLL = {
                                                     ${item.cta_label ? `
                                                         <span>${ item.cta_label }</span>
                                                         <span class="icon-wrap">&nbsp;
-                                                            <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                                            <svg viewBox="0 0 14 10" fill="none" focusable="false" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
                                                             </svg>
                                                         </span>
@@ -155,9 +155,9 @@ const SECTION_SCROLL = {
                                             </div>
                                             <div class="card__content">
                                                 <div class="card__information">
-                                                    <h3 class="card__heading h2">
-                                                        <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">${ item.name }</a>
-                                                    </h3>
+                                                    <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
+                                                        <h2 class="card__heading h2">${ item.name }</h2>
+                                                    </a>
                                                     <div class="article-card__info caption-with-letter-spacing h5">
                                                         <span class="circle-divider">
                                                             <time datetime="${ item.post_at }">${ item.post_at }</time>
@@ -201,9 +201,9 @@ const SECTION_SCROLL = {
                                             </div>
                                             <div class="card__content">
                                                 <div class="card__information">
-                                                    <h3 class="card__heading h2">
-                                                        <a href="${ BLOG_ROUTES.web_detail.replace(':slug', item.slug) }" class="full-unstyled-link">${ item.name }</a>
-                                                    </h3>
+                                                    <a href="${ BLOG_ROUTES.web_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
+                                                        <h2 class="card__heading h2">${ item.name }</h2>
+                                                    </a>
                                                     <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
                                                     <div class="article-card__footer"></div>
                                                 </div>
@@ -230,8 +230,8 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-in-app-banner-100-identifier=${item.id}]`).html(`
                             <a href="${ item.redirect_url || 'javascript::void(0)' }" class="inapp-banner-link">
-                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
-                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img width="1815" height="300" class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img width="1815" height="500" class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
                             </a>
                         `);
                     });
@@ -251,8 +251,8 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-in-app-banner-50-identifier=${item.id}]`).html(`
                             <a href="${ item.redirect_url || 'javascript::void(0)' }" class="inapp-banner-link">
-                                <img class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
-                                <img class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img width="900" height="400" class="image-lazy inapp-banner-desktop" srcset="${ item.desktop_image }" src="${ item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
+                                <img width="900" height="250" class="image-lazy inapp-banner-mobile d-none" srcset="${ item.mobile_image || item.desktop_image }" src="${ item.mobile_image || item.desktop_image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.label }" class="motion-reduce" loading="lazy">
                             </a>
                         `);
                     });

@@ -1,12 +1,12 @@
-<div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="userProfileModal" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="form-group">
                     <h5 class="mb-4">
                         {{ __('My Profile') }}
-                        <button style="font-family: 'LineAwesome'; transform: translateY(-2px); " type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" style="color: #a1a8c3">&times;</span>
+                        <button style="font-family: 'LineAwesome'; transform: translateY(-2px); " type="button" class="close" data-dismiss="modal">
+                            <span style="color: #a1a8c3">&times;</span>
                         </button>
                     </h5>
                     <form id="updateCurrentAdminProfileForm">

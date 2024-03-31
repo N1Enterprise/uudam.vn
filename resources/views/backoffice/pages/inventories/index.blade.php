@@ -85,8 +85,8 @@
 
 @can('inventories.store')
 @push('modals')
-<div class="modal fade" id="modal_create_inventory" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="modal_create_inventory" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content" style="border:none;">
             <form id="form_create_inventory" method="GET" action="{{ route('bo.web.inventories.create') }}">
                 <div class="modal-header">
@@ -150,7 +150,7 @@
         const dataLink = $(this).attr('href');
 
         copyToClipboard(dataLink);
-        
+
         fstoast.success("{{ __('Đã sao chép !') }}");
     });
 

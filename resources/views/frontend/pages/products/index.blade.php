@@ -17,7 +17,7 @@
     <section class="page-width section-template__main-padding">
         <div class="product product--large product--thumbnail_slider grid grid--1-col grid--2-col-tablet">
             <div class="media-gallery grid__item product__media-wrapper">
-                <div class="product__media-gallery" aria-label="Gallery Viewer">
+                <div class="product__media-gallery">
                     <div class="visually-hidden"></div>
                     @if(! empty($imageGalleries))
                     @include('frontend.pages.products.partials.gallery-viewer')
@@ -36,7 +36,7 @@
     <div class="multicolumn color-background-1 gradient background-primary no-heading">
         <div class="page-width section-template-padding isolate">
             <div class="slider-component slider-mobile-gutter">
-                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" role="list">
+                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop">
                     <li class="multicolumn-list__item grid__item multicolumn-list__item--empty">
                         <div class="multicolumn-card content-container">
                             <div class="multicolumn-card__info"></div>
@@ -88,7 +88,7 @@
 @endsection
 
 @section('js_script')
-<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/product-index.min.js') }}" type="text/javascript"></script>
 @endsection

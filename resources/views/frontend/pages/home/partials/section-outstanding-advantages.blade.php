@@ -1,9 +1,10 @@
-<div class="section-content-template">
-    <div class="section-template-padding page-width section-template__video-padding">
-        <div href="javascript:void(0)" target="{{ data_get($videoOutsideUI, 'open_new_tab') ? '_bank' : '_self' }}">
+<div class="section-template-padding page-width section-template__video-padding">
+    <div class="section-content-template">
+        <div class="recommendation-target">
             <div class="video-section__media deferred-media no-js-hidden gradient global-media-settings">
                 <div class="video-section__media-wrapper" home_video_wrapper-resize-detection>
                     <div class="video-section__media-left_content">
+                        <ul>
                             @foreach (data_get($videoOutsideUI, 'featured_keys', []) as $item)
                             <li class="video-section__media-featured_item">
                                 <div class="icon">
@@ -12,7 +13,7 @@
                                     </svg>
                                 </div>
                                 <div class="content">
-                                    <h3 class="title">{{ data_get($item, 'title') }}</h3>
+                                    <span class="title">{{ data_get($item, 'title') }}</span>
                                     <p class="desc">{{ data_get($item, 'desc') }}</p>
                                 </div>
                             </li>

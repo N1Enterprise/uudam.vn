@@ -296,6 +296,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 
 .video-section__media-featured_item .icon {
     margin-right: 10px;
+    margin-top: 2px;
 }
 
 .video-section__media-featured_item .title {
@@ -304,6 +305,9 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     margin-top: 5px;
     font-weight: bold;
     margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 4px;
+    display: block;
 }
 
 .video-section__media-featured_item .desc {

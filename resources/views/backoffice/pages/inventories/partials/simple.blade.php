@@ -14,7 +14,7 @@
                     <div data-image-ref-wrapper="variant" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                         <div class="d-flex align-items-center h-100">
                             <img data-image-ref-img="variant" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                            <span data-image-ref-delete="variant" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                            <span data-image-ref-delete="variant" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
                         </div>
                     </div>
                     <label for="variant_image_file_0" class="variant_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">

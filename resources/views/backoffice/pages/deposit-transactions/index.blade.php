@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<div class="modal fade" data-model="deposit-transaction" role="dialog" aria-hidden="true">
+<div class="modal fade" data-model="deposit-transaction">
 
 </div>
 @endsection

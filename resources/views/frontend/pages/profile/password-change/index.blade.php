@@ -20,8 +20,8 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
 
             <div class="form-group">
                 <div class="field field--with-error" style="margin: 5px 0;">
-                    <input type="text" name="password" id="password" class="field__input" autocomplete="phone" value aria-required="true" required placeholder="password">
-                    <label class="field__label" for="password">Mật khẩu <span aria-hidden="true">*</span></label>
+                    <input type="text" name="password" id="password" class="field__input" autocomplete="phone" value required placeholder="password">
+                    <label class="field__label" for="password">Mật khẩu <span>*</span></label>
                 </div>
             </div>
 

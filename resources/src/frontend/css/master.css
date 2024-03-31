@@ -422,12 +422,11 @@ body {
 }
 
 .price-discount-percent.discount-absolute {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1px 7px;
     border-radius: 0;
-    border-bottom-left-radius: 10px;
+    padding: 3px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .multicolumn-card__image-wrapper .media--adapt {
@@ -511,8 +510,49 @@ body {
     text-decoration: none;
 }
 
+.a-link {
+    color: #2f80ed;
+    background: none;
+    border: none;
+}
+
+.a-prevent {
+    pointer-events: none;
+}
+
+.act-button {
+    background-color: #000;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 10px;
+}
+
 #MainContent {
     min-height: 300px;
+}
+
+.play-icon-builder {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px
+}
+.play-icon-builder::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 22px;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 18px solid;
+    top: 3px;
+    left: 6px;
 }
 
 @import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
