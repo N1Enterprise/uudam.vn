@@ -12,7 +12,7 @@ class MenuCms extends BaseCms
 
     /**
      * @return Menu
-     * @throws BindingResolutionException 
+     * @throws BindingResolutionException
      */
     public function model()
     {

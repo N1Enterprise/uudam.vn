@@ -2,6 +2,7 @@
     $inventory = data_get($menu, 'inventory');
 @endphp
 
+@if (! empty($inventory))
 <li data-menu-type="inventory" data-menu-id="{{ data_get($menu, 'id') }}">
     <div class="mm-list-image">
         <a data-href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}">
@@ -24,3 +25,4 @@
         </div>
     </div>
 </li>
+@endif
