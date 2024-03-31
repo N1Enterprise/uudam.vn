@@ -557,6 +557,11 @@ body {
     left: 6px;
 }
 
+.zalo-chat-widget {
+    bottom: 84px!important;
+    right: 5px!important;
+}
+
 @import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
 @import url('../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../public/frontend/bundle/css/reset.min.css');
