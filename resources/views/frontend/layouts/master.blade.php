@@ -30,6 +30,9 @@
     @endif
     @include('frontend.layouts.partials.footer.index')
     @include('frontend.layouts.partials.menu-mobile.index')
+    @if (! empty(data_get($SYSTEM_SETTING, 'zalo_widget_chat_sdk')))
+    {!! data_get($SYSTEM_SETTING, 'zalo_widget_chat_sdk') !!}
+    @endif
     <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>

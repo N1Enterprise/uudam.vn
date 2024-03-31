@@ -30,6 +30,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const FOOTER_MENUS = 'footer_menus';
     public const MOST_SEARCHED = 'most_searched';
     public const BUSINESS_INFORMATION = 'business_information';
+    public const ZALO_WIDGET_CHAT_SDK = 'zalo_widget_chat_sdk';
 
     // Image
     public const IMAGE_CONFIGURATION = 'image_configuration';
