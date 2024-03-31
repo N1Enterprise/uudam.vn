@@ -13,7 +13,7 @@
             Welcome {{ $AUTHENTICATED_ADMIN->name }}
         </a>
         <a href="/" class="split" onclick="this.preventDefault(); document.querySelector('#signout_form').submit()">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" width="17" height="17" style="margin-right: 3px;">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#025951" width="17" height="17" style="margin-right: 3px;">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">

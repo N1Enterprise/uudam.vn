@@ -465,7 +465,8 @@ li.app-menu-item i.mm-icon:after {
 }
 
 .horizontal-mega-menu .app-menu-item>a {
-    white-space: nowrap
+    white-space: nowrap;
+    color: #fff;
 }
 
 .horizontal-mega-menu .app-menu-item>a>.mm-title:after {

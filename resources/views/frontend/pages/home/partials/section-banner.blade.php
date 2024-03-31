@@ -1,4 +1,4 @@
-<slideshow-component class="slider-mobile-gutter page-width">
+<slideshow-component>
     <div class="slideshow__controls slideshow__controls--top slider-buttons no-js-hidden banner-home-control">
         <button type="button" class="slider-button slider-button--prev" data-owl-prev="Slider_Home_Banner" aria-label="Button Prev">
             <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">

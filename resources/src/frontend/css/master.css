@@ -71,9 +71,9 @@ ul.mm-submenu {
 
 #admintopnav {
     position: relative;
-    background: rgb(116, 118, 121);
-    background-color: rgb(116, 118, 121);
-    color: #c3c4c7;
+    background: rgb(255 255 255);
+    background-color: rgb(255 255 255);
+    color: #000000;
     font-weight: 400;
     font-size: 13px;
     width: 100%;
@@ -90,16 +90,17 @@ ul.mm-submenu {
 
 
 #admintopnav a {
-    color: #f2f2f2;
+    color: #025951;
     text-align: center;
     text-decoration: none;
     padding: 4px 16px;
     display: flex;
     align-items: center;
+    font-weight: bold;
 }
 
 #admintopnav a:hover {
-    background-color: #a49a9a;
+    background-color: #025951;
     color: #fff;
 }
 
@@ -224,6 +225,7 @@ body {
 .header {
     padding-top: 10px;
     padding-bottom: 10px;
+    background-color: #025951;
 }
 
 .list-menu--inline {
