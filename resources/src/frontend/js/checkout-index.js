@@ -8,13 +8,25 @@ $(() => {
             HANDLE_CHECKOUT.onBeforeLoad();
 
             HANDLE_CHECKOUT.initEventTrigger();
+            HANDLE_CHECKOUT.onToggleSummary();
         },
         initEventTrigger: () => {
             $('[name="shipping_option_id"]:checked').trigger('change');
             $('[name="payment_option_id"]:checked').trigger('change');
         },
         onBeforeLoad: () => {
-            
+
+        },
+        onToggleSummary: () => {
+            $('.order-summary-toggle').on('click', function() {
+                const isExpand = $(this).hasClass('order-summary-toggle-show');
+
+                $(this).toggleClass('order-summary-toggle-show', !isExpand);
+                $(this).toggleClass('order-summary-toggle-hide', isExpand);
+
+                $('.order-summary').toggleClass('order-summary-is-expanded', !isExpand);
+                $('.order-summary').toggleClass('order-summary-is-collapsed', isExpand);
+            });
         },
         getShippingRateByShippingOptions: () => {
             const cartUuid = $('[name="checkout_cart_uuid"]').val();
@@ -29,8 +41,8 @@ $(() => {
                 $.ajax({
                     url: CHECKOUT_ROUTES.api_user_checkout_provider_shipping_free.replace(':cartUuid', cartUuid),
                     method: 'GET',
-                    data: { 
-                        shipping_option_id: option, 
+                    data: {
+                        shipping_option_id: option,
                         address_id: addressId,
                     },
                     beforeSend: () => {
@@ -100,7 +112,7 @@ $(() => {
                                 return HANDLE_CHECKOUT.handlePaymentHtml(payment.redirect_output);
                             }
                         }
-                    },               
+                    },
                 });
             });
         },
