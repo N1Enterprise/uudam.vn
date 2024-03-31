@@ -140,6 +140,71 @@ select:disabled {
     margin-top: 30px;
 }
 
+.order-summary-toggle {
+    background: #fafafa;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 1.25em 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.order-summary-toggle .order-summary-toggle-inner {
+    display: table;
+    box-sizing: border-box;
+    width: 100%;
+    zoom: 1;
+}
+
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-icon-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 0.75em;
+    white-space: nowrap;
+}
+
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-icon-wrapper .order-summary-toggle-icon {
+    fill: #338dbc;
+    transition: fill 0.2s ease-in-out;
+}
+
+.order-summary-toggle.order-summary-toggle-hide .order-summary-toggle-inner .order-summary-toggle-text.order-summary-toggle-text-show, .order-summary-toggle.order-summary-toggle-show .order-summary-toggle-inner .order-summary-toggle-text.order-summary-toggle-text-hide {
+    display: table-cell;
+    width: 100%;
+}
+
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-text {
+    color: #338dbc;
+    vertical-align: middle;
+    transition: color 0.2s ease-in-out;
+    display: none;
+}
+
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-text .order-summary-toggle-dropdown {
+    vertical-align: middle;
+    transition: fill 0.2s ease-in-out;
+    fill: #338dbc;
+}
+
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-total-recap {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding-left: 0.75em;
+    white-space: nowrap;
+    color: #4b4b4b;
+    font-weight: bold;
+}
+
+@media (min-width: 1000px) {
+    .order-summary-toggle {
+        display: none;
+    }
+}
+
 @import url('../../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../../public/vendor/validate/styles.css');
 @import url('../../../../../public/frontend/bundle/css/variable.min.css');
