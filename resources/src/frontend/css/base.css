@@ -1599,7 +1599,7 @@ input[type='checkbox'] {
 }
 .cart-count-bubble {
     position: absolute;
-    background-color: rgb(var(--color-button));
+    background-color: rgb(2 89 81);
     color: rgb(var(--color-button-text));
     height: 1.7rem;
     width: 1.7rem;
@@ -1611,6 +1611,7 @@ input[type='checkbox'] {
     bottom: 0.8rem;
     left: 2.2rem;
     line-height: calc(1 + 0.1 / var(--font-body-scale));
+    border: 1px solid #fff;
 }
 /* section-announcement-bar */
 #shopify-section-announcement-bar {
@@ -1771,6 +1772,7 @@ input[type='checkbox'] {
     width: 2rem;
     fill: none;
     vertical-align: middle;
+    stroke: #fff;
 }
 .header__icon, .header__icon--cart .icon {
     height: 4.4rem;
