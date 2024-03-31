@@ -555,12 +555,12 @@ body {
     box-sizing: border-box;
     position: absolute;
     width: 0;
-    height: 22px;
-    border-top: 11px solid transparent;
-    border-bottom: 11px solid transparent;
-    border-left: 18px solid;
-    top: 3px;
-    left: 6px;
+    height: 16px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 13px solid;
+    top: 4px;
+    left: 7px;
 }
 
 @media screen and (max-width: 768px) {

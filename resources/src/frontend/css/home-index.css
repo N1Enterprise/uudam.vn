@@ -220,8 +220,8 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 6.2rem;
-    width: 6.2rem;
+    height: 40px;
+    width: 40px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -409,7 +409,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .section-content-template {
         padding: 0;
     }
