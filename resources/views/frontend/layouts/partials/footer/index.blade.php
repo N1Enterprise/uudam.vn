@@ -16,35 +16,38 @@
                             </ul>
                         </div>
                         @endforeach
+                        @if (
+                            data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone')
+                            || data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone')
+                        )
                         <div class="footer__block" data-type="contact">
                             <div class="footer__mobile-section">
                                 <div class="footer__blocks--mobile">
                                     <div class="footer__block--mobile">
                                         <h2 class="footer__title">Tổng đài hỗ trợ</h2>
                                         <ul class="footer__menu footer__menu--underline">
+                                            @if (data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone'))
                                             <li style="display: flex; align-items: center;">
                                                 <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone')) }}" style="font-size: 17px; letter-spacing: 1.2px;">
                                                     {{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}
                                                     <small>(24/7)</small>
                                                 </a>
                                             </li>
+                                            @endif
+                                            @if (data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone'))
                                             <li style="display: flex; align-items: center;">
                                                 <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone')) }}" style="font-size: 17px; letter-spacing: 1.2px;">
                                                     {{ data_get($SYSTEM_SETTING, 'page_settings.backup_phone_support.phone') }}
                                                     <small>(24/7)</small>
                                                 </a>
                                             </li>
-                                            <li style="display: flex; align-items: center;">
-                                                <a href="https://zalo.me/{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone')) }}" target="_blank" style="font-size: 17px; letter-spacing: 1.2px;">
-                                                    {{ data_get($SYSTEM_SETTING, 'page_settings.phone_zalo.phone') }}
-                                                    <small>(Zalo)</small>
-                                                </a>
-                                            </li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
