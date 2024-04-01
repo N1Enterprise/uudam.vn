@@ -243,7 +243,7 @@
                             </div>
                         </div>
 
-                        <div class="row {{ $inventory->offer_price ? '' : 'd-none' }}" data-toggle-reference="offer_date_setup">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">{{ __('Ngày bắt đầu ưu đãi') }}

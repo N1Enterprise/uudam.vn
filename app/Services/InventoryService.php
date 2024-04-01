@@ -195,7 +195,7 @@ class InventoryService extends BaseService
             $variant['offer_start']           = data_get($attributes, 'offer_start');
             $variant['offer_end']             = data_get($attributes, 'offer_end');
             $variant['meta']                  = data_get($attributes, 'meta');
-            $variant['weight']                = data_get($attributes, 'weight');
+            $variantWeight                    = data_get($attributes, 'weight');
 
             $variantsCreated = [];
 
@@ -209,6 +209,7 @@ class InventoryService extends BaseService
                 $variant['offer_end']      = $variant['offer_price'] ? $variant['offer_end'] : null;
                 $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
                 $variant['slug']           = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
+                $variant['weight']         = data_get($variants, ['weight', $index]) ?? $variantWeight;
                 $variant['image']          = ImageHelper::make('catalog')
                                                 ->hasOptimization()
                                                 ->setConfigKey([Inventory::class, 'image'])

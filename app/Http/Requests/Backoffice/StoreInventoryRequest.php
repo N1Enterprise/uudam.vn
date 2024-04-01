@@ -36,7 +36,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'meta_description' => ['nullable'],
                 'init_sold_count' => ['nullable'],
                 'meta' => ['nullable', 'array'],
-                'weight' => ['nullable', 'numeric', 'gt:0'],
+                'weight' => ['nullable', 'gt:0'],
                 'offer_start' => [
                     Rule::requiredIf(function() {
                         $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
@@ -47,11 +47,6 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                     'date'
                 ],
                 'offer_end' => [
-                    Rule::requiredIf(function() {
-                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
-
-                        return boolean(count($offerPrices));
-                    }),
                     'nullable',
                     'date',
                     'after:offer_start'
@@ -87,6 +82,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants.image' => ['nullable', 'array'],
             'variants.image.*.path' => ['nullable', 'string'],
             'variants.image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'variants.weight' => ['nullable', 'array'],
+            'variants.weight.*' => ['nullable', 'gt:0'],
             'variants.sku' => ['required', 'array'],
             'variants.sku.*' => ['required', 'distinct', Rule::unique(Inventory::class, 'sku')],
             'variants.stock_quantity' => ['required', 'array'],
