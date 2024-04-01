@@ -47,11 +47,6 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                     'date'
                 ],
                 'offer_end' => [
-                    Rule::requiredIf(function() {
-                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
-
-                        return boolean(count($offerPrices));
-                    }),
                     'nullable',
                     'date',
                     'after:offer_start'

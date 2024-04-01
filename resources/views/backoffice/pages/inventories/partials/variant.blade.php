@@ -67,6 +67,27 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="">{{ __('Weight') }}</label>
+                                    <div class="input-group">
+                                        <x-number-input
+                                            name="variants[weight][{{ $loop->index }}]"
+                                            key="variants[weight][{{ $loop->index }}]"
+                                            class='form-control {{ $errors->has("variants.weight.$loop->index") ? "is-invalid" : "" }}'
+                                            placeholder="{{ __('10,01') }}"
+                                            value='{{ old("variants.weight.$loop->index", $inventory->weight) }}'
+                                        />
+                                        <div class="input-group-append"><span class="input-group-text">{{ __('gam(g)') }}</span></div>
+                                    </div>
+                                    @error("variants.sku.{{ $loop->index }}")
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="">{{ __('Sku') }} *
                                         <i
                                             data-toggle="tooltip"
