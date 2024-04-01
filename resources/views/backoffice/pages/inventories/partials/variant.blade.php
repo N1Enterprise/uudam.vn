@@ -65,12 +65,15 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">{{ __('Tiêu đề') }}</label>
                                     <input type="text" name="variants[title][{{ $loop->index }}]" class="form-control" value="{{ old("variants.title.$loop->index", $inventory->title) ?? $product->name }}">
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">{{ __('Weight') }}</label>
