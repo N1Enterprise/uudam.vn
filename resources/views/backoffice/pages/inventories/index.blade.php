@@ -116,7 +116,7 @@
                         <div class="form-group attribute-item d-none" data-supported-categories='@json($attribute->supported_categories ?? [])'>
                             <label>{{ $attribute->name }}</label>
                             <select name="attribute_values[{{ $attribute->id }}][]" title="-- {{ __('Chọn biến thể') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true" multiple>
-                                @foreach ($attribute->attributeValues as $value)
+                                @foreach ($attribute->attributeValues->sortBy('order') as $value)
                                 <option value="{{ $value->id }}">{{ $value->value }}</option>
                                 @endforeach
                             </select>
