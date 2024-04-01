@@ -179,7 +179,7 @@ class InventoryService extends BaseService
             $variants = data_get($attributes, 'variants', []);
             $skus     = array_filter(Arr::wrap(data_get($variants, 'sku', [])));
 
-            $variant['title']                 = data_get($attributes, 'title');
+            $variantTitle                     = data_get($attributes, 'title');
             $variant['product_id']            = data_get($attributes, 'product_id');
             $variant['condition_note']        = data_get($attributes, 'condition_note');
             $variant['status']                = data_get($attributes, 'status');
@@ -200,6 +200,7 @@ class InventoryService extends BaseService
             $variantsCreated = [];
 
             foreach ($skus as $index => $sku) {
+                $variant['title']          = data_get($variants, ['title', $index]) ?? $variantTitle;
                 $variant['condition']      = data_get($variants, ['condition', $index]);
                 $variant['sku']            = $sku;
                 $variant['purchase_price'] = data_get($variants, ['purchase_price', $index]);

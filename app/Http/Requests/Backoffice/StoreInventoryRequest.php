@@ -82,6 +82,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants.image' => ['nullable', 'array'],
             'variants.image.*.path' => ['nullable', 'string'],
             'variants.image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'variants.title' => ['nullable', 'array'],
+            'variants.title.*' => ['nullable', 'string', 'max:255'],
             'variants.weight' => ['nullable', 'array'],
             'variants.weight.*' => ['nullable', 'gt:0'],
             'variants.sku' => ['required', 'array'],
