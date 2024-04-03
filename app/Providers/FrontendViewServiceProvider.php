@@ -95,6 +95,8 @@ class FrontendViewServiceProvider extends ServiceProvider
             'business_information' => SystemSetting::from(SystemSettingKeyEnum::BUSINESS_INFORMATION)->get(null, []),
 
             'zalo_widget_chat_sdk' => SystemSetting::from(SystemSettingKeyEnum::ZALO_WIDGET_CHAT_SDK)->get(null, []),
+
+            'dmca_site_verification' => SystemSetting::from(SystemSettingKeyEnum::DMCA_SITE_VERIFICATION)->get(null, []),
         ];
     }
 }
