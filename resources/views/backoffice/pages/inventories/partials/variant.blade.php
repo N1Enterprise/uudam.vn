@@ -8,7 +8,7 @@
             <div data-repeater-item-custom class="k-repeater__item" data-repeater-index="{{ $loop->index }}">
                 <div class="repeater-wrapper">
                     <div class="repeater-head position-relative">
-                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}">
+                        <div data-toggle="collapse" data-target="#variant_{{ $loop->index }}" class="d-flex align-items-center justify-content-between">
                             <b>
                                 <span>[{{ $parentIndex + 1 }}]</span>
                                 @foreach($combination as $attrId => $attrValue)
@@ -19,10 +19,27 @@
                             </b>
                         </div>
 
-                        <div class="repeater-control">
-                            <button type="button" data-repeater-delete-custom class="btn btn-secondary btn-icon" style="width: 30px!important; height: 30px!important;">
+                        <div class="repeater-control d-flex">
+                            <button type="button" data-repeater-delete-custom class="btn btn-secondary btn-icon" style="width: 34px!important; height: 34px!important; top: 3px;">
                                 <i class="la la-close"></i>
                             </button>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;" class="d-flex justify-content-end">
+                        <div class="dropdown dropdown-inline">
+                            <select class="form-control" copy-inventory-selection>
+                                <option value="">--- {{ __('Copy nội dung') }} ---</option>
+                                @foreach($combinations as $combination)
+                                <option value="{{ $loop->index }}">
+                                    [{{ $loop->index + 1 }}]
+                                    @foreach($combination as $attrId => $attrValue)
+                                    {{ $attributes[$attrId] .' : '. current($attrValue) }}
+                                    {{ ($attrValue !== end($combination))?'; ':'' }}
+                                    @endforeach
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -126,7 +143,7 @@
                                             data-title="Tình trạng hiện tại của sản phẩm là gì?"
                                         ></i>
                                     </label>
-                                    <select name="variants[condition][{{ $loop->index }}]" class="form-control k_selectpicker {{ $errors->has("variants.condition.$loop->index") }}">
+                                    <select name="variants[condition][{{ $loop->index }}]" class="form-control {{ $errors->has("variants.condition.$loop->index") }}">
                                         @foreach($inventoryConditionEnumLabels as $key => $label)
                                         <option value="{{ $key }}" {{ old("variants[condition][$loop->index]", $inventory->condition) == $key ? 'selected' : '' }}>{{ $label }}</option>
                                         @endforeach
@@ -172,10 +189,11 @@
                                     </label>
                                     <x-number-input
                                         allow-minus="false"
-                                        key="purchase_price_{{ $loop->index }}"
+                                        key="variants[purchase_price][{{ $loop->index }}]"
                                         name="variants[purchase_price][{{ $loop->index }}]"
                                         class="form-control {{ $errors->has('variants.purchase_price.'.$loop->index) ? 'is-invalid' : '' }}"
                                         value='{{ old("variants.purchase_price.$loop->index", $inventory->purchase_price) }}'
+                                        placeholder="{{ __('100,000') }}"
                                     />
                                     @error("variants.purchase_price.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -196,10 +214,11 @@
                                     </label>
                                     <x-number-input
                                         allow-minus="false"
-                                        key="sale_price_{{ $loop->index }}"
+                                        key="variants[sale_price][{{ $loop->index }}]"
                                         name="variants[sale_price][{{ $loop->index }}]"
                                         class="form-control {{ $errors->has('variants.sale_price.'.$loop->index) ? 'is-invalid' : '' }}"
                                         value='{{ old("variants.sale_price.$loop->index", $inventory->sale_price) }}'
+                                        placeholder="{{ __('200,000') }}"
                                     />
                                     @error("variants.sale_price.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -218,10 +237,11 @@
                                     </label>
                                     <x-number-input
                                         allow-minus="false"
-                                        key="offer_price_{{ $loop->index }}"
+                                        key="variants[offer_price][{{ $loop->index }}]"
                                         name="variants[offer_price][{{ $loop->index }}]"
                                         class="form-control {{ $errors->has('variants.offer_price.'.$loop->index) ? 'is-invalid' : '' }}"
                                         value='{{ old("variants.offer_price.$loop->index", $inventory->offer_price) }}'
+                                        placeholder="{{ __('150,000') }}"
                                     />
                                     @error("variants.offer_price.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>

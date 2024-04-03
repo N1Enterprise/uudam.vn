@@ -144,5 +144,39 @@
             $('[data-toggle-reference="offer_date_setup"] input').toggleClass('d-none', !hasOfferPrice);
             $('[data-toggle-reference="offer_date_setup"] input').prop('disabled', !hasOfferPrice);
         });
+
+        $('[copy-inventory-selection]').each(function(_, element) {
+            $(element).on('change', function() {
+                const index = $(this).parents('[data-repeater-index]').attr('data-repeater-index');
+                const targetIndex = $(this).val();
+
+                const targetValues = {
+                    title: $(`[name="variants[title][${targetIndex}]"]`).val(),
+                    weight: $(`[name="variants[weight][${targetIndex}]"]`).val(),
+                    sku: $(`[name="variants[sku][${targetIndex}]"]`).val(),
+                    condition: $(`[name="variants[condition][${targetIndex}]"]`).val(),
+                    stock_quantity: $(`[name="variants[stock_quantity][${targetIndex}]"]`).val(),
+                    purchase_price: $(`[name="variants[purchase_price][${targetIndex}]"]`).val(),
+                    sale_price: $(`[name="variants[sale_price][${targetIndex}]"]`).val(),
+                    offer_price: $(`[name="variants[offer_price][${targetIndex}]"]`).val()
+                };
+
+                $(`[name="variants[title][${index}]"]`).val(targetValues.title);
+                $(`[name="variants[weight][${index}]"]`).val(targetValues.weight);
+                $(`[name="variants[sku][${index}]"]`).val(targetValues.sku);
+                $(`[name="variants[condition][${index}]"]`).val(targetValues.condition);
+
+                $(`[name="variants[stock_quantity][${index}]"]`).val(targetValues.stock_quantity);
+                $(`[name="variants[purchase_price][${index}]"]`).val(targetValues.purchase_price);
+                $(`[name="variants[sale_price][${index}]"]`).val(targetValues.sale_price);
+                $(`[name="variants[offer_price][${index}]"]`).val(targetValues.offer_price);
+
+                $(`[data-key="variants[weight][${index}]"]`).val(targetValues.weight);
+                $(`[data-key="variants[stock_quantity][${index}]"]`).val(targetValues.stock_quantity);
+                $(`[data-key="variants[purchase_price][${index}]"]`).val(targetValues.purchase_price);
+                $(`[data-key="variants[sale_price][${index}]"]`).val(targetValues.sale_price);
+                $(`[data-key="variants[offer_price][${index}]"]`).val(targetValues.offer_price);
+            });
+        });
     });
 </script>

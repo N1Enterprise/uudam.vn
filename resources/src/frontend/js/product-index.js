@@ -137,11 +137,13 @@ const MAIN_INVENTORY_OPEN_IMAGE_GALERIES = {
     onOpen: () => {
         MAIN_INVENTORY_OPEN_IMAGE_GALERIES.open_element.on('click', function() {
             $('.product-modal-media .product-media-modal').attr('open', 'true');
+            $('body').addClass('full-mode');
         });
     },
     onClose: () => {
         MAIN_INVENTORY_OPEN_IMAGE_GALERIES.close_element.on('click', function() {
             $('.product-modal-media .product-media-modal').removeAttr('open');
+            $('body').removeClass('full-mode');
             MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe.remove();
             setTimeout(() => { $('.product-modal-media .product-media-modal__video').html(MAIN_INVENTORY_OPEN_IMAGE_GALERIES.video_iframe) }, 100);
         });
@@ -158,11 +160,13 @@ const MAIN_INVENTORY_OPEN_DESCRIPTION = {
     onOpen: () => {
         MAIN_INVENTORY_OPEN_DESCRIPTION.open_element.on('click', function() {
             $('.product-modal-description .product-media-modal').attr('open', 'true');
+            $('body').addClass('full-mode');
         });
     },
     onClose: () => {
         MAIN_INVENTORY_OPEN_DESCRIPTION.close_element.on('click', function() {
             $('.product-modal-description .product-media-modal').removeAttr('open');
+            $('body').removeClass('full-mode');
         });
     },
 };
