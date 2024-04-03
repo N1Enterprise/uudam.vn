@@ -45,6 +45,8 @@ class SystemSettingKeyEnum extends BaseEnum
 
     public const ENABLE_SEND_NEW_ORDER_TO_ADMIN = 'enable_send_new_order_to_admin';
 
+    public const DMCA_SITE_VERIFICATION = 'dmca_site_verification';
+
     public static function all(): array
     {
         return [
@@ -72,6 +74,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::QUEUE_NAMES,
             self::FOOTER_MENUS,
             self::GOOGLE_ANALYTICS_TAG,
+            self::DMCA_SITE_VERIFICATION
         ];
     }
 }
