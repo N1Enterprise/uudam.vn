@@ -232,63 +232,9 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('Thông tin liên kết') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        <div class="form-group">
-                            <label>{{ __('Sản phẩm được đề xuất') }}</label>
-                            <select data-actions-box="true" name="suggested_relationships[inventories][]" title="-- {{ __('Chọn sản phẩm được đề xuất') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Selector" multiple data-selected-text-format="count > 5">
-                                @foreach($relatedInventories as $inventory)
-                                <option
-                                    {{ in_array($inventory->id, old('suggested_relationships.inventories', [])) ? 'selected' : '' }}
-                                    data-tokens="{{ $inventory->id }} | {{ $inventory->title }}"
-                                    data-subtext="{{ $inventory->id }}"
-                                    data-product-id="{{ $inventory->id }}"
-                                    data-product-name="{{ $inventory->title }}"
-                                    value="{{ $inventory->id }}"
-                                >{{ $inventory->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group Related_Product_Allowed_Holder mb-0">
-                            <div class="Related_Product_Holder_Content">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>{{ __('Bài đăng được đề xuất') }}</label>
-                            <select data-actions-box="true" name="suggested_relationships[posts][]" title="-- {{ __('Chọn bài đăng được đề xuất') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
-                                @foreach($categoryRelatedPosts as $category)
-                                <optgroup label="{{ $category->name }}">
-                                    @foreach($category->posts as $post)
-                                    <option
-                                        {{ in_array($post->id, old("suggested_relationships.posts", [])) ? 'selected' : '' }}
-                                        data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $category->name }}"
-                                        data-subtext="{{ $post->id }}"
-                                        data-post-id="{{ $post->id }}"
-                                        data-post-name="{{ $post->name }}"
-                                        value="{{ $post->id }}">{{ $post->name }}</option>
-                                    @endforeach
-                                </optgroup>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group Related_Post_Allowed_Holder mb-0">
-                            <div class="Related_Post_Holder_Content">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="k-portlet__foot">
-                        <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
-                        </div>
-                    </div>
+                <div class="k-form__actions d-flex justify-content-end">
+                    <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                 </div>
             </div>
         </div>
@@ -301,8 +247,8 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
 @include('backoffice.pages.products.js-pages.handle')
-@include('backoffice.pages.products.js-pages.products-suggested')
-@include('backoffice.pages.products.js-pages.posts-suggested')
+{{-- @include('backoffice.pages.products.js-pages.products-suggested') --}}
+{{-- @include('backoffice.pages.products.js-pages.posts-suggested') --}}
 <script>
     $('#form_store_product').on('submit', function(e) {
         e.preventDefault();
