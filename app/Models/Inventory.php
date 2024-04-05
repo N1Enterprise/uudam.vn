@@ -97,15 +97,7 @@ class Inventory extends BaseModel
 
     public function getHasOfferPriceAttribute()
     {
-        if ($this->offer_price) {
-            $now = now();
-            $startDate = !empty($this->offer_start) ? Carbon::parse($this->offer_start) : $now;
-            $endDate = !empty($this->offer_end) ? Carbon::parse($this->offer_end) : $now->addDay();
-
-            return $now->between($startDate, $endDate);
-        }
-
-        return 0;
+        return boolean($this->isOngoingFlashSale());
     }
 
     public function getSubPriceAttribute()
@@ -121,6 +113,31 @@ class Inventory extends BaseModel
     public function getFinalSoldCountAttribute()
     {
         return (int) $this->init_sold_count + (int) $this->sold_count;
+    }
+
+    public function isOngoingFlashSale()
+    {
+        if ($this->offer_price && $this->offer_start) {
+            $now = now();
+            $startDate = !empty($this->offer_start) ? Carbon::parse($this->offer_start) : $now;
+            $endDate = !empty($this->offer_end) ? Carbon::parse($this->offer_end) : $now->addDay();
+
+            return $now->between($startDate, $endDate);
+        }
+
+        return 0;
+    }
+
+    public function getOfferStartDateAttribute()
+    {
+        return Carbon::parse($this->offer_start)->toDateTimeString();
+    }
+
+    public function getOfferEndDateAttribute()
+    {
+        $endDate = $this->offer_end ?? Carbon::parse($this->offer_start)->addDays(10);
+
+        return Carbon::parse($endDate)->toDateTimeString();
     }
 
     public function htmlSEOProperties()

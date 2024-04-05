@@ -65,7 +65,7 @@ class CartService extends BaseService
                     $q->whereRelation('order', function($q) use ($orderCode) {
                         $q->where('order_code', $orderCode)
                             ->orWhere('uuid', $orderCode);
-                    });    
+                    });
                 }
             })
             ->search([]);
@@ -113,10 +113,10 @@ class CartService extends BaseService
                 'user_id' => $user->getKey(),
                 'currency_code' => $currency->getKey(),
                 'order_id' => null,
-                'ip_address' => data_get($attributes, 'ip_address'),
             ], [
                 'total_quantity' => 0,
                 'total_price' => 0,
+                'ip_address' => data_get($attributes, 'ip_address'),
                 'uuid' => Str::uuid(),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -146,17 +146,17 @@ class CartService extends BaseService
             $totalPrice = Money::make($inventory->final_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             $cartItem->update([
-                'quantity'    => (int) $cartItem->quantity + $quantity,
-                'price'       => $inventory->final_price,
+                'quantity' => (int) $cartItem->quantity + $quantity,
+                'price' => $inventory->final_price,
                 'total_price' => $totalPrice->plus($cartItem->total_price),
             ]);
 
             $items = $cart->availableItems;
 
             $cart->update([
-                'total_item'     => $items->count('id'),
+                'total_item' => $items->count('id'),
                 'total_quantity' => $items->sum('quantity'),
-                'total_price'    => $items->sum('total_price'),
+                'total_price' => $items->sum('total_price'),
             ]);
 
             return $cart;

@@ -50,6 +50,7 @@ mix
     .js('resources/src/frontend/js/product-index.js', 'public/frontend/bundle/js/product-index.min.js')
     .js('resources/src/frontend/js/collection-index.js', 'public/frontend/bundle/js/collection-index.min.js')
     .js('resources/src/frontend/js/address.js', 'public/frontend/bundle/js/address.min.js')
+    .js('resources/src/frontend/js/flash-sale.js', 'public/frontend/bundle/js/flash-sale.min.js')
 
     .css('resources/src/frontend/css/reset.css', 'public/frontend/bundle/css/reset.min.css')
     .css('resources/src/frontend/css/base.css', 'public/frontend/bundle/css/base.min.css')
@@ -92,6 +93,7 @@ mix
     .css('resources/src/frontend/css/section-featured-blog.css', 'public/frontend/bundle/css/section-featured-blog.min.css')
     .css('resources/src/frontend/css/section-multicolumn.css', 'public/frontend/bundle/css/section-multicolumn.min.css')
     .css('resources/src/frontend/css/component-slider.css', 'public/frontend/bundle/css/component-slider.min.css')
+    .css('resources/src/frontend/css/flashsale.css', 'public/frontend/bundle/css/flashsale.min.css')
     .css('resources/src/frontend/css/variable.css', 'public/frontend/bundle/css/variable.min.css')
     .css('resources/src/frontend/css/mobile-menu.css', 'public/frontend/bundle/css/mobile-menu.min.css')
     .css('resources/src/frontend/css/master.css', 'public/frontend/bundle/css/master.min.css')

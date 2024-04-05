@@ -2,14 +2,17 @@
     <div class="product__title">
         <h1 data-title>{{ $inventory->title }}</h1>
     </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0; margin: -10px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0; margin: -10px 0;">
         <div>SKU: <span data-sku>{{ $inventory->sku }}</span></div>
         @if (($inventory->final_sold_count))
         <div style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>
         @endif
     </div>
+    @if ($inventory->isOngoingFlashSale())
+    @include('frontend.pages.products.partials.flash-sale')
+    @endif
     <p class="product__text subtitle"></p>
-    <div class="no-js-hidden">
+    <div class="{{ $inventory->isOngoingFlashSale() ? 'flashsale-price' : '' }}">
         <div class="price price--large price--show-badge">
             <div class="price__container">
                 <div class="price__regular">
