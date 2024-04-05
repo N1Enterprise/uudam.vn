@@ -14,32 +14,20 @@
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
 
 @section('style')
 <style>
-    .languages_selection {
-        width: 50rem;
-        flex-wrap: wrap;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 1.5rem;
-        max-height: 400px;
-    }
-    .upload_image_custom_append_icon {
-        top: 50%;
-        right: 0;
-        transform: translate(-6%, -50%);
-        color: #4346ce!important;
-        border: 1px solid #4346ce!important;
-    }
-    .note-toolbar-wrapper.panel-default {
-        margin-bottom: 10px!important;
-    }
+.upload_image_custom_append_icon {
+    top: 50%;
+    right: 0;
+    transform: translate(-6%, -50%);
+    color: #4346ce!important;
+    border: 1px solid #4346ce!important;
+}
 </style>
 @endsection
 
@@ -61,250 +49,252 @@
         </div>
         @enderror
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="k-portlet">
-                    <div class="k-portlet__head">
+                    <div class="k-portlet__head d-flex justify-content-between align-items-center">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('Thông tin chung') }}</h3>
+                            <h3 class="k-portlet__head-title">
+                                <b>1/ {{ __('THÔNG TIN CHUNG') }}</b>
+                            </h3>
                         </div>
+                        <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#general_tab" aria-expanded="true" aria-controls="general_tab">Chi tiết</button>
                     </div>
                     <div class="k-portlet__body">
-                        <div class="form-group">
-                            <label for="">{{ __('Tên') }} *</label>
-                            <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" data-reference-slug="slug" placeholder="{{ __('Nhập tên') }}" required>
-                            @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <div class="collapse" id="general_tab">
+                            <div class="form-group">
+                                <label for="">{{ __('Tên') }} *</label>
+                                <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" data-reference-slug="slug" placeholder="{{ __('Nhập tên') }}" required>
+                                @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group">
-                            <label for="">{{ __('Đường dẫn') }} *</label>
-                            <input type="text" name="slug" value="{{ old('slug', $product->slug) }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" required>
-                            @error('slug')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            <div class="form-group">
+                                <label for="">{{ __('Đường dẫn') }} *</label>
+                                <input type="text" name="slug" value="{{ old('slug', $product->slug) }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" required>
+                                @error('slug')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group">
-                            <label for="">{{ __('Code') }} *</label>
-                            <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
-                            @error('code')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            <div class="form-group">
+                                <label for="">{{ __('Code') }} *</label>
+                                <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
+                                @error('code')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group">
-                            <label>{{ __('Hình ảnh') }} *</label>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="upload_image_custom position-relative">
-                                        <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path', $product->primary_image) }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
-                                        <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
-                                            <div class="d-flex align-items-center h-100">
-                                                <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                <span data-image-ref-delete="primary" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
+                            <div class="form-group">
+                                <label>{{ __('Hình ảnh') }} *</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="upload_image_custom position-relative">
+                                            <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path', $product->primary_image) }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
+                                            <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                <div class="d-flex align-items-center h-100">
+                                                    <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
+                                                    <span data-image-ref-delete="primary" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                </div>
                                             </div>
+                                            <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
+                                                <input type="file" id="image_primary_image" data-image-ref-file="primary" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
+                                                <i class="flaticon2-image-file"></i>
+                                                <span>{{ __('Tải lên') }}</span>
+                                            </label>
                                         </div>
-                                        <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
-                                            <input type="file" id="image_primary_image" data-image-ref-file="primary" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
-                                            <i class="flaticon2-image-file"></i>
-                                            <span>{{ __('Tải lên') }}</span>
-                                        </label>
+                                        <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
+                                        @anyerror('primary_image, primary_image.file, primary_image.path')
+                                        {{ $displayMessages() }}
+                                        @endanyerror
                                     </div>
-                                    <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
-                                    @anyerror('primary_image, primary_image.file, primary_image.path')
-                                    {{ $displayMessages() }}
-                                    @endanyerror
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="image_primary_image_review">
-                                        <div data-image-ref-review-wrapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
-                                            <img data-image-ref-review-img="primary" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
+                                    <div class="col-md-6">
+                                        <div class="image_primary_image_review">
+                                            <div data-image-ref-review-wrapper="primary" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                <img data-image-ref-review-img="primary" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="">{{ __('Bộ sưu tập ảnh') }}</label>
-                            <div class="media_image_repeater">
-                                <div data-repeater-list="media[image]">
-                                    @foreach (old('media.image', data_get($product->media, 'image', [])) as $index => $mediaImage)
-                                    <div data-repeater-item class="k-repeater__item" data-repeater-index="{{ $index }}">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="upload_image_custom position-relative">
-                                                    <input type="text" data-image-ref-path="media" data-image-ref-index="{{ $index }}" class="form-control media_image_path" name="path" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;" value="{{ old('primary_image.path', data_get($mediaImage, 'path')) }}">
-                                                    <div data-image-ref-wrapper="media" data-image-ref-index="{{ $index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
-                                                        <div class="d-flex align-items-center h-100">
-                                                            <img data-image-ref-img="media" data-image-ref-index="{{ $index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                            <span data-image-ref-delete="media" data-image-ref-index="{{ $index }}" style="font-size: 16px; cursor: pointer;">&times;</span>
+                            <div class="form-group">
+                                <label for="">{{ __('Bộ sưu tập ảnh') }}</label>
+                                <div class="media_image_repeater">
+                                    <div data-repeater-list="media[image]">
+                                        @foreach (old('media.image', data_get($product->media, 'image', [])) as $index => $mediaImage)
+                                        <div data-repeater-item class="k-repeater__item" data-repeater-index="{{ $index }}">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="upload_image_custom position-relative">
+                                                        <input type="text" data-image-ref-path="media" data-image-ref-index="{{ $index }}" class="form-control media_image_path" name="path" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;" value="{{ old('primary_image.path', data_get($mediaImage, 'path')) }}">
+                                                        <div data-image-ref-wrapper="media" data-image-ref-index="{{ $index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                            <div class="d-flex align-items-center h-100">
+                                                                <img data-image-ref-img="media" data-image-ref-index="{{ $index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
+                                                                <span data-image-ref-delete="media" data-image-ref-index="{{ $index }}" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                            </div>
                                                         </div>
+                                                        <label for="media_image_file_{{ $index }}" class="media_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
+                                                            <input type="file" name="file" data-image-ref-file="media" data-image-ref-index="{{ $index }}" id="media_image_file_{{ $index }}" class="d-none media_image_file">
+                                                            <i class="flaticon2-image-file"></i>
+                                                            <span>{{ __('Tải lên') }}</span>
+                                                        </label>
                                                     </div>
-                                                    <label for="media_image_file_{{ $index }}" class="media_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
-                                                        <input type="file" name="file" data-image-ref-file="media" data-image-ref-index="{{ $index }}" id="media_image_file_{{ $index }}" class="d-none media_image_file">
-                                                        <i class="flaticon2-image-file"></i>
-                                                        <span>{{ __('Tải lên') }}</span>
-                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="d-flex align-items-start">
+                                                        <div class="image_media_image_review mr-1">
+                                                            <div data-image-ref-review-wrapper="media" data-image-ref-index="{{ $index }}" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                                <img data-image-ref-review-img="media" data-image-ref-index="{{ $index }}" style="width: 100%; height: 100%;" src="" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
+                                                            <i class="la la-close"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="d-flex align-items-start">
-                                                    <div class="image_media_image_review mr-1">
-                                                        <div data-image-ref-review-wrapper="media" data-image-ref-index="{{ $index }}" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
-                                                            <img data-image-ref-review-img="media" data-image-ref-index="{{ $index }}" style="width: 100%; height: 100%;" src="" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
-                                                        <i class="la la-close"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            <div class="k-separator k-separator--space-sm"></div>
                                         </div>
-                                        <div class="k-separator k-separator--space-sm"></div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
+                                    <div class="k-repeater__add-data">
+                                        <span data-repeater-create="" class="btn btn-info btn-sm">
+                                            <i class="la la-plus"></i> {{ __('Thêm') }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="k-repeater__add-data">
-                                    <span data-repeater-create="" class="btn btn-info btn-sm">
-                                        <i class="la la-plus"></i> {{ __('Thêm') }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">{{ __('Video') }}</label>
+                                @foreach (old('media.video', data_get($product->media, 'video', [])) as $index => $videoImage)
+                                <div class="video-media-item">
+                                    <input type="text" name="media[video][0][path]" value="{{ old("media.video.$index.path", data_get($videoImage, 'path')) }}" class="form-control {{ $errors->has("media.video.$index.path") ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập đường dẫn video') }}">
+                                    <input type="hidden" name="media[video][0][order]" value="{{ old("media.video.$index.order", data_get($videoImage, 'order')) }}">
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <div class="form-group">
+                                <x-content-editor id="description" label="{{ __('Mô tả') }}" name="description" value="{{ old('description', $product->description) }}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="k-portlet">
+                    <div class="k-portlet__head d-flex justify-content-between align-items-center">
+                        <div class="k-portlet__head-label">
+                            <h3 class="k-portlet__head-title">
+                                <b>2/ {{ __('THÔNG TIN PHÂN LOẠI') }}</b>
+                            </h3>
+                        </div>
+                        <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#classification_information_tab" aria-expanded="true" aria-controls="classification_information_tab">Chi tiết</button>
+                    </div>
+                    <div class="k-portlet__body">
+                        <div class="collapse" id="classification_information_tab">
+                            <div class="form-group">
+                                <label>{{ __('Danh mục') }} *</label>
+                                <select name="categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
+                                    @foreach($categoryGroups as $categoryGroup)
+                                    <optgroup label="{{ $categoryGroup->name }}">
+                                        @foreach($categoryGroup->categories as $category)
+                                        <option value="{{ $category->id }}" {{ in_array($category->id, old('categories', $product->categories->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                    @endforeach
+                                </select>
+                                @error('categories')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{ __('Loại sản phẩm') }} *</label>
+                                <select name="type" title="-- {{ __('Chọn loại sản phẩm') }} --" class="form-control k_selectpicker">
+                                    @foreach($productTypeLabels as $key => $label)
+                                    <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                                @error('type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{ __('Thương hiệu') }}</label>
+                                <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Nhập tên thương hiệu') }}" value="{{ old('branch', $product->branch) }}">
+                                @error('branch')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">{{ __('Hoạt động') }}</label>
+                                <div class="col-3">
+                                    <span class="k-switch">
+                                        <label>
+                                            <input type="checkbox" {{ boolean(old('status', $product->status)) ? 'checked' : ''}} name="status"/>
+                                            <span></span>
+                                        </label>
                                     </span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="">{{ __('Video') }}</label>
-                            @foreach (old('media.video', data_get($product->media, 'video', [])) as $index => $videoImage)
-                            <div class="video-media-item">
-                                <input type="text" name="media[video][0][path]" value="{{ old("media.video.$index.path", data_get($videoImage, 'path')) }}" class="form-control {{ $errors->has("media.video.$index.path") ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập đường dẫn video') }}">
-                                <input type="hidden" name="media[video][0][order]" value="{{ old("media.video.$index.order", data_get($videoImage, 'order')) }}">
-                            </div>
-                            @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="k-portlet">
+                    <div class="k-portlet__head d-flex justify-content-between align-items-center">
+                        <div class="k-portlet__head-label">
+                            <h3 class="k-portlet__head-title">
+                                <b>3/ {{ __('TỒN KHO') }}</b>
+                            </h3>
                         </div>
+                        <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#inventory_information_tab" aria-expanded="true" aria-controls="inventory_information_tab">Chi tiết</button>
+                    </div>
+                    <div class="k-portlet__body">
+                        <div class="collapse" id="inventory_information_tab">
+                            <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index', ['product_id' => $product->id]) }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+                                <thead>
+                                    <tr>
+                                        <th data-property="id">{{ __('ID') }}</th>
+                                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
+                                        <th data-property="title" data-width="300">{{ __('Tiêu đề') }}</th>
+                                        <th data-property="sku">{{ __('Sku') }}</th>
+                                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển Thị FE') }}</th>
+                                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('Tìm kiếm FE') }}</th>
+                                        <th data-property="stock_quantity">{{ __('Số lượng') }}</th>
+                                        <th data-property="purchase_price">{{ __('Giá mua') }}</th>
+                                        <th data-property="sale_price">{{ __('Giá bán') }}</th>
+                                        <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
+                                        <th data-property="init_sold_count">{{ __('Fake Đã bán') }}</th>
+                                        <th data-property="sold_count">{{ __('Đã bán') }}</th>
+                                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                        <div class="form-group">
-                            <x-content-editor id="description" label="{{ __('Mô tả') }}" name="description" value="{{ old('description', $product->description) }}" />
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('Thông tin phân loại') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        <div class="form-group">
-                            <label>{{ __('Danh mục') }} *</label>
-                            <select name="categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
-                                @foreach($categoryGroups as $categoryGroup)
-                                <optgroup label="{{ $categoryGroup->name }}">
-                                    @foreach($categoryGroup->categories as $category)
-                                    <option value="{{ $category->id }}" {{ in_array($category->id, old('categories', $product->categories->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $category->name }}</option>
-                                    @endforeach
-                                </optgroup>
-                                @endforeach
-                            </select>
-                            @error('categories')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
 
-                        <div class="form-group">
-                            <label>{{ __('Loại sản phẩm') }} *</label>
-                            <select name="type" title="-- {{ __('Chọn loại sản phẩm') }} --" class="form-control k_selectpicker">
-                                @foreach($productTypeLabels as $key => $label)
-                                <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('type')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>{{ __('Thương hiệu') }}</label>
-                            <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Nhập tên thương hiệu') }}" value="{{ old('branch', $product->branch) }}">
-                            @error('branch')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-3 col-form-label">{{ __('Hoạt động') }}</label>
-                            <div class="col-3">
-                                <span class="k-switch">
-                                    <label>
-                                        <input type="checkbox" {{ boolean(old('status', $product->status)) ? 'checked' : ''}} name="status"/>
-                                        <span></span>
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('Thông tin liên kết') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        <div class="form-group">
-                            <label>{{ __('Sản phẩm được đề xuất') }}</label>
-                            <select data-actions-box="true" name="suggested_relationships[inventories][]" title="-- {{ __('Chọn sản phẩm được đề xuất') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Selector" multiple data-selected-text-format="count > 5">
-                                @foreach($relatedInventories as $inventory)
-                                <option
-                                    {{ in_array($inventory->id, old('suggested_relationships.inventories', data_get($product, 'suggested_relationships.inventories', []))) ? 'selected' : '' }}
-                                    data-tokens="{{ $inventory->id }} | {{ $inventory->title }}"
-                                    data-subtext="{{ $inventory->id }}"
-                                    data-product-id="{{ $inventory->id }}"
-                                    data-product-name="{{ $inventory->title }}"
-                                    value="{{ $inventory->id }}"
-                                >{{ $inventory->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group Related_Product_Allowed_Holder mb-0">
-                            <div class="Related_Product_Holder_Content">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>{{ __('Bài đăng được đề xuất') }}</label>
-                            <select data-actions-box="true" name="suggested_relationships[posts][]" title="-- {{ __('Chọn bài đăng được đề xuất') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
-                                @foreach($categoryRelatedPosts as $category)
-                                <optgroup label="{{ $category->name }}">
-                                    @foreach($category->posts as $post)
-                                    <option
-                                        {{ in_array($post->id, old("suggested_relationships.posts", data_get($product, 'suggested_relationships.posts', []))) ? 'selected' : '' }}
-                                        data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $category->name }}"
-                                        data-subtext="{{ $post->id }}"
-                                        data-post-id="{{ $post->id }}"
-                                        data-post-name="{{ $post->name }}"
-                                        value="{{ $post->id }}">{{ $post->name }}</option>
-                                    @endforeach
-                                </optgroup>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group Related_Post_Allowed_Holder mb-0">
-                            <div class="Related_Post_Holder_Content">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="k-portlet__foot">
-                        <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
-                        </div>
+            <div class="col-md-12">
+                <div class="k-portlet__foot">
+                    <div class="k-form__actions d-flex justify-content-end">
+                        <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                     </div>
                 </div>
             </div>
@@ -313,13 +303,13 @@
 </div>
 @endsection
 
+@component('backoffice.partials.datatable') @endcomponent
+
 @section('js_script')
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/lib.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
 @include('backoffice.pages.products.js-pages.handle')
-@include('backoffice.pages.products.js-pages.products-suggested')
-@include('backoffice.pages.products.js-pages.posts-suggested')
 <script>
     $('#form_store_product').on('submit', function(e) {
         e.preventDefault();
@@ -357,5 +347,80 @@
         $(this).prop('checked', isChecked);
         $(this).val(isChecked ? '1' : '0')
     });
+
+    $('.datatable').find('th.datatable-action').attr('data-action-icon-pack', JSON.stringify({
+        fe_link: '<i class="flaticon2-link-programing-symbol-of-interface"></i>',
+    }))
+
+    $(document).on('click', '[data-action="fe_link"]', function(e) {
+        e.preventDefault();
+
+        const dataLink = $(this).attr('href');
+
+        copyToClipboard(dataLink);
+
+        fstoast.success("{{ __('Đã sao chép !') }}");
+    });
+
+    function renderCallbackImage(data) {
+        const image = $('<img>', {
+            src: data,
+            width: 80,
+            height: 80,
+        });
+
+        return image.prop('outerHTML');
+    }
+
+    function renderCallbackOfferPrice(data, type, full) {
+        if (! data) {
+            return '';
+        }
+
+        const wrapper = $(`
+            <div style="width: 200px;">
+                <div class="offer_price d-flex align-items-center">
+                    <small style="display: block; width: 60px;">Price:</small> <b>${data ? data: 'N/A'}</b>
+                </div>
+                <div class="offer_end d-flex align-items-center">
+                    <small style="display: block; width: 60px;">Saving:</small> <b>${full.price_for_saving ? full.price_for_saving : 'N/A'}</b>
+                </div>
+                <div class="offer_end d-flex align-items-center">
+                    <small style="display: block; width: 60px;">Discount:</small> <b>${full.discount_percent ? full.discount_percent + '%' : 'N/A'}</b>
+                </div>
+                <div class="offer_start d-flex align-items-center">
+                    <small style="display: block; width: 60px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
+                </div>
+                <div class="offer_end d-flex align-items-center">
+                    <small style="display: block; width: 60px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
+                </div>
+            </div>
+        `);
+
+        return wrapper.prop('outerHTML');
+    }
+
+    onDelete();
+
+    function onDelete() {
+        $(document).on('click', '[data-action=delete]', function(e) {
+            e.preventDefault();
+
+            let confirmation = confirm("{{ __('Are you sure you want to delete this Inventory?') }}");
+
+            if(!confirmation) {
+                return;
+            }
+
+            $.ajax({
+                url: $(this).attr('href'),
+                method: 'delete',
+                preventRedirectOnComplete: 1,
+                success: function(res) {
+                    $('#table_inventories_index').DataTable().ajax.reload()
+                }
+            });
+        });
+    }
 </script>
 @endsection

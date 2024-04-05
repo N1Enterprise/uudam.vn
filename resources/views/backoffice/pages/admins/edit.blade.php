@@ -77,7 +77,7 @@
                             <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                             <button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
                             @if(is_webmaster())
-                            <a class="btn btn-danger float-right actionBtn" data-method="put" data-confirmable="{{ __('Are you sure you want to deactivate this user?') }} " href="{{ route('bo.web.admins.deactivate', $admin->getKey()) }}">{{ __('Vô hiệu hóa') }}</a>
+                            <a class="btn btn-danger float-right actionBtn mr-2" data-method="put" data-confirmable="{{ __('Are you sure you want to deactivate this user?') }} " href="{{ route('bo.web.admins.deactivate', $admin->getKey()) }}">{{ __('Vô hiệu hóa') }}</a>
                             <a class="btn btn-primary float-right actionBtn" data-method="put" data-confirmable="{{ __('Are you sure you want to active this user?') }} " href="{{ route('bo.web.admins.active', $admin->getKey()) }}">{{ __('Hoạt động') }}</a>
                             @endif
                         </div>
