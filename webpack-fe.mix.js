@@ -43,6 +43,7 @@ mix
     .js('resources/src/frontend/js/profile-change-password.js', 'public/frontend/bundle/js/profile-change-password.min.js')
     .js('resources/src/frontend/js/authentication.js', 'public/frontend/bundle/js/authentication.min.js')
     .js('resources/src/frontend/js/component-search.js', 'public/frontend/bundle/js/component-search.min.js')
+    .js('resources/src/frontend/js/flash-sale.js', 'public/frontend/bundle/js/flash-sale.min.js')
     .js('resources/src/frontend/js/cart-index.js', 'public/frontend/bundle/js/cart-index.min.js')
     .js('resources/src/frontend/js/menu-drawer.js', 'public/frontend/bundle/js/menu-drawer.min.js')
     .js('resources/src/frontend/js/predictive-search.js', 'public/frontend/bundle/js/predictive-search.min.js')
@@ -50,7 +51,6 @@ mix
     .js('resources/src/frontend/js/product-index.js', 'public/frontend/bundle/js/product-index.min.js')
     .js('resources/src/frontend/js/collection-index.js', 'public/frontend/bundle/js/collection-index.min.js')
     .js('resources/src/frontend/js/address.js', 'public/frontend/bundle/js/address.min.js')
-    .js('resources/src/frontend/js/flash-sale.js', 'public/frontend/bundle/js/flash-sale.min.js')
 
     .css('resources/src/frontend/css/reset.css', 'public/frontend/bundle/css/reset.min.css')
     .css('resources/src/frontend/css/base.css', 'public/frontend/bundle/css/base.min.css')
