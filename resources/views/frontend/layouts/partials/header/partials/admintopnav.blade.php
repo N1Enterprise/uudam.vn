@@ -6,6 +6,14 @@
             <span>{{ data_get($navigation, 'name') }}</span>
         </a>
         @endforeach
+        @if (! empty($inventory->id))
+        <a href="{{ route('bo.web.products.edit', $inventory->product_id) }}" target="_blank">
+            <span style="text-transform: uppercase;">Xem chi tiết sản phẩm</span>
+        </a>
+        <a href="{{ route('bo.web.inventories.edit', $inventory->id) }}" target="_blank">
+            <span style="text-transform: uppercase;">Xem chi tiết kho</span>
+        </a>
+        @endif
     </div>
 
     <div style="display: flex; align-items: center">

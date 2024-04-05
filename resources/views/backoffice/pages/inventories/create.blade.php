@@ -3,7 +3,7 @@
 @php
 	$title = __('Sản phẩm tồn kho');
 
-    $action = empty($inventory->id) ? 'Tạo' : 'Chỉnh sửa';
+    $action = empty($inventory->id) ? __('Tạo') : __('Chỉnh sửa');
 
 	$breadcrumbs = [
 		[
@@ -16,7 +16,7 @@
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @section('style')
@@ -130,14 +130,8 @@
                     <div class="k-portlet__body">
                         @if ($inventory->id)
                         <div class="form-group">
-                            <label for="">{{ __('FE Link') }} *</label>
-                            <input
-                                type="text"
-                                name="slug"
-                                class="form-control"
-                                value="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}"
-                                disabled
-                            >
+                            <label for="">{{ __('Đường dẫn sản phẩm') }} *</label>
+                            <a href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" class="d-block" target="_blank">{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}</a>
                         </div>
                         @endif
 

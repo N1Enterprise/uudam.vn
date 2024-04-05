@@ -75,5 +75,7 @@
     "/frontend/bundle/css/pages/profile.min.css": "/frontend/bundle/css/pages/profile.min.css",
     "/frontend/bundle/css/pages/page.min.css": "/frontend/bundle/css/pages/page.min.css",
     "/frontend/bundle/css/pages-blog.min.css": "/frontend/bundle/css/pages-blog.min.css",
-    "/frontend/bundle/css/pages/blog.min.css": "/frontend/bundle/css/pages/blog.min.css"
+    "/frontend/bundle/css/pages/blog.min.css": "/frontend/bundle/css/pages/blog.min.css",
+    "/frontend/bundle/css/flashsale.min.css": "/frontend/bundle/css/flashsale.min.css",
+    "/frontend/bundle/js/flash-sale.min.js": "/frontend/bundle/js/flash-sale.min.js"
 }
