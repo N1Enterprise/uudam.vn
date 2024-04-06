@@ -33,12 +33,24 @@ function getResponsive(numberOfShow) {
     return responsive[numberOfShow];
 }
 
+function owlBuildButton(owlId) {
+    return `
+        <div data-owl-controls data-owl-prev="${owlId}">
+            <span class="owl-icon">&#x2039;</span>
+        </div>
+        <div data-owl-controls data-owl-next="${owlId}">
+            <span class="owl-icon">&#x203a;</span>
+        </div>
+    `;
+}
+
 function owlSliderSetup() {
     $.each($('[data-owl-id]'), function(index, element) {
         const owlId = $(element).attr('data-owl-id');
         const items = $(element).attr('data-owl-items');
         const hasLoop = $(element).attr('data-owl-loop') == 'true';
         const dotsContainer = $(element).attr('data-owl-dots-container');
+        const inogreNav = $(element).attr('data-owl-ignore-nav') == 'true';
 
         $(element).addClass('owl-carousel owl-theme');
 
@@ -54,6 +66,10 @@ function owlSliderSetup() {
         $(element).owlCarousel({
             ...config
         });
+
+        if (! inogreNav) {
+            $(element).parent().append(owlBuildButton(owlId));
+        }
 
         $(`[data-owl-prev=${owlId}]`).on('click', function() {
             $(element).find('.owl-nav .owl-prev').trigger('click');
