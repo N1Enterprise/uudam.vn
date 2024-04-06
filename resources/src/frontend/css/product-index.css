@@ -342,6 +342,7 @@ a.product__text {
 
 .product__title {
     word-break: break-word;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
