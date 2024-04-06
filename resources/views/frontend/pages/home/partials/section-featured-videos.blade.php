@@ -2,7 +2,7 @@
     <div class="section-content-template">
         <div class="recommendation-target">
             <div class="section-template-wrapper video-featured-section-01">
-                <div class="section-template-wrapper-nav-tabs owl-carousel owl-theme" data-owl-id="Home_Video_Featured" data-owl-items="5">
+                <div class="section-template-wrapper-nav-tabs owl-carousel owl-theme" data-owl-id="Home_Video_Featured" data-owl-items="5" data-owl-ignore-nav="true">
                     @foreach ($videoCategories as $category)
                     <div style="margin-right: 5px;">
                         <button type="button" class="section-template-wrapper-nav-tabs-item nav-tabs-item-link act-button w-100 {{  $loop->index == 0 ? 'active' : '' }}" data-featured-video-nav-tab-id="video_category_{{ data_get($category, 'id') }}">
@@ -19,7 +19,7 @@
                             <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom multicolumn background-primary" data-box-style="carousel" style="display: block;">
                                 <div class="recommendation-items">
                                     <div class="slider-mobile-gutter">
-                                        <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" data-owl-id="Slider_Featured_Collections" data-owl-items="3">
+                                        <div class="owl-carousel owl-theme multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--3-col-desktop slider slider--mobile grid--peek" data-owl-id="Slider_Featured_Video_{{ data_get($category, 'id') }}_{{ data_get($item, 'id') }}" data-owl-items="3">
                                             @foreach (data_get($category, 'videos', []) as $video)
                                             <div class="recommendation-target">
                                                 <a href="{{ route('fe.web.videos.index', data_get($video, 'slug')) }}" class="full-unstyled-link">
