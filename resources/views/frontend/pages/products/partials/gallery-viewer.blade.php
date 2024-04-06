@@ -1,5 +1,5 @@
 <div class="slider-component slider-mobile-gutter">
-    <div data-owl-id="Slider_Product_Detail" data-owl-items="1" class="owl-carousel owl-theme product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile" >
+    <div data-owl-id="Slider_Product_Detail" data-owl-items="1" data-owl-ignore-nav="true" class="owl-carousel owl-theme product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile" >
         @if(!empty($mediaVideos))
         @foreach ($mediaVideos as $video)
         <div data-media-modal-open data-owl-index="0" class="product__media-item grid__item slider__slide is-active">

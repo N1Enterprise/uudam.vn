@@ -576,7 +576,7 @@ body {
 }
 
 [data-owl-controls] {
-    width: 30px;
+    width: 26px;
     height: 50px;
     background: white;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px !important;
@@ -590,13 +590,18 @@ body {
 @media screen and (max-width: 768px) {
     [data-owl-controls] {
         width: 22px;
-        top: 22%;
+        top: 33%;
+        height: 31px;
     }
 }
 
 [data-owl-controls] > .owl-icon {
-    font-size: 36px !important;
-    line-height: 1.2 !important;
+    font-size: 25px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 [data-owl-next] {
