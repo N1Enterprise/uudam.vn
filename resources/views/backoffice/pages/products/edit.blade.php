@@ -263,21 +263,13 @@
                                     <tr>
                                         <th data-property="id">{{ __('ID') }}</th>
                                         <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
-                                        <th data-property="title" data-width="300">{{ __('Tiêu đề') }}</th>
-                                        <th data-property="sku">{{ __('Sku') }}</th>
                                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                                         <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển Thị FE') }}</th>
                                         <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('Tìm kiếm FE') }}</th>
-                                        <th data-property="stock_quantity">{{ __('Số lượng') }}</th>
                                         <th data-property="purchase_price">{{ __('Giá mua') }}</th>
                                         <th data-property="sale_price">{{ __('Giá bán') }}</th>
                                         <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
-                                        <th data-property="init_sold_count">{{ __('Fake Đã bán') }}</th>
                                         <th data-property="sold_count">{{ __('Đã bán') }}</th>
-                                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
-                                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
-                                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
-                                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
                                         <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                                     </tr>
                                 </thead>
@@ -362,14 +354,17 @@
         fstoast.success("{{ __('Đã sao chép !') }}");
     });
 
-    function renderCallbackImage(data) {
-        const image = $('<img>', {
-            src: data,
-            width: 80,
-            height: 80,
-        });
+    function renderCallbackImage(data, type, full) {
+        const container = $(`
+            <div style="width: 200px;">
+                <img src="${data}" width="50" height="50" />
+                <div class="mt-2">- ${full.title}</div>
+                <div class="mt-2">- SKU: ${full.sku}</div>
+                <div class="mt-2">- Còn: ${full.stock_quantity}(sp) trong kho</div>
+            </div>
+        `);
 
-        return image.prop('outerHTML');
+        return container.prop('outerHTML');
     }
 
     function renderCallbackOfferPrice(data, type, full) {
@@ -380,19 +375,19 @@
         const wrapper = $(`
             <div style="width: 200px;">
                 <div class="offer_price d-flex align-items-center">
-                    <small style="display: block; width: 60px;">Price:</small> <b>${data ? data: 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Giá bán:</small> <b>${data ? data: 'N/A'}</b>
                 </div>
                 <div class="offer_end d-flex align-items-center">
-                    <small style="display: block; width: 60px;">Saving:</small> <b>${full.price_for_saving ? full.price_for_saving : 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Tiếp kiệm:</small> <b>${full.price_for_saving ? full.price_for_saving : 'N/A'}</b>
                 </div>
                 <div class="offer_end d-flex align-items-center">
-                    <small style="display: block; width: 60px;">Discount:</small> <b>${full.discount_percent ? full.discount_percent + '%' : 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Giảm giá:</small> <b>${full.discount_percent ? full.discount_percent + '%' : 'N/A'}</b>
                 </div>
                 <div class="offer_start d-flex align-items-center">
-                    <small style="display: block; width: 60px;">Start:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Bắt đầu:</small> <b>${full.offer_start ? full.offer_start : 'N/A'}</b>
                 </div>
                 <div class="offer_end d-flex align-items-center">
-                    <small style="display: block; width: 60px;">End:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
+                    <small style="display: block; width: 60px;">Kết thúc:</small> <b>${full.offer_end ? full.offer_end : 'N/A'}</b>
                 </div>
             </div>
         `);
