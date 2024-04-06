@@ -29,8 +29,8 @@ class HomePageDisplayItemController extends BaseController
     public $bannerService;
 
     public function __construct(
-        HomePageDisplayItemService $homePageDisplayItemService, 
-        InventoryService $inventoryService, 
+        HomePageDisplayItemService $homePageDisplayItemService,
+        InventoryService $inventoryService,
         CollectionService $collectionService,
         HomePageDisplayOrderService $homePageDisplayOrderService,
         PostService $postService,
@@ -54,7 +54,7 @@ class HomePageDisplayItemController extends BaseController
     public function create(Request $request)
     {
         $homePageDisplayTypeEnumLabels = HomePageDisplayType::labels();
-        $inventories = $this->inventoryService->allAvailable(['scopes' => ['feDisplay']]);
+        $inventories = $this->inventoryService->allAvailable(['scopes' => ['feDisplay'], 'with' => 'product']);
         $collections = $this->collectionService->allAvailable(['scopes' => ['feDisplay']]);
         $posts = $this->postService->allAvailable(['scopes' => ['feDisplay']]);
         $postCategories = $this->postCategoryService->allAvailable(['scopes' => ['feDisplay']]);
@@ -69,11 +69,11 @@ class HomePageDisplayItemController extends BaseController
         $banners50Percent = $banners->filter(fn($item) => data_get($item, 'type') == BannerTypeEnum::IN_APP_50_PERCENT);
 
         return view('backoffice.pages.home-page-display-items.create', compact(
-            'homePageDisplayTypeEnumLabels', 
-            'inventories', 
-            'collections', 
-            'groups', 
-            'posts', 
+            'homePageDisplayTypeEnumLabels',
+            'inventories',
+            'collections',
+            'groups',
+            'posts',
             'postCategories',
             'banners100Percent',
             'banners50Percent',
@@ -99,12 +99,12 @@ class HomePageDisplayItemController extends BaseController
         $banners50Percent = $banners->filter(fn($item) => data_get($item, 'type') == BannerTypeEnum::IN_APP_50_PERCENT);
 
         return view('backoffice.pages.home-page-display-items.edit', compact(
-            'homePageDisplayItem', 
-            'homePageDisplayTypeEnumLabels', 
-            'inventories', 
-            'collections', 
-            'groups', 
-            'posts', 
+            'homePageDisplayItem',
+            'homePageDisplayTypeEnumLabels',
+            'inventories',
+            'collections',
+            'groups',
+            'posts',
             'postCategories',
             'banners100Percent',
             'banners50Percent',

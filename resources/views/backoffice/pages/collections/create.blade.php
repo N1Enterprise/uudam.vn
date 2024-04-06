@@ -14,7 +14,7 @@
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -57,7 +57,7 @@
 
                             <li class="nav-item">
 								<a class="nav-link" data-toggle="tab" href="#setupFeaturedInventoryTab">
-									{{ __('Tồn kho (featured) trong bộ sưu tập') }}
+									{{ __('Tồn kho (Nổi bật) trong bộ sưu tập') }}
 								</a>
 							</li>
 						</ul>
@@ -228,44 +228,50 @@
 
                             <div class="tab-pane" id="setupInventoryTab">
                                 <div class="form-group">
-                                    <label>{{ __('Sản phẩm tồn kho') }} *</label>
+                                    <label>{{ __('Sản phẩm tồn kho') }}</label>
                                     <select data-actions-box="true" name="linked_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
-                                        @foreach($inventories as $inventory)
-                                        <option
-                                            value="{{ $inventory->id }}"
-                                            data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
-                                            data-slug="{{ $inventory->slug }}"
-                                            data-inventory-id="{{ $inventory->id }}"
-                                            data-inventory-name="{{ $inventory->title }}"
-                                            {{ in_array($inventory->id, old('linked_inventories', [])) ? 'selected' : '' }}
-                                        >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                        @foreach($inventories->groupBy('product.name') as $productName => $__inventories)
+                                        <optgroup label="{{ $productName }}">
+                                            @foreach($__inventories as $inventory)
+                                            <option
+                                                value="{{ $inventory->id }}"
+                                                data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                                data-slug="{{ $inventory->slug }}"
+                                                data-inventory-id="{{ $inventory->id }}"
+                                                data-inventory-name="{{ $inventory->title }}"
+                                                {{ in_array($inventory->id, old('linked_items', [])) ? 'selected' : '' }}
+                                            >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            @endforeach
+                                        </optgroup>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group Display_Inventory_Allowed_Holder mb-0">
-                                    <div class="Display_Inventory_Holder_Content">
+                                    <div class="Badge_Holder_Wrapper form-group Display_Inventory_Allowed_Holder mb-0 mt-2">
+                                        <div class="Display_Inventory_Holder_Content"></div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="tab-pane" id="setupFeaturedInventoryTab">
                                 <div class="form-group">
-                                    <label>{{ __('Sản phẩm tồn kho (featured)') }} *</label>
-                                    <select data-actions-box="true" name="linked_featured_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho (featured)') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Featured_Inventory_Selector" multiple data-selected-text-format="count > 5">
-                                        @foreach($inventories as $inventory)
-                                        <option
-                                            value="{{ $inventory->id }}"
-                                            data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
-                                            data-slug="{{ $inventory->slug }}"
-                                            data-inventory-id="{{ $inventory->id }}"
-                                            data-featured-inventory-name="{{ $inventory->title }}"
-                                            {{ in_array($inventory->id, old('linked_featured_inventories', [])) ? 'selected' : '' }}
-                                        >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                    <label>{{ __('Sản phẩm tồn kho (Nổi bật)') }}</label>
+                                    <select data-actions-box="true" name="linked_featured_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho (Nổi bật)') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Featured_Inventory_Selector" multiple data-selected-text-format="count > 5">
+                                        @foreach($inventories->groupBy('product.name') as $productName => $__inventories)
+                                        <optgroup label="{{ $productName }}">
+                                            @foreach($__inventories as $inventory)
+                                            <option
+                                                value="{{ $inventory->id }}"
+                                                data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                                data-slug="{{ $inventory->slug }}"
+                                                data-featured-inventory-id="{{ $inventory->id }}"
+                                                data-featured-inventory-name="{{ $inventory->title }}"
+                                                {{ in_array($inventory->id, old('linked_items', [])) ? 'selected' : '' }}
+                                            >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            @endforeach
+                                        </optgroup>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group Display_Featured_Inventory_Allowed_Holder mb-0">
-                                    <div class="Display_Featured_Inventory_Holder_Content">
+                                    <div class="Badge_Holder_Wrapper form-group Display_Featured_Inventory_Allowed_Holder mb-0 mt-2">
+                                        <div class="Display_Featured_Inventory_Holder_Content"></div>
                                     </div>
                                 </div>
                             </div>

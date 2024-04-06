@@ -83,19 +83,23 @@
 									<div class="form-group">
 										<label>{{ __('Sản phẩm trong kho') }} *</label>
 										<select data-actions-box="true" name="linked_items[]" title="-- {{ __('Chọn sản phẩm') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
-											@foreach($inventories as $inventory)
-											<option
-												value="{{ $inventory->id }}"
-												data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
-												data-slug="{{ $inventory->slug }}"
-												data-inventory-id="{{ $inventory->id }}"
-												data-inventory-name="{{ $inventory->title }}"
-												{{ in_array($inventory->id, old('linked_items', [])) ? 'selected' : '' }}
-											>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
-											@endforeach
+                                            @foreach($inventories->groupBy('product.name') as $productName => $inventories)
+                                            <optgroup label="{{ $productName }}">
+                                                @foreach($inventories as $inventory)
+                                                <option
+                                                    value="{{ $inventory->id }}"
+                                                    data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                                    data-slug="{{ $inventory->slug }}"
+                                                    data-inventory-id="{{ $inventory->id }}"
+                                                    data-inventory-name="{{ $inventory->title }}"
+                                                    {{ in_array($inventory->id, old('linked_items', [])) ? 'selected' : '' }}
+                                                >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                                @endforeach
+                                            </optgroup>
+                                            @endforeach
 										</select>
 									</div>
-									<div class="form-group Display_Inventory_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Display_Inventory_Allowed_Holder mb-0">
 										<div class="Display_Inventory_Holder_Content"></div>
 									</div>
 								</div>
@@ -116,7 +120,7 @@
 											@endforeach
 										</select>
 									</div>
-									<div class="form-group Display_Collection_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Display_Collection_Allowed_Holder mb-0">
 										<div class="Display_Collection_Holder_Content"></div>
 									</div>
 								</div>
@@ -137,7 +141,7 @@
 											@endforeach
 										</select>
 									</div>
-									<div class="form-group Display_Post_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Display_Post_Allowed_Holder mb-0">
 										<div class="Display_Post_Holder_Content"></div>
 									</div>
 								</div>
@@ -158,7 +162,7 @@
 											@endforeach
 										</select>
 									</div>
-									<div class="form-group Display_Blog_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Display_Blog_Allowed_Holder mb-0">
 										<div class="Display_Blog_Holder_Content"></div>
 									</div>
 								</div>
@@ -178,7 +182,7 @@
 											@endforeach
 										</select>
 									</div>
-									<div class="form-group Display_Banner_100_Percent_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Display_Banner_100_Percent_Allowed_Holder mb-0">
 										<div class="Display_Banner_100_Percent_Holder_Content"></div>
 									</div>
 								</div>
@@ -198,7 +202,7 @@
 											@endforeach
 										</select>
 									</div>
-									<div class="form-group Display_Banner_50_Percent_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Display_Banner_50_Percent_Allowed_Holder mb-0">
 										<div class="Display_Banner_50_Percent_Holder_Content"></div>
 									</div>
 								</div>

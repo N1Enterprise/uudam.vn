@@ -67,7 +67,7 @@
 											value="{{ $country->iso2 }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
-									<div class="Supported_Countries_Allowed_Holder mb-0 mt-1">
+									<div class="Badge_Holder_Wrapper Supported_Countries_Allowed_Holder mb-0 mt-1">
 										<div class="Supported_Countries_Holder_Content">
 										</div>
 									</div>
@@ -85,7 +85,7 @@
 											value="{{ $province->code }}">{{ $province->full_name }}</option>
                                         @endforeach
                                     </select>
-									<div class="form-group Supported_Provinces_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Supported_Provinces_Allowed_Holder mb-0">
 										<div class="Supported_Provinces_Holder_Content">
 										</div>
 									</div>
@@ -96,7 +96,7 @@
                                     <select data-actions-box="true" name="supported_districts[]" title="-- {{ __('Chọn Quận/Huyện') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Supported_Districts_Selector" multiple data-selected-text-format="count > 5" multiple data-original-value='@json($shippingZone->supported_districts ?? [])'  disabled data-districts='@json($districts)'>
                                        {{-- Render --}}
                                     </select>
-									<div class="form-group Supported_Districts_Allowed_Holder mb-0">
+									<div class="Badge_Holder_Wrapper form-group Supported_Districts_Allowed_Holder mb-0">
 										<div class="Supported_Districts_Holder_Content"></div>
 									</div>
                                 </div>
