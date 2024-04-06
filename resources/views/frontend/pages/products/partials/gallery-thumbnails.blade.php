@@ -1,9 +1,4 @@
 <div class="slider-component thumbnail-slider slider-mobile-gutter quick-add-hidden small-hide">
-    <button type="button" class="slider-button slider-button--prev" data-owl-prev="Slider_Product_Thumnail">
-        <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-        </svg>
-    </button>
     <div data-owl-id="Slider_Product_Thumnail" data-owl-items="5" data-owl-dots-container=".Slider_Product_Detail_Class" class="owl-carousel owl-theme thumbnail-list list-unstyled slider slider--mobile slider--tablet-up">
         @if(!empty($mediaVideos))
             @foreach ($mediaVideos as $video)
@@ -29,9 +24,4 @@
         </div>
         @endforeach
     </div>
-    <button type="button" class="slider-button slider-button--next" data-owl-next="Slider_Product_Thumnail">
-        <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-        </svg>
-    </button>
 </div>

@@ -47,7 +47,7 @@ function owlBuildButton(owlId) {
 function owlSliderSetup() {
     $.each($('[data-owl-id]'), function(index, element) {
         const owlId = $(element).attr('data-owl-id');
-        const items = $(element).attr('data-owl-items');
+        const itemsCount = +$(element).attr('data-owl-items');
         const hasLoop = $(element).attr('data-owl-loop') == 'true';
         const dotsContainer = $(element).attr('data-owl-dots-container');
         const inogreNav = $(element).attr('data-owl-ignore-nav') == 'true';
@@ -57,7 +57,7 @@ function owlSliderSetup() {
         const config = {
             loop: hasLoop,
             nav: false,
-            responsive: getResponsive(items),
+            responsive: getResponsive(itemsCount),
             dotsContainer: dotsContainer,
         };
 
@@ -68,7 +68,14 @@ function owlSliderSetup() {
         });
 
         if (! inogreNav) {
-            $(element).parent().append(owlBuildButton(owlId));
+            let displayItemsCount = + ($(element).find('.owl-stage-outer > .owl-stage > .owl-item').length || 0);
+            let acticeItemsCount  = + ($(element).find('.owl-stage-outer > .owl-stage > .owl-item.active').length || 0);
+
+            acticeItemsCount = acticeItemsCount > itemsCount || acticeItemsCount == 0 ? itemsCount : acticeItemsCount;
+
+            if (displayItemsCount > acticeItemsCount) {
+                $(element).parent().append(owlBuildButton(owlId));
+            }
         }
 
         $(`[data-owl-prev=${owlId}]`).on('click', function() {
