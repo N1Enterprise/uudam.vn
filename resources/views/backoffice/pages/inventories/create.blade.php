@@ -303,7 +303,16 @@
                 <div class="k-portlet">
                     <div class="k-portlet__head">
                         <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('KHÔNG CÓ BIẾN THỂ') }}</h3>
+                            @php
+                                $invAttrs = $inventory->attributes;
+                                $invAttrVals = $inventory->attributeValues->pluck('value', 'attribute_id')->toArray();
+
+                                $invAttrTitles = optional($invAttrs)->map(function($attr) use ($invAttrVals) {
+                                    return data_get($attr, 'name') .' : '. data_get($invAttrVals, data_get($attr, 'id'), '');
+                                });
+
+                            @endphp
+                            <h3 class="k-portlet__head-title">{{ optional($invAttrTitles)->isEmpty() ? __('KHÔNG CÓ BIẾN THỂ') : $invAttrTitles->implode('; ') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
