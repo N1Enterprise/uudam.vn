@@ -169,7 +169,7 @@
                                             value="{{ $country->iso2 }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
-									<div class="form-group Supported_Countries_Allowed_Holder mb-0 mt-1">
+									<div class="Badge_Holder_Wrapper form-group Supported_Countries_Allowed_Holder mb-0 mt-1">
 										<div class="Supported_Countries_Holder_Content"></div>
 									</div>
                                 </div>
@@ -186,7 +186,7 @@
                                             value="{{ $province->code }}">{{ $province->full_name }}</option>
                                         @endforeach
                                     </select>
-									<div class="form-group Supported_Provinces_Allowed_Holder mb-0 mt-1">
+									<div class="Badge_Holder_Wrapper form-group Supported_Provinces_Allowed_Holder mb-0 mt-1">
 										<div class="Supported_Provinces_Holder_Content"></div>
 									</div>
                                 </div>
