@@ -1437,9 +1437,8 @@ a.product__text {
 .product-condition-note {
     font-size: 14px;
     padding: 6px;
-    background: #fbfbfb;
     color: #000;
-    border-radius: 4px;
+    border-radius: 3px;
     border: 1px solid #d8d8d8;
 }
 
@@ -1510,30 +1509,26 @@ a.product__text {
 }
 
 .product-bottom-section .btn-detail {
-    position: relative;
-    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #025b50;
+    border-radius: 3px;
+    color: #025b50;
+    cursor: pointer;
     display: block;
-    margin: 0 auto;
+    font-size: 16px;
     max-width: 340px;
     padding: 8px 10px;
+    position: relative;
     text-align: left;
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #025B50;
-    color: #025B50;
-    font-size: 16px;
 }
 
 .product-bottom-section .btn-detail:hover {
     color: #fff;
-    background-color: #025B50;;
+    background-color: #025B50;
 }
 
 .product-modal-description .product-media-modal[open] {
     cursor: pointer;
-}
-
-.product-modal-description .product-description-content {
 }
 
 @media screen and (max-width: 800px) {
