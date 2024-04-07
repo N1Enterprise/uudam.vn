@@ -12,8 +12,9 @@ $(document).ready(function() {
             onDetectOauthCode: () => {
                 const oauthCode = utils_helper.urlParams('auth_code').get();
                 const provider = utils_helper.urlParams('provider').get();
+                const requiredOauthUserComplete = utils_helper.urlParams('required_oauth_user_complete_information_before_signin').get();
 
-                SOCIAL_AUTHENTICATION.handleLoginWithCode(provider, oauthCode);
+                SOCIAL_AUTHENTICATION.handleLoginWithCode(provider, oauthCode, !requiredOauthUserComplete);
             },
             onContinuteLoginWhenComplete: () => {
                 $('#required_oauth_user_complete_information_before_signin').on('submit', function(e) {
