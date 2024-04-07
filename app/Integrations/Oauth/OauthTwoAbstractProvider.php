@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use App\Enum\OauthTypeEnum;
+use App\Enum\SystemSettingKeyEnum;
+use App\Models\SystemSetting;
 use Illuminate\Support\Str;
 
 abstract class OauthTwoAbstractProvider implements OauthInterface
@@ -105,7 +107,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
 		return $this->httpClient;
 	}
 
-    public function validated(Request $request)
+    public function validated($request)
     {
         return Validator::make($request->all(), [
             'auth_code' => ['required'],

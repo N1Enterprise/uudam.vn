@@ -46,6 +46,14 @@
     -o-transform: translateX(-50%);
 }
 
+@media screen and (max-width: 600px) {
+    .quick-add-modal__content {
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
 @media screen and (min-width: 750px) {
     .quick-add-modal__content {
         margin-top: 10rem;

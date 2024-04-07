@@ -31,6 +31,7 @@ class SystemSettingKeyEnum extends BaseEnum
     public const MOST_SEARCHED = 'most_searched';
     public const BUSINESS_INFORMATION = 'business_information';
     public const ZALO_WIDGET_CHAT_SDK = 'zalo_widget_chat_sdk';
+    public const REQUIRED_OAUTH_USER_COMPLETE_INFORMATION_BEFORE_SIGNIN = 'required_oauth_user_complete_information_before_signin';
 
     public const COMMON_INVENTORY_KEY_FEATURED = 'common_inventory_key_featured';
 

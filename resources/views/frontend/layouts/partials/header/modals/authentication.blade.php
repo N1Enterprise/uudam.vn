@@ -37,6 +37,31 @@
             </div>
             @endif
 
+            @if (data_get($SYSTEM_SETTING, 'required_oauth_user_complete_information_before_signin', false))
+            <div required_oauth_user_complete_information_before_signin style="display: none;">
+                <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
+                    <h3 class="ls-box-title text-left">Hoàn thành thông tin trước khi đăng nhập</h3>
+                </div>
+                <div class="quick-add-modal__content-content">
+                    <div class="form-basic-reset-password customer">
+                        <form method="POST" action="{{ route('fe.api.user.oauth.signin') }}" id="required_oauth_user_complete_information_before_signin" accept-charset="UTF-8" class="required_oauth_user_complete_information_before_signin" data-form="required_oauth_user_complete_information_before_signin">
+                            <div class="form-fields">
+                                <div>
+                                    <div class="field field--with-error" style="margin-bottom: 10px;">
+                                        <input type="text" name="phone_number" id="required_oauth_user_complete_information_before_signin-phone" class="field__input" autocomplete="phone" required placeholder="Số điện thoại">
+                                        <label class="field__label" for="required_oauth_user_complete_information_before_signin-phone">Số điện thoại<span>*</span></label>
+                                    </div>
+                                    <div class="form-errors" data-name="phone_number"></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Tiếp tục đăng nhập</button>
+                        </form>
+                    </div>
+                    <div class="form-social-signup"></div>
+                </div>
+            </div>
+            @endif
+
             <div data-overlay-action-wrapper="forgot-password" style="display: none;">
                 <div class="password-reset-pending">
                     <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">

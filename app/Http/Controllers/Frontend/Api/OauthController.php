@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Api;
 
 use App\Common\RequestHelper;
+use App\Contracts\Requests\Frontend\UserOauthSigninRequestContract;
 use App\Enum\SystemSettingKeyEnum;
 use App\Exceptions\BusinessLogicException;
 use App\Http\Middleware\UserMiddleware;
@@ -56,7 +57,7 @@ class OauthController extends BaseApiController
         );
     }
 
-    public function signin(Request $request)
+    public function signin(UserOauthSigninRequestContract $request)
     {
         $provider = $request->get('provider');
 
@@ -71,7 +72,7 @@ class OauthController extends BaseApiController
 
             $oauthUser = OauthService::of($provider)->user($data);
 
-            $user = $this->oauthUserService->findOrCreate($provider, $oauthUser);
+            $user = $this->oauthUserService->findOrCreate($provider, $oauthUser, $request->validated());
 
             $user = $this->userAuthService->signinByUser($user);
 
