@@ -21,9 +21,9 @@ class OauthUserService extends BaseService
         $this->userService = $userService;
     }
 
-    public function findOrCreate($provider, $oauthUser)
+    public function findOrCreate($provider, $oauthUser, $data = [])
 	{
-		$user = DB::transaction(function () use ($provider, $oauthUser) {
+		$user = DB::transaction(function () use ($provider, $oauthUser, $data) {
             $myOauthUser = $this->findByProviderUser($provider, data_get($oauthUser, 'id'));
 
 			$user = optional($myOauthUser)->user;
@@ -40,7 +40,7 @@ class OauthUserService extends BaseService
 				}
 
                 if (! $user) {
-					$user = $this->userService->create($attributes);
+					$user = $this->userService->create(array_merge($attributes, $data));
 				}
             }
 

@@ -39,7 +39,7 @@ class OauthService extends BaseService
         return $this->provider->getUserRedirectUrl($data);
     }
 
-    public function validated(Request $request)
+    public function validated($request)
     {
         return $this->provider->validated($request);
     }

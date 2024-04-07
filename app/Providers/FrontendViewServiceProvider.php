@@ -84,6 +84,7 @@ class FrontendViewServiceProvider extends ServiceProvider
                 ->map(function($provider) {
                     return [
                         'logo' => data_get($provider, 'logo'),
+                        'button_label' => data_get($provider, 'button_label')
                     ];
                 }),
 
@@ -97,6 +98,8 @@ class FrontendViewServiceProvider extends ServiceProvider
             'zalo_widget_chat_sdk' => SystemSetting::from(SystemSettingKeyEnum::ZALO_WIDGET_CHAT_SDK)->get(null, []),
 
             'dmca_site_verification' => SystemSetting::from(SystemSettingKeyEnum::DMCA_SITE_VERIFICATION)->get(null, []),
+
+            'required_oauth_user_complete_information_before_signin' => SystemSetting::from(SystemSettingKeyEnum::REQUIRED_OAUTH_USER_COMPLETE_INFORMATION_BEFORE_SIGNIN)->get(null, false)
         ];
     }
 }

@@ -42,8 +42,8 @@ class Google extends OauthTwoAbstractProvider
 	protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()
-					->withToken($token)
-					->get($this->userInfoUrl, ['prettyPrint' => 'false']);
+            ->withToken($token)
+            ->get($this->userInfoUrl, ['prettyPrint' => 'false']);
 
 		$response->throw();
 

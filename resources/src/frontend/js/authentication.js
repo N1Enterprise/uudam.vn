@@ -7,6 +7,7 @@ $(document).ready(function() {
             init: () => {
                 SOCIAL_AUTHENTICATION.onOauthLogin();
                 SOCIAL_AUTHENTICATION.onDetectOauthCode();
+                SOCIAL_AUTHENTICATION.onContinuteLoginWhenComplete();
             },
             onDetectOauthCode: () => {
                 const oauthCode = utils_helper.urlParams('auth_code').get();
@@ -14,15 +15,46 @@ $(document).ready(function() {
 
                 SOCIAL_AUTHENTICATION.handleLoginWithCode(provider, oauthCode);
             },
-            handleLoginWithCode: (provider, oauthCode) => {
+            onContinuteLoginWhenComplete: () => {
+                $('#required_oauth_user_complete_information_before_signin').on('submit', function(e) {
+                    e.preventDefault();
+
+                    const oauthCode = utils_helper.urlParams('auth_code').get();
+                    const provider = utils_helper.urlParams('provider').get();
+                    const phoneNumber = $(this).find('[name="phone_number"]').val();
+
+                    const regex = /(84|0[35789])+([0-9]{8})\b/;
+
+                    if (! (regex.test(phoneNumber))) {
+                        utils_helper.appendErrorMessages($(this), { 'phone_number': ['Số điện thoại không hợp lệ'] });
+                        return;
+                    }
+
+                    $(this).find('.form-errors').removeClass('show');
+
+                    SOCIAL_AUTHENTICATION.handleLoginWithCode(provider, oauthCode, true, { 'phone_number': phoneNumber }, $(this));
+                });
+            },
+            handleLoginWithCode: (provider, oauthCode, ignoreCheckRequiredComplete = false, data = [], $form = null) => {
                 if (!provider || !oauthCode) {
+                    return;
+                }
+
+                const requiredOauthUserCompleteInformationBeforeSignin = $('[required_oauth_user_complete_information_before_signin]');
+
+                if (requiredOauthUserCompleteInformationBeforeSignin.length && !ignoreCheckRequiredComplete) {
+                    setTimeout(() => {
+                        $('[data-overlay-wrapper]').show();
+                        requiredOauthUserCompleteInformationBeforeSignin.show();
+                    }, 500);
+
                     return;
                 }
 
                 $.ajax({
                     url: AUTHENTICATION_ROUTES.api_oauth_signin,
                     method: 'POST',
-                    data: { auth_code: oauthCode, provider },
+                    data: { auth_code: oauthCode, provider, ...data },
                     success: (response) => {
                         toastr.success('Đăng nhập thành công.');
 
@@ -32,11 +64,17 @@ $(document).ready(function() {
                                 : window.location.href = Cookies.get(COOKIE_KEYS.CURRENT_URL);
                         }, 500);
                     },
-                    error: () => {
+                    error: (request) => {
                         toastr.error('Đăng nhập không thành công.');
 
-                        utils_helper.urlParams('auth_code').del();
-                        utils_helper.urlParams('provider').del();
+                        // utils_helper.urlParams('auth_code').del();
+                        // utils_helper.urlParams('provider').del();
+
+                        if (request.status == 422 && $form) {
+                            const errorMessage = request.responseJSON.errors;
+
+                            utils_helper.appendErrorMessages($form, errorMessage);
+                        }
                     }
                 });
             },

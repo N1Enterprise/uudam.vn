@@ -16,6 +16,7 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
         Contracts\UserPasswordRequestContract::class => Requests\UserPasswordRequest::class,
         Contracts\UserForgotPasswordRequestContract::class => Requests\UserForgotPasswordRequest::class,
         Contracts\UserResetPasswordRequestContract::class => Requests\UserResetPasswordRequest::class,
+        Contracts\UserOauthSigninRequestContract::class => Requests\UserOauthSigninRequest::class,
 
         // Catalog
         Contracts\StoreUserProductReviewRequestContract::class => Requests\StoreUserProductReviewRequest::class,
