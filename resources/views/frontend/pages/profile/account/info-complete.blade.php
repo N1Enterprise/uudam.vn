@@ -10,6 +10,7 @@ Hoàn thành thông tin | {{ config('app.user_domain') }}
 
 @push('style_pages')
 <link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/page.min.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/profile.min.css') }}">
 @endpush
 
 @section('content_body')
@@ -36,6 +37,10 @@ Hoàn thành thông tin | {{ config('app.user_domain') }}
                             <label class="field__label" for="phone_number">Số điện thoại <span>*</span></label>
                         </div>
                     </div>
+
+                    <a href="{{ route('fe.api.user.signout') }}" id="User_SignOut" style="color: #000;">
+                        <span>Đăng xuất</span>
+                    </a>
 
                     <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px; margin-top: 20px;" data-button-submit-text>Lưu thay đổi</button>
                 </div>
