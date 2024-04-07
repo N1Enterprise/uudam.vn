@@ -15,8 +15,10 @@ class UserOauthSigninRequest extends BaseFormRequest implements UserOauthSigninR
     {
         $requiredOauthUserCompleteInformationBeforeSignin = SystemSetting::from(SystemSettingKeyEnum::REQUIRED_OAUTH_USER_COMPLETE_INFORMATION_BEFORE_SIGNIN)->get(null, false);
 
+        $phoneNumber = $this->phone_number;
+
         return [
-            'phone_number' => [Rule::requiredIf($requiredOauthUserCompleteInformationBeforeSignin), 'string', 'max:15', Rule::unique(User::class, 'phone_number'), new PhoneNumberValidate()],
+            'phone_number' => [Rule::requiredIf($requiredOauthUserCompleteInformationBeforeSignin && $phoneNumber), 'string', 'max:15', Rule::unique(User::class, 'phone_number'), new PhoneNumberValidate()],
             'provider' => ['required', 'string'],
             'auth_code' => ['required', 'string'],
         ];
