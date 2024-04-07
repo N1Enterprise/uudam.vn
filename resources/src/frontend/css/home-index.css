@@ -337,6 +337,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     color: rgba(var(--color-foreground), 0.75);
     font-size: 19px;
     padding: 9px 0;
+    border: none;
 }
 
 .section-template-wrapper .section-template-wrapper-nav-tabs-item.active {
