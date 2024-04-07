@@ -52,9 +52,7 @@ class OauthController extends BaseApiController
 
         $data = $oauthProvider->parseRequestData($request);
 
-        return redirect(
-            $oauthProvider->getUserRedirectUrl($data)
-        );
+        return redirect($oauthProvider->getUserRedirectUrl($data));
     }
 
     public function signin(UserOauthSigninRequestContract $request)
@@ -73,14 +71,6 @@ class OauthController extends BaseApiController
             $oauthUser = OauthService::of($provider)->user($data);
 
             $user = $this->oauthUserService->findOrCreate($provider, $oauthUser, $request->validated());
-
-            $requiredOauthUserCompleteInformationBeforeSignin = SystemSetting::from(SystemSettingKeyEnum::REQUIRED_OAUTH_USER_COMPLETE_INFORMATION_BEFORE_SIGNIN)->get(null, false);
-
-            if ($requiredOauthUserCompleteInformationBeforeSignin && empty($user->phone_number)) {
-                $oauthProvider = OauthService::of($provider);
-
-                return redirect($oauthProvider->getUserRedirectUrl(array_merge($data, ['required_oauth_user_complete_information_before_signin' => 1])));
-            }
 
             $user = $this->userAuthService->signinByUser($user);
 
