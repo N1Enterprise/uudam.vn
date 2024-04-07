@@ -26,6 +26,13 @@ class UserProfileController extends AuthenticatedController
         return $this->view('frontend.pages.profile.account.index', compact('user'));
     }
 
+    public function profileComplete()
+    {
+        $user = $this->user();
+
+        return $this->view('frontend.pages.profile.account.info-complete', compact('user'));
+    }
+
     public function passwordChange()
     {
         return $this->view('frontend.pages.profile.password-change.index');
