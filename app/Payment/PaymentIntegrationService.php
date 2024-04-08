@@ -62,7 +62,6 @@ class PaymentIntegrationService
 
     public function handleTransaction(BaseTransaction $transaction, $providerCode = null)
     {
-        dd(111);
         $providerCode = $providerCode ?? $transaction->paymentProvider->code;
         $provider = $this->resolveProvider($providerCode);
 

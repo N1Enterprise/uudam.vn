@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use App\Enum\OauthTypeEnum;
 use App\Enum\SystemSettingKeyEnum;
+use App\Exceptions\BusinessLogicException;
+use App\Models\OauthPkce;
 use App\Models\SystemSetting;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 abstract class OauthTwoAbstractProvider implements OauthInterface
@@ -112,6 +115,11 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
         return Validator::make($request->all(), [
             'auth_code' => ['required'],
         ])->validate();
+    }
+
+    public function resetSession($data = [])
+    {
+
     }
 
     /**
@@ -223,9 +231,9 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
      */
     public function user(array $payload)
     {
-        $response = $this->getAccessTokenResponse(Crypt::decryptString(data_get($payload, 'auth_code')));
+        $response = $this->getAccessTokenResponse(Crypt::decryptString(data_get($payload, 'auth_code')), Arr::except($payload, ['auth_code']));
 
-        $user = $this->getUserByToken(Arr::get($response, 'access_token'));
+        $user = $this->getUserByToken(data_get($response, 'access_token'));
 
         return $this->mapUserToArray($user);
     }
@@ -249,9 +257,9 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
      * @param  string  $code
      * @return array
      */
-    public function getAccessTokenResponse($code)
+    public function getAccessTokenResponse($code, $data = [])
     {
-        $response = $this->getHttpClient()->post($this->getTokenUrl(), $this->getTokenFields($code));
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), $this->getTokenFields($code, $data));
 
         $response->throw();
 
@@ -266,7 +274,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
      * @param  string  $code
      * @return array
      */
-    protected function getTokenFields($code)
+    protected function getTokenFields($code, $data = [])
     {
         $fields = [
             'grant_type' => 'authorization_code',
@@ -287,7 +295,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
 
         return array_merge(['state' => $state], [
             'auth_code' => Crypt::encryptString($this->request->get('code')),
-            'provider'  => $this->providerName()
+            'provider'  => $this->providerName(),
         ]);
     }
 
@@ -369,5 +377,34 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
         return $url.'?'.http_build_query(array_merge([
             'path' => data_get($state, 'path', '/'),
         ], $data), '', '&');
+    }
+
+    /** @return OauthPkce */
+    public function createOauthPkce()
+    {
+        $codeVerifier  = mb_strtolower(Str::random(10));
+        $codeChallenge = rtrim(base64_encode(hash('sha256', $codeVerifier, true)), '=');
+
+        return OauthPkce::create([
+            'oauth_provider_code' => $this->providerName(),
+            'code_challenge' => $codeChallenge,
+            'code_verifier' => $codeVerifier,
+        ]);
+    }
+
+    public function getCodeVerifierPkce($codeChallenge)
+    {
+        $pkce = OauthPkce::where(['oauth_provider_code' => $this->providerName(), 'code_challenge' => $codeChallenge])->first();
+
+        if (empty($pkce)) {
+            throw new BusinessLogicException('[Oauth2] Invalid code challenge');
+        }
+
+        return data_get($pkce, 'code_verifier');
+    }
+
+    public function deleteOauthPkce($codeChallenge)
+    {
+        return OauthPkce::where(['oauth_provider_code' => $this->providerName(), 'code_challenge' => $codeChallenge])->delete();
     }
 }

@@ -55,7 +55,7 @@ class OauthController extends BaseApiController
         return redirect($oauthProvider->getUserRedirectUrl($data));
     }
 
-    public function signin(UserOauthSigninRequestContract $request)
+    public function signin(Request $request)
     {
         $provider = $request->get('provider');
 
@@ -78,6 +78,8 @@ class OauthController extends BaseApiController
                 ->send($request)
                 ->through(UserMiddleware::class)
                 ->thenReturn();
+
+            $providerInstance->resetSession($data);
 
             return response()->json($user->only(['username']));
         } catch (\Throwable $th) {

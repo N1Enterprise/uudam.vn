@@ -11,18 +11,23 @@ $(document).ready(function() {
             onDetectOauthCode: () => {
                 const oauthCode = utils_helper.urlParams('auth_code').get();
                 const provider = utils_helper.urlParams('provider').get();
+                const codeChallenge = utils_helper.urlParams('code_challenge').get();
 
-                SOCIAL_AUTHENTICATION.handleLoginWithCode(provider, oauthCode);
+                SOCIAL_AUTHENTICATION.handleLoginWithCode({
+                    provider: provider,
+                    auth_code: oauthCode,
+                    code_challenge: codeChallenge
+                });
             },
-            handleLoginWithCode: (provider, oauthCode) => {
-                if (!provider || !oauthCode) {
+            handleLoginWithCode: (payload = {}) => {
+                if (!payload?.provider || !payload?.auth_code) {
                     return;
                 }
 
                 $.ajax({
                     url: AUTHENTICATION_ROUTES.api_oauth_signin,
                     method: 'POST',
-                    data: { auth_code: oauthCode, provider },
+                    data: payload,
                     success: (response) => {
                         toastr.success('Đăng nhập thành công.');
 
