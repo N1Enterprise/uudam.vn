@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Integrations\Oauth;
+
+use App\Models\OauthPkce;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class Zalo extends OauthTwoAbstractProvider
 {
@@ -62,21 +67,13 @@ class Zalo extends OauthTwoAbstractProvider
 
     protected function getCodeFields()
     {
+        $oauthPkce = $this->createOauthPkce();
+
         return [
             'app_id' => $this->clientId,
             'redirect_uri' => $this->redirectUrl,
-            'code_challenge' => $this->getCodeChallenge(),
+            'code_challenge' => data_get($oauthPkce, 'code_challenge'),
         ];
-    }
-
-    protected function getCodeVerifier()
-    {
-        return data_get($this->setting, 'code_verifier', 'Cec1fUiTwYS2c0');
-    }
-
-    protected function getCodeChallenge()
-    {
-        return rtrim(base64_encode(hash('sha256', $this->getCodeVerifier(), true)), '=');
     }
 
     public function getHttpClient()
@@ -90,13 +87,37 @@ class Zalo extends OauthTwoAbstractProvider
             ]);
 	}
 
-    protected function getTokenFields($code)
+    public function parseRequestData(Request $request): array
     {
+        $data = parent::parseRequestData($request);
+
+        return array_merge($data, [
+            'code_challenge' => $request->code_challenge
+        ]);
+    }
+
+    public function validated($request)
+    {
+        return Validator::make($request->all(), [
+            'auth_code' => ['required'],
+            'code_challenge' => ['required', Rule::exists(OauthPkce::class, 'code_challenge')]
+        ])->validate();
+    }
+
+    protected function getTokenFields($code, $data = [])
+    {
+        $codeVerifier = $this->getCodeVerifierPkce(data_get($data, 'code_challenge'));
+
         return [
             'code' => $code,
             'app_id' => $this->clientId,
             'grant_type' => 'authorization_code',
-            'code_verifier' => $this->getCodeVerifier()
+            'code_verifier' => $codeVerifier
         ];
+    }
+
+    public function resetSession($data = [])
+    {
+        $this->deleteOauthPkce(data_get($data, 'code_challenge'));
     }
 }

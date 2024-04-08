@@ -44,6 +44,11 @@ class OauthService extends BaseService
         return $this->provider->validated($request);
     }
 
+    public function resetSession($data = [])
+    {
+        return $this->provider->resetSession($data);
+    }
+
     public function user($payload = [])
     {
         return $this->provider->user($payload);

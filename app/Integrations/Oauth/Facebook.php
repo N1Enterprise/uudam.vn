@@ -72,7 +72,7 @@ class Facebook extends OauthTwoAbstractProvider
         return $this->graphUrl.'/'.$this->version.'/oauth/access_token';
     }
 
-    public function getAccessTokenResponse($code)
+    public function getAccessTokenResponse($code, $data = [])
     {
         $response = $this->getHttpClient()->post($this->getTokenUrl(), $this->getTokenFields($code));
 
