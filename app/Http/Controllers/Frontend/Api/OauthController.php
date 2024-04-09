@@ -70,7 +70,7 @@ class OauthController extends BaseApiController
 
             $oauthUser = OauthService::of($provider)->user($data);
 
-            $user = $this->oauthUserService->findOrCreate($provider, $oauthUser, $request->validated());
+            $user = $this->oauthUserService->findOrCreate($provider, $oauthUser, $request->all());
 
             $user = $this->userAuthService->signinByUser($user);
 

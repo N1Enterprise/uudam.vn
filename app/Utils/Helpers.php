@@ -434,7 +434,7 @@ if (! function_exists('text_without_spaces')) {
 }
 
 
-if (!function_exists('generate_code_verifier')) {
+if (! function_exists('generate_code_verifier')) {
     function generate_code_verifier($minLength = 43, $maxLength = 128) {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
         $length = random_int($minLength, $maxLength);
