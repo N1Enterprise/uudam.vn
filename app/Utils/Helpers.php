@@ -432,3 +432,26 @@ if (! function_exists('text_without_spaces')) {
         return preg_replace('/\s+/', '', $string);
     }
 }
+
+if (! function_exists('generate_code_verifier')) {
+    function generate_code_verifier() {
+        $code = random_bytes(32);
+        $verifier = rtrim(strtr(base64_encode($code), '+/', '-_'), '=');
+
+        return $verifier;
+    }
+}
+
+if (! function_exists('generate_code_challenge')) {
+    function generate_code_challenge($codeVerifier) {
+        try {
+            $bytes = mb_convert_encoding($codeVerifier, 'ASCII');
+            $digest = hash('sha256', $bytes, true);
+            $result = rtrim(strtr(base64_encode($digest), '+/', '-_'), '=');
+        } catch (\Exception $ex) {
+            Log::error($ex->getMessage());
+            $result = null;
+        }
+        return $result;
+    }
+}
