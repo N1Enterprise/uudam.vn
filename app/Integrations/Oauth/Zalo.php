@@ -79,6 +79,8 @@ class Zalo extends OauthTwoAbstractProvider
     {
         $oauthPkce = $this->createOauthPkce();
 
+        logger('tracking oauthPkce', [$oauthPkce->toArray()]);
+
         return [
             'app_id' => $this->clientId,
             'redirect_uri' => $this->redirectUrl,
