@@ -433,17 +433,25 @@ if (! function_exists('text_without_spaces')) {
     }
 }
 
-
 if (! function_exists('generate_code_verifier')) {
-    function generate_code_verifier($minLength = 43, $maxLength = 128) {
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
-        $length = random_int($minLength, $maxLength);
-        $codeVerifier = '';
+    function generate_code_verifier() {
+        $code = random_bytes(32);
+        $verifier = rtrim(strtr(base64_encode($code), '+/', '-_'), '=');
 
-        for ($i = 0; $i < $length; $i++) {
-            $codeVerifier .= $characters[random_int(0, strlen($characters) - 1)];
+        return $verifier;
+    }
+}
+
+if (! function_exists('generate_code_challenge')) {
+    function generate_code_challenge($codeVerifier) {
+        try {
+            $bytes = mb_convert_encoding($codeVerifier, 'ASCII');
+            $digest = hash('sha256', $bytes, true);
+            $result = rtrim(strtr(base64_encode($digest), '+/', '-_'), '=');
+        } catch (\Exception $ex) {
+            Log::error($ex->getMessage());
+            $result = null;
         }
-
-        return $codeVerifier;
+        return $result;
     }
 }

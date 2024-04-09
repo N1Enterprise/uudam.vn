@@ -44,10 +44,6 @@ class Zalo extends OauthTwoAbstractProvider
             'fields' => implode(',', $this->fields),
         ];
 
-        logger('tracking getUserByToken', [
-            '$params' => $params
-        ]);
-
         $response = Http::timeout(30)
             ->acceptJson()
             ->withHeaders(['access_token' => $token])
@@ -57,17 +53,11 @@ class Zalo extends OauthTwoAbstractProvider
 
         $data = $response->json();
 
-        logger('tracking getUserByToken', [
-            '$data' => $data
-        ]);
-
         return $data;
     }
 
     protected function mapUserToArray(array $user)
     {
-        logger('mapUserToArray', [$user]);
-
         return [
             'id' => data_get($user, 'id'),
             'nickname' => null,
@@ -116,13 +106,13 @@ class Zalo extends OauthTwoAbstractProvider
 
     protected function getTokenFields($code, $data = [])
     {
-        $codeVerifier = $this->getCodeVerifierPkce(data_get($data, 'code_challenge'));
+        $oauthPkce = $this->findOauthPkce(data_get($data, 'code_challenge'));
 
         return [
             'code' => $code,
             'app_id' => $this->clientId,
             'grant_type' => 'authorization_code',
-            'code_verifier' => $codeVerifier
+            'code_verifier' => data_get($oauthPkce, 'code_verifier')
         ];
     }
 
