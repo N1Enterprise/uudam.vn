@@ -382,7 +382,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
     /** @return OauthPkce */
     public function createOauthPkce()
     {
-        $codeVerifier  = mb_strtolower(Str::random(10));
+        $codeVerifier  = generate_code_verifier();
         $codeChallenge = rtrim(base64_encode(hash('sha256', $codeVerifier, true)), '=');
 
         return OauthPkce::create([
