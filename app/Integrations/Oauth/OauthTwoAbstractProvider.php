@@ -233,15 +233,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
     {
         $response = $this->getAccessTokenResponse(Crypt::decryptString(data_get($payload, 'auth_code')), Arr::except($payload, ['auth_code']));
 
-        logger('tracking user -> getAccessTokenResponse', [
-            '$response' => $response
-        ]);
-
         $user = $this->getUserByToken(data_get($response, 'access_token'));
-
-        logger('tracking user -> getAccessTokenResponse', [
-            '$user' => $user
-        ]);
 
         return $this->mapUserToArray($user);
     }
@@ -267,7 +259,6 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
      */
     public function getAccessTokenResponse($code, $data = [])
     {
-        logger('getAccessTokenResponse', [$this->getTokenFields($code, $data)]);
         $response = $this->getHttpClient()->post($this->getTokenUrl(), $this->getTokenFields($code, $data));
 
         $response->throw();
