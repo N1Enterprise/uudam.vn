@@ -43,8 +43,6 @@ class OauthController extends BaseApiController
             ->filter()
             ->values();
 
-        dd($oauthProviders);
-
         return response()->json(['oauth_providers' => $oauthProviders]);
     }
 
