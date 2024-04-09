@@ -432,18 +432,3 @@ if (! function_exists('text_without_spaces')) {
         return preg_replace('/\s+/', '', $string);
     }
 }
-
-
-if (! function_exists('generate_code_verifier')) {
-    function generate_code_verifier($minLength = 43, $maxLength = 128) {
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
-        $length = random_int($minLength, $maxLength);
-        $codeVerifier = '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $codeVerifier .= $characters[random_int(0, strlen($characters) - 1)];
-        }
-
-        return $codeVerifier;
-    }
-}
