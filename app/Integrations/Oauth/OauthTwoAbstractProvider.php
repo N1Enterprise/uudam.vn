@@ -267,6 +267,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
      */
     public function getAccessTokenResponse($code, $data = [])
     {
+        logger('getAccessTokenResponse', [$this->getTokenFields($code, $data)]);
         $response = $this->getHttpClient()->post($this->getTokenUrl(), $this->getTokenFields($code, $data));
 
         $response->throw();
@@ -400,7 +401,11 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
         ]);
     }
 
-    public function getCodeVerifierPkce($codeChallenge)
+    /**
+     * @return OauthPkce
+     * @throws BusinessLogicException
+    */
+    public function findOauthPkce($codeChallenge)
     {
         $pkce = OauthPkce::where(['oauth_provider_code' => $this->providerName(), 'code_challenge' => $codeChallenge])->first();
 
@@ -408,7 +413,7 @@ abstract class OauthTwoAbstractProvider implements OauthInterface
             throw new BusinessLogicException('[Oauth2] Invalid code challenge');
         }
 
-        return data_get($pkce, 'code_verifier');
+        return $pkce;
     }
 
     public function deleteOauthPkce($codeChallenge)

@@ -118,13 +118,13 @@ class Zalo extends OauthTwoAbstractProvider
 
     protected function getTokenFields($code, $data = [])
     {
-        $codeVerifier = $this->getCodeVerifierPkce(data_get($data, 'code_challenge'));
+        $oauthPkce = $this->findOauthPkce(data_get($data, 'code_challenge'));
 
         return [
             'code' => $code,
             'app_id' => $this->clientId,
             'grant_type' => 'authorization_code',
-            'code_verifier' => $codeVerifier
+            'code_verifier' => data_get($oauthPkce, 'code_verifier')
         ];
     }
 
