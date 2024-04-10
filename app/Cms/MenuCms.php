@@ -25,6 +25,7 @@ class MenuCms extends BaseCms
 
         return Cache::tags(self::CACHE_TAG)->rememberForever($cacheKey, function() {
             return $this->model()->query()
+                ->scopes(['active', 'feDisplay'])
                 ->with([
                     'menuSubGroups' => function($q) {
                         $q->where('status', 1)
