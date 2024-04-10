@@ -232,7 +232,7 @@
                                     <select data-actions-box="true" name="linked_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($inventories->groupBy('product.name') as $productName => $__inventories)
                                         <optgroup label="{{ $productName }}">
-                                            @foreach($inventories as $inventory)
+                                            @foreach($__inventories as $inventory)
                                             <option
                                                 value="{{ $inventory->id }}"
                                                 data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
@@ -256,7 +256,7 @@
                                     <select data-actions-box="true" name="linked_featured_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho (featured)') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Featured_Inventory_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($inventories->groupBy('product.name') as $productName => $__inventories)
                                         <optgroup label="{{ $productName }}">
-                                            @foreach($inventories as $inventory)
+                                            @foreach($__inventories as $inventory)
                                             <option
                                                 value="{{ $inventory->id }}"
                                                 data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"

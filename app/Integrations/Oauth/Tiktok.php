@@ -14,7 +14,7 @@ class Tiktok extends OauthTwoAbstractProvider
 
     protected $authUrl = 'https://www.tiktok.com/v2/auth/authorize';
 
-    protected $tokenUrl = 'https://open.tiktokapis.com/v2/oauth/token';
+    protected $tokenUrl = 'https://open-api.tiktok.com/oauth/access_token';
 
     protected $userInfoUrl = 'https://open.tiktokapis.com/v2/user/info';
 
@@ -33,6 +33,13 @@ class Tiktok extends OauthTwoAbstractProvider
 		return $this->buildAuthUrlFromBase($this->authUrl, $with);
 	}
 
+    public function getHttpClient()
+	{
+		return Http::timeout(30)
+            ->acceptJson()
+            ->asForm();
+	}
+
     protected function getCodeFields()
     {
         return [
@@ -46,6 +53,16 @@ class Tiktok extends OauthTwoAbstractProvider
     protected function getTokenUrl()
     {
         return $this->tokenUrl;
+    }
+
+    protected function getTokenFields($code, $data = [])
+    {
+        return [
+            'client_key' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+            'code' => $code,
+            'grant_type' => 'authorization_code',
+        ];
     }
 
     protected function getUserByToken($token)
