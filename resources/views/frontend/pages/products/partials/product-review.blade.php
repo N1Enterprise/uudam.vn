@@ -20,16 +20,14 @@
                             <input type="hidden" name="product_id" value="{{ $inventory->product_id }}">
                             <h3 class="spr-form-title">Đánh giá của bạn</h3>
                             <fieldset class="spr-form-contact">
-                                <div class="spr-form-contact-name">
-                                    <label class="spr-form-label" for="user_name">Tên của bạn *</label>
-                                    <input class="spr-form-input spr-form-input-text" type="text" name="user_name" placeholder="Nhập tên bạn" style="padding: 5px;" value="{{ data_get($AUTHENTICATED_USER, 'name') }}" disabled required>
-                                </div>
+                                <label class="spr-form-label" for="user_name">Tên của bạn *</label>
+                                <input type="text" name="username" value="{{ data_get($AUTHENTICATED_USER, 'name') }}" style="display: block; width: 100%; padding: 10px; font-size: 13px; margin-bottom: 10px;" disabled>
                             </fieldset>
                             <fieldset class="spr-form-review">
                                 <div class="spr-form-review-rating">
                                     <label class="spr-form-label" for="">chất lượng sản phẩm *</label>
                                     <div class="spr-form-input spr-starrating ">
-                                        <select name="rating_type" class="ls-bundle-add-to-cart-select" size="1" data-price="32" data-original-price="null" style="padding: 5px;" required>
+                                        <select name="rating_type" class="ls-bundle-add-to-cart-select" size="1" data-price="32" data-original-price="null" style="padding: 10px; font-size: 13px;" required>
                                             @foreach ($productReviewRatingEnumLabels as $rating => $label)
                                             <option value="{{ $rating }}">{{ $label }}</option>
                                             @endforeach
@@ -39,7 +37,7 @@
                                 <div class="spr-form-review-body">
                                     <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *</label>
                                     <div class="spr-form-input">
-                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="10" placeholder="Viết đánh giá của bạn tại đây (cho phép 1000 ký tự)" style="padding: 5px;" required></textarea>
+                                        <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="2" cols="2" placeholder="Viết đánh giá của bạn tại đây (cho phép 1000 ký tự)" style="padding: 5px;  font-size: 13px;" required></textarea>
                                     </div>
                                 </div>
                             </fieldset>
