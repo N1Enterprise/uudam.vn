@@ -28,6 +28,8 @@ Hoàn thành thông tin | {{ config('app.user_domain') }}
                         <div class="field field--with-error" style="margin: 5px 0;">
                             <input type="text" name="name" id="name" value="{{ data_get($AUTHENTICATED_USER, 'name') }}" class="field__input" autocomplete="name" placeholder="Tên hiển thị">
                             <label class="field__label" for="name">Tên hiển thị <span> (không yêu cầu nhập)</span></label>
+
+                            <div class="form-errors" data-name="name"></div>
                         </div>
                     </div>
 
@@ -36,6 +38,8 @@ Hoàn thành thông tin | {{ config('app.user_domain') }}
                             <input type="text" name="email" id="email" value="{{ data_get($AUTHENTICATED_USER, 'email') }}" class="field__input" autocomplete="phone" placeholder="E-mail">
                             <label class="field__label" for="email">E-mail <span> (không yêu cầu nhập)</span></label>
                         </div>
+
+                        <div class="form-errors" data-name="email"></div>
                     </div>
 
                     <div class="form-group">
@@ -43,6 +47,8 @@ Hoàn thành thông tin | {{ config('app.user_domain') }}
                             <input type="text" name="phone_number" id="phone_number" value="{{ data_get($AUTHENTICATED_USER, 'phone_number') }}" class="field__input" autocomplete="phone" value required placeholder="Số Điện Thoại / Email">
                             <label class="field__label" for="phone_number">Số điện thoại <span>*</span></label>
                         </div>
+
+                        <div class="form-errors" data-name="phone_number"></div>
                     </div>
 
                     <small>* Vui lòng nhập chính xác số điện thoại, điều này giúp chúng tôi có thể tặng cho bạn những ưu đãi hấp dẫn.</small>
