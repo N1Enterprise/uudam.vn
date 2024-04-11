@@ -1419,7 +1419,7 @@ a.product__text {
 }
 
 .product-promotion ul li {
-    list-style-type: disc;
+    /* list-style-type: disc; */
 }
 
 .product-description-content * {
