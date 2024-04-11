@@ -160,10 +160,10 @@
                             </svg>
                             <div class="cart-count-bubble">
                                 <span>
-                                    <span data-value-cart-total-quantity="">2</span>
+                                    <span data-value-cart-total-quantity="">0</span>
                                 </span>
                                 <span class="visually-hidden">
-                                    <span data-value-cart-total-quantity="">2</span>
+                                    <span data-value-cart-total-quantity="">0</span>
                                     item
                                 </span>
                             </div>
