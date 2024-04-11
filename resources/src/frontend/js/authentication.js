@@ -42,6 +42,8 @@ $(document).ready(function() {
 
                         utils_helper.urlParams('auth_code').del();
                         utils_helper.urlParams('provider').del();
+
+                        window.close();
                     }
                 });
             },
