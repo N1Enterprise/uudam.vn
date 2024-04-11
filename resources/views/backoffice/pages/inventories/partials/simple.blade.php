@@ -163,4 +163,28 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <b>{{ __('Kênh bán hàng liên kết') }}</b>
+        </div>
+
+        @foreach ($affiliateSalesChannels as $channel)
+            @php $channelKey = data_get($channel, 'key'); @endphp
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="">{{ data_get($channel, 'name') }}</label>
+                    <input
+                        type="text"
+                        name="sale_channels[{{ $channelKey }}]"
+                        value="{{ old("sale_channels.$channelKey", data_get($inventory, ['sale_channels', $channelKey])) }}"
+                        class="form-control {{ $errors->has("sale_channels.$channelKey") ? 'is-invalid' : '' }}"
+                        placeholder="{{ __('Link liên kết kênh bán ') . data_get($channel, 'name') }}"
+                    >
+
+                    <a class="btn btn-sm btn-outline-primary mt-2" target="_blank" href="{{ old("sale_channels.$channelKey", data_get($inventory, ['sale_channels', $channelKey])) }}">{{ data_get($channel, 'name') }}</a>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>

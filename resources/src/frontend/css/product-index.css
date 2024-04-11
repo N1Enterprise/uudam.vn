@@ -1539,3 +1539,24 @@ a.product__text {
     }
 }
 
+.affiliate_Sales_Channels {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.affiliate_Sales_Channels .affiliate_Sales_Channels__item {
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex: 0 0 calc(50% - 5px);
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.affiliate_Sales_Channels .affiliate_Sales_Channels__item img {
+    margin-right: 10px;
+}

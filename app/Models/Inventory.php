@@ -49,12 +49,14 @@ class Inventory extends BaseModel
         'init_sold_count',
         'sold_count',
         'meta',
-        'weight'
+        'weight',
+        'sale_channels',
     ];
 
     protected $casts = [
         'key_features' => 'json',
-        'meta' => 'json'
+        'meta' => 'json',
+        'sale_channels' => 'json'
     ];
 
     protected $appends = [

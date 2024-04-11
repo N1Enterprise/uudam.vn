@@ -216,6 +216,9 @@ class InventoryService extends BaseService
                                                 ->setConfigKey([Inventory::class, 'image'])
                                                 ->uploadImage(data_get($variants, ['image', $index]));
 
+                // sale channels
+                $variant['sale_channels']  = data_get($variants, ['sale_channels', $index]);
+
                 $inventory = $this->inventoryRepository->create($variant);
 
                 if ($invAttributes = Arr::wrap(data_get($variants, ['attribute', $index], []))) {
@@ -338,7 +341,8 @@ class InventoryService extends BaseService
                 'stock_quantity',
                 'title',
                 'init_sold_count',
-                'sold_count'
+                'sold_count',
+                'sale_channels'
             ]);
 
         return $inventory;

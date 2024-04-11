@@ -52,6 +52,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                     'after:offer_start'
                 ],
             ],
+
             $product->type == ProductTypeEnum::VARIABLE
                 ? $this->defineVariantRules() ?? []
                 : $this->defineSimpleRules() ?? []
@@ -98,6 +99,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants.offer_price.*' => ['nullable', 'numeric', 'gt:0'],
             'variants.condition' => ['required', 'array'],
             'variants.condition.*' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
+            'variants.sale_channels' => ['nullable', 'array'],
         ];
     }
 
@@ -112,6 +114,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'stock_quantity' => ['required', 'integer'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
+            'sale_channels' => ['nullable', 'array'],
+            'sale_channels.*' => ['nullable', 'string']
         ];
     }
 }

@@ -97,6 +97,8 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             'stock_quantity' => ['required', 'integer'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
+            'sale_channels' => ['nullable', 'array'],
+            'sale_channels.*' => ['nullable', 'string']
         ];
     }
 }

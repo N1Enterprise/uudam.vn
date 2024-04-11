@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Cms\ProductReviewCms;
 use App\Enum\ProductReviewRatingEnum;
+use App\Enum\SystemSettingKeyEnum;
 use App\Exceptions\ModelNotFoundException;
+use App\Models\SystemSetting;
 use App\Services\AttributeService;
 use App\Services\InventoryService;
 use App\Services\PostService;
@@ -54,6 +56,8 @@ class ProductController extends BaseController
 
         $productReviews = ProductReviewCms::make()->allApproved();
 
+        $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
+
         return $this->view('frontend.pages.products.index', compact(
             'inventory',
             'variants',
@@ -65,6 +69,7 @@ class ProductController extends BaseController
             // 'suggestedInventories',
             'productReviewRatingEnumLabels',
             'productReviews',
+            'affiliateSalesChannels'
         ));
     }
 }
