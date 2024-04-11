@@ -15,7 +15,11 @@ class UpdateUserRequest extends BaseFormRequest implements UpdateUserRequestCont
             'username'     => ['required', 'string', 'max:255', Rule::unique(User::class)->ignore($this->route('id'))],
             'name'         => ['required', 'string', 'max:255'],
             'email'        => ['required', 'email', Rule::unique(User::class)->ignore($this->route('id'))],
-            'phone_number' => ['nullable', Rule::unique(User::class, 'phone_number')->ignore($this->route('id')), new PhoneNumberValidate],
+            'phone_number' => [
+                'nullable',
+                // Rule::unique(User::class, 'phone_number')->ignore($this->route('id')),
+                new PhoneNumberValidate
+            ],
             'name'         => ['required', 'string', 'max:255'],
             'birthday'     => ['nullable', 'date'],
         ];
