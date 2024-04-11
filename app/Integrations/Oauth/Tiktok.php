@@ -2,11 +2,7 @@
 
 namespace App\Integrations\Oauth;
 
-use App\Models\OauthPkce;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class Tiktok extends OauthTwoAbstractProvider
 {
@@ -14,13 +10,15 @@ class Tiktok extends OauthTwoAbstractProvider
 
     protected $authUrl = 'https://www.tiktok.com/v2/auth/authorize';
 
-    protected $tokenUrl = 'https://open-api.tiktok.com/oauth/access_token';
+    protected $tokenUrl = 'https://open.tiktokapis.com/v2/oauth/token/';
 
-    protected $userInfoUrl = 'https://open.tiktokapis.com/v2/user/info';
+    protected $userInfoUrl = 'https://open.tiktokapis.com/v2/user/info/';
 
     protected $fields = [
-        'id',
-        'name',
+        'open_id',
+        'union_id',
+        'avatar_url',
+        'display_name'
     ];
 
     public function providerName(): string
@@ -62,17 +60,37 @@ class Tiktok extends OauthTwoAbstractProvider
             'client_secret' => $this->clientSecret,
             'code' => $code,
             'grant_type' => 'authorization_code',
+            'redirect_uri' => $this->redirectUrl
         ];
     }
 
     protected function getUserByToken($token)
     {
+        $params = [
+            'fields' => implode(',', $this->fields),
+        ];
 
+        $response = Http::timeout(30)
+            ->acceptJson()
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer '.$token
+            ])
+            ->get($this->userInfoUrl, $params);
+
+        $response->throw();
+
+        $data = $response->json();
+
+        return $data;
     }
 
     protected function mapUserToArray(array $user)
     {
         return [
+            'id' => data_get($user, 'data.user.union_id'),
+            'nickname' => data_get($user, 'data.user.username'),
+            'name' => data_get($user, 'data.user.display_name')
         ];
     }
 }
