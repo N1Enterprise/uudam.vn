@@ -48,6 +48,8 @@ class SystemSettingKeyEnum extends BaseEnum
 
     public const DMCA_SITE_VERIFICATION = 'dmca_site_verification';
 
+    public const AFFILIATE_SALES_CHANNELS = 'affiliate_sales_channels';
+
     public static function all(): array
     {
         return [
@@ -75,7 +77,8 @@ class SystemSettingKeyEnum extends BaseEnum
             self::QUEUE_NAMES,
             self::FOOTER_MENUS,
             self::GOOGLE_ANALYTICS_TAG,
-            self::DMCA_SITE_VERIFICATION
+            self::DMCA_SITE_VERIFICATION,
+            self::AFFILIATE_SALES_CHANNELS,
         ];
     }
 }

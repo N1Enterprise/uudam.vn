@@ -78,6 +78,8 @@ class InventoryController extends BaseController
 
         $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
 
+        $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
+
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
             'product',
@@ -85,7 +87,8 @@ class InventoryController extends BaseController
             'attributes',
             'combinations',
             'inventoryConditionEnumLabels',
-            'commonInventoryKeyFeatured'
+            'commonInventoryKeyFeatured',
+            'affiliateSalesChannels'
         ));
     }
 
@@ -123,6 +126,8 @@ class InventoryController extends BaseController
 
         $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
 
+        $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
+
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
             'product',
@@ -131,7 +136,8 @@ class InventoryController extends BaseController
             'combinations',
             'inventoryConditionEnumLabels',
             'productCombos',
-            'commonInventoryKeyFeatured'
+            'commonInventoryKeyFeatured',
+            'affiliateSalesChannels'
         ));
     }
 
