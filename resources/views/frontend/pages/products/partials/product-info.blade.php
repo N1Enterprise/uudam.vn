@@ -146,7 +146,7 @@
                     <div class="affiliate_Sales_Channels">
                         @foreach ($affiliateSalesChannels as $channel)
                             @if (data_get($inventory, ['sale_channels', data_get($channel, 'key')]))
-                            <a href="{{ data_get($inventory, ['sale_channels', data_get($channel, 'key')]) }}" target="_blank" class="affiliate_Sales_Channels__item">
+                            <a href="{{ data_get($inventory, ['sale_channels', data_get($channel, 'key')]) }}" target="_blank" class="affiliate_Sales_Channels__item" style="flex: 0 0 {{ data_get($channel, 'size', '100%') }};">
                                 <img src="{{ data_get($channel, 'logo') }}" alt="{{ data_get($channel, 'name') }}" width="30" height="30">
                                 <span>Mua tại {{ data_get($channel, 'name') }}</span>
                             </a>
