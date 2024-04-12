@@ -129,11 +129,14 @@
                                             value="{{ old("variants.sku.$loop->index", $inventory->sku) }}"
                                             class="form-control {{ $errors->has("variants.sku.$loop->index") ? 'is-invalid' : '' }}"
                                             placeholder="{{ __('Enter sku') }}"
+                                            {{ empty($inventory->id) ? '' : 'disabled' }}
                                         >
 
+                                        @empty($inventory->id)
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" data-generate data-generate-length="5" data-generate-ref="#variants_sku_{{ $loop->index }}"  data-generate-prefix="{{ $product->code }}-" data-generate-uppercase="true" type="button">{{ __('Generate SKU') }}</button>
                                         </div>
+                                        @endempty
                                     </div>
                                     @error("variants.sku.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
