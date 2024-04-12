@@ -51,6 +51,34 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="k-portlet">
+                    <div class="k-portlet__body">
+                        <div class="form-group">
+                            <label for="">{{ __('Tên') }} *</label>
+                            <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" data-reference-slug="slug" placeholder="{{ __('Nhập tên') }}" required>
+                            @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">{{ __('Đường dẫn') }} *</label>
+                            <input type="text" name="slug" value="{{ old('slug', $product->slug) }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" required>
+                            @error('slug')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">{{ __('Code') }} *</label>
+                            <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
+                            @error('code')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="k-portlet">
                     <div class="k-portlet__head d-flex justify-content-between align-items-center">
                         <div class="k-portlet__head-label">
                             <h3 class="k-portlet__head-title">
@@ -61,30 +89,6 @@
                     </div>
                     <div class="k-portlet__body">
                         <div class="collapse" id="general_tab">
-                            <div class="form-group">
-                                <label for="">{{ __('Tên') }} *</label>
-                                <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" data-reference-slug="slug" placeholder="{{ __('Nhập tên') }}" required>
-                                @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">{{ __('Đường dẫn') }} *</label>
-                                <input type="text" name="slug" value="{{ old('slug', $product->slug) }}" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" required>
-                                @error('slug')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">{{ __('Code') }} *</label>
-                                <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
-                                @error('code')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
                             <div class="form-group">
                                 <label>{{ __('Hình ảnh') }} *</label>
                                 <div class="row">
