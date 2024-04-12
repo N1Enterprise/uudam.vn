@@ -73,26 +73,10 @@ class BackofficeMenuService extends BaseService
                     [
                         'name' => 'Sản phẩm',
                         'permissions' => ['products.index'],
-                        'subs' => [
-                            [
-                                'name' => 'Danh sách sản phẩm',
-                                'link' => route('bo.web.products.index'),
-                                'permissions' => ['products.index']
-                            ],
-                            [
-                                'name' => 'Đánh giá sản phẩm',
-                                'link' => route('bo.web.product-reviews.index'),
-                                'permissions' => ['product-reviews.index'],
-                            ],
-                            // [
-                            //     'name' => 'Sản phẩm theo nhóm',
-                            //     'link' => route('bo.web.product-combos.index'),
-                            //     'permissions' => ['product-combos.index']
-                            // ],
-                        ]
+                        'link' => route('bo.web.products.index'),
                     ],
                     [
-                        'name' => 'Quản lý kho',
+                        'name' => 'kho sản phẩm',
                         'link' => route('bo.web.inventories.index'),
                         'permissions' => ['inventories.index'],
                     ],
@@ -185,6 +169,11 @@ class BackofficeMenuService extends BaseService
                         'link' => route('bo.web.subscribers.index'),
                         'permissions' => ['subscribers.index'],
                     ],
+                    [
+                        'name' => 'Đánh giá sản phẩm',
+                        'link' => route('bo.web.product-reviews.index'),
+                        'permissions' => ['product-reviews.index'],
+                    ],
                 ],
             ],
             [
@@ -194,12 +183,12 @@ class BackofficeMenuService extends BaseService
                     [
                         'name' => 'Hiển thị trang chủ',
                         'subs' => [
-                            [   
+                            [
                                 'name' => 'Danh sách nhóm',
                                 'link' => route('bo.web.home-page-display-orders.index'),
                                 'permissions' => ['home-page-display-orders.index'],
                             ],
-                            [   
+                            [
                                 'name' => 'Cấu hình nhóm',
                                 'link' => route('bo.web.home-page-display-items.index'),
                                 'permissions' => ['home-page-display-items.index'],
