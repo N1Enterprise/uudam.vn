@@ -76,7 +76,7 @@ class BackofficeMenuService extends BaseService
                         'link' => route('bo.web.products.index'),
                     ],
                     [
-                        'name' => 'kho sản phẩm',
+                        'name' => 'Kho sản phẩm',
                         'link' => route('bo.web.inventories.index'),
                         'permissions' => ['inventories.index'],
                     ],
