@@ -132,7 +132,7 @@
                                         >
 
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" data-generate data-generate-length="10" data-generate-ref="#variants_sku_{{ $loop->index }}"  data-generate-prefix="{{ $product->code }}-" data-generate-uppercase="true" type="button">{{ __('Generate SKU') }}</button>
+                                            <button class="btn btn-primary" data-generate data-generate-length="5" data-generate-ref="#variants_sku_{{ $loop->index }}"  data-generate-prefix="{{ $product->code }}-" data-generate-uppercase="true" type="button">{{ __('Generate SKU') }}</button>
                                         </div>
                                     </div>
                                     @error("variants.sku.{{ $loop->index }}")
