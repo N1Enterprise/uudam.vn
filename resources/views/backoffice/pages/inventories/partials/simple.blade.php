@@ -46,7 +46,14 @@
                         data-title="SKU (Đơn vị lưu kho) là mã nhận dạng cụ thể của người bán. Nó sẽ giúp quản lý hàng tồn kho của bạn."
                     ></i>
                 </label>
-                <input type="text" class="form-control {{ $errors->has('sku') ? 'is-invalid' : '' }}" name="sku" value="{{ old('sku', $inventory->sku) }}" required>
+
+                <div class="input-group">
+                    <input id="sku" type="text" class="form-control {{ $errors->has('sku') ? 'is-invalid' : '' }}" name="sku" value="{{ old('sku', $inventory->sku) }}" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" data-generate data-generate-length="10" data-generate-ref="#sku"  data-generate-prefix="{{ $product->code }}-" data-generate-uppercase="true" type="button">{{ __('Generate SKU') }}</button>
+                    </div>
+                </div>
+
                 @error('sku')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
