@@ -90,7 +90,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
     {
         return [
             'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
-            'sku' => ['required', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
+            // 'sku' => ['required', Rule::unique(Inventory::class, 'sku')->ignore($inventory->getKey())],
             'purchase_price' => ['nullable', 'numeric', 'gt:0'],
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'offer_price' => ['nullable', 'numeric', 'gt:0'],
