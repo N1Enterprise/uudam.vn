@@ -172,12 +172,10 @@
 
                             <div class="form-group">
                                 <label for="">{{ __('Video') }}</label>
-                                @foreach (old('media.video', data_get($product->media, 'video', [])) as $index => $videoImage)
                                 <div class="video-media-item">
-                                    <input type="text" name="media[video][0][path]" value="{{ old("media.video.$index.path", data_get($videoImage, 'path')) }}" class="form-control {{ $errors->has("media.video.$index.path") ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập đường dẫn video') }}">
-                                    <input type="hidden" name="media[video][0][order]" value="{{ old("media.video.$index.order", data_get($videoImage, 'order')) }}">
+                                    <input type="text" name="media[video][0][path]" value="{{ old("media.video.1.path", data_get($product, ['media', 'video', '0', 'path'])) }}" class="form-control {{ $errors->has('media.video.0.path') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập đường dẫn video') }}">
+                                    <input type="hidden" name="media[video][0][order]" value="1">
                                 </div>
-                                @endforeach
                             </div>
 
                             <div class="form-group">
