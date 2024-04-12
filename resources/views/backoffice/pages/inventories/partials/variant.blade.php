@@ -121,13 +121,20 @@
                                             data-title="SKU (Đơn vị lưu kho) là mã nhận dạng cụ thể của người bán. Nó sẽ giúp quản lý hàng tồn kho của bạn"
                                         ></i>
                                     </label>
-                                    <input
-                                        type="text"
-                                        name="variants[sku][{{ $loop->index }}]"
-                                        value="{{ old("variants.sku.$loop->index", $inventory->sku) }}"
-                                        class="form-control {{ $errors->has("variants.sku.$loop->index") ? 'is-invalid' : '' }}"
-                                        placeholder="{{ __('Enter sku') }}"
-                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            id="variants_sku_{{ $loop->index }}"
+                                            name="variants[sku][{{ $loop->index }}]"
+                                            value="{{ old("variants.sku.$loop->index", $inventory->sku) }}"
+                                            class="form-control {{ $errors->has("variants.sku.$loop->index") ? 'is-invalid' : '' }}"
+                                            placeholder="{{ __('Enter sku') }}"
+                                        >
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" data-generate data-generate-length="10" data-generate-ref="#variants_sku_{{ $loop->index }}"  data-generate-prefix="{{ $product->code }}-" data-generate-uppercase="true" type="button">{{ __('Generate SKU') }}</button>
+                                        </div>
+                                    </div>
                                     @error("variants.sku.{{ $loop->index }}")
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

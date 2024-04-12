@@ -70,7 +70,12 @@
 
                         <div class="form-group">
                             <label for="">{{ __('Code') }} *</label>
-                            <input type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
+                            <div class="input-group">
+                                <input id="code" type="text" name="code" value="{{ old('code', $product->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" data-generate data-generate-length="10" data-generate-ref="#code" data-generate-uppercase="true" type="button">{{ __('Generate Code') }}</button>
+                                </div>
+                            </div>
                             @error('code')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
