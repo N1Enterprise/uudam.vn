@@ -81,6 +81,55 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label>{{ __('Loại sản phẩm') }} *</label>
+                            <input type="hidden" name="type" value="{{ $product->type }}">
+                            <select title="-- {{ __('Chọn loại sản phẩm') }} --" class="form-control k_selectpicker" disabled>
+                                @foreach($productTypeLabels as $key => $label)
+                                <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
+                                @endforeach
+                            </select>
+                            @error('type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ __('Danh mục') }} *</label>
+                            <select name="categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
+                                @foreach($categoryGroups as $categoryGroup)
+                                <optgroup label="{{ $categoryGroup->name }}">
+                                    @foreach($categoryGroup->categories as $category)
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, old('categories', $product->categories->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                    @endforeach
+                                </optgroup>
+                                @endforeach
+                            </select>
+                            @error('categories')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ __('Thương hiệu') }}</label>
+                            <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Nhập tên thương hiệu') }}" value="{{ old('branch', $product->branch) }}">
+                            @error('branch')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ __('Hoạt động') }}</label>
+                            <div>
+                                <span class="k-switch k-switch--icon">
+                                    <label>
+                                        <input type="checkbox" {{ boolean(old('status', $product->status)) ? 'checked' : ''}} name="status"/>
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -191,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
                 <div class="k-portlet">
                     <div class="k-portlet__head d-flex justify-content-between align-items-center">
                         <div class="k-portlet__head-label">
@@ -203,57 +252,11 @@
                     </div>
                     <div class="k-portlet__body">
                         <div class="collapse" id="classification_information_tab">
-                            <div class="form-group">
-                                <label>{{ __('Danh mục') }} *</label>
-                                <select name="categories[]" title="-- {{ __('Chọn danh mục') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
-                                    @foreach($categoryGroups as $categoryGroup)
-                                    <optgroup label="{{ $categoryGroup->name }}">
-                                        @foreach($categoryGroup->categories as $category)
-                                        <option value="{{ $category->id }}" {{ in_array($category->id, old('categories', $product->categories->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $category->name }}</option>
-                                        @endforeach
-                                    </optgroup>
-                                    @endforeach
-                                </select>
-                                @error('categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <div class="form-group">
-                                <label>{{ __('Loại sản phẩm') }} *</label>
-                                <select name="type" title="-- {{ __('Chọn loại sản phẩm') }} --" class="form-control k_selectpicker">
-                                    @foreach($productTypeLabels as $key => $label)
-                                    <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
-                                    @endforeach
-                                </select>
-                                @error('type')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>{{ __('Thương hiệu') }}</label>
-                                <input type="text" class="form-control {{ $errors->has('branch') ? 'is-invalid' : '' }}" name="branch" placeholder="{{ __('Nhập tên thương hiệu') }}" value="{{ old('branch', $product->branch) }}">
-                                @error('branch')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-3 col-form-label">{{ __('Hoạt động') }}</label>
-                                <div class="col-3">
-                                    <span class="k-switch">
-                                        <label>
-                                            <input type="checkbox" {{ boolean(old('status', $product->status)) ? 'checked' : ''}} name="status"/>
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-12">
                 <div class="k-portlet">
                     <div class="k-portlet__head d-flex justify-content-between align-items-center">
