@@ -22,7 +22,7 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             [
                 'title' => ['nullable', 'max:255'],
                 'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
-                'slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')->ignore($inventory->getKey())],
+                'slug' => ['required', 'max:255', Rule::unique(Inventory::class, 'slug')->ignore($inventory->getKey())],
                 'available_from' => ['nullable', 'date'],
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
                 'display_on_frontend' => ['required'],

@@ -22,7 +22,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             [
                 'title' => ['nullable', 'max:255'],
                 'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
-                'product_slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')],
+                'product_slug' => ['required', 'max:255', Rule::unique(Inventory::class, 'slug')],
                 'available_from' => ['nullable', 'date'],
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
                 'display_on_frontend' => ['required'],
