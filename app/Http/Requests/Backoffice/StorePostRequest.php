@@ -27,7 +27,7 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta' => ['nullable', 'array'],
             'meta_title' => ['nullable', 'max:255'],
-            'meta_description' => ['nullable', 'max:255'],
+            'meta_description' => ['nullable'],
             'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
             'allow_frontend_search' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
