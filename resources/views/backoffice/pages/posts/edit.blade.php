@@ -78,6 +78,20 @@
 								</div>
 
                                 <div class="form-group">
+                                    <label for="">{{ __('Code') }} *</label>
+                                    <div class="input-group">
+                                        <input id="code" type="text" name="code" value="{{ old('code', , $post->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" data-generate data-generate-length="5" data-generate-ref="#code" data-generate-uppercase="true" type="button">{{ __('Generate Code') }}</button>
+                                        </div>
+                                    </div>
+
+                                    @error('code')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
                                     <label>{{ __('Danh mục') }} *</label>
                                     <select name="post_category_id" title="-- {{ __('Chọn danh mục') }} --" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker {{ $errors->has('post_category_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($postCategories as $category)
