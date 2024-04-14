@@ -34,6 +34,7 @@ class Post extends BaseModel
         'display_on_frontend',
         'allow_frontend_search',
         'meta',
+        'code',
         'meta_title',
         'meta_description',
     ];

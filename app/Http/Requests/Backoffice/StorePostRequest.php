@@ -15,6 +15,7 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
         return [
             'name' => ['required', 'max:255'],
             'slug' => ['required', 'alpha-dash', 'max:255', Rule::unique(Post::class, 'slug')],
+            'code' => ['required', 'max:255', Rule::unique(Post::class, 'code')],
             'image' => ['required', 'array'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
