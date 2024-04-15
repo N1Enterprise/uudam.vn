@@ -24,7 +24,7 @@ class FrontendRouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes()
     {
-        Route::middleware(['web', 'system.maintenance'])
+        Route::middleware(['redirect.to.root', 'web', 'system.maintenance'])
             ->namespace($this->namespace)
             ->as('fe.web.')
             ->group(base_path('routes/frontend/web.php'));
@@ -32,7 +32,7 @@ class FrontendRouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes()
     {
-        Route::middleware(['web'])
+        Route::middleware(['redirect.to.root', 'web'])
             ->as('fe.api.')
             ->prefix('fe/api')
             ->group(base_path('routes/frontend/api.php'));

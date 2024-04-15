@@ -24,7 +24,7 @@ class BackofficeRouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes()
     {
-        Route::middleware(['web', 'auth:admin'])
+        Route::middleware(['redirect.to.root', 'web', 'auth:admin'])
             ->prefix('bo')
             ->namespace($this->namespace)
             ->as('bo.web.')
@@ -33,7 +33,7 @@ class BackofficeRouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes()
     {
-        Route::middleware(['web', 'auth:admin'])
+        Route::middleware(['redirect.to.root', 'web', 'auth:admin'])
             ->as('bo.api.')
             ->prefix('bo/api')
             ->group(base_path('routes/backoffice/api.php'));
