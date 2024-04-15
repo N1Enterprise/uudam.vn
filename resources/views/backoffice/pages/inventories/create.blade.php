@@ -131,7 +131,14 @@
                         @if ($inventory->id)
                         <div class="form-group">
                             <label for="">{{ __('Đường dẫn sản phẩm') }} *</label>
-                            <a href="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}" class="d-block" target="_blank">{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}</a>
+
+                            <div>
+                                <a href="{{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}" target="_blank">
+                                    {{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}
+                                </a>
+
+                                <button type="button" data-copy-clipboard data-copy-clipboard-content="{{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}" class="btn btn-sm btn-outline-primary ml-2">{{ __('COPY') }}</button>
+                            </div>
                         </div>
                         @endif
 

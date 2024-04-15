@@ -313,13 +313,16 @@ class InventoryService extends BaseService
         return $inventories;
     }
 
-    public function showBySlugForGuest($slug)
+    public function showBySlugForGuest($slug, $data = [])
     {
+        $sku = data_get($data, 'sku');
+
         $inventory = $this->inventoryRepository
             ->modelScopes(['feDisplay', 'active'])
             ->with(['product', 'attributeValues', 'attributes', 'productCombos'])
-            ->scopeQuery(function($q) use ($slug) {
-                $q->where('slug', $slug);
+            ->scopeQuery(function($q) use ($slug, $sku) {
+                $q->where('slug', $slug)
+                    ->orWhere('sku', $sku);
             })
             ->first([
                 'available_from',
