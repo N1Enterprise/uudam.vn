@@ -65,6 +65,8 @@ return [
 
     'fe_view_only_mode' => env('FE_VIEW_ONLY_MODE', false),
 
+    'enable_force_https' => env('ENABLE_FORCE_HTTPS', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
