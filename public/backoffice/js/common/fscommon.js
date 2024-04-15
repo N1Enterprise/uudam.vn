@@ -1124,3 +1124,13 @@ function copyToClipboard(text) {
 	document.execCommand("copy");
 	$temp.remove();
 }
+
+$('[data-copy-clipboard]').each(function(_, element) {
+    $(element).on('click', function() {
+        const content = $(this).attr('data-copy-clipboard-content');
+
+        copyToClipboard(content);
+
+        fstoast.success('Copy to Clipboard success!');
+    });
+});

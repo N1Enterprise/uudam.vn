@@ -31,9 +31,13 @@ class ProductController extends BaseController
 
     public function index(Request $request, $slug)
     {
-        $inventory = $this->inventoryService->showBySlugForGuest($slug);
+        $inventory = $this->inventoryService->showBySlugForGuest($slug, $request->all());
 
         if (empty($inventory)) throw new ModelNotFoundException();
+
+        if ($inventory->slug != $slug) {
+            return redirect()->route('fe.web.products.index', ['slug' => $inventory->slug, 'sku' => $inventory->sku]);
+        }
 
         $variants = $this->inventoryService->searchVariantsByProductForGuest($inventory->product_id);
 
