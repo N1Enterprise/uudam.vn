@@ -29,10 +29,6 @@
                         @endif
                     </span>
                 </div>
-
-                @if (($inventory->final_sold_count))
-                <div class="sold_count sold_count_desktop" style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>
-                @endif
             </div>
         </div>
         <div class="product product--large product--thumbnail_slider grid grid--1-col grid--2-col-tablet">
