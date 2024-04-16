@@ -26,17 +26,23 @@
             <div class="section-content-template">
                 @php
                     $__frontend_custom        = data_get($homePageDisplayOrder, 'params.__frontend_custom', '');
-                    $__header_image           = data_get($homePageDisplayOrder, 'params.__frontend_custom.header_image', '');
+                    $__frontend_header_image  = data_get($homePageDisplayOrder, 'params.__frontend_custom.header_image', '');
+                    $__frontend_title_color   = data_get($homePageDisplayOrder, 'params.__frontend_custom.title_color', '#000000');
+                    $__frontend_custom_enable = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
                     $__frontend_custom_enable = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
                 @endphp
 
                 <div style="background: {{ boolean($__frontend_custom_enable) ? data_get($__frontend_custom, 'background', '#FFFFFF') : '' }}; border-radius: 3px;" {{ $__frontend_custom_enable ? 'has-frontend-custom' : '' }}>
                     @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
-                    <div class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</div>
-                    @elseif ($__frontend_custom_enable && $__header_image)
+
+                    <div class="ls-box-title custom-ls-box-title" style="color: {{ boolean($__frontend_custom_enable) ? $__frontend_title_color : '' }}">{{ data_get($homePageDisplayOrder, 'name') }}</div>
+
+                    @elseif ($__frontend_custom_enable && $__frontend_header_image)
+
                     <div class="__frontend_custom_header_image">
-                        <img src="{{ $__header_image }}" alt="{{ data_get($homePageDisplayOrder, 'name') }}" style="width: 100%; height: 100%;">
+                        <img src="{{ $__frontend_header_image }}" alt="{{ data_get($homePageDisplayOrder, 'name') }}" style="width: 100%; height: 100%;">
                     </div>
+
                     @endif
 
                     @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
