@@ -15,6 +15,26 @@
 @section('content_body')
 <section class="shopify-section section" style="margin-top: 10px;">
     <section class="page-width section-template__main-padding">
+        <div class="product product--large product--info">
+            <div class="product__title">
+                <div class="product__title-wrapper">
+                    <h1 data-title>{{ $inventory->title }}</h1>
+                    <span class="data-sku-wrapper">
+                        SKU: <span data-sku>{{ $inventory->sku }}</span>
+                        @if (($inventory->final_sold_count))
+                        <span class="sold_count sold_count_mobile">
+                            <span style="padding: 0 10px;">|</span>
+                            Đã bán {{ $inventory->final_sold_count }}
+                        </span>
+                        @endif
+                    </span>
+                </div>
+
+                @if (($inventory->final_sold_count))
+                <div class="sold_count sold_count_desktop" style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>
+                @endif
+            </div>
+        </div>
         <div class="product product--large product--thumbnail_slider grid grid--1-col grid--2-col-tablet">
             <div class="media-gallery grid__item product__media-wrapper">
                 <div class="product__media-gallery">

@@ -70,7 +70,7 @@
     --text-boxes-shadow-horizontal-offset: 0px;
     --text-boxes-shadow-vertical-offset: 4px;
     --text-boxes-shadow-blur-radius: 5px;
-    --buttons-radius: 0px;
+    --buttons-radius: 3px;
     --buttons-radius-outset: 0px;
     --buttons-border-width: 1px;
     --buttons-border-opacity: 1.0;
@@ -80,7 +80,7 @@
     --buttons-shadow-vertical-offset: 4px;
     --buttons-shadow-blur-radius: 5px;
     --buttons-border-offset: 0px;
-    --inputs-radius: 0px;
+    --inputs-radius: 3px;
     --inputs-border-width: 1px;
     --inputs-border-opacity: 0.55;
     --inputs-shadow-opacity: 0.0;

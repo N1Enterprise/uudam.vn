@@ -1,18 +1,9 @@
 <div class="product__info-container product__info-container--sticky" data-inventory='@json($inventory)'>
-    <div class="product__title">
-        <h1 data-title>{{ $inventory->title }}</h1>
-    </div>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin: 3px 0; margin: -10px 0;">
-        <div>SKU: <span data-sku>{{ $inventory->sku }}</span></div>
-        @if (($inventory->final_sold_count))
-        <div style="font-size: 15px;">Đã bán {{ $inventory->final_sold_count }}</div>
-        @endif
-    </div>
     @if ($inventory->isOngoingFlashSale())
     @include('frontend.pages.products.partials.flash-sale')
     @endif
     <p class="product__text subtitle"></p>
-    <div class="{{ $inventory->isOngoingFlashSale() ? 'flashsale-price' : '' }}">
+    <div class="{{ $inventory->isOngoingFlashSale() ? 'flashsale-price' : '' }}" style="margin: 0;">
         <div class="price price--large price--show-badge">
             <div class="price__container">
                 <div class="price__regular">
@@ -69,7 +60,7 @@
                 <span class="product-form__error-message"></span>
             </div>
             @if(count($attributes))
-            <variant-radios style="margin-top: 10px;">
+            <variant-radios>
                 @foreach ($attributes as $attribute)
                 <fieldset class="attributes-item product-form__input">
                     <legend for="attribute_{{ $attribute->id }}" class="form__label">
@@ -106,21 +97,23 @@
             <div class="inventory-price-area" style="padding: 15px 0;">
                 <div class="product-form__input product-form__quantity">
                     <label class="form__label">{{ __('Số Lượng') }}</label>
-                    <quantity-input class="quantity">
-                        <button data-quantity-decrease="product" class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
-                            <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
-                            </svg>
-                        </button>
-                        <input data-quantity-input="product" data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
-                        <button data-quantity-increase="product" class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
-                            <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
-                            </svg>
-                        </button>
-                    </quantity-input>
+                    <div style="display: flex; align-items: center;">
+                        <quantity-input class="quantity">
+                            <button data-quantity-decrease="product" class="quantity__button no-js-hidden" name="minus" type="button" data-quantity-button="decrease">
+                                <span class="visually-hidden">Decrease quantity for {{ $inventory->title }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                            <input data-quantity-input="product" data-stock-quantity class="quantity__input" type="number" name="quantity" min="1" value="1" max="{{ $inventory->stock_quantity }}">
+                            <button data-quantity-increase="product" class="quantity__button no-js-hidden" name="plus" type="button" data-quantity-button="increase">
+                                <span class="visually-hidden">Increase quantity for {{ $inventory->title }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </quantity-input>
+                    </div>
                 </div>
                 <div>
                     <div class="inventory-price">
@@ -146,7 +139,7 @@
                     <div class="affiliate_Sales_Channels">
                         @foreach ($affiliateSalesChannels as $channel)
                             @if (data_get($inventory, ['sale_channels', data_get($channel, 'key')]))
-                            <a href="{{ data_get($inventory, ['sale_channels', data_get($channel, 'key')]) }}" target="_blank" class="affiliate_Sales_Channels__item" style="flex: 0 0 {{ data_get($channel, 'size', '100%') }};">
+                            <a href="{{ data_get($inventory, ['sale_channels', data_get($channel, 'key')]) }}" target="_blank" class="product-sale-btn-item affiliate_Sales_Channels__item">
                                 <img src="{{ data_get($channel, 'logo') }}" alt="{{ data_get($channel, 'name') }}" width="30" height="30">
                                 <span>Mua tại {{ data_get($channel, 'name') }}</span>
                             </a>
@@ -155,34 +148,23 @@
                     </div>
                     @endif
 
-                    <div style="display: flex; justify-content: space-between;">
-                        <button type="button" id="buy_now" class="product-form__submit button button--full-width button--primary" data-return-url="{{ route('fe.web.user.checkout.confirmation') }}" login-ref="#Add_Cart_Required_Login" style="flex: 1; margin-right: 10px;">
-                            <span>Mua ngay</span>
-                        </button>
-                        <a class="link" href="{{ route('fe.web.cart.index') }}" style="margin-bottom: 1rem; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; text-decoration: none; width: 50px; height: 50px; position: relative;" title="Xem giỏ hàng">
+                    <div class="product-sale-btn-groups">
+                        <button type="submit" name="add" class="product-sale-btn-item product-sale-btn-add-to-cart product-form__submit button button--full-width button--primary" style="background-color: #fff; color: #000;">
                             <svg class="icon icon-cart" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" style="width: 40px; height: 40px;">
                                 <path fill="currentColor" fill-rule="evenodd" d="M20.5 6.5a4.75 4.75 0 00-4.75 4.75v.56h-3.16l-.77 11.6a5 5 0 004.99 5.34h7.38a5 5 0 004.99-5.33l-.77-11.6h-3.16v-.57A4.75 4.75 0 0020.5 6.5zm3.75 5.31v-.56a3.75 3.75 0 10-7.5 0v.56h7.5zm-7.5 1h7.5v.56a3.75 3.75 0 11-7.5 0v-.56zm-1 0v.56a4.75 4.75 0 109.5 0v-.56h2.22l.71 10.67a4 4 0 01-3.99 4.27h-7.38a4 4 0 01-4-4.27l.72-10.67h2.22z"></path>
                             </svg>
-                            <div class="cart-count-bubble">
-                                <span>
-                                    <span data-value-cart-total-quantity="">0</span>
-                                </span>
-                                <span class="visually-hidden">
-                                    <span data-value-cart-total-quantity="">0</span>
-                                    item
-                                </span>
+                            <span>Thêm Vào Giỏ Hàng</span>
+                            <div class="loading-overlay__spinner hidden">
+                                <svg focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                </svg>
                             </div>
-                        </a>
-                    </div>
+                        </button>
 
-                    <button type="submit" name="add" class="product-form__submit button button--full-width button--primary" style="background-color: #fff; color: #000;">
-                        <span>Thêm vào giỏ hàng</span>
-                        <div class="loading-overlay__spinner hidden">
-                            <svg focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                            </svg>
-                        </div>
-                    </button>
+                        <button type="button" id="buy_now" class="product-sale-btn-item product-sale-btn-buy-now product-form__submit button button--full-width button--primary" data-return-url="{{ route('fe.web.user.checkout.confirmation') }}" login-ref="#Add_Cart_Required_Login">
+                            <span>Mua Ngay</span>
+                        </button>
+                    </div>
                 </div>
             </form>
 
@@ -200,7 +182,7 @@
             <div class="share-button__fallback motion-reduce">
                 <div class="field">
                     <span class="share-button__message hidden"></span>
-                    <input data-url type="text" class="field__input" id="url" value="{{ route('fe.web.products.index', $inventory->slug) }}" placeholder="Link" onclick="" readonly="">
+                    <input data-url type="text" class="field__input" id="url" value="{{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}" placeholder="Link" onclick="" readonly="">
                     <label class="field__label" for="url">Link</label>
                 </div>
                 <button class="share-button__close hidden no-js-hidden">
