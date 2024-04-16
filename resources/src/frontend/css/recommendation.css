@@ -218,7 +218,7 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
     margin: 0 0 2px;
     padding-top: 5px;
     text-decoration: none;
-    height: 57px;
+    height: 55px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -402,20 +402,22 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 }
 
 .ls-price-group {
-    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .sold-count {
     color: #181818 !important;
     font-size: 13px;
+    margin-bottom: 2px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 414px) {
     .sold-count {
-        order:-1
+        font-size: 10px;
+        margin-bottom: 4px;
     }
 }
 
