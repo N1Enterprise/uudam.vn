@@ -25,13 +25,18 @@
         <div class="section-template-padding page-width">
             <div class="section-content-template">
                 @php
-                    $parent_styles = data_get($homePageDisplayOrder, 'params.style_custom.parent_styles', '');
-                    $parent_title_styles = data_get($homePageDisplayOrder, 'params.style_custom.parent_title_styles', '');
-                    $item_styles = data_get($homePageDisplayOrder, 'params.style_custom.item_styles', '');
+                    $__frontend_custom        = data_get($homePageDisplayOrder, 'params.__frontend_custom', '');
+                    $__header_image           = data_get($homePageDisplayOrder, 'params.__frontend_custom.header_image', '');
+                    $__frontend_custom_enable = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
                 @endphp
-                <div style="{{ $parent_styles }}">
+
+                <div style="background: {{ boolean($__frontend_custom_enable) ? data_get($__frontend_custom, 'background', '#FFFFFF') : '' }}; border-radius: 3px;" {{ $__frontend_custom_enable ? 'has-frontend-custom' : '' }}>
                     @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
-                    <div class="ls-box-title custom-ls-box-title" style="{{ $parent_title_styles }}">{{ data_get($homePageDisplayOrder, 'name') }}</div>
+                    <div class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</div>
+                    @elseif ($__frontend_custom_enable && $__header_image)
+                    <div class="__frontend_custom_header_image">
+                        <img src="{{ $__header_image }}" alt="{{ data_get($homePageDisplayOrder, 'name') }}" style="width: 100%; height: 100%;">
+                    </div>
                     @endif
 
                     @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
