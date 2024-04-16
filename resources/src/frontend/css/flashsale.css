@@ -275,6 +275,15 @@ h2.heading-bar__title {
     justify-content: space-between;
     align-items: center;
 }
+@media screen and (max-width: 800px){
+    .details-pro .flashsale__header {
+        flex-direction: column;
+    }
+
+    .details-pro .flashsale__header .flashsale__title {
+        margin-bottom: 5px;
+    }
+}
 .details-pro .flashsale__header .flashsale__title h5 {
 	color: #fff;
 	text-transform: uppercase;
