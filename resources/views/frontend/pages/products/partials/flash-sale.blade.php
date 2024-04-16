@@ -2,7 +2,7 @@
     <div class="flashsale" style="--countdown-background: #000000; --countdown-color: #ffffff; --process-background: #ffaaaf; --process-color1: #ff424e; --process-color2: #ff424e; --stock-color: #000000; background: transparent; --heading-color: #000000;">
         <div class="flashsale__header">
             <div class="flashsale__title text-center text-md-left ">
-                <h5>KHUYẾN MÃI NGÀY LỄ PHẬT ĐẢNG</h5>
+                <h5>KHUYẾN MÃI NGÀY LỄ PHẬT ĐẢN</h5>
                 <span class="ega-dot">
                     <span class="ega-ping"></span>
                 </span>
