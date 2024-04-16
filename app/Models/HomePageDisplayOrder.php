@@ -16,7 +16,12 @@ class HomePageDisplayOrder extends BaseModel
         'order',
         'status',
         'display_on_frontend',
-        'hidden_name'
+        'hidden_name',
+        'params'
+    ];
+
+    protected $casts = [
+        'params' => 'json'
     ];
 
     public function items()

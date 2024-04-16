@@ -45,7 +45,7 @@ class PostService extends BaseService
                 }
             });
 
-        return $paginate 
+        return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
             : $result->all();
     }
@@ -103,10 +103,16 @@ class PostService extends BaseService
             ->all(data_get($data, 'columns'));
     }
 
-    public function findBySlug($slug, $data = [])
+    public function findBySlugForGuest($slug, $data = [])
     {
+        $id = data_get($data, 'id');
+
         return $this->postRepository
             ->modelScopes(['active'])
-            ->firstWhere(['slug' => $slug], data_get($data, 'columns', ['*']));
+            ->scopeQuery(function($q) use ($slug, $id) {
+                $q->where('slug', $slug)
+                    ->orWhere('id', $id);
+            })
+            ->first(data_get($data, 'columns', ['*']));
     }
 }

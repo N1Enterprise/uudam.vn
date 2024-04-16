@@ -214,7 +214,12 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
     line-height: 1.3em;
     margin: 0 0 2px;
     padding-top: 5px;
-    text-decoration: none
+    text-decoration: none;
+    height: 57px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .ls-vendor {
@@ -379,7 +384,7 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 
 .recommendation-target {
     padding: 0 0px;
-    margin: 0px 10px;
+    margin: 0px 6px;
 }
 
 .recommendation-target:hover img {

@@ -15,6 +15,7 @@ class UpdateHomePageDisplayOrderRequest extends BaseFormRequest implements Updat
             'order' => ['nullable', 'integer'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'params' => ['nullable'],
             'hidden_name' => ['required'],
         ];
     }
@@ -25,6 +26,7 @@ class UpdateHomePageDisplayOrderRequest extends BaseFormRequest implements Updat
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'hidden_name' => boolean($this->hidden_name),
+            'params' => !empty($this->params) ? json_decode($this->params) : null,
         ]);
     }
 }

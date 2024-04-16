@@ -46,7 +46,7 @@
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span class="share-button__message hidden"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), '_id' => data_get($post, 'id')]) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'id' => data_get($post, 'id')]) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
@@ -55,7 +55,7 @@
                             </svg>
                             <span class="visually-hidden">Close share</span>
                         </button>
-                        <button class="share-button__copy no-js-hidden" data-copy-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), '_id' => data_get($post, 'id')]) }}">
+                        <button class="share-button__copy no-js-hidden" data-copy-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'id' => data_get($post, 'id')]) }}">
                             <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 11 13">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
                             </svg>
