@@ -33,7 +33,7 @@ class HomePageDisplayOrderCms extends BaseCms
                 }])
                 ->modelScopes(['active', 'feDisplay'])
                 ->orderBy('order')
-                ->all(['id', 'name', 'hidden_name'])
+                ->all(['id', 'name', 'hidden_name', 'params'])
                 ->toArray();
         });
     }

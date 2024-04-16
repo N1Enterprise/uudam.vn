@@ -24,43 +24,50 @@
     <section class="shopify-section section">
         <div class="section-template-padding page-width">
             <div class="section-content-template">
-                @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
-                <div class="ls-box-title custom-ls-box-title">{{ data_get($homePageDisplayOrder, 'name') }}</div>
-                @endif
+                @php
+                    $parent_styles = data_get($homePageDisplayOrder, 'params.style_custom.parent_styles', '');
+                    $parent_title_styles = data_get($homePageDisplayOrder, 'params.style_custom.parent_title_styles', '');
+                    $item_styles = data_get($homePageDisplayOrder, 'params.style_custom.item_styles', '');
+                @endphp
+                <div style="{{ $parent_styles }}">
+                    @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
+                    <div class="ls-box-title custom-ls-box-title" style="{{ $parent_title_styles }}">{{ data_get($homePageDisplayOrder, 'name') }}</div>
+                    @endif
 
-                @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
-                    @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
-                    <div data-section="home_page_display_{{ data_get($item, 'type') }}:{{ data_get($item, 'id') }}" data-section-defer="true" style="overflow: hidden;">
-                        <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom multicolumn background-primary" data-box-style="carousel" style="display: block;">
-                            <div class="recommendation-items">
-                                @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
-                                @include('frontend.pages.home.partials.recommendation-products')
-                                @endif
+                    @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
+                        @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
+                        <div data-section="home_page_display_{{ data_get($item, 'type') }}:{{ data_get($item, 'id') }}" data-section-defer="true" style="overflow: hidden;">
+                            <limespot-box data-owner="LimeSpot" class="ls-recommendation-box limespot-recommendation-box ls-animate no-zoom multicolumn background-primary" data-box-style="carousel" style="display: block;">
+                                <div class="recommendation-items">
+                                    @if (data_get($item, 'type') == enum('HomePageDisplayType')::PRODUCT)
+                                    @include('frontend.pages.home.partials.recommendation-products')
+                                    @endif
 
-                                @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
-                                @include('frontend.pages.home.partials.recommendation-collections')
-                                @endif
+                                    @if (data_get($item, 'type') == enum('HomePageDisplayType')::COLLECTION)
+                                    @include('frontend.pages.home.partials.recommendation-collections')
+                                    @endif
 
-                                @if (data_get($item, 'type') == enum('HomePageDisplayType')::POST)
-                                @include('frontend.pages.home.partials.recommendation-posts')
-                                @endif
+                                    @if (data_get($item, 'type') == enum('HomePageDisplayType')::POST)
+                                    @include('frontend.pages.home.partials.recommendation-posts')
+                                    @endif
 
-                                @if (data_get($item, 'type') == enum('HomePageDisplayType')::BLOG)
-                                @include('frontend.pages.home.partials.recommendation-blogs')
-                                @endif
+                                    @if (data_get($item, 'type') == enum('HomePageDisplayType')::BLOG)
+                                    @include('frontend.pages.home.partials.recommendation-blogs')
+                                    @endif
 
-                                @if (data_get($item, 'type') == enum('HomePageDisplayType')::IN_APP_BANNER_100_PERCENT)
-                                @include('frontend.pages.home.partials.recommendation-in-app-banners-100')
-                                @endif
+                                    @if (data_get($item, 'type') == enum('HomePageDisplayType')::IN_APP_BANNER_100_PERCENT)
+                                    @include('frontend.pages.home.partials.recommendation-in-app-banners-100')
+                                    @endif
 
-                                @if (data_get($item, 'type') == enum('HomePageDisplayType')::IN_APP_BANNER_50_PERCENT)
-                                @include('frontend.pages.home.partials.recommendation-in-app-banners-50')
-                                @endif
-                            </div>
-                        </limespot-box>
-                    </div>
-                    @endforeach
-                @endif
+                                    @if (data_get($item, 'type') == enum('HomePageDisplayType')::IN_APP_BANNER_50_PERCENT)
+                                    @include('frontend.pages.home.partials.recommendation-in-app-banners-50')
+                                    @endif
+                                </div>
+                            </limespot-box>
+                        </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
     </section>

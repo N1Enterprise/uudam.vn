@@ -50,7 +50,7 @@ class PageService extends BaseService
                 }
             });
 
-        return $paginate 
+        return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
             : $result->all();
     }
@@ -84,13 +84,17 @@ class PageService extends BaseService
         return $this->pageRepository->delete($id);
     }
 
-    public function findBySlugByUser($slug, $data = [])
+    public function findBySlugForGuest($slug, $data = [])
     {
+        $id = data_get($data, 'id');
+
         return $this->pageRepository
             ->modelScopes(['active', 'feDisplay'])
             ->selectColumns(data_get($data, 'columns', ['*']))
-            ->firstWhere([
-                'slug' => $slug
-            ]);
+            ->scopeQuery(function($q) use ($slug, $id) {
+                $q->where('slug', $slug)
+                    ->orWhere('id', $id);
+            })
+            ->first();
     }
 }

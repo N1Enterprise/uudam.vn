@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label for="">{{ __('Code') }} *</label>
                                     <div class="input-group">
-                                        <input id="code" type="text" name="code" value="{{ old('code', , $post->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
+                                        <input id="code" type="text" name="code" value="{{ old('code', $post->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" data-generate data-generate-length="5" data-generate-ref="#code" data-generate-uppercase="true" type="button">{{ __('Generate Code') }}</button>
                                         </div>
