@@ -383,8 +383,10 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 }
 
 .recommendation-target {
-    padding: 0 0px;
     margin: 0px 6px;
+    background-color: #fff;
+    padding: 6px;
+    border-radius: 3px;
 }
 
 .recommendation-target:hover img {
