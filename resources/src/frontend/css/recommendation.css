@@ -385,7 +385,7 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 .recommendation-target {
     margin: 0px 6px;
     background-color: #fff;
-    padding: 0 6px;
+    padding: 6px;
     border-radius: 3px;
 }
 
