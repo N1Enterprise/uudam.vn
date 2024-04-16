@@ -49,14 +49,14 @@
 
 @media screen and (min-width: 990px) {
     .product--large:not(.product--no-media) .product__media-wrapper {
-        max-width: 55%;
-        width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
+        max-width: 45%;
+        width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
     }
 
     .product--large:not(.product--no-media) .product__info-wrapper {
         padding-left: 4rem;
-        max-width: 45%;
-        width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+        max-width: 55%;
+        width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
     }
 
     .product--medium:not(.product--no-media) .product__media-wrapper,
@@ -344,6 +344,38 @@ a.product__text {
     word-break: break-word;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    border-bottom: 3px solid #efefef;
+    padding-bottom: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product__title-wrapper {
+    display: flex;
+}
+
+.sold_count_mobile {
+    display: none;
+}
+
+.sold_count_desktop {
+    display: block;
+}
+
+.product__title h1[data-title] {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    display: inline-block;
+}
+
+.data-sku-wrapper {
+    color: #939191;
+    display: -webkit-box;
+    font-size: 16px;
+    overflow: hidden;
+    margin-left: 15px;
 }
 
 .product__title > * {
@@ -391,7 +423,7 @@ a.product__text {
 
 @media screen and (min-width: 750px) {
     .product__info-container {
-        max-width: 60rem;
+        /* max-width: 60rem; */
     }
 
     .product__info-container .price--on-sale .price-item--regular {
@@ -1082,7 +1114,7 @@ a.product__text {
 
     .thumbnail-slider .thumbnail-list.slider--tablet-up {
         display: flex;
-        padding: 0.5rem;
+        /* padding: 0.5rem; */
         flex: 1;
         scroll-padding-left: 0.5rem;
     }
@@ -1386,10 +1418,9 @@ a.product__text {
 
 
 .product-promotion {
-    padding: 10px;
+    padding: 7px;
     margin-bottom: 10px;
     border: 2px dashed #B00002;
-    margin-top: 30px;
     position: relative;
 }
 
@@ -1441,6 +1472,7 @@ a.product__text {
     color: #000;
     border-radius: 3px;
     border: 1px solid #d8d8d8;
+    margin-bottom: 30px;
 }
 
 .product-condition-note p {
@@ -1452,6 +1484,7 @@ a.product__text {
 [data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
     padding: 5px!important;
     border: none;
+
 }
 
 [data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
@@ -1543,7 +1576,6 @@ a.product__text {
     margin: 10px 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .affiliate_Sales_Channels .affiliate_Sales_Channels__item {
@@ -1563,4 +1595,81 @@ a.product__text {
 
 .affiliate_Sales_Channels .affiliate_Sales_Channels__item span {
     transform: translateY(4px);
+}
+
+.slider-component .product__media-list {
+    margin-bottom: 4px!important;
+}
+
+.product-sale-btn-groups {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-sale-btn-item {
+    width: 222px;
+    border-radius: 3px;
+    margin-right: 15px;
+    height: 44px;
+}
+
+.product-sale-btn-groups .product-sale-btn-add-to-cart {
+
+    padding: 0 0;
+    padding-right: 9px;
+    margin-right: 15px;
+}
+
+.product-sale-btn-groups .product-sale-btn-buy-now {
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .data-sku-wrapper {
+        margin-left: 0;
+    }
+    .product__title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .product__title-wrapper {
+        flex-direction: column;
+    }
+
+    .sold_count_mobile {
+        display: block;
+    }
+
+    .sold_count_desktop {
+        display: none;
+    }
+
+    .product__title h1[data-title] {
+        font-size: 17px;
+        font-weight: 300;
+    }
+
+    .data-sku-wrapper {
+        font-size: 12px;
+    }
+
+    .product-promotion {
+        border: 1px dashed #B00002;
+    }
+
+    .product-promotion__heading {
+        font-size: 12px;
+        font-weight: 300;
+        padding: 7px 10px;
+    }
+
+    .product-promotion > ul, .product-promotion > div {
+        font-size: 12px;
+    }
+
+    .product-sale-btn-item {
+        width: 100%;
+        flex: 0 0 100%;
+    }
 }
