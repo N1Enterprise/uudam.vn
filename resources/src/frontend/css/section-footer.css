@@ -219,8 +219,8 @@
 
 @media screen and (max-width: 400px) {
     .footer__block {
-        flex: 0 1 100%;
-        max-width: 100%;
+        flex: 0 1 50%;
+        max-width: 50%;
     }
 }
 

@@ -51,7 +51,7 @@
     }
 
     .article-template__hero-large {
-      height: 82.5rem;
+      height: 60.5rem;
     }
   }
 
@@ -202,4 +202,42 @@
 
 .deferred-media__poster-button .icon-play {
   margin-left: 0.2rem;
+}
+
+.article-contentview * {
+    height: auto;
+    margin: auto;
+    width: 100%;
+}
+
+.article-contentview img {
+    display: block;
+    width: 100%!important;
+    height: auto!important;
+    margin: 10px 0!important;
+}
+
+.article-contentview h2 {
+    padding: 10px 0;
+}
+
+.article-contentview h2 span,
+.article-contentview h2 a {
+    font-size: 25px!important;
+}
+
+.article-contentview a {
+    color: #025B50;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .article-contentview h2 span,
+    .article-contentview h2 a {
+        font-size: 20px!important;
+    }
+
+    .article-contentview h2 {
+        padding: 0;
+    }
 }

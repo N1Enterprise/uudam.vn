@@ -246,6 +246,7 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #025B50;
+    max-width: 100%;
 }
 
 .list-menu--inline {

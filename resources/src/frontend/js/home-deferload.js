@@ -12,7 +12,7 @@ const SECTION_SCROLL = {
                 const offsetHei = $(this).outerHeight();
 
                 if (
-                    scrollPosition >= (offsetTop - (offsetHei * 2.5))
+                    scrollPosition >= (offsetTop - (offsetHei * 3.25))
                     && scrollPosition < offsetTop + offsetHei
                 ) {
                     const sectionName = $(this).attr('data-section');
@@ -143,33 +143,33 @@ const SECTION_SCROLL = {
                     $.each(response?.data, function(index, item) {
                         $(`[data-recommendation-post-identifier=${item.id}]`).html(`
                             <div class="recommendation-target">
-                                <div class="blog__post article slider__slide slider__slide--full-width">
-                                    <div class="card-wrapper underline-links-hover" style="width: 100%;">
-                                        <div class="card article-card card--standard card--media">
-                                            <div class="card__inner  color-background-2 gradient ratio">
-                                                <div class="article-card__image-wrapper card__media">
-                                                    <div class="article-card__image media media--hover-effect">
-                                                        <img class="image-lazy" srcset="${ item.image }" src="${ item.image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.name }" class="motion-reduce" loading="lazy" width="2727" height="1818">
+                                <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
+                                    <div class="blog__post article slider__slide slider__slide--full-width">
+                                        <div class="card-wrapper underline-links-hover" style="width: 100%;">
+                                            <div class="card article-card card--standard card--media">
+                                                <div class="card__inner  color-background-2 gradient ratio">
+                                                    <div class="article-card__image-wrapper card__media">
+                                                        <div class="article-card__image media media--hover-effect">
+                                                            <img class="image-lazy" srcset="${ item.image }" src="${ item.image }" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="${ item.name }" class="motion-reduce" loading="lazy" width="2727" height="1818">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="card__content">
-                                                <div class="card__information">
-                                                    <a href="${ CATALOG_ROUTES.web_post_detail.replace(':slug', item.slug) }" class="full-unstyled-link">
+                                                <div class="card__content">
+                                                    <div class="card__information">
                                                         <h2 class="card__heading h2">${ item.name }</h2>
-                                                    </a>
-                                                    <div class="article-card__info caption-with-letter-spacing h5">
-                                                        <span class="circle-divider">
-                                                            <time datetime="${ item.post_at }">${ item.post_at }</time>
-                                                        </span>
+                                                        <div class="article-card__info caption-with-letter-spacing h5">
+                                                            <span class="circle-divider">
+                                                                <time datetime="${ item.post_at }">${ item.post_at }</time>
+                                                            </span>
+                                                        </div>
+                                                        <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
+                                                        <div class="article-card__footer"></div>
                                                     </div>
-                                                    <p class="article-card__excerpt rte-width">${ item.description || '' }</p>
-                                                    <div class="article-card__footer"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         `);
                     });

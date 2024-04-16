@@ -10,6 +10,16 @@ $(document).ready(function() {
     //     threshold: 300
     // });
 
+    $('.share-button__copy').each(function(_, element) {
+        $(element).on('click', function() {
+            const content = $(this).attr('data-copy-content');
+
+            copyToClipboard(content);
+
+            fstoast.success('Sao chép thành công!');
+        });
+    });
+
     if (! viewOnlyMode) {
         return false;
     }

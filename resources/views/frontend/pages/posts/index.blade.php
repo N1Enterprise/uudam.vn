@@ -17,11 +17,11 @@
     <article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="article-template__hero-container">
             <div class="article-template__hero-large media" itemprop="image">
-                <img srcset="{{ data_get($post, 'image') }}" src="{{ data_get($post, 'image') }}" loading="lazy" width="4472" height="3578" alt="{{ data_get($post, 'title') }}">
+                <img srcset="{{ data_get($post, 'image') }}" src="{{ data_get($post, 'image') }}" loading="lazy" width="4472" height="3578" alt="{{ data_get($post, 'name') }}">
             </div>
         </div>
         <header class="page-width page-width--narrow">
-            <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'title') }}</h1>
+            <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'name') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
                 <span>Cập nhật lần cuối vào lúc: </span>
                 <time datetime="{{ data_get($post, 'post_at') }}">{{ format_datetime(data_get($post, 'post_at')) }}</time>
@@ -46,7 +46,7 @@
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span class="share-button__message hidden"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), '_id' => data_get($post, 'id')]) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
@@ -55,7 +55,7 @@
                             </svg>
                             <span class="visually-hidden">Close share</span>
                         </button>
-                        <button class="share-button__copy no-js-hidden">
+                        <button class="share-button__copy no-js-hidden" data-copy-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), '_id' => data_get($post, 'id')]) }}">
                             <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 11 13">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
                             </svg>
@@ -65,7 +65,7 @@
                 </details>
             </share-button>
         </div>
-        <div class="article-template__content page-width page-width--narrow rte contentview" itemprop="articleBody">
+        <div class="article-template__content page-width page-width--narrow rte contentview article-contentview" itemprop="articleBody">
             {!! data_get($post, 'content') !!}
         </div>
         <div class="article-template__back element-margin-top center">
