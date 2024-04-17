@@ -26,13 +26,12 @@ class ProductReviewCms extends BaseCms
             return $this->model()->query()
                 ->scopes(['approved'])
                 ->where('product_id', $productId)
-                ->orderBy('created_at', 'desc')
+                ->orderBy('post_at', 'desc')
                 ->get([
                     'id',
                     'user_name',
                     'rating_type',
                     'status',
-                    'created_at',
                     'content',
                     'is_purchased',
                     'images',
