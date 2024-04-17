@@ -25,20 +25,20 @@
         <div class="section-template-padding page-width">
             <div class="section-content-template">
                 @php
-                    $__frontend_custom        = data_get($homePageDisplayOrder, 'params.__frontend_custom', '');
-                    $__frontend_header_image  = data_get($homePageDisplayOrder, 'params.__frontend_custom.header_image', '');
-                    $__frontend_title_color   = data_get($homePageDisplayOrder, 'params.__frontend_custom.title_color', '#000000');
-                    $__frontend_custom_enable = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
-                    $__frontend_background    = data_get($homePageDisplayOrder, 'params.__frontend_custom.background', '#FFFFFF');
+                    $__frontend_custom          = data_get($homePageDisplayOrder, 'params.__frontend_custom', '');
+                    $__frontend_header_image    = data_get($homePageDisplayOrder, 'params.__frontend_custom.header_image', '');
+                    $__frontend_title_color     = data_get($homePageDisplayOrder, 'params.__frontend_custom.title_color', '#000000');
+                    $__frontend_custom_enable   = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
+                    $__frontend_background      = data_get($homePageDisplayOrder, 'params.__frontend_custom.background', '#FFFFFF');
 
-                    $__flash_sale_enable     = data_get($homePageDisplayOrder, 'params.flash_sale.enable', false);
-                    $__flash_sale_start_at   = data_get($homePageDisplayOrder, 'params.flash_sale.start_at', false);
-                    $__flash_sale_end_at     = data_get($homePageDisplayOrder, 'params.flash_sale.end_at', false);
+                    $__flash_sale_enable        = data_get($homePageDisplayOrder, 'params.flash_sale.enable', false);
+                    $__flash_sale_start_at      = data_get($homePageDisplayOrder, 'params.flash_sale.start_at', false);
+                    $__flash_sale_end_at        = data_get($homePageDisplayOrder, 'params.flash_sale.end_at', false);
 
-                    $__flash_sale_color_bg = data_get($homePageDisplayOrder, 'params.flash_sale.colors.bg', 'transparent');
-                    $__flash_sale_color_timebg = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_bg', '#000');
+                    $__flash_sale_color_bg      = data_get($homePageDisplayOrder, 'params.flash_sale.colors.bg', 'transparent');
+                    $__flash_sale_color_timebg  = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_bg', '#000');
                     $__flash_sale_color_timetxt = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_text', '#000');
-                    $__flash_sale_color_text = data_get($homePageDisplayOrder, 'params.flash_sale.colors.text', '#FFF');
+                    $__flash_sale_color_text    = data_get($homePageDisplayOrder, 'params.flash_sale.colors.text', '#FFF');
                 @endphp
 
                 <div style="background: {{ boolean($__frontend_custom_enable) ? $__frontend_background : '' }}; border-radius: 3px;" {{ $__frontend_custom_enable ? 'has-frontend-custom' : '' }}>
