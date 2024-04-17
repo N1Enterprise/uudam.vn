@@ -44,7 +44,7 @@ class MenuController extends BaseController
 
     public function create()
     {
-        $inventories = $this->inventoryService->allAvailable();
+        $inventories = $this->inventoryService->allAvailableDistinct();
         $posts = $this->postService->allAvailable();
         $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
@@ -59,7 +59,7 @@ class MenuController extends BaseController
     public function edit($id)
     {
         $menu = $this->menuService->show($id, ['with' => 'menuCatalogs']);
-        $inventories = $this->inventoryService->allAvailable();
+        $inventories = $this->inventoryService->allAvailableDistinct();
         $posts = $this->postService->allAvailable();
         $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
