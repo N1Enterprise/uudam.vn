@@ -88,14 +88,5 @@
 
             </div>
         </div>
-        <style>
-            .spr-form-review-body .spr-form-input {
-                width: 100%;
-            }
-
-            .spr-form-review-body .spr-form-input textarea {
-                min-height: 10rem;
-            }
-        </style>
     </div>
 </div>
