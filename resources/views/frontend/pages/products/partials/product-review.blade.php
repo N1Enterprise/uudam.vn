@@ -43,7 +43,7 @@
                                     <div class="spr-form-review-body">
                                         <label class="spr-form-label" for="Review_Product_Content"> Nội dung đánh giá *</label>
                                         <div class="spr-form-input">
-                                            <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="2" cols="2" placeholder="Viết đánh giá của bạn tại đây (cho phép 1000 ký tự)" style="padding: 5px;  font-size: 13px;" required></textarea>
+                                            <textarea id="Review_Product_Content" class="spr-form-input spr-form-input-textarea" maxlength="1000" data-product-id="{{ $inventory->id }}" name="content" rows="2" cols="2" placeholder="Viết đánh giá của bạn tại đây (cho phép 1000 ký tự)" style="padding: 10px; font-size: 14px; resize: none;" required></textarea>
                                         </div>
                                     </div>
                                     <div class="spr-form-review-body">
