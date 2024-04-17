@@ -458,3 +458,39 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     background-color: #025b50;
     color: #fff;
 }
+
+.homepage-viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.homepage-viewer-header .flashsale__header {
+    border-radius: 5px!important;
+}
+
+.homepage-viewer-header .homepage-viewer-title {
+    flex: 1;
+}
+
+@media screen and (min-width: 800px) {
+    .homepage-viewer-header .details-pro .flashsale__countdown-wrapper .flashsale__countdown .ega-badge-ctd > div:not(.ega-badge-ctd__colon) {
+        width: 41px;
+        height: 41px;
+    }
+
+    .homepage-viewer-header .details-pro .flashsale__countdown-wrapper .flashsale__countdown .ega-badge-ctd__item {
+        font-size: 19px;
+    }
+
+    .homepage-viewer-header .ega-badge-ctd__colon {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .homepage-viewer-header {
+        flex-direction: column;
+    }
+}

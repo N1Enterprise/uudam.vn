@@ -29,21 +29,65 @@
                     $__frontend_header_image  = data_get($homePageDisplayOrder, 'params.__frontend_custom.header_image', '');
                     $__frontend_title_color   = data_get($homePageDisplayOrder, 'params.__frontend_custom.title_color', '#000000');
                     $__frontend_custom_enable = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
-                    $__frontend_custom_enable = data_get($homePageDisplayOrder, 'params.__frontend_custom.enable', false);
+                    $__frontend_background    = data_get($homePageDisplayOrder, 'params.__frontend_custom.background', '#FFFFFF');
+
+                    $__flash_sale_enable     = data_get($homePageDisplayOrder, 'params.flash_sale.enable', false);
+                    $__flash_sale_start_at   = data_get($homePageDisplayOrder, 'params.flash_sale.start_at', false);
+                    $__flash_sale_end_at     = data_get($homePageDisplayOrder, 'params.flash_sale.end_at', false);
+
+                    $__flash_sale_color_bg = data_get($homePageDisplayOrder, 'params.flash_sale.colors.bg', 'transparent');
+                    $__flash_sale_color_timebg = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_bg', '#000');
+                    $__flash_sale_color_timetxt = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_text', '#000');
+                    $__flash_sale_color_text = data_get($homePageDisplayOrder, 'params.flash_sale.colors.text', '#FFF');
                 @endphp
 
-                <div style="background: {{ boolean($__frontend_custom_enable) ? data_get($__frontend_custom, 'background', '#FFFFFF') : '' }}; border-radius: 3px;" {{ $__frontend_custom_enable ? 'has-frontend-custom' : '' }}>
-                    @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
-
-                    <div class="ls-box-title custom-ls-box-title" style="color: {{ boolean($__frontend_custom_enable) ? $__frontend_title_color : '' }}">{{ data_get($homePageDisplayOrder, 'name') }}</div>
-
-                    @elseif ($__frontend_custom_enable && $__frontend_header_image)
-
-                    <div class="__frontend_custom_header_image">
-                        <img src="{{ $__frontend_header_image }}" alt="{{ data_get($homePageDisplayOrder, 'name') }}" style="width: 100%; height: 100%;">
+                <div style="background: {{ boolean($__frontend_custom_enable) ? $__frontend_background : '' }}; border-radius: 3px;" {{ $__frontend_custom_enable ? 'has-frontend-custom' : '' }}>
+                    <div class="homepage-viewer-header">
+                        <div class="homepage-viewer-title">
+                            @if (! boolean(data_get($homePageDisplayOrder, 'hidden_name')))
+                            <div class="ls-box-title custom-ls-box-title" style="color: {{ boolean($__frontend_custom_enable) ? $__frontend_title_color : '' }}">{{ data_get($homePageDisplayOrder, 'name') }}</div>
+                            @elseif ($__frontend_custom_enable && $__frontend_header_image)
+                            <div class="__frontend_custom_header_image">
+                                <img src="{{ $__frontend_header_image }}" alt="{{ data_get($homePageDisplayOrder, 'name') }}" style="width: 100%; height: 100%;">
+                            </div>
+                            @endif
+                        </div>
+                        @if ($__flash_sale_enable)
+                        <div class="homepage-viewer-flash-sale details-pro">
+                            <div class="flashsale" style="--countdown-background: #000000; --countdown-color: #ffffff; --process-background: #ffaaaf; --process-color1: #ff424e; --process-color2: #ff424e; --stock-color: #000000; background: transparent; --heading-color: #000000;">
+                                <div class="flashsale__header" style="background: {{ $__flash_sale_color_bg }};">
+                                    <div class="flashsale__countdown-wrapper">
+                                        <span class="flashsale__countdown-label mr-2 d-none" style="display: inline;">Kết thúc sau</span>
+                                        <div class="flashsale__countdown" data-flash-sale-id="product_detail" data-flash-sale-start-at="{{ $__flash_sale_start_at }}" data-flash-sale-end-at="{{ $__flash_sale_end_at }}" data-isongoing-flash-sale="true">
+                                            <div class="ega-badge-ctd">
+                                                <div style="background: {{ $__flash_sale_color_timebg }};">
+                                                    <div style="color: {{ $__flash_sale_color_timetxt }};" class="ega-badge-ctd__item" data-flash-sale-days-id="product_detail">00</div>
+                                                    <span class="hidden">Ngày</span>
+                                                </div>
+                                                <div class="ega-badge-ctd__colon" style="color: {{ $__flash_sale_color_text }};">Ngày</div>
+                                                <div style="background: {{ $__flash_sale_color_timebg }};">
+                                                    <div style="color: {{ $__flash_sale_color_timetxt }};" class="ega-badge-ctd__item" data-flash-sale-hours-id="product_detail">00</div>
+                                                    <span class="hidden">Giờ</span>
+                                                </div>
+                                                <div class="ega-badge-ctd__colon" style="color: {{ $__flash_sale_color_text }};">Giờ</div>
+                                                <div style="background: {{ $__flash_sale_color_timebg }};">
+                                                    <div style="color: {{ $__flash_sale_color_timetxt }};" class="ega-badge-ctd__item" data-flash-sale-minutes-id="product_detail">00</div>
+                                                    <span class="hidden">Phút</span>
+                                                </div>
+                                                <div class="ega-badge-ctd__colon" style="color: {{ $__flash_sale_color_text }};">Phút</div>
+                                                <div style="background: {{ $__flash_sale_color_timebg }};">
+                                                    <div style="color: {{ $__flash_sale_color_timetxt }};" class="ega-badge-ctd__item" data-flash-sale-seconds-id="product_detail">00</div>
+                                                    <span class="hidden">Giây</span>
+                                                </div>
+                                                <div class="ega-badge-ctd__colon" style="color: {{ $__flash_sale_color_text }};">Giây</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
-
-                    @endif
 
                     @if (has_data(data_get($homePageDisplayOrder, 'items', [])))
                         @foreach (data_get($homePageDisplayOrder, 'items', []) as $item)
@@ -121,4 +165,5 @@
 <script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/home-deferload.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset_with_version('frontend/bundle/js/home-index.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/flash-sale.min.js') }}" type="text/javascript"></script>
 @endpush
