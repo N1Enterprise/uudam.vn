@@ -28,7 +28,7 @@ class CollectionController extends BaseController
 
     public function create()
     {
-        $inventories = $this->inventoryService->allAvailable(['scopes' => ['feDisplay'], 'with' => 'product']);
+        $inventories = $this->inventoryService->allAvailableDistinct(['scopes' => ['feDisplay'], 'with' => 'product']);
 
         return view('backoffice.pages.collections.create', compact('inventories'));
     }
@@ -36,7 +36,7 @@ class CollectionController extends BaseController
     public function edit($id)
     {
         $collection = $this->collectionService->show($id);
-        $inventories = $this->inventoryService->allAvailable(['scopes' => ['feDisplay'], 'with' => 'product']);
+        $inventories = $this->inventoryService->allAvailableDistinct(['scopes' => ['feDisplay'], 'with' => 'product']);
 
         return view('backoffice.pages.collections.edit', compact('collection', 'inventories'));
     }

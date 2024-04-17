@@ -118,7 +118,22 @@ class InventoryService extends BaseService
             : $result->all();
     }
 
-    public function allAvailable($data = [])
+    public function allAvailableDistinct($data = [])
+    {
+        return $this->inventoryRepository
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
+            ->scopeQuery(function($q) {
+                $q->whereIn('id', function($query) {
+                    $query->select(DB::raw('MIN(id)'))
+                        ->from('inventories')
+                        ->groupBy('product_id');
+                });
+            })
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function allAvailable($data = [], $ignoreSameProduct = true)
     {
         return $this->inventoryRepository
             ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
