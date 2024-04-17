@@ -1673,3 +1673,15 @@ a.product__text {
     border-radius: 3px;
     border: 1px solid #efefef;
 }
+
+.spr-form-review-body .spr-form-input {
+    width: 100%;
+}
+
+.spr-form-review-body .spr-form-input textarea {
+    min-height: 10rem;
+}
+
+.spr-form-review-body .spr-form-input textarea::placeholder {
+    font-family: var(--font-heading-family);
+}
