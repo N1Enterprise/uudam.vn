@@ -8,6 +8,6 @@ class StoreProductReviewResponse extends BaseViewResponse implements StoreProduc
 {
     public function toResponse($request)
     {
-        return redirect()->route('bo.web.product-reviews.index');
+        return redirect()->route('bo.web.product-reviews.edit', optional($this->resource)->id);
     }
 }
