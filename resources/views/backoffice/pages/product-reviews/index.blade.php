@@ -94,7 +94,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Product Review?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa Đánh giá sản phẩm này ?') }}");
 
             if(!confirmation) {
                 return;

@@ -32,6 +32,7 @@ class UpdateProductReviewRequest extends BaseFormRequest implements UpdateProduc
             'images.*.file' => ['nullable', 'file', 'image', 'max:5200'],
             'images.*.path' => ['nullable', 'string'],
             'images.*.order' => ['nullable', 'string'],
+            'post_at' => ['required', 'date'],
         ];
 
         if ($productReview->is_real_user) {
@@ -39,7 +40,8 @@ class UpdateProductReviewRequest extends BaseFormRequest implements UpdateProduc
                 'note',
                 'status',
                 'is_purchased',
-                'images'
+                'images',
+                'post_at'
             ]);
         }
 

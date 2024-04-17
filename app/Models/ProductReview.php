@@ -25,7 +25,8 @@ class ProductReview extends BaseModel
         'updated_by_type',
         'updated_by_id',
         'is_purchased',
-        'images'
+        'images',
+        'post_at'
     ];
 
     protected $casts = [

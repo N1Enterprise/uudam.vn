@@ -91,7 +91,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this attribute value?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa giá trị thuộc tính này ?') }}");
 
             if(! confirmation) {
                 return;

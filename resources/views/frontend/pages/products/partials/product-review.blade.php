@@ -87,7 +87,7 @@
                                                     @endif
                                                 </div>
                                                 <span class="spr-review-header-byline">
-                                                    <strong>{{ date('d/m/Y H:i', strtotime(data_get($review, 'created_at'))) }}</strong>
+                                                    <strong>{{ date('d/m/Y H:i', strtotime(data_get($review, 'post_at'))) }}</strong>
                                                 </span>
                                             </div>
                                             <div class="spr-review-content">

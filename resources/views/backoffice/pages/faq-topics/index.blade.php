@@ -71,7 +71,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Faq Topic?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa chủ đề Câu hỏi thường gặp này ?') }}");
 
             if(!confirmation) {
                 return;
