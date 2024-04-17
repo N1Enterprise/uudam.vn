@@ -24,18 +24,23 @@ class CartItemService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->cartItemRepository
-        ->with(['cart', 'inventory', 'user'])
-        ->whereColumnsLike($data['query'] ?? null, ['uuid', 'currency_code'])
-        ->scopeQuery(function($q) use ($data) {
-            $cartId = data_get($data, 'cart_id');
+            ->with(['cart', 'inventory', 'user'])
+            ->whereColumnsLike($data['query'] ?? null, ['uuid', 'currency_code'])
+            ->scopeQuery(function($q) use ($data) {
+                $cartId = data_get($data, 'cart_id');
 
-            if (! empty($cartId)) {
-                $q->where('cart_id', $cartId);
-            }
-        })
-        ->search([]);
+                if (! empty($cartId)) {
+                    $q->where('cart_id', $cartId);
+                }
+            })
+            ->search([]);
 
-    return $result;
+        return $result;
+    }
+
+    public function show($id)
+    {
+        return $this->cartItemRepository->findOrFail($id);
     }
 
     public function searchPendingItemsByUser($userId, $data = [])
@@ -114,9 +119,9 @@ class CartItemService extends BaseService
     public function cancelByUser($userId, $id, $data = [])
     {
         return DB::transaction(function() use ($userId, $id) {
-            $cartItem = $this->findByUser($userId);
+            $cartItem = $this->show($id);
 
-            if (empty($cartItem) || $cartItem->id != $id) {
+            if (empty($cartItem) || $cartItem->user_id != $userId) {
                 throw new BusinessLogicException('Invalid Cart Item', ExceptionCode::INVALID_CART_ITEM);
             }
 

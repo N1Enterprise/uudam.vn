@@ -136,6 +136,18 @@
 									<label>{{ __('Note') }}</label>
                                     <textarea name="note" rows="5" class="form-control">{{ old('note', $productReview->note) }}</textarea>
 								</div>
+
+                                <div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Đã mua hàng') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ boolean(old('is_purchased', $productReview->is_purchased))  ? 'checked' : ''}} value="1" name="is_purchased" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

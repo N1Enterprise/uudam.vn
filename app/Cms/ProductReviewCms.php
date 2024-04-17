@@ -11,7 +11,7 @@ class ProductReviewCms extends BaseCms
 
     /**
      * @return ProductReview
-     * @throws BindingResolutionException 
+     * @throws BindingResolutionException
      */
     public function model()
     {
@@ -27,12 +27,13 @@ class ProductReviewCms extends BaseCms
                 ->scopes(['approved'])
                 ->orderBy('created_at', 'desc')
                 ->get([
-                    'id', 
-                    'user_name', 
-                    'rating_type', 
-                    'status', 
-                    'created_at', 
-                    'content'
+                    'id',
+                    'user_name',
+                    'rating_type',
+                    'status',
+                    'created_at',
+                    'content',
+                    'is_purchased'
                 ])
                 ->toArray();
         });
