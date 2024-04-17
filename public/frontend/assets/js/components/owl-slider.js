@@ -55,7 +55,7 @@ function owlSliderSetup() {
         $(element).addClass('owl-carousel owl-theme');
 
         const config = {
-            loop: !ignoreLoop,
+            loop: false,
             nav: false,
             responsive: getResponsive(itemsCount),
             dotsContainer: dotsContainer,
