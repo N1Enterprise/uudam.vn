@@ -38,16 +38,21 @@ class UserSearchService extends BaseService
 
         if (in_array('product', $resourcesTypes)) {
             $inventories = DB::table('inventories')
-                ->select(['id', 'slug', 'title', 'image'])
-                ->where('status', 1)
-                ->where('display_on_frontend', 1)
-                ->where('allow_frontend_search', 1)
+                ->select('inventories.id', 'inventories.slug', 'inventories.title', 'inventories.image')
+                ->where('inventories.status', 1)
+                ->where('inventories.display_on_frontend', 1)
+                ->where('inventories.allow_frontend_search', 1)
                 ->where(function($q) use ($query) {
-                    $q->where('title', 'LIKE', '%'.$query.'%')
-                        ->orWhere('slug', 'LIKE', '%'.$query.'%')
-                            ->orWhere('sku', 'LIKE', '%'.$query.'%');
+                    $q->where('inventories.title', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.slug', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.sku', 'LIKE', '%'.$query.'%');
                 })
-                ->orderBy('sold_count', 'desc')
+                ->whereIn('inventories.id', function($query) {
+                    $query->select(DB::raw('MIN(id)'))
+                        ->from('inventories')
+                        ->groupBy('product_id');
+                })
+                ->orderBy('inventories.sold_count', 'desc')
                 ->limit(data_get($resourcesLimits, 'product', 4))
                 ->get();
         }

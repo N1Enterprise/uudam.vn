@@ -104,6 +104,12 @@ class InventoryService extends BaseService
                 if (array_key_exists('filter_ids', $data)) {
                     $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
                 }
+
+                $q->whereIn('id', function($query) {
+                    $query->select(DB::raw('MIN(id)'))
+                        ->from('inventories')
+                        ->groupBy('product_id');
+                });
             })
             ->addSort($orderBy, $sortBy);
 
