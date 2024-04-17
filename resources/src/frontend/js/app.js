@@ -3,13 +3,7 @@ const viewOnlyMode = (() => {
     return boShared?.fe_view_only_mode;
 })();
 
-
-
 $(document).ready(function() {
-    // $("img").lazyload({
-    //     threshold: 300
-    // });
-
     $('.share-button__copy').each(function(_, element) {
         $(element).on('click', function() {
             const content = $(this).attr('data-copy-content');
@@ -56,9 +50,9 @@ $(document).ready(function() {
     }
 
    // Disable pinch-to-zoom on touch devices
-   $(document).on('gesturestart', function(e) {
-        e.preventDefault();
-    });
+//    $(document).on('gesturestart', function(e) {
+//         e.preventDefault();
+//     });
 
     // Additional prevention for certain browsers
     $(document).on('touchmove', function(e) {
