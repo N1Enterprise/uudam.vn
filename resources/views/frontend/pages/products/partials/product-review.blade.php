@@ -67,7 +67,7 @@
                         </div>
                         <div class="spr-reviews ">
                             @if(has_data($productReviews))
-                                <div class="product-review-content-wrapper">
+                                <div class="{{ count($productReviews) > 1 ? 'product-review-content-wrapper' : '' }}">
                                     @foreach ($productReviews as $review)
                                     <div class="spr-review" data-status="{{ data_get($review, 'status') }}" data-status-name="{{ data_get($review, 'status_name') }}">
                                         <div class="product-review-item">
@@ -126,7 +126,7 @@
 
             </div>
         </div>
-        @if(has_data($productReviews))
+        @if(has_data($productReviews) && count($productReviews) > 1)
         <button type="button" class="act-button list-review-images_see-all" style="transform: translateY(-50px)" data-product-review-modal-open>
             <span>Xem tất cả ({{ count($productReviews) }}) bình luận</span>
         </button>
