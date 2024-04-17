@@ -149,6 +149,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 
 .ls-price {
     letter-spacing: 1px;
+    margin-right: 5px;
 }
 
 @media screen and (min-width: 750px) {
