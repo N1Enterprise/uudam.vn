@@ -77,7 +77,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this video category?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa danh mục video này ?') }}");
 
             if (! confirmation) {
                 return;

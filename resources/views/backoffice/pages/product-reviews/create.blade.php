@@ -92,6 +92,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="">{{ __('Đăng lúc') }}</label>
+                                    <input type="datetimepicker" class="form-control @error('post_at') is-invalid @enderror" name="post_at" value="{{ old('post_at', date('Y-m-d h:i', strtotime(now()))) }}">
+                                </div>
+
+                                <div class="form-group">
 									<label>{{ __('Nội dung') }} *
                                         <div><small>({{ __('Độ dài tối đa 1000 ký tự') }})</small></div>
                                     </label>

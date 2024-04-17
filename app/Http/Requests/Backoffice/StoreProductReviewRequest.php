@@ -22,6 +22,7 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
             'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
             'is_purchased' => ['required', 'boolean'],
             'images' => ['nullable', 'array'],
+            'post_at' => ['required', 'date'],
             'images.*.file' => ['nullable', 'file', 'image', 'max:5200'],
             'images.*.path' => ['nullable', 'string'],
             'images.*.order' => ['nullable', 'string'],
@@ -36,6 +37,7 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
             'images' => collect(data_get($this, 'image'))
                     ->filter(fn($item) => data_get($item, 'path') || data_get($item, 'file'))
                     ->toArray(),
+            'post_at' => $this->post_at ? $this->post_at : now()
         ]);
     }
 }

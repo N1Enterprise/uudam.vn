@@ -80,7 +80,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this video?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa video này ?') }}");
 
             if (! confirmation) {
                 return;

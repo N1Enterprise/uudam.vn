@@ -92,7 +92,7 @@
                 FORM_MEDIA_IMAGE_FILE.onDelete();
             },
             hide: function(deleteElement) {
-                if (confirm('Are you sure you want to delete this element?')) {
+                if (confirm('Bạn có chắc chắn muốn xóa phần tử này?')) {
                     $(this).slideUp(deleteElement);
                 }
             },

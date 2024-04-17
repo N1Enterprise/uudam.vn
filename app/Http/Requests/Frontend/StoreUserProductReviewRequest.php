@@ -22,6 +22,7 @@ class StoreUserProductReviewRequest extends BaseFormRequest implements StoreUser
             'user_email' => ['required', 'email', 'string', 'max:255'],
             'rating_type' => ['required', 'integer', Rule::in(ProductReviewRatingEnum::all())],
             'content' => ['required', 'string', 'max:1500'],
+            'post_at' => ['required', 'date'],
             'is_real_user' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
             'images' => ['nullable', 'array'],
@@ -39,6 +40,7 @@ class StoreUserProductReviewRequest extends BaseFormRequest implements StoreUser
             'user_name' => $user->name,
             'user_phone' => $user->phone_number,
             'user_email' => $user->email,
+            'post_at' => now()
         ]);
     }
 }

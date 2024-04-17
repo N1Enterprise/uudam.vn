@@ -86,7 +86,7 @@
         let settingKey = $(target).attr('data-setting-key');
         let settingVal = $(`[name=${settingKey}]`).val();
 
-        if (confirm("{{ __('Confirm update setting value.') }}")) {
+        if (confirm("{{ __('Xác nhận giá trị cài đặt cập nhật.') }}")) {
             $.ajax({
                 url: "{{ route('bo.api.system-settings.update-key') }}",
                 type: 'PUT',
