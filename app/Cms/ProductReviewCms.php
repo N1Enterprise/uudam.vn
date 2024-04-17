@@ -18,13 +18,14 @@ class ProductReviewCms extends BaseCms
         return app(ProductReview::class);
     }
 
-    public function allApproved()
+    public function allApproved($productId)
     {
-        $cacheKey = self::CACHE_TAG.':product_review_approved';
+        $cacheKey = self::CACHE_TAG.':product_review_approved:'.$productId;
 
-        return Cache::tags(self::CACHE_TAG)->rememberForever($cacheKey, function() {
+        return Cache::tags(self::CACHE_TAG)->rememberForever($cacheKey, function() use ($productId) {
             return $this->model()->query()
                 ->scopes(['approved'])
+                ->where('product_id', $productId)
                 ->orderBy('created_at', 'desc')
                 ->get([
                     'id',
@@ -33,7 +34,8 @@ class ProductReviewCms extends BaseCms
                     'status',
                     'created_at',
                     'content',
-                    'is_purchased'
+                    'is_purchased',
+                    'images'
                 ])
                 ->toArray();
         });

@@ -20,21 +20,26 @@ class UpdateProductReviewRequest extends BaseFormRequest implements UpdateProduc
 
         $rules = [
             'user_name' => ['required', 'string', 'max:255'],
-            'user_phone' => ['nullable', 'max:15', Rule::unique(ProductReview::class, 'user_phone')->ignore($this->id)],
-            'user_email' => ['nullable', 'email', 'string', 'max:255', Rule::unique(ProductReview::class, 'user_email')->ignore($this->id)],
+            'user_phone' => ['nullable', 'max:15'],
+            'user_email' => ['nullable', 'email', 'string', 'max:255'],
             'rating_type' => ['required', 'integer', Rule::in(ProductReviewRatingEnum::all())],
             'content' => ['required'],
             'note' => ['nullable'],
             'status' => ['nullable', 'integer', Rule::in(ProductReviewStatusEnum::all())],
             'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
             'is_purchased' => ['nullable', 'boolean'],
+            'images' => ['nullable', 'array'],
+            'images.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'images.*.path' => ['nullable', 'string'],
+            'images.*.order' => ['nullable', 'string'],
         ];
 
         if ($productReview->is_real_user) {
             $rules = Arr::only($rules, [
                 'note',
                 'status',
-                'is_purchased'
+                'is_purchased',
+                'images'
             ]);
         }
 

@@ -79,7 +79,7 @@
                             {!! data_get($inventory, 'product.description') !!}
                         </div>
                         <div class="bg-article"></div>
-                        <button type="button" id="see-product-description" class="btn-detail btn jsArticle" data-description-modal-open>
+                        <button type="button" id="see-product-description" class="act-button btn jsArticle" data-description-modal-open>
                             <span>Xem chi tiết mô tả sản phẩm</span>
                         </button>
                     </div>
@@ -114,6 +114,7 @@
 
 @include('frontend.pages.products.partials.gallery-image-modal')
 @include('frontend.pages.products.partials.product-description-modal')
+@include('frontend.pages.products.partials.product-review-modal')
 @endsection
 
 @section('js_script')

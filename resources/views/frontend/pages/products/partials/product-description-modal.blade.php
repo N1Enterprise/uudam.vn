@@ -12,7 +12,7 @@
             <div class="spr-content product-description-content">
                 {!! data_get($inventory, 'product.description') !!}
             </div>
-            <button type="button" class="act-button" data-description-modal-close class="button" style="margin-top: 10px;">Đã đọc xong</button>
+            <button type="button" class="act-button" data-description-modal-close class="button" style="margin-top: 10px; padding: 13px;">Đã đọc xong</button>
         </div>
     </product-modal>
 </div>
