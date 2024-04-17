@@ -26,17 +26,17 @@
 	height: 38px;
 	border-radius: 3px;
 	font-size: 14px;
-	background-color: var(--countdown-background);
+	background-color: #fff;
 }
 .ega-badge-ctd__item {
 	border-radius: 3px;
-	color: var(--countdown-color);
+	color: #025B50;
 	text-align: center;
 	display: flex;
 	place-items: center;
 	place-content: center;
 	font-size: 18px;
-	font-weight: 500;
+	font-weight: bold;
 	line-height: 20px;
 }
 .ega-badge-ctd__item + span {
