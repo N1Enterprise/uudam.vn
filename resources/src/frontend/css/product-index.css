@@ -1738,8 +1738,8 @@ a.product__text {
     height: 70px;
     border: 1px solid #ccc;
     margin-right: 5px;
-    padding: 5px;
     border-radius: 3px;
+    overflow: hidden;
 }
 
 .list-review-images_see-detail {
