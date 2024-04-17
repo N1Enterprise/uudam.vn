@@ -25,17 +25,26 @@ class UpdateProductReviewRequest extends BaseFormRequest implements UpdateProduc
             'rating_type' => ['required', 'integer', Rule::in(ProductReviewRatingEnum::all())],
             'content' => ['required'],
             'note' => ['nullable'],
-            'status' => ['required', 'integer', Rule::in(ProductReviewStatusEnum::all())],
+            'status' => ['nullable', 'integer', Rule::in(ProductReviewStatusEnum::all())],
             'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
+            'is_purchased' => ['nullable', 'boolean'],
         ];
 
         if ($productReview->is_real_user) {
             $rules = Arr::only($rules, [
                 'note',
                 'status',
+                'is_purchased'
             ]);
         }
 
         return $rules;
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'is_purchased' => boolean($this->is_purchased)
+        ]);
     }
 }

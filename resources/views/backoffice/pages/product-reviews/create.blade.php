@@ -98,6 +98,18 @@
 
                                     <textarea name="content" rows="10" class="form-control" maxlength="1000" required>{{ old('content') }}</textarea>
 								</div>
+
+                                <div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Đã mua hàng') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('is_purchased', '1') == '1'  ? 'checked' : ''}} value="1" name="is_purchased" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

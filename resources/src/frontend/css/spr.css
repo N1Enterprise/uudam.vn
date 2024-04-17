@@ -360,9 +360,7 @@ input.spr-form-input-error[type="email"] {
 }
 
 .spr-review {
-    padding: 24px 0;
-    border-top: 1px solid #DFDFDF;
-    border-top: 1px solid rgba(0, 0, 0, 0.1)
+    padding: 10px 0;
 }
 
 .spr-review:first-child {

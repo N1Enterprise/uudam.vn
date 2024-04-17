@@ -82,7 +82,11 @@ const MY_CART = {
                         });
                     },
                     error: () => {
+                        console.log('[log.error] Can\'t remove this cart item');
+
                         $self.removeClass('prevent');
+                        fstoast.error('Xoá không thành công');
+                        setTimeout(() => window.location.reload(), 500);
                     },
                 });
             });

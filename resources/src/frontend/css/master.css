@@ -565,7 +565,7 @@ body {
 }
 
 #MainContent {
-    min-height: 300px;
+    min-height: 45vh;
 }
 
 .play-icon-builder {

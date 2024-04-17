@@ -21,6 +21,7 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
             'content' => ['required'],
             'status' => ['required', 'integer', Rule::in(ProductReviewStatusEnum::all())],
             'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
+            'is_purchased' => ['required', 'boolean'],
         ];
     }
 
@@ -28,6 +29,7 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
     {
         $this->merge([
             'status' => ProductReviewStatusEnum::PENDING,
+            'is_purchased' => boolean($this->is_purchased)
         ]);
     }
 }

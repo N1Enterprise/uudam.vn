@@ -1655,3 +1655,21 @@ a.product__text {
         flex: 0 0 100%;
     }
 }
+
+
+.spr-review [is_purchased] {
+    display: flex;
+    align-items: center;
+    background: #025B50;
+    padding: 4px 7px;
+    line-height: 0.2;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+.product-review-item {
+    background-color: #fafafa;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+}

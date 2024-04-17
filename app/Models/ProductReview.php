@@ -24,6 +24,7 @@ class ProductReview extends BaseModel
         'created_by_type',
         'updated_by_type',
         'updated_by_id',
+        'is_purchased'
     ];
 
     public function getStatusNameAttribute()
