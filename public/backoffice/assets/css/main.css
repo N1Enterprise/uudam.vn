@@ -191,6 +191,10 @@ button.btn.is-invalid {
     border-radius: 3px;
 }
 
+.Badge_Holder_Wrapper .la-close {
+    display: none!important;
+}
+
 .Badge_Holder_Wrapper > div {
     display: flex;
     flex-wrap: wrap;
