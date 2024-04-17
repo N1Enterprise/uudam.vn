@@ -48,14 +48,14 @@ function owlSliderSetup() {
     $.each($('[data-owl-id]'), function(index, element) {
         const owlId = $(element).attr('data-owl-id');
         const itemsCount = +$(element).attr('data-owl-items');
-        const hasLoop = $(element).attr('data-owl-loop') == 'true';
+        const ignoreLoop = $(element).attr('data-owl-ignore-loop') == 'true';
         const dotsContainer = $(element).attr('data-owl-dots-container');
         const inogreNav = $(element).attr('data-owl-ignore-nav') == 'true';
 
         $(element).addClass('owl-carousel owl-theme');
 
         const config = {
-            loop: hasLoop,
+            loop: !ignoreLoop,
             nav: false,
             responsive: getResponsive(itemsCount),
             dotsContainer: dotsContainer,
