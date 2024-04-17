@@ -97,7 +97,11 @@ class ProductReviewService extends BaseService
         return DB::transaction(function() use ($attributes, $id) {
             $attributes['images'] = $this->convertImages(data_get($attributes, 'images', []));
 
-            return $this->productReviewRepository->update($attributes, $id);
+            $model = $this->productReviewRepository->update($attributes, $id);
+
+            ProductReviewCms::flush();
+
+            return $model;
         });
     }
 
