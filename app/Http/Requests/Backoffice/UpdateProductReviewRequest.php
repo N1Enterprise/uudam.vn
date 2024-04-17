@@ -49,7 +49,10 @@ class UpdateProductReviewRequest extends BaseFormRequest implements UpdateProduc
     public function prepareForValidation()
     {
         $this->merge([
-            'is_purchased' => boolean($this->is_purchased)
+            'is_purchased' => boolean($this->is_purchased),
+            'images' => collect(data_get($this, 'image'))
+                    ->filter(fn($item) => data_get($item, 'path') || data_get($item, 'file'))
+                    ->toArray(),
         ]);
     }
 }

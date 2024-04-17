@@ -32,7 +32,10 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
     {
         $this->merge([
             'status' => ProductReviewStatusEnum::PENDING,
-            'is_purchased' => boolean($this->is_purchased)
+            'is_purchased' => boolean($this->is_purchased),
+            'images' => collect(data_get($this, 'image'))
+                    ->filter(fn($item) => data_get($item, 'path') || data_get($item, 'file'))
+                    ->toArray(),
         ]);
     }
 }
