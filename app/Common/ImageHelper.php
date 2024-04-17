@@ -68,7 +68,7 @@ class ImageHelper
         $cfHeight  = data_get($config, 'height');
         $cfRatio   = data_get($config, 'ratio');
         $cfExt     = data_get($config, 'ext', 'webp');
-        $cfFolder  = data_get($config, 'folder', '');
+        $cfFolder  = data_get($config, 'folder', 'others') ?? 'others';
 
         if (! in_array($cfExt, $this->getExtensionSupported())) {
             throw new BusinessLogicException('Invalid config image extension: '.$cfExt.'. Just supported: '.implode(', ', $this->getExtensionSupported()).'. Please check system setting config.');
@@ -104,7 +104,7 @@ class ImageHelper
         return $config;
     }
 
-    public function getExtensionSupported() 
+    public function getExtensionSupported()
     {
         return SystemSetting::from(SystemSettingKeyEnum::IMAGE_CONFIGURATION)->get('extension_supported', []);
     }

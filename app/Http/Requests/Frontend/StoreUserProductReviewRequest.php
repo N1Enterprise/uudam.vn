@@ -24,6 +24,8 @@ class StoreUserProductReviewRequest extends BaseFormRequest implements StoreUser
             'content' => ['required', 'string', 'max:1500'],
             'is_real_user' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'images' => ['nullable', 'array'],
+            'images.*.file' => ['required', 'file', 'image', 'max:5200'],
         ];
     }
 

@@ -24,7 +24,12 @@ class ProductReview extends BaseModel
         'created_by_type',
         'updated_by_type',
         'updated_by_id',
-        'is_purchased'
+        'is_purchased',
+        'images'
+    ];
+
+    protected $casts = [
+        'images' => 'json'
     ];
 
     public function getStatusNameAttribute()

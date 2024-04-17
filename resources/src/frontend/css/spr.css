@@ -188,7 +188,7 @@
 }
 
 .spr-summary-actions-newreview {
-    float: right
+    float: left;
 }
 
 .spr-form {

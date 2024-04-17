@@ -58,7 +58,7 @@ class ProductController extends BaseController
 
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
-        $productReviews = ProductReviewCms::make()->allApproved();
+        $productReviews = ProductReviewCms::make()->allApproved($inventory->product_id);
 
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 

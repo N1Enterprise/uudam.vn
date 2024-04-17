@@ -171,6 +171,27 @@ const MAIN_INVENTORY_OPEN_DESCRIPTION = {
     },
 };
 
+const MAIN_INVENTORY_OPEN_PRODUCT_REVIEW = {
+    close_element: $('[data-product-review-modal-close]'),
+    open_element: $('[data-product-review-modal-open]'),
+    init: () => {
+        MAIN_INVENTORY_OPEN_PRODUCT_REVIEW.onOpen();
+        MAIN_INVENTORY_OPEN_PRODUCT_REVIEW.onClose();
+    },
+    onOpen: () => {
+        MAIN_INVENTORY_OPEN_PRODUCT_REVIEW.open_element.on('click', function() {
+            $('.product-modal-product-review .product-media-modal').attr('open', 'true');
+            $('body').addClass('full-mode');
+        });
+    },
+    onClose: () => {
+        MAIN_INVENTORY_OPEN_PRODUCT_REVIEW.close_element.on('click', function() {
+            $('.product-modal-product-review .product-media-modal').removeAttr('open');
+            $('body').removeClass('full-mode');
+        });
+    },
+};
+
 const MAIN_INVENTORY_REVIEW = {
     init: () => {
         MAIN_INVENTORY_REVIEW.onToggle();
@@ -185,14 +206,38 @@ const MAIN_INVENTORY_REVIEW = {
         $('#User_Product_Review').on('submit', function(e) {
             e.preventDefault();
 
-            const formData = $(this).serializeArray();
             const button = $('#User_Product_Review').find('button[type="submit"]');
             const ratingName = $('[name="rating_type"]').find(`option[value="${$('[name="rating_type"]').val()}"]`).text();
+
+            var formData = new FormData();
+
+            const productId = $(this).find('[name="product_id"]').val();
+            const ratingType = $(this).find('[name="rating_type"]').val();
+            const content = $(this).find('[name="content"]').val();
+
+            console.log({
+                productId,
+                ratingType,
+                content
+            });
+
+            formData.append('product_id', productId);
+            formData.append('rating_type', ratingType);
+            formData.append('content', content);
+
+            var files = $('#review_files')[0].files;
+
+            // Append each file to the FormData object
+            $.each(files, function(index, file) {
+                formData.append('images[][file]', file);
+            });
 
             $.ajax({
                 url: $(this).attr('action'),
                 method: 'POST',
                 data: formData,
+                processData: false,
+                contentType: false,
                 beforeSend: () => {
                     $(button).prop('disabled', true);
                 },
@@ -363,6 +408,38 @@ COMBO_INVENTORY.init();
 MAIN_INVENTORY.init();
 MAIN_INVENTORY_OPEN_IMAGE_GALERIES.init();
 MAIN_INVENTORY_OPEN_DESCRIPTION.init();
+MAIN_INVENTORY_OPEN_PRODUCT_REVIEW.init();
 MAIN_INVENTORY_REVIEW.init();
 MAIN_INVENTORY_QUANTITY.init();
 FORM_ORDER.init();
+
+
+$(document).ready(function() {
+    $('.review-inputfile').change(function() {
+        var input = this;
+        var label = $(input).next('label');
+        var labelVal = label.html();
+
+        // Check if the number of selected files exceeds 3
+        if (input.files && input.files.length > 3) {
+            alert("Bạn chỉ có thể thêm tối đa 3 ảnh.");
+            // Clear the file input
+            $(input).val('');
+            label.html(labelVal);
+            return; // Exit the function
+        }
+
+        var fileName = '';
+        if (input.files && input.files.length > 1) {
+            fileName = ($(input).data('multiple-caption') || '').replace('{count}', input.files.length);
+        } else {
+            fileName = $(input).val().split('\\').pop();
+        }
+
+        if (fileName) {
+            label.find('span').html(fileName);
+        } else {
+            label.html(labelVal);
+        }
+    });
+});

@@ -1457,7 +1457,7 @@ a.product__text {
     padding: 0;
     margin: 0;
     white-space-collapse: collapse!important;
-    line-height: 1.2;
+    line-height: 2;
 }
 
 .product-description-content img {
@@ -1684,4 +1684,89 @@ a.product__text {
 
 .spr-form-review-body .spr-form-input textarea::placeholder {
     font-family: var(--font-heading-family);
+}
+
+/* THEM HINH ANH */
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile-1 + label {
+    color: #025B50;
+    border: 1px solid #025B50;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    border-radius: 3px;
+}
+
+.inputfile + label svg {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.list-review-images {
+    display: flex;
+    align-items: center;
+}
+
+.list-review-images__item {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.list-review-images_see-detail {
+    text-decoration: none;
+    font-size: 10px;
+    border-radius: 3px;
+    color: #025B50;
+    padding: 3px 5px;
+    border: 1px solid #025B50;
+}
+
+.product-review-content-wrapper {
+    height: 308px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.product-review-content-wrapper .bg-article {
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff, #fff);
+    bottom: 0;
+    display: block !important;
+    height: 139px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.list-review-images_see-all {
+    display: block;
 }
