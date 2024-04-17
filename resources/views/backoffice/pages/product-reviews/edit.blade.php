@@ -102,7 +102,6 @@
                                     @enderror
 
 									<div class="mt-3">
-										<a href="{{ route('fe.web.products.index', data_get($productReview, 'product.slug')) }}" target="_blank" class="btn btn-outline-secondary btn-sm">{{ __('FE Review') }}</a>
 										<a href="{{ route('bo.web.products.edit', data_get($productReview, 'product.id')) }}" target="_blank" class="btn btn-outline-secondary btn-sm">{{ __('BO Review') }}</a>
 									</div>
                                 </div>
