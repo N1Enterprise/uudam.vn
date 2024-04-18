@@ -218,7 +218,7 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
     margin: 0 0 2px;
     padding-top: 5px;
     text-decoration: none;
-    height: 55px;
+    height: 60px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -387,6 +387,8 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 .recommendation-target {
     margin: 0px 10px;
     background: #fff;
+    border: 1px solid #f2f2f2;
+    border-radius: 3px;
 }
 
 [has-frontend-custom] .recommendation-target {
@@ -411,6 +413,19 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 .recommendation-target:hover img {
     transform: scale(1.2);
     transition: all 300ms;
+}
+
+.ls-price {
+    font-weight: bold;
+}
+
+.ls-price {
+    color: #121212;
+}
+
+.ls-price {
+    letter-spacing: 1px;
+    margin-right: 5px;
 }
 
 .ls-price-group {
