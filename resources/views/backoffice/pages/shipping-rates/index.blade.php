@@ -52,7 +52,7 @@
                         <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
                         <th data-name="minimum" data-property="minimum_formatted">{{ __('Tối thiểu') }}</th>
                         <th data-name="maximum" data-property="maximum_formatted">{{ __('Tối đa') }}</th>
-                        <th data-property="rate" data-render-callback="renderRateCallback">{{ __('Tỷ lệ') }}</th>
+                        <th data-name="rate" data-property="rate_formatted">{{ __('Giá') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
                         <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
@@ -72,14 +72,6 @@
 
 @section('js_script')
 <script>
-    function renderRateCallback(data, type, full) {
-        if (+ (data) == 0) {
-            return "{{ __('Free Shippinng') }}";
-        }
-
-        return parseFloat(data);
-    }
-
     onDelete();
 
     function onDelete() {

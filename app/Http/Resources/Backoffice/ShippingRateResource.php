@@ -10,6 +10,19 @@ class ShippingRateResource extends BaseJsonResource
 {
     public function toArray($request)
     {
+        $minimumFormatted = null;
+        $maximumFormatted = null;
+
+        if ($this->type == ShippingRateTypeEnum::PRICE) {
+            $minimumFormatted = $this->minimum != null ? $this->toMoney('minimum')->format() : null;
+            $maximumFormatted = $this->maximum != null ? $this->toMoney('maximum')->format() : null;
+        }
+
+        if ($this->type == ShippingRateTypeEnum::WEIGHT) {
+            $minimumFormatted = $this->minimum != null ?  round($this->minimum, 2).'(g)' : null;
+            $maximumFormatted = $this->maximum != null ?  round($this->maximum, 2).'(g)' : null;
+        }
+
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
@@ -19,10 +32,11 @@ class ShippingRateResource extends BaseJsonResource
             'type' => $this->type,
             'type_name' => $this->type_name,
             'minimum' => $this->minimum,
-            'minimum_formatted' => $this->type == ShippingRateTypeEnum::PRICE ? Money::format($this->minimum) : round($this->minimum, 2).'(g)',
+            'minimum_formatted' => $minimumFormatted,
             'maximum' => $this->maximum,
-            'maximum_formatted' => $this->type == ShippingRateTypeEnum::PRICE ? Money::format($this->maximum) : round($this->maximum, 2).'(g)',
+            'maximum_formatted' => $maximumFormatted,
             'rate' => $this->rate,
+            'rate_formatted' => $this->rate == 0 ? __('Free Ship') : $this->toMoney('rate')->format(),
             'status' => $this->status,
             'status_name' => $this->status_name,
             'created_at' => $this->created_at,
