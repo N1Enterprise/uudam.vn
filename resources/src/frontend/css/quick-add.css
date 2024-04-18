@@ -207,11 +207,12 @@ quick-add-modal .product-form__buttons {
 }
 
 .quick-add__submit {
-    padding: 0.8rem;
+    padding: 0;
     min-width: 100%;
     box-sizing: border-box;
     background-color: #fff;
     text-decoration: none;
+    min-height: 37px;
 }
 
 .quick-add__submit:hover {

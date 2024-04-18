@@ -69,7 +69,7 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
 
 .ls-title {
     color: #121212;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     font-family: Poppins, sans-serif;
 }
@@ -141,15 +141,6 @@ div.ls-recommendation-box .limespot-recommendation-box-item, .limespot-recommend
     -moz-border-radius: 4rem;
     -ms-border-radius: 4rem;
     -o-border-radius: 4rem;
-}
-
-.ls-price {
-    color: #121212;
-}
-
-.ls-price {
-    letter-spacing: 1px;
-    margin-right: 5px;
 }
 
 @media screen and (min-width: 750px) {

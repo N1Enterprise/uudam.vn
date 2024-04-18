@@ -71,6 +71,16 @@
     letter-spacing: 1px;
 }
 
+.collection .card-wrapper {
+    padding: 10px;
+    border: 1px solid #f2f2f2;
+    border-radius: 3px;
+}
+
+.collection .card__information .card__heading a {
+    font-size: 14px;
+}
+
 @import url('../../../../../public/frontend/bundle/css/master.min.css');
 @import url('../../../../../public/frontend/bundle/css/component-collection-hero.min.css');
 @import url('../../../../../public/frontend/bundle/css/template-collection.min.css');

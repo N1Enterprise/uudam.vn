@@ -65,7 +65,8 @@ class Order extends BaseModel
 
     protected $casts = [
         'log' => 'json',
-        'footprint' => 'json'
+        'footprint' => 'json',
+        'order_channel' => 'json'
     ];
 
     public function getPaymentStatusNameAttribute()
@@ -223,7 +224,7 @@ class Order extends BaseModel
 
     public function shippingOption()
     {
-        return $this->belongsTo(ShippingOption::class);   
+        return $this->belongsTo(ShippingOption::class);
     }
 
     public function userOrderShippingHistory()
