@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Common\RequestHelper;
+use App\Enum\AccessChannelType;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\UserActionEnum;
 use App\Enum\UserStatusEnum;
@@ -75,11 +77,11 @@ class UserService extends BaseService
             $user = $this->userRepository->create($attributes);
 
             $user->userWallets()->create([
-                'balance'       => 0,
-                'status'        => ActivationStatusEnum::ACTIVE,
-                'type'          => UserWalletTypeEnum::SHOPPING,
+                'balance' => 0,
+                'status' => ActivationStatusEnum::ACTIVE,
+                'type' => UserWalletTypeEnum::SHOPPING,
                 'currency_code' => $user->currency_code,
-                'activated'     => true,
+                'activated' => true,
             ]);
 
             UserCreating::dispatch($user);
@@ -128,7 +130,16 @@ class UserService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $user = $this->show($id);
 
-            $userData = Arr::only($attributes ?? [], ['email', 'username', 'name', 'phone_number', 'birthday']);
+            $userData = Arr::only($attributes ?? [], [
+                'email',
+                'username',
+                'name',
+                'phone_number',
+                'birthday',
+                'access_channel_type',
+                'meta',
+                'allow_login'
+            ]);
 
             // TODO: should separate update phone_number/email to another flow.
             if (! empty($userData)) {
@@ -178,8 +189,8 @@ class UserService extends BaseService
     {
         $attributes = [
             'user_id' => $userId,
-            'type'    => UserActionEnum::constant(data_get($data, 'type')),
-            'reason'  => data_get($data, 'reason'),
+            'type' => UserActionEnum::constant(data_get($data, 'type')),
+            'reason' => data_get($data, 'reason'),
         ];
 
         $user = DB::transaction(function () use ($attributes, $userId) {

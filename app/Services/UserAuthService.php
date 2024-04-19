@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Classes\Contracts\UserAuthContract;
+use App\Common\RequestHelper;
+use App\Enum\AccessChannelType;
 use App\Models\User;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +23,14 @@ class UserAuthService extends BaseService
 
     public function signup($attributes = [])
     {
-        $attributes = array_merge([ 'currency_code' => SystemCurrency::getDefaultCurrency()->getKey() ], $attributes);
+        $attributes = array_merge([
+            'currency_code' => SystemCurrency::getDefaultCurrency()->getKey(),
+            'access_channel_type' => AccessChannelType::WEBSITE,
+            'allow_login' => true,
+            'meta' => [
+                'footprint' => RequestHelper::getDataFromRequest(request(), config('security.footprint_fields', []))
+            ]
+        ], $attributes);
 
         return  $this->userService->create($attributes);
     }
@@ -55,8 +64,12 @@ class UserAuthService extends BaseService
     {
         $user = $this->findUserForLogin($username);
 
-        if (! $user) {
+        if (! ($user instanceof User)) {
             throw ValidationException::withMessages(['username' => 'Thông tin đăng nhập không đúng.']);
+        }
+
+        if (! $user->isActive() || ! boolean($user->allow_login)) {
+            throw ValidationException::withMessages(['username' => 'Không thể đăng nhập vào lúc này.']);
         }
 
         if (! Hash::check($password, $user->password)) {

@@ -387,8 +387,11 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 .recommendation-target {
     margin: 0px 10px;
     background: #fff;
-    border: 1px solid rgb(235, 235, 240);
     border-radius: 3px;
+}
+
+.limespot-recommendation-box-item .recommendation-target {
+    border: 1px solid rgb(235, 235, 240);
 }
 
 [has-frontend-custom] .recommendation-target {

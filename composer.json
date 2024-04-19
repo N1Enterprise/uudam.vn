@@ -23,7 +23,8 @@
         "roumen/sitemap": "^8.0",
         "spatie/laravel-permission": "^5.11",
         "spatie/laravel-responsecache": "^6.6",
-        "symfony/expression-language": "^5.4"
+        "symfony/expression-language": "^5.4",
+        "voku/anti-xss": "^4.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

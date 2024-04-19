@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Contracts\Requests\Backoffice\StoreOrderRequestContract;
 use App\Contracts\Responses\Backoffice\StoreOrderResponseContract;
+use App\Enum\AccessChannelType;
 use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
 use App\Services\InventoryService;
@@ -29,7 +30,7 @@ class OrderController extends BaseController
     public $userOrderService;
 
     public function __construct(
-        OrderService $orderService, 
+        OrderService $orderService,
         ShippingProviderService $shippingProviderService,
         InventoryService $inventoryService,
         ShippingOptionService $shippingOptionService,
@@ -50,8 +51,9 @@ class OrderController extends BaseController
     {
         $orderStatusEnumLabels = OrderStatusEnum::labels();
         $paymentStatusEnumLabels = PaymentStatusEnum::labels();
+        $accessChannelTypeLables = AccessChannelType::labels();
 
-        return view('backoffice.pages.orders.index', compact('orderStatusEnumLabels', 'paymentStatusEnumLabels'));
+        return view('backoffice.pages.orders.index', compact('orderStatusEnumLabels', 'paymentStatusEnumLabels', 'accessChannelTypeLables'));
     }
 
     public function create(Request $request)
@@ -64,6 +66,7 @@ class OrderController extends BaseController
         $districts = District::make()->all(['with' => 'province']);
         $wards = Ward::make()->all(['with' => 'district']);
         $users = $this->userService->allAvailable();
+        $accessChannelTypeLables = AccessChannelType::labels();
 
         return view('backoffice.pages.orders.create', compact(
             'inventories',
@@ -73,7 +76,8 @@ class OrderController extends BaseController
             'provinces',
             'districts',
             'wards',
-            'users'
+            'users',
+            'accessChannelTypeLables'
         ));
     }
 
@@ -106,9 +110,9 @@ class OrderController extends BaseController
         $shippingProviders = $this->shippingProviderService->allAvailable();
 
         return view('backoffice.pages.orders.edit', compact(
-            'order', 
-            'orderStatusEnumLabels', 
-            'paymentStatusEnumLabels', 
+            'order',
+            'orderStatusEnumLabels',
+            'paymentStatusEnumLabels',
             'shippingProviders'
         ));
     }

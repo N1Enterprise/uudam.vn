@@ -42,9 +42,26 @@
                                     @foreach($users as $user)
                                     <option
                                         data-tokens="{{ (string) $user->name }} | {{ (string) $user->email }} | {{ (string) $user->phone_number ?? 'N/A' }}"
-                                        value="{{ $user->id }}">{{ $user->name }} | {{ $user->email }} | {{ $user->phone_number ?? 'N/A' }}</option>
+                                        value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>{{ __('Kênh mua hàng') }} *</label>
+                                <select name="order_channel[type]" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('order_channel.type') ? 'is-invalid' : '' }}" required>
+                                    @foreach($accessChannelTypeLables as $key => $label)
+                                    <option value="{{ $key }}" {{ old('order_channel.type') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                                @error('order_channel.type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="">{{ __('Reference kênh truy cập') }}</label>
+                                <input type="text" class="form-control" name="order_channel[reference_id]" placeholder="{{ __('Nhập reference kênh truy cập') }}" value="{{ old('order_channel.reference_id') }}">
                             </div>
                         </div>
                     </div>
@@ -92,27 +109,7 @@
                                         <th>{{ __('Xoá') }}</th>
                                     </thead>
                                     <tbody>
-                                        {{-- <tr>
-                                            <th>1</th>
-                                            <th>
-                                                <img src="https://zcart.incevio.cloud/image/images/6517d665a1297.webp?p=medium" width="50" alt="">
-                                            </th>
-                                            <th>Veniam facere deleniti est quo nesciunt. - Refurbished</th>
-                                            <th>
-                                                <input type="number" step="0.01" value="100.12" class="form-control">
-                                            </th>
-                                            <th>
-                                                <input type="number" step="1" value="12" class="form-control">
-                                            </th>
-                                            <th>
-                                                <div>10.000đ</div>
-                                            </th>
-                                            <th>
-                                                <button type="button" class="btn btn-danger btn-icon">
-                                                    <i class="flaticon-delete"></i>
-                                                </button>
-                                            </th>
-                                        </tr> --}}
+                                        {{-- Code... --}}
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -148,7 +145,7 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label>{{ __('E-mail khách hàng') }} *</label>
+                                <label>{{ __('E-mail khách hàng') }}</label>
                                 <input type="text" class="form-control" name="email" placeholder="{{ __('Nhập e-mail khách hàng') }}" value="">
                             </div>
 

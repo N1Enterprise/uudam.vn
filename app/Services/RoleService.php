@@ -15,6 +15,8 @@ class RoleService extends BaseService
     public static $groupedPermissions = [
         'users' => [
             'users.index',
+            'users.store',
+            'users.change_password',
             'label_users_detail' => [
                 'users.show',
                 'users.update',

@@ -32,7 +32,7 @@ class FrontendRouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes()
     {
-        Route::middleware(['redirect.to.root', 'web'])
+        Route::middleware(['user_api', 'redirect.to.root', 'web'])
             ->as('fe.api.')
             ->prefix('fe/api')
             ->group(base_path('routes/frontend/api.php'));

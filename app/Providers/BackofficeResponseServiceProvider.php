@@ -19,6 +19,7 @@ class BackofficeResponseServiceProvider extends ServiceProvider
         Contracts\UpdateRoleResponseContract::class => Responses\UpdateRoleResponse::class,
         Contracts\ListRoleResponseContract::class => Responses\ListRoleResponse::class,
 
+        Contracts\StoreUserResponseContract::class => Responses\StoreUserResponse::class,
         Contracts\UpdateUserResponseContract::class => Responses\UpdateUserResponse::class,
         Contracts\ListUserResponseContract::class => Responses\ListUserResponse::class,
         Contracts\UpdateUserActionLogResponseContract::class => Responses\UpdateUserActionLogResponse::class,

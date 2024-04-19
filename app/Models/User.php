@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Casts\Hash;
 use App\Common\RequestHelper;
+use App\Enum\AccessChannelType;
 use App\Enum\SystemSettingKeyEnum;
 use App\Enum\UserStatusEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasCurrency;
+use App\Models\Traits\HasImpactor;
 use App\Notifications\SendUserResetPassword;
 use Carbon\Carbon;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -24,6 +26,7 @@ class User extends BaseAuthenticateModel implements MustVerifyEmail
     use Notifiable;
     use HasCurrency;
     use CanResetPassword;
+    use HasImpactor;
 
     protected $fillable = [
         'username',
@@ -37,6 +40,13 @@ class User extends BaseAuthenticateModel implements MustVerifyEmail
         'phone_number',
         'birthday',
         'email_verified_at',
+        'access_channel_type',
+        'meta',
+        'created_by_id',
+        'created_by_type',
+        'updated_by_id',
+        'updated_by_type',
+        'allow_login'
     ];
 
     protected $hidden = [
@@ -46,6 +56,7 @@ class User extends BaseAuthenticateModel implements MustVerifyEmail
 
     protected $casts = [
         'password' => Hash::class,
+        'meta' => 'json'
     ];
 
     public function sendPasswordResetNotification($token)
@@ -93,6 +104,11 @@ class User extends BaseAuthenticateModel implements MustVerifyEmail
         }
 
         return $status;
+    }
+
+    public function getAccessChannelTypeNameAttribute()
+    {
+        return AccessChannelType::findConstantLabel($this->access_channel_type);
     }
 
     public function getSerializedStatusNameAttribute()

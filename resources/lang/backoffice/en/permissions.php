@@ -3,6 +3,8 @@
 return [
     // user
     'users' => 'Khác hàng',
+    'users.change_password' => 'Thay đổi mật khẩu',
+    'users.store' => 'Thêm khách hàng',
     'users.index' => 'Danh sách khách hàng',
     'label_users_detail' => 'Chi tiết khách hàng',
     'label_users_detail_action' => 'Hành động khách hàng',
@@ -83,7 +85,7 @@ return [
     'attribute-values.store' => 'Tạo giá trị thuộc tính',
     'attribute-values.update' => 'Cập nhật giá trị thuộc tính',
     'attribute-values.delete' => 'Xóa giá trị thuộc tính',
-  
+
     'support-desks' => 'Bàn hỗ trợ',
     'product-reviews' => 'Đánh giá sản phẩm',
     'product-reviews.index' => 'Xem danh sách đánh giá sản phẩm',

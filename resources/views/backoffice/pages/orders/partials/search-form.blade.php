@@ -59,6 +59,16 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="col-lg-4">
+                    <label>{{ __('Kênh mua hàng') }}</label>
+                    <select name="order_channel_type" class="form-control k_selectpicker">
+                        <option value="">{{ __('Chọn kênh mua hàng') }}</option>
+                        @foreach ($accessChannelTypeLables as $key => $label)
+                        <option value="{{ $key }}">{{ $label }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </div>
         <div class="k-portlet__foot">

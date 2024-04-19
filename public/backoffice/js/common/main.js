@@ -181,6 +181,7 @@ var __IMAGE_MANAGER__ = {
 $('[data-generate]').each(function(_, element) {
     $(element).on('click', function() {
         const isUppercase = $(element).attr('data-generate-uppercase') == 'true';
+        const isLowercase = $(element).attr('data-generate-lowercase') == 'true';
         const length = $(element).attr('data-generate-length') || 6;
         const prefix = $(element).attr('data-generate-prefix');
         const $ref = $(element).attr('data-generate-ref');
@@ -193,6 +194,10 @@ $('[data-generate]').each(function(_, element) {
 
         if (isUppercase) {
             generatedString = (generatedString).toUpperCase();
+        }
+
+        if (isLowercase) {
+            generatedString = (generatedString).toLowerCase();
         }
 
         $($ref).val(generatedString);

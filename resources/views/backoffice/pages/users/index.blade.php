@@ -74,6 +74,18 @@
                     {{ $title }}
                 </h3>
             </div>
+            @canAny(['users.store'])
+            <div class="k-portlet__head-toolbar">
+                <div class="k-portlet__head-toolbar-wrapper">
+                    @can('users.store')
+                    <a href="{{ route('bo.web.users.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
+                        <i class="la la-plus"></i>
+                        {{ __('Tạo mới') }}
+                    </a>
+                    @endcan
+                </div>
+            </div>
+            @endcan
         </div>
         <div class="k-portlet__body">
             <!--begin: Datatable -->
@@ -85,6 +97,7 @@
                         <th data-property="name">{{ __('Tên') }}</th>
                         <th data-property="phone_number">{{ __('SĐT') }}</th>
                         <th data-property="email">{{ __('E-mail') }}</th>
+                        <th data-name="access_channel_type" data-badge data-property="access_channel_type_name">{{ __('Kênh truy cập') }}</th>
                         <th data-name="status" data-badge data-property="serialized_status_name">{{ __('Trạng thái') }}</th>
                         <th data-property="last_logged_in_at">{{ __('Đăng nhập lần cuối') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>

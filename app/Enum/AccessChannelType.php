@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class OrderChannelType extends BaseEnum
+class AccessChannelType extends BaseEnum
 {
     public const WEBSITE = 1;
     public const SHOPEE = 2;

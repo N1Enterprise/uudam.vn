@@ -127,12 +127,23 @@
 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <label><a href="{{ route('bo.web.users.edit', $order->user->id) }}" target="_bank">{{ __('ID khách hàng') }}</a></label>
+                                        <label><a href="{{ route('bo.web.users.edit', $order->user->id) }}" target="_bank">{{ __('ID khách hàng') }} ({{ data_get($order->user, 'access_channel_type_name') }})</a></label>
                                         <input type="text" class="form-control" value="{{ $order->user->id }}" disabled>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label>{{ __('Tên khách hàng') }}</label>
                                         <input type="text" class="form-control" value="{{ $order->user->name }}" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label>{{ __('Kênh mua hàng') }}</label>
+                                        <input type="text" class="form-control" value="{{ enum('AccessChannelType')::findConstantLabel(data_get($order, 'order_channel.type')) }}" disabled>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>{{ __('Reference kênh mua hàng') }}</label>
+                                        <input type="text" class="form-control" value="{{ data_get($order, 'order_channel.reference_id') }}" disabled>
                                     </div>
                                 </div>
 

@@ -8,11 +8,14 @@ Route::redirect('/', '/bo/dashboard');
 Route::get('/dashboard', [Controllers\DashboardController::class, 'home'])->name('dashboard');
 
 Route::get('users', [Controllers\UserController::class, 'index'])->name('users.index')->middleware(['can:users.index']);
+Route::get('users/create', [Controllers\UserController::class, 'create'])->name('users.create')->middleware(['can:users.store']);
+Route::post('users', [Controllers\UserController::class, 'store'])->name('users.store')->middleware(['can:users.store']);
 Route::get('users/{id}', [Controllers\UserController::class, 'edit'])->name('users.edit')->middleware(['can:users.show']);
 Route::put('users/{id}', [Controllers\UserController::class, 'update'])->name('users.update')->middleware(['can:users.update']);
 Route::post('users/{id}/actions/deactivate', [Controllers\UserController::class, 'updateUserAction'])->name('users.action.deactivate')->middleware(['can:users.action']);
 Route::post('users/{id}/actions/active', [Controllers\UserController::class, 'updateUserAction'])->name('users.action.active')->middleware(['can:users.action']);
 Route::put('users/{id}/set-test-user', [Controllers\UserController::class, 'setTestUser'])->name('users.set-test-user')->middleware(['can:users.action']);
+Route::put('users/{id}/update-password', [Controllers\UserController::class, 'updatePassword'])->name('users.update-password')->middleware(['can:users.change_password']);
 
 /* ======================== ADMIN USER ======================== */
 Route::get('admins', [Controllers\AdminController::class, 'index'])->name('admins.index')->middleware(['can:admins.index']);

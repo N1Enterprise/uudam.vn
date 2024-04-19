@@ -60,7 +60,8 @@ class Order extends BaseModel
         'district_name',
         'ward_name',
         'transport_fee',
-        'total_weight'
+        'total_weight',
+        'order_channel'
     ];
 
     protected $casts = [

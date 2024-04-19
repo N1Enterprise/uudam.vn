@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Common\Cache;
+use App\Enum\AccessChannelType;
 use App\Enum\OrderCacheKeyEnum;
 use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
@@ -105,6 +106,12 @@ class OrderService extends BaseService
                 if (!empty($paymentStatuses)) {
                     $q->whereIn('payment_status', $paymentStatuses);
                 }
+
+                $orderChannelType = data_get($data, 'order_channel_type');
+
+                if ($orderChannelType) {
+                    $q->whereJsonContains('order_channel->type', (int) $orderChannelType);
+                }
             })
             ->search([]);
 
@@ -171,7 +178,7 @@ class OrderService extends BaseService
        /** @var PaymentOption */
        $paymentOption = $this->paymentOptionService->show($paymentOption);
 
-       $orderCode = $this->generateOrderCode(); 
+       $orderCode = $this->generateOrderCode();
 
         if ($user->currency_code != $paymentOption->currency_code) {
             throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_USER);
@@ -183,7 +190,7 @@ class OrderService extends BaseService
                 ->plus($curr);
         }, 0);
 
-        $data = array_merge(
+        $orderData = array_merge(
             [
                 'order_code' => $orderCode,
                 'uuid' => (string) Str::uuid(),
@@ -197,14 +204,15 @@ class OrderService extends BaseService
                 'order_status' => OrderStatusEnum::WAITING_FOR_PAYMENT,
                 'is_sent_invoice_to_user' => 0,
                 'payment_option_id'  => $paymentOption->getKey(),
-                'shipping_option_id' => $shippingOption->getKey()
+                'shipping_option_id' => $shippingOption->getKey(),
+                'order_channel' => data_get($data, 'order_channel', [])
             ],
             BaseModel::getMorphProperty('created_by', $createdBy),
             BaseModel::getMorphProperty('updated_by', $createdBy),
             []
         );
 
-        $order = $this->orderRepository->create($data);
+        $order = $this->orderRepository->create($orderData);
 
         return $order;
     }
@@ -239,7 +247,7 @@ class OrderService extends BaseService
             'footprint' => data_get($data, 'footprint', []),
         ];
 
-        $data = array_merge(
+        $orderData = array_merge(
             [
                 'order_code' => $orderCode,
                 'uuid' => (string) Str::uuid(),
@@ -253,14 +261,15 @@ class OrderService extends BaseService
                 'order_status' => OrderStatusEnum::WAITING_FOR_PAYMENT,
                 'is_sent_invoice_to_user' => 0,
                 'payment_option_id'  => $paymentOption->getKey(),
-                'shipping_option_id' => $shippingOption->getKey()
+                'shipping_option_id' => $shippingOption->getKey(),
+                'order_channel' => ['type' => AccessChannelType::WEBSITE]
             ],
             BaseModel::getMorphProperty('created_by', $createdBy),
             BaseModel::getMorphProperty('updated_by', $createdBy),
             $meta
         );
 
-        $order = $this->orderRepository->create($data);
+        $order = $this->orderRepository->create($orderData);
 
         return $order;
     }
@@ -402,7 +411,7 @@ class OrderService extends BaseService
         return DB::transaction(function() use ($orderId, $userOrderShippingHistoryId, $shippingProviderId, $transportFee, $referenceId) {
             $this->userOrderShippingHistoryService
                 ->update([
-                    'shipping_provider_id' => $shippingProviderId, 
+                    'shipping_provider_id' => $shippingProviderId,
                     'transport_fee' => $transportFee,
                     'reference_id' => $referenceId,
                 ], $userOrderShippingHistoryId);

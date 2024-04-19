@@ -18,8 +18,10 @@ class BackofficeFormRequestServiceProvider extends ServiceProvider
         Contracts\StoreRoleRequestContract::class => Requests\StoreRoleRequest::class,
         Contracts\UpdateRoleRequestContract::class => Requests\UpdateRoleRequest::class,
 
+        Contracts\StoreUserRequestContract::class => Requests\StoreUserRequest::class,
         Contracts\UpdateUserRequestContract::class => Requests\UpdateUserRequest::class,
         Contracts\UpdateUserActionLogRequestContract::class => Requests\UpdateUserActionLogRequest::class,
+        Contracts\UpdateUserPasswordRequestContract::class => Requests\UpdateUserPasswordRequest::class,
 
         Contracts\UpdateSystemSettingRequestContract::class => Requests\UpdateSystemSettingRequest::class,
         Contracts\StoreSystemSettingGroupRequestContract::class => Requests\StoreSystemSettingGroupRequest::class,
