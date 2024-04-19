@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
-class UserCreateSeeder extends Seeder
+class UserCreatePermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
