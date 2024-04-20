@@ -43,7 +43,8 @@ class PostService extends BaseService
                 if (! empty($filterIds)) {
                     $q->whereIn('id', $filterIds);
                 }
-            });
+            })
+            ->orderBy('order');
 
         return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))

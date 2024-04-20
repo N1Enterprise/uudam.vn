@@ -43,6 +43,7 @@ class InventoryService extends BaseService
                     $q->whereIn('allow_frontend_search', $feSearch);
                 }
             })
+            ->orderBy('order')
             ->search([]);
 
         return $result;

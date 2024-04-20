@@ -64,12 +64,12 @@ class BannerService extends BaseService
             ->addSort('order', 'asc')
             ->addSort('id', 'asc')
             ->all([
-                'id', 
+                'id',
                 'desktop_image',
-                'mobile_image', 
-                'cta_label', 
-                'label', 
-                'description', 
+                'mobile_image',
+                'cta_label',
+                'label',
+                'description',
                 'redirect_url'
             ]);
 
@@ -137,7 +137,8 @@ class BannerService extends BaseService
                 if (! empty($filterIds)) {
                     $q->whereIn('id', $filterIds);
                 }
-            });
+            })
+            ->orderBy('order');
 
         return $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'));
     }

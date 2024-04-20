@@ -26,8 +26,8 @@ class UserHomePageDisplayItemController extends BaseApiController
     public $bannerService;
 
     public function __construct(
-        HomePageDisplayItemService $homePageDisplayItemService, 
-        InventoryService $inventoryService, 
+        HomePageDisplayItemService $homePageDisplayItemService,
+        InventoryService $inventoryService,
         CollectionService $collectionService,
         PostService $postService,
         PostCategoryService $postCategoryService,

@@ -48,9 +48,10 @@ class PostCategoryService extends BaseService
                 if (! empty($type)) {
                     $q->where('type', $type);
                 }
-            });
+            })
+            ->orderBy('order');
 
-        return $paginate 
+        return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
             : $result->all();
     }
