@@ -209,6 +209,7 @@
     margin: auto;
     width: 100%!important;
     height: auto!important;
+    color: #000;
 }
 
 .article-contentview img {
@@ -242,6 +243,18 @@
     color: #fff;
     background-color: #fff;
     margin: 15px 0 !important;
+}
+
+.article-contentview br {
+    padding: 0!important;
+}
+
+.article-contentview p:empty {
+    display: none;
+}
+
+.article-contentview b {
+    font-weight: bold;
 }
 
 .article-contentview a {
