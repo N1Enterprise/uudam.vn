@@ -39,6 +39,7 @@ class BannerService extends BaseService
                 }
             })
             ->with(data_get($data, 'with', []))
+            ->orderBy('order')
             ->all(data_get($data, 'columns', ['*']));
     }
 

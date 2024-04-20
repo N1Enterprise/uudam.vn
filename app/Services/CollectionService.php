@@ -45,7 +45,7 @@ class CollectionService extends BaseService
             })
             ->orderBy('order');
 
-        return $paginate 
+        return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
             : $result->all();
     }

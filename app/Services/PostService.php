@@ -36,6 +36,16 @@ class PostService extends BaseService
 
         $result = $this->postRepository
             ->with(data_get($data, 'with', []))
+            ->selectColumns([
+                'id',
+                'name',
+                'slug',
+                'image',
+                'description',
+                'post_at',
+                'status',
+                'code'
+            ])
             ->modelScopes(['active', 'feDisplay'])
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);
@@ -56,6 +66,7 @@ class PostService extends BaseService
         return $this->postRepository
             ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
+            ->orderBy('order')
             ->all(data_get($data, 'columns', ['*']));
     }
 
