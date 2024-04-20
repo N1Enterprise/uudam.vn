@@ -219,11 +219,28 @@
 
 .article-contentview h2 {
     padding: 10px 0;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 23px !important;
+}
+
+.article-contentview ol,
+.article-contentview ul {
+    list-style: auto!important;
 }
 
 .article-contentview h2 span,
 .article-contentview h2 a {
     font-size: 25px!important;
+}
+
+.article-contentview hr {
+    cursor: default;
+    border: 2px solid #b4bec8;
+    border-style: none none solid;
+    color: #fff;
+    background-color: #fff;
+    margin: 15px 0 !important;
 }
 
 .article-contentview a {
@@ -238,6 +255,7 @@
     }
 
     .article-contentview h2 {
-        padding: 0;
+        padding: 5px 0;
+        font-size: 19px !important;
     }
 }
