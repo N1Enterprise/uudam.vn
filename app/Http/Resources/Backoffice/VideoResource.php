@@ -47,6 +47,7 @@ class VideoResource extends BaseJsonResource
             'actions' => array_filter([
                 'update' => $updatePermission ? Route::findByName('bo.web.videos.edit', ['id' => $this->getKey()]) : null,
                 'delete' => $deletePermission ? Route::findByName('bo.web.videos.delete', ['id' => $this->getKey()]) : null,
+                'fe_link' => Route::findByName('fe.web.videos.index', ['slug' => $this->slug, 'id' => $this->id]),
             ]),
         ]);
     }

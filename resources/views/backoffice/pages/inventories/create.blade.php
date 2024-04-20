@@ -130,7 +130,7 @@
                     <div class="k-portlet__body">
                         @if ($inventory->id)
                         <div class="form-group">
-                            <label for="">{{ __('Đường dẫn sản phẩm') }} *</label>
+                            <label for="">{{ __('Xem chi tiết') }} *</label>
 
                             <div>
                                 <a href="{{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}" target="_blank">

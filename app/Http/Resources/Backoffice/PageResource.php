@@ -42,6 +42,7 @@ class PageResource extends BaseJsonResource
             'actions' => array_filter([
                 'update' => $updatePermission ? Route::findByName('bo.web.pages.edit', ['id' => $this->getKey()]) : null,
                 'delete' => $deletePermission ? Route::findByName('bo.web.pages.delete', ['id' => $this->getKey()]) : null,
+                'fe_link' => Route::findByName('fe.web.pages.index', ['slug' => $this->slug, 'id' => $this->id]),
             ]),
         ]);
     }

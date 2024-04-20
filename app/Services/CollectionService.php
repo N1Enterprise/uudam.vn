@@ -59,6 +59,20 @@ class CollectionService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
+    public function findBySlugForGuest($slug, $data = [])
+    {
+        $id = data_get($data, 'id');
+
+        return $this->collectionRepository
+            ->modelScopes(['active', 'feDisplay'])
+            ->selectColumns(data_get($data, 'columns', ['*']))
+            ->scopeQuery(function($q) use ($slug, $id) {
+                $q->where('slug', $slug)
+                    ->orWhere('id', $id);
+            })
+            ->first();
+    }
+
     public function showBySlug($slug, $data = [])
     {
         return $this->collectionRepository

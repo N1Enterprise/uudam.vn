@@ -61,6 +61,18 @@
 						@include('backoffice.partials.message')
 						<div class="tab-content">
 							<div class="tab-pane active show" id="mainTab">
+                                <div class="form-group">
+                                    <label for="">{{ __('Xem chi tiết') }} *</label>
+
+                                    <div>
+                                        <a href="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}" target="_blank">
+                                            {{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}
+                                        </a>
+
+                                        <button type="button" data-copy-clipboard data-copy-clipboard-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}" class="btn btn-sm btn-outline-primary ml-2">{{ __('COPY') }}</button>
+                                    </div>
+                                </div>
+
 								<div class="form-group">
 									<label>{{ __('Tên') }} *</label>
 									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $post->name) }}" data-reference-slug="slug" required>

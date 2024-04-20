@@ -72,6 +72,20 @@
 
 @section('js_script')
 <script>
+    $('.datatable').find('th.datatable-action').attr('data-action-icon-pack', JSON.stringify({
+        fe_link: '<i class="flaticon2-link-programing-symbol-of-interface"></i>',
+    }))
+
+    $(document).on('click', '[data-action="fe_link"]', function(e) {
+        e.preventDefault();
+
+        const dataLink = $(this).attr('href');
+
+        copyToClipboard(dataLink);
+
+        fstoast.success("{{ __('Đã sao chép !') }}");
+    });
+
     function renderCallbackImage(data, type, full) {
         const image = $('<img>', {
             src: data,

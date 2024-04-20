@@ -49,6 +49,7 @@ class PostResource extends BaseJsonResource
             'actions' => array_filter([
                 'update' => $updatePermission ? Route::findByName('bo.web.posts.edit', ['id' => $this->getKey()]) : null,
                 'delete' => $deletePermission ? Route::findByName('bo.web.posts.delete', ['id' => $this->getKey()]) : null,
+                'fe_link' => Route::findByName('fe.web.posts.index', ['slug' => $this->slug, 'id' => $this->id]),
             ]),
         ]);
     }
