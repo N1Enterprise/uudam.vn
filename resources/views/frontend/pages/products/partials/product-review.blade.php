@@ -18,9 +18,9 @@
                     @endif
                 </div>
 
-                @if($AUTHENTICATED_USER)
                 <div class="spr-content">
                     <div>
+                        @if($AUTHENTICATED_USER)
                         <div data-product-review class="spr-form d-none">
                             <form id="User_Product_Review" method="post" action="{{ route('fe.api.user.product.review') }}" class="new-review-form">
                                 <input type="hidden" name="product_id" value="{{ $inventory->product_id }}">
@@ -65,6 +65,10 @@
                                 </fieldset>
                             </form>
                         </div>
+                        @else
+                        <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng nhập</a>
+                        <span style="font-size: 1.4rem;">để bình luận</span>
+                        @endif
                         <div class="spr-reviews ">
                             @if(has_data($productReviews))
                                 <div class="{{ count($productReviews) > 1 ? 'product-review-content-wrapper' : '' }}">
@@ -119,11 +123,6 @@
                         </div>
                     </div>
                 </div>
-                @else
-                <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng nhập</a>
-                <span style="font-size: 1.4rem;">để bình luận</span>
-                @endif
-
             </div>
         </div>
         @if(has_data($productReviews) && count($productReviews) > 1)

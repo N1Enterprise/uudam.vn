@@ -3,7 +3,7 @@
         @if(!empty($mediaVideos))
         @foreach ($mediaVideos as $video)
         <div data-media-modal-open data-owl-index="0" class="product__media-item grid__item slider__slide is-active">
-            <div data-media-modal-open class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden">
+            <div class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden">
                 <span class="product__media-icon motion-reduce quick-add-hidden">
                     <svg focusable="false" class="icon icon-plus" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.66724 7.93978C4.66655 7.66364 4.88984 7.43922 5.16598 7.43853L10.6996 7.42464C10.9758 7.42395 11.2002 7.64724 11.2009 7.92339C11.2016 8.19953 10.9783 8.42395 10.7021 8.42464L5.16849 8.43852C4.89235 8.43922 4.66793 8.21592 4.66724 7.93978Z" fill="currentColor"></path>
@@ -17,7 +17,9 @@
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M1.48177 0.814643C0.81532 0.448245 0 0.930414 0 1.69094V12.2081C0 12.991 0.858787 13.4702 1.52503 13.0592L10.5398 7.49813C11.1918 7.09588 11.1679 6.13985 10.4965 5.77075L1.48177 0.814643Z" fill="currentColor"></path>
                         </svg>
                     </span>
-                    <iframe style="height: 100%; width: 100%" src="{{ $video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <video style="height: 100%; width: 100%" controls autoplay="true" muted>
+                        <source src="{{ $video }}" type="video/mp4">
+                    </video>
                 </div>
                 <button class="product__media-toggle quick-add-hidden" type="button">
                     <span class="visually-hidden">Xem media trong một modal</span>
