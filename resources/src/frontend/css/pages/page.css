@@ -207,7 +207,8 @@
 .article-contentview * {
     height: auto;
     margin: auto;
-    width: 100%;
+    width: 100%!important;
+    height: auto!important;
 }
 
 .article-contentview img {
