@@ -60,6 +60,7 @@ const SECTION_SCROLL = {
                                     <div class="ls-image-wrap">
                                         <img class="ls-image image-lazy" alt="${ item.title }" title="${ item.title }" loading="lazy" srcset="${ item.image }" src="${ item.image }" style="border-radius: 0px;">
                                     </div>
+
                                     <div class="ls-info-wrap">
                                         <div class="ls-title">${ item.title }</div>
                                         <div class="ls-vendor">${ item.product.branch }</div>

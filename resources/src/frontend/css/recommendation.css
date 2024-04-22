@@ -484,3 +484,13 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 [has-frontend-custom] .custom-ls-box-title {
     font-weight: bold;
 }
+
+.collection .card-wrapper {
+    padding: 10px;
+    border: 1px solid rgb(235, 235, 240);
+    border-radius: 3px;
+}
+
+.collection .card__information .card__heading a {
+    font-size: 14px;
+}

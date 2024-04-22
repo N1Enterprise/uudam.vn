@@ -32,8 +32,11 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
                 'key_features' => ['nullable', 'array'],
                 'key_features.*' => ['required', 'array'],
                 'key_features.*.title' => ['required', 'string'],
-                'meta_title' => ['nullable'],
+
+                'meta_title' => ['nullable', 'string', 'max:255'],
                 'meta_description' => ['nullable'],
+                'meta_keywords' => ['nullable', 'string', 'max:255'],
+
                 'init_sold_count' => ['nullable'],
                 'meta' => ['nullable', 'array'],
                 'weight' => ['nullable', 'gt:0'],
@@ -95,8 +98,15 @@ class UpdateInventoryRequest extends BaseFormRequest implements UpdateInventoryR
             'sale_price' => ['required', 'numeric', 'gt:0'],
             'offer_price' => ['nullable', 'numeric', 'gt:0'],
             'stock_quantity' => ['required', 'integer'],
+
+            'image' => ['nullable', 'array'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
+
+            'border_image' => ['nullable', 'array'],
+            'border_image.*.path' => ['nullable', 'string'],
+            'border_image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+
             'sale_channels' => ['nullable', 'array'],
             'sale_channels.*' => ['nullable', 'string']
         ];

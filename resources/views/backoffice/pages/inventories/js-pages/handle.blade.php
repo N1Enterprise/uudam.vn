@@ -37,6 +37,44 @@
         onDelete: () => {},
     };
 
+    var VARIANT_BORDER_IMAGE_IMAGE_PATH = {
+        element_list: $('.variant_border_image_image_path'),
+        onChange: () => {
+            $.each(VARIANT_BORDER_IMAGE_IMAGE_PATH.element_list, function(index, element) {
+                $(element).on('change', function() {
+                    __IMAGE_MANAGER__.reviewPathOn($(this).val(), 'variant_border_image', index);
+                });
+            });
+        },
+        triggerChange: () => {
+            $(document).ready(function() {
+                $.each(VARIANT_BORDER_IMAGE_IMAGE_PATH.element_list, function(index, element) {
+                    $(element).trigger('change');
+                });
+            });
+        },
+        onDelete: () => {},
+    };
+
+    var VARIANT_BORDER_IMAGE_IMAGE_FILE = {
+        element_list: $('.variant_border_image_image_file'),
+        elemen_del_list: $('[data-image-ref-delete="variant_border_image"]'),
+        onChange: () => {
+            $.each(VARIANT_BORDER_IMAGE_IMAGE_FILE.element_list, function(index, element) {
+                $(element).on('change', function() {
+                    __IMAGE_MANAGER__.reviewFileOn($(this)[0].files[0], 'variant_border_image', index);
+                });
+            });
+        },
+        onDelete: () => {
+            $.each(VARIANT_BORDER_IMAGE_IMAGE_FILE.elemen_del_list, function(index, element) {
+                $(element).on('click', function() {
+                    __IMAGE_MANAGER__.deleteRef('variant_border_image', index);
+                });
+            });
+        },
+    };
+
     var FORM_MASTER = {
         init: () => {
             FORM_MASTER.onChange();
@@ -44,8 +82,13 @@
         onChange: () => {
             FORM_MEDIA_IMAGE_FILE.onChange();
             FORM_MEDIA_IMAGE_PATH.onChange();
+            VARIANT_BORDER_IMAGE_IMAGE_FILE.onChange();
+            VARIANT_BORDER_IMAGE_IMAGE_PATH.onChange();
+
             FORM_MEDIA_IMAGE_FILE.onDelete();
             FORM_MEDIA_IMAGE_PATH.onDelete();
+            VARIANT_BORDER_IMAGE_IMAGE_FILE.onDelete();
+            VARIANT_BORDER_IMAGE_IMAGE_PATH.onDelete();
         },
     };
 
@@ -74,6 +117,9 @@
                 FORM_MEDIA_IMAGE_FILE.onChange();
                 FORM_MEDIA_IMAGE_PATH.onChange();
                 FORM_MEDIA_IMAGE_FILE.onDelete();
+
+                VARIANT_BORDER_IMAGE_IMAGE_PATH.element_list = $('[data-repeater-item] .variant_border_image_image_path');
+                VARIANT_BORDER_IMAGE_IMAGE_PATH.onChange();
             },
             hide: function(deleteElement) {
                 if (confirm('Bạn có chắc chắn muốn xóa phần tử này ?')) {

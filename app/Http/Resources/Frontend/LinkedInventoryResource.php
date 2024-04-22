@@ -19,6 +19,7 @@ class LinkedInventoryResource extends BaseJsonResource
             'price_for_saving' => format_price((float) $this->sub_price - (float) $this->final_price),
             'final_sold_count' => $this->final_sold_count,
             'image' => $this->image,
+            'border_image' => $this->border_image,
             'product' => $this->whenLoaded('product', function() {
                 return optional($this->product)->only(['id', 'branch']);
             })

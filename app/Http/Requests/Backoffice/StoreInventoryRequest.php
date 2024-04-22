@@ -32,17 +32,15 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 'key_features' => ['nullable', 'array'],
                 'key_features.*' => ['nullable', 'array'],
                 'key_features.*.title' => ['required', 'string'],
-                'meta_title' => ['nullable'],
+
+                'meta_title' => ['nullable', 'string', 'max:255'],
                 'meta_description' => ['nullable'],
+                'meta_keywords' => ['nullable', 'string', 'max:255'],
+
                 'init_sold_count' => ['nullable'],
                 'meta' => ['nullable', 'array'],
                 'weight' => ['nullable', 'gt:0'],
                 'offer_start' => [
-                    Rule::requiredIf(function() {
-                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
-
-                        return boolean(count($offerPrices));
-                    }),
                     'nullable',
                     'date'
                 ],
@@ -80,9 +78,15 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants' => ['required', 'array'],
             'variants.attribute' => ['required', 'array'],
             'variants.attribute.*' => ['required', 'array'],
+
             'variants.image' => ['nullable', 'array'],
             'variants.image.*.path' => ['nullable', 'string'],
             'variants.image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+
+            'variants.border_image' => ['nullable', 'array'],
+            'variants.border_image.*.path' => ['nullable', 'string'],
+            'variants.border_image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+
             'variants.title' => ['nullable', 'array'],
             'variants.title.*' => ['nullable', 'string', 'max:255'],
             'variants.weight' => ['nullable', 'array'],

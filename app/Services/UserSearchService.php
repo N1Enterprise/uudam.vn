@@ -38,19 +38,31 @@ class UserSearchService extends BaseService
 
         if (in_array('product', $resourcesTypes)) {
             $inventories = DB::table('inventories')
-                ->select('inventories.id', 'inventories.slug', 'inventories.title', 'inventories.image')
+                ->select([
+                    'inventories.id',
+                    'inventories.slug',
+                    'inventories.title',
+                    'inventories.image',
+                    'inventories.meta_keywords',
+                    'inventories.sale_price',
+                    'inventories.offer_price',
+                ])
                 ->where('inventories.status', 1)
                 ->where('inventories.display_on_frontend', 1)
                 ->where('inventories.allow_frontend_search', 1)
                 ->where(function($q) use ($query) {
                     $q->where('inventories.title', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.slug', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.sku', 'LIKE', '%'.$query.'%');
-                })
-                ->whereIn('inventories.id', function($query) {
-                    $query->select(DB::raw('MIN(id)'))
-                        ->from('inventories')
-                        ->groupBy('product_id');
+                        ->orWhere('inventories.meta_keywords', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.sku', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.sale_price', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.offer_price', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.slug', 'LIKE', '%'.$query.'%');
+
+                    $q->whereIn('inventories.id', function($query) {
+                        $query->select(DB::raw('MIN(id)'))
+                            ->from('inventories')
+                            ->groupBy('product_id');
+                    });
                 })
                 ->orderBy('inventories.sold_count', 'desc')
                 ->limit(data_get($resourcesLimits, 'product', 4))

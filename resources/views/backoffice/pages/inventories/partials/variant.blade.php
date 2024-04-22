@@ -81,6 +81,43 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label>{{ __('Ảnh viền sản phẩm') }}
+                                <i
+                                    data-toggle="tooltip"
+                                    class="flaticon-questions-circular-button"
+                                    data-title="Ảnh viền của sản phẩm."
+                                ></i>
+                            </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="upload_image_custom position-relative">
+                                        <input type="text" data-image-ref-path="variant_border_image" data-image-ref-index="{{ $loop->index }}" class="form-control variant_border_image_image_path" name="variants[border_image][{{ $loop->index }}][path]" placeholder="{{ __('Tải lên hình ảnh hoặc URL đầu vào') }}" style="padding-right: 104px;" value="{{ old("variant.border_image.image.$loop->index.path") }}">
+                                        <div data-image-ref-wrapper="variant_border_image" data-image-ref-index="{{ $loop->index }}" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                            <div class="d-flex align-items-center h-100">
+                                                <img data-image-ref-img="variant_border_image" data-image-ref-index="{{ $loop->index }}" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
+                                                <span data-image-ref-delete="variant_border_image" data-image-ref-index="{{ $loop->index }}" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                            </div>
+                                        </div>
+                                        <label for="variant_border_image_image_file_{{ $loop->index }}" class="variant_border_image_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
+                                            <input type="file" name="variants[border_image][{{ $loop->index }}][file]" data-image-ref-file="variant_border_image" data-image-ref-index="{{ $loop->index }}" id="variant_border_image_image_file_{{ $loop->index }}" class="d-none variant_border_image_image_file">
+                                            <i class="flaticon2-image-file"></i>
+                                            <span>{{ __('Tải lên') }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start">
+                                        <div class="image_variant_border_image_image_review">
+                                            <div data-image-ref-review-wrapper="variant_border_image" data-image-ref-index="{{ $loop->index }}" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                <img data-image-ref-review-img="variant_border_image" data-image-ref-index="{{ $loop->index }}" style="width: 100%; height: 100%;" src="" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

@@ -43,7 +43,6 @@ class InventoryService extends BaseService
                     $q->whereIn('allow_frontend_search', $feSearch);
                 }
             })
-            ->orderBy('order')
             ->search([]);
 
         return $result;
@@ -100,13 +99,21 @@ class InventoryService extends BaseService
         $result = $this->inventoryRepository
             ->with(data_get($data, 'with', []))
             ->modelScopes(['active', 'feDisplay'])
-            ->whereColumnsLike($data['query'] ?? null, ['sku', 'title', 'slug'])
             ->scopeQuery(function($q) use ($data) {
+                if ($query = data_get($data, 'query')) {
+                    $q->where('inventories.title', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.meta_keywords', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.sku', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.sale_price', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.offer_price', 'LIKE', '%'.$query.'%')
+                        ->orWhere('inventories.slug', 'LIKE', '%'.$query.'%');
+                }
+
                 if (array_key_exists('filter_ids', $data)) {
                     $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
                 }
 
-                $q->whereIn('id', function($query) {
+                $q->whereIn('inventories.id', function($query) {
                     $query->select(DB::raw('MIN(id)'))
                         ->from('inventories')
                         ->groupBy('product_id');
@@ -187,6 +194,11 @@ class InventoryService extends BaseService
                 ->setConfigKey([Inventory::class, 'image'])
                 ->uploadImage(data_get($attributes, 'image'));
 
+            $attributes['border_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'border_image'));
+
             $attributes['slug'] = Str::slug($attributes['product_slug'] . ' ' . $attributes['sku'], '-');
 
             $inventory = $this->inventoryRepository->create($attributes);
@@ -213,6 +225,7 @@ class InventoryService extends BaseService
             $variant['available_from']        = data_get($attributes, 'available_from');
             $variant['meta_title']            = data_get($attributes, 'meta_title');
             $variant['meta_description']      = data_get($attributes, 'meta_description');
+            $variant['meta_keywords']         = data_get($attributes, 'meta_keywords');
             $variant['product_slug']          = data_get($attributes, 'product_slug');
             $variant['offer_start']           = data_get($attributes, 'offer_start');
             $variant['offer_end']             = data_get($attributes, 'offer_end');
@@ -238,6 +251,11 @@ class InventoryService extends BaseService
                                                 ->setConfigKey([Inventory::class, 'image'])
                                                 ->uploadImage(data_get($variants, ['image', $index]));
 
+                $variant['border_image']   = ImageHelper::make('catalog')
+                                                ->hasOptimization()
+                                                ->setConfigKey([Inventory::class, 'image'])
+                                                ->uploadImage(data_get($variants, ['border_image', $index]));
+
                 // sale channels
                 $variant['sale_channels']  = data_get($variants, ['sale_channels', $index]);
 
@@ -261,6 +279,11 @@ class InventoryService extends BaseService
                 ->hasOptimization()
                 ->setConfigKey([Inventory::class, 'image'])
                 ->uploadImage(data_get($attributes, 'image'));
+
+            $attributes['border_image'] = ImageHelper::make('catalog')
+                ->hasOptimization()
+                ->setConfigKey([Inventory::class, 'image'])
+                ->uploadImage(data_get($attributes, 'border_image'));
 
             $inventory = $this->inventoryRepository->update($attributes, $id);
 

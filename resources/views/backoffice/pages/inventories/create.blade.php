@@ -309,17 +309,17 @@
             <div class="col-md-12">
                 <div class="k-portlet">
                     <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
+                        <div class="k-portlet__head-label text-lowercase">
                             @php
                                 $invAttrs = $inventory->attributes;
                                 $invAttrVals = $inventory->attributeValues->pluck('value', 'attribute_id')->toArray();
 
                                 $invAttrTitles = optional($invAttrs)->map(function($attr) use ($invAttrVals) {
-                                    return data_get($attr, 'name') .' : '. data_get($invAttrVals, data_get($attr, 'id'), '');
+                                    return data_get($attr, 'name') .': '. data_get($invAttrVals, data_get($attr, 'id'), '');
                                 });
 
                             @endphp
-                            <h3 class="k-portlet__head-title">{{ optional($invAttrTitles)->isEmpty() ? __('KHÔNG CÓ BIẾN THỂ') : $invAttrTitles->implode('; ') }}</h3>
+                            <h3 class="k-portlet__head-title font-weight-bold">{{ optional($invAttrTitles)->isEmpty() ? __('KHÔNG CÓ BIẾN THỂ') : $invAttrTitles->implode(', ') }}</h3>
                         </div>
                     </div>
                     <div class="k-portlet__body">
@@ -358,6 +358,23 @@
                             <label for="">{{ __('Meta') }}</label>
                             <div id="json_editor_meta" style="height: 200px"></div>
                             <input type="hidden" name="meta" value="{{ old('meta', display_json_value($inventory->meta)) }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span>{{ __('[SEO] Từ khoá') }}</span>
+                                <small>(* Cách nha bằng dấu phẩy)</small>
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control {{ $errors->has('meta_keywords') ? 'is-invalid' : '' }}"
+                                name="meta_keywords"
+                                placeholder="{{ __('Nhập [SEO] từ khoá') }}"
+                                value="{{ old('meta_keywords', $inventory->meta_keywords) }}"
+                            >
+                            @error('meta_keywords')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -424,11 +441,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="k-portlet__foot">
+                        <div class="k-form__actions d-flex justify-content-end">
+                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="k-portlet">
                     @if(!empty($inventory->id))
@@ -451,7 +475,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </form>
 </div>
 @endsection
@@ -466,6 +490,7 @@
 <script>
     $(document).ready(function() {
         FORM_MEDIA_IMAGE_PATH.triggerChange();
+        VARIANT_BORDER_IMAGE_IMAGE_PATH.triggerChange();
     });
 
     $(document).ready(function () {
