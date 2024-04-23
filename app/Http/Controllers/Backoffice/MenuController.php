@@ -12,6 +12,7 @@ use App\Services\CollectionService;
 use App\Services\InventoryService;
 use App\Services\MenuGroupService;
 use App\Services\MenuService;
+use App\Services\PostService;
 
 class MenuController extends BaseController
 {
@@ -24,7 +25,7 @@ class MenuController extends BaseController
     public function __construct(
         MenuService $menuService,
         InventoryService $inventoryService,
-        InventoryService $postService,
+        PostService $postService,
         MenuGroupService $menuGroupService,
         CollectionService $collectionService
     ) {
@@ -38,8 +39,20 @@ class MenuController extends BaseController
     public function index()
     {
         $menuTypeEnumLabels = MenuTypeEnum::labels();
+        $inventories = $this->inventoryService->allAvailableDistinct();
+        $posts = $this->postService->allAvailable();
+        $collections = $this->collectionService->allAvailable();
+        $menuGroups = $this->menuGroupService
+            ->allAvailable(['with' => 'menuSubGroups', 'columns' => ['id', 'name']])
+            ->filter(fn($item) => !$item->menuSubGroups->isEmpty());
 
-        return view('backoffice.pages.menus.index', compact('menuTypeEnumLabels'));
+        return view('backoffice.pages.menus.index', compact(
+            'menuTypeEnumLabels',
+            'inventories',
+            'posts',
+            'collections',
+            'menuGroups'
+        ));
     }
 
     public function create()
