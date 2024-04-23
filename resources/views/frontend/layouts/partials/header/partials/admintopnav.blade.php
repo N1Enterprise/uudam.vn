@@ -1,5 +1,5 @@
 @if(! empty($AUTHENTICATED_ADMIN))
-<div id="admintopnav" class="page-width">
+<div id="admintopnav">
     <div style="display: flex; align-items: center">
         @foreach (data_get($SYSTEM_SETTING, 'admin_top_navigation', []) as $navigation)
         <a href="{{ data_get($navigation, 'link') }}" target="_blank">
