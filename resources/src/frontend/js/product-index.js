@@ -122,7 +122,9 @@ const MAIN_INVENTORY = {
     renderInventory: (inventory) => {
         const href = PRODUCT_ROUTES.web_detail.replace(':slug', inventory.slug);
 
-        window.location.href = href;
+        $('html, body').animate({ scrollTop : 0 }, 800, function() {
+            window.location.href = href;
+        });
     },
 };
 
