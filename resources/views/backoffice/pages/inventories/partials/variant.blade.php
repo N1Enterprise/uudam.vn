@@ -122,7 +122,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">{{ __('Tiêu đề') }}</label>
-                                    <input type="text" name="variants[title][{{ $loop->index }}]" class="form-control" value="{{ old("variants.title.$loop->index", $inventory->title) ?? $product->name }}">
+                                    <input type="text" name="variants[title][{{ $loop->index }}]" class="form-control" value="{{ old("variants.title.$loop->index", $inventory->title) ?? $product->name }}" data-reference-slug="variants[slug][{{ $loop->index }}]">
                                 </div>
                             </div>
 
