@@ -17,7 +17,7 @@
         border: 1px solid #ebedf2;
         background-color: #fcfcfc;
         cursor: pointer;
-        text-transform: uppercase;
+        text-transform: lowercase;
     }
 
     [data-repeater-list-custom=variants] .repeater-head [data-toggle] {
