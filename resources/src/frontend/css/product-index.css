@@ -1453,6 +1453,7 @@ a.product__text {
     margin: 0;
     white-space-collapse: collapse!important;
     line-height: 2;
+    font-size: 15px !important;
 }
 
 .product-description-content img {
