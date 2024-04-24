@@ -43,7 +43,7 @@
         @enderror
         @if(! empty($inventory->id)) @method('PUT') @endif
         <input type="hidden" id="INVENTORY_DATA" value='@json($inventory)' data-is-edit="{{ boolean(! empty($inventory->id)) }}">
-        <input type="hidden" name="slug" value="{{ $inventory->slug }}">
+        {{-- <input type="hidden" name="slug" value="{{ $inventory->slug }}"> --}}
 
         <div class="row">
             <div class="col-md-12">
@@ -63,7 +63,7 @@
                             <div class="col-md-10">
                                 <div class="row">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="product_slug" value="{{ $product->slug }}">
+                                    {{-- <input type="text" name="product_slug" value="{{ $product->slug }}"> --}}
 
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -154,7 +154,7 @@
                             >
                         </div>
 
-                        @if ($inventory->id)
+                        {{-- @if ($inventory->id)
                         <div class="form-group">
                             <label for="">{{ __('Đường dẫn') }} *</label>
                             <input
@@ -165,7 +165,7 @@
                                 required
                             >
                         </div>
-                        @endif
+                        @endif --}}
 
                         <div class="row">
                             <div class="col-md-6">

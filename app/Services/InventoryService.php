@@ -199,8 +199,6 @@ class InventoryService extends BaseService
                 ->setConfigKey([Inventory::class, 'image'])
                 ->uploadImage(data_get($attributes, 'border_image'));
 
-            $attributes['slug'] = Str::slug($attributes['product_slug'] . ' ' . $attributes['sku'], '-');
-
             $inventory = $this->inventoryRepository->create($attributes);
 
             return $inventory;
@@ -244,7 +242,7 @@ class InventoryService extends BaseService
                 $variant['offer_start']    = $variant['offer_price'] ? $variant['offer_start'] : null;
                 $variant['offer_end']      = $variant['offer_price'] ? $variant['offer_end'] : null;
                 $variant['stock_quantity'] = data_get($variants, ['stock_quantity', $index]);
-                $variant['slug']           = Str::slug($variant['product_slug'] . ' ' . $sku, '-');
+                $variant['slug']           = data_get($variants, ['slug', $index]);
                 $variant['weight']         = data_get($variants, ['weight', $index]) ?? $variantWeight;
                 $variant['image']          = ImageHelper::make('catalog')
                                                 ->hasOptimization()

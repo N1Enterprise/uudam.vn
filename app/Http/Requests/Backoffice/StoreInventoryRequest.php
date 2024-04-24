@@ -22,7 +22,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             [
                 'title' => ['nullable', 'max:255'],
                 'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
-                'product_slug' => ['required', 'max:255', Rule::unique(Inventory::class, 'slug')],
+                // 'product_slug' => ['required', 'max:255', Rule::unique(Inventory::class, 'slug')],
                 'available_from' => ['nullable', 'date'],
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
                 'display_on_frontend' => ['required'],
@@ -69,6 +69,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'min_order_quantity' => $this->min_order_quantity ?? 1,
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
             'meta' => !empty($this->meta) ? json_decode($this->meta, true) : null,
+            'init_sold_count' => $this->init_sold_count ?? 0
         ]);
     }
 
@@ -89,6 +90,10 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
 
             'variants.title' => ['nullable', 'array'],
             'variants.title.*' => ['nullable', 'string', 'max:255'],
+
+            'variants.slug' => ['nullable', 'array'],
+            'variants.slug.*' => ['required', 'string', 'max:255', Rule::unique(Inventory::class, 'slug')],
+
             'variants.weight' => ['nullable', 'array'],
             'variants.weight.*' => ['nullable', 'gt:0'],
             'variants.sku' => ['required', 'array'],
@@ -110,6 +115,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
     protected function defineSimpleRules()
     {
         return [
+            'title' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Inventory::class, 'slug')],
             'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
             'sku' => ['required', Rule::unique(Inventory::class, 'sku')],
             'purchase_price' => ['nullable', 'numeric', 'gt:0'],
@@ -119,7 +126,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
             'sale_channels' => ['nullable', 'array'],
-            'sale_channels.*' => ['nullable', 'string']
+            'sale_channels.*' => ['nullable', 'string'],
         ];
     }
 }

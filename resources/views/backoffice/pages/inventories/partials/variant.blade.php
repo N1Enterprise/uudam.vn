@@ -125,6 +125,13 @@
                                     <input type="text" name="variants[title][{{ $loop->index }}]" class="form-control" value="{{ old("variants.title.$loop->index", $inventory->title) ?? $product->name }}">
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">{{ __('Đường dẫn') }}</label>
+                                    <input type="text" name="variants[slug][{{ $loop->index }}]" class="form-control" value="{{ old("variants.slug.$loop->index", $inventory->slug) ?? $product->slug .'-'. strtolower(\Str::random(4)) }}">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">

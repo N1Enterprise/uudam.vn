@@ -74,6 +74,22 @@
     </div>
 
     <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="">{{ __('Tiêu đề') }}</label>
+                <input type="text" name="title" class="form-control" value="{{ old('title', $inventory->title ?? $product->name) }}" data-reference-slug="slug">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="">{{ __('Đường dẫn') }}</label>
+                <input type="text" name="slug" class="form-control" value="{{ old('slug', $inventory->slug ?? $product->slug .'-'. strtolower(\Str::random(4))) }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="">{{ __('SKU') }} *

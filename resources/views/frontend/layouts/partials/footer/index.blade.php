@@ -56,7 +56,7 @@
             <div class="page-width text-center small--text-left" style="text-align: center;">
                 <div class="section-content-template">
                     <div class="footer__base-links">
-                        <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b>{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b>, MST <b>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</b>, địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
+                        <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b style="text-transform: uppercase;">{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b>, MST <b>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</b>, địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
                     </div>
                 </div>
             </div>
