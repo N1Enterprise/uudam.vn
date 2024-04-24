@@ -141,7 +141,7 @@
                             @if (data_get($inventory, ['sale_channels', data_get($channel, 'key')]))
                             <a href="{{ data_get($inventory, ['sale_channels', data_get($channel, 'key')]) }}" target="_blank" class="product-sale-btn-item affiliate_Sales_Channels__item">
                                 <img src="{{ data_get($channel, 'logo') }}" alt="{{ data_get($channel, 'name') }}" width="30" height="30">
-                                <span>Mua tại {{ data_get($channel, 'name') }}</span>
+                                <span>Mua Tại {{ data_get($channel, 'name') }}</span>
                             </a>
                             @endif
                         @endforeach
