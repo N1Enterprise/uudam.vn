@@ -6,7 +6,6 @@ use App\Cms\ProductReviewCms;
 use App\Common\ImageHelper;
 use App\Enum\ProductReviewStatusEnum;
 use App\Exceptions\BusinessLogicException;
-use App\Models\Product;
 use App\Models\ProductReview;
 use App\Repositories\Contracts\ProductReviewRepositoryContract;
 use App\Services\BaseService;
@@ -99,7 +98,7 @@ class ProductReviewService extends BaseService
 
             $model = $this->productReviewRepository->update($attributes, $id);
 
-            ProductReviewCms::flush();
+            ProductReviewCms::flushByProductId($model->product_id);
 
             return $model;
         });
@@ -122,7 +121,7 @@ class ProductReviewService extends BaseService
 
         $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::APPROVED], $productReview);
 
-        ProductReviewCms::flush();
+        ProductReviewCms::flushByProductId($productReview->product_id);
     }
 
     public function decline($id)
@@ -131,6 +130,6 @@ class ProductReviewService extends BaseService
 
         $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::DECLINED], $productReview);
 
-        ProductReviewCms::flush();
+        ProductReviewCms::flushByProductId($productReview->product_id);
     }
 }

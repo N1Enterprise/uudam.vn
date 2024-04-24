@@ -18,6 +18,13 @@ class ProductReviewCms extends BaseCms
         return app(ProductReview::class);
     }
 
+    public static function flushByProductId($productId)
+    {
+        $cacheKey = self::CACHE_TAG.':product_review_approved:'.$productId;
+
+        Cache::tags($cacheKey)->flush();
+    }
+
     public function allApproved($productId)
     {
         $cacheKey = self::CACHE_TAG.':product_review_approved:'.$productId;
