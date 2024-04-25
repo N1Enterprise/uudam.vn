@@ -478,6 +478,7 @@ body {
     font-weight: 400;
     line-height: calc(1 + 0.8 / var(--font-body-scale))!important;
     margin: 0!important;
+    max-width: 100%!important;
 }
 
 .contentview br {
