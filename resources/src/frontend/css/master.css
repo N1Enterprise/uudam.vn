@@ -499,6 +499,12 @@ body {
     font-size: 2rem!important;
 }
 
+.contentview img {
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+}
+
 .footer-block-about {
     padding-right: 40px;
 }
