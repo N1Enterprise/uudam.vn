@@ -27,6 +27,10 @@
 
     [data-repeater-list-custom=variants] .repeater-body {
         padding: 20px;
+        border: 1px solid #e0e0e0;
+        background-color: #fdfdfd;
+        border-radius: 3px;
+        margin-bottom: 30px;
     }
 
     [data-repeater-list-custom=variants] [data-repeater-delete-custom] {
