@@ -22,14 +22,24 @@ Tổng Quan
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
     <div class="row">
+        @can('reports.view-new-users')
         @include('backoffice.pages.dashboard.partials.statistic-user')
+        @endcan
+
+        @can('reports.view-new-orders')
         @include('backoffice.pages.dashboard.partials.statistic-order')
+        @endcan
+
+        @can('reports.view-turnover')
         @include('backoffice.pages.dashboard.partials.statistic-deposit')
+        @endcan
     </div>
 
+    @can('reports.view-top-users')
     <div class="row">
         @include('backoffice.pages.dashboard.partials.table-top-user')
     </div>
+    @endcan
 </div>
 @endsection
 

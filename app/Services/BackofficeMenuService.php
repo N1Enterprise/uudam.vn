@@ -23,7 +23,12 @@ class BackofficeMenuService extends BaseService
                 'name' => 'Tổng quan',
                 'link' => route('bo.web.dashboard'),
                 'icon' => 'flaticon2-graphic',
-                'permissions' => [],
+                'permissions' => [
+                    'reports.view-new-users',
+                    'reports.view-new-orders',
+                    'reports.view-turnover',
+                    'reports.view-top-users',
+                ],
             ],
             [
                 'name' => 'Khách hàng',

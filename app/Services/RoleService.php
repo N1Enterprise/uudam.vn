@@ -269,6 +269,12 @@ class RoleService extends BaseService
                 'videos.delete',
             ],
         ],
+        'reports' => [
+            'reports.view-new-users',
+            'reports.view-new-orders',
+            'reports.view-turnover',
+            'reports.view-top-users',
+        ]
     ];
 
     public function __construct(RoleRepositoryContract $roleRepository)

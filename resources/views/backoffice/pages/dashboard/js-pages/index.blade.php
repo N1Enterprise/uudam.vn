@@ -6,6 +6,10 @@ $(document).ready(function() {
         statisticUser: (params) => {
             const route = $('#report_total_user').attr('data-request-url');
 
+            if (! route) {
+                return;
+            }
+
             $.ajax({
                 url: route,
                 method: 'GET',
@@ -25,6 +29,10 @@ $(document).ready(function() {
         statisticOrder: (params) => {
             const route = $('#report_total_order').attr('data-request-url');
 
+            if (! route) {
+                return;
+            }
+
             $.ajax({
                 url: route,
                 method: 'GET',
@@ -43,6 +51,10 @@ $(document).ready(function() {
         },
         statisticDeposit: (params) => {
             const route = $('#report_total_deposit').attr('data-request-url');
+
+            if (! route) {
+                return;
+            }
 
             $.ajax({
                 url: route,

@@ -231,5 +231,11 @@ return [
     'videos.update' => 'Cập nhật video',
     'videos.delete' => 'Xóa video',
 
-    'label_others' => 'Quyền khác'
+    'reports' => 'Báo cáo',
+    'reports.view-new-users' => 'Báo cáo khách khàng mới',
+    'reports.view-new-orders' => 'Báo cáo đơn hàng mới',
+    'reports.view-turnover' => 'Báo cáo doanh số',
+    'reports.view-top-users' => 'Báo cáo khách hàng nổi bật',
+
+    'label_others' => 'Quyền khác',
 ];
