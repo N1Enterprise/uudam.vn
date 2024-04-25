@@ -59,14 +59,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Tab_Highlights">
-                        {{ __('Nhóm phân loại') }}
+                    <a class="nav-link" data-toggle="tab" href="#Tab_SEO">
+                        {{ __('Thông tin SEO') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Tab_SEO">
-                        {{ __('Thông tin khác & SEO') }}
+                    <a class="nav-link" data-toggle="tab" href="#Tab_Description_Information">
+                        {{ __('Thông tin mô tả') }}
                     </a>
                 </li>
             </ul>
@@ -81,12 +81,19 @@
                 @include('backoffice.pages.inventories.partials.tab-classification-group')
             </div>
 
-            <div class="tab-pane" id="Tab_Highlights">
-                @include('backoffice.pages.inventories.partials.tab-highlights')
-            </div>
-
             <div class="tab-pane" id="Tab_SEO">
                 @include('backoffice.pages.inventories.partials.tab-seo')
+            </div>
+
+            <div class="tab-pane" id="Tab_Description_Information">
+                @include('backoffice.pages.inventories.partials.tab-description-information')
+            </div>
+        </div>
+
+        <div class="k-portlet__foot">
+            <div class="k-form__actions d-flex justify-content-end">
+                <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
             </div>
         </div>
     </form>
