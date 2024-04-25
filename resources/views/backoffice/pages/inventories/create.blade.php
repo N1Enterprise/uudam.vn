@@ -43,439 +43,52 @@
         @enderror
         @if(! empty($inventory->id)) @method('PUT') @endif
         <input type="hidden" id="INVENTORY_DATA" value='@json($inventory)' data-is-edit="{{ boolean(! empty($inventory->id)) }}">
-        {{-- <input type="hidden" name="slug" value="{{ $inventory->slug }}"> --}}
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('SẢN PHẨM') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="thumnail" style="width: 100%; height: 170px; padding: 3px; border: 1px solid #bbbbbb;">
-                                    <img src="{{ $product->primary_image }}" class="w-100 h-100" style="object-fit: cover;" alt="Primary image">
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="row">
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    {{-- <input type="text" name="product_slug" value="{{ $product->slug }}"> --}}
+        <div class="k-portlet__head-toolbar">
+            <ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand d-flex">
+                <li class="nav-item">
+                    <a class="nav-link active show" data-toggle="tab" href="#Tag_General_Information">
+                        {{ __('Thông tin chung') }}
+                    </a>
+                </li>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">{{ __('Tên') }} *</label>
-                                            <input type="text" class="form-control" value="{{ $product->name }}" required disabled>
-                                        </div>
-                                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Tab_Classification_Group">
+                        {{ __('Nhóm phân loại') }}
+                    </a>
+                </li>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">{{ __('Mã sản phẩm') }} *</label>
-                                            <input type="text" class="form-control" value="{{ $product->code }}" required disabled>
-                                        </div>
-                                    </div>
-                                </div>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Tab_Highlights">
+                        {{ __('Nhóm phân loại') }}
+                    </a>
+                </li>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">{{ __('Đường dẫn') }} *</label>
-                                            <input type="text" class="form-control" value="{{ $product->slug }}" required disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">{{ __('Thương hiệu') }} *</label>
-                                            <input type="text" class="form-control" value="{{ $product->branch }}" required disabled>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">{{ __('Danh mục') }} *</label>
-                                            <input type="text" class="form-control" value="{{ implode(', ', $product->categories->pluck('name')->toArray()) }}" required disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">{{ __('Trạng thái') }} *</label>
-                                            <input type="text" class="form-control" value="{{ $product->status_name }}" required disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Tab_SEO">
+                        {{ __('Thông tin khác & SEO') }}
+                    </a>
+                </li>
+            </ul>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('SẢN PHẨM KHO') }}</h3>
-                        </div>
-                    </div>
+        <div class="tab-content">
+            <div class="tab-pane active show" id="Tag_General_Information">
+                @include('backoffice.pages.inventories.partials.tab-general-information')
+            </div>
 
-                    <div class="k-portlet__body">
-                        @if ($inventory->id)
-                        <div class="form-group">
-                            <label for="">{{ __('Xem chi tiết') }} *</label>
+            <div class="tab-pane" id="Tab_Classification_Group">
+                @include('backoffice.pages.inventories.partials.tab-classification-group')
+            </div>
 
-                            <div>
-                                <a href="{{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}" target="_blank">
-                                    {{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}
-                                </a>
+            <div class="tab-pane" id="Tab_Highlights">
+                @include('backoffice.pages.inventories.partials.tab-highlights')
+            </div>
 
-                                <button type="button" data-copy-clipboard data-copy-clipboard-content="{{ route('fe.web.products.index', ['slug' => data_get($inventory, 'slug'), 'sku' => data_get($inventory, 'sku')]) }}" class="btn btn-sm btn-outline-primary ml-2">{{ __('COPY') }}</button>
-                            </div>
-                        </div>
-                        @endif
-
-                        <div class="form-group">
-                            <label for="">{{ __('Tiêu đề') }} *</label>
-                            <input
-                                type="text"
-                                name="title"
-                                class="form-control"
-                                value="{{ old('title', data_get($inventory, 'title', $product->name)) }}"
-                                data-reference-slug="slug"
-                                required
-                            >
-                        </div>
-
-                        {{-- @if ($inventory->id)
-                        <div class="form-group">
-                            <label for="">{{ __('Đường dẫn') }} *</label>
-                            <input
-                                type="text"
-                                name="slug"
-                                class="form-control"
-                                value="{{ old('slug', data_get($inventory, 'slug')) }}"
-                                required
-                            >
-                        </div>
-                        @endif --}}
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Có sẵn từ') }}
-                                        <i
-                                            data-toggle="tooltip"
-                                            data-title="Ngày mà hàng sẽ có sẵn. Mặc định = ngay lập tức"
-                                            class="flaticon-questions-circular-button"
-                                        ></i>
-                                    </label>
-                                    <input
-                                        type="datetimepicker"
-                                        class="form-control @error('available_from') is-invalid @enderror"
-                                        name="available_from"
-                                        value="{{ old('available_from', data_get($inventory, 'available_from', date('Y-m-d h:i:s', strtotime(now())))) }}"
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Số lượng đặt hàng tối thiểu') }}
-                                        <i
-                                            data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
-                                            data-title="Số lượng cho phép nhận đặt hàng. Phải là một giá trị số nguyên. Mặc định = 1"
-                                        ></i>
-                                    </label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        name="min_order_quantity"
-                                        value="{{ old('min_order_quantity', data_get($inventory, 'min_order_quantity')) }}"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Khối lượng(g)') }}</label>
-                                    <div class="input-group">
-                                        <x-number-input
-                                            name="weight"
-                                            key="weight"
-                                            class='form-control {{ $errors->has("weight") ? "is-invalid" : "" }}'
-                                            placeholder="{{ __('10,01') }}"
-                                            value='{{ old("weight", $inventory->weight) }}'
-                                        />
-                                        <div class="input-group-append"><span class="input-group-text">{{ __('gam(g)') }}</span></div>
-                                    </div>
-                                    @error('weight')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Fake số lượng bán') }}
-                                        <i
-                                            data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
-                                            data-title="{{ __('Số lượng đã bán này chỉ dành cho khách hàng sử dụng.') }}"
-                                        ></i>
-                                    </label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        name="init_sold_count"
-                                        min="0"
-                                        value="{{ old('init_sold_count', data_get($inventory, 'init_sold_count')) }}"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Ngày bắt đầu ưu đãi') }}
-                                        <i
-                                            data-toggle="tooltip"
-                                            class="flaticon-questions-circular-button"
-                                            data-title="Một khuyến mãi phải có ngày bắt đầu. Bắt buộc nếu trường giá ưu đãi được cung cấp"
-                                        ></i>
-                                    </label>
-                                    <input
-                                        type="datetimepicker"
-                                        class="form-control @error('offer_start') is-invalid @enderror"
-                                        name="offer_start"
-                                        value="{{ old('offer_start', $inventory->offer_start) }}"
-                                    >
-                                    @error('offer_start')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">{{ __('Ngày kết thúc ưu đãi') }}</label>
-                                    <input
-                                        type="datetimepicker"
-                                        class="form-control @error('offer_end') is-invalid @enderror"
-                                        name="offer_end"
-                                        value="{{ old('offer_end', $inventory->offer_end) }}"
-                                    >
-                                    @error('offer_end')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <x-content-editor id="condition_note" label="{{ __('Điều kiện mua kèm') }}" name="condition_note" value="{{ old('condition_note', data_get($inventory, 'condition_note')) }}" />
-                        </div>
-                    </div>
-                </div>
+            <div class="tab-pane" id="Tab_SEO">
+                @include('backoffice.pages.inventories.partials.tab-seo')
             </div>
         </div>
-
-        @if($hasVariant && empty($inventory->id))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('CÓ BIẾN THỂ') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        @include('backoffice.pages.inventories.partials.variant')
-                    </div>
-                </div>
-            </div>
-        </div>
-        @else
-        <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label text-lowercase">
-                            @php
-                                $invAttrs = $inventory->attributes;
-                                $invAttrVals = $inventory->attributeValues->pluck('value', 'attribute_id')->toArray();
-
-                                $invAttrTitles = optional($invAttrs)->map(function($attr) use ($invAttrVals) {
-                                    return data_get($attr, 'name') .': '. data_get($invAttrVals, data_get($attr, 'id'), '');
-                                });
-
-                            @endphp
-                            <h3 class="k-portlet__head-title font-weight-bold">{{ optional($invAttrTitles)->isEmpty() ? __('KHÔNG CÓ BIẾN THỂ') : $invAttrTitles->implode(', ') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        @include('backoffice.pages.inventories.partials.simple')
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('ĐẶC ĐIỂM NỔI BẬT') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        @include('backoffice.pages.inventories.partials.key-features')
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('THÔNG TIN') }}</h3>
-                        </div>
-                    </div>
-                    <div class="k-portlet__body">
-                        <div class="form-group">
-                            <label for="">{{ __('Meta') }}</label>
-                            <div id="json_editor_meta" style="height: 200px"></div>
-                            <input type="hidden" name="meta" value="{{ old('meta', display_json_value($inventory->meta)) }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <span>{{ __('[SEO] Từ khoá') }}</span>
-                                <small>(* Cách nha bằng dấu phẩy)</small>
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control {{ $errors->has('meta_keywords') ? 'is-invalid' : '' }}"
-                                name="meta_keywords"
-                                placeholder="{{ __('Nhập [SEO] từ khoá') }}"
-                                value="{{ old('meta_keywords', $inventory->meta_keywords) }}"
-                            >
-                            @error('meta_keywords')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>{{ __('[SEO] Tiêu đề') }}</label>
-                            <input
-                                type="text"
-                                class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}"
-                                name="meta_title"
-                                placeholder="{{ __('Nhập [SEO] tiêu đề') }}"
-                                value="{{ old('meta_title', $inventory->meta_title) }}"
-                            >
-                            @error('meta_title')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>{{ __('[SEO] Mô tả') }}</label>
-                            <input
-                                type="text"
-                                class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}"
-                                name="meta_description"
-                                placeholder="{{ __('Nhập [SEO] tiêu đề') }}"
-                                value="{{ old('meta_description', $inventory->meta_description) }}"
-                            >
-                            @error('meta_description')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
-                            <div class="col-3">
-                                <span class="k-switch">
-                                    <label>
-                                        <input type="checkbox" {{ boolean(old('display_on_frontend', $inventory->display_on_frontend)) ? 'checked' : '' }} value="1" name="display_on_frontend" />
-                                        <span></span>
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('Tìm kiếm FE') }}</label>
-                            <div class="col-3">
-                                <span class="k-switch">
-                                    <label>
-                                        <input type="checkbox" {{ boolean(old('allow_frontend_search', $inventory->allow_frontend_search)) ? 'checked' : '' }} value="1" name="allow_frontend_search" />
-                                        <span></span>
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
-                            <div class="col-3">
-                                <span class="k-switch">
-                                    <label>
-                                        <input type="checkbox" {{ boolean(empty($inventory->id) ? 1 : old('status', $inventory->status) ) ? 'checked' : '' }} value="1" name="status" />
-                                        <span></span>
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="k-portlet__foot">
-                        <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- <div class="row">
-            <div class="col-md-12">
-                <div class="k-portlet">
-                    @if(!empty($inventory->id))
-                    <div class="k-portlet__head">
-                        <div class="k-portlet__head-label">
-                            <h3 class="k-portlet__head-title">{{ __('COMBO THEO KÈO SẢN PHẨM KHO') }}</h3>
-                        </div>
-                    </div>
-
-                    <div class="k-portlet__body">
-                        @include('backoffice.pages.inventories.partials.product-combo')
-                    </div>
-                    @endif
-
-                    <div class="k-portlet__foot">
-                        <div class="k-form__actions d-flex justify-content-end">
-                            <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </form>
 </div>
 @endsection
