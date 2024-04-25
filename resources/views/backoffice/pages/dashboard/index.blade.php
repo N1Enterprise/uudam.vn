@@ -1,5 +1,6 @@
 @extends('backoffice.layouts.master')
 
+@canany(['reports.view-new-users', 'reports.view-new-orders', 'reports.view-turnover', 'reports.view-top-users'])
 @section('header')
 Tổng Quan
 @endsection
@@ -48,3 +49,4 @@ Tổng Quan
 @section('js_script')
 @include('backoffice.pages.dashboard.js-pages.index')
 @endsection
+@endcanany
