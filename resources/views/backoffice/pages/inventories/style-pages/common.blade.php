@@ -31,6 +31,8 @@
         background-color: #fdfdfd;
         border-radius: 3px;
         margin-bottom: 30px;
+        height: 500px;
+        overflow: scroll;
     }
 
     [data-repeater-list-custom=variants] [data-repeater-delete-custom] {
