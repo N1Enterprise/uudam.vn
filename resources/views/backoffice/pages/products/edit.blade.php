@@ -84,8 +84,7 @@
 
                         <div class="form-group">
                             <label>{{ __('Loại sản phẩm') }} *</label>
-                            <input type="hidden" name="type" value="{{ $product->type }}">
-                            <select title="-- {{ __('Chọn loại sản phẩm') }} --" class="form-control k_selectpicker">
+                            <select title="-- {{ __('Chọn loại sản phẩm') }} --" name="type" class="form-control k_selectpicker">
                                 @foreach($productTypeLabels as $key => $label)
                                 <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>{{ $label }}</option>
                                 @endforeach
