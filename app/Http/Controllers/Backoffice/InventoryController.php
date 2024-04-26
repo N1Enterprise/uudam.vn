@@ -149,7 +149,7 @@ class InventoryController extends BaseController
     {
         $product = $this->productService->show($request->product_id);
 
-        if ($product->type == ProductTypeEnum::VARIABLE) {
+        if ($product->type == ProductTypeEnum::VARIABLE && boolean($request->hasvariant)) {
             $inventory = $this->inventoryService->createWithVariants($request->validated());
         } else {
             $inventory = $this->inventoryService->create($request->validated());

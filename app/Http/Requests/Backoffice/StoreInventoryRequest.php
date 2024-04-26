@@ -49,6 +49,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                     'date',
                     'after:offer_start'
                 ],
+                'hasvariant' => ['required', 'boolean'],
             ],
 
             $product->type == ProductTypeEnum::VARIABLE && boolean($this->hasvariant)
@@ -70,6 +71,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
             'meta' => !empty($this->meta) ? json_decode($this->meta, true) : null,
             'init_sold_count' => $this->init_sold_count ?? 0,
+            'hasvariant' => boolean($this->hasvariant)
         ]);
     }
 
