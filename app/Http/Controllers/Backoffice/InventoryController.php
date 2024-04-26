@@ -74,6 +74,10 @@ class InventoryController extends BaseController
             $combinations = generate_combinations($variants);
         }
 
+        if (empty(array_filter($combinations))) {
+            $hasVariant = false;
+        }
+
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
 
         $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
