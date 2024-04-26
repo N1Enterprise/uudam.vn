@@ -51,7 +51,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
                 ],
             ],
 
-            $product->type == ProductTypeEnum::VARIABLE
+            $product->type == ProductTypeEnum::VARIABLE && boolean($this->hasvariant)
                 ? $this->defineVariantRules() ?? []
                 : $this->defineSimpleRules() ?? []
         );
@@ -69,7 +69,7 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'min_order_quantity' => $this->min_order_quantity ?? 1,
             'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
             'meta' => !empty($this->meta) ? json_decode($this->meta, true) : null,
-            'init_sold_count' => $this->init_sold_count ?? 0
+            'init_sold_count' => $this->init_sold_count ?? 0,
         ]);
     }
 

@@ -50,6 +50,7 @@
         @enderror
         @if(! empty($inventory->id)) @method('PUT') @endif
         <input type="hidden" id="INVENTORY_DATA" value='@json($inventory)' data-is-edit="{{ boolean(! empty($inventory->id)) }}">
+        <input type="hidden" name="hasvariant" value="{{ boolean($hasVariant) ? '1' : '0' }}">
 
         <div class="k-portlet__head-toolbar">
             <ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand d-flex">
