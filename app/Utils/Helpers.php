@@ -455,3 +455,21 @@ if (! function_exists('generate_code_challenge')) {
         return $result;
     }
 }
+
+if (!function_exists('hide_phone_number')) {
+    function hide_phone_number($phone_number)
+    {
+        // Chuyển số điện thoại thành chuỗi để dễ xử lý
+        $phone_str = (string) $phone_number;
+
+        // Kiểm tra xem số điện thoại có ít nhất 7 chữ số hay không
+        if (strlen($phone_str) >= 7) {
+            // Ẩn số điện thoại, chỉ hiển thị 3 chữ số đầu và 2 chữ số cuối
+            $hidden_number = substr($phone_str, 0, 3) . "*****" . substr($phone_str, -2);
+            return $hidden_number;
+        } else {
+            // Trả về số điện thoại không thay đổi nếu có ít hơn 7 chữ số
+            return $phone_str;
+        }
+    }
+}

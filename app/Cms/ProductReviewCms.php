@@ -42,7 +42,8 @@ class ProductReviewCms extends BaseCms
                     'content',
                     'is_purchased',
                     'images',
-                    'post_at'
+                    'post_at',
+                    'user_phone'
                 ])
                 ->toArray();
         });

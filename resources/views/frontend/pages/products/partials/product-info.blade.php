@@ -1,4 +1,11 @@
 <div class="product__info-container product__info-container--sticky" data-inventory='@json($inventory)'>
+
+    @if (has_data($productReviews))
+    <div class="meta-data">
+        <span data-product-review-modal-open style="cursor: pointer; text-decoration: underline;">Xem <b>({{ count($productReviews) }})</b> đánh giá về sản phẩm</span>
+    </div>
+    @endif
+
     @if ($inventory->isOngoingFlashSale())
     @include('frontend.pages.products.partials.flash-sale')
     @endif
