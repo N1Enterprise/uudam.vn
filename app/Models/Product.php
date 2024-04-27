@@ -49,5 +49,10 @@ class Product extends BaseModel
     {
         return $this->hasMany(Inventory::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
 }
 

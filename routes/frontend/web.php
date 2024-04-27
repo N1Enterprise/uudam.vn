@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend as Controllers;
 
 Route::middleware(['feweb'])->group(function() {
+
+    Route::redirect('/home', '/');
+    Route::redirect('/index', '/');
+
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');

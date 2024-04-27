@@ -34,13 +34,6 @@
             <div class="alert-text">
                 {{ __('Gửi không thành công. Vui lòng kiểm tra lỗi bên dưới.') }}
             </div>
-
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-
             <div class="alert-close">
                 <button type="button" class="close" data-dismiss="alert">
                     <span><i class="la la-close"></i></span>

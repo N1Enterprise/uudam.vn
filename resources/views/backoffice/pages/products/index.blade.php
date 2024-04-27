@@ -50,7 +50,7 @@
                         <th data-orderable="false" data-property="primary_image" data-render-callback="renderCallbackPrimaryImage">{{ __('Hình ảnh') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-name="type" data-property="type_name">{{ __('Loại') }}</th>
-                        <th data-property="code">{{ __('Code') }}</th>
+                        <th data-property="code">{{ __('SKU') }}</th>
                         <th data-property="slug">{{ __('Đường dẫn') }}</th>
                         <th data-property="branch">{{ __('Thương hiệu') }}</th>
                         <th data-orderable="false" data-property="categories" data-render-callback="renderCallbackCategories">{{ __('Danh mục') }}</th>
