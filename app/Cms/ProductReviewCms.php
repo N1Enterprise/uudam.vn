@@ -20,14 +20,14 @@ class ProductReviewCms extends BaseCms
 
     public static function flushByProductId($productId)
     {
-        $cacheKey = self::CACHE_TAG.':product_review_approved:'.$productId;
+        $cacheKey = 'product_review_approved:'.$productId;
 
-        Cache::tags($cacheKey)->flush();
+        Cache::tags(self::CACHE_TAG)->forget($cacheKey);
     }
 
     public function allApproved($productId)
     {
-        $cacheKey = self::CACHE_TAG.':product_review_approved:'.$productId;
+        $cacheKey = 'product_review_approved:'.$productId;
 
         return Cache::tags(self::CACHE_TAG)->rememberForever($cacheKey, function() use ($productId) {
             return $this->model()->query()
