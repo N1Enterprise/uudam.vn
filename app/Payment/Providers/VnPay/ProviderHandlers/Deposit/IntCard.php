@@ -45,7 +45,7 @@ class IntCard extends BaseDepositHandle implements DepositByApi
             'vnp_OrderInfo'  => data_get($transaction, 'log.order_describing_payment_content'),
             'vnp_OrderType'  => OrderType::HEALTH_AND_BEAUTY,
             'vnp_ReturnUrl'  => HandlerHelper::parseRedirectUrl($transaction, data_get($providerPayload, 'attributes.successUrl', $this->service->getProviderParam('redirect_urls.payment_success'))),
-            'vnp_ExpireDate' => Carbon::parse(now())->addMinutes($this->service->getProviderParam('deposit_expires_in_secs'))->format('YmdHis'),
+            'vnp_ExpireDate' => Carbon::parse(now())->addMinutes($this->service->getProviderParam('deposit_expires_in_min'))->format('YmdHis'),
             'vnp_TxnRef'     => optional($order)->order_code,
         ];
 

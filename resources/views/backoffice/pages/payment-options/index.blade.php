@@ -77,7 +77,7 @@
         const image = $('<img>', {
             src: data,
             width: 80,
-            height: 80,
+            height: 'auto',
         });
 
         return image.prop('outerHTML');
