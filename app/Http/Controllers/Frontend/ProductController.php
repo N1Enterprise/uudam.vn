@@ -53,16 +53,16 @@ class ProductController extends BaseController
 
         $attributes = $this->attributeService->getAttributesByInventories($variants->pluck('id')->toArray());
 
-        // $suggestedPosts = $this->postService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.posts'));
-        // $suggestedInventories = $this->inventoryService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.inventories'), ['with' => 'product:id,media,primary_image']);
-
         $productReviewRatingEnumLabels = ProductReviewRatingEnum::labelsInVietnamese();
 
-        $productReviews = collect(ProductReviewCms::make()->allApproved($inventory->product_id))->map(function($item) {
-            return array_merge($item, [
-                'user_phone' => hide_phone_number(data_get($item, 'user_phone'))
-            ]);
-        })->toArray();
+        $productReviews = collect(ProductReviewCms::make()
+            ->allApproved($inventory->product_id))
+            ->map(function($item) {
+                return array_merge($item, [
+                    'user_phone' => hide_phone_number(data_get($item, 'user_phone'))
+                ]);
+            })
+            ->toArray();
 
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 
@@ -73,8 +73,6 @@ class ProductController extends BaseController
             'mediaVideos',
             'attributes',
             'inventoryAttributes',
-            // 'suggestedPosts',
-            // 'suggestedInventories',
             'productReviewRatingEnumLabels',
             'productReviews',
             'affiliateSalesChannels'

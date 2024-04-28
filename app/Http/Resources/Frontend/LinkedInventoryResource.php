@@ -21,11 +21,13 @@ class LinkedInventoryResource extends BaseJsonResource
             'image' => $this->image,
             'border_image' => $this->border_image,
             'product' => $this->whenLoaded('product', function() {
-                return array_merge(optional($this->product)->only(['id', 'branch']), [
-                    'reviews_count' => collect($this->product->reviews ?? [])
-                        ->filter(fn($item) => $item->isPositive())
-                        ->count(),
-                ]);
+                $positiveReviewCount = $this->final_sold_count > 0 && $this->final_sold_count >= $this->product->positive_review_count
+                    ? $this->product->positive_review_count
+                    : null;
+
+                return array_merge(optional($this->product)->only(['id', 'branch']), $positiveReviewCount ? [
+                    'positive_review_count' => $positiveReviewCount
+                ] : []);
             })
         ];
     }
