@@ -16,7 +16,7 @@
                                     <div class="ls-vendor">{{ data_get($inventory, 'product.branch') }}</div>
                                     <div class="ls-reviewer">
                                         @if (has_data(data_get($inventory, 'product.reviews')))
-                                        Xem <b>{{ count( data_get($inventory, 'product.reviews') ) }}</b> đáng giá tích cực
+                                        <b>{{ count( data_get($inventory, 'product.reviews') ) }}</b> đáng giá tích cực
                                         @endif
                                     </div>
                                     <div class="ls-price-wrap">
