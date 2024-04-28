@@ -11,11 +11,9 @@
                                     <img class="multicolumn-card__image image-lazy" srcset="{{ asset_with_version('frontend/assets/images/shared/skeleton-collection.webp') }}" src="{{ asset_with_version('frontend/assets/images/shared/skeleton-collection.webp') }}" alt="Ưu đàm bộ sưu tập" style="width: 100%; height: 100%;" loading="lazy">
                                 </div>
                             </div>
-                            <div class="multicolumn-card__info" style="padding: 10px 0;">
+                            <div class="multicolumn-card__info" style="padding: 10px 0 0 0;">
                                 <div class="skeleton"></div>
-                                <div class="link animate-arrow">
-                                    <span class="skeleton"></span>
-                                </div>
+                                <div class="skeleton"></div>
                             </div>
                         </div>
                     </div>

@@ -63,6 +63,14 @@ class ProductReview extends BaseModel
         return $this->status == ProductReviewStatusEnum::DECLINED;
     }
 
+    public function isPositive()
+    {
+        return in_array($this->rating_type, [
+            ProductReviewRatingEnum::VERY_GOOD,
+            ProductReviewRatingEnum::GOOD,
+        ]);
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

@@ -105,6 +105,9 @@
 .card__information {
     grid-row-start: 2;
     padding: 1.3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:not(.ratio)>.card__content {

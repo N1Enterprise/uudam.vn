@@ -6,7 +6,11 @@
                     <h2 class="spr-header-title" style="text-align: left;">
                         <span>Phản hồi khách hàng</span>
                         @if (has_data($productReviews))
-                        <div style="opacity: .5; font-size: 14px;">(Có {{ count($productReviews) }} phản hồi)</div>
+                        <div style="font-size: 14px;">
+                            @if(has_data($productReviews) && count($productReviews) > 1)
+                            <div data-product-review-modal-open style="padding: 9px 0; text-decoration: underline; cursor: pointer; display: inline-block;">Xem ({{ count($productReviews) }}) đánh giá</div>
+                            @endif
+                        </div>
                         @endif
                     </h2>
                     @if($AUTHENTICATED_USER)
@@ -130,10 +134,5 @@
                 </div>
             </div>
         </div>
-        @if(has_data($productReviews) && count($productReviews) > 1)
-        <button type="button" class="act-button list-review-images_see-all" style="transform: translateY(-50px)" data-product-review-modal-open>
-            <span>Xem tất cả ({{ count($productReviews) }}) bình luận</span>
-        </button>
-        @endif
     </div>
 </div>
