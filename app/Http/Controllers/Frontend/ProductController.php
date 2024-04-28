@@ -64,6 +64,10 @@ class ProductController extends BaseController
             })
             ->toArray();
 
+        if ($inventory->final_sold_count < count($productReviews)) {
+            $productReviews = [];
+        }
+
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 
         return $this->view('frontend.pages.products.index', compact(
