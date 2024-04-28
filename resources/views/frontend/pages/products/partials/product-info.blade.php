@@ -2,7 +2,7 @@
 
     @if (has_data($productReviews))
     <div class="meta-data">
-        <span data-product-review-modal-open style="cursor: pointer; text-decoration: underline; font-size: 15px;"><b>({{ count($productReviews) }})</b> đánh giá về sản phẩm</span>
+        <span data-product-review-modal-open style="cursor: pointer; text-decoration: underline; font-size: 15px;">Xem <b>({{ count($productReviews) }})</b> đánh giá về sản phẩm</span>
     </div>
     @endif
 
