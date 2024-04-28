@@ -8,6 +8,7 @@ use App\Payment\Providers\VnPay\Constants\PaymentChannel;
 use App\Payment\Providers\VnPay\Constants\VnpBankCode;
 use App\Payment\Providers\VnPay\ProviderHandlers\HandlerHelper;
 use Carbon\Carbon;
+use App\Vendors\Localization\Money;
 
 class VnBank extends BaseDepositHandle implements DepositByApi
 {
@@ -30,17 +31,20 @@ class VnBank extends BaseDepositHandle implements DepositByApi
     {
         $providerPayload = $transaction->provider_payload ?? [];
 
+        /** @var Money */
+        $amount = $transaction->toMoney('amount');
+
         $payload = [
             'vnp_Version'    => $this->service->getProviderParam('vnp_version'),
             'vnp_Command'    => $this->service->getProviderParam('vnp_command'),
             'vnp_TmnCode'    => $this->service->getProviderParam('credentials.vnp_tmn_code'),
             'vnp_BankCode'   => VnpBankCode::VNBANK,
-            'vnp_Amount'     => $transaction->toMoney('amount')->toFloat(),
+            'vnp_Amount'     => $amount->multipliedBy(100)->toFloat(),
             'vnp_CreateDate' => Carbon::parse()->format('YmdHis'),
             'vnp_CurrCode'   => $this->service->parseToProviderCurrency($transaction->currency_code),
             'vnp_IpAddr'     => data_get($transaction, 'footprint.ip'),
             'vnp_Locale'     => $this->service->getProviderParam('vnp_locale'),
-            'vnp_OrderInfo'  => data_get($transaction, 'log.order_describing_payment_content'),
+            'vnp_OrderInfo'  => $this->getTransactionOrderInfo($transaction),
             'vnp_OrderType'  => OrderType::HEALTH_AND_BEAUTY,
             'vnp_ReturnUrl'  => HandlerHelper::parseRedirectUrl($transaction, data_get($providerPayload, 'attributes.successUrl', $this->service->getProviderParam('redirect_urls.payment_success'))),
             'vnp_ExpireDate' => Carbon::parse(now())->addMinutes($this->service->getProviderParam('deposit_expires_in_min'))->format('YmdHis'),

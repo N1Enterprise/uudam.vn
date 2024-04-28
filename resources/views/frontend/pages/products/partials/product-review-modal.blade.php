@@ -17,7 +17,12 @@
                             <div class="spr-review-header">
                                 <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, data_get($review, 'rating_type'), data_get($review, 'rating_type_name')) }}</span>
                                 <div style="display: flex; align-items: center;">
-                                    <h3 class="spr-review-header-title">{{ data_get($review, 'user_name') }}</h3>
+                                    <h3 class="spr-review-header-title">
+                                        <span>{{ data_get($review, 'user_name') }}</span>
+                                        @if (data_get($review, 'user_phone'))
+                                        <small style="color: #6a6969;">{{ data_get($review, 'user_phone') }}</small>
+                                        @endif
+                                    </h3>
                                     @if (boolean(data_get($review, 'is_purchased')))
                                     <span style="padding: 0 10px;">|</span>
                                     <div is_purchased>

@@ -8,11 +8,11 @@
                         <div class="ls-image-wrap">
                             <img class="ls-image image-lazy" alt="Sản phẩm ưu đàm" title="Sản phẩm ưu đàm" loading="lazy" srcset="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" src="{{ asset_with_version('frontend/assets/images/shared/skeleton-product.webp') }}" style="border-radius: 0px;">
                         </div>
-                        <div class="ls-info-wrap">
-                            <div class="ls-title skeleton"></div>
+                        <div class="ls-info-wrap" style="padding: 5px 0; margin-bottom: 0; padding-bottom: 0;">
+                            <div class="ls-title skeleton" style="height: 30px;"></div>
                             <div class="ls-price-wrap" style="display: flex;">
                                 <span class="ls-original-price skeleton" style="display: none; flex: 0 0 60%;"></span>
-                                <span class="ls-price money skeleton"></span>
+                                <span class="money skeleton"></span>
                             </div>
                         </div>
                     </a>

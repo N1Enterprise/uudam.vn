@@ -14,6 +14,11 @@
                                 <div class="ls-info-wrap">
                                     <div class="ls-title">{{ $inventory->title }}</div>
                                     <div class="ls-vendor">{{ data_get($inventory, 'product.branch') }}</div>
+                                    <div class="ls-reviewer">
+                                        @if (has_data(data_get($inventory, 'product.reviews')))
+                                        <b>{{ count( data_get($inventory, 'product.reviews') ) }}</b> đánh giá tích cực
+                                        @endif
+                                    </div>
                                     <div class="ls-price-wrap">
                                         <div class="ls-price-group">
                                             <div>

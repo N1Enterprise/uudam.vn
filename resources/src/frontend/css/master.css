@@ -389,9 +389,10 @@ body {
 .skeleton {
     width: 100%;
     height: 20px;
-    background-color: #EEE;
+    background-color: #ddd;
     margin-bottom: 1px;
     display: block!important;
+    margin-top: 3px;
 }
 
 .msg-error {

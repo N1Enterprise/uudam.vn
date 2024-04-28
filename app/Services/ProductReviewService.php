@@ -63,7 +63,11 @@ class ProductReviewService extends BaseService
         return DB::transaction(function() use ($attributes) {
             $attributes['images'] = $this->convertImages(data_get($attributes, 'images', []));
 
-            return $this->productReviewRepository->create($attributes);
+            $model =  $this->productReviewRepository->create($attributes);
+
+            ProductReviewCms::flushByProductId($model->product_id);
+
+            return $model;
         });
     }
 
@@ -112,6 +116,8 @@ class ProductReviewService extends BaseService
             throw new BusinessLogicException('Your registration request is pending.');
         }
 
+        ProductReviewCms::flushByProductId($productReview->product_id);
+
         return $this->productReviewRepository->delete($id);
     }
 
@@ -119,17 +125,17 @@ class ProductReviewService extends BaseService
     {
         $productReview = $this->show($id);
 
-        $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::APPROVED], $productReview);
-
         ProductReviewCms::flushByProductId($productReview->product_id);
+
+        $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::APPROVED], $productReview);
     }
 
     public function decline($id)
     {
         $productReview = $this->show($id);
 
-        $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::DECLINED], $productReview);
-
         ProductReviewCms::flushByProductId($productReview->product_id);
+
+        return $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::DECLINED], $productReview);
     }
 }

@@ -17,8 +17,6 @@
                                 <div class="card__information">
                                     <h3 class="card__heading h2 skeleton"></h3>
                                     <div class="article-card__info caption-with-letter-spacing h5 skeleton"></div>
-                                    <p class="article-card__excerpt rte-width skeleton"></p>
-                                    <div class="article-card__footer"></div>
                                 </div>
                             </div>
                         </div>

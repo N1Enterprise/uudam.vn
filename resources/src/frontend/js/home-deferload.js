@@ -64,6 +64,9 @@ const SECTION_SCROLL = {
                                     <div class="ls-info-wrap">
                                         <div class="ls-title">${ item.title }</div>
                                         <div class="ls-vendor">${ item.product.branch }</div>
+
+                                        <div class="ls-reviewer"> ${ item?.product?.positive_review_count ? `<b>${item?.product?.positive_review_count}</b> đánh giá tích cực` : '' } </div>
+
                                         <div class="ls-price-wrap">
                                             <div class="ls-price-group">
                                                 <div>

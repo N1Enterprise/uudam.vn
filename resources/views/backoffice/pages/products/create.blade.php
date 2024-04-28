@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">{{ __('Code') }} *</label>
+                            <label for="">{{ __('SKU Sản phẩm') }} *</label>
                             <div class="input-group">
                                 <input id="code" type="text" name="code" value="{{ old('code') }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>
                                 <div class="input-group-append">

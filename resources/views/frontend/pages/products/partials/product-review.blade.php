@@ -6,7 +6,11 @@
                     <h2 class="spr-header-title" style="text-align: left;">
                         <span>Phản hồi khách hàng</span>
                         @if (has_data($productReviews))
-                        <div style="opacity: .5; font-size: 14px;">(Có {{ count($productReviews) }} phản hồi)</div>
+                        <div style="font-size: 14px;">
+                            @if(has_data($productReviews) && count($productReviews) > 1)
+                            <div data-product-review-modal-open style="padding: 9px 0; text-decoration: underline; cursor: pointer; display: inline-block;">Xem ({{ count($productReviews) }}) đánh giá</div>
+                            @endif
+                        </div>
                         @endif
                     </h2>
                     @if($AUTHENTICATED_USER)
@@ -78,7 +82,12 @@
                                             <div class="spr-review-header">
                                                 <span class="spr-starratings spr-review-header-starratings">{{ data_get($productReviewRatingEnumLabels, data_get($review, 'rating_type'), data_get($review, 'rating_type_name')) }}</span>
                                                 <div style="display: flex; align-items: center;">
-                                                    <h3 class="spr-review-header-title">{{ data_get($review, 'user_name') }}</h3>
+                                                    <h3 class="spr-review-header-title">
+                                                        <span>{{ data_get($review, 'user_name') }}</span>
+                                                        @if (data_get($review, 'user_phone'))
+                                                        <small style="color: #6a6969;">{{ data_get($review, 'user_phone') }}</small>
+                                                        @endif
+                                                    </h3>
                                                     @if (boolean(data_get($review, 'is_purchased')))
                                                     <span style="padding: 0 10px;">|</span>
                                                     <div is_purchased>
@@ -125,10 +134,5 @@
                 </div>
             </div>
         </div>
-        @if(has_data($productReviews) && count($productReviews) > 1)
-        <button type="button" class="act-button list-review-images_see-all" style="transform: translateY(-50px)" data-product-review-modal-open>
-            <span>Xem tất cả ({{ count($productReviews) }}) bình luận</span>
-        </button>
-        @endif
     </div>
 </div>

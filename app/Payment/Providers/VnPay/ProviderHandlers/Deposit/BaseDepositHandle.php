@@ -5,6 +5,7 @@ namespace App\Payment\Providers\VnPay\ProviderHandlers\Deposit;
 use App\Enum\PaymentTypeEnum;
 use App\Payment\Providers\VnPay\ProviderHandlers\BaseHandler;
 use App\Payment\Providers\VnPay\Service;
+use Illuminate\Support\Str;
 
 abstract class BaseDepositHandle extends BaseHandler
 {
@@ -23,6 +24,11 @@ abstract class BaseDepositHandle extends BaseHandler
     public function getDepositEndpoint()
     {
         return $this->service->getProviderParam('endpoints.deposit');
+    }
+
+    public function getTransactionOrderInfo($transaction)
+    {
+        return $this->service->getTransactionIdWithPrefix($transaction) . strtoupper(Str::random(5));
     }
 
     public function sendTransactionToProvider($transaction)

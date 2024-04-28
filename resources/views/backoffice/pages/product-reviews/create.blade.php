@@ -69,7 +69,7 @@
                                         @foreach($categories as $category)
                                         <optgroup label="{{ $category->name }}">
                                             @foreach($category->products as $product)
-                                            <option  data-tokens="{{ $product->id }} | {{ $product->name }} | {{ $product->slug }} | {{ $product->code }}" value="{{ $product->id }}" {{ old('product_id') == $product->id ? 'selected' : '' }} data-product-type="{{ $product->type }}">{{ $product->name }} ({{ $product->type_name }}) | {{ $product->code }}</option>
+                                            <option  data-tokens="{{ $product->id }} | {{ $product->name }} | {{ $product->slug }} | {{ $product->code }}" value="{{ $product->id }}" {{ old('product_id', request()->get('target_product_id')) == $product->id ? 'selected' : '' }} data-product-type="{{ $product->type }}">{{ $product->name }} ({{ $product->type_name }}) | {{ $product->code }}</option>
                                             @endforeach
                                         </optgroup>
                                         @endforeach
