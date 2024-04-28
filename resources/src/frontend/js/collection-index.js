@@ -164,7 +164,7 @@ const COLLECTION_LINKED_INVENTORIES = {
                                 <div class="card-information" style="padding: 4px 0;">
                                     <div class="price">
                                         <div class="ls-reviewer">
-                                            ${ inventory?.product?.positive_review_count ? `<b>${inventory?.product?.positive_review_count}</b> đáng giá tích cực` : '' }
+                                            ${ inventory?.product?.positive_review_count ? `<b>${inventory?.product?.positive_review_count}</b> đánh giá tích cực` : '' }
                                         </div>
                                         <div class="price__regular">
                                             <div class="ls-price-group">
