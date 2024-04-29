@@ -32,6 +32,9 @@ mix.webpackConfig({
         chunkFilename: 'assets/js/[name].min.js',
         publicPath: '/',
     },
+    stats: {
+        children: true
+    }
 });
 
 mix
