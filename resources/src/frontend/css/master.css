@@ -647,7 +647,7 @@ body {
     display: block;
 }
 
-@import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
+/* @import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
 @import url('../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../public/frontend/bundle/css/reset.min.css');
 @import url('../../../../public/frontend/bundle/css/variable.min.css');
@@ -661,4 +661,4 @@ body {
 @import url('../../../../public/frontend/bundle/css/component-predictive-search.min.css');
 @import url('../../../../public/frontend/bundle/css/quick-add.min.css');
 @import url('../../../../public/frontend/bundle/css/main.min.css');
-@import url('../../../../public/frontend/bundle/css/mobile-menu.min.css');
+@import url('../../../../public/frontend/bundle/css/mobile-menu.min.css'); */
