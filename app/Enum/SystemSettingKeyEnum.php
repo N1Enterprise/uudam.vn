@@ -50,6 +50,8 @@ class SystemSettingKeyEnum extends BaseEnum
 
     public const AFFILIATE_SALES_CHANNELS = 'affiliate_sales_channels';
 
+    public const PROVIDER_CALLBACK_WHITELIST_IPS = 'provider_callback_whitelist_ips';
+
     public static function all(): array
     {
         return [
@@ -79,6 +81,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::GOOGLE_ANALYTICS_TAG,
             self::DMCA_SITE_VERIFICATION,
             self::AFFILIATE_SALES_CHANNELS,
+            self::PROVIDER_CALLBACK_WHITELIST_IPS,
         ];
     }
 }

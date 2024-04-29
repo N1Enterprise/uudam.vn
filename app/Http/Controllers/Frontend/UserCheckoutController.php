@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Enum\DepositStatusEnum;
+use App\Enum\OrderStatusEnum;
 use App\Models\Order;
 use App\Services\AddressService;
 use App\Services\CartItemService;
 use App\Services\CartService;
+use App\Services\DepositTransactionService;
 use App\Services\OrderService;
 use App\Services\PageService;
 use App\Services\PaymentOptionService;
@@ -13,6 +16,7 @@ use App\Services\ShippingOptionService;
 use App\Services\ShippingRateService;
 use App\Vendors\Localization\Country;
 use Illuminate\Http\Request;
+use App\Models\DepositTransaction;
 
 class UserCheckoutController extends AuthenticatedController
 {
@@ -25,6 +29,7 @@ class UserCheckoutController extends AuthenticatedController
     public $orderService;
     public $addressService;
     public $shippingOptionService;
+    public $depositTransactionService;
 
     public function __construct(
         CartService $cartService,
@@ -34,7 +39,8 @@ class UserCheckoutController extends AuthenticatedController
         PageService $pageService,
         OrderService $orderService,
         AddressService $addressService,
-        ShippingOptionService $shippingOptionService
+        ShippingOptionService $shippingOptionService,
+        DepositTransactionService $depositTransactionService
     ) {
         parent::__construct();
 
@@ -46,7 +52,7 @@ class UserCheckoutController extends AuthenticatedController
         $this->orderService = $orderService;
         $this->addressService = $addressService;
         $this->shippingOptionService = $shippingOptionService;
-
+        $this->depositTransactionService = $depositTransactionService;
     }
 
     public function index(Request $request)
@@ -66,10 +72,18 @@ class UserCheckoutController extends AuthenticatedController
     {
         $order = new Order;
         $user = $this->user();
-        $cart = $this->cartService->findByUser($user->getKey(), ['currency_code' => $user->currency_code, 'uuid' => $uuid]);
+        $cart = $this->cartService->findByUser($user->getKey(), ['currency_code' => $user->currency_code, 'uuid' => $uuid], false);
+
+        if (
+            $cart->order_id
+            && $cart->order instanceof Order
+            && $cart->order->isPendingPayment()
+        ) {
+            return redirect()->route('fe.web.user.checkout.repayment', $cart->order->order_code);
+        }
 
         if (empty($cart)) {
-            return redirect()->route('fe.web.home');
+            return redirect()->route('fe.web.home', ['Response_Code' => 'Order_Has_Been_Processed']);
         }
 
         $cartItems = $this->cartItemService->searchPendingItemsByUser($user->getKey(), [
@@ -90,11 +104,11 @@ class UserCheckoutController extends AuthenticatedController
         $shippingOptions = $this->shippingOptionService->allAvailableByProvinceCodeForUser(optional($address)->province_code);
 
         return $this->view('frontend.pages.checkouts.index', compact(
-            'editable', 
-            'order', 
-            'cart', 
-            'cartItems', 
-            'paymentOptions', 
+            'editable',
+            'order',
+            'cart',
+            'cartItems',
+            'paymentOptions',
             'shippingOptions',
             'countries',
             'checkoutPages',
@@ -108,54 +122,42 @@ class UserCheckoutController extends AuthenticatedController
         $user = $this->user();
 
         if (empty($order)) {
-            return redirect()->route('fe.web.home');
+            return redirect()->route('fe.web.home', ['Response_Code' => 'Order_Not_Found']);
+        }
+
+        $cart = $this->cartService->findByUser($user->getKey(), ['currency_code' => $user->currency_code]);
+
+        if ($cart) {
+            return redirect()->route('fe.web.user.checkout.index', $cart->uuid);
         }
 
         $cart = $order->cart;
 
-        $cartItems = $this->cartItemService->searchPendingItemsByUser($user->getKey(), [
-            'currency_code' => $user->currency_code,
-            'cart_id' => $cart->getKey()
-        ]);
-
-        $countries = Country::make()->all(['columns' => ['native']]);
-
-        $paymentOptions = $this->paymentOptionService->searchForGuest(['currency_code' => $user->currency_code]);
-
-        $checkoutPages = $this->pageService->listByUser(['columns' => ['id', 'name', 'slug'], 'scopes' => ['displayInCheckout']]);
-
-        $editable = false;
-
-        return $this->view('frontend.pages.checkouts.index', compact(
-            'editable', 
-            'order', 
-            'cart', 
-            'cartItems', 
-            'paymentOptions', 
-            'countries', 
-            'checkoutPages'
-        ));
-    }
-
-    public function paymentFailure(Request $request, $orderCode)
-    {
-        $order = $this->orderService->findByUserAndCode($this->user()->getKey(), $orderCode);
-
-        if (empty($order)) {
-            return redirect()->route('fe.web.home');
+        if ($cart->retry_parent_id) {
+            $cart = $this->cartService->show($cart->retry_parent_id);
         }
 
-        return $this->view('frontend.pages.checkouts.payment-status', compact('order'));
+        $cartCloned = $this->cartService->cloneByUser($cart, $user);
+
+        return redirect()->route('fe.web.user.checkout.index', $cartCloned->uuid);
     }
 
-    public function paymentSuccess(Request $request, $orderCode)
+    public function checkoutStatus(Request $request, $uuid)
     {
-        $order = $this->orderService->findByUserAndCode($this->user()->getKey(), $orderCode);
+        $providerResponse = $request->all();
 
-        if (empty($order)) {
-            return redirect()->route('fe.web.home');
-        }
+        $user = $this->user();
+        $cart = $this->cartService->findByUser($user->getKey(), ['currency_code' => $user->currency_code, 'uuid' => $uuid], false);
 
-        return $this->view('frontend.pages.checkouts.payment-status', compact('order'));
+        /** @var Order */
+        $order = $cart->order;
+
+        /** @var DepositTransaction */
+        $depositTransaction = $order->depositTransaction;
+
+        $isPaymentSuccess = $depositTransaction->isApproved();
+        $isOrderSuccess = $isPaymentSuccess && in_array($order->order_status, [OrderStatusEnum::WAITING_FOR_PAYMENT, OrderStatusEnum::PROCESSING, OrderStatusEnum::DELIVERY]);
+
+        return $this->view('frontend.pages.checkouts.payment-status', compact('order', 'isOrderSuccess'));
     }
 }

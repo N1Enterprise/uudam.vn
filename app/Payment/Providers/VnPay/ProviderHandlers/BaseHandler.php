@@ -3,6 +3,7 @@
 namespace App\Payment\Providers\VnPay\ProviderHandlers;
 
 use App\Payment\BasePaymentProviderHandle;
+use App\Payment\Providers\VnPay\Constants\TransactionState;
 use App\Payment\Providers\VnPay\Service;
 
 abstract class BaseHandler extends BasePaymentProviderHandle
@@ -40,5 +41,24 @@ abstract class BaseHandler extends BasePaymentProviderHandle
             null,
             null,
         );
+    }
+
+    public function parseSuccessResponse($data = [])
+    {
+        $callbackResponse = $this->service->getProviderParam('__callback_response.success', []) ?? [];
+
+        return array_merge(['ok' => true], $data, $callbackResponse);
+    }
+
+    public function isProviderTransactionFailed($providerPayload)
+    {
+        $providerStatus = data_get($providerPayload, 'vnp_TransactionStatus');
+
+        return in_array($providerStatus, [TransactionState::FAILED, TransactionState::SUSPECTED_OF_FRAUD]);
+    }
+
+    public function parseProviderTransactionErrorMessage($providerTransaction)
+    {
+        return '';
     }
 }

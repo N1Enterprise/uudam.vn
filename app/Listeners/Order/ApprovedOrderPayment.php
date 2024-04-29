@@ -2,14 +2,11 @@
 
 namespace App\Listeners\Order;
 
-use App\Enum\PaymentStatusEnum;
 use App\Events\Deposit\DepositApproved;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
-use App\Services\OrderService;
 
-class ApprovedOrderPayment implements ShouldQueue
+class ApprovedOrderPayment
 {
     public $timeout = 300;
 
@@ -31,14 +28,5 @@ class ApprovedOrderPayment implements ShouldQueue
         $transaction = $event->transaction;
 
         OrderPaymentService::make()->approve($transaction->order);
-    }
-
-    public function shouldQueue($event)
-    {
-        $transaction = $event->transaction;
-
-        $order = OrderService::make()->show($transaction->order->id);
-
-        return $order->payment_status == PaymentStatusEnum::PENDING;
     }
 }

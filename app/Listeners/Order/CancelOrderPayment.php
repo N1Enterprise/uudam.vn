@@ -5,7 +5,7 @@ namespace App\Listeners\Order;
 use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
 
-class DeclineOrderPayment
+class CancelOrderPayment
 {
     public $timeout = 300;
 
@@ -26,6 +26,6 @@ class DeclineOrderPayment
         /** @var DepositTransaction */
         $transaction = $event->transaction;
 
-        OrderPaymentService::make()->decline($transaction->order);
+        OrderPaymentService::make()->cancel($transaction->order);
     }
 }

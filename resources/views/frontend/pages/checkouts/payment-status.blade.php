@@ -15,15 +15,15 @@ Trạng thái đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain
 @section('content_body')
 <div class="content">
     <div class="wrap wrap-of-status">
-        <h2>Thanh toán {{ $order->isSucceed() ? 'thành công' : 'không thành công' }}</h2>
+        <h2>Thanh toán {{ $isOrderSuccess ? 'thành công' : 'không thành công' }}</h2>
 
-        @if($order->isFailure())
-        <div class="error-block">
+        @if(! $isOrderSuccess)
             @if($order->isPaymentError())
-            <span class="error-block__generic">Thanh toán thất bại.</span>
-            <span class="error-block__spec">Vui lòng thanh toán lại hoặc chọn phương thức thanh toán khác</span>
+            <div class="error-block">
+                <span class="error-block__generic">Thanh toán thất bại.</span>
+                <span class="error-block__spec">Vui lòng thanh toán lại hoặc chọn phương thức thanh toán khác</span>
+            </div>
             @endif
-        </div>
         @endif
 
         <div class="order-info">
@@ -48,7 +48,7 @@ Trạng thái đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain
             <div class="order-info__right">{{ format_price($order->grand_total) }}</div>
         </div>
 
-        @if($order->isFailure())
+        @if(! $isOrderSuccess)
         <div>
             <div style="margin-bottom: 4px; text-decoration: underline;">Liên hệ bên dưới để được hỗ trợ</div>
             <ul>
@@ -68,7 +68,8 @@ Trạng thái đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain
                 </li>
             </ul>
             <div class="button-block">
-                <button type="button" class="button button-left" data-href="{{ route('fe.web.user.checkout.repayment', $order->order_code) }}">Thanh toán lại</button>
+                <button type="button" class="button button-left" data-href="{{ route('fe.web.home') }}">Tiếp tục mua sắm</button>
+                <button type="button" class="button button-right" data-href="{{ route('fe.web.user.checkout.repayment', $order->order_code) }}">Đặt lại đơn hàng</button>
             </div>
         </div>
         @else

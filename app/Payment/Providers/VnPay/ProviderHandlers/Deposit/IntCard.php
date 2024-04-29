@@ -9,6 +9,7 @@ use App\Payment\Providers\VnPay\Constants\VnpBankCode;
 use App\Payment\Providers\VnPay\ProviderHandlers\HandlerHelper;
 use Carbon\Carbon;
 use App\Vendors\Localization\Money;
+use App\Models\User;
 
 class IntCard extends BaseDepositHandle implements DepositByApi
 {
@@ -35,6 +36,9 @@ class IntCard extends BaseDepositHandle implements DepositByApi
         /** @var Money */
         $amount = $transaction->toMoney('amount');
 
+        /** @var User */
+        $user = $transaction->user;
+
         $payload = [
             'vnp_Version'    => $this->service->getProviderParam('vnp_version'),
             'vnp_Command'    => $this->service->getProviderParam('vnp_command'),
@@ -45,7 +49,7 @@ class IntCard extends BaseDepositHandle implements DepositByApi
             'vnp_CurrCode'   => $this->service->parseToProviderCurrency($transaction->currency_code),
             'vnp_IpAddr'     => data_get($transaction, 'footprint.ip'),
             'vnp_Locale'     => $this->service->getProviderParam('vnp_locale'),
-            'vnp_OrderInfo'  => $this->getTransactionOrderInfo($transaction),
+            'vnp_OrderInfo'  => $this->getTransactionOrderInfo($user, $transaction, PaymentChannel::INTCARD),
             'vnp_OrderType'  => OrderType::HEALTH_AND_BEAUTY,
             'vnp_ReturnUrl'  => HandlerHelper::parseRedirectUrl($transaction, data_get($providerPayload, 'attributes.successUrl', $this->service->getProviderParam('redirect_urls.payment_success'))),
             'vnp_ExpireDate' => Carbon::parse(now())->addMinutes($this->service->getProviderParam('deposit_expires_in_min'))->format('YmdHis'),

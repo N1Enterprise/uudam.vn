@@ -47,5 +47,7 @@ Route::middleware(['feweb'])->group(function() {
 
         Route::get('checkout/payment/failure/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentFailure'])->name('user.checkout.payment.failure');
         Route::get('checkout/payment/success/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentSuccess'])->name('user.checkout.payment.success');
+
+        Route::get('checkout/{cartUuid}/status', [Controllers\UserCheckoutController::class, 'checkoutStatus'])->name('user.checkout.payment.status');
     });
 });

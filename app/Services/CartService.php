@@ -73,10 +73,10 @@ class CartService extends BaseService
         return $result;
     }
 
-    public function findByUser($userId, $data = [])
+    public function findByUser($userId, $data = [], $ignoreOrdered = true)
     {
         return $this->cartRepository
-            ->modelScopes(['notOrdered'])
+            ->modelScopes($ignoreOrdered ? ['notOrdered'] : [])
             ->with(data_get($data, 'with', []))
             ->scopeQuery(function($q) use ($data) {
                 if ($currencyCode = data_get($data, 'currency_code')) {
@@ -98,6 +98,40 @@ class CartService extends BaseService
     public function update($attributes = [], $id)
     {
         return $this->cartRepository->update($attributes, $id);
+    }
+
+    public function cloneByUser($cart, $user)
+    {
+        return DB::transaction(function() use ($cart, $user) {
+            $user = $this->userService->show($user);
+
+            $cart = $this->show($cart);
+
+            $clonedCart = $cart->replicate();
+
+            $retryTimes = ++$cart->retry_times;
+
+            $cart->retry_times = $retryTimes;
+
+            $clonedCart->retry_parent_id = $cart->id;
+            $clonedCart->uuid = $cart->uuid.'-retry-'.$retryTimes;
+            $clonedCart->user_id = get_model_key($user);
+            $clonedCart->order_id = null;
+            $clonedCart->retry_times = null;
+
+            $cart->save();
+            $clonedCart->save();
+
+            $cartItems = $cart->availableItems;
+
+            foreach ($cartItems as $cartItem) {
+                $clonedCartItem = $cartItem->replicate();
+                $clonedCartItem->uuid = (string) Str::uuid();
+                $clonedCartItem->save();
+            }
+
+            return $clonedCart;
+        });
     }
 
     public function createByUser($userId, $attributes = [])

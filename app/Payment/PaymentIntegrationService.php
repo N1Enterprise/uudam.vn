@@ -5,10 +5,18 @@ namespace App\Payment;
 use App\Exceptions\ExceptionCode;
 use App\Models\BaseTransaction;
 use App\Services\PaymentOptionService;
+use App\Services\PaymentProviderService;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 class PaymentIntegrationService
 {
+    protected $paymentProviderService;
+
+    public function __construct(PaymentProviderService $paymentProviderService)
+    {
+        $this->paymentProviderService = $paymentProviderService;
+    }
+
     public static function availableProviders()
     {
         $providers = [];
@@ -66,5 +74,29 @@ class PaymentIntegrationService
         $provider = $this->resolveProvider($providerCode);
 
         return $provider->handle($transaction);
+    }
+
+    public static function getProviderServiceClass($providerCode)
+    {
+        $paymentProviderMappers = config('payment.payment_provider_mappers', []);
+
+        $providerClass = data_get($paymentProviderMappers, $providerCode, null);
+
+        if (! class_exists($providerClass)) {
+            throw new \Exception("Unknown payment provider class: $providerCode");
+        }
+
+        return $providerClass;
+    }
+
+    public function findProviderByCode($providerCode, $paymentType)
+    {
+        $paymentProvider = $this->paymentProviderService->firstWhereAndScope(['code' => $providerCode, 'payment_type' => $paymentType]);
+
+        if (! $paymentProvider || ! $paymentProvider->isActive()) {
+            throw new \Exception("Payment provider $providerCode was not found or inactivated");
+        }
+
+        return $paymentProvider;
     }
 }

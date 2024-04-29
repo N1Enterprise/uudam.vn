@@ -6,6 +6,7 @@ use App\Common\Cache;
 use App\Enum\DepositStatusEnum;
 use App\Enum\TransactionCacheKeyEnum;
 use App\Events\Deposit\DepositApproved;
+use App\Events\Deposit\DepositCancelled;
 use App\Events\Deposit\DepositDeclined;
 use App\Events\Deposit\Deposited;
 use App\Exceptions\BusinessLogicException;
@@ -127,30 +128,6 @@ class DepositService extends BaseService
         return $freshDepositTransaction;
     }
 
-    public function decline($transactionId, $data = [])
-    {
-        $cacheKey = TransactionCacheKeyEnum::getTransactionCacheKey(TransactionCacheKeyEnum::DEPOSIT_TRANSACTION, BaseModel::getModelKey($transactionId));
-
-        $transaction = Cache::lock($cacheKey, TransactionCacheKeyEnum::TTL)
-            ->block(TransactionCacheKeyEnum::MAXIMUM_WAIT, function() use ($transactionId, $data) {
-                $transaction = $this->depositTransactionService->show($transactionId);
-
-                if (! $transaction->isPending()) {
-                    throw new BusinessLogicException("Unable to update transaction #{$transaction->id}.", ExceptionCode::INVALID_TRANSACTION);
-                }
-
-                $updateResource = array_merge(['status' => DepositStatusEnum::DECLINED], $data);
-
-                $transaction = $this->depositTransactionService->update($updateResource, $transaction);
-
-                DepositDeclined::dispatch($transaction);
-
-                return $transaction;
-            });
-
-        return $transaction;
-    }
-
     public function approve($transactionId, $data = [], $quietly = false)
     {
         $cacheKey = TransactionCacheKeyEnum::getTransactionCacheKey(TransactionCacheKeyEnum::DEPOSIT_TRANSACTION, BaseModel::getModelKey($transactionId));
@@ -178,6 +155,54 @@ class DepositService extends BaseService
 
                     return $transaction;
                 });
+
+                return $transaction;
+            });
+
+        return $transaction;
+    }
+
+    public function decline($transactionId, $data = [])
+    {
+        $cacheKey = TransactionCacheKeyEnum::getTransactionCacheKey(TransactionCacheKeyEnum::DEPOSIT_TRANSACTION, BaseModel::getModelKey($transactionId));
+
+        $transaction = Cache::lock($cacheKey, TransactionCacheKeyEnum::TTL)
+            ->block(TransactionCacheKeyEnum::MAXIMUM_WAIT, function() use ($transactionId, $data) {
+                $transaction = $this->depositTransactionService->show($transactionId);
+
+                if (! $transaction->isPending()) {
+                    throw new BusinessLogicException("Unable to update transaction #{$transaction->id}.", ExceptionCode::INVALID_TRANSACTION);
+                }
+
+                $updateResource = array_merge(['status' => DepositStatusEnum::DECLINED], $data);
+
+                $transaction = $this->depositTransactionService->update($updateResource, $transaction);
+
+                DepositDeclined::dispatch($transaction);
+
+                return $transaction;
+            });
+
+        return $transaction;
+    }
+
+    public function cancel($transactionId, $data = [])
+    {
+        $cacheKey = TransactionCacheKeyEnum::getTransactionCacheKey(TransactionCacheKeyEnum::DEPOSIT_TRANSACTION, BaseModel::getModelKey($transactionId));
+
+        $transaction = Cache::lock($cacheKey, TransactionCacheKeyEnum::TTL)
+            ->block(TransactionCacheKeyEnum::MAXIMUM_WAIT, function () use ($transactionId, $data) {
+                $transaction = $this->depositTransactionService->show($transactionId);
+
+                if (! $transaction->isPending()) {
+                    throw new BusinessLogicException('Unable to update this transaction.', ExceptionCode::INVALID_TRANSACTION);
+                }
+
+                $updateParams = array_merge(['status' => DepositStatusEnum::FAILED], $data);
+
+                $transaction = $this->depositTransactionService->update($updateParams, $transaction);
+
+                DepositCancelled::dispatch($transaction);
 
                 return $transaction;
             });

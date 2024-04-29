@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use App\Common\RequestHelper;
-use Illuminate\Support\Facades\View;
 
 class Authenticate extends Middleware
 {

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\SystemSetting;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ToggleFeatureMiddleware
 {
@@ -13,7 +14,7 @@ class ToggleFeatureMiddleware
         $featureEnabled = SystemSetting::from($key)->get();
 
         if (! $featureEnabled){
-            return response([],403);
+            return response([], Response::HTTP_FORBIDDEN);
         }
 
         return $next($request);

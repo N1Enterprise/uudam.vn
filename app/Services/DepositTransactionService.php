@@ -41,6 +41,11 @@ class DepositTransactionService extends BaseService
         return $this->depositTransactionRepository->findOrFail($id);
     }
 
+    public function find($id)
+    {
+        return $this->depositTransactionRepository->find($id);
+    }
+
     public function update($attributes, $id)
     {
         return $this->depositTransactionRepository->update($attributes, $id);

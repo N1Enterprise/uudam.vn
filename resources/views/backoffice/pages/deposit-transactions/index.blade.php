@@ -43,7 +43,7 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="user.name" data-link="user.edit_link" data-link-target="_blank">{{ __('Tên khách hàng') }}</th>
+                        <th data-property="user.name" data-link="user.edit_link" data-link-target="_blank">{{ __('Khách hàng') }}</th>
                         <th data-property="amount">{{ __('Số tiền') }}</th>
                         <th data-property="payment_option.name" data-link="payment_option.edit_link" data-link-target="_blank">{{ __('Phương thức') }}</th>
                         <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Mã đơn hàng') }}</th>
