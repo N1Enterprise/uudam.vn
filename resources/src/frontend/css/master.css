@@ -651,10 +651,10 @@ body {
 @import url('../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../public/frontend/bundle/css/reset.min.css');
 @import url('../../../../public/frontend/bundle/css/variable.min.css');
-/* @import url('../../../../public/frontend/bundle/css/base.min.css'); */
-/* @import url('../../../../public/frontend/bundle/css/buddha-megamenu2.min.css'); */
-/* @import url('../../../../public/frontend/bundle/css/component-mega-menu.min.css'); */
-/* @import url('../../../../public/frontend/bundle/css/section-footer.min.css'); */
+@import url('../../../../public/frontend/bundle/css/base.min.css');
+@import url('../../../../public/frontend/bundle/css/buddha-megamenu2.min.css');
+@import url('../../../../public/frontend/bundle/css/component-mega-menu.min.css');
+@import url('../../../../public/frontend/bundle/css/section-footer.min.css');
 /* @import url('../../../../public/frontend/bundle/css/component-menu-drawer.min.css'); */
 /* @import url('../../../../public/frontend/bundle/css/component-list-social.min.css'); */
 /* @import url('../../../../public/frontend/bundle/css/component-search.min.css'); */
