@@ -52,7 +52,7 @@ mix
     .js('resources/src/frontend/js/collection-index.js', 'public/frontend/bundle/js/collection-index.min.js')
     .js('resources/src/frontend/js/address.js', 'public/frontend/bundle/js/address.min.js')
 
-    // .css('resources/src/frontend/css/reset.css', 'public/frontend/bundle/css/reset.min.css')
+    .css('resources/src/frontend/css/reset.css', 'public/frontend/bundle/css/reset.min.css')
     // .css('resources/src/frontend/css/base.css', 'public/frontend/bundle/css/base.min.css')
     // .css('resources/src/frontend/css/buddha-megamenu2.css', 'public/frontend/bundle/css/buddha-megamenu2.min.css')
     // .css('resources/src/frontend/css/component-mega-menu.css', 'public/frontend/bundle/css/component-mega-menu.min.css')
