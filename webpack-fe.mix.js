@@ -96,7 +96,7 @@ mix
     .css('resources/src/frontend/css/flashsale.css', 'public/frontend/bundle/css/flashsale.min.css')
     .css('resources/src/frontend/css/variable.css', 'public/frontend/bundle/css/variable.min.css')
     .css('resources/src/frontend/css/mobile-menu.css', 'public/frontend/bundle/css/mobile-menu.min.css')
-    .css('resources/src/frontend/css/master.css', 'public/frontend/bundle/css/master.min.css')
+    // .css('resources/src/frontend/css/master.css', 'public/frontend/bundle/css/master.min.css')
 
     // .css('resources/src/frontend/css/pages/blog.css', 'public/frontend/bundle/css/pages/blog.min.css')
     // .css('resources/src/frontend/css/pages/cart.css', 'public/frontend/bundle/css/pages/cart.min.css')
