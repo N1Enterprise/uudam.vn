@@ -41,7 +41,7 @@ php artisan optimize:clear
 
 composer install
 npm install
-npm run prod:fe
+npm run dev:fe
 
 generate_build_version
 
