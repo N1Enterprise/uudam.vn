@@ -45,4 +45,7 @@ npm run prod:fe
 
 generate_build_version
 
+php artisan config:cache
+php artisan route:cache
+
 echo "========== Nice Done! =========="
