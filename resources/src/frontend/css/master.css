@@ -655,9 +655,9 @@ body {
 @import url('../../../../public/frontend/bundle/css/buddha-megamenu2.min.css');
 @import url('../../../../public/frontend/bundle/css/component-mega-menu.min.css');
 @import url('../../../../public/frontend/bundle/css/section-footer.min.css');
-/* @import url('../../../../public/frontend/bundle/css/component-menu-drawer.min.css'); */
-/* @import url('../../../../public/frontend/bundle/css/component-list-social.min.css'); */
-/* @import url('../../../../public/frontend/bundle/css/component-search.min.css'); */
+@import url('../../../../public/frontend/bundle/css/component-menu-drawer.min.css');
+@import url('../../../../public/frontend/bundle/css/component-list-social.min.css');
+@import url('../../../../public/frontend/bundle/css/component-search.min.css');
 /* @import url('../../../../public/frontend/bundle/css/component-predictive-search.min.css'); */
 /* @import url('../../../../public/frontend/bundle/css/quick-add.min.css'); */
 /* @import url('../../../../public/frontend/bundle/css/main.min.css'); */
