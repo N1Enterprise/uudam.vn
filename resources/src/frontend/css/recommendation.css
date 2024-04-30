@@ -117,7 +117,9 @@ limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link
     flex: 1 1 auto;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%
+    width: 100%;
+    overflow: hidden;
+    border-radius: 3px;
 }
 
 limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-image-wrap {
@@ -164,6 +166,7 @@ limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link
     justify-content: space-around;
     position: relative;
     overflow: hidden;
+    margin: -1px;
 }
 
 limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image {
@@ -403,7 +406,6 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 [has-frontend-custom] .recommendation-target {
     margin: 0px 8px;
     background: #fff;
-    padding: 8px;
 }
 
 @media screen and (max-width: 600px) {

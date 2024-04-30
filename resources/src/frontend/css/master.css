@@ -647,6 +647,39 @@ body {
     display: block;
 }
 
+#backToTop {
+    align-items: center;
+    border-radius: 10px;
+    bottom: 118px;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .1), 0 2px 6px 2px rgba(60, 64, 67, .15);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    justify-content: center;
+    position: fixed;
+    right: 59px;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    width: 50px;
+    z-index: 109;
+    background: #025B50;
+    border: 1px solid #fff;
+    opacity: 0;
+}
+
+#backToTop.show {
+    opacity: .7;
+}
+
+@media screen and (max-width: 768px) {
+    #backToTop {
+        bottom: 145px;
+        right: 10px;
+    }
+}
+
 @import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
 @import url('../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../public/frontend/bundle/css/reset.min.css');

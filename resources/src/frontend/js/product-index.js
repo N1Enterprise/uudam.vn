@@ -19,6 +19,30 @@ const MAIN_INVENTORY = {
     init: () => {
         MAIN_INVENTORY.onChange();
         MAIN_INVENTORY.firstTrigger();
+        MAIN_INVENTORY.mobileSaleActions();
+    },
+    mobileSaleActions: () => {
+        $('[mobile-sale-action-addtocart]').on('click', function() {
+            const isLogged = $('[data-canprocessasthesame]').attr('data-canprocessasthesame');
+            const loginRef = $(this).attr('login-ref');
+
+            if (!isLogged && loginRef) {
+                $(loginRef).trigger('click');
+                return;
+            }
+
+            FORM_ORDER.handleAddToCart(() => {
+                fstoast.success('Đã thêm sản phẩm vào giỏ?', '', {
+                    onclick: () => {
+                        window.location.href = $('#cart-icon-bubble').attr('href');
+                    },
+                });
+            });
+        });
+
+        $('[mobile-sale-action-buynow]').on('click', function() {
+            $('#buy_now').trigger('click');
+        });
     },
     variant_resources: (() => {
         const data = $('#inventory_variants').attr('data-variants') || '{}';
@@ -334,6 +358,9 @@ const FORM_ORDER = {
             quantity: +quantity
         };
     },
+    /**
+     * product-sale-btn-item product-sale-btn-add-to-cart product-form__submit button button--full-width button--primary
+     */
     onBuyNow: () => {
         $('#buy_now').on('click', function() {
             const returnUrl = $(this).attr('data-return-url');
@@ -442,6 +469,20 @@ $(document).ready(function() {
             label.find('span').html(fileName);
         } else {
             label.html(labelVal);
+        }
+    });
+});
+
+$(document).ready(function() {
+    $(window).on('scroll', function() {
+        const scrollPosition = $(window).scrollTop();
+        const targetOffsetTop = $('.product-form__buttons').offset().top;
+        const targetOffsetHei = $('.product-form__buttons').outerHeight();
+
+        if ((scrollPosition + targetOffsetHei) > targetOffsetTop) {
+            $('.mobile-sale-actions').addClass('show');
+        } else {
+            $('.mobile-sale-actions').removeClass('show');
         }
     });
 });

@@ -124,3 +124,15 @@ $(document).ready(function() {
         return false;
     }
 });
+
+$(document).ready(function() {
+    $(window).on('scroll', function() {
+        const scrollPosition = $(window).scrollTop();
+
+        $('#backToTop').toggleClass('show', scrollPosition > 600);
+    });
+
+    $('#backToTop').on('click', function() {
+        $('html, body').animate({ scrollTop : 0 }, 800);
+    });
+});

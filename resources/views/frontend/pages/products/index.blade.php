@@ -115,6 +115,7 @@
 @include('frontend.pages.products.partials.gallery-image-modal')
 @include('frontend.pages.products.partials.product-description-modal')
 @include('frontend.pages.products.partials.product-review-modal')
+@include('frontend.pages.products.partials.mobile-sale-actions')
 @endsection
 
 @section('js_script')
