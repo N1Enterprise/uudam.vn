@@ -68,6 +68,11 @@ class DepositTransaction extends BaseTransaction
         return $this->status == DepositStatusEnum::PENDING;
     }
 
+    public function isApproved()
+    {
+        return $this->status == DepositStatusEnum::APPROVED;
+    }
+
     public function scopeApproved($query)
     {
         return $query->where('status', DepositStatusEnum::APPROVED);

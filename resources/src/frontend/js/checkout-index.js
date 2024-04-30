@@ -113,6 +113,10 @@ $(() => {
                             }
                         }
                     },
+                    error: () => {
+                        $form.find('[type="submit"]').prop('disabled', false);
+                        $form.find('[type="submit"]').removeClass('prevent');
+                    }
                 });
             });
         },

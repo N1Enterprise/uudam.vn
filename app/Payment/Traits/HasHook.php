@@ -30,7 +30,7 @@ trait HasHook
 
             $method = data_get($this->webhookEndpointMappers, $endpoint);
 
-            if (!$method) {
+            if (! $method) {
                 throw new NotFoundHttpException("$endpoint was not defined in hook.");
             }
 
@@ -50,7 +50,7 @@ trait HasHook
 
     public function failedHook($exception, $method, $request, $triggerBeforeExecuteHook = false)
     {
-        if($triggerBeforeExecuteHook){
+        if ($triggerBeforeExecuteHook){
             $this->beforeExecuteHook($method, $request);
         }
 

@@ -189,6 +189,7 @@ return [
         App\Providers\MacroServiceProvider::class,
         App\Providers\BackofficeServiceProvider::class,
         App\Providers\FrontendServiceProvider::class,
+        App\Providers\PaymentServiceProvider::class,
     ],
 
     /*

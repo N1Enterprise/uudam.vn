@@ -115,6 +115,11 @@ class Order extends BaseModel
         return $this->hasOne(Cart::class);
     }
 
+    public function isPending()
+    {
+        return $this->order_statys == OrderStatusEnum::WAITING_FOR_PAYMENT;
+    }
+
     public function isDelivery()
     {
         return $this->order_statys == OrderStatusEnum::DELIVERY;
@@ -128,6 +133,11 @@ class Order extends BaseModel
     public function isPendingPayment()
     {
         return $this->payment_status == PaymentStatusEnum::PENDING;
+    }
+
+    public function isApprovedPayment()
+    {
+        return $this->payment_status == PaymentStatusEnum::APPROVED;
     }
 
     public function isSucceed()

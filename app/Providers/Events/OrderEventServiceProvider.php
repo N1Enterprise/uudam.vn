@@ -17,6 +17,9 @@ class OrderEventServiceProvider extends ServiceProvider
         Events\Deposit\DepositDeclined::class => [
             Listeners\Order\DeclineOrderPayment::class
         ],
+        Events\Deposit\DepositCancelled::class => [
+            Listeners\Order\CancelOrderPayment::class
+        ],
         Events\Deposit\DepositApproved::class => [
             Listeners\Order\ApprovedOrderPayment::class
         ],

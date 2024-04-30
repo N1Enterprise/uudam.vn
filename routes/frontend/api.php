@@ -42,7 +42,6 @@ Route::middleware(['auth:user'])->group(function() {
     // ORDER
     Route::post('user/order/{cartUuid}', [Controllers\UserOrderController::class, 'order'])->name('user.order.store');
     Route::post('user/order/reorder/{orderCode}', [Controllers\UserOrderController::class, 'reorder'])->name('user.order.reorder');
-    Route::get('user/order/providers-shipping-rate', []);
 
     // CART
     Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');

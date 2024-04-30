@@ -122,4 +122,8 @@ class PaymentOptionService extends BaseService
         return $paymentProvider;
     }
 
+    public function firstWhere($where, $scopes = [])
+    {
+        return $this->paymentOptionRepository->modelScopes($scopes)->firstWhere($where);
+    }
 }

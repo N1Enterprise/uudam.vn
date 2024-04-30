@@ -2,13 +2,18 @@
 
 namespace App\Payment\Providers\VnPay;
 
+use App\Enum\PaymentTypeEnum;
+use App\Exceptions\BusinessLogicException;
 use App\Exceptions\PaymentIntegrationException;
 use App\Payment\BasePaymentIntegration;
 use App\Payment\BasePaymentProviderHandle;
 use App\Payment\Concerns\DepositByApi;
 use App\Payment\Concerns\WithHook;
+use App\Payment\Providers\VnPay\Constants\PaymentChannel;
+use App\Payment\Providers\VnPay\ProviderHandlers\Deposit\BaseDepositHandle;
 use App\Payment\Providers\VnPay\ProviderHandlers\HandlerHelper;
 use App\Payment\Traits\HasHook;
+use Illuminate\Support\Arr;
 
 class Service extends BasePaymentIntegration implements WithHook
 {
@@ -18,6 +23,12 @@ class Service extends BasePaymentIntegration implements WithHook
 
     public const PROVIDER_NAME = 'VnPay';
     public const PROVIDER_CODE = 'vnpay';
+
+    public static $paramHints = [];
+
+    protected $webhookEndpointMappers = [
+        'process-deposit' => 'processProviderDeposit',
+    ];
 
     public static function providerName(): string
     {
@@ -38,6 +49,18 @@ class Service extends BasePaymentIntegration implements WithHook
                 'successUrl' => data_get($data, 'redirect_urls.payment_success'),
             ])
         ]);
+    }
+
+    public function processProviderDeposit($request)
+    {
+        /** @var BaseDepositHandle */
+        $handleClass = $this->handleClass ?? $this->getHandleClass();
+
+        if (! method_exists($handleClass, 'processProviderDeposit')) {
+            throw new BusinessLogicException('The handle class '.get_class($handleClass).' must be implements processProviderDeposit function.');
+        }
+
+        return $handleClass->processProviderDeposit($request);
     }
 
     public function getBaseApiURL($transaction = null, $data = [])
@@ -82,5 +105,61 @@ class Service extends BasePaymentIntegration implements WithHook
         }
 
         return $transaction;
+    }
+
+    public function authorizeHook($request, $endpoint = null): bool
+    {
+        try {
+            $this->routingPaymentOptionFromHook($request, $endpoint);
+
+            $payload = $request->all();
+
+            $validationPayload = Arr::only($payload, [
+                'vnp_Amount',
+                'vnp_BankCode',
+                'vnp_BankTranNo',
+                'vnp_CardType',
+                'vnp_OrderInfo',
+                'vnp_PayDate',
+                'vnp_ResponseCode',
+                'vnp_TmnCode',
+                'vnp_TransactionNo',
+                'vnp_TransactionStatus',
+                'vnp_TxnRef',
+            ]);
+
+            $vnpSecureHash = HandlerHelper::encryptPayload($validationPayload, $this->getProviderParam('credentials.vnp_hash_secret'));
+
+            return $vnpSecureHash == data_get($payload, 'vnp_SecureHash');
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function routingPaymentOptionFromHook($request, $endpoint)
+    {
+        $requestPayload = $request->all();
+
+        $vnPayOrderInfo = data_get($requestPayload, 'vnp_OrderInfo');
+
+        $orderInfoExtract = explode('.', $vnPayOrderInfo);
+
+        $vnpChannel = data_get($orderInfoExtract, '1');
+
+        if (! in_array($vnpChannel, [PaymentChannel::INTCARD, PaymentChannel::VNBANK, PaymentChannel::INTCARD, PaymentChannel::E_WALLET])) {
+            throw new PaymentIntegrationException('Invalid VNPAY bank code');
+        }
+
+        $handleClass = HandlerHelper::routingHandleClassByPaymentChannel($vnpChannel);
+
+        $handler = $this->resolveHandleClass($handleClass);
+
+        if ($handler->paymentType() == PaymentTypeEnum::DEPOSIT) {
+            $this->setPaymentOption(HandlerHelper::findPaymentOptionByClassHandler($handler));
+        } else {
+            //
+        }
+
+        return $this;
     }
 }

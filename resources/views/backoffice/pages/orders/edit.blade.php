@@ -81,7 +81,7 @@
                             <b>#{{ $order->order_code }}</b>
                         </h3>
 
-                        <div data-toggle="tooltip" data-title="{{ __('Order Status') }}" class="order_status {{ $orderStatusClass }}" style="margin-left: 10px; text-transform: uppercase;">{{ $order->order_status_name }} {{ __('Thứ tự') }}</div>
+                        <div data-toggle="tooltip" data-title="{{ __('Order Status') }}" class="order_status {{ $orderStatusClass }}" style="margin-left: 10px; text-transform: uppercase;">{{ $order->order_status_name }}</div>
 
                         <span style="padding: 0 10px;">|</span>
 

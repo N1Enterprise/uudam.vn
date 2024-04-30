@@ -36,6 +36,16 @@
     @if (! empty(data_get($SYSTEM_SETTING, 'zalo_widget_chat_sdk')))
     {!! data_get($SYSTEM_SETTING, 'zalo_widget_chat_sdk') !!}
     @endif
+
+    <button id="backToTop" title="Back to top" class="btn-back-to-top button__back-to-top">
+        <div class="icon-up">
+            <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#FFF">
+                <path d="M416 352c-8.188 0-16.38-3.125-22.62-9.375L224 173.3l-169.4 169.4c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25C432.4 348.9 424.2 352 416 352z"></path>
+            </svg>
+        </div>
+        <strong>Lên Đầu</strong>
+    </button>
+
     <script src="{{ asset_with_version('backoffice/js/vendors/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/moment/min/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_with_version('backoffice/assets/vendors/general/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
