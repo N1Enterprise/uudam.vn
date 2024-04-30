@@ -98,20 +98,6 @@
     @include('frontend.pages.products.partials.product-review')
 </section>
 
-{{-- @if(has_data($suggestedInventories))
-<limespot>
-    <limespot-container>
-        @include('frontend.pages.products.partials.suggested-products')
-    </limespot-container>
-</limespot>
-@endif --}}
-
-{{-- @if(has_data($suggestedPosts))
-<section class="shopify-section section">
-    @include('frontend.pages.products.partials.suggested-posts')
-</section>
-@endif --}}
-
 @include('frontend.pages.products.partials.gallery-image-modal')
 @include('frontend.pages.products.partials.product-description-modal')
 @include('frontend.pages.products.partials.product-review-modal')
