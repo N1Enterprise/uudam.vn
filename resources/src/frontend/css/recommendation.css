@@ -416,7 +416,7 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
     [has-frontend-custom] .recommendation-target {
         margin: 0px 4px;
         background: #fff;
-        padding: 4px;
+        padding: 0;
     }
 }
 
