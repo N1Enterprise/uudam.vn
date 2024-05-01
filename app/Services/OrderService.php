@@ -342,7 +342,8 @@ class OrderService extends BaseService
             return DB::transaction(function() use ($order, $data) {
                 $order = $this->orderRepository->update([
                     'order_status' => OrderStatusEnum::COMPLETED,
-                    'admin_note' => data_get($data, 'admin_note', '')
+                    'admin_note' => data_get($data, 'admin_note', ''),
+                    'log' => implode(PHP_EOL, array_filter_empty([data_get($data, 'log'), $order->log])),
                 ], $order->getKey());
 
                 if ($order->isPendingPayment()) {
@@ -371,7 +372,8 @@ class OrderService extends BaseService
             return DB::transaction(function() use ($order, $data) {
                 $order = $this->orderRepository->update([
                     'order_status' => OrderStatusEnum::CANCELED,
-                    'admin_note'   => data_get($data, 'admin_note', '')
+                    'admin_note' => data_get($data, 'admin_note', ''),
+                    'log' => implode(PHP_EOL, array_filter_empty([data_get($data, 'log'), $order->log])),
                 ], $order->getKey());
 
                 OrderCanceled::dispatch($order);

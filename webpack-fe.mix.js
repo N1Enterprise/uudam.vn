@@ -51,6 +51,7 @@ mix
     .js('resources/src/frontend/js/product-index.js', 'public/frontend/bundle/js/product-index.min.js')
     .js('resources/src/frontend/js/collection-index.js', 'public/frontend/bundle/js/collection-index.min.js')
     .js('resources/src/frontend/js/address.js', 'public/frontend/bundle/js/address.min.js')
+    .js('resources/src/frontend/js/order-history.js', 'public/frontend/bundle/js/order-history.min.js')
 
     .css('resources/src/frontend/css/reset.css', 'public/frontend/bundle/css/reset.min.css')
     .css('resources/src/frontend/css/base.css', 'public/frontend/bundle/css/base.min.css')

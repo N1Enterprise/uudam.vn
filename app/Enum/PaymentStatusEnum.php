@@ -17,7 +17,7 @@ class PaymentStatusEnum extends BaseEnum
             self::PENDING,
             self::APPROVED,
             self::CANCELED,
-            self::FAILED
+            self::FAILED,
         ];
     }
 }

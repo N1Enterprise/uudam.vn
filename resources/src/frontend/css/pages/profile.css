@@ -64,3 +64,9 @@
     padding: 15px;
     border-radius: 3px;
 }
+
+@media screen and (min-width: 990px) {
+    .cancel-order-modal .quick-add-modal__content {
+        width: 40%;
+    }
+}

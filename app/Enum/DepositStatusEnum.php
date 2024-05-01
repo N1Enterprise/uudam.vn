@@ -9,6 +9,7 @@ class DepositStatusEnum extends BaseEnum
     public const APPROVED = 2;
     public const CANCELED = 3;
     public const FAILED = 4;
+    public const WAIT_FOR_CONFIRMATION = 5;
 
     public static function all(): array
     {
@@ -17,6 +18,7 @@ class DepositStatusEnum extends BaseEnum
             self::APPROVED,
             self::DECLINED,
             self::FAILED,
+            self::WAIT_FOR_CONFIRMATION
         ];
     }
 }

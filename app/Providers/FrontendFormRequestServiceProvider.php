@@ -27,6 +27,7 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
 
         // Order
         Contracts\UserOrderRequestContract::class => Requests\UserOrderRequest::class,
+        Contracts\UserCancelOrderRequestContract::class => Requests\UserCancelOrderRequest::class,
 
         // Address
         Contracts\StoreUserAddressRequestContract::class => Requests\StoreUserAddressRequest::class,

@@ -337,6 +337,7 @@ class UserOrderService extends BaseService
         $mappers = [
             DepositStatusEnum::DECLINED => PaymentStatusEnum::DECLINED,
             DepositStatusEnum::PENDING  => PaymentStatusEnum::PENDING,
+            DepositStatusEnum::WAIT_FOR_CONFIRMATION => PaymentStatusEnum::PENDING,
             DepositStatusEnum::APPROVED => PaymentStatusEnum::APPROVED,
             DepositStatusEnum::CANCELED => PaymentStatusEnum::CANCELED,
             DepositStatusEnum::FAILED   => PaymentStatusEnum::FAILED,
@@ -349,5 +350,24 @@ class UserOrderService extends BaseService
         }
 
         return $status;
+    }
+
+    public function cancelByUser($user, $orderCode, $data = [])
+    {
+        $user = $this->userService->show($user);
+        $order = $this->orderService->findByUserAndCode(get_model_key($user), $orderCode);
+
+        if (empty($order)) {
+            throw new BusinessLogicException("Invalid user order.");
+        }
+
+        $meta = [
+            'log' => vsprintf('[CANCEL_BY_USER with code %s] %s', [
+                data_get($data, 'reason'),
+                data_get($data, 'content'),
+            ]),
+        ];
+
+        return $this->orderService->cancel($order, $meta);
     }
 }

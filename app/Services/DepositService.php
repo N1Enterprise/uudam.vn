@@ -67,17 +67,17 @@ class DepositService extends BaseService
 
         $depositTransaction = DB::transaction(function() use ($user, $order, $amount, $paymentOption, $createdBy, $data, $paymentIntegrationService) {
             $currencyCode = data_get($data, 'currency_code');
-            $uniqueKey    = data_get($data, 'unique_key');
-            $log          = data_get($data, 'log');
-            $referenceId  = data_get($data, 'reference_id');
-            $orderId      = BaseModel::getModelKey($order);
+            $uniqueKey = data_get($data, 'unique_key');
+            $log = data_get($data, 'log');
+            $referenceId = data_get($data, 'reference_id');
+            $orderId = BaseModel::getModelKey($order);
 
             $meta = [
-                'footprint'    => data_get($data, 'footprint', []),
-                'unique_key'   => $uniqueKey,
-                'log'          => $log,
+                'footprint' => data_get($data, 'footprint', []),
+                'unique_key' => $uniqueKey,
+                'log' => $log,
                 'reference_id' => $referenceId,
-                'order_id'     => $orderId
+                'order_id' => $orderId
             ];
 
             if ($paymentOption->isThirdParty() && $paymentIntegrationService instanceof BasePaymentIntegration) {

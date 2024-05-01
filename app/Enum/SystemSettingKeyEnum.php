@@ -52,6 +52,8 @@ class SystemSettingKeyEnum extends BaseEnum
 
     public const PROVIDER_CALLBACK_WHITELIST_IPS = 'provider_callback_whitelist_ips';
 
+    public const ORDER_CANCEL_REASONS = 'order_cancel_reasons';
+
     public static function all(): array
     {
         return [
@@ -82,6 +84,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::DMCA_SITE_VERIFICATION,
             self::AFFILIATE_SALES_CHANNELS,
             self::PROVIDER_CALLBACK_WHITELIST_IPS,
+            self::ORDER_CANCEL_REASONS
         ];
     }
 }

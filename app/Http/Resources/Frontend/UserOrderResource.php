@@ -17,15 +17,11 @@ class UserOrderResource extends BaseJsonResource
             return;
         }
 
-        $redirectAt = in_array($depositTransaction->status, [DepositStatusEnum::PENDING, DepositStatusEnum::APPROVED])
-            ? route('fe.web.user.checkout.payment.success', $this->order_code)
-            : route('fe.web.user.checkout.payment.failure', $this->order_code);
-
         return [
             'order_code' => $this->order_code,
             'order_status_name' => $this->order_status_name,
             'grand_total' => $this->grand_total,
-            'end_of_redirect_at' => $redirectAt,
+            'end_of_redirect_at' => route('fe.web.user.checkout.payment.status', optional($this->cart)->uuid),
             'paying_confirmed' => optional($this->paymentOption)->type == PaymentOptionTypeEnum::NONE_AMOUNT,
             'payment' => [
                 'data' => [

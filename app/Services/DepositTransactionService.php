@@ -147,12 +147,14 @@ class DepositTransactionService extends BaseService
 
         $bankTransferInfo = array_filter($bankTransferInfo ?? []);
 
+        $status = $paymentOption->isNoneAmount() ? DepositStatusEnum::WAIT_FOR_CONFIRMATION : DepositStatusEnum::PENDING;
+
         $depositTransaction = $this->depositTransactionRepository->create(
             array_merge([
                 'user_id' => $user->getKey(),
                 'uuid' => (string) Str::uuid(),
                 'amount' => (string) $amount,
-                'status' => DepositStatusEnum::PENDING,
+                'status' => $status,
                 'payment_option_id' => $paymentOption->getKey(),
                 'currency_code' => $currencyCode,
             ],

@@ -15,13 +15,12 @@ Trạng thái đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain
 @section('content_body')
 <div class="content">
     <div class="wrap wrap-of-status">
-        <h2>Thanh toán {{ $isOrderSuccess ? 'thành công' : 'không thành công' }}</h2>
+        <h2>Đặt hàng {{ $isOrderSuccess ? 'thành công' : 'không thành công' }}</h2>
 
         @if(! $isOrderSuccess)
             @if($order->isPaymentError())
             <div class="error-block">
-                <span class="error-block__generic">Thanh toán thất bại.</span>
-                <span class="error-block__spec">Vui lòng thanh toán lại hoặc chọn phương thức thanh toán khác</span>
+                <span class="error-block__spec">Vui lòng nhấn vào nút "Đặt lại đơn hàng" để thử lại</span>
             </div>
             @endif
         @endif

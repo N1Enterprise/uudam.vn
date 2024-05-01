@@ -17,6 +17,7 @@ use App\Services\ShippingRateService;
 use App\Vendors\Localization\Country;
 use Illuminate\Http\Request;
 use App\Models\DepositTransaction;
+use App\Services\DepositService;
 
 class UserCheckoutController extends AuthenticatedController
 {
@@ -30,6 +31,7 @@ class UserCheckoutController extends AuthenticatedController
     public $addressService;
     public $shippingOptionService;
     public $depositTransactionService;
+    public $depositService;
 
     public function __construct(
         CartService $cartService,
@@ -40,7 +42,8 @@ class UserCheckoutController extends AuthenticatedController
         OrderService $orderService,
         AddressService $addressService,
         ShippingOptionService $shippingOptionService,
-        DepositTransactionService $depositTransactionService
+        DepositTransactionService $depositTransactionService,
+        DepositService $depositService
     ) {
         parent::__construct();
 
@@ -53,6 +56,7 @@ class UserCheckoutController extends AuthenticatedController
         $this->addressService = $addressService;
         $this->shippingOptionService = $shippingOptionService;
         $this->depositTransactionService = $depositTransactionService;
+        $this->depositService = $depositService;
     }
 
     public function index(Request $request)
@@ -79,6 +83,8 @@ class UserCheckoutController extends AuthenticatedController
             && $cart->order instanceof Order
             && $cart->order->isPendingPayment()
         ) {
+            $this->depositService->cancel($cart->order->deposit_transaction_id, ['note' => 'CANCLED_BY_USER_REORDER']);
+
             return redirect()->route('fe.web.user.checkout.repayment', $cart->order->order_code);
         }
 
@@ -155,7 +161,7 @@ class UserCheckoutController extends AuthenticatedController
         /** @var DepositTransaction */
         $depositTransaction = $order->depositTransaction;
 
-        $isPaymentSuccess = $depositTransaction->isApproved();
+        $isPaymentSuccess = in_array($depositTransaction->status, [DepositStatusEnum::APPROVED, DepositStatusEnum::WAIT_FOR_CONFIRMATION]);
         $isOrderSuccess = $isPaymentSuccess && in_array($order->order_status, [OrderStatusEnum::WAITING_FOR_PAYMENT, OrderStatusEnum::PROCESSING, OrderStatusEnum::DELIVERY]);
 
         return $this->view('frontend.pages.checkouts.payment-status', compact('order', 'isOrderSuccess'));

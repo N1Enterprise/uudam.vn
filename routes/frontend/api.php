@@ -60,4 +60,6 @@ Route::middleware(['auth:user'])->group(function() {
 
     // Checkout
     Route::get('user/checkout/{cartUuid}/shipping-fee', [Controllers\UserCheckoutController::class, 'getShippingFee'])->name('user.checkout.provider-shipping-rate');
+
+    Route::post('user/sale/order/{orderCode}/cancel', [Controllers\UserOrderController::class, 'cancel'])->name('user.sale.order.cancel');
 });
