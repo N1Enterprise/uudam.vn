@@ -14,9 +14,9 @@
                         @foreach($categories as $category)
                         <optgroup label="{{ $category->name }} ({{ $category->categoryGroup->name }})">
                             @foreach($category->products as $product)
-                            <option 
-                                value="{{ $product->id }}" 
-                                data-product-type="{{ $product->type }}" 
+                            <option
+                                value="{{ $product->id }}"
+                                data-product-type="{{ $product->type }}"
                                 data-tokens="{{ (string) $product->id }} | {{ $product->name }} | {{ $category->name }} | {{ $category->categoryGroup->name }}"
                                 data-categories='@json($product->categories->pluck('id')->toArray())'>{{ $product->name }} ({{ $product->type_name }})</option>
                             @endforeach
@@ -24,6 +24,16 @@
                         @endforeach
                     </select>
                 </div>
+                {{-- <div class="form-group col-lg-4">
+                    <label>{{ __('Sắp xếp theo') }}</label>
+                    <select name="sort_by" title="-- {{ __('Lọc sản phẩn') }} --" class="form-control k_selectpicker">
+                        <option value="">-- {{ __('Chọn cách lọc') }} --</option>
+                        <option value="best_selling:desc">{{ __('Bán chạy đến ít bán') }}</option>
+                        <option value="best_selling:asc">{{ __('Ít bán đến bán chạy') }}</option>
+                        <option value="sale_price:desc">{{ __('Giá cao đến thấp') }}</option>
+                        <option value="sale_price:asc">{{ __('Giá thấp đến cao') }}</option>
+                    </select>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="form-group col-lg-4">

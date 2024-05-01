@@ -98,26 +98,20 @@ class InventoryService extends BaseService
 
         $result = $this->inventoryRepository
             ->with(['product'])
-            ->modelScopes(['active', 'feDisplay'])
+            ->modelScopes(['active', 'feDisplay', 'feSearch'])
             ->scopeQuery(function($q) use ($data) {
                 if ($query = data_get($data, 'query')) {
-                    $q->where('inventories.title', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.meta_keywords', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.sku', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.sale_price', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.offer_price', 'LIKE', '%'.$query.'%')
-                        ->orWhere('inventories.slug', 'LIKE', '%'.$query.'%');
+                    $q->where('title', 'LIKE', '%'.$query.'%')
+                        ->orWhere('meta_keywords', 'LIKE', '%'.$query.'%')
+                        ->orWhere('sku', 'LIKE', '%'.$query.'%')
+                        ->orWhere('sale_price', 'LIKE', '%'.$query.'%')
+                        ->orWhere('offer_price', 'LIKE', '%'.$query.'%')
+                        ->orWhere('slug', 'LIKE', '%'.$query.'%');
                 }
 
                 if (array_key_exists('filter_ids', $data)) {
                     $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
                 }
-
-                $q->whereIn('inventories.id', function($query) {
-                    $query->select(DB::raw('MIN(id)'))
-                        ->from('inventories')
-                        ->groupBy('product_id');
-                });
             })
             ->addSort($orderBy, $sortBy);
 

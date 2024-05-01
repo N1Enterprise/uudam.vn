@@ -48,14 +48,14 @@
             </div>
         </div>
         <div class="k-portlet__body">
-            <table id="table_inventories_index" data-group-column="3" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+            <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
-                        <th data-property="title" data-width="300">{{ __('Tiêu đề') }}</th>
-                        <th data-orderable="false" data-property="product.name">{{ __('Sản phẩm') }}</th>
+                        <th data-property="title" data-render-callback="renderCallbackImage" data-width="300">{{ __('Hình ảnh') }}</th>
                         <th data-property="sku">{{ __('Sku') }}</th>
+                        <th data-property="init_sold_count">{{ __('Fake Sold') }}</th>
+                        <th data-property="sold_count">{{ __('Real Sold') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển Thị FE') }}</th>
                         <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('Tìm kiếm FE') }}</th>
@@ -63,8 +63,6 @@
                         <th data-property="purchase_price">{{ __('Giá mua') }}</th>
                         <th data-property="sale_price">{{ __('Giá bán') }}</th>
                         <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
-                        <th data-property="init_sold_count">{{ __('Fake Đã bán') }}</th>
-                        <th data-property="sold_count">{{ __('Đã bán') }}</th>
                         <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
                         <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
                         <th data-property="created_at">{{ __('Ngày tạo') }}</th>
@@ -184,14 +182,41 @@
         });
     }
 
-    function renderCallbackImage(data) {
-        const image = $('<img>', {
-            src: data,
-            width: 80,
-            height: 80,
-        });
+    function renderCallbackImage(data, type, full) {
+        const wrapper = $(`
+            <div style="width: 300px;">
+                <div class="image">
+                    <img src="${full.image}" width="80" height="80" />
+                </div>
 
-        return image.prop('outerHTML');
+                <span class="d-block mt-2">${full.title}</span>
+                <span class="d-block"></span>
+            </div>
+        `);
+
+        return wrapper.prop('outerHTML');
+    }
+
+    function renderCallbackSoldCountSummary(data, type, full) {
+        const faker = + (full.init_sold_count || 0);
+        const real  = + (full.sold_count || 0);
+        const total = faker + real;
+
+        const wrapper = $(`
+            <div>
+                <div class="d-flex align-items-center">
+                    <small style="display: block; width: 40px;">Faker:</small> <b>${faker}</b>
+                </div>
+                <div class="d-flex align-items-center">
+                    <small style="display: block; width: 40px;">Real:</small> <b>${real}</b>
+                </div>
+                <div class="d-flex align-items-center">
+                    <small style="display: block; width: 40px;">Total:</small> <b>${total}</b>
+                </div>
+            </div>
+        `);
+
+        return wrapper.prop('outerHTML');
     }
 
     function renderCallbackOfferPrice(data, type, full) {

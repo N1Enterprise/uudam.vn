@@ -87,3 +87,8 @@
     margin: 0 auto;
     display: flex;
 }
+
+#predictive-search-results {
+    max-height: 80vh;
+    overflow: scroll;
+}

@@ -18,6 +18,7 @@
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
+
 @section('style')
 <link href="{{ asset('backoffice/assets/vendors/custom/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css" />
 <style>
