@@ -27,7 +27,9 @@ class UserSearchController extends BaseApiController
 
     public function searchInventories(Request $request)
     {
-        $inventories = $this->inventoryService->searchForGuest(array_merge(['query' => $request->query], $request->all()));
+        $inventories = $this->inventoryService->searchForGuest(
+            array_merge(['query' => $request->query, 'scope' => 'feSearch'], $request->all())
+        );
 
         return $this->response(ListLinkedInventoryResponseContract::class, $inventories);
     }
