@@ -58,7 +58,7 @@ class OrderController extends BaseController
 
     public function create(Request $request)
     {
-        $inventories = $this->inventoryService->allAvailable();
+        $inventories = $this->inventoryService->allAvailableForGuest();
         $shippingOptions = $this->shippingOptionService->allAvailable();
         $shippingProviders = $this->shippingProviderService->allAvailable();
         $paymentOptions = $this->paymentOptionService->allAvailable();

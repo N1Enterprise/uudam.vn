@@ -135,10 +135,18 @@ class InventoryService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
-    public function allAvailable($data = [], $ignoreSameProduct = true)
+    public function allAvailable($data = [])
     {
         return $this->inventoryRepository
             ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
+            ->with(data_get($data, 'with', []))
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function allAvailableForGuest($data = [])
+    {
+        return $this->inventoryRepository
+            ->modelScopes(['active', 'feDisplay'])
             ->with(data_get($data, 'with', []))
             ->all(data_get($data, 'columns', ['*']));
     }

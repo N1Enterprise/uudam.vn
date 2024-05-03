@@ -52,7 +52,7 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="title" data-render-callback="renderCallbackImage" data-width="300">{{ __('Hình ảnh') }}</th>
+                        <th data-property="title" data-render-callback="renderCallbackImage" data-width="200">{{ __('Hình ảnh') }}</th>
                         <th data-property="sku">{{ __('Sku') }}</th>
                         <th data-property="init_sold_count">{{ __('Fake Sold') }}</th>
                         <th data-property="sold_count">{{ __('Real Sold') }}</th>
@@ -184,7 +184,7 @@
 
     function renderCallbackImage(data, type, full) {
         const wrapper = $(`
-            <div style="width: 300px;">
+            <div style="width: 200px;">
                 <div class="image">
                     <img src="${full.image}" width="80" height="80" />
                 </div>
