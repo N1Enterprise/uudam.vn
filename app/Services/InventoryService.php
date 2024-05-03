@@ -41,9 +41,9 @@ class InventoryService extends BaseService
                 if ($feSearch = Arr::wrap(data_get($data, 'allow_frontend_search'))) {
                     $q->whereIn('allow_frontend_search', $feSearch);
                 }
+
+                $q->orderBy('sku');
             })
-            ->addSort('sku')
-            ->addSort('id')
             ->search([]);
 
         return $result;
