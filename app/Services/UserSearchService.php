@@ -50,6 +50,7 @@ class UserSearchService extends BaseService
                 ->where('status', 1)
                 ->where('display_on_frontend', 1)
                 ->where('allow_frontend_search', 1)
+                ->whereNull('deleted_at')
                 ->where(function($q) use ($query) {
                     $q->where('title', 'LIKE', '%'.$query.'%')
                         ->orWhere('meta_keywords', 'LIKE', '%'.$query.'%')
