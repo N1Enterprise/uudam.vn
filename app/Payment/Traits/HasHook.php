@@ -36,7 +36,7 @@ trait HasHook
 
             $authorized = $this->authorizeHook($request, $endpoint);
 
-            if(! $authorized) {
+            if (! $authorized) {
                 throw new BusinessLogicException('Unauthorized', ExceptionCode::UNAUTHORIZED, Response::HTTP_UNAUTHORIZED);
             }
 

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    $('#modal-cancel-order').find('[data-overlay-close]').on('click', function() {
+        $('#modal-cancel-order').removeAttr('open');
+    });
+
     $('#btn-cancel-order').on('click', function() {
         $('#modal-cancel-order').attr('open', true);
     });

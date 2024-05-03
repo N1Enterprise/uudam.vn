@@ -3,7 +3,8 @@
 namespace App\Payment\Providers\VnPay\ProviderHandlers;
 
 use App\Payment\BasePaymentProviderHandle;
-use App\Payment\Providers\VnPay\Constants\TransactionState;
+use App\Payment\Providers\VnPay\Constants\IPNResponseCode;
+use App\Payment\Providers\VnPay\Constants\StateResponseCode;
 use App\Payment\Providers\VnPay\Service;
 
 abstract class BaseHandler extends BasePaymentProviderHandle
@@ -45,20 +46,66 @@ abstract class BaseHandler extends BasePaymentProviderHandle
 
     public function parseSuccessResponse($data = [])
     {
-        $callbackResponse = $this->service->getProviderParam('__callback_response.success', []) ?? [];
-
-        return array_merge(['ok' => true], $data, $callbackResponse);
+        return [
+            'Message' => 'Confirm Success',
+            'RspCode' => StateResponseCode::CONFIRM_SUCCESS,
+        ];
     }
 
     public function isProviderTransactionFailed($providerPayload)
     {
-        $providerStatus = data_get($providerPayload, 'vnp_TransactionStatus');
+        $providerStatus = data_get($providerPayload, 'vnp_ResponseCode');
 
-        return in_array($providerStatus, [TransactionState::FAILED, TransactionState::SUSPECTED_OF_FRAUD]);
+        return $providerStatus != IPNResponseCode::TRANSACTION_SUCCESS;
     }
 
-    public function parseProviderTransactionErrorMessage($providerTransaction)
+    public function parseProviderTransactionErrorMessage($providerPayload)
     {
-        return '';
+        $providerStatus = data_get($providerPayload, 'vnp_ResponseCode');
+        $message = 'Other error';
+
+        switch ($providerStatus) {
+            case IPNResponseCode::TRANSACTION_SUSPECTED_FRAUD:
+                $message = 'TRANSACTION_SUSPECTED_FRAUD';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_CUSTOMER_NOT_REGISTERED:
+                $message = 'TRANSACTION_FAILED_CUSTOMER_NOT_REGISTERED';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_INCORRECT_AUTHENTICATION:
+                $message = 'TRANSACTION_FAILED_INCORRECT_AUTHENTICATION';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_EXPIRED:
+                $message = 'TRANSACTION_FAILED_EXPIRED';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_CUSTOMER_ACCOUNT_LOCKED:
+                $message = 'TRANSACTION_FAILED_CUSTOMER_ACCOUNT_LOCKED';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_INCORRECT_OTP:
+                $message = 'TRANSACTION_FAILED_INCORRECT_OTP';
+                break;
+            case IPNResponseCode::TRANSACTION_CANCELLED_BY_CUSTOMER:
+                $message = 'TRANSACTION_CANCELLED_BY_CUSTOMER';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_INSUFFICIENT_BALANCE:
+                $message = 'TRANSACTION_FAILED_INSUFFICIENT_BALANCE';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_EXCEED_DAILY_LIMIT:
+                $message = 'TRANSACTION_FAILED_EXCEED_DAILY_LIMIT';
+                break;
+            case IPNResponseCode::BANK_UNDER_MAINTENANCE:
+                $message = 'BANK_UNDER_MAINTENANCE';
+                break;
+            case IPNResponseCode::TRANSACTION_FAILED_EXCEED_PAYMENT_ATTEMPTS:
+                $message = 'TRANSACTION_FAILED_EXCEED_PAYMENT_ATTEMPTS';
+                break;
+            case IPNResponseCode::OTHER_ERRORS:
+                $message = 'OTHER_ERRORS';
+                break;
+            default:
+                $message = 'Other error';
+                break;
+        }
+
+        return vsprintf('[%s] %s', [$providerStatus, $message]);
     }
 }

@@ -6,9 +6,11 @@ use App\Enum\DepositStatusEnum;
 use App\Enum\PaymentTypeEnum;
 use App\Events\Payment\ProviderTransactionApproved;
 use App\Exceptions\BusinessLogicException;
+use App\Exceptions\ExceptionCode;
 use App\Models\DepositTransaction;
 use App\Models\User;
-use App\Payment\Providers\VnPay\Constants\TransactionState;
+use App\Payment\Providers\VnPay\Constants\IPNResponseCode;
+use App\Payment\Providers\VnPay\Constants\StateResponseCode;
 use App\Payment\Providers\VnPay\ProviderHandlers\BaseHandler;
 use App\Payment\Providers\VnPay\Service;
 use App\Vendors\Localization\Money;
@@ -101,13 +103,17 @@ abstract class BaseDepositHandle extends BaseHandler
     {
         $providerPayload = $request->all();
 
-        $providerStatus = data_get($providerPayload, 'vnp_TransactionStatus');
+        $providerStatus = data_get($providerPayload, 'vnp_ResponseCode');
 
         $transactionStatus = $this->parseStatus($providerStatus);
 
-        $transaction = $this->service->findByTransactionId($this->service->removePrefix(data_get($providerPayload, 'vnp_TxnRef')));
+        $transaction = $this->service->findByTransactionId($this->service->removePrefix(data_get($providerPayload, 'vnp_TxnRef')), false);
 
-        if ($transaction->reference_id) {
+        if (! ($transaction instanceof DepositTransaction)) {
+            throw new BusinessLogicException('Order Not Found', ExceptionCode::INVALID_TRANSACTION, StateResponseCode::ORDER_NOT_FOUND);
+        }
+
+        if (! $transaction->reference_id) {
             $transaction->reference_id = data_get($providerPayload, 'vnp_TransactionNo');
             $transaction->save();
         }
@@ -116,7 +122,7 @@ abstract class BaseDepositHandle extends BaseHandler
             $this->processDepositTransaction($transaction, $providerPayload, $transactionStatus);
         }
 
-        return $this->parseSuccessResponse();
+        return $this->parseSuccessResponse($providerPayload);
     }
 
     public function processDepositTransaction($transaction, $providerPayload, $transactionStatus)
@@ -130,7 +136,7 @@ abstract class BaseDepositHandle extends BaseHandler
 
         $transactionAmount = Money::make($transaction->amount, $transaction->currency_code);
 
-        $providerTransactionAmount = $transactionAmount->createFromAmount(data_get($providerPayload, 'vnp_Amount'))->dividedBy(100)->abs();
+        $providerTransactionAmount = $transactionAmount->createFromAmount(data_get($providerPayload, 'vnp_Amount'))->dividedBy(100, Money::ROUND_HALF_UP)->abs();
 
         $updates = [];
 
@@ -141,23 +147,11 @@ abstract class BaseDepositHandle extends BaseHandler
         }
 
         if (! $transactionAmount->eq($providerTransactionAmount)) {
-            // The providerTransactionAmount is final amount that used to increase/decrease player balance.
-            // so we need to update the transaction amount to providerTransactionAmount.
-            $transaction->update([
-                'amount' => $providerTransactionAmount->__toString(),
-                'convert_amount' => $providerTransactionAmount->convertedTo($transaction->convert_currency, $transaction->rate)->__toString()
-            ]);
+            throw new BusinessLogicException('Invalid amount', ExceptionCode::INVALID_TRANSACTION, StateResponseCode::INVALID_AMOUNT);
         }
 
-        if (! $transactionAmount->eq($providerTransactionAmount)) {
-            // The providerTransactionAmount is final amount that used to increase/decrease player balance.
-            // so we need to update the transaction amount to providerTransactionAmount.
-            $transaction->update([
-                'amount' => $providerTransactionAmount->__toString(),
-                'convert_amount' => $providerTransactionAmount->convertedTo($transaction->convert_currency, $transaction->rate)->__toString()
-            ]);
-
-            $transaction->save();
+        if ($transaction->reference_id && $transaction->isApproved()) {
+            throw new BusinessLogicException('Order already confirmed', ExceptionCode::INVALID_TRANSACTION, StateResponseCode::ORDER_ALREADY_CONFIRMED);
         }
 
         $transaction = $this->service->updateTransactionStatus($transaction, $transactionStatus, $updates, true);
@@ -178,10 +172,19 @@ abstract class BaseDepositHandle extends BaseHandler
     public function parseStatus($providerStatus, $throwIfNotFound = true)
     {
         $mappers = [
-            TransactionState::PENDING => DepositStatusEnum::PENDING,
-            TransactionState::APPROVED => DepositStatusEnum::APPROVED,
-            TransactionState::FAILED => DepositStatusEnum::FAILED,
-            TransactionState::SUSPECTED_OF_FRAUD => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_SUCCESS => DepositStatusEnum::APPROVED,
+            IPNResponseCode::TRANSACTION_SUSPECTED_FRAUD => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_CUSTOMER_NOT_REGISTERED => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_INCORRECT_AUTHENTICATION => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_EXPIRED => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_CUSTOMER_ACCOUNT_LOCKED => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_INCORRECT_OTP => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_CANCELLED_BY_CUSTOMER => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_INSUFFICIENT_BALANCE => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_EXCEED_DAILY_LIMIT => DepositStatusEnum::FAILED,
+            IPNResponseCode::BANK_UNDER_MAINTENANCE => DepositStatusEnum::FAILED,
+            IPNResponseCode::TRANSACTION_FAILED_EXCEED_PAYMENT_ATTEMPTS => DepositStatusEnum::FAILED,
+            IPNResponseCode::OTHER_ERRORS => DepositStatusEnum::FAILED,
         ];
 
         $status = $mappers[$providerStatus] ?? null;

@@ -10,9 +10,11 @@ use App\Payment\BasePaymentProviderHandle;
 use App\Payment\Concerns\DepositByApi;
 use App\Payment\Concerns\WithHook;
 use App\Payment\Providers\VnPay\Constants\PaymentChannel;
+use App\Payment\Providers\VnPay\Constants\StateResponseCode;
 use App\Payment\Providers\VnPay\ProviderHandlers\Deposit\BaseDepositHandle;
 use App\Payment\Providers\VnPay\ProviderHandlers\HandlerHelper;
 use App\Payment\Traits\HasHook;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 
 class Service extends BasePaymentIntegration implements WithHook
@@ -161,5 +163,27 @@ class Service extends BasePaymentIntegration implements WithHook
         }
 
         return $this;
+    }
+
+    public function parseErrorResponse($exception)
+    {
+        if ($exception instanceof BusinessLogicException) {
+            $statusCode = $exception->getStatusCode();
+            $message = $exception->getMessage();
+
+            if ($statusCode == Response::HTTP_UNAUTHORIZED) {
+                return [
+                    'Message' => 'Invalid Checksum',
+                    'RspCode' => StateResponseCode::INVALID_CHECKSUM
+                ];
+            }
+
+            return [
+                'Message' => $message,
+                'RspCode' => $statusCode
+            ];
+        }
+
+        return $exception;
     }
 }

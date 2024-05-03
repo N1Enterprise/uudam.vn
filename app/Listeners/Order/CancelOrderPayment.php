@@ -4,8 +4,9 @@ namespace App\Listeners\Order;
 
 use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CancelOrderPayment
+class CancelOrderPayment implements ShouldQueue
 {
     public $timeout = 300;
 
