@@ -975,6 +975,8 @@ body {
     margin: 0 auto;
     position: fixed;
     border-radius: 50px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .call-now-button div {
@@ -1145,6 +1147,8 @@ body {
 @media screen and (max-width: 768px) {
     .call-now-button {
         transform: translateY(-65px);
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
     }
     .call-now-button div p {
         display: none;
