@@ -4,13 +4,11 @@ use App\Enum\SystemSettingKeyEnum;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Api as Controllers;
 
-// CATALOG
 Route::post('user/subscribe/news-letter', [Controllers\UserSubscribeController::class, 'subscribeNewsLetter'])->name('user.subscribe.news-letter');
 Route::get('user/collections/{id}/linked-inventories', [Controllers\CollectionController::class, 'getLinkedInventories'])->name('user.collections.linked-inventories');
 Route::get('user/search/suggest', [Controllers\UserSearchController::class, 'suggest'])->name('user.search.suggest');
 Route::get('user/search/inventories', [Controllers\UserSearchController::class, 'searchInventories'])->name('user.search.inventories');
 
-// AUTHENTICATION
 Route::post('user/signup', [Controllers\UserAuthenticationController::class, 'signup'])->name('user.signup');
 Route::post('user/signin', [Controllers\UserAuthenticationController::class, 'signin'])->name('user.signin');
 Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
@@ -34,31 +32,25 @@ Route::get('localization/{proviceCode}/districts', [Controllers\AddressControlle
 Route::get('localization/{districtCode}/wards', [Controllers\AddressController::class, 'getWardsByDistrict'])->name('localization.wards-by-district');
 
 Route::middleware(['auth:user'])->group(function() {
-    // AUTHENTICATION
     Route::post('user/signout', [Controllers\UserAuthenticationController::class, 'signout'])->name('user.signout');
     Route::post('user/update-info', [Controllers\UserController::class, 'updateInfo'])->name('user.update-info');
     Route::post('user/update-password', [Controllers\UserController::class, 'updatePassword'])->name('user.update-password');
 
-    // ORDER
     Route::post('user/order/{cartUuid}', [Controllers\UserOrderController::class, 'order'])->name('user.order.store');
     Route::post('user/order/reorder/{orderCode}', [Controllers\UserOrderController::class, 'reorder'])->name('user.order.reorder');
 
-    // CART
     Route::post('user/add-to-cart', [Controllers\UserCartController::class, 'store'])->name('user.cart.store');
     Route::get('user/carts-info', [Controllers\UserCartController::class, 'cartInfo'])->name('user.cart.info');
     Route::put('user/carts/{id}/delete', [Controllers\UserCartController::class, 'cancel'])->name('user.cart.delete');
     Route::put('user/carts/{id}/item-update-quantity', [Controllers\UserCartController::class, 'updateItemQuantity'])->name('user.cart-item.update-quantity');
 
-    // SUPPORT DESKS
     Route::post('user/product/review', [Controllers\UserProductReviewController::class, 'review'])->name('user.product.review');
 
-    // ADDRESS
     Route::post('user/localization/address', [Controllers\AddressController::class, 'store'])->name('user.address.store');
     Route::put('user/localization/address/{code}', [Controllers\AddressController::class, 'update'])->name('user.address.update');
     Route::get('user/localization/address/{code}', [Controllers\AddressController::class, 'show'])->name('user.localization.address.show');
     Route::put('user/localization/address/{code}/mark-as-default', [Controllers\AddressController::class, 'markAsDefault'])->name('user.address.mark-as-default');
 
-    // Checkout
     Route::get('user/checkout/{cartUuid}/shipping-fee', [Controllers\UserCheckoutController::class, 'getShippingFee'])->name('user.checkout.provider-shipping-rate');
 
     Route::post('user/sale/order/{orderCode}/cancel', [Controllers\UserOrderController::class, 'cancel'])->name('user.sale.order.cancel');
