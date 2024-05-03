@@ -5,8 +5,9 @@ namespace App\Listeners\Order;
 use App\Events\Deposit\DepositApproved;
 use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ApprovedOrderPayment
+class ApprovedOrderPayment implements ShouldQueue
 {
     public $timeout = 300;
 

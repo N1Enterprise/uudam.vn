@@ -43,6 +43,12 @@ class WebhookController
 
         $response = $paymentIntegrationService->hook($endpoint, $request);
 
+        $paymentIntegrationService->logger()->info("Tracking payment integration hook response: [$uuid]", [
+            'url' => $request->fullUrl(),
+            'uuid' => $uuid,
+            'response' => $response,
+        ]);
+
         return $response;
     }
 }
