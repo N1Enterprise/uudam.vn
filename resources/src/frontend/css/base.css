@@ -1875,6 +1875,12 @@ details[open] .modal-overlay::after {
     line-height: calc(1 + 0.8 / var(--font-body-scale));
     position: relative;
 }
+
+#predictive-search-results {
+    height: 80vh;
+    overflow: scroll;
+}
+
 .search-modal__content-bottom {
     bottom: calc((var(--inputs-margin-offset) / 2) );
 }
