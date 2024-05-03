@@ -184,6 +184,9 @@ class Service extends BasePaymentIntegration implements WithHook
             ];
         }
 
-        return $exception;
+        return [
+            'Message' => 'Unknown error',
+            'RspCode' => StateResponseCode::UNKNOWN_ERROR
+        ];
     }
 }

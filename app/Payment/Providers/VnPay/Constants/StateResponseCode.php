@@ -13,4 +13,6 @@ class StateResponseCode
     public const ORDER_NOT_FOUND = '01';
 
     public const CONFIRM_SUCCESS = '00';
+
+    public const UNKNOWN_ERROR = '99';
 }
