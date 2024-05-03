@@ -37,6 +37,21 @@
     {!! data_get($SYSTEM_SETTING, 'zalo_widget_chat_sdk') !!}
     @endif
 
+    @if (data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone'))
+    <div class="call-now-button" id="draggable">
+        <a href="tel:{{ text_without_spaces(data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone')) }}" style="text-decoration: none;">
+            <div>
+                <p class="call-text">{{ data_get($SYSTEM_SETTING, 'page_settings.phone_support.phone') }}</p>
+                <div id="quickcallbutton" title="Call Now">
+                  <div class="quick-alo-ph-circle active"></div>
+                  <div class="quick-alo-ph-circle-fill active"></div>
+                  <div class="quick-alo-phone-img-circle shake"></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    @endif
+
     <button id="backToTop" title="Back to top" class="btn-back-to-top button__back-to-top">
         <div class="icon-up">
             <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#FFF">
