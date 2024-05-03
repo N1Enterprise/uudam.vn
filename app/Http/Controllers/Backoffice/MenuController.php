@@ -39,7 +39,7 @@ class MenuController extends BaseController
     public function index()
     {
         $menuTypeEnumLabels = MenuTypeEnum::labels();
-        $inventories = $this->inventoryService->allAvailableDistinct();
+        $inventories = $this->inventoryService->allAvailable();
         $posts = $this->postService->allAvailable();
         $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
@@ -57,7 +57,7 @@ class MenuController extends BaseController
 
     public function create()
     {
-        $inventories = $this->inventoryService->allAvailableDistinct();
+        $inventories = $this->inventoryService->allAvailable();
         $posts = $this->postService->allAvailable();
         $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
@@ -72,7 +72,7 @@ class MenuController extends BaseController
     public function edit($id)
     {
         $menu = $this->menuService->show($id, ['with' => 'menuCatalogs']);
-        $inventories = $this->inventoryService->allAvailableDistinct();
+        $inventories = $this->inventoryService->allAvailable();
         $posts = $this->postService->allAvailable();
         $collections = $this->collectionService->allAvailable();
         $menuGroups = $this->menuGroupService
