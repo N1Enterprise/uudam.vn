@@ -53,6 +53,8 @@ $(document).ready(function () {
 
         let groupColumn = tableElement.data('group-column');
 
+        console.log({ orderBy });
+
         let datatableOptions = {
             "ajax": ajax,
             "searchDelay": 500,
