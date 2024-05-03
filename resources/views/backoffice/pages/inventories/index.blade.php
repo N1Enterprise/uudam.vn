@@ -48,12 +48,13 @@
             </div>
         </div>
         <div class="k-portlet__body">
-            <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+            <table id="table_inventories_index" data-group-column="2" data-searching="true" data-request-url="{{ route('bo.api.inventories.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="title" data-render-callback="renderCallbackImage" data-width="200">{{ __('Hình ảnh') }}</th>
-                        <th data-property="sku">{{ __('Sku') }}</th>
+                        <th data-orderable="false" data-property="product.code">{{ __('SKU Sản phẩm') }}</th>
+                        <th data-property="sku">{{ __('SKU Kho') }}</th>
                         <th data-property="init_sold_count">{{ __('Fake Sold') }}</th>
                         <th data-property="sold_count">{{ __('Real Sold') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
@@ -190,7 +191,7 @@
                 </div>
 
                 <span class="d-block mt-2">${full.title}</span>
-                <span class="d-block"></span>
+                <a href="${full.product.actions.update}" target="_blank" title="(${full.product.id}) ${full.product.name}" class="d-block mt-2">Xem sản phẩm</a>
             </div>
         `);
 

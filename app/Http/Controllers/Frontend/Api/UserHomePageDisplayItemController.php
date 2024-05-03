@@ -49,7 +49,7 @@ class UserHomePageDisplayItemController extends BaseApiController
 
         $inventoryIds = Arr::wrap(data_get($displayItem, 'linked_items', []));
 
-        $inventories = $this->inventoryService->searchForGuest(['filter_ids' => $inventoryIds, 'with' => 'product']);
+        $inventories = $this->inventoryService->searchForGuest(['filter_ids' => $inventoryIds]);
 
         return $this->response(ListLinkedInventoryResponseContract::class, $inventories);
     }

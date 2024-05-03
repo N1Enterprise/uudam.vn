@@ -43,7 +43,7 @@ class InventoryResource extends BaseJsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'product' => $this->whenLoaded('product', function() {
-                return optional($this->product)->only('id', 'name', 'primary_image', 'type_name');
+                return new ProductResource($this->product);
             }),
             'created_by' => $this->whenLoaded('createdBy', function() {
                 return new CreatedByResource($this->createdBy);
