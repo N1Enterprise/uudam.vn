@@ -95,11 +95,9 @@ class InventoryService extends BaseService
             }
         }
 
-        $scopes = array_merge(['active', 'feDisplay'], data_get($data, 'scope', []));
-
         $result = $this->inventoryRepository
             ->with(['product'])
-            ->modelScopes($scopes)
+            ->modelScopes(array_merge(['active', 'feDisplay'], data_get($data, 'scopes', [])))
             ->scopeQuery(function($q) use ($data) {
                 if ($query = data_get($data, 'query')) {
                     $q->where('title', 'LIKE', '%'.$query.'%')
