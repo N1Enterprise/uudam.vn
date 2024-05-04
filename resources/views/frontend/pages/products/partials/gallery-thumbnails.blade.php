@@ -4,9 +4,11 @@
             @foreach ($mediaVideos as $video)
             <div data-owl-index="0" class="thumbnail-list__item slider__slide" style="width: 100%;">
                 <button class="thumbnail global-media-settings global-media-settings--no-shadow thumbnail--narrow owl-dot">
-                    <iframe style="height: 100%; width: 100%" src="{{ $video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <video style="height: auto; width: 150%" muted loop>
+                        <source src="{{ $video }}" type="video/mp4">
+                    </video>
                     <div class="video-wrapper">
-                        <span class="deferred-media__poster-button motion-reduce">
+                        <span class="deferred-media__poster-button motion-reduce" style="height: 40px; width: 40px;">
                             <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-play" fill="none" viewBox="0 0 10 14">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.48177 0.814643C0.81532 0.448245 0 0.930414 0 1.69094V12.2081C0 12.991 0.858787 13.4702 1.52503 13.0592L10.5398 7.49813C11.1918 7.09588 11.1679 6.13985 10.4965 5.77075L1.48177 0.814643Z" fill="currentColor"></path>
                             </svg>
