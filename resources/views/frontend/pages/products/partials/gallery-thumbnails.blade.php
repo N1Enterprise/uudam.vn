@@ -4,7 +4,7 @@
             @foreach ($mediaVideos as $video)
             <div data-owl-index="0" class="thumbnail-list__item slider__slide" style="width: 100%;">
                 <button class="thumbnail global-media-settings global-media-settings--no-shadow thumbnail--narrow owl-dot">
-                    <video style="height: auto; width: 150%" muted loop>
+                    <video style="height: auto; width: 150%" muted>
                         <source src="{{ $video }}" type="video/mp4">
                     </video>
                     <div class="video-wrapper">
