@@ -134,5 +134,10 @@
                 </div>
             </div>
         </div>
+        @if (has_data($productReviews))
+        <button type="button" id="see-product-description" class="act-button btn" data-product-review-modal-open>
+            <span>Xem thêm ...</span>
+        </button>
+        @endif
     </div>
 </div>
