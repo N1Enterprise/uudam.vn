@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend as Controllers;
 
 Route::middleware(['feweb'])->group(function() {
-
     Route::redirect('/home', '/');
     Route::redirect('/index', '/');
 
@@ -47,4 +46,6 @@ Route::middleware(['feweb'])->group(function() {
 
         Route::get('checkout/{cartUuid}/status', [Controllers\UserCheckoutController::class, 'checkoutStatus'])->name('user.checkout.payment.status');
     });
+
+    Route::get('go/{code}', [Controllers\ShortenedLinkController::class, 'handleRedirect']);
 });
