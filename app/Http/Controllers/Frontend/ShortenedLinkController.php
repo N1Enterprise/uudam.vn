@@ -18,6 +18,6 @@ class ShortenedLinkController extends BaseController
             return redirect()->to($redirectTo);
         }
 
-        return redirect()->route('fe.web.home', ['Response_Code' => 'Shortened_Link_Not_Found']);
+        return redirect()->route('fe.web.home');
     }
 }

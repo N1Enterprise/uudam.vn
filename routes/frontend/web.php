@@ -47,5 +47,5 @@ Route::middleware(['feweb'])->group(function() {
         Route::get('checkout/{cartUuid}/status', [Controllers\UserCheckoutController::class, 'checkoutStatus'])->name('user.checkout.payment.status');
     });
 
-    Route::get('go/{code}', [Controllers\ShortenedLinkController::class, 'handleRedirect']);
+    Route::get('/{code}', [Controllers\ShortenedLinkController::class, 'handleRedirect']);
 });
