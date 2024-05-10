@@ -18,21 +18,28 @@
                                     <div class="form-group field field-required field--with-error">
                                         <div class="field-input-wrapper">
                                             <label class="field-label" for="">Họ và tên</label>
-                                            <input type="text" name="name" placeholder="Họ và tên" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="" autocomplete="false">
+                                            <input type="text" name="name" placeholder="Họ và tên" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="{{ data_get($AUTHENTICATED_USER, 'name') }}" autocomplete="false">
                                         </div>
                                     </div>
 
                                     <div class="form-group field field-required field--with-error">
                                         <div class="field-input-wrapper">
                                             <label class="field-label" for="">E-mail (không yêu cầu nhập)</label>
-                                            <input type="email" name="email" placeholder="E-mail (không yêu cầu nhập)" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="" autocomplete="false">
+                                            <input type="email" name="email" placeholder="E-mail (không yêu cầu nhập)" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="{{ data_get($AUTHENTICATED_USER, 'email') }}" autocomplete="false">
                                         </div>
                                     </div>
                                     <div class="form-group field field-required field--with-error">
                                         <div class="field-input-wrapper">
                                             <label class="field-label" for="">Số điện thoại</label>
-                                            <input type="tel" name="phone" placeholder="Số điện thoại" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="" autocomplete="false">
+                                            <input type="tel" name="phone" placeholder="Số điện thoại" autocapitalize="off" spellcheck="false" class="field-input" size="30" value="{{ data_get($AUTHENTICATED_USER, 'phone_number') }}" autocomplete="false">
                                         </div>
+                                    </div>
+
+                                    <div class="field use-current-location-to-set-address-wrapper d-none">
+                                        <button type="button" use-current-location-to-set-address>
+                                            <svg fill="none" viewBox="0 0 20 20" class="b1BHds" style="width: 20px; margin-right: 5px;"><path d="M10 9.17a.83.83 0 1 0 0 1.66.83.83 0 0 0 0-1.66Z" fill="#000" fill-opacity=".87"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M10.63.63v1.9a7.5 7.5 0 0 1 6.84 6.85h1.9v1.24h-1.9a7.5 7.5 0 0 1-6.84 6.85v1.9H9.37v-1.9a7.5 7.5 0 0 1-6.84-6.84H.63V9.37h1.9a7.5 7.5 0 0 1 6.85-6.84V.63h1.24ZM9.37 3.77a6.25 6.25 0 0 0-5.59 5.6h1.85v1.24H3.77a6.25 6.25 0 0 0 5.6 5.6v-1.84h1.24v1.84a6.25 6.25 0 0 0 5.6-5.6h-1.84V9.38h1.84a6.25 6.25 0 0 0-5.6-5.6v1.85H9.38V3.77Z" fill="#000" fill-opacity=".87"></path></svg>
+                                            <span>Sử dụng vị trí hiện tại của bạn</span>
+                                        </button>
                                     </div>
 
                                     <div>

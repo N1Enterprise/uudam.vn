@@ -17,6 +17,34 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.onCloseModal();
         ADDRESS_FOR_NEW.onEdit();
         ADDRESS_FOR_NEW.onMarkAsDefault();
+        ADDRESS_FOR_NEW.onUseCurrentLocation();
+    },
+    onUseCurrentLocation: () => {
+        $('[use-current-location-to-set-address]').on('click', function() {
+            if (navigator.geolocation) {
+
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0,
+                };
+
+                function success(pos) {
+                    const crd = pos.coords;
+
+                    console.log({ crd });
+                }
+
+                function error(err) {
+                    console.warn(`ERROR(${err.code}): ${err.message}`);
+                  }
+
+                navigator.geolocation.getCurrentPosition(success, error, options);
+
+            } else {
+                toastr.error('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+            }
+        });
     },
     onEdit: () => {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
@@ -65,22 +93,22 @@ const ADDRESS_FOR_NEW = {
         if (! data?.length) {
             return `<option value="" selected>${emptyLabel}</option>`;
         }
-    
+
         const options = data.map((item) => `<option value="${item.code}">${item.full_name}</option>`);
-        
+
         return [`<option value="" selected>${emptyLabel}</option>`, ...options].join('');
     },
     onChangeProvince: () => {
         ADDRESS_FOR_NEW.elements.shipping_province.on('change', function() {
             const code = $(this).val();
-    
+
             ADDRESS_FOR_NEW.loadDistrictByProvinceCode(code);
         });
     },
     onChangeDistrict: () => {
         ADDRESS_FOR_NEW.elements.shipping_district.on('change', function() {
             const code = $(this).val();
-    
+
             ADDRESS_FOR_NEW.loadWardsByProvinceCode(code);
         });
     },

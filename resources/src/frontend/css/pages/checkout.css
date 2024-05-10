@@ -205,6 +205,18 @@ select:disabled {
     }
 }
 
+[use-current-location-to-set-address] {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    color: #000;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
 @import url('../../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../../public/vendor/validate/styles.css');
 @import url('../../../../../public/frontend/bundle/css/variable.min.css');
