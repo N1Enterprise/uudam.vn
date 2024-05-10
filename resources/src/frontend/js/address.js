@@ -37,20 +37,43 @@ const ADDRESS_FOR_NEW = {
 
                     fetch(reverseGeocodingAPI)
                         .then(response => response.json())
-                        .then(data => {
+                        .then(async data => {
 
                             const road = data?.address?.road;
                             const ward = data?.address?.quarter;
                             const district = data?.address?.suburb;
-                            const city = data?.address?.city;
+                            const province = data?.address?.city;
 
-                            console.log({
-                                road,
-                                ward,
-                                district,
-                                city
+                            $.ajax({
+                                url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
+                                method: 'GET',
+                                data: {
+                                    province_name:province,
+                                    district_name: data?.address?.suburb,
+                                    ward_name: ward
+                                },
+                                success: (data) => {
+                                    const provinceCode = data?.province?.code;
+                                    const districtCode = district;
+                                    const wardCode = data?.ward?.code;
+
+                                    const displayName = `${road}, ${wardCode?.full_name}, ${district.full_name} ${province.full_name}`;
+
+                                    $('#address-form [name="address_line"]').val(displayName);
+
+                                    ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
+                                        ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
+
+                                        ADDRESS_FOR_NEW.loadDistrictByProvinceCode(provinceCode, ({ data }) => {
+                                            ADDRESS_FOR_NEW.elements.modal.find('[name="district_code"]').val(districtCode);
+
+                                            ADDRESS_FOR_NEW.loadWardsByProvinceCode(districtCode, () => {
+                                                ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(wardCode);
+                                            });
+                                        });
+                                    });
+                                }
                             });
-
                         })
                         .catch(error => console.error('Error:', error));
                 }
@@ -70,6 +93,8 @@ const ADDRESS_FOR_NEW = {
     onEdit: () => {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
             const code = $(this).attr('data-address-code');
+
+            $('.use-current-location-to-set-address-wrapper').addClass('d-none');
 
             ADDRESS_FOR_NEW.fetchAddressById(code, (address) => {
                 ADDRESS_FOR_NEW.updateModalTextByAction(true);
@@ -100,6 +125,8 @@ const ADDRESS_FOR_NEW = {
     },
     onCreate: () => {
         $('.show-modal-add-address').on('click', function() {
+            $('.use-current-location-to-set-address-wrapper').removeClass('d-none');
+
             ADDRESS_FOR_NEW.updateModalTextByAction(false);
             ADDRESS_FOR_NEW.elements.modal.attr('open', true);
         });

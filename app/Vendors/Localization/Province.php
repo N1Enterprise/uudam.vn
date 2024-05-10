@@ -51,7 +51,8 @@ class Province
             return $this->model()->query()->get([
                 'code',
                 'name',
-                'full_name'
+                'full_name',
+                'full_name_en'
             ]);
         });
     }

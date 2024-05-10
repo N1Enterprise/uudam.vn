@@ -217,6 +217,10 @@ select:disabled {
     margin-bottom: 6px;
 }
 
+.d-none {
+    display: none;
+}
+
 @import url('../../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../../public/vendor/validate/styles.css');
 @import url('../../../../../public/frontend/bundle/css/variable.min.css');

@@ -52,7 +52,8 @@ class Ward
                 'code',
                 'name',
                 'full_name',
-                'district_code'
+                'district_code',
+                'full_name_en'
             ]);
         });
     }
