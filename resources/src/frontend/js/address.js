@@ -40,21 +40,21 @@ const ADDRESS_FOR_NEW = {
                         .then(async data => {
 
                             const road = data?.address?.road;
-                            const ward = data?.address?.quarter;
-                            const district = data?.address?.suburb;
-                            const province = data?.address?.city;
+                            const wardName = data?.address?.quarter;
+                            const districtName = data?.address?.suburb;
+                            const provinceName = data?.address?.city;
 
                             $.ajax({
                                 url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
                                 method: 'GET',
                                 data: {
-                                    province_name:province,
-                                    district_name: data?.address?.suburb,
-                                    ward_name: ward
+                                    province_name:provinceName,
+                                    district_name: districtName,
+                                    ward_name: wardName
                                 },
                                 success: (data) => {
                                     const provinceCode = data?.province?.code;
-                                    const districtCode = district;
+                                    const districtCode = data?.district?.code;
                                     const wardCode = data?.ward?.code;
 
                                     const displayName = `${road}, ${wardCode?.full_name}, ${district.full_name} ${province.full_name}`;
