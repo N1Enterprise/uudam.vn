@@ -7,7 +7,7 @@
         </button>
         <div class="quick-add-modal__content-info">
             <div class="address-overlay show">
-                <span style="font-size: 20px;">Đang xử lí...</span>
+                <span style="font-size: 20px; color: #000;">Đang xử lí...</span>
             </div>
 
             <div data-overlay-action-wrapper="create-address">
