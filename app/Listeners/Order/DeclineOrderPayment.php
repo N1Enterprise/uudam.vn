@@ -6,7 +6,7 @@ use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DeclineOrderPayment implements ShouldQueue
+class DeclineOrderPayment
 {
     public $timeout = 300;
 

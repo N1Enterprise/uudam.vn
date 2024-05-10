@@ -7,7 +7,7 @@ use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ApprovedOrderPayment implements ShouldQueue
+class ApprovedOrderPayment
 {
     public $timeout = 300;
 
