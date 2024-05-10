@@ -54,6 +54,8 @@ class SystemSettingKeyEnum extends BaseEnum
 
     public const ORDER_CANCEL_REASONS = 'order_cancel_reasons';
 
+    public const SHORTENED_LINKS = 'shortened_links';
+
     public static function all(): array
     {
         return [
@@ -84,7 +86,8 @@ class SystemSettingKeyEnum extends BaseEnum
             self::DMCA_SITE_VERIFICATION,
             self::AFFILIATE_SALES_CHANNELS,
             self::PROVIDER_CALLBACK_WHITELIST_IPS,
-            self::ORDER_CANCEL_REASONS
+            self::ORDER_CANCEL_REASONS,
+            self::SHORTENED_LINKS,
         ];
     }
 }

@@ -53,16 +53,16 @@
                                                 @foreach (data_get($menuGroup, 'menu_sub_groups', []) as $menuSubGroup)
                                                 <li submenu-columns="{{ data_get($menuSubGroup, 'params.submenu_columns') }}" item-type="{{ data_get($menuSubGroup, 'params.item_type') }}" style="z-index: 10;" class="mm-right-item mm-left-item">
                                                     <div class="mega-menu-item-container">
-                                                        @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                                         <div class="mm-list-name" style="height: 37px;">
+                                                            @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                                             <span>
                                                                 <a
                                                                     href="{{ data_get($menuSubGroup, 'redirect_url') ?? '/' }}"
                                                                     class="mm-title {{ data_get($menuSubGroup, 'redirect_url') ? '' : 'prevent' }}"
                                                                     style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                                             </span>
+                                                            @endif
                                                         </div>
-                                                        @endif
 
                                                         @if(has_data(data_get($menuSubGroup, 'menus', [])))
                                                         <ul class="mm-product-list mm-last-level">
@@ -143,16 +143,16 @@
                             @foreach (data_get($menuGroup, 'menu_sub_groups', []) as $menuSubGroup)
                             <li submenu-columns="{{ data_get($menuSubGroup, 'params.submenu_columns') }}" item-type="{{ data_get($menuSubGroup, 'params.item_type') }}" style="z-index: 10; margin-bottom: 10px !important;">
                                 <div class="mega-menu-item-container">
-                                    @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                     <div class="mm-list-name" style="height: 37px;">
+                                        @if(! data_get($menuSubGroup, 'params.hide_name', false))
                                         <span>
                                             <a
                                                 href="{{ data_get($menuSubGroup, 'redirect_url') ?? '/' }}"
                                                 class="mm-title {{ data_get($menuSubGroup, 'redirect_url') ? '' : 'prevent' }}"
                                                 style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
                                         </span>
+                                        @endif
                                     </div>
-                                    @endif
 
                                     @if(has_data(data_get($menuSubGroup, 'menus', [])))
                                     <ul class="mm-product-list mm-last-level">

@@ -1767,6 +1767,12 @@ a.product__text {
     width: 100%;
 }
 
+@media screen and (max-width: 600px) {
+    .product-review-content-wrapper .bg-article {
+        height: 60px;
+    }
+}
+
 .list-review-images_see-all {
     display: block;
 }

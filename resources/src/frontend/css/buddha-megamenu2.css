@@ -2236,12 +2236,13 @@ ul.mm-submenu.simple .mega-menu-item-container {
 }
 
 .horizontal-mega-menu ul.mm-submenu.simple>li .mm-image-container .mm-image img,.vertical-mega-menu ul.mm-submenu.simple>li .mm-image-container .mm-image img {
-    display: block;
-    margin: 0 auto!important;
     cursor: pointer;
-    width: auto;
+    display: block;
     height: auto;
-    max-width: 100%
+    margin: 0 auto!important;
+    width: 100%!important;
+    width: auto;
+    object-fit: cover;
 }
 
 .horizontal-mega-menu ul.mm-submenu.simple>li .mm-image img,::-ms-backdrop {
@@ -2327,7 +2328,8 @@ ul.mm-submenu.simple li .mm-image-container>.mm-image a {
     -moz-transition: transform 1s ease-out;
     -o-transition: transform 1s ease-out;
     transition: transform 1s ease-out;
-    display: flex!important
+    display: flex!important;
+    width: 100%!important;
 }
 
 ul.mm-submenu.simple li:hover .mm-image-container>.mm-image a {

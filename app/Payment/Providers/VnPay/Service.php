@@ -148,7 +148,7 @@ class Service extends BasePaymentIntegration implements WithHook
 
         $vnpChannel = data_get($orderInfoExtract, '1');
 
-        if (! in_array($vnpChannel, [PaymentChannel::INTCARD, PaymentChannel::VNBANK, PaymentChannel::INTCARD, PaymentChannel::E_WALLET])) {
+        if (! in_array($vnpChannel, [PaymentChannel::VNPAYQR, PaymentChannel::VNBANK, PaymentChannel::INTCARD, PaymentChannel::E_WALLET])) {
             throw new PaymentIntegrationException('Invalid VNPAY bank code');
         }
 
