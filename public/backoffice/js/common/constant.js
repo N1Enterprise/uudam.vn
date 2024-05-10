@@ -65,5 +65,6 @@ const APP_CONSTANT = {
         'draw': 'k-badge k-badge--inline k-badge--pill k-badge--dark',
         'won': 'k-badge k-badge--inline k-badge--pill k-badge--success',
         'settle': 'k-badge k-badge--inline k-badge--pill k-badge--success',
+        'waiting_for_payment': 'k-badge k-badge--inline k-badge--pill k-badge--warning',
     }
 };
