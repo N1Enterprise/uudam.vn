@@ -29,20 +29,41 @@ const ADDRESS_FOR_NEW = {
                     maximumAge: 0,
                 };
 
-                function success(pos) {
-                    const crd = pos.coords;
+                function success(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
 
-                    console.log({ crd });
+                    const reverseGeocodingAPI = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude;
+
+                    fetch(reverseGeocodingAPI)
+                        .then(response => response.json())
+                        .then(data => {
+
+                            const road = data?.address?.road;
+                            const ward = data?.address?.quarter;
+                            const district = data?.address?.suburb;
+                            const city = data?.address?.city;
+
+                            console.log({
+                                road,
+                                ward,
+                                district,
+                                city
+                            });
+
+                        })
+                        .catch(error => console.error('Error:', error));
                 }
 
                 function error(err) {
                     console.warn(`ERROR(${err.code}): ${err.message}`);
-                  }
+                    toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                }
 
                 navigator.geolocation.getCurrentPosition(success, error, options);
 
             } else {
-                toastr.error('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
             }
         });
     },
