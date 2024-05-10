@@ -57,7 +57,7 @@ const ADDRESS_FOR_NEW = {
                                     const districtCode = data?.district?.code;
                                     const wardCode = data?.ward?.code;
 
-                                    const displayName = [road, wardCode?.full_name, district.full_name, province.full_name].join(', ');
+                                    const displayName = [road, wardCode?.full_name || '', district?.full_name || '', province?.full_name || ''].join(', ');
 
                                     $('#address-form [name="address_line"]').val(displayName);
 
