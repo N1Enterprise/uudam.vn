@@ -129,6 +129,11 @@ const ADDRESS_FOR_NEW = {
     },
     onCreate: () => {
         $('.show-modal-add-address').on('click', function() {
+            const userData = JSON.parse($('[data-authenticated-user]').attr('data-authenticated-user') || '{}');
+            ADDRESS_FOR_NEW.elements.modal.find('[name="name"]').val(userData?.name);
+            ADDRESS_FOR_NEW.elements.modal.find('[name="email"]').val(userData?.email);
+            ADDRESS_FOR_NEW.elements.modal.find('[name="phone"]').val(userData?.phone_number);
+
             ADDRESS_FOR_NEW.updateModalTextByAction(false);
             ADDRESS_FOR_NEW.elements.modal.attr('open', true);
         });
