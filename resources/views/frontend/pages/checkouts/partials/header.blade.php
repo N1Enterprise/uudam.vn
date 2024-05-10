@@ -1,3 +1,4 @@
+<div class="wrap">
     <header>
         <a href="{{ route('fe.web.home') }}" class="s2kwpi1 _1frageme0 _1fragemlr _1fragemm0 s2kwpi3 _1fragemli _1fragemlm">
             <img
@@ -14,3 +15,4 @@
             </svg>
         </a>
     </header>
+</div>

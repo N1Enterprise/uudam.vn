@@ -620,13 +620,18 @@ select {
 
 .sidebar .sidebar-content .order-summary .order-summary-sections .order-summary-section {
     border-color: currentcolor #e1e1e1 #e1e1e1;
-    border-top: 1px solid #e1e1e1;
     padding-bottom: 1em;
     padding-top: 1.5em
 }
 
 .sidebar .sidebar-content .order-summary .order-summary-sections .order-summary-section:first-child {
-    border-top: none
+    border-top: none;
+    max-height: 450px;
+    overflow: scroll;
+    border-radius: 4px;
+    padding: 10px!important;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .sidebar .sidebar-content .order-summary .order-summary-emphasis {
@@ -1168,7 +1173,8 @@ h3.coupon_heading {
 }
 
 .checkout-page-header {
-    border-bottom: 1px solid #dedede
+    border-bottom: 1px solid #dedede;
+    background-color: #025B50;
 }
 
 .checkout-page-header header {
@@ -1177,15 +1183,13 @@ h3.coupon_heading {
     justify-content: space-between;
     margin: 0 auto;
     padding: 16px 0;
-    background-color: #025B50;
 }
 
 .checkout-page-header #cart-link {
     color: #b4a9a9;
+    outline-color: #0000;
     text-decoration: underline;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 8px;
 }
 
 .checkout-page-header #cart-link span {
