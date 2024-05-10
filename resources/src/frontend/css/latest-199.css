@@ -230,7 +230,8 @@ select {
 .radio-wrapper .radio-content-input {
     align-items: center;
     display: flex;
-    flex: 1
+    flex: 1;
+    color: #000;
 }
 
 .radio-wrapper .radio-content-input .main-img {
