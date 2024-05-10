@@ -63,6 +63,7 @@ const LOCALIZATION_ROUTES = {
     api_districts_by_province: boHost + '/fe/api/localization/:province/districts',
     api_wards_by_district: boHost + '/fe/api/localization/:district/wards',
     api_address_detail: boHost + '/fe/api/user/localization/address/:code',
+    api_get_address_by_locations_names: boHost + '/fe/api/user/localization/get-address-by-location',
 };
 
 const CHECKOUT_ROUTES = {

@@ -17,10 +17,87 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.onCloseModal();
         ADDRESS_FOR_NEW.onEdit();
         ADDRESS_FOR_NEW.onMarkAsDefault();
+        ADDRESS_FOR_NEW.onUseCurrentLocation();
+    },
+    onUseCurrentLocation: () => {
+        $('[use-current-location-to-set-address]').on('click', function() {
+            if (navigator.geolocation) {
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0,
+                };
+
+                $('.address-overlay').addClass('show');
+
+                function success(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    const reverseGeocodingAPI = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude;
+
+                    fetch(reverseGeocodingAPI)
+                        .then(response => response.json())
+                        .then(async data => {
+
+                            const road = data?.address?.road;
+                            const wardName = data?.address?.quarter;
+                            const districtName = data?.address?.suburb;
+                            const provinceName = data?.address?.city;
+
+                            $.ajax({
+                                url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
+                                method: 'GET',
+                                data: {
+                                    province_name:provinceName,
+                                    district_name: districtName,
+                                    ward_name: wardName
+                                },
+                                success: (data) => {
+                                    const provinceCode = data?.province?.code;
+                                    const districtCode = data?.district?.code;
+                                    const wardCode = data?.ward?.code;
+
+                                    const displayName = [road, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
+
+                                    $('#address-form [name="address_line"]').val(displayName);
+
+                                    ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
+                                        ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
+
+                                        ADDRESS_FOR_NEW.loadDistrictByProvinceCode(provinceCode, ({ data }) => {
+                                            ADDRESS_FOR_NEW.elements.modal.find('[name="district_code"]').val(districtCode);
+
+                                            ADDRESS_FOR_NEW.loadWardsByProvinceCode(districtCode, () => {
+                                                ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(wardCode);
+                                            });
+                                        });
+                                    });
+
+                                    $('.address-overlay').removeClass('show');
+                                }
+                            });
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                function error(err) {
+                    console.warn(`ERROR(${err.code}): ${err.message}`);
+                    toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                }
+
+                navigator.geolocation.getCurrentPosition(success, error, options);
+
+            } else {
+                toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+            }
+        });
     },
     onEdit: () => {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
             const code = $(this).attr('data-address-code');
+
+            $('.address-overlay').addClass('show');
 
             ADDRESS_FOR_NEW.fetchAddressById(code, (address) => {
                 ADDRESS_FOR_NEW.updateModalTextByAction(true);
@@ -45,12 +122,18 @@ const ADDRESS_FOR_NEW = {
                 function handleWhenAddLoaded() {
                     ADDRESS_FOR_NEW.elements.modal.find('[name="is_default"]').prop('checked', address.is_default);
                     ADDRESS_FOR_NEW.elements.modal.attr('open', true);
+                    $('.address-overlay').removeClass('show');
                 }
             });
         });
     },
     onCreate: () => {
         $('.show-modal-add-address').on('click', function() {
+            const userData = JSON.parse($('[data-authenticated-user]').attr('data-authenticated-user') || '{}');
+            ADDRESS_FOR_NEW.elements.modal.find('[name="name"]').val(userData?.name);
+            ADDRESS_FOR_NEW.elements.modal.find('[name="email"]').val(userData?.email);
+            ADDRESS_FOR_NEW.elements.modal.find('[name="phone"]').val(userData?.phone_number);
+
             ADDRESS_FOR_NEW.updateModalTextByAction(false);
             ADDRESS_FOR_NEW.elements.modal.attr('open', true);
         });
@@ -65,22 +148,22 @@ const ADDRESS_FOR_NEW = {
         if (! data?.length) {
             return `<option value="" selected>${emptyLabel}</option>`;
         }
-    
+
         const options = data.map((item) => `<option value="${item.code}">${item.full_name}</option>`);
-        
+
         return [`<option value="" selected>${emptyLabel}</option>`, ...options].join('');
     },
     onChangeProvince: () => {
         ADDRESS_FOR_NEW.elements.shipping_province.on('change', function() {
             const code = $(this).val();
-    
+
             ADDRESS_FOR_NEW.loadDistrictByProvinceCode(code);
         });
     },
     onChangeDistrict: () => {
         ADDRESS_FOR_NEW.elements.shipping_district.on('change', function() {
             const code = $(this).val();
-    
+
             ADDRESS_FOR_NEW.loadWardsByProvinceCode(code);
         });
     },

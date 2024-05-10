@@ -52,7 +52,8 @@ class District
                 'code',
                 'name',
                 'full_name',
-                'province_code'
+                'province_code',
+                'full_name_en'
             ]);
         });
     }
