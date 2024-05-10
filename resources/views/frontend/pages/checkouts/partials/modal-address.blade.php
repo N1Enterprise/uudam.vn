@@ -6,6 +6,10 @@
             </svg>
         </button>
         <div class="quick-add-modal__content-info">
+            <div class="address-overlay show">
+                <span style="font-size: 20px;">Đang xử lí...</span>
+            </div>
+
             <div data-overlay-action-wrapper="create-address">
                 <div class="quick-add-modal__content-heading" style="margin-bottom: 20px;">
                     <h3 class="ls-box-title text-left" data-form-title-text></h3>
@@ -43,7 +47,7 @@
                                     </div>
 
                                     <div>
-                                        <div class="field field-show-floating-label field-required field-third ">
+                                        <div class="field field-show-floating-label field-required field-third">
                                             <div class="field-input-wrapper field-input-wrapper-select">
                                                 <label class="field-label" for="address_new_shipping_province"> Tỉnh / thành </label>
                                                 <select class="field-input" id="address_new_shipping_province" name="province_code" id="address_new_shipping_province">

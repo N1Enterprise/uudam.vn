@@ -22,12 +22,13 @@ const ADDRESS_FOR_NEW = {
     onUseCurrentLocation: () => {
         $('[use-current-location-to-set-address]').on('click', function() {
             if (navigator.geolocation) {
-
                 const options = {
                     enableHighAccuracy: true,
                     timeout: 5000,
                     maximumAge: 0,
                 };
+
+                $('.address-overlay').addClass('show');
 
                 function success(position) {
                     const latitude = position.coords.latitude;
@@ -57,7 +58,7 @@ const ADDRESS_FOR_NEW = {
                                     const districtCode = data?.district?.code;
                                     const wardCode = data?.ward?.code;
 
-                                    const displayName = [road, wardCode?.full_name || '', district?.full_name || '', province?.full_name || ''].join(', ');
+                                    const displayName = [road, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
 
                                     $('#address-form [name="address_line"]').val(displayName);
 
@@ -72,6 +73,8 @@ const ADDRESS_FOR_NEW = {
                                             });
                                         });
                                     });
+
+                                    $('.address-overlay').removeClass('show');
                                 }
                             });
                         })
@@ -94,7 +97,7 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
             const code = $(this).attr('data-address-code');
 
-            // $('.use-current-location-to-set-address-wrapper').addClass('d-none');
+            $('.address-overlay').addClass('show');
 
             ADDRESS_FOR_NEW.fetchAddressById(code, (address) => {
                 ADDRESS_FOR_NEW.updateModalTextByAction(true);
@@ -112,6 +115,8 @@ const ADDRESS_FOR_NEW = {
                         ADDRESS_FOR_NEW.loadWardsByProvinceCode(address.district_code, () => {
                             ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(address.ward_code);
                             handleWhenAddLoaded();
+
+                            $('.address-overlay').removeClass('show');
                         });
                     });
                 });
@@ -125,9 +130,6 @@ const ADDRESS_FOR_NEW = {
     },
     onCreate: () => {
         $('.show-modal-add-address').on('click', function() {
-
-            // $('.use-current-location-to-set-address-wrapper').removeClass('d-none');
-
             ADDRESS_FOR_NEW.updateModalTextByAction(false);
             ADDRESS_FOR_NEW.elements.modal.attr('open', true);
         });

@@ -25,6 +25,10 @@ select:disabled {
     color: #000;
 }
 
+.quick-add-modal__content-info {
+    position: relative;
+}
+
 @media screen and (max-width: 600px) {
     .quick-add-modal__content {
         margin-top: 20px;
@@ -217,8 +221,18 @@ select:disabled {
     margin-bottom: 6px;
 }
 
-.d-none {
-    display: none;
+.address-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 1;
+    opacity: .8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @import url('../../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
