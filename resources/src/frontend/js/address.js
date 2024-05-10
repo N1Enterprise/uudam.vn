@@ -115,8 +115,6 @@ const ADDRESS_FOR_NEW = {
                         ADDRESS_FOR_NEW.loadWardsByProvinceCode(address.district_code, () => {
                             ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(address.ward_code);
                             handleWhenAddLoaded();
-
-                            $('.address-overlay').removeClass('show');
                         });
                     });
                 });
@@ -124,6 +122,7 @@ const ADDRESS_FOR_NEW = {
                 function handleWhenAddLoaded() {
                     ADDRESS_FOR_NEW.elements.modal.find('[name="is_default"]').prop('checked', address.is_default);
                     ADDRESS_FOR_NEW.elements.modal.attr('open', true);
+                    $('.address-overlay').removeClass('show');
                 }
             });
         });
