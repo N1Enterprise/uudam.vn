@@ -1177,15 +1177,15 @@ h3.coupon_heading {
     justify-content: space-between;
     margin: 0 auto;
     padding: 16px 0;
+    background-color: #025B50;
 }
 
 .checkout-page-header #cart-link {
     color: #b4a9a9;
-    outline-color: #0000;
     text-decoration: underline;
-    transition-duration: .2s;
-    transition-property: all;
-    transition-timing-function: ease-in-out
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .checkout-page-header #cart-link span {
