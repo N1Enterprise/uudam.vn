@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="">
     <header>
         <div>
             <a href="{{ route('fe.web.home') }}" class="s2kwpi1 _1frageme0 _1fragemlr _1fragemm0 s2kwpi3 _1fragemli _1fragemlm">
