@@ -221,6 +221,10 @@ select:disabled {
     margin-bottom: 6px;
 }
 
+.address-overlay {
+    display: none;
+}
+
 .address-overlay.show {
     position: absolute;
     width: 100%;
