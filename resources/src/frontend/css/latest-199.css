@@ -795,11 +795,6 @@ select {
     max-width: 40em
 }
 
-.wrap:after,.wrap:before {
-    content: "";
-    display: table
-}
-
 @media (min-width: 1000px) {
     .wrap {
         max-width:78.57143em;
