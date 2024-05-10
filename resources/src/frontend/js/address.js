@@ -94,7 +94,7 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.elements.edit_btn.on('click', function() {
             const code = $(this).attr('data-address-code');
 
-            $('.use-current-location-to-set-address-wrapper').addClass('d-none');
+            // $('.use-current-location-to-set-address-wrapper').addClass('d-none');
 
             ADDRESS_FOR_NEW.fetchAddressById(code, (address) => {
                 ADDRESS_FOR_NEW.updateModalTextByAction(true);
@@ -125,7 +125,8 @@ const ADDRESS_FOR_NEW = {
     },
     onCreate: () => {
         $('.show-modal-add-address').on('click', function() {
-            $('.use-current-location-to-set-address-wrapper').removeClass('d-none');
+
+            // $('.use-current-location-to-set-address-wrapper').removeClass('d-none');
 
             ADDRESS_FOR_NEW.updateModalTextByAction(false);
             ADDRESS_FOR_NEW.elements.modal.attr('open', true);
