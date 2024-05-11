@@ -68,11 +68,6 @@ const ADDRESS_FOR_NEW = {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
 
-                    console.log({
-                        latitude,
-                        longitude,
-                    });
-
                     const reverseGeocodingAPI = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude;
 
                     fetch(reverseGeocodingAPI)
@@ -81,55 +76,49 @@ const ADDRESS_FOR_NEW = {
 
                             const parsedLocation = ADDRESS_FOR_NEW.parseBrowserTrackingLocation(location);
 
-                            console.log({
-                                parsedLocation
+                            const roadName     = parsedLocation.road_name;
+                            const wardName     = parsedLocation.ward_name;
+                            const districtName = parsedLocation.district_name;
+                            const provinceName = parsedLocation.province_name;
+                            const countryName  = parsedLocation.country_name;
+                            const postcode     = parsedLocation.postcode;
+
+                            $.ajax({
+                                url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
+                                method: 'GET',
+                                data: {
+                                    province_name:provinceName,
+                                    district_name: districtName,
+                                    ward_name: wardName
+                                },
+                                success: (data) => {
+                                    const { ward, district, province } = data;
+
+                                    const wardCode     = ward?.code || '';
+                                    const districtCode = district?.code || '';
+                                    const provinceCode = province?.code || '';
+
+                                    const myDisplayName = [roadName, ward?.full_name || '', district?.full_name || '', province?.full_name || '', postcode, countryName]
+                                        .filter(item => !!item)
+                                        .join(', ');
+
+                                    $('#address-form [name="address_line"]').val(myDisplayName);
+
+                                    ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
+                                        ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
+
+                                        ADDRESS_FOR_NEW.loadDistrictByProvinceCode(provinceCode, ({ data }) => {
+                                            ADDRESS_FOR_NEW.elements.modal.find('[name="district_code"]').val(districtCode);
+
+                                            ADDRESS_FOR_NEW.loadWardsByProvinceCode(districtCode, () => {
+                                                ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(wardCode);
+                                            });
+                                        });
+                                    });
+
+                                    $('.address-overlay').removeClass('show');
+                                }
                             });
-
-                            // let roadName     = parsedLocation.road_name;
-                            // let wardName     = parsedLocation.ward_name;
-                            // let districtName = parsedLocation.district_name;
-                            // let provinceName = parsedLocation.province_name;
-
-                            // console.log('[INFO] TRACKING USER LOCATION: ', {
-                            //     location: location,
-                            //     road_name: roadName,
-                            //     ward_name: wardName,
-                            //     district_name: districtName,
-                            //     province_name: provinceName
-                            // });
-
-                            // $.ajax({
-                            //     url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
-                            //     method: 'GET',
-                            //     data: {
-                            //         province_name:provinceName,
-                            //         district_name: districtName,
-                            //         ward_name: wardName
-                            //     },
-                            //     success: (data) => {
-                            //         const provinceCode = data?.province?.code;
-                            //         const districtCode = data?.district?.code;
-                            //         const wardCode = data?.ward?.code;
-
-                            //         const myDisplayName = [roadName, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
-
-                            //         $('#address-form [name="address_line"]').val(myDisplayName);
-
-                            //         ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
-                            //             ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
-
-                            //             ADDRESS_FOR_NEW.loadDistrictByProvinceCode(provinceCode, ({ data }) => {
-                            //                 ADDRESS_FOR_NEW.elements.modal.find('[name="district_code"]').val(districtCode);
-
-                            //                 ADDRESS_FOR_NEW.loadWardsByProvinceCode(districtCode, () => {
-                            //                     ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(wardCode);
-                            //                 });
-                            //             });
-                            //         });
-
-                            //         $('.address-overlay').removeClass('show');
-                            //     }
-                            // });
                         })
                         .catch(error => {
                             console.error('Error:', error);
