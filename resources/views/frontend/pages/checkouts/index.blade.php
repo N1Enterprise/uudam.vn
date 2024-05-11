@@ -108,7 +108,7 @@ Thanh toán | {{ config('app.user_domain') }}
                         @else
                         <form accept-charset="UTF-8" style="width: 100%;">
                             <div style="color: #025B50;">
-                                Bạn chưa có địa chỉ giao hàng - vui lòng nhấn vào đây <button type="button" class="button show-modal-add-address" style="padding: 5px 8px; background-color: #025B50; color: #fff; border-radius: 3px;">Thêm địa chỉ</button>
+                                Bạn chưa có địa chỉ giao hàng - vui lòng nhấn vào đây <button type="button" class="button show-modal-add-address" style="padding: 5px 8px; background-color: #025B50!important; color: #fff; border-radius: 3px;">Thêm địa chỉ</button>
                             </div>
                         </form>
                         @endif

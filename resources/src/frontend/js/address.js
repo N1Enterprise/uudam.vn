@@ -44,22 +44,6 @@ const ADDRESS_FOR_NEW = {
             country,
         });
 
-        const messages = {
-            amenity,
-            road,
-            quarter,
-            village,
-            suburb,
-            citydistrict,
-            city,
-            postcode,
-            country,
-        };
-
-        if (! confirm(JSON.stringify(messages))) {
-            return;
-        }
-
         return {
             road_name: [amenity, road].filter(item => !!item).join(', '),
             ward_name: quarter || village,
@@ -98,6 +82,16 @@ const ADDRESS_FOR_NEW = {
                             const provinceName = parsedLocation.province_name;
                             const countryName  = parsedLocation.country_name;
                             const postcode     = parsedLocation.postcode;
+
+                            const objectData = {
+                                roadName,
+                                wardName,
+                                districtName,
+                            };
+
+                            if (! confirm(objectData)) {
+                                return;
+                            }
 
                             $.ajax({
                                 url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,

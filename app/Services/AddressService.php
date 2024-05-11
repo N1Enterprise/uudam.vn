@@ -129,19 +129,34 @@ class AddressService extends BaseService
 
         $province = DB::table('provinces')
             ->select(['code', 'name', 'full_name', 'full_name_en'])
-            ->where('full_name_en', $provinceName)
+            ->where(function($q) use ($provinceName) {
+                $q->where('full_name_en', $provinceName)
+                    ->orWhere('full_name', $provinceName)
+                    ->orWhere('name_en', $provinceName)
+                    ->orWhere('name', $provinceName);
+            })
             ->first();
 
         $district = DB::table('districts')
             ->select(['code', 'name', 'full_name', 'full_name_en', 'province_code'])
             ->where('province_code', data_get($province, 'code'))
-            ->where('full_name_en', $districtName)
+            ->where(function($q) use ($districtName) {
+                $q->where('full_name_en', $districtName)
+                    ->orWhere('full_name', $districtName)
+                    ->orWhere('name_en', $districtName)
+                    ->orWhere('name', $districtName);
+            })
             ->first();
 
         $ward = DB::table('wards')
             ->select(['code', 'name', 'full_name', 'full_name_en', 'district_code'])
             ->where('district_code', data_get($district, 'code'))
-            ->where('full_name_en', $wardName)
+            ->where(function($q) use ($wardName) {
+                $q->where('full_name_en', $wardName)
+                    ->orWhere('full_name', $wardName)
+                    ->orWhere('name_en', $wardName)
+                    ->orWhere('name', $wardName);
+            })
             ->first();
 
         return [
