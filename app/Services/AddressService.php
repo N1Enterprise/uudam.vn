@@ -43,7 +43,7 @@ class AddressService extends BaseService
     public function updateByUserAndCode($attributes = [], $user, $code)
     {
         $address = $this->findByUserAndCode($user, $code);
-        
+
         if (empty($address)) {
             throw new ModelNotFoundException();
         }
@@ -119,5 +119,50 @@ class AddressService extends BaseService
     public function show($id)
     {
         return $this->addressRepository->findOrFail($id);
+    }
+
+    public function getRawLocation($data = [])
+    {
+        $provinceName = data_get($data, 'province_name');
+        $districtName = data_get($data, 'district_name');
+        $wardName = data_get($data, 'ward_name');
+
+        $province = DB::table('provinces')
+            ->select(['code', 'name', 'full_name', 'full_name_en'])
+            ->where(function($q) use ($provinceName) {
+                $q->where('full_name_en', $provinceName)
+                    ->orWhere('full_name', $provinceName)
+                    ->orWhere('name_en', $provinceName)
+                    ->orWhere('name', $provinceName);
+            })
+            ->first();
+
+        $district = DB::table('districts')
+            ->select(['code', 'name', 'full_name', 'full_name_en', 'province_code'])
+            ->where('province_code', data_get($province, 'code'))
+            ->where(function($q) use ($districtName) {
+                $q->where('full_name_en', $districtName)
+                    ->orWhere('full_name', $districtName)
+                    ->orWhere('name_en', $districtName)
+                    ->orWhere('name', $districtName);
+            })
+            ->first();
+
+        $ward = DB::table('wards')
+            ->select(['code', 'name', 'full_name', 'full_name_en', 'district_code'])
+            ->where('district_code', data_get($district, 'code'))
+            ->where(function($q) use ($wardName) {
+                $q->where('full_name_en', $wardName)
+                    ->orWhere('full_name', $wardName)
+                    ->orWhere('name_en', $wardName)
+                    ->orWhere('name', $wardName);
+            })
+            ->first();
+
+        return [
+            'province' => $province,
+            'district' => $district,
+            'ward' => $ward
+        ];
     }
 }

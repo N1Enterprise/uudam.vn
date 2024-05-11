@@ -74,30 +74,8 @@ class AddressController extends BaseApiController
 
     public function getAddressByLocation(Request $request)
     {
-        $provinceName = $request->province_name;
-        $districtName = $request->district_name;
-        $wardName = $request->ward_name;
+        $rawLocation = $this->addressService->getRawLocation($request->all());
 
-        $province = Province::make()
-            ->allInCache()
-            ->where('full_name_en', $provinceName)->first();
-
-        $district = District::make()
-            ->allInCache()
-            ->where('full_name_en', $districtName)
-            ->where('province_code', data_get($province, 'code'))
-            ->first();
-
-        $ward = Ward::make()
-            ->allInCache()
-            ->where('full_name_en', $wardName)
-            ->where('district_code', data_get($district, 'code'))
-            ->first();
-
-        return [
-            'province' => $province,
-            'district' => $district,
-            'ward' => $ward,
-        ];
+        return response()->json($rawLocation);
     }
 }
