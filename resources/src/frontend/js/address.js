@@ -136,6 +136,7 @@ const ADDRESS_FOR_NEW = {
                 function error(err) {
                     console.warn(`ERROR(${err.code}): ${err.message}`);
                     toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                    $('.address-overlay').removeClass('show');
                 }
 
                 navigator.geolocation.getCurrentPosition(success, error, options);
