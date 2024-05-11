@@ -83,16 +83,6 @@ const ADDRESS_FOR_NEW = {
                             const countryName  = parsedLocation.country_name;
                             const postcode     = parsedLocation.postcode;
 
-                            const objectData = {
-                                roadName,
-                                wardName,
-                                districtName,
-                            };
-
-                            if (! confirm(objectData)) {
-                                return;
-                            }
-
                             $.ajax({
                                 url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
                                 method: 'GET',
