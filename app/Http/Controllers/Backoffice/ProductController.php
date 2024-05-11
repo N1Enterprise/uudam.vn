@@ -49,7 +49,7 @@ class ProductController extends BaseController
     {
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
-        $relatedInventories = $this->inventoryService->allAvailable(['columns' => ['id', 'title']]);
+        $relatedInventories = $this->inventoryService->allAvailableForGuest(['columns' => ['id', 'title']]);
 
         $categoryRelatedPosts = $this->postCategoryService
             ->allAvailable(['with' => ['posts'], 'columns' => ['id', 'name']])
@@ -69,7 +69,7 @@ class ProductController extends BaseController
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
 
-        $relatedInventories = $this->inventoryService->allAvailable();
+        $relatedInventories = $this->inventoryService->allAvailableForGuest();
 
         $categoryRelatedPosts = $this->postCategoryService
             ->allAvailable(['with' => ['posts']])

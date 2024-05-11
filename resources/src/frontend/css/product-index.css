@@ -1526,15 +1526,12 @@ a.product__text {
 }
 
 .product-review-posts {
-    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 15px;
-    border-radius: 10px; */
     flex: 0 0 30%;
     max-width: 30%;
 }
 
 .article__content-posts {
-    max-height: 300px;
+    max-height: 310px;
     overflow: scroll;
     transition: .3s;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -1543,9 +1540,14 @@ a.product__text {
 }
 
 @media screen and (max-width: 800px) {
-    .product-review-section {
+    .product-review-section,
+    .product-review-posts {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+
+    .product-review-posts {
+        margin-top: 15px;
     }
 }
 
