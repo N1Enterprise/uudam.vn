@@ -55,32 +55,31 @@
         <div class="footer__section">
             <div class="page-width">
                 <div class="company-footer-content">
-                    <div class="company-footer-content-item">
+                    <div class="company-footer-content-item company-detail-info">
                         <div class="section-content-template">
-                            <div class="footer__blocks-custom-wrapper">
-                                <div class="footer__block-custom" data-type="menu">
-                                    <h2 class="footer__title">Bản Đồ</h2>
-                                    <div class="footer__block-custom-content gg-map">
-                                        @include('frontend.layouts.partials.embed.gg-map')
-                                    </div>
-                                </div>
-
-                                <div class="footer__block-custom" data-type="menu">
-                                    <h2 class="footer__title">Facebook Fanpage</h2>
-                                    <div class="footer__block-custom-content fb-fanpage">
-                                        @include('frontend.layouts.partials.embed.fb-fanpage')
+                            <div class="text-center small--text-left" style="text-align: left;">
+                                <div class="section-content-template">
+                                    <div class="footer__base-links">
+                                        <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b style="text-transform: uppercase;">{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b>, MST <b>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</b>, địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="company-footer-content-item company-detail-info">
+                    <div class="company-footer-content-item company-social-info">
                         <div class="section-content-template">
-                            <div class="page-width text-center small--text-left" style="text-align: center;">
-                                <div class="section-content-template">
-                                    <div class="footer__base-links">
-                                        <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b style="text-transform: uppercase;">{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b>, MST <b>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</b>, địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
+                            <div class="footer__blocks-custom-wrapper">
+                                <div class="footer__block-custom fb-fanpage-wrapper" data-type="menu">
+                                    <h2 class="footer__title">Facebook Fanpage</h2>
+                                    <div class="footer__block-custom-content fb-fanpage">
+                                        @include('frontend.layouts.partials.embed.fb-fanpage')
+                                    </div>
+                                </div>
+                                <div class="footer__block-custom gg-map-wrapper" data-type="menu">
+                                    <h2 class="footer__title">Bản Đồ</h2>
+                                    <div class="footer__block-custom-content gg-map">
+                                        @include('frontend.layouts.partials.embed.gg-map')
                                     </div>
                                 </div>
                             </div>
