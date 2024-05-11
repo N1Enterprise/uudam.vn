@@ -239,6 +239,13 @@ select:disabled {
     justify-content: center;
 }
 
+.address-detail-space {
+    font-style: italic;
+    background-color: #f6f6f6;
+    border-radius: 3px;
+    padding: 1px 6px;
+}
+
 @import url('../../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../../public/vendor/validate/styles.css');
 @import url('../../../../../public/frontend/bundle/css/variable.min.css');
