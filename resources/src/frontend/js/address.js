@@ -19,6 +19,31 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.onMarkAsDefault();
         ADDRESS_FOR_NEW.onUseCurrentLocation();
     },
+    parseBrowserTrackingLocation: (location) => {
+        const { address } = location;
+
+        const amenity       = address?.amenity || '';
+        const road          = address?.road || '';
+        const quarter       = address?.quarter || '';
+        const village       = address?.village || '';
+        const suburb        = address?.suburb || '';
+        const cityDistrict  = address?.city_district || '';
+        const city          = address?.city || '';
+        const postcode      = address?.postcode || '';
+        const country       = 'Việt Nam';
+
+        console.log({
+            amenity,
+            road,
+            quarter,
+            village,
+            suburb,
+            cityDistrict,
+            city,
+            postcode,
+            country
+        });
+    },
     onUseCurrentLocation: () => {
         $('[use-current-location-to-set-address]').on('click', function() {
             if (navigator.geolocation) {
@@ -40,51 +65,53 @@ const ADDRESS_FOR_NEW = {
                         .then(response => response.json())
                         .then(async location => {
 
-                            let roadName     = (`${location?.address?.amenity} ${location?.address?.road}`)?.trim();
-                            let wardName     = (location?.address?.quarter || location?.addClass?.village)?.trim();
-                            let districtName = (location?.address?.suburb || location?.address?.city_district)?.trim();
-                            let provinceName = (location?.address?.city).trim();
+                            const parsedLocation = ADDRESS_FOR_NEW.parseBrowserTrackingLocation(location);
 
-                            console.log('[INFO] TRACKING USER LOCATION: ', {
-                                location: location,
-                                road_name: roadName,
-                                ward_name: wardName,
-                                district_name: districtName,
-                                province_name: provinceName
-                            });
+                            // let roadName     = parsedLocation.road_name;
+                            // let wardName     = parsedLocation.ward_name;
+                            // let districtName = parsedLocation.district_name;
+                            // let provinceName = parsedLocation.province_name;
 
-                            $.ajax({
-                                url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
-                                method: 'GET',
-                                data: {
-                                    province_name:provinceName,
-                                    district_name: districtName,
-                                    ward_name: wardName
-                                },
-                                success: (data) => {
-                                    const provinceCode = data?.province?.code;
-                                    const districtCode = data?.district?.code;
-                                    const wardCode = data?.ward?.code;
+                            // console.log('[INFO] TRACKING USER LOCATION: ', {
+                            //     location: location,
+                            //     road_name: roadName,
+                            //     ward_name: wardName,
+                            //     district_name: districtName,
+                            //     province_name: provinceName
+                            // });
 
-                                    const myDisplayName = [roadName, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
+                            // $.ajax({
+                            //     url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
+                            //     method: 'GET',
+                            //     data: {
+                            //         province_name:provinceName,
+                            //         district_name: districtName,
+                            //         ward_name: wardName
+                            //     },
+                            //     success: (data) => {
+                            //         const provinceCode = data?.province?.code;
+                            //         const districtCode = data?.district?.code;
+                            //         const wardCode = data?.ward?.code;
 
-                                    $('#address-form [name="address_line"]').val(myDisplayName);
+                            //         const myDisplayName = [roadName, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
 
-                                    ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
-                                        ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
+                            //         $('#address-form [name="address_line"]').val(myDisplayName);
 
-                                        ADDRESS_FOR_NEW.loadDistrictByProvinceCode(provinceCode, ({ data }) => {
-                                            ADDRESS_FOR_NEW.elements.modal.find('[name="district_code"]').val(districtCode);
+                            //         ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
+                            //             ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
 
-                                            ADDRESS_FOR_NEW.loadWardsByProvinceCode(districtCode, () => {
-                                                ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(wardCode);
-                                            });
-                                        });
-                                    });
+                            //             ADDRESS_FOR_NEW.loadDistrictByProvinceCode(provinceCode, ({ data }) => {
+                            //                 ADDRESS_FOR_NEW.elements.modal.find('[name="district_code"]').val(districtCode);
 
-                                    $('.address-overlay').removeClass('show');
-                                }
-                            });
+                            //                 ADDRESS_FOR_NEW.loadWardsByProvinceCode(districtCode, () => {
+                            //                     ADDRESS_FOR_NEW.elements.modal.find('[name="ward_code"]').val(wardCode);
+                            //                 });
+                            //             });
+                            //         });
+
+                            //         $('.address-overlay').removeClass('show');
+                            //     }
+                            // });
                         })
                         .catch(error => {
                             console.error('Error:', error);
