@@ -19,6 +19,40 @@ const ADDRESS_FOR_NEW = {
         ADDRESS_FOR_NEW.onMarkAsDefault();
         ADDRESS_FOR_NEW.onUseCurrentLocation();
     },
+    parseBrowserTrackingLocation: (location) => {
+        const { address } = location;
+
+        const amenity       = address?.amenity || '';
+        const road          = address?.road || '';
+        const quarter       = address?.quarter || '';
+        const village       = address?.village || '';
+        const suburb        = address?.suburb || '';
+        const citydistrict  = address?.city_district || '';
+        const city          = address?.city || '';
+        const postcode      = address?.postcode || '';
+        const country       = 'Việt Nam';
+
+        console.log('[TRACKING RESPONSE] Geo location: ', {
+            amenity,
+            road,
+            quarter,
+            village,
+            suburb,
+            citydistrict,
+            city,
+            postcode,
+            country,
+        });
+
+        return {
+            road_name: [amenity, road].filter(item => !!item).join(', '),
+            ward_name: quarter || village,
+            district_name: suburb || citydistrict,
+            province_name: city,
+            country_name: country,
+            postcode: postcode,
+        }
+    },
     onUseCurrentLocation: () => {
         $('[use-current-location-to-set-address]').on('click', function() {
             if (navigator.geolocation) {
@@ -38,12 +72,16 @@ const ADDRESS_FOR_NEW = {
 
                     fetch(reverseGeocodingAPI)
                         .then(response => response.json())
-                        .then(async data => {
+                        .then(async location => {
 
-                            const road = data?.address?.road;
-                            const wardName = data?.address?.quarter;
-                            const districtName = data?.address?.suburb;
-                            const provinceName = data?.address?.city;
+                            const parsedLocation = ADDRESS_FOR_NEW.parseBrowserTrackingLocation(location);
+
+                            const roadName     = parsedLocation.road_name;
+                            const wardName     = parsedLocation.ward_name;
+                            const districtName = parsedLocation.district_name;
+                            const provinceName = parsedLocation.province_name;
+                            const countryName  = parsedLocation.country_name;
+                            const postcode     = parsedLocation.postcode;
 
                             $.ajax({
                                 url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
@@ -54,13 +92,17 @@ const ADDRESS_FOR_NEW = {
                                     ward_name: wardName
                                 },
                                 success: (data) => {
-                                    const provinceCode = data?.province?.code;
-                                    const districtCode = data?.district?.code;
-                                    const wardCode = data?.ward?.code;
+                                    const { ward, district, province } = data;
 
-                                    const displayName = [road, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
+                                    const wardCode     = ward?.code || '';
+                                    const districtCode = district?.code || '';
+                                    const provinceCode = province?.code || '';
 
-                                    $('#address-form [name="address_line"]').val(displayName);
+                                    const myDisplayName = [roadName, ward?.full_name || '', district?.full_name || '', province?.full_name || '', postcode, countryName]
+                                        .filter(item => !!item)
+                                        .join(', ');
+
+                                    $('#address-form [name="address_line"]').val(myDisplayName);
 
                                     ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
                                         ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
@@ -78,18 +120,24 @@ const ADDRESS_FOR_NEW = {
                                 }
                             });
                         })
-                        .catch(error => console.error('Error:', error));
+                        .catch(error => {
+                            console.error('Error:', error);
+                            toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                            $('.address-overlay').removeClass('show');
+                        });
                 }
 
                 function error(err) {
                     console.warn(`ERROR(${err.code}): ${err.message}`);
                     toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                    $('.address-overlay').removeClass('show');
                 }
 
                 navigator.geolocation.getCurrentPosition(success, error, options);
 
             } else {
                 toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                $('.address-overlay').removeClass('show');
             }
         });
     },
@@ -122,9 +170,10 @@ const ADDRESS_FOR_NEW = {
                 function handleWhenAddLoaded() {
                     ADDRESS_FOR_NEW.elements.modal.find('[name="is_default"]').prop('checked', address.is_default);
                     ADDRESS_FOR_NEW.elements.modal.attr('open', true);
-                    $('.address-overlay').removeClass('show');
                 }
             });
+
+            $('.address-overlay').removeClass('show');
         });
     },
     onCreate: () => {
@@ -136,12 +185,14 @@ const ADDRESS_FOR_NEW = {
 
             ADDRESS_FOR_NEW.updateModalTextByAction(false);
             ADDRESS_FOR_NEW.elements.modal.attr('open', true);
+            $('.address-overlay').removeClass('show');
         });
     },
     onCloseModal: () => {
         $('.modal-add-address [data-overlay-close]').on('click', function() {
             ADDRESS_FOR_NEW.updateModalTextByAction(null);
             ADDRESS_FOR_NEW.elements.modal.removeAttr('open');
+            $('.address-overlay').removeClass('show');
         });
     },
     buildHTMLOptions: (data, emptyLabel = '') => {
