@@ -32,17 +32,14 @@ const ADDRESS_FOR_NEW = {
         const postcode      = address?.postcode || '';
         const country       = 'Việt Nam';
 
-        console.log({
-            amenity,
-            road,
-            quarter,
-            village,
-            suburb,
-            cityDistrict,
-            city,
-            postcode,
-            country
-        });
+        return {
+            road_name: [amenity, road].join(', '),
+            ward_name: quarter || village,
+            district_name: suburb || cityDistrict,
+            province_name: city,
+            country_name: country,
+            postcode: postcode,
+        }
     },
     onUseCurrentLocation: () => {
         $('[use-current-location-to-set-address]').on('click', function() {
@@ -66,6 +63,10 @@ const ADDRESS_FOR_NEW = {
                         .then(async location => {
 
                             const parsedLocation = ADDRESS_FOR_NEW.parseBrowserTrackingLocation(location);
+
+                            console.log({
+                                parsedLocation
+                            });
 
                             // let roadName     = parsedLocation.road_name;
                             // let wardName     = parsedLocation.ward_name;
