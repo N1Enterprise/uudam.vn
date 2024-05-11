@@ -236,6 +236,9 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
     color: #626262;
     font-size: 13px;
     height: 21px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .limespot-recommendation-box-carousel-indicator {
