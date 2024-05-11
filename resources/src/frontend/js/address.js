@@ -68,6 +68,11 @@ const ADDRESS_FOR_NEW = {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
 
+                    console.log({
+                        latitude,
+                        longitude,
+                    });
+
                     const reverseGeocodingAPI = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude;
 
                     fetch(reverseGeocodingAPI)
@@ -143,6 +148,7 @@ const ADDRESS_FOR_NEW = {
 
             } else {
                 toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                $('.address-overlay').removeClass('show');
             }
         });
     },
