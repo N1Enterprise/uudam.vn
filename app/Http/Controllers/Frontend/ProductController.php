@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Cms\ProductReviewCms;
+use App\Common\Session;
 use App\Enum\ProductReviewRatingEnum;
 use App\Enum\SystemSettingKeyEnum;
 use App\Exceptions\ModelNotFoundException;
@@ -11,6 +12,7 @@ use App\Services\AttributeService;
 use App\Services\InventoryService;
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ProductController extends BaseController
 {
@@ -34,6 +36,11 @@ class ProductController extends BaseController
         $inventory = $this->inventoryService->showBySlugForGuest($slug, $request->all());
 
         if (empty($inventory)) throw new ModelNotFoundException();
+
+        /** @var Session */
+        $userRecentInventorySession = Session::make(Session::USER_RECENT_INVENTORIES);
+
+        $userRecentInventorySession->put(data_get($inventory, 'id'));
 
         if ($inventory->slug != $slug) {
             return redirect()->route('fe.web.products.index', ['slug' => $inventory->slug, 'sku' => $inventory->sku]);
@@ -68,8 +75,13 @@ class ProductController extends BaseController
             $productReviews = [];
         }
 
+        $recentInventoriesIds = $userRecentInventorySession->get();
+
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
-        $suggestedInventories = $this->inventoryService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.inventories'), ['with' => 'product:id,media,primary_image']);
+
+        $suggestedPosts = $this->postService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.posts'));
+        $suggestedInventories = $this->inventoryService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.inventories'));
+        $recentInventories = empty($recentInventoriesIds) ? [] : $this->inventoryService->getAvailableByIds(Arr::wrap($recentInventoriesIds));
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',
@@ -81,7 +93,9 @@ class ProductController extends BaseController
             'productReviewRatingEnumLabels',
             'productReviews',
             'affiliateSalesChannels',
-            'suggestedInventories'
+            'suggestedPosts',
+            'suggestedInventories',
+            'recentInventories'
         ));
     }
 }

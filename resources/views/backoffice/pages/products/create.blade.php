@@ -57,8 +57,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Tag_Detail_Information">
-                        {{ __('Thông tin chi tiết') }}
+                    <a class="nav-link" data-toggle="tab" href="#Tag_Connect_Information">
+                        {{ __('Thông tin liên kết') }}
                     </a>
                 </li>
             </ul>
@@ -259,7 +259,7 @@
                 </div>
             </div>
 
-            <div class="tab-pane" id="Tag_Detail_Information">
+            <div class="tab-pane" id="Tag_Connect_Information">
                 <div class="k-portlet">
                     <div class="k-portlet__body">
                         <div class="form-group">
@@ -268,7 +268,7 @@
                                 @foreach($relatedInventories as $inventory)
                                 <option
                                     {{ in_array($inventory->id, old('suggested_relationships.inventories', [])) ? 'selected' : '' }}
-                                    data-tokens="{{ $inventory->id }} | {{ $inventory->title }}"
+                                    data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
                                     data-subtext="{{ $inventory->id }}"
                                     data-product-id="{{ $inventory->id }}"
                                     data-product-name="{{ $inventory->title }}"
@@ -289,7 +289,7 @@
                                     @foreach($category->posts as $post)
                                     <option
                                         {{ in_array($post->id, old("suggested_relationships.posts", [])) ? 'selected' : '' }}
-                                        data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $category->name }}"
+                                        data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $post->code }} | {{ $category->name }}"
                                         data-subtext="{{ $post->id }}"
                                         data-post-id="{{ $post->id }}"
                                         data-post-name="{{ $post->name }}"

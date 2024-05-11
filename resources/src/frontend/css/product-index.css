@@ -1526,11 +1526,20 @@ a.product__text {
 }
 
 .product-review-posts {
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 15px;
+    border-radius: 10px; */
+    flex: 0 0 30%;
+    max-width: 30%;
+}
+
+.article__content-posts {
+    max-height: 300px;
+    overflow: scroll;
+    transition: .3s;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 15px;
     border-radius: 10px;
-    flex: 0 0 30%;
-    max-width: 30%;
 }
 
 @media screen and (max-width: 800px) {
@@ -1853,25 +1862,19 @@ a.product__text {
     width: 47px;
 }
 
-.sforum__content-item {
+.suggested_post__content-item {
     cursor: pointer;
     margin-bottom: 10px;
     display: flex;
     text-decoration: none;
 }
 
-.article__content-posts {
-    height: 300px;
-    overflow: scroll;
-    transition: .3s;
-}
-
-.sforum__content-item:hover {
+.suggested_post__content-item:hover {
     text-decoration: underline;
     color: #444;
 }
 
-.sforum__content-item .content-item__img {
+.suggested_post__content-item .content-item__img {
     border-radius: 10px;
     height: 64px;
     margin-right: 10px;
@@ -1879,7 +1882,7 @@ a.product__text {
     min-width: 100px;
 }
 
-.sforum__content-item .content-item__text {
+.suggested_post__content-item .content-item__text {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     color: #444;
@@ -1909,4 +1912,18 @@ a.product__text {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 15px;
     border-radius: 10px;
+    padding-bottom: 0;
+}
+
+.product-suggested-section .recommendation-items {
+    margin: 0 -10px;
+}
+
+.product-suggested-section .section-template-padding {
+    margin-bottom: 0;
+    padding-top: 0 !important;
+}
+
+.tab-recent-inventories {
+    margin-top: 20px;
 }

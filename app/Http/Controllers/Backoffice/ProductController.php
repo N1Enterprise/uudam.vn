@@ -69,10 +69,10 @@ class ProductController extends BaseController
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
 
-        $relatedInventories = $this->inventoryService->allAvailable(['columns' => ['id', 'title']]);
+        $relatedInventories = $this->inventoryService->allAvailable();
 
         $categoryRelatedPosts = $this->postCategoryService
-            ->allAvailable(['with' => ['posts'], 'columns' => ['id', 'name']])
+            ->allAvailable(['with' => ['posts']])
             ->filter(fn($category) => !$category->posts->isEmpty());
 
         return view('backoffice.pages.products.edit', compact('product', 'productTypeLabels', 'categoryGroups', 'relatedInventories', 'categoryRelatedPosts'));

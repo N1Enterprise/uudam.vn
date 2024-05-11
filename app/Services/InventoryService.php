@@ -170,17 +170,6 @@ class InventoryService extends BaseService
             ->findOrFail($id, data_get($data, 'columns', ['*']));
     }
 
-    public function getAvailableBySuggested($suggested, $data = [])
-    {
-        return $this->inventoryRepository
-            ->modelScopes(['active'])
-            ->with(data_get($data, 'with', []))
-            ->scopeQuery(function($q) use ($suggested) {
-                $q->whereIn('id', Arr::wrap($suggested));
-            })
-            ->all(data_get($data, 'columns'));
-    }
-
     public function findBySlug($slug, $data = [])
     {
         return $this->inventoryRepository

@@ -61,6 +61,18 @@ class PostService extends BaseService
             : $result->all();
     }
 
+    public function getAvailableByIds($ids = [], $data = [])
+    {
+        return $this->postRepository
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
+            ->with(data_get($data, 'with', []))
+            ->orderBy('order')
+            ->scopeQuery(function($q) use ($ids) {
+                $q->whereIn('id', $ids);
+            })
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function allAvailable($data = [])
     {
         return $this->postRepository
@@ -104,16 +116,16 @@ class PostService extends BaseService
         return $this->postRepository->delete($id);
     }
 
-    public function getAvailableBySuggested($suggested, $data = [])
-    {
-        return $this->postRepository
-            ->modelScopes(['active'])
-            ->with(data_get($data, 'with', []))
-            ->scopeQuery(function($q) use ($suggested) {
-                $q->whereIn('id', Arr::wrap($suggested));
-            })
-            ->all(data_get($data, 'columns'));
-    }
+    // public function getAvailableBySuggested($suggested, $data = [])
+    // {
+    //     return $this->postRepository
+    //         ->modelScopes(['active'])
+    //         ->with(data_get($data, 'with', []))
+    //         ->scopeQuery(function($q) use ($suggested) {
+    //             $q->whereIn('id', Arr::wrap($suggested));
+    //         })
+    //         ->all(data_get($data, 'columns'));
+    // }
 
     public function findBySlugForGuest($slug, $data = [])
     {
