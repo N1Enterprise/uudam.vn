@@ -60,7 +60,14 @@
                             <div class="text-center small--text-left" style="text-align: left;">
                                 <div class="section-content-template">
                                     <div class="footer__base-links">
-                                        <span style="padding: 0; margin: 0;"> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | <b style="text-transform: uppercase;">{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b> (MST <span>{{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</span>), địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b></span>
+                                        <div> © {{ now()->year }} {{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }}</div>
+
+                                        <div>{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</div>
+
+                                        <div>MST {{ data_get($SYSTEM_SETTING, 'business_information.tax_code') }}</div>
+
+                                        <div>Địa chỉ {{ data_get($SYSTEM_SETTING, 'business_information.address') }}</div>
+                                        {{-- | <b style="text-transform: uppercase;">{{ data_get($SYSTEM_SETTING, 'business_information.full_name') }}</b> , địa chỉ tại <b>{{ data_get($SYSTEM_SETTING, 'business_information.address') }}</b> --}}
                                     </div>
                                 </div>
                             </div>
