@@ -44,6 +44,22 @@ const ADDRESS_FOR_NEW = {
             country,
         });
 
+        const messages = {
+            amenity,
+            road,
+            quarter,
+            village,
+            suburb,
+            citydistrict,
+            city,
+            postcode,
+            country,
+        };
+
+        if (! confirm(JSON.stringify(messages))) {
+            return;
+        }
+
         return {
             road_name: [amenity, road].filter(item => !!item).join(', '),
             ward_name: quarter || village,
