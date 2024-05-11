@@ -240,6 +240,11 @@
     max-width: 50%;
 }
 
+.footer__block-custom-content.gg-map,
+.footer__block-custom-content.fb-fanpage {
+    height: 130px;
+}
+
 @media screen and (max-width: 1280px) {
     .company-footer-content {
         flex-direction: column;
@@ -256,5 +261,11 @@
 
     .company-detail-info {
         margin-top: 20px;
+    }
+
+    .footer__block-custom-content.gg-map,
+    .footer__block-custom-content.fb-fanpage {
+        width: 100%;
+        height: auto;
     }
 }

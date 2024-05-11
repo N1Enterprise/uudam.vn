@@ -60,14 +60,14 @@
                             <div class="footer__blocks-custom-wrapper">
                                 <div class="footer__block-custom" data-type="menu">
                                     <h2 class="footer__title">Bản Đồ</h2>
-                                    <div class="footer__block-custom-content" style="height: 130px;">
+                                    <div class="footer__block-custom-content gg-map">
                                         @include('frontend.layouts.partials.embed.gg-map')
                                     </div>
                                 </div>
 
                                 <div class="footer__block-custom" data-type="menu">
                                     <h2 class="footer__title">Facebook Fanpage</h2>
-                                    <div class="footer__block-custom-content" style="height: 130px;">
+                                    <div class="footer__block-custom-content fb-fanpage">
                                         @include('frontend.layouts.partials.embed.fb-fanpage')
                                     </div>
                                 </div>
