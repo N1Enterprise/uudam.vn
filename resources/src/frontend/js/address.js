@@ -38,12 +38,20 @@ const ADDRESS_FOR_NEW = {
 
                     fetch(reverseGeocodingAPI)
                         .then(response => response.json())
-                        .then(async data => {
+                        .then(async location => {
 
-                            let roadName     = (`${data?.address?.amenity} ${data?.address?.road}`)?.trim();
-                            let wardName     = (data?.address?.quarter || data?.addClass?.village)?.trim();
-                            let districtName = (data?.address?.suburb || data?.address?.city_district)?.trim();
-                            let provinceName = (data?.address?.city).trim();
+                            let roadName     = (`${location?.address?.amenity} ${location?.address?.road}`)?.trim();
+                            let wardName     = (location?.address?.quarter || location?.addClass?.village)?.trim();
+                            let districtName = (location?.address?.suburb || location?.address?.city_district)?.trim();
+                            let provinceName = (location?.address?.city).trim();
+
+                            console.log('[INFO] TRACKING USER LOCATION: ', {
+                                location: location,
+                                road_name: roadName,
+                                ward_name: wardName,
+                                district_name: districtName,
+                                province_name: provinceName
+                            });
 
                             $.ajax({
                                 url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
