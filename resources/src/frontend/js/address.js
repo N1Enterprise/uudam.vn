@@ -142,6 +142,7 @@ const ADDRESS_FOR_NEW = {
         $('.modal-add-address [data-overlay-close]').on('click', function() {
             ADDRESS_FOR_NEW.updateModalTextByAction(null);
             ADDRESS_FOR_NEW.elements.modal.removeAttr('open');
+            $('.address-overlay').removeClass('show');
         });
     },
     buildHTMLOptions: (data, emptyLabel = '') => {
