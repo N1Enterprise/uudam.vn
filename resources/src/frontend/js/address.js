@@ -78,7 +78,11 @@ const ADDRESS_FOR_NEW = {
                                 }
                             });
                         })
-                        .catch(error => console.error('Error:', error));
+                        .catch(error => {
+                            console.error('Error:', error);
+                            toastr.warning('Định vị địa lý không được hỗ trợ bởi trình duyệt này');
+                            $('.address-overlay').removeClass('show');
+                        });
                 }
 
                 function error(err) {
@@ -122,9 +126,10 @@ const ADDRESS_FOR_NEW = {
                 function handleWhenAddLoaded() {
                     ADDRESS_FOR_NEW.elements.modal.find('[name="is_default"]').prop('checked', address.is_default);
                     ADDRESS_FOR_NEW.elements.modal.attr('open', true);
-                    $('.address-overlay').removeClass('show');
                 }
             });
+
+            $('.address-overlay').removeClass('show');
         });
     },
     onCreate: () => {
