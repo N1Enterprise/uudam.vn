@@ -27,15 +27,27 @@ const ADDRESS_FOR_NEW = {
         const quarter       = address?.quarter || '';
         const village       = address?.village || '';
         const suburb        = address?.suburb || '';
-        const cityDistrict  = address?.city_district || '';
+        const citydistrict  = address?.city_district || '';
         const city          = address?.city || '';
         const postcode      = address?.postcode || '';
         const country       = 'Việt Nam';
 
+        console.log('[TRACKING RESPONSE] Geo location: ', {
+            amenity,
+            road,
+            quarter,
+            village,
+            suburb,
+            citydistrict,
+            city,
+            postcode,
+            country,
+        });
+
         return {
-            road_name: [amenity, road].join(', '),
+            road_name: [amenity, road].filter(item => !!item).join(', '),
             ward_name: quarter || village,
-            district_name: suburb || cityDistrict,
+            district_name: suburb || citydistrict,
             province_name: city,
             country_name: country,
             postcode: postcode,
