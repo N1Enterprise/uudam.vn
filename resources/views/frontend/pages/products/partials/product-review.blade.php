@@ -4,7 +4,7 @@
             <div class="spr-container">
                 <div class="spr-header">
                     <h2 class="spr-header-title" style="text-align: left;">
-                        <span>Phản hồi khách hàng</span>
+                        <span style="text-align: left; text-transform: uppercase; font-weight: bold; color: #025B50; font-size: 17px;">Phản hồi khách hàng</span>
                         @if (has_data($productReviews))
                         <div style="font-size: 14px;">
                             @if(has_data($productReviews) && count($productReviews) > 1)
@@ -133,11 +133,11 @@
                     </div>
                 </div>
             </div>
+            @if (has_data($productReviews))
+            <button type="button" id="see-product-description" class="act-button btn" data-product-review-modal-open>
+                <span>Xem thêm ...</span>
+            </button>
+            @endif
         </div>
-        @if (has_data($productReviews))
-        <button type="button" id="see-product-description" class="act-button btn" data-product-review-modal-open>
-            <span>Xem thêm ...</span>
-        </button>
-        @endif
     </div>
 </div>

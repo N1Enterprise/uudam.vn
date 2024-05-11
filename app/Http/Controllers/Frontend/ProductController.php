@@ -69,6 +69,7 @@ class ProductController extends BaseController
         }
 
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
+        $suggestedInventories = $this->inventoryService->getAvailableBySuggested(data_get($inventory->product, 'suggested_relationships.inventories'), ['with' => 'product:id,media,primary_image']);
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',
@@ -79,7 +80,8 @@ class ProductController extends BaseController
             'inventoryAttributes',
             'productReviewRatingEnumLabels',
             'productReviews',
-            'affiliateSalesChannels'
+            'affiliateSalesChannels',
+            'suggestedInventories'
         ));
     }
 }
