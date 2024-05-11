@@ -40,10 +40,10 @@ const ADDRESS_FOR_NEW = {
                         .then(response => response.json())
                         .then(async data => {
 
-                            const road = data?.address?.road;
-                            const wardName = data?.address?.quarter;
-                            const districtName = data?.address?.suburb;
-                            const provinceName = data?.address?.city;
+                            let roadName     = (`${data?.address?.amenity} ${data?.address?.road}`)?.trim();
+                            let wardName     = (data?.address?.quarter || data?.addClass?.village)?.trim();
+                            let districtName = (data?.address?.suburb || data?.address?.city_district)?.trim();
+                            let provinceName = (data?.address?.city).trim();
 
                             $.ajax({
                                 url: LOCALIZATION_ROUTES.api_get_address_by_locations_names,
@@ -58,9 +58,9 @@ const ADDRESS_FOR_NEW = {
                                     const districtCode = data?.district?.code;
                                     const wardCode = data?.ward?.code;
 
-                                    const displayName = [road, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
+                                    const myDisplayName = [roadName, data?.ward?.full_name || '', data?.district?.full_name || '', data?.province?.full_name || ''].join(', ');
 
-                                    $('#address-form [name="address_line"]').val(displayName);
+                                    $('#address-form [name="address_line"]').val(myDisplayName);
 
                                     ADDRESS_FOR_NEW.loadProvinces(({ data }) => {
                                         ADDRESS_FOR_NEW.elements.modal.find('[name="province_code"]').val(provinceCode);
