@@ -264,6 +264,12 @@
     .company-footer-content .company-footer-content-item {
         flex: 0 0 100%;
         max-width: 100%;
+        margin-top: 0;
+    }
+
+    .company-footer-content .company-footer-content-item:first-child {
+        border-bottom: 1px solid #e7e7e738;
+        padding-bottom: 10px;
     }
 
     .footer__blocks-custom-wrapper .gg-map-wrapper {
