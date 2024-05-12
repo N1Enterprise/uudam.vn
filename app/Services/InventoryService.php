@@ -152,10 +152,11 @@ class InventoryService extends BaseService
 
     public function getAvailableByIds($ids = [], $data = [])
     {
-        $withs = data_get($data, 'with', []);
+        $withs  = data_get($data, 'with', []);
+        $scopes = data_get($data, 'scope', []);
 
         return $this->inventoryRepository
-            ->modelScopes(['active'])
+            ->modelScopes(array_merge($scopes, ['active']))
             ->with(array_merge($withs, ['product']))
             ->scopeQuery(function($q) use ($ids) {
                 $q->whereIn('id', $ids);

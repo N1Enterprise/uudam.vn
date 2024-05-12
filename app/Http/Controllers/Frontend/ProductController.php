@@ -37,10 +37,10 @@ class ProductController extends BaseController
 
         if (empty($inventory)) throw new ModelNotFoundException();
 
-        /** @var Session */
-        $userRecentInventorySession = Session::make(Session::USER_RECENT_INVENTORIES);
-
-        $userRecentInventorySession->put(data_get($inventory, 'id'));
+        $recentInventoriesIds = Session::make(Session::USER_RECENT_INVENTORIES)
+            ->limit(12)
+            ->putRecent(data_get($inventory, 'id'))
+            ->get();
 
         if ($inventory->slug != $slug) {
             return redirect()->route('fe.web.products.index', ['slug' => $inventory->slug, 'sku' => $inventory->sku]);
@@ -75,13 +75,17 @@ class ProductController extends BaseController
             $productReviews = [];
         }
 
-        $recentInventoriesIds = $userRecentInventorySession->get();
-
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 
-        $suggestedPosts = $this->postService->allAvailable(data_get($inventory->product, 'suggested_relationships.posts'));
-        $suggestedInventories = $this->inventoryService->allAvailableForGuest(data_get($inventory->product, 'suggested_relationships.inventories'));
+        $suggestedPosts = $this->postService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.posts'));
+
+        $suggestedInventories = $this->inventoryService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.inventories'), ['scope' => ['feDisplay']]);
+
         $recentInventories = empty($recentInventoriesIds) ? [] : $this->inventoryService->getAvailableByIds(Arr::wrap($recentInventoriesIds));
+
+        $recentInventories = collect($recentInventories)->sortBy(function($model) use ($recentInventoriesIds) {
+            return array_search($model->id, $recentInventoriesIds);
+        })->values();
 
         return $this->view('frontend.pages.products.index', compact(
             'inventory',
@@ -95,7 +99,8 @@ class ProductController extends BaseController
             'affiliateSalesChannels',
             'suggestedPosts',
             'suggestedInventories',
-            'recentInventories'
+            'recentInventories',
+            'recentInventoriesIds'
         ));
     }
 }

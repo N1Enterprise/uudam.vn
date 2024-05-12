@@ -116,17 +116,6 @@ class PostService extends BaseService
         return $this->postRepository->delete($id);
     }
 
-    // public function getAvailableBySuggested($suggested, $data = [])
-    // {
-    //     return $this->postRepository
-    //         ->modelScopes(['active'])
-    //         ->with(data_get($data, 'with', []))
-    //         ->scopeQuery(function($q) use ($suggested) {
-    //             $q->whereIn('id', Arr::wrap($suggested));
-    //         })
-    //         ->all(data_get($data, 'columns'));
-    // }
-
     public function findBySlugForGuest($slug, $data = [])
     {
         $id = data_get($data, 'id');
