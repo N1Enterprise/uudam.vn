@@ -3,7 +3,7 @@
         <div class="rte quick-add-hidden">
             <div class="spr-container">
                 <div class="spr-header">
-                    <h2 class="spr-header-title" style="text-align: left; text-transform: uppercase; font-weight: bold; color: #025B50; font-size: 17px;">Sản phẩm liên quan</h2>
+                    <h2 class="spr-header-title" style="text-align: left; text-transform: uppercase; font-weight: bold; color: #025B50; font-size: 17px;">Gợi ý thêm cho bạn</h2>
                 </div>
                 <div class="spr-content product-description-content">
                     <limespot-box data-owner="LimeSpot" data-box-type="Related" data-dynamic="true" data-host-page="Home" data-placement-order="2" class="ls-recommendation-box limespot-recommendation-box ls-animate page-width no-zoom section-template-padding" data-placement-disposition="0" data-placement-method="before" data-box-style="carousel" style="display: block;">
