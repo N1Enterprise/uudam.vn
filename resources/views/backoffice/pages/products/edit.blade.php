@@ -424,14 +424,16 @@
             @endcan
         </div>
 
-        <div class="col-md-12">
-            <div class="k-portlet__foot">
-                <div class="k-form__actions d-flex justify-content-start">
-                    <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+       <div class="row">
+            <div class="col-md-12">
+                <div class="k-portlet__foot">
+                    <div class="k-form__actions d-flex justify-content-start">
+                        <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+                    </div>
                 </div>
             </div>
-        </div>
+       </div>
     </form>
 </div>
 @endsection
