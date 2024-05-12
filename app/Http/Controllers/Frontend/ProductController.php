@@ -38,9 +38,11 @@ class ProductController extends BaseController
         if (empty($inventory)) throw new ModelNotFoundException();
 
         $recentInventoriesIds = Session::make(Session::USER_RECENT_INVENTORIES)
-            ->limit(12)
+            ->limit(13)
             ->putRecent(data_get($inventory, 'id'))
-            ->get();
+            ->toCollect()
+            ->filter(fn($item) => $item != $inventory->id)
+            ->toArray();
 
         if ($inventory->slug != $slug) {
             return redirect()->route('fe.web.products.index', ['slug' => $inventory->slug, 'sku' => $inventory->sku]);
