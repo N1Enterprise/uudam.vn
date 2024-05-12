@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Chỉnh sửa sản phẩm');
+	$title = __('Chỉnh sửa sản phẩm') . ' #' . data_get($product, 'code');
 
 	$breadcrumbs = [
 		[
@@ -48,6 +48,27 @@
             </div>
         </div>
         @enderror
+
+        <div class="product-preview mb-3">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{{ data_get($product, 'primary_image') }}" alt="{{ data_get($product, 'name') }}" style="width: 100%; height: auto;">
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="">{{ __('Tên sản phẩm') }}</label>
+                        <input type="text" class="form-control" disabled value="{{ data_get($product, 'name') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">{{ __('SKU') }}</label>
+                        <input type="text" class="form-control" disabled value="{{ data_get($product, 'code') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
 
         @canany(['product-reviews.store'])
         <div class="k-portlet__head-toolbar mb-4">
