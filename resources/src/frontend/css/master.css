@@ -475,7 +475,7 @@ body {
 
 .contentview * {
     font-family: var(--font-body-family)!important;
-    font-size: 1.6rem!important;
+    font-size: 1.6rem;
     font-weight: 400;
     line-height: calc(1 + 0.8 / var(--font-body-scale))!important;
     margin: 0!important;
@@ -489,6 +489,16 @@ body {
 
 .contentview p {
     line-height: 0;
+}
+
+.contentview h2 {
+    font-weight: bold;
+    font-size: 18px!important;
+}
+
+.contentview h2 p {
+    font-weight: bold;
+    font-size: 18px!important;
 }
 
 .contentview h3 {
@@ -505,6 +515,14 @@ body {
     max-width: 100%;
     height: auto;
     text-align: center;
+}
+
+.contentview ul {
+    list-style: disc;
+}
+
+.contentview ul li span {
+    display: none;
 }
 
 .footer-block-about {
