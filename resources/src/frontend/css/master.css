@@ -521,12 +521,12 @@ body {
     list-style: disc;
 }
 
-.contentview ul li span {
-    display: none;
-}
-
 .footer-block-about {
     padding-right: 40px;
+}
+
+.contentview b {
+    font-weight: bold!important;
 }
 
 @media screen and (max-width: 500px) {
