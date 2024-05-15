@@ -519,6 +519,7 @@ body {
 
 .contentview ul {
     list-style: disc;
+    padding-left: 20px;
 }
 
 .footer-block-about {
