@@ -2,10 +2,18 @@
     color: #000!important;
 }
 
+.contentview * {
+    margin: auto!important;
+}
+
 .contentview ul {
     font-family: 'Assistant, sans-serif'!important;
     list-style: disc;
     padding-left: 20px;
     margin-top: 10px;
+}
+
+.contentview img {
+    max-width: 100%;
 }
 
