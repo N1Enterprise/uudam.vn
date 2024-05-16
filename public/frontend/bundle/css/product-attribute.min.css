@@ -1,0 +1,39 @@
+.attributes-values {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.attributes-item:not(:last-child) {
+    margin-bottom: 10px
+}
+
+.attributes-values-item:not(:last-child) {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.attributes-values-item .label {
+    border: 1px solid #025B50;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    font-size: 13px;
+    padding: 3px 8px;
+    background-color: #fff;
+}
+
+.attributes-values-item .label.active {
+    background-color: #025B50;
+    color: #fff
+}
+
+.product-form__input {
+    border: none;
+    flex: 0 0 100%;
+    margin: 0 0 1.2rem;
+    max-width: 37rem;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    padding: 0
+}
+

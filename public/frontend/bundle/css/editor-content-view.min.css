@@ -1,0 +1,11 @@
+.contentview {
+    color: #000!important;
+}
+
+.contentview ul {
+    font-family: 'Assistant, sans-serif'!important;
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
