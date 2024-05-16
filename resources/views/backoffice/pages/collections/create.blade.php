@@ -275,7 +275,7 @@
                                                 data-featured-inventory-id="{{ $inventory->id }}"
                                                 data-featured-inventory-name="{{ $inventory->title }}"
                                                 {{ in_array($inventory->id, old('linked_items', [])) ? 'selected' : '' }}
-                                            >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            >{{ $inventory->title }} (SKU: {{ $inventory->sku }}) | {{ format_price($inventory->final_price) }}</option>
                                             @endforeach
                                         </optgroup>
                                         @endforeach
