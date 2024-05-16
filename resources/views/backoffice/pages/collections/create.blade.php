@@ -232,6 +232,11 @@
                                     <select data-actions-box="true" name="linked_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Inventory_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($inventories->groupBy('product.name') as $productName => $__inventories)
                                         <optgroup label="{{ $productName }}">
+                                            @php
+                                                $__inventories = collect($__inventories)->sortBy(function($item) {
+                                                    return data_get($item, 'final_price');
+                                                });
+                                            @endphp
                                             @foreach($__inventories as $inventory)
                                             <option
                                                 value="{{ $inventory->id }}"
@@ -240,7 +245,7 @@
                                                 data-inventory-id="{{ $inventory->id }}"
                                                 data-inventory-name="{{ $inventory->title }}"
                                                 {{ in_array($inventory->id, old('linked_items', [])) ? 'selected' : '' }}
-                                            >{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            >{{ $inventory->title }} (SKU: {{ $inventory->sku }}) | {{ format_price($inventory->final_price) }}</option>
                                             @endforeach
                                         </optgroup>
                                         @endforeach
@@ -257,6 +262,11 @@
                                     <select data-actions-box="true" name="linked_featured_inventories[]" title="-- {{ __('Chọn sản phẩm tồn kho (Nổi bật)') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Display_Featured_Inventory_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($inventories->groupBy('product.name') as $productName => $__inventories)
                                         <optgroup label="{{ $productName }}">
+                                            @php
+                                                $__inventories = collect($__inventories)->sortBy(function($item) {
+                                                    return data_get($item, 'final_price');
+                                                });
+                                            @endphp
                                             @foreach($__inventories as $inventory)
                                             <option
                                                 value="{{ $inventory->id }}"
