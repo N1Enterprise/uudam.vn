@@ -224,4 +224,72 @@
     }
 }
 
+.footer__blocks-custom-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.footer__blocks-custom-wrapper .footer__block-custom {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.company-footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.company-footer-content .company-footer-content-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.footer__block-custom-content.gg-map,
+.footer__block-custom-content.fb-fanpage {
+    height: 130px;
+    width: 100%;
+    overflow: scroll;
+    border: 4px solid #025B50;
+}
+
+.company-footer-content-item.company-social-info {
+    flex: 1;
+    width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .company-footer-content {
+        flex-direction: column;
+    }
+    .company-footer-content .company-footer-content-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    .company-footer-content .company-footer-content-item:first-child {
+        border-bottom: 1px solid #e7e7e738;
+        padding-bottom: 10px;
+    }
+
+    .footer__blocks-custom-wrapper .gg-map-wrapper {
+        width: 100%;
+    }
+
+    .company-detail-info {
+        margin-top: 20px;
+    }
+
+    .footer__block-custom-content.gg-map,
+    .footer__block-custom-content.fb-fanpage {
+        width: 100%;
+        /* height: auto; */
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .footer__blocks-custom-wrapper .footer__block-custom {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

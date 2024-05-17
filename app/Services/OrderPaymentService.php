@@ -85,7 +85,7 @@ class OrderPaymentService extends BaseService
                 $order = $this->orderService->show($order);
 
                 if (! $order->isPendingPayment()) {
-                    throw new BusinessLogicException("Unable to decline order payment #{$order->id}.", ExceptionCode::INVALID_ORDER);
+                    throw new BusinessLogicException("Unable to cancel order payment #{$order->id}.", ExceptionCode::INVALID_ORDER);
                 }
 
                 $updateResource = array_merge([

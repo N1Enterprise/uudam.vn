@@ -1,11 +1,11 @@
 <div class="page-width section-template__cart-items-padding">
     <div class="title-wrapper-with-link">
         <h1 class="title title--primary">Giỏ hàng</h1>
-        <a href="{{ route('fe.web.home') }}" class="underlined-link">Tiếp tục mua sắp</a>
+        <a href="{{ route('fe.web.home') }}" class="underlined-link">Tiếp tục mua hàng</a>
     </div>
     <div class="cart__warnings">
         <h1 class="cart__empty-text">Giỏ hàng is empty</h1>
-        <a href="{{ route('fe.web.home') }}" class="button"> Tiếp tục mua sắp </a>
+        <a href="{{ route('fe.web.home') }}" class="button"> Tiếp tục mua hàng </a>
     </div>
     <div class="cart__items" id="main-cart-items" data-id="template--16599720296698__cart-items">
         <div class="js-contents">

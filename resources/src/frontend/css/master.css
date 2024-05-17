@@ -473,44 +473,6 @@ body {
     opacity: 0.3;
 }
 
-.contentview * {
-    font-family: var(--font-body-family)!important;
-    font-size: 1.6rem!important;
-    font-weight: 400;
-    line-height: calc(1 + 0.8 / var(--font-body-scale))!important;
-    margin: 0!important;
-    max-width: 100%!important;
-}
-
-.contentview br {
-    display: block;
-    padding: 3px 0;
-}
-
-.contentview p {
-    line-height: 0;
-}
-
-.contentview h3 {
-    margin: 6px 0!important;
-    font-size: 2rem!important;
-}
-
-.contentview h3,
-.contentview h3 span {
-    font-size: 2rem!important;
-}
-
-.contentview img {
-    max-width: 100%;
-    height: auto;
-    text-align: center;
-}
-
-.footer-block-about {
-    padding-right: 40px;
-}
-
 @media screen and (max-width: 500px) {
     .footer-block-about {
         padding-right: 0;
@@ -1170,3 +1132,4 @@ body {
 @import url('../../../../public/frontend/bundle/css/quick-add.min.css');
 @import url('../../../../public/frontend/bundle/css/main.min.css');
 @import url('../../../../public/frontend/bundle/css/mobile-menu.min.css');
+@import url('../../../../public/frontend/bundle/css/editor-content-view.min.css');

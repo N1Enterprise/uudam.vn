@@ -35,7 +35,7 @@ class ProcessSendMailNewOrderToAdmin implements ShouldQueue
         $order = $event->order;
 
         Admin::query()
-            ->where('email', $receivers)
+            ->whereIn('email', $receivers)
             ->each(function(Admin $admin) use ($order) {
                 $admin->notify(new SendNewOrderToAdmin($admin, $order));
             });

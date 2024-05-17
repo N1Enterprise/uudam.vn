@@ -1505,7 +1505,7 @@ a.product__text {
 }
 
 .article__content {
-    height: 300px;
+    height: 315px;
     overflow: hidden;
     transition: .3s;
 }
@@ -1513,18 +1513,41 @@ a.product__text {
 .product-bottom-section {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
+    justify-content: space-between;
 }
 
 .product-review-section {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 calc(70% - 15px);
+    max-width: calc(70% - 15px);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.product-review-posts {
+    flex: 0 0 30%;
+    max-width: 30%;
+}
+
+.article__content-posts {
+    max-height: 310px;
+    overflow: scroll;
+    transition: .3s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 800px) {
-    .product-review-section {
+    .product-review-section,
+    .product-review-posts {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+
+    .product-review-posts {
+        margin-top: 15px;
     }
 }
 
@@ -1839,4 +1862,70 @@ a.product__text {
     border-radius: 4px;
     height: 47px;
     width: 47px;
+}
+
+.suggested_post__content-item {
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    text-decoration: none;
+}
+
+.suggested_post__content-item:hover {
+    text-decoration: underline;
+    color: #444;
+}
+
+.suggested_post__content-item .content-item__img {
+    border-radius: 10px;
+    height: 64px;
+    margin-right: 10px;
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.suggested_post__content-item .content-item__text {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #444;
+    display: -webkit-box;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.btn-show-more-posts-related-product {
+    text-decoration: none;
+    line-height: 1.2;
+    display: inline-block;
+    margin-top: 14px;
+}
+
+.act-button svg.icon-view-more,
+.act-button svg.icon-view-more {
+    fill: #025B50;
+}
+
+.act-button:hover svg.icon-view-more {
+    fill: #fff;
+}
+
+.product-suggested-section {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 15px;
+    border-radius: 10px;
+    padding-bottom: 0;
+}
+
+.product-suggested-section .recommendation-items {
+    margin: 0 -10px;
+}
+
+.product-suggested-section .section-template-padding {
+    margin-bottom: 0;
+    padding-top: 0 !important;
+}
+
+.tab-recent-inventories {
+    margin-top: 20px;
 }

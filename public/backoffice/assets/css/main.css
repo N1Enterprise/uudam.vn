@@ -217,3 +217,7 @@ button.btn.is-invalid {
     flex: 0 0 98%;
     font-size: 13px;
 }
+
+.bootstrap-select .dropdown-menu.inner > li.selected > a {
+    background: #dfdfdf!important;
+}

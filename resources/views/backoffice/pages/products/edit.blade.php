@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Chỉnh sửa sản phẩm');
+	$title = __('Chỉnh sửa sản phẩm') . ' #' . data_get($product, 'code');
 
 	$breadcrumbs = [
 		[
@@ -49,6 +49,27 @@
         </div>
         @enderror
 
+        <div class="product-preview mb-3">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{{ data_get($product, 'primary_image') }}" alt="{{ data_get($product, 'name') }}" style="width: 100%; height: auto;">
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="">{{ __('Tên sản phẩm') }}</label>
+                        <input type="text" class="form-control" disabled value="{{ data_get($product, 'name') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">{{ __('SKU') }}</label>
+                        <input type="text" class="form-control" disabled value="{{ data_get($product, 'code') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
         @canany(['product-reviews.store'])
         <div class="k-portlet__head-toolbar mb-4">
             @can('product-reviews.store')
@@ -70,6 +91,12 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Tag_Detail_Information">
                         {{ __('Thông tin chi tiết') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Tag_Connect_Information">
+                        {{ __('Thông tin liên kết') }}
                     </a>
                 </li>
 
@@ -281,6 +308,55 @@
                 </div>
             </div>
 
+            <div class="tab-pane" id="Tag_Connect_Information">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="k-portlet">
+                            <div class="k-portlet__body">
+                                <div class="form-group">
+                                    <label>{{ __('Sản phẩm liên quan') }}</label>
+                                    <select data-actions-box="true" name="suggested_relationships[inventories][]" title="-- {{ __('Sản phẩm liên quan') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Selector" multiple data-selected-text-format="count > 5">
+                                        @foreach($relatedInventories as $inventory)
+                                        <option
+                                            {{ in_array($inventory->id, old('suggested_relationships.inventories', data_get($product, 'suggested_relationships.inventories', []))) ? 'selected' : '' }}
+                                            data-tokens="{{ $inventory->id }} | {{ $inventory->title }} | {{ $inventory->sku }}"
+                                            data-product-id="{{ $inventory->id }}"
+                                            data-product-name="{{ $inventory->title }}"
+                                            value="{{ $inventory->id }}"
+                                        >{{ $inventory->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="form-group Related_Product_Allowed_Holder mb-0 mt-2">
+                                        <div class="Related_Product_Holder_Content"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ __('Bài viết liên quan') }}</label>
+                                    <select data-actions-box="true" name="suggested_relationships[posts][]" title="-- {{ __('Bài viết liên quan') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
+                                        @foreach($categoryRelatedPosts as $category)
+                                        <optgroup label="{{ $category->name }}">
+                                            @foreach($category->posts as $post)
+                                            <option
+                                                {{ in_array($post->id, old("suggested_relationships.posts", data_get($product, 'suggested_relationships.posts', []))) ? 'selected' : '' }}
+                                                data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $post->code }} | {{ $category->name }}"
+                                                data-post-id="{{ $post->id }}"
+                                                data-post-name="{{ $post->name }}"
+                                                value="{{ $post->id }}">{{ $post->name }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                        @endforeach
+                                    </select>
+                                    <div class="form-group Related_Post_Allowed_Holder mb-0 mt-2">
+                                        <div class="Related_Post_Holder_Content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             @can('inventories.index')
             <div class="tab-pane" id="Tag_Inventories">
                 <div class="row">
@@ -348,14 +424,16 @@
             @endcan
         </div>
 
-        <div class="col-md-12">
-            <div class="k-portlet__foot">
-                <div class="k-form__actions d-flex justify-content-end">
-                    <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+       <div class="row">
+            <div class="col-md-12">
+                <div class="k-portlet__foot">
+                    <div class="k-form__actions d-flex justify-content-start">
+                        <button type="redirect" class="btn btn-secondary mr-2">{{ __('Huỷ') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+                    </div>
                 </div>
             </div>
-        </div>
+       </div>
     </form>
 </div>
 @endsection
@@ -367,6 +445,8 @@
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/jquery.input.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backoffice/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
 @include('backoffice.pages.products.js-pages.handle')
+@include('backoffice.pages.products.js-pages.products-suggested')
+@include('backoffice.pages.products.js-pages.posts-suggested')
 <script>
     $('#form_store_product').on('submit', function(e) {
         e.preventDefault();

@@ -56,7 +56,10 @@
     display: block;
     clear: both;
     overflow: hidden;
-    margin: 1em 0
+    margin: 1em 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 #shopify-product-reviews:before,
@@ -189,6 +192,13 @@
 
 .spr-summary-actions-newreview {
     float: left;
+    display: flex;
+    align-items: center;
+    padding: 3px 7px;
+}
+
+.spr-summary-actions-newreview:hover svg path {
+    stroke: #fff;
 }
 
 .spr-form {
@@ -519,4 +529,8 @@ input.spr-form-input-error[type="email"] {
     .spr-summary-actions-newreview:after {
         clear: both
     }
+}
+
+.product-review-empty {
+    margin-top: 10px;
 }

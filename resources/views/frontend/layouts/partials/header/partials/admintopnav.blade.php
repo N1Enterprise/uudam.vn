@@ -8,10 +8,30 @@
         @endforeach
         @if (! empty($inventory->id))
         <a href="{{ route('bo.web.products.edit', $inventory->product_id) }}" target="_blank">
-            <span style="text-transform: uppercase;">Xem chi tiết sản phẩm</span>
+            <span>Xem chi tiết sản phẩm</span>
         </a>
         <a href="{{ route('bo.web.inventories.edit', $inventory->id) }}" target="_blank">
-            <span style="text-transform: uppercase;">Xem chi tiết kho</span>
+            <span>Xem chi tiết kho</span>
+        </a>
+        @endif
+        @if (! empty($page->id))
+        <a href="{{ route('bo.web.pages.edit', $page->id) }}" target="_blank">
+            <span>Xem chi tiết trang</span>
+        </a>
+        @endif
+        @if (! empty($post->id))
+        <a href="{{ route('bo.web.posts.edit', $post->id) }}" target="_blank">
+            <span>Xem chi tiết bài viết</span>
+        </a>
+        @endif
+        @if (! empty($video->id))
+        <a href="{{ route('bo.web.videos.edit', $video->id) }}" target="_blank">
+            <span>Xem chi tiết video</span>
+        </a>
+        @endif
+        @if (! empty($collection->id))
+        <a href="{{ route('bo.web.collections.edit', $collection->id) }}" target="_blank">
+            <span>Xem chi tiết bộ sưu tập</span>
         </a>
         @endif
     </div>

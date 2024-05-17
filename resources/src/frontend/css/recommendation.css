@@ -20,13 +20,19 @@ div.ls-recommendation-box,limespot-box {
     clear: both;
     direction: ltr!important;
     display: block;
-    padding: 10px 0 0;
+    padding: 20px 0 0;
     position: relative;
     text-align: center;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
     width: 100%
+}
+
+@media screen and (max-width: 780px) {
+    div.ls-recommendation-box,limespot-box {
+        padding: 10px 0 0;
+    }
 }
 
 div.ls-recommendation-box .limespot-recommendation-box-item,limespot-box .limespot-recommendation-box-item {
@@ -235,7 +241,10 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 .ls-reviewer {
     color: #626262;
     font-size: 13px;
-    height: 21px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .limespot-recommendation-box-carousel-indicator {

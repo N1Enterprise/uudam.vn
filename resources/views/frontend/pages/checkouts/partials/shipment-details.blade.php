@@ -12,7 +12,7 @@
                     @if (data_get($address, 'email'))
                     | <span>{{ data_get($address, 'email') }}</span>
                     @endif
-                    <p>{{ data_get($address, 'full_address') }}</p>
+                    <p class="address-detail-space">{{ data_get($address, 'full_address') }}</p>
                     <button type="button" class="show-modal-add-address" address-editable-btn style="margin-top: 5px; color: #025B50!important;" data-address-code="{{ data_get($address, 'code') }}">Chỉnh sửa</button>
                     <span>|</span>
                     <button type="button" class="show-modal-add-address" style="color: #025B50!important;">Thêm mới</button>

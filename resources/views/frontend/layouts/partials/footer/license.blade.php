@@ -1,0 +1,1 @@
+<div>CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI NẾN ƯU ĐÀM , địa chỉ: B144/17 Nguyễn Thần Hiến, Phường 18, Quận 4, Thành phố Hồ Chí Minh, Việt Nam , Người đại diện: Trần Tuấn Quý, Mã số thuế: 0318243727 do Sở Kế Hoạch và Đầu Tư Thành Phố Hồ Chí Minh Cấp ngày 01/05/2024</div>
