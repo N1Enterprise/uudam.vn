@@ -192,6 +192,13 @@
 
 .spr-summary-actions-newreview {
     float: left;
+    display: flex;
+    align-items: center;
+    padding: 3px 7px;
+}
+
+.spr-summary-actions-newreview:hover svg path {
+    stroke: #fff;
 }
 
 .spr-form {
@@ -522,4 +529,8 @@ input.spr-form-input-error[type="email"] {
     .spr-summary-actions-newreview:after {
         clear: both
     }
+}
+
+.product-review-empty {
+    margin-top: 10px;
 }

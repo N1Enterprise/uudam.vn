@@ -10389,6 +10389,9 @@ a.product__text {
     margin-top: 20px;
 }
 
+.shopify-section-group-footer-group {
+    margin-bottom: 60px;
+}
 
 .slider-component {
     --desktop-margin-left-first-item: max(5rem, calc((100vw - var(--page-width) + 10rem - var(--grid-desktop-horizontal-spacing)) / 2));
@@ -11056,6 +11059,13 @@ a.product__text {
 
 .spr-summary-actions-newreview {
     float: left;
+    display: flex;
+    align-items: center;
+    padding: 3px 7px;
+}
+
+.spr-summary-actions-newreview:hover svg path {
+    stroke: #fff;
 }
 
 .spr-form {
@@ -11385,6 +11395,10 @@ input.spr-form-input-error[type="email"] {
     .spr-summary-actions-newreview:after {
         clear: both
     }
+}
+
+.product-review-empty {
+    margin-top: 10px;
 }
 
 
