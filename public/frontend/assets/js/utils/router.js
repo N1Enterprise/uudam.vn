@@ -20,9 +20,9 @@ const HOME_PAGE_DISPLAY_ITEM_ROUTES = {
 };
 
 const CATALOG_ROUTES = {
-    web_product_detail: boHost + '/products/:slug',
-    web_collection_detail: boHost + '/collections/:slug',
-    web_post_detail: boHost + '/posts/:slug',
+    web_product_detail: boHost + '/san-pham/:slug',
+    web_collection_detail: boHost + '/bo-suu-tap/:slug',
+    web_post_detail: boHost + '/bai-viet/:slug',
     api_search_inventories: boHost + '/fe/api/user/search/inventories'
 };
 
@@ -38,24 +38,24 @@ const SEARCH_ROUTES = {
 };
 
 const POST_ROUTES = {
-    web_detail: boHost + '/posts/:slug',
+    web_detail: boHost + '/bai-viet/:slug',
 };
 
 const PRODUCT_ROUTES = {
-    web_detail: boHost + '/products/:slug',
+    web_detail: boHost + '/san-pham/:slug',
 };
 
 const COLLECTION_ROUTES = {
-    web_detail: boHost + '/collections/:slug',
+    web_detail: boHost + '/bo-suu-tap/:slug',
     api_linked_inventories: boHost + '/fe/api/user/collections/:id/linked-inventories',
 };
 
 const BLOG_ROUTES = {
-    web_detail: boHost + '/blogs/:slug',
+    web_detail: boHost + '/bai-viet/:slug',
 };
 
 const VIDEO_ROUTES = {
-    web_detail: boHost + '/videos/:slug',
+    web_detail: boHost + '/video/:slug',
 };
 
 const LOCALIZATION_ROUTES = {
@@ -68,5 +68,5 @@ const LOCALIZATION_ROUTES = {
 
 const CHECKOUT_ROUTES = {
     api_user_checkout_provider_shipping_free: boHost + '/fe/api/user/checkout/:cartUuid/shipping-fee',
-    web_user_checkout_with_payment_success: boHost + '/checkout/:cart_uuid/status/?transaction_id=:transaction_id'
+    web_user_checkout_with_payment_success: boHost + '/trang-thai-don-hang/:cart_uuid/?ma-don-hang=:transaction_id'
 };
