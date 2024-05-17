@@ -29,6 +29,12 @@ div.ls-recommendation-box,limespot-box {
     width: 100%
 }
 
+@media screen and (max-width: 780px) {
+    div.ls-recommendation-box,limespot-box {
+        padding: 10px 0 0;
+    }
+}
+
 div.ls-recommendation-box .limespot-recommendation-box-item,limespot-box .limespot-recommendation-box-item {
     cursor: pointer;
     display: inline-block;
