@@ -33,7 +33,7 @@ Route::middleware(['feweb'])->group(function() {
         Route::get('lich-su-don-hang', [Controllers\UserOrderController::class, 'orderHistory'])->name('user.profile.order-histories');
         Route::get('lich-su-don-hang/{orderCode}', [Controllers\UserOrderController::class, 'orderHistoryDetail'])->name('user.profile.order-history-detail');
         Route::get('quan-ly-dia-chi', [Controllers\UserAddressController::class, 'address'])->name('user.localization.address');
-        Route::get('cap-nhat-dia-chi', [Controllers\UserAddressController::class, 'edit'])->name('user.localization.address.edit');
+        Route::get('cap-nhat-dia-chi/{code}', [Controllers\UserAddressController::class, 'edit'])->name('user.localization.address.edit');
         Route::get('them-dia-chi', [Controllers\UserAddressController::class, 'create'])->name('user.localization.address.create');
 
         Route::get('xac-nhan-don-hang', [Controllers\UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');

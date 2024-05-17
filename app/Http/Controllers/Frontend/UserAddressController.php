@@ -31,7 +31,7 @@ class UserAddressController extends AuthenticatedController
         $address   = $this->addressService->findByUserAndCode($this->user(), $code);
         $provinces = Province::make()->all();
         $districts = District::make()->getByProviceCode(data_get($address, 'province_code'));
-        $wards     = Ward::make()->getByDistrictCode(data_get($address, 'district_code')); 
+        $wards     = Ward::make()->getByDistrictCode(data_get($address, 'district_code'));
 
         return $this->view('frontend.pages.profile.address.edit', compact('address', 'provinces', 'districts', 'wards'));
     }
