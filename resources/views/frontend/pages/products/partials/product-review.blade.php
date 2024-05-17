@@ -73,7 +73,7 @@
                         <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng nhập</a>
                         <span style="font-size: 1.4rem;">để bình luận</span>
                         @endif
-                        <div class="spr-reviews ">
+                        <div class="spr-reviews" style="margin-top: 0;">
                             @if(has_data($productReviews))
                                 <div class="{{ count($productReviews) > 1 ? 'product-review-content-wrapper' : '' }}">
                                     @foreach ($productReviews as $review)
