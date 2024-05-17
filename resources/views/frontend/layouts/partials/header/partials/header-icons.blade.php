@@ -12,14 +12,13 @@
                 <div class="modal-overlay" close-modal-search></div>
                 <div class="search-modal__content search-modal__content-bottom" tabindex="-1">
                     <predictive-search class="search-modal__form" data-loading-text="Loading..." results="true">
-                        <form id="Form_Search_Master" action="/search" method="get" class="search search-modal__form" data-search-setting='@json(data_get($SYSTEM_SETTING, 'search_setting'))'>
+                        <form id="Form_Search_Master" action="{{ route('fe.web.search') }}" method="get" class="search search-modal__form" data-search-setting='@json(data_get($SYSTEM_SETTING, 'search_setting'))'>
                             <div class="field">
                                 <input class="search__input field__input Search-In-Modal" type="search" name="q" value="" placeholder="Search" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false">
                                 <label class="field__label" for="Search-In-Modal">{{ data_get($SYSTEM_SETTING, 'search_setting.placeholder', 'Tìm kiếm...') }}</label>
                                 <button class="search__button field__button">
                                     <svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 32 32" version="1.1">
-                                        <title>search</title>
-                                        <desc>Created with Sketch Beta.</desc>
+                                        <title>Tìm kiếm</title>
                                         <defs></defs>
                                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                                             <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-256.000000, -1139.000000)" fill="#000000">
