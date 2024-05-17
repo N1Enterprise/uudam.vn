@@ -7452,6 +7452,10 @@ body{
     display: none;
 }
 
+.shopify-section-group-footer-group.product-footer-bottom-section {
+    margin-bottom: 60px;
+}
+
 @media screen and (max-width: 768px) {
     .master-mobile-menu #layout-desktop .menu-mobile-reponsive {
         display: flex;
@@ -10389,9 +10393,6 @@ a.product__text {
     margin-top: 20px;
 }
 
-.shopify-section-group-footer-group {
-    margin-bottom: 60px;
-}
 
 .slider-component {
     --desktop-margin-left-first-item: max(5rem, calc((100vw - var(--page-width) + 10rem - var(--grid-desktop-horizontal-spacing)) / 2));

@@ -1,4 +1,4 @@
-<div id="shopify-section-sections--16783368323330__footer" class="shopify-section shopify-section-group-footer-group">
+<div class="shopify-section shopify-section-group-footer-group product-footer-bottom-section">
     <footer class="site-footer" data-section-id="sections--16783368323330__footer" data-section-type="footer-section">
         <div id="FooterMenus" class="footer__section footer__section--menus">
             <div class="page-width">
