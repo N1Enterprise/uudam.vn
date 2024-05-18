@@ -23,6 +23,10 @@ Route::middleware(['feweb'])->group(function() {
 
     Route::get('tim-kiem', [Controllers\UserSearchController::class, 'index'])->name('search');
 
+    Route::get('tin-tuc', [Controllers\NewsController::class, 'index'])->name('news.index');
+
+    Route::get('tin-tuc/{slug}', [Controllers\NewsController::class, 'showPostCategory'])->name('news.show-post-categories');
+
     Route::middleware(['auth:user'])->group(function() {
         Route::get('gio-hang', [Controllers\UserCartController::class, 'index'])->name('cart.index');
 

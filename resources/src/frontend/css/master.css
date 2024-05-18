@@ -1117,6 +1117,21 @@ body {
     }
 }
 
+.home-more-link {
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+
+.home-more-link:hover {
+    border-color: #025B50;
+    color: #fff;
+    background-color: #025B50;
+}
+
 @import url('../../../../public/backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css');
 @import url('../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');
 @import url('../../../../public/frontend/bundle/css/reset.min.css');

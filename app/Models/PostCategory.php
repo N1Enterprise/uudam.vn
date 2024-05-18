@@ -52,7 +52,7 @@ class PostCategory extends BaseModel
         return [
             'title'  => $this->meta_title ?? $this->name,
             'desc'   => $this->meta_description ?? ($this->meta_title ?? $this->name),
-            'url'    => route('fe.web.blogs.index', $this->slug),
+            'url'    => route('fe.web.news.show-post-categories', $this->slug),
             'image'  => $this->image,
         ];
     }

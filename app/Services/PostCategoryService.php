@@ -71,6 +71,15 @@ class PostCategoryService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
+    public function allAvailableForGuest($data = [])
+    {
+        return $this->postCategoryRepository
+            ->modelScopes(['active', 'feDisplay'])
+            ->with(data_get($data, 'with', []))
+            ->orderBy('order')
+            ->all(data_get($data, 'columns', ['*']));
+    }
+
     public function getAvailableDisplayOnFE($data = [])
     {
         if (data_get($data, 'with.posts')) {
@@ -111,6 +120,20 @@ class PostCategoryService extends BaseService
             ->with(['posts'])
             ->modelScopes(['active', 'feDisplay'])
             ->firstWhere(['slug' => $slug], data_get($data, 'columns', ['*']));
+    }
+
+    public function showBySlugForGuest($slug, $data = [])
+    {
+        $id = data_get($data, 'id');
+
+        return $this->postCategoryRepository
+            ->with(['posts'])
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($slug, $id) {
+                $q->where('slug', $slug)
+                    ->orWhere('id', $id);
+            })
+            ->first();
     }
 
     public function update($attributes = [], $id)

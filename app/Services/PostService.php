@@ -34,18 +34,11 @@ class PostService extends BaseService
 
         $paginate = data_get($data, 'paginate', true);
 
+        $orderBy = data_get($data, 'order_by', 'order');
+        $sortBy = 'desc';
+
         $result = $this->postRepository
-            ->with(data_get($data, 'with', []))
-            ->selectColumns([
-                'id',
-                'name',
-                'slug',
-                'image',
-                'description',
-                'post_at',
-                'status',
-                'code'
-            ])
+            ->with(['postCategory', 'createdBy'])
             ->modelScopes(['active', 'feDisplay'])
             ->scopeQuery(function($q) use ($data) {
                 $filterIds = data_get($data, 'filter_ids', []);
@@ -53,8 +46,14 @@ class PostService extends BaseService
                 if (! empty($filterIds)) {
                     $q->whereIn('id', $filterIds);
                 }
+
+                $postCategoryId = data_get($data, 'post_category_id');
+
+                if (! empty($postCategoryId)) {
+                    $q->where('post_category_id', $postCategoryId);
+                }
             })
-            ->orderBy('order');
+            ->addSort($orderBy, $sortBy);
 
         return $paginate
             ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))

@@ -39,6 +39,8 @@ const SEARCH_ROUTES = {
 
 const POST_ROUTES = {
     web_detail: boHost + '/bai-viet/:slug',
+    api_post_by_category: boHost + '/fe/api/user/posts/by-category/:category',
+    api_post_by_suggestion: boHost + '/fe/api/user/posts/suggestion',
 };
 
 const PRODUCT_ROUTES = {

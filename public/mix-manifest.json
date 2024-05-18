@@ -70,5 +70,7 @@
     "/frontend/bundle/css/component-list-social.min.css": "/frontend/bundle/css/component-list-social.min.css",
     "/frontend/bundle/css/component-menu-drawer.min.css": "/frontend/bundle/css/component-menu-drawer.min.css",
     "/frontend/bundle/js/order-history.min.js": "/frontend/bundle/js/order-history.min.js",
-    "/frontend/bundle/css/editor-content-view.min.css": "/frontend/bundle/css/editor-content-view.min.css"
+    "/frontend/bundle/css/editor-content-view.min.css": "/frontend/bundle/css/editor-content-view.min.css",
+    "/frontend/bundle/css/pages/news.min.css": "/frontend/bundle/css/pages/news.min.css",
+    "/frontend/bundle/js/news-index.min.js": "/frontend/bundle/js/news-index.min.js"
 }

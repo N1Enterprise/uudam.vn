@@ -39,6 +39,8 @@
                     $__flash_sale_color_timebg  = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_bg', '#000');
                     $__flash_sale_color_timetxt = data_get($homePageDisplayOrder, 'params.flash_sale.colors.time_text', '#000');
                     $__flash_sale_color_text    = data_get($homePageDisplayOrder, 'params.flash_sale.colors.text', '#FFF');
+
+                    $__more_link                = data_get($homePageDisplayOrder, 'params.more_link');
                 @endphp
 
                 <div style="background: {{ boolean($__frontend_custom_enable) ? $__frontend_background : '' }}; border-radius: 3px;" {{ $__frontend_custom_enable ? 'has-frontend-custom' : '' }}>
@@ -86,6 +88,10 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+
+                        @if (has_data($__more_link))
+                        <a href="{{ data_get($__more_link, 'cta_link') }}" class="home-more-link">{{ data_get($__more_link, 'cta_label') }}</a>
                         @endif
                     </div>
 

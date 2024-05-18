@@ -17,10 +17,6 @@
     display: none;
 }
 
-.shopify-section-group-footer-group.product-footer-bottom-section {
-    margin-bottom: 60px;
-}
-
 @media screen and (max-width: 768px) {
     .master-mobile-menu #layout-desktop .menu-mobile-reponsive {
         display: flex;
