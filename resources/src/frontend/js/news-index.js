@@ -24,8 +24,11 @@ const POST_BY = {
                 // POST_BY.elements.show_up.html('<div>Loading ...</div>');
             },
             successCb: (response) => {
-                const htmlPosts = POST_BY.buildHTML(response?.data || []);
+                if (! response?.data?.length) {
+                    return;
+                }
 
+                const htmlPosts = POST_BY.buildHTML(response?.data || []);
                 POST_BY.elements.show_up.html(htmlPosts);
                 POST_BY.setPagination(response);
             }
@@ -60,7 +63,7 @@ const POST_BY = {
                     <p class="articles-item__content-desc">${ post.description }</p>
                     <div class="articles-item__content-metadata">
                         <a class="articles-item__content-author" href="/sforum/author/quannguyen">
-                            <span>${ post?.author?.name || 'uudam.vn' }</span>
+                            <span>${ post?.author || 'uudam.vn' }</span>
                         </a>
                         <span class="articles-item__content-datetime">
                             <span>${ post.post_at }</span>

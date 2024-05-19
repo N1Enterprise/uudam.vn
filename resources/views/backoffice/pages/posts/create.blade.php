@@ -77,6 +77,14 @@
 								</div>
 
                                 <div class="form-group">
+									<label>{{ __('Người viết') }}</label>
+									<input type="text" class="form-control {{ $errors->has('author') ? 'is-invalid' : '' }}" name="author" placeholder="{{ __('Nhập tên') }}" value="{{ old('author', $AUTHENTICATED_ADMIN->name) }}">
+                                    @error('author')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
+
+                                <div class="form-group">
                                     <label for="">{{ __('Code') }} *</label>
                                     <div class="input-group">
                                         <input id="code" type="text" name="code" value="{{ old('code') }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>

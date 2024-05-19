@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Frontend;
 
-use App\Http\Resources\Backoffice\CreatedByResource;
 use App\Http\Resources\Frontend\BaseJsonResource;
 
 class PostResource extends BaseJsonResource
@@ -18,9 +17,7 @@ class PostResource extends BaseJsonResource
             'post_at' => format_datetime($this->post_at),
             'code' => $this->code,
             'view_count' => $this->view_count ?? 0,
-            'author' => $this->whenLoaded('createdBy', function() {
-                return optional($this->createdBy)->only(['name']);
-            }),
+            'author' => $this->author
         ];
     }
 }

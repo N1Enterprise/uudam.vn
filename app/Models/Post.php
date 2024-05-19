@@ -37,7 +37,8 @@ class Post extends BaseModel
         'code',
         'meta_title',
         'meta_description',
-        'view_count'
+        'view_count',
+        'author'
     ];
 
     protected $casts = [

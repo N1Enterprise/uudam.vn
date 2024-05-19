@@ -141,7 +141,7 @@
                     console.log({ err });
                 },
             });
-        },  
+        },
         onSubmit: () => {
             $('#form_create_order').on('submit', function(e) {
                 e.preventDefault();
@@ -223,7 +223,7 @@
                 const options = filteredDistricts
                     .map(function(district) {
                         return $('<option>')
-                            .attr('data-tokens', `${district.code}`)
+                            .attr('data-tokens', `${district.code} | ${district.full_name}`)
                             .attr('data-district-code', district.code)
                             .attr('data-district-name', district.full_name)
                             .val(district.code)
@@ -234,7 +234,7 @@
                 element.selectpicker('refresh');
                 element.selectpicker('val', originalValues);
             } catch (err) {
-                // 
+                //
             }
         },
         renderWardsByDistrict: (district) => {
@@ -259,7 +259,7 @@
                 const options = filteredWards
                     .map(function(ward) {
                         return $('<option>')
-                            .attr('data-tokens', `${ward.code}`)
+                            .attr('data-tokens', `${ward.code} | ${ward.full_name}`)
                             .attr('data-ward-code', ward.code)
                             .attr('data-ward-name', ward.full_name)
                             .val(ward.code)
@@ -270,7 +270,7 @@
                 element.selectpicker('refresh');
                 element.selectpicker('val', originalValues);
             } catch (err) {
-                // 
+                //
             }
         },
     };

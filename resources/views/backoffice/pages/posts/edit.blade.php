@@ -90,6 +90,14 @@
 								</div>
 
                                 <div class="form-group">
+									<label>{{ __('Người viết') }}</label>
+									<input type="text" class="form-control {{ $errors->has('author') ? 'is-invalid' : '' }}" name="author" placeholder="{{ __('Nhập tên') }}" value="{{ old('author', $post->author) }}">
+                                    @error('author')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
+
+                                <div class="form-group">
                                     <label for="">{{ __('Code') }} *</label>
                                     <div class="input-group">
                                         <input id="code" type="text" name="code" value="{{ old('code', $post->code) }}" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" placeholder="{{ __('Nhập Code') }}" required>

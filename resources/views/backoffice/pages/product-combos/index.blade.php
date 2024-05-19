@@ -44,7 +44,7 @@
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
-                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
+                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
                         <th data-property="sale_price">{{ __('Sale Price') }}</th>
                         <th data-property="stock_quantity">{{ __('Stock Quantity') }}</th>
                         <th data-property="unit">{{ __('Unit') }}</th>

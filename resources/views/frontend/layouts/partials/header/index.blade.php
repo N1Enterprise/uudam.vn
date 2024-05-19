@@ -124,6 +124,7 @@
                         <a
                             href="{{ data_get($menuGroup, 'redirect_url') ?? '/' }}"
                             class="header__menu-item list-menu__item link mega-menu__link mega-menu__link--level-2 {{ data_get($menuGroup, 'redirect_url') ? '' : 'prevent' }}"
+                            style="{{ data_get($menuGroup, 'params.custom_styled', '') }}"
                         >
                             <span class="mm-title">{{ data_get($menuGroup, 'name') }}</span>
 

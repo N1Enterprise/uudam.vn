@@ -28,6 +28,7 @@ class PostResource extends BaseJsonResource
             'meta_description' => $this->meta_description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'author' => $this->author,
             'post_category' => $this->whenLoaded('postCategory', function() {
                 return optional($this->postCategory)->only(['id', 'name']);
             }),

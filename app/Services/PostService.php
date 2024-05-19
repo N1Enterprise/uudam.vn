@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Arr;
 
 class PostService extends BaseService
 {

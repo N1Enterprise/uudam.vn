@@ -199,7 +199,7 @@
                                     <thead>
                                         <tr>
                                             <th data-property="id">{{ __('ID') }}</th>
-                                            <th data-orderable="false" data-property="inventory.image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
+                                            <th data-orderable="false" data-property="inventory.image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
                                             <th data-link="inventory.edit" data-link-target="_blank" data-orderable="false" data-property="inventory.title" data-render-callback="renderCallbackImage">{{ __('Tên') }}</th>
                                             <th data-property="currency_code">{{ __('Currency Code') }}</th>
                                             <th data-property="quantity">{{ __('Quantity') }}</th>

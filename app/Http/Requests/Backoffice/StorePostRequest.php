@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Backoffice;
 
+use App\Classes\AdminAuth;
 use Illuminate\Validation\Rule;
 use App\Contracts\Requests\Backoffice\StorePostRequestContract;
 use App\Enum\ActivationStatusEnum;
@@ -30,17 +31,21 @@ class StorePostRequest extends BaseFormRequest implements StorePostRequestContra
             'meta_description' => ['nullable'],
             'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
             'allow_frontend_search' => ['required', Rule::in(ActivationStatusEnum::all())],
+            'author' => ['required', 'string', 'max:255'],
         ];
     }
 
 
     public function prepareForValidation()
     {
+        $admin = AdminAuth::user();
+
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'allow_frontend_search' => boolean($this->allow_frontend_search) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
+            'author' => !empty($this->author) ? $this->author : $admin->name,
         ]);
     }
 }

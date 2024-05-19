@@ -45,7 +45,8 @@
                         <th data-property="id">{{ __('ID') }}</th>
                         <th data-property="name">{{ __('Tên') }}</th>
                         <th data-property="slug">{{ __('Đường dẫn') }}</th>
-                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
+                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
+                        <th data-property="author">{{ __('Người viết') }}</th>
                         <th data-property="order">{{ __('Thứ tự') }}</th>
                         <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
                         <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
