@@ -70,6 +70,16 @@ class Order extends BaseModel
         'order_channel' => 'json'
     ];
 
+    public function getFullAddressAttribute()
+    {
+        return vsprintf('%s, %s, %s, %s', [
+            $this->address_line,
+            $this->ward_name,
+            $this->district_name,
+            $this->province_name,
+        ]);
+    }
+
     public function getPaymentStatusNameAttribute()
     {
         return PaymentStatusEnum::findConstantLabel($this->payment_status);
@@ -191,6 +201,7 @@ class Order extends BaseModel
             OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::PROCESSING,
             OrderStatusEnum::DELIVERY,
+            OrderStatusEnum::REFUNDED,
         ]);
     }
 

@@ -13,6 +13,16 @@ class OrderStatusEnum extends BaseEnum
     public const CANCELED = 6;
     public const REFUNDED = 7;
 
+    public static $labels = [
+        self::WAITING_FOR_PAYMENT => 'Chờ thanh toán',
+        self::PAYMENT_ERROR => 'Thanh toán không thành công',
+        self::PROCESSING => 'Đang xử lí',
+        self::DELIVERY => 'Đang vận chuyển',
+        self::COMPLETED => 'Đã hoàn thành',
+        self::CANCELED => 'Đã huỷ',
+        self::REFUNDED => 'Hoàn tiền',
+    ];
+
     public static function all(): array
     {
         return [

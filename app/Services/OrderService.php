@@ -347,7 +347,9 @@ class OrderService extends BaseService
                 ], $order->getKey());
 
                 if ($order->isPendingPayment()) {
-                    DepositService::make()->approve($order->deposit_transaction_id);
+                    DepositService::make()
+                        ->allowForceApproved()
+                        ->approve($order->deposit_transaction_id);
                 }
 
                 OrderCompleted::dispatch($order);
