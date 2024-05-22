@@ -6,6 +6,7 @@ use App\Events\Deposit\DepositApproved;
 use App\Models\DepositTransaction;
 use App\Services\OrderPaymentService;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Order;
 
 class ApprovedOrderPayment
 {
@@ -27,6 +28,13 @@ class ApprovedOrderPayment
     {
         /** @var DepositTransaction */
         $transaction = $event->transaction;
+
+        /** @var Order */
+        $order = $transaction->order;
+
+        if (! $order->isPendingPayment()) {
+            return;
+        }
 
         OrderPaymentService::make()->approve($transaction->order);
     }

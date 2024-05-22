@@ -105,9 +105,8 @@ Chi tiết đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') 
                 <div id="expanded_content_{{ data_get($order->paymentOption, 'id') }}" data-expanded-content-payment-option-id="{{ data_get($order->paymentOption, 'id') }}" style="background-color: #f9f9f9; padding: 10px; margin-top: 10px;">
                     @php
                         $orderTransferContent = implode('', [
+                            'UD',
                             data_get($order->cart, 'id'),
-                            data_get($order->cart, 'currency_code'),
-                            data_get($order->cart, 'total_quantity'),
                         ]);
 
                         $expandedContent = str_replace('${order_transfer_content}', $orderTransferContent, data_get($order->paymentOption, 'expanded_content'));

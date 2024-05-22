@@ -29,6 +29,8 @@ class DepositService extends BaseService
     public $paymentIntegrationService;
     public $orderService;
 
+    public $allowForceApproved = false;
+
     public function __construct(
         DepositTransactionService $depositTransactionService,
         PaymentOptionService $paymentOptionService,
@@ -43,6 +45,13 @@ class DepositService extends BaseService
         $this->userService = $userService;
         $this->paymentIntegrationService = $paymentIntegrationService;
         $this->orderService = $orderService;
+    }
+
+    public function allowForceApproved($bool = true)
+    {
+        $this->allowForceApproved = $bool;
+
+        return $this;
     }
 
     public function deposit($userId, $amount, $paymentOptionId, $createdBy, $data = [])
@@ -136,7 +145,7 @@ class DepositService extends BaseService
             ->block(TransactionCacheKeyEnum::MAXIMUM_WAIT, function() use ($transactionId, $data, $quietly) {
                 $transaction = $this->depositTransactionService->show($transactionId);
 
-                if (! $transaction->isPending()) {
+                if (! $this->allowForceApproved && ! $transaction->isPending()) {
                     throw new BusinessLogicException('Unable to update this transaction.', ExceptionCode::INVALID_TRANSACTION);
                 }
 
