@@ -73,7 +73,7 @@ class SitemapGenerate extends Command
             ->searchForGuest(['paginate' => false])
             ->each(function($postCategory) use (&$sitemap) {
                 $sitemap->add(
-                    route('fe.web.blogs.index', data_get($postCategory, 'slug')),
+                    route('fe.web.news.show-post-categories', data_get($postCategory, 'slug')),
                     data_get($postCategory, 'created_at'), '0.6', 'daily'
                 );
             });
