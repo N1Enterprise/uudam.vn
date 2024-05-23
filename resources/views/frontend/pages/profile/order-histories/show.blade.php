@@ -1,7 +1,7 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Chi tiết đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_order_history_detail', [':order_code' => $order->order_code]) }}
 @endsection
 
 @section('page_seo')

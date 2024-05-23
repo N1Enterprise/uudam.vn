@@ -1,11 +1,11 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-Tìm kiếm | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('search', [':query' => $query]) }}
 @endsection
 
 @section('page_seo')
-{!! generate_static_page_seo_html('search'. [':query' => $query]) !!}
+{!! generate_static_page_seo_html('search', [':query' => $query]) !!}
 @endsection
 
 @push('style_pages')

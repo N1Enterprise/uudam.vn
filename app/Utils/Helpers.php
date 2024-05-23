@@ -384,6 +384,22 @@ if (!function_exists('parse_expression')) {
     }
 }
 
+if (! function_exists('get_static_page_seo_title'))
+{
+    function get_static_page_seo_title($staticPage, $replaces = [])
+    {
+        $staticPagesMetaSeo = SystemSetting::from(SystemSettingKeyEnum::STATIC_PAGES_META_SEO)->get(null, []) ?? [];
+
+        $metaSeo = data_get($staticPagesMetaSeo, $staticPage);
+
+        if (empty($metaSeo)) {
+            return '';
+        }
+
+        return strtr(data_get($metaSeo, 'title'), Arr::wrap($replaces));
+    }
+}
+
 if (! function_exists('generate_static_page_seo_html'))
 {
     function generate_static_page_seo_html($staticPage, $replaces = [])
@@ -413,14 +429,13 @@ if (! function_exists('generate_seo_html')) {
     function generate_seo_html($properties = [])
     {
         $__page   = data_get($properties, 'page_name');
-        $__domain = config('app.user_domain');
         $__image  = SystemSetting::from(SystemSettingKeyEnum::SHOP_LOGOS)->get('seo.image');
 
         $properties = [
-            'keywords'            => data_get($properties, 'title') ?? "$__page | $__domain",
-            'og:title'            => data_get($properties, 'title') ?? "$__page | $__domain",
-            'description'         => data_get($properties, 'desc')  ?? "$__page | $__domain",
-            'og:description'      => data_get($properties, 'desc')  ?? "$__page | $__domain",
+            'keywords'            => data_get($properties, 'title') ?? "$__page",
+            'og:title'            => data_get($properties, 'title') ?? "$__page",
+            'description'         => data_get($properties, 'desc')  ?? "$__page",
+            'og:description'      => data_get($properties, 'desc')  ?? "$__page",
             'og:image'            => data_get($properties, 'image') ?? $__image,
             'og:image:secure_url' => data_get($properties, 'image') ?? $__image,
             'url'                 => data_get($properties, 'url')   ?? request()->url(),

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Thông tin tài khoản | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_account', [':user_name' => data_get($AUTHENTICATED_USER, 'name')]) }}
 @endsection
 
 @section('page_seo')

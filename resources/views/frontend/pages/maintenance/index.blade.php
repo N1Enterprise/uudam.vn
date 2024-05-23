@@ -2,7 +2,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}</title>
+<title>
+{{ get_static_page_seo_title('maintenance') }}
+</title>
 @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon', []) as $favicon)
 <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
 @endforeach

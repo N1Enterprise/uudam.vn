@@ -1,7 +1,7 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Lịch sử đơn hàng | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_order_histories') }}
 @endsection
 
 @section('page_seo')

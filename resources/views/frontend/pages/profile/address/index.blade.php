@@ -1,7 +1,7 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Quản lí địa chỉ | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_manage_address') }}
 @endsection
 
 @section('page_seo')

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-Giỏ hàng | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('cart') }}
 @endsection
 
 @push('style_pages')

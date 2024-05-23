@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('home') }}
 @endsection
 
 @section('page_seo')

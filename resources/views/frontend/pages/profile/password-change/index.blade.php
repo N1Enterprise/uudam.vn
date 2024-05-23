@@ -1,7 +1,7 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Thay đổi mật khẩu | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_change_password') }}
 @endsection
 
 @section('page_seo')
