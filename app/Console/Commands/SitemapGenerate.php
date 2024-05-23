@@ -111,6 +111,8 @@ class SitemapGenerate extends Command
             chmod(public_path() . '/sitemap.xml', 0777);
         }
 
+        $this->info('Sitemap Generated Successfully!');
+
         return 0;
     }
 }
