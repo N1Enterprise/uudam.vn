@@ -5,7 +5,7 @@ Thanh toán | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Thanh toán']) !!}
+{!! generate_static_page_seo_html('checkout') !!}
 @endsection
 
 @section('style')

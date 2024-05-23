@@ -5,7 +5,7 @@ Hoàn thành thông tin | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Hoàn thành thông tin']) !!}
+{!! generate_static_page_seo_html('profile_info_complete') !!}
 @endsection
 
 @push('style_pages')

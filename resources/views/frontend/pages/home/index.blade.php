@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => data_get($SYSTEM_SETTING, 'page_settings.app_name')]) !!}
+{!! generate_static_page_seo_html('home') !!}
 @endsection
 
 @push('style_pages')

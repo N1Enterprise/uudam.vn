@@ -1,7 +1,7 @@
 @extends('frontend.layouts.news')
 
 @section('page_seo_news')
-{!! generate_seo_html(['page_name' => 'Tin tức']) !!}
+{!! generate_static_page_seo_html('news') !!}
 @endsection
 
 @section('news_content')

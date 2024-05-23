@@ -10,6 +10,7 @@ use App\Models\SystemSetting;
 use App\Vendors\Localization\Money as LocalizationMoney;
 use App\Vendors\Localization\SystemCurrency;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
@@ -380,6 +381,27 @@ if (!function_exists('parse_expression')) {
         settype($parsed, $castType);
 
         return $parsed;
+    }
+}
+
+if (! function_exists('generate_static_page_seo_html'))
+{
+    function generate_static_page_seo_html($staticPage, $replaces = [])
+    {
+        $staticPagesMetaSeo = SystemSetting::from(SystemSettingKeyEnum::STATIC_PAGES_META_SEO)->get(null, []) ?? [];
+
+        $metaSeo = data_get($staticPagesMetaSeo, $staticPage);
+
+        if (empty($metaSeo)) {
+            return generate_seo_html([]);
+        }
+
+        return generate_seo_html([
+            'title' => strtr(data_get($metaSeo, 'title'), Arr::wrap($replaces)),
+            'desc'  => strtr(data_get($metaSeo, 'desc'), Arr::wrap($replaces)),
+            'image' => data_get($metaSeo, 'image'),
+            'url'   => request()->url()
+        ]);
     }
 }
 

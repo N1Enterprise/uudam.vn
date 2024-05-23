@@ -5,7 +5,7 @@ Thông tin tài khoản | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => "Thông tin tài khoản - " . data_get($AUTHENTICATED_USER, 'name')]) !!}
+{!! generate_static_page_seo_html('profile_account', [':user_name' => data_get($AUTHENTICATED_USER, 'name')]) !!}
 @endsection
 
 @section('profile_style')

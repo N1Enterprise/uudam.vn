@@ -5,7 +5,7 @@ Thay đổi mật khẩu | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Thay đổi mật khẩu']) !!}
+{!! generate_static_page_seo_html('profile_change_password') !!}
 @endsection
 
 @section('profile_style')

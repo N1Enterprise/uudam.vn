@@ -5,7 +5,7 @@ Quản lí địa chỉ | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Quản lí địa chỉ']) !!}
+{!! generate_static_page_seo_html('profile_manage_address') !!}
 @endsection
 
 @section('profile_style')

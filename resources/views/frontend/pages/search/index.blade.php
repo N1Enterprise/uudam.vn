@@ -5,7 +5,7 @@ Tìm kiếm | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => $query]) !!}
+{!! generate_static_page_seo_html('search'. [':query' => $query]) !!}
 @endsection
 
 @push('style_pages')

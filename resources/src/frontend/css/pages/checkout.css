@@ -240,10 +240,13 @@ select:disabled {
 }
 
 .address-detail-space {
-    font-style: italic;
     background-color: #f6f6f6;
     border-radius: 3px;
-    padding: 1px 6px;
+    padding: 3px 6px;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #e1e1e1;
 }
 
 @import url('../../../../../public/backoffice/assets/vendors/general/toastr/build/toastr.css');

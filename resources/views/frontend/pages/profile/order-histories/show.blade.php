@@ -5,7 +5,7 @@ Chi tiết đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') 
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => "Chi tiết đơn hàng #" . $order->order_code]) !!}
+{!! generate_static_page_seo_html('profile_order_history_detail', [':order_code' => $order->order_code]) !!}
 @endsection
 
 @section('profile_style')

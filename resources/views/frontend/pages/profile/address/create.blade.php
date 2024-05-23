@@ -5,7 +5,7 @@ Thêm địa chỉ mới | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Thêm địa chỉ mới']) !!}
+{!! generate_static_page_seo_html('profile_add_address') !!}
 @endsection
 
 @section('profile_style')
