@@ -1,5 +1,9 @@
 @extends('frontend.layouts.news')
 
+@section('page_title_news')
+{{ get_static_page_seo_title('news') }}
+@endsection
+
 @section('page_seo_news')
 {!! generate_static_page_seo_html('news') !!}
 @endsection
