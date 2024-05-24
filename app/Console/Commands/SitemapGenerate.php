@@ -51,6 +51,50 @@ class SitemapGenerate extends Command
 
         $sitemap->add(route('fe.web.home'), Carbon::now(), '1.0', 'daily');
 
+        $staticPages = [
+            [
+                'route' => route('fe.web.news.index'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.search'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.cart.index'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.profile'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.security.password-change'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.profile.order-histories'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.localization.address'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.checkout.confirmation'),
+                'priority' => '0.9'
+            ],
+        ];
+
+        foreach ($staticPages as $item) {
+            $sitemap->add(
+                data_get($item, 'route'),
+                Carbon::now(),
+                data_get($item, 'priority'),
+                'daily'
+            );
+        }
+
         InventoryService::make()
             ->searchForGuest(['paginate' => false])
             ->each(function($inventory) use (&$sitemap) {
