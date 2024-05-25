@@ -94,12 +94,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Tag_Connect_Information">
-                        {{ __('Thông tin liên kết') }}
-                    </a>
-                </li>
-
                 @can('inventories.index')
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Tag_Inventories">
@@ -108,6 +102,12 @@
                     </a>
                 </li>
                 @endcan
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Tag_Connect_Information">
+                        {{ __('Thông tin liên kết') }}
+                    </a>
+                </li>
 
                 @can('product-reviews.index')
                 <li class="nav-item">
@@ -308,6 +308,38 @@
                 </div>
             </div>
 
+            @can('inventories.index')
+            <div class="tab-pane" id="Tag_Inventories">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="k-portlet">
+                            <div class="k-portlet__body">
+                                <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index', ['product_id' => $product->id]) }}" class="datatable table table-striped table-bordered table-hover table-checkable">
+                                    <thead>
+                                        <tr>
+                                            <th data-property="id">{{ __('ID') }}</th>
+                                            <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
+                                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển Thị FE') }}</th>
+                                            <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('Tìm kiếm FE') }}</th>
+                                            <th data-property="purchase_price">{{ __('Giá mua') }}</th>
+                                            <th data-property="sale_price">{{ __('Giá bán') }}</th>
+                                            <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
+                                            <th data-property="sold_count">{{ __('Đã bán') }}</th>
+                                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endcan
+
             <div class="tab-pane" id="Tag_Connect_Information">
                 <div class="row">
                     <div class="col-md-12">
@@ -356,38 +388,6 @@
                     </div>
                 </div>
             </div>
-
-            @can('inventories.index')
-            <div class="tab-pane" id="Tag_Inventories">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="k-portlet">
-                            <div class="k-portlet__body">
-                                <table id="table_inventories_index" data-searching="true" data-request-url="{{ route('bo.api.inventories.index', ['product_id' => $product->id]) }}" class="datatable table table-striped table-bordered table-hover table-checkable">
-                                    <thead>
-                                        <tr>
-                                            <th data-property="id">{{ __('ID') }}</th>
-                                            <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
-                                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
-                                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển Thị FE') }}</th>
-                                            <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('Tìm kiếm FE') }}</th>
-                                            <th data-property="purchase_price">{{ __('Giá mua') }}</th>
-                                            <th data-property="sale_price">{{ __('Giá bán') }}</th>
-                                            <th data-property="offer_price" data-render-callback="renderCallbackOfferPrice">{{ __('Giá khuyến mãi') }}</th>
-                                            <th data-property="sold_count">{{ __('Đã bán') }}</th>
-                                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endcan
 
             @can('product-reviews.index')
             <div class="tab-pane" id="Tag_Product_Review">

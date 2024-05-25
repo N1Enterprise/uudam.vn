@@ -430,11 +430,6 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
 }
 
 
-.recommendation-target:hover img {
-    transform: scale(1.2);
-    transition: all 300ms;
-}
-
 .ls-price {
     font-weight: bold;
 }
@@ -466,10 +461,6 @@ limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls
         font-size: 10px;
         margin-bottom: 4px;
     }
-}
-
-.limespot-recommendation-box {
-    /* margin-bottom:30px; */
 }
 
 .section-template-padding {
