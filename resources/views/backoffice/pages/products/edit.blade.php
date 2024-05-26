@@ -247,6 +247,7 @@
                                     <label for="">{{ __('Bộ sưu tập ảnh') }}</label>
                                     <div class="media_image_repeater">
                                         <div data-repeater-list="media[image]">
+                                            @if (! empty(old('media.image', data_get($product->media, 'image', []))))
                                             @foreach (old('media.image', data_get($product->media, 'image', [])) as $index => $mediaImage)
                                             <div data-repeater-item class="k-repeater__item" data-repeater-index="{{ $index }}">
                                                 <div class="row">
@@ -282,6 +283,41 @@
                                                 <div class="k-separator k-separator--space-sm"></div>
                                             </div>
                                             @endforeach
+                                            @else
+                                            <div data-repeater-item class="k-repeater__item">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="upload_image_custom position-relative">
+                                                            <input type="text" data-image-ref-path="media" data-image-ref-index="0" class="form-control media_image_path" name="path" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;" value="{{ old('primary_image.path') }}">
+                                                            <div data-image-ref-wrapper="media" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
+                                                                <div class="d-flex align-items-center h-100">
+                                                                    <img data-image-ref-img="media" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
+                                                                    <span data-image-ref-delete="media" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                                </div>
+                                                            </div>
+                                                            <label for="media_image_file_0" class="media_image_file_wapper btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
+                                                                <input type="file" name="media[image][0][file]" data-image-ref-file="media" data-image-ref-index="0" class="d-none media_image_file" id="media_image_file_0">
+                                                                <i class="flaticon2-image-file"></i>
+                                                                <span>{{ __('Tải lên') }}</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="d-flex align-items-start">
+                                                            <div class="image_media_image_review mr-1">
+                                                                <div data-image-ref-review-wrapper="media" data-image-ref-index="0" class="d-none" style="width: 100px; height: 100px; border: 1px solid #ccc;">
+                                                                    <img data-image-ref-review-img="media" data-image-ref-index="0" style="width: 100%; height: 100%;" src="" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" data-repeater-delete class="btn btn-secondary btn-icon h-100 mr-2" style="width: 30px!important; height: 30px!important;">
+                                                                <i class="la la-close"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="k-separator k-separator--space-sm"></div>
+                                            </div>
+                                            @endif
                                         </div>
                                         <div class="k-repeater__add-data">
                                             <span data-repeater-create="" class="btn btn-info btn-sm">
