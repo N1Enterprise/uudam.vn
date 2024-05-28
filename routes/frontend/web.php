@@ -40,8 +40,8 @@ Route::middleware(['feweb'])->group(function() {
         Route::get('cap-nhat-dia-chi/{code}.html', [Controllers\UserAddressController::class, 'edit'])->name('user.localization.address.edit');
         Route::get('them-dia-chi.html', [Controllers\UserAddressController::class, 'create'])->name('user.localization.address.create');
 
-        Route::get('xac-nhan-don-hang.html', [Controllers\UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');
-        Route::get('xac-nhan-don-hang/{cartUuid}.html', [Controllers\UserCheckoutController::class, 'checkout'])->name('user.checkout.index');
+        Route::get('don-hang.html', [Controllers\UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');
+        Route::get('don-hang/{cartUuid}.html', [Controllers\UserCheckoutController::class, 'checkout'])->name('user.checkout.index');
         Route::get('thanh-toan-lai-don-hang/{orderCode}.html', [Controllers\UserCheckoutController::class, 'rePayment'])->name('user.checkout.repayment');
 
         Route::get('trang-thai-don-hang/{cartUuid}.html', [Controllers\UserCheckoutController::class, 'checkoutStatus'])->name('user.checkout.payment.status');

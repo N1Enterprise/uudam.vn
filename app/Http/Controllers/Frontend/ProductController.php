@@ -33,6 +33,7 @@ class ProductController extends BaseController
 
     public function index(Request $request, $slug)
     {
+        dd($slug);
         $inventory = $this->inventoryService->showBySlugForGuest($slug, $request->all());
 
         if (empty($inventory)) throw new ModelNotFoundException();
