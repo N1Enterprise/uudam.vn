@@ -47,5 +47,5 @@ Route::middleware(['feweb'])->group(function() {
         Route::get('trang-thai-don-hang/{cartUuid}.html', [Controllers\UserCheckoutController::class, 'checkoutStatus'])->name('user.checkout.payment.status');
     });
 
-    Route::get('/{code}.html', [Controllers\ShortenedLinkController::class, 'handleRedirect']);
+    Route::get('/{code}', [Controllers\ShortenedLinkController::class, 'handleRedirect']);
 });
