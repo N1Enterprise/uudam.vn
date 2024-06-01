@@ -27,9 +27,17 @@
             </div>
             <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'name') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-                <span>Cập nhật lần cuối vào lúc: </span>
-                <time datetime="{{ data_get($post, 'post_at') }}">{{ format_datetime(data_get($post, 'post_at')) }}</time>
+                <span>Đăng lúc: </span>
+                <time datetime="{{ data_get($post, 'post_at') }}">
+                    <b>{{ format_datetime(data_get($post, 'post_at')) }}</b>
+                </time>
             </span>
+            <div class="caption-with-letter-spacing" style="margin-top: 10px;">
+                <span>Tác giả:</span>
+                <time>
+                    <b>{{ data_get($post, 'author') }}</b>
+                </time>
+            </div>
         </header>
         <div class="article-template__social-sharing page-width page-width--narrow">
             <share-button class="share-button">
