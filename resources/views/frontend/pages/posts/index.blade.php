@@ -21,6 +21,10 @@
             </div>
         </div>
         <header class="page-width page-width--narrow">
+            <div class="nav-breadcrumbs">
+                <a href="{{ route('fe.web.news.index') }}" class="nav-breadcrumbs-item">Bài viết</a>
+                <a href="{{ route('fe.web.news.show-post-categories', data_get($postCategory, 'slug')) }}" class="nav-breadcrumbs-item">{{ data_get($postCategory, 'name') }}</a>
+            </div>
             <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'name') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
                 <span>Cập nhật lần cuối vào lúc: </span>
@@ -68,6 +72,11 @@
         <div class="article-template__content page-width page-width--narrow rte contentview article-contentview" itemprop="articleBody">
             {!! data_get($post, 'content') !!}
         </div>
+
+        @if (has_data($postCategory->posts))
+        @include('frontend.pages.posts.partials.related-category')
+        @endif
+
         <div class="article-template__back element-margin-top center">
             <a href="{{ route('fe.web.home') }}" class="article-template__link link animate-arrow">
                 <span class="icon-wrap">

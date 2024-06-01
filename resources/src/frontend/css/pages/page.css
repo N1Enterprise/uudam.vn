@@ -278,3 +278,46 @@
         font-size: 19px !important;
     }
 }
+
+/* nav-breadcrumbs */
+.nav-breadcrumbs {
+    padding: 10px 0;
+    margin-bottom: 25px;
+}
+
+.nav-breadcrumbs .nav-breadcrumbs-item {
+    display: inline-block;
+    font-size: 18px;
+    color: #025B50;
+    text-decoration: none;
+}
+
+.nav-breadcrumbs .nav-breadcrumbs-item+.nav-breadcrumbs-item:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* page-related-category */
+.page-related-category {
+    background-color: #025b501f;
+    border: 1px solid #025B50;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.page-related-category .sub-header {
+    font-weight: bold;
+    color: #000;
+}
+
+.page-related-category ul {
+    list-style: disc;
+    padding-left: 15px;
+    margin: 0;
+}
+
+.page-related-category .related-item {
+    display: inline-block;
+    color: #025B50;
+}
