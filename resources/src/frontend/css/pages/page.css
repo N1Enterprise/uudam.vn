@@ -258,7 +258,7 @@
 }
 
 .article-contentview a {
-    color: #2f80ed;
+    color: #2f80ed!important;
     text-decoration: none;
 }
 
