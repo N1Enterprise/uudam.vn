@@ -258,7 +258,11 @@
 }
 
 .article-contentview a {
-    color: #025B50;
+    color: #2f80ed;
+    text-decoration: none;
+}
+
+.article-contentview a:hover {
     text-decoration: underline;
 }
 
