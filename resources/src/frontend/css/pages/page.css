@@ -262,6 +262,10 @@
     text-decoration: none;
 }
 
+.article-contentview a * {
+    color: #2f80ed!important;
+}
+
 .article-contentview a:hover {
     text-decoration: underline;
 }
