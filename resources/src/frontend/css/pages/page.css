@@ -320,4 +320,9 @@
 .page-related-category .related-item {
     display: inline-block;
     color: #025B50;
+    text-decoration: none;
+}
+
+.page-related-category .related-item:hover {
+    text-decoration: underline;
 }
