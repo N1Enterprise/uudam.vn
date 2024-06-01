@@ -214,9 +214,9 @@
 
 .article-contentview img {
     display: block;
-    width: 100%!important;
-    height: auto!important;
-    margin: 10px 0!important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 5px;
 }
 
 .article-contentview h2 {
@@ -260,6 +260,11 @@
 .article-contentview a {
     color: #025B50;
     text-decoration: underline;
+}
+
+.article-contentview [data-image="__image__undefined__"] ~ .syno-fontsize-small,
+.article-contentview [data-image="__image__undefined__"] ~ br {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
