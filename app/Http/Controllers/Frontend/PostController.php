@@ -27,7 +27,7 @@ class PostController extends BaseController
         if (empty($post)) throw new ModelNotFoundException();
 
         if ($post->slug != $slug) {
-            return redirect()->route('fe.web.posts.index', ['slug' => $post->slug, 'id' => $post->id]);
+            return redirect()->route('fe.web.posts.index', ['slug' => $post->slug, 'code' => $post->code]);
         }
 
         $relatedPosts = collect($postCategory->posts)
