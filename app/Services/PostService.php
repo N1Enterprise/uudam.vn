@@ -116,13 +116,13 @@ class PostService extends BaseService
 
     public function findBySlugForGuest($slug, $data = [])
     {
-        $id = data_get($data, 'id');
+        $code = data_get($data, 'code');
 
         return $this->postRepository
             ->modelScopes(['active'])
-            ->scopeQuery(function($q) use ($slug, $id) {
+            ->scopeQuery(function($q) use ($slug, $code) {
                 $q->where('slug', $slug)
-                    ->orWhere('id', $id);
+                    ->orWhere('code', $code);
             })
             ->first(data_get($data, 'columns', ['*']));
     }

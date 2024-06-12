@@ -58,7 +58,7 @@
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span class="share-button__message hidden"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'id' => data_get($post, 'id')]) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
