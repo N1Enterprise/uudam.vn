@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Exceptions\ModelNotFoundException;
-use App\Models\PostCategory;
 use App\Services\PostCategoryService;
 use App\Services\PostService;
 use Illuminate\Http\Request;
@@ -31,6 +30,10 @@ class PostController extends BaseController
             return redirect()->route('fe.web.posts.index', ['slug' => $post->slug, 'id' => $post->id]);
         }
 
-        return $this->view('frontend.pages.posts.index', compact('post', 'postCategory'));
+        $relatedPosts = collect($postCategory->posts)
+            ->filter(fn($item) => data_get($item, 'slug') != $post->slug)
+            ->toArray();
+
+        return $this->view('frontend.pages.posts.index', compact('post', 'postCategory', 'relatedPosts'));
     }
 }
