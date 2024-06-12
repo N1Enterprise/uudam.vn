@@ -22,13 +22,13 @@ class PostController extends BaseController
     {
         $post = $this->postService->findBySlugForGuest($slug, $request->all());
 
-        $postCategory = $this->postCategoryService->show($post->post_category_id);
-
         if (empty($post)) throw new ModelNotFoundException();
 
         if ($post->slug != $slug) {
             return redirect()->route('fe.web.posts.index', ['slug' => $post->slug, 'code' => $post->code]);
         }
+
+        $postCategory = $this->postCategoryService->show($post->post_category_id);
 
         $relatedPosts = collect($postCategory->posts)
             ->filter(fn($item) => data_get($item, 'slug') != $post->slug)
