@@ -10,7 +10,7 @@
         @if(empty($AUTHENTICATED_USER))
         <h2 class="cart__login-title">Bạn có tài khoản chưa?</h2>
         <p class="cart__login-paragraph">
-            <p>Bạn cần <a id="Add_Cart_Required_Login" class="link underlined-link" href="?overlay=signin" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> để kiểm tra nhanh hơn.</p>
+            <p>Bạn cần <span id="Add_Cart_Required_Login" class="link underlined-link" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</span> để kiểm tra nhanh hơn.</p>
         </p>
         @endif
     </div>

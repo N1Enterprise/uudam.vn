@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
+                                <span data-overlay-action-button="signin" class="redirect-link link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</span>
                             </div>
                             <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Xác nhận thay đổi</button>
                         </form>
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
+                                    <span data-overlay-action-button="signin" class="redirect-link link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</span>
                                 </div>
                                 <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Khôi phục mật khẩu</button>
                             </form>
@@ -102,8 +102,8 @@
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="?overlay=signup" data-overlay-action-button="signup" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng ký tài khoản?</a>
-                                <a href="?overlay=forgot-password" data-overlay-action-button="forgot-password" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Quên mật khẩu?</a>
+                                <span data-overlay-action-button="signup" class="redirect-link link" style="display: inline-block; margin-bottom: 15px;">Đăng ký tài khoản?</span>
+                                <span data-overlay-action-button="forgot-password" class="redirect-link link" style="display: inline-block; margin-bottom: 15px;">Quên mật khẩu?</span>
                             </div>
                             <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng nhập</button>
                             @include('frontend.layouts.partials.header.modals.oauth-authentication')
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="?overlay=signin" data-overlay-action-button="signin" class="redirect-link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</a>
+                                <span data-overlay-action-button="signin" class="redirect-link link" style="display: inline-block; margin-bottom: 15px;">Đăng nhập?</span>
                             </div>
                             <button type="submit" class="button" style="display: block; width: 100%; margin-bottom: 5px;">Đăng ký</button>
                             @include('frontend.layouts.partials.header.modals.oauth-authentication')
