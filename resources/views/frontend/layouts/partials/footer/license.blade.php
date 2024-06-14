@@ -1,6 +1,6 @@
 
 <div>
-    <a href="http://online.gov.vn/Home/WebDetails/117092" target="_blank" style="width: 250px;">
+    <a href="http://online.gov.vn/Home/WebDetails/117092" target="_blank" style="width: 185px;">
         <img
             style="width: 100%; height: auto;"
             title="CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI NẾN ƯU ĐÀM ĐÃ THÔNG BÁO BỘ CÔNG THƯƠNG"
@@ -9,7 +9,7 @@
         />
     </a>
 
-    <a href="/" target="_blank" style="width: 194px;">
+    <a href="/" target="_blank" style="width: 145px;">
         <img
             style="width: 100%; height: auto;"
             title="CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI NẾN ƯU ĐÀM ĐÃ CÓ CHỨNG NHẬN DMCA"
