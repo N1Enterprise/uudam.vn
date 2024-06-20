@@ -344,7 +344,7 @@ class InventoryService extends BaseService
             ->scopeQuery(function($q) use ($productId) {
                 $q->where('product_id', BaseModel::getModelKey($productId));
             })
-            ->all(['id', 'slug']);
+            ->all(['id', 'slug', 'image']);
 
         return $inventories;
     }
