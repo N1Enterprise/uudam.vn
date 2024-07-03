@@ -184,7 +184,6 @@ if (! function_exists('get_percent')) {
     }
 }
 
-
 if (! function_exists('generate_combinations'))
 {
     /**
