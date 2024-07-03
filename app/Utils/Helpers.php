@@ -169,7 +169,7 @@ if (! function_exists('round_money')) {
 if (! function_exists('format_price')) {
     function format_price($money, $currencyCode = null)
     {
-        if (is_null($money)) {
+        if (is_null($money) || $money == 0) {
             return;
         }
 
