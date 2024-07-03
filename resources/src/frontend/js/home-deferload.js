@@ -71,7 +71,7 @@ const SECTION_SCROLL = {
                                             <div class="ls-price-group">
                                                 <div>
                                                     <span class="ls-price money" data-numeric-value="${ item.final_price }" data-money-convertible="">${ item.final_price }</span>
-                                                    ${ item.has_offer_price ? `<del class="price-item--sub">${ item.sub_price }</del>` : '' }
+                                                    ${ item.has_offer_price ? `<del class="price-item--sub">${ item.sub_price ? item.sub_price : '' }</del>` : '' }
                                                 </div>
                                                 <span class="sold-count">Đã bán ${ item.final_sold_count }</span>
                                             </div>
