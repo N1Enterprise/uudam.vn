@@ -29,7 +29,7 @@ class MenuCms extends BaseCms
                 ->with([
                     'menuSubGroups' => function($q) {
                         $q->where('status', 1)
-                            ->select(['id', 'menu_group_id', 'name', 'order', 'params'])
+                            ->select(['id', 'menu_group_id', 'name', 'order', 'params', 'redirect_url'])
                             ->orderBy('order')
                             ->where('display_on_frontend', 1);
                     },
