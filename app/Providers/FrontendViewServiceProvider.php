@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Classes\AdminAuth;
 use App\Classes\Contracts\UserAuthContract;
 use App\Cms\MenuCms;
 use App\Cms\PageCms;
@@ -53,7 +54,7 @@ class FrontendViewServiceProvider extends ServiceProvider
                 'fe_host' => config('app.user_host'),
                 'app_id'  => config('app.app_id'),
                 'app_env' => config('app.env'),
-                'fe_view_only_mode' => config('app.fe_view_only_mode')
+                'fe_view_only_mode' => AdminAuth::user() ? false : config('app.fe_view_only_mode')
             ]);
         });
     }
