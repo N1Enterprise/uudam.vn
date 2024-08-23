@@ -19,4 +19,7 @@
     </a>
 </div>
 
-<div>CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI NẾN ƯU ĐÀM , địa chỉ: B144/17 Nguyễn Thần Hiến, Phường 18, Quận 4, Thành phố Hồ Chí Minh, Việt Nam, Mã số thuế: 0318243727 do Sở Kế Hoạch và Đầu Tư Thành Phố Hồ Chí Minh Cấp ngày 01/05/2024</div>
+<div>
+    <p>CÔNG TY TNHH SẢN XUẤT VÀ THƯƠNG MẠI NẾN ƯU ĐÀM, Mã số thuế: 0318243727</p>
+    <p>Địa chỉ: B144/17 Nguyễn Thần Hiến, Phường 18, Quận 4, Thành phố Hồ Chí Minh, Việt Nam.</p>
+</div>
