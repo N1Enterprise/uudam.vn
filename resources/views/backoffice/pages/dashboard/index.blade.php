@@ -32,7 +32,7 @@ Tổng Quan
         @endcan
 
         @can('reports.view-turnover')
-        @include('backoffice.pages.dashboard.partials.statistic-deposit')
+        @include('backoffice.pages.dashboard.partials.statistic-turnover')
         @endcan
     </div>
 

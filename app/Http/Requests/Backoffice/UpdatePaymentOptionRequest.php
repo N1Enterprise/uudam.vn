@@ -38,6 +38,7 @@ class UpdatePaymentOptionRequest extends BaseFormRequest implements UpdatePaymen
             'logo.file' => ['nullable', 'file', 'image', 'max:5200'],
             'logo.path' => ['nullable', 'string'],
             'expanded_content' => ['nullable', 'string'],
+            'order' => ['nullable', 'gt:0'],
         ];
         if (empty($this->min_amount)) {
             $rules['max_amount'] = ['nullable', 'numeric'];

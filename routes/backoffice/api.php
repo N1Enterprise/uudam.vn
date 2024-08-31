@@ -102,7 +102,7 @@ Route::prefix('v1')->group(function () {
     /* ======================== DASHBOARD REPORT ======================== */
     Route::get('dashboard/total-new-users', [Api\DashboardController::class, 'getTotalNewUsers'])->name('dashboard.new-users')->middleware(['can:reports.view-new-users']);
     Route::get('dashboard/total-new-orders', [Api\DashboardController::class, 'getTotalNewOrders'])->name('dashboard.new-orders')->middleware(['can:reports.view-new-orders']);
-    Route::get('dashboard/total-deposit', [Api\DashboardController::class, 'getTotalDeposit'])->name('dashboard.total-deposit')->middleware(['can:reports.view-turnover']);
+    Route::get('dashboard/total-turnover', [Api\DashboardController::class, 'getTotalTurnover'])->name('dashboard.total-turnover')->middleware(['can:reports.view-turnover']);
     Route::get('dashboard/top-users', [Api\DashboardController::class, 'getTopUsers'])->name('dashboard.top-users')->middleware(['can:reports.view-top-users']);
     Route::get('dashboard/top-orders', [Api\DashboardController::class, 'getTopOrders'])->name('dashboard.top-orders');
 

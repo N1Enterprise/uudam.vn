@@ -4,7 +4,7 @@
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">{{ __('Doanh số') }}</h3>
             </div>
-            <form method="GET" data-request-url="{{ route('bo.api.dashboard.total-deposit') }}" id="report_total_deposit"></form>
+            <form method="GET" data-request-url="{{ route('bo.api.dashboard.total-turnover') }}" id="report_total_deposit"></form>
         </div>
         <div class="k-portlet__body k-portlet__body--fluid">
             <div class="k-widget-19">

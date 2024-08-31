@@ -46,7 +46,7 @@ class DashboardService extends BaseService
         return $result;
     }
 
-    public function getTotalDeposit($data = [])
+    public function getTotalTurnover($data = [])
     {
         $data = $this->parseDataRequest($data);
 

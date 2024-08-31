@@ -127,12 +127,12 @@ class Order extends BaseModel
 
     public function isPending()
     {
-        return $this->order_statys == OrderStatusEnum::WAITING_FOR_PAYMENT;
+        return $this->order_status == OrderStatusEnum::WAITING_FOR_PAYMENT;
     }
 
     public function isDelivery()
     {
-        return $this->order_statys == OrderStatusEnum::DELIVERY;
+        return $this->order_status == OrderStatusEnum::DELIVERY;
     }
 
     public function isProcessing()
