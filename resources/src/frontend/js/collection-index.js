@@ -170,7 +170,7 @@ const COLLECTION_LINKED_INVENTORIES = {
                                             <div class="ls-price-group">
                                                 <div>
                                                     <span class="price-item price-item--regular">${inventory.final_price} </span>
-                                                    ${ inventory.has_offer_price ? `<del class="price-item--sub">${ inventory.sub_price }</del>` : '' }
+                                                    ${ inventory.has_offer_price ? `<del class="price-item--sub">${ inventory.sub_price ? inventory.sub_price : '' }</del>` : '' }
                                                 </div>
                                                 <span class="sold-count">Đã bán ${ inventory.final_sold_count }</span>
                                             </div>

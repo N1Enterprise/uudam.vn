@@ -131,7 +131,7 @@
             </div>
 
             @if(empty($AUTHENTICATED_USER))
-            <p style="font-size: 1.4rem;">Bạn cần <a id="Add_Cart_Required_Login" href="?overlay=signin" class="link" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</a> trước khi mua hàng</p>
+            <p style="font-size: 1.4rem;">Bạn cần <span id="Add_Cart_Required_Login" class="link" data-redirect="{{ request()->url() }}" data-overlay-action-button="signin">Đăng nhập</span> trước khi mua hàng</p>
             @endif
 
             <form method="post" login-ref="#Add_Cart_Required_Login" form-add-to-cart accept-charset="UTF-8" class="form" novalidate="novalidate">

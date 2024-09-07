@@ -1,11 +1,11 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Cập nhật địa chỉ | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_edit_address', [':full_address' => data_get($address, 'full_address')]) }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Cập nhật địa chỉ']) !!}
+{!! generate_static_page_seo_html('profile_edit_address', [':full_address' => data_get($address, 'full_address')]) !!}
 @endsection
 
 @section('profile_style')

@@ -1,6 +1,6 @@
 <div class="shopify-section shopify-section-group-footer-group product-footer-bottom-section">
     <footer class="site-footer" data-section-id="sections--16783368323330__footer" data-section-type="footer-section">
-        <div id="FooterMenus" class="footer__section footer__section--menus">
+        <div id="FooterMenus" class="footer__section footer__section--menus" style="padding-bottom: 30px;">
             <div class="page-width">
                 <div class="section-content-template">
                     <div class="footer__blocks">
@@ -9,9 +9,21 @@
                             <h2 class="footer__title">{{ data_get($item, 'group') }}</h2>
                             <ul class="footer__menu">
                                 @foreach (data_get($item, 'menus', []) as $menu)
-                                <li>
-                                    <a href="{{ data_get($menu, 'url') }}">{{ data_get($menu, 'name') }}</a>
-                                </li>
+                                    @if (boolean(data_get($menu, 'logged_required')))
+                                        @if (! empty($AUTHENTICATED_USER))
+                                        <li>
+                                            <a href="{{ data_get($menu, 'url') }}">{{ data_get($menu, 'name') }}</a>
+                                        </li>
+                                        @else
+                                        <li>
+                                            <span data-redirect="{{ data_get($menu, 'url') }}" data-overlay-action-button="signin" style="cursor: pointer;">{{ data_get($menu, 'name') }}</span>
+                                        </li>
+                                        @endif
+                                    @else
+                                    <li>
+                                        <a href="{{ data_get($menu, 'url') }}">{{ data_get($menu, 'name') }}</a>
+                                    </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>

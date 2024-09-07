@@ -9,7 +9,7 @@
                         <div class="recommendation-target">
                             <a href="{{ route('fe.web.products.index', $inventory->slug) }}" class="ls-link" data-product-identifier="{{ $inventory->id }}">
                                 <div class="ls-image-wrap">
-                                    <img class="ls-image image-lazy" alt="{{ $inventory->image }}" title="{{ $inventory->image }}" loading="lazy" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="border-radius: 0px;">
+                                    <img class="ls-image image-lazy" alt="{{ $inventory->image }}" title="{{ $inventory->title }}" loading="lazy" srcset="{{ $inventory->image }}" src="{{ $inventory->image }}" style="border-radius: 0px;">
                                 </div>
                                 <div class="ls-info-wrap">
                                     <div class="ls-title">{{ $inventory->title }}</div>

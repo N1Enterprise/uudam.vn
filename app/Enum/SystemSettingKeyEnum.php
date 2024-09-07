@@ -56,6 +56,8 @@ class SystemSettingKeyEnum extends BaseEnum
 
     public const SHORTENED_LINKS = 'shortened_links';
 
+    public const STATIC_PAGES_META_SEO = 'static_pages_meta_seo';
+
     public static function all(): array
     {
         return [
@@ -88,6 +90,7 @@ class SystemSettingKeyEnum extends BaseEnum
             self::PROVIDER_CALLBACK_WHITELIST_IPS,
             self::ORDER_CANCEL_REASONS,
             self::SHORTENED_LINKS,
+            self::STATIC_PAGES_META_SEO
         ];
     }
 }

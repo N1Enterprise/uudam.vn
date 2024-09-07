@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Enum\DepositStatusEnum;
 use App\Enum\OrderStatusEnum;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Services\AddressService;
 use App\Services\CartItemService;
@@ -78,6 +79,10 @@ class UserCheckoutController extends AuthenticatedController
         $user = $this->user();
         $cart = $this->cartService->findByUser($user->getKey(), ['currency_code' => $user->currency_code, 'uuid' => $uuid], false);
 
+        if (! $cart instanceof Cart) {
+            return redirect()->route('fe.web.home', ['Response_Code' => 'Order_Has_Been_Processed']);
+        }
+
         if (
             $cart->order_id
             && $cart->order instanceof Order
@@ -86,10 +91,6 @@ class UserCheckoutController extends AuthenticatedController
             $this->depositService->cancel($cart->order->deposit_transaction_id, ['note' => 'CANCLED_BY_USER_REORDER']);
 
             return redirect()->route('fe.web.user.checkout.repayment', $cart->order->order_code);
-        }
-
-        if (empty($cart)) {
-            return redirect()->route('fe.web.home', ['Response_Code' => 'Order_Has_Been_Processed']);
         }
 
         $cartItems = $this->cartItemService->searchPendingItemsByUser($user->getKey(), [

@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="d-flex justify-content-start">
-                                <div style="flex: 0 0 30%;" class="pt-2 pb-2">Phí ướt tính</div>
+                                <div style="flex: 0 0 30%;" class="pt-2 pb-2">Phí ước tính</div>
                                 <span class="pt-2 pb-2 mr-2">:</span>
                                 <div style="flex: 1;" class="pt-2 bp-2">
                                     <b class="text-danger">{{ format_price(data_get($order->latestUserOrderShippingHistory, ['estimated_transport_fee'])) }}</b>
@@ -252,7 +252,7 @@
                     <div class="d-flex justify-content-start">
                         <div style="flex: 0 0 40%;" class="pt-2 pb-2">Chính sách giá</div>
                         <span class="pt-2 pb-2 mr-2">:</span>
-                        <div style="flex: 1;" class="pt-2 bp-2">Giá bán lẽ</div>
+                        <div style="flex: 1;" class="pt-2 bp-2">Giá bán lẻ</div>
                     </div>
 
                     <div class="d-flex justify-content-start">

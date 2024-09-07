@@ -75,7 +75,7 @@
                             </form>
                         </div>
                         @else
-                        <a href="?overlay=signin" data-overlay-action-button="signin" class="link">Đăng nhập</a>
+                        <span data-overlay-action-button="signin" class="link">Đăng nhập</span>
                         <span style="font-size: 1.4rem;">để bình luận</span>
                         @endif
                         <div class="spr-reviews" style="margin-top: 0;">

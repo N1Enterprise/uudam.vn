@@ -21,11 +21,23 @@
             </div>
         </div>
         <header class="page-width page-width--narrow">
+            <div class="nav-breadcrumbs">
+                <a href="{{ route('fe.web.news.index') }}" class="nav-breadcrumbs-item">Bài viết</a>
+                <a href="{{ route('fe.web.news.show-post-categories', data_get($postCategory, 'slug')) }}" class="nav-breadcrumbs-item">{{ data_get($postCategory, 'name') }}</a>
+            </div>
             <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'name') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-                <span>Cập nhật lần cuối vào lúc: </span>
-                <time datetime="{{ data_get($post, 'post_at') }}">{{ format_datetime(data_get($post, 'post_at')) }}</time>
+                <span>Đăng lúc: </span>
+                <time datetime="{{ data_get($post, 'post_at') }}">
+                    <b>{{ format_datetime(data_get($post, 'post_at')) }}</b>
+                </time>
             </span>
+            <div class="caption-with-letter-spacing" style="margin-top: 10px;">
+                <span>Tác giả:</span>
+                <time>
+                    <b>{{ data_get($post, 'author') }}</b>
+                </time>
+            </div>
         </header>
         <div class="article-template__social-sharing page-width page-width--narrow">
             <share-button class="share-button">
@@ -46,7 +58,7 @@
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
                             <span class="share-button__message hidden"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'id' => data_get($post, 'id')]) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
@@ -55,7 +67,7 @@
                             </svg>
                             <span class="visually-hidden">Close share</span>
                         </button>
-                        <button class="share-button__copy no-js-hidden" data-copy-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'id' => data_get($post, 'id')]) }}">
+                        <button class="share-button__copy no-js-hidden" data-copy-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}">
                             <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 11 13">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
                             </svg>
@@ -68,6 +80,11 @@
         <div class="article-template__content page-width page-width--narrow rte contentview article-contentview" itemprop="articleBody">
             {!! data_get($post, 'content') !!}
         </div>
+
+        @if (has_data($postCategory->posts))
+        @include('frontend.pages.posts.partials.related-category')
+        @endif
+
         <div class="article-template__back element-margin-top center">
             <a href="{{ route('fe.web.home') }}" class="article-template__link link animate-arrow">
                 <span class="icon-wrap">

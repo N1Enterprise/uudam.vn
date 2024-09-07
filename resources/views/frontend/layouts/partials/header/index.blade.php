@@ -59,7 +59,7 @@
                                                                 <a
                                                                     href="{{ data_get($menuSubGroup, 'redirect_url') ?? '/' }}"
                                                                     class="mm-title {{ data_get($menuSubGroup, 'redirect_url') ? '' : 'prevent' }}"
-                                                                    style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
+                                                                    style="font-weight: 700!important; {{ data_get($menuSubGroup, 'redirect_url') ? 'color: #025b50!important; text-decoration: underline!important;' : '' }}">{{ data_get($menuSubGroup, 'name') }}</a>
                                                             </span>
                                                             @endif
                                                         </div>
@@ -150,7 +150,7 @@
                                             <a
                                                 href="{{ data_get($menuSubGroup, 'redirect_url') ?? '/' }}"
                                                 class="mm-title {{ data_get($menuSubGroup, 'redirect_url') ? '' : 'prevent' }}"
-                                                style="font-weight: 700!important;">{{ data_get($menuSubGroup, 'name') }}</a>
+                                                style="font-weight: 700!important; {{ data_get($menuSubGroup, 'redirect_url') ? 'color: #025b50!important; text-decoration: underline!important;' : '' }}">{{ data_get($menuSubGroup, 'name') }}</a>
                                         </span>
                                         @endif
                                     </div>

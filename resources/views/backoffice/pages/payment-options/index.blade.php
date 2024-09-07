@@ -52,6 +52,7 @@
 						<th data-name="type" data-property="type_name" width="100">{{ __('Loại tùy chọn') }}</th>
 						<th data-property="payment_provider.name" width="100">{{ __('Nhà cung cấp') }}</th>
 						<th data-name="currency_code" data-property="currency.code" width="100">{{ __('Tiền tệ') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
 						<th data-badge data-name="status" data-property="status_name" width="100">{{ __('Trạng thái') }}</th>
 						<th data-property="created_at" width="100">{{ __('Ngày tạo') }}</th>
 						<th data-property="updated_at" width="100">{{ __('Ngày cập nhật') }}</th>

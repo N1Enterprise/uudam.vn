@@ -1,11 +1,11 @@
 @extends('frontend.layouts.checkout')
 
 @section('page_title')
-Thanh toán | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('checkout') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Thanh toán']) !!}
+{!! generate_static_page_seo_html('checkout') !!}
 @endsection
 
 @section('style')

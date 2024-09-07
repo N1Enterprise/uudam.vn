@@ -643,7 +643,8 @@
     justify-content: space-between;
     line-height: 19px;
     margin: 0 0 10px;
-    padding: 17px
+    padding: 17px;
+    flex-direction: column;
 }
 
 .address-item .name {
@@ -683,11 +684,22 @@
     color: #787878
 }
 
-.address-item .edit {
-    color: #000;
-    display: inline-block;
-    font-size: 14px;
-    padding: 6px 12px
+.address-item .action-address {
+    display: flex;
+    margin-top: 10px;
+}
+
+.address-item .action-address .edit {
+    margin-right: 10px;
+}
+
+.address-item .action-address .action-address-item {
+    border: 1px solid #b7b7b7;
+    text-decoration: none;
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #000000;
+    font-size: 13px;
 }
 
 @media screen and (max-width: 780px) {

@@ -130,7 +130,9 @@ const changeToSlug = (str) => {
         .replace(/[&]/g, "-and-")
         .replace(/[^a-zA-Z0-9._-]/g, "-")
         .replace(/[-]+/g, "-")
+        .replace(/[.]/g, "_")
         .replace(/-$/, "");
+
     return str;
 }
 

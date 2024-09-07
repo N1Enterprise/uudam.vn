@@ -18,6 +18,7 @@ $('.share-button__copy').on('click', function() {
 const MAIN_INVENTORY = {
     init: () => {
         MAIN_INVENTORY.onChange();
+        MAIN_INVENTORY.onHover();
         MAIN_INVENTORY.firstTrigger();
         MAIN_INVENTORY.mobileSaleActions();
     },
@@ -89,6 +90,31 @@ const MAIN_INVENTORY = {
         $('[data-total-cart-label]').text(label);
         $('[data-total-cart-price]').html(utils_helper.formatPrice(totalCartPrice));
     },
+    onHover: () => {
+        $('.attributes-values-item .label').hover(function(e) {
+            // const inventory = MAIN_INVENTORY.findInventory($(this));
+
+            // const orinImage = $('.product__media-item.is-active').attr('original-image');
+            // const newImage  = inventory.image;
+
+            // console.log({
+            //     orinImage,
+            //     newImage
+            // });
+
+            // const imageElement = $('.owl-item.active .product__media-item.is-active').find('img');
+
+            // const type = e.type;
+
+            // if (type == 'mouseover') {
+            //     imageElement.attr('src', newImage);
+            //     imageElement.attr('srcset', newImage);
+            // } else if (type == 'mouseout') {
+            //     imageElement.attr('src', orinImage);
+            //     imageElement.attr('srcset', orinImage);
+            // }
+        });
+    },
     onChange: () => {
         $('[name="attribute_value"]').on('change', function() {
             const value = $(this).val();
@@ -108,6 +134,36 @@ const MAIN_INVENTORY = {
 
             $('[data-stock-quantity]').trigger('change');
         });
+    },
+    findInventory: (element) => {
+        const conditions = {};
+
+        conditions[ + ($(element).find('input').attr('data-attribute-id')) ] = + ($(element).find('input').val());
+
+        const inventory = MAIN_INVENTORY.variant_resources.find(function(item) {
+            const attributes = item.attributes.map((item) => item.id);
+            const attrValues = item.attribute_values.map((item) => item.id);
+
+            const matches = (() => {
+                if (
+                    // Object.keys(conditions).length == attributes.length
+                    Object.keys(conditions).every((id) => attributes.includes(+id))
+                ) {
+                    if (
+                        // Object.values(conditions).length == attrValues.length
+                        Object.values(conditions).every((id) => attrValues.includes(+id))
+                    ) {
+                        return true;
+                    }
+                }
+
+                return false;
+            })();
+
+            return matches;
+        });
+
+        return inventory;
     },
     findProductByAttribute: () => {
         const conditions = {};

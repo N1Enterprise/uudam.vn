@@ -21,6 +21,7 @@ class PostResource extends BaseJsonResource
             'status_name' => $this->status_name,
             'display_on_frontend' => $this->display_on_frontend,
             'display_on_frontend_name' => $this->display_on_frontend_name,
+            'code' => $this->code,
             'allow_frontend_search' => $this->allow_frontend_search,
             'allow_frontend_search_name' => $this->allow_frontend_search_name,
             'meta' => $this->meta,
@@ -50,7 +51,7 @@ class PostResource extends BaseJsonResource
             'actions' => array_filter([
                 'update' => $updatePermission ? Route::findByName('bo.web.posts.edit', ['id' => $this->getKey()]) : null,
                 'delete' => $deletePermission ? Route::findByName('bo.web.posts.delete', ['id' => $this->getKey()]) : null,
-                'fe_link' => Route::findByName('fe.web.posts.index', ['slug' => $this->slug, 'id' => $this->id]),
+                'fe_link' => Route::findByName('fe.web.posts.index', ['slug' => $this->slug, 'code' => $this->code]),
             ]),
         ]);
     }

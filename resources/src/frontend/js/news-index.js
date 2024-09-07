@@ -101,7 +101,7 @@ const POST_BY = {
 
         const payload = {
             paging: 'simplePaginate',
-            per_page: 20,
+            per_page: 10,
             page: POST_BY.elements.btn_load_more.attr('data-current-page'),
             ...data,
         };

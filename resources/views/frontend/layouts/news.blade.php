@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($postCategory, 'name', 'Tin tức ƯU ĐÀM') }} | {{ config('app.user_domain') }}
+@yield('page_title_news')
 @endsection
 
 @section('page_seo')

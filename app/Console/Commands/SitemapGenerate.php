@@ -51,6 +51,50 @@ class SitemapGenerate extends Command
 
         $sitemap->add(route('fe.web.home'), Carbon::now(), '1.0', 'daily');
 
+        $staticPages = [
+            [
+                'route' => route('fe.web.news.index'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.search'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.cart.index'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.profile'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.security.password-change'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.profile.order-histories'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.localization.address'),
+                'priority' => '0.9'
+            ],
+            [
+                'route' => route('fe.web.user.checkout.confirmation'),
+                'priority' => '0.9'
+            ],
+        ];
+
+        foreach ($staticPages as $item) {
+            $sitemap->add(
+                data_get($item, 'route'),
+                Carbon::now(),
+                data_get($item, 'priority'),
+                'daily'
+            );
+        }
+
         InventoryService::make()
             ->searchForGuest(['paginate' => false])
             ->each(function($inventory) use (&$sitemap) {
@@ -73,7 +117,7 @@ class SitemapGenerate extends Command
             ->searchForGuest(['paginate' => false])
             ->each(function($postCategory) use (&$sitemap) {
                 $sitemap->add(
-                    route('fe.web.blogs.index', data_get($postCategory, 'slug')),
+                    route('fe.web.news.show-post-categories', data_get($postCategory, 'slug')),
                     data_get($postCategory, 'created_at'), '0.6', 'daily'
                 );
             });
@@ -110,6 +154,8 @@ class SitemapGenerate extends Command
         if (File::exists(public_path() . '/sitemap.xml')) {
             chmod(public_path() . '/sitemap.xml', 0777);
         }
+
+        $this->info('Sitemap Generated Successfully!');
 
         return 0;
     }

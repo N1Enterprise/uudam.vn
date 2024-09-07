@@ -6,6 +6,7 @@ use App\Common\ImageHelper;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class PostService extends BaseService
@@ -80,6 +81,11 @@ class PostService extends BaseService
             ->all(data_get($data, 'columns', ['*']));
     }
 
+    public function syncProducts(Post $post, $products = [])
+    {
+        $post->linkedProducts()->sync($products);
+    }
+
     public function create($attributes = [])
     {
         return DB::transaction(function () use ($attributes) {
@@ -88,13 +94,17 @@ class PostService extends BaseService
                 ->setConfigKey([Post::class, 'image'])
                 ->uploadImage(data_get($attributes, 'image'));
 
-            return $this->postRepository->create($attributes);
+            $post = $this->postRepository->create($attributes);
+
+            $this->syncProducts($post, Arr::wrap(data_get($attributes, 'linked_products', [])));
+
+            return $post;
         });
     }
 
     public function show($id, $columns = ['*'])
     {
-        return $this->postRepository->findOrFail($id, $columns);
+        return $this->postRepository->with(['linkedProducts'])->findOrFail($id, $columns);
     }
 
     public function update($attributes = [], $id)
@@ -105,7 +115,11 @@ class PostService extends BaseService
                 ->setConfigKey([Post::class, 'image'])
                 ->uploadImage(data_get($attributes, 'image'));
 
-            return $this->postRepository->update($attributes, $id);
+            $post = $this->postRepository->update($attributes, $id);
+
+            $this->syncProducts($post, Arr::wrap(data_get($attributes, 'linked_products', [])));
+
+            return $post;
         });
     }
 
@@ -116,13 +130,13 @@ class PostService extends BaseService
 
     public function findBySlugForGuest($slug, $data = [])
     {
-        $id = data_get($data, 'id');
+        $code = data_get($data, 'code');
 
         return $this->postRepository
             ->modelScopes(['active'])
-            ->scopeQuery(function($q) use ($slug, $id) {
+            ->scopeQuery(function($q) use ($slug, $code) {
                 $q->where('slug', $slug)
-                    ->orWhere('id', $id);
+                    ->orWhere('code', $code);
             })
             ->first(data_get($data, 'columns', ['*']));
     }

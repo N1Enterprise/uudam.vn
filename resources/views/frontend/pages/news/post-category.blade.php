@@ -1,5 +1,9 @@
 @extends('frontend.layouts.news')
 
+@section('page_title_news')
+{{ data_get($postCategory, 'meta_title', data_get($postCategory, 'name')) }}
+@endsection
+
 @section('page_seo_news')
 {!! $postCategory->toHtmlSEO() !!}
 @endsection

@@ -281,7 +281,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>{{ __('Bài viết liên quan') }}</label>
                             <select data-actions-box="true" name="suggested_relationships[posts][]" title="-- {{ __('Bài viết liên quan') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
                                 @foreach($categoryRelatedPosts as $category)
@@ -293,6 +293,27 @@
                                         data-subtext="{{ $post->id }}"
                                         data-post-id="{{ $post->id }}"
                                         data-post-name="{{ $post->name }}"
+                                        value="{{ $post->id }}">{{ $post->name }}</option>
+                                    @endforeach
+                                </optgroup>
+                                @endforeach
+                            </select>
+                            <div class="form-group Related_Post_Allowed_Holder mb-0 mt-2">
+                                <div class="Related_Post_Holder_Content"></div>
+                            </div>
+                        </div> --}}
+                        <div class="form-group">
+                            <label>{{ __('Bài viết liên quan') }}</label>
+                            <select data-actions-box="true" name="linked_posts[]" title="-- {{ __('Bài viết liên quan') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
+                                @foreach($categoryRelatedPosts as $category)
+                                <optgroup label="{{ $category->name }}">
+                                    @foreach($category->posts as $post)
+                                    <option
+                                        {{ in_array($post->id, old("linked_posts", [])) ? 'selected' : '' }}
+                                        data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $post->code }} | {{ $category->name }}"
+                                        data-subtext="[{{ $post->id }}-{{ $post->code }}]"
+                                        data-post-id="{{ $post->id }}"
+                                        data-post-name="{{ $post->code }} - {{ $post->name }}"
                                         value="{{ $post->id }}">{{ $post->name }}</option>
                                     @endforeach
                                 </optgroup>

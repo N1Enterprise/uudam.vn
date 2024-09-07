@@ -25,7 +25,7 @@
         @endif
 
         @foreach ($imageGalleries as $image)
-        <div data-media-modal-open data-owl-index="{{ empty($mediaVideos) ? $loop->index : $loop->index + 1 }}" class="product__media-item grid__item slider__slide {{ empty($mediaVideos) ? 'is-active' : '' }}">
+        <div data-media-modal-open data-owl-index="{{ empty($mediaVideos) ? $loop->index : $loop->index + 1 }}" class="product__media-item grid__item slider__slide {{ empty($mediaVideos) ? 'is-active' : '' }}" original-image="{{ $image }}">
             <div class="modal-opener product__modal-opener product__modal-opener--image no-js-hidden">
                 <span class="product__media-icon motion-reduce quick-add-hidden">
                     <svg focusable="false" class="icon icon-plus" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">

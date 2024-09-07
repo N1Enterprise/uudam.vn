@@ -64,4 +64,9 @@ class Post extends BaseModel
             'image'  => $this->image,
         ];
     }
+
+    public function linkedProducts()
+    {
+        return $this->belongsToMany(Product::class, 'product_post_linkeds', 'post_id', 'product_id')->withTimestamps();
+    }
 }

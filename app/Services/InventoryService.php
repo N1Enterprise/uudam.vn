@@ -344,7 +344,7 @@ class InventoryService extends BaseService
             ->scopeQuery(function($q) use ($productId) {
                 $q->where('product_id', BaseModel::getModelKey($productId));
             })
-            ->all(['id', 'slug']);
+            ->all(['id', 'slug', 'image']);
 
         return $inventories;
     }
@@ -355,7 +355,7 @@ class InventoryService extends BaseService
 
         $inventory = $this->inventoryRepository
             ->modelScopes(['feDisplay', 'active'])
-            ->with(['product', 'attributeValues', 'attributes', 'productCombos'])
+            ->with(['product', 'product.linkedPosts', 'attributeValues', 'attributes', 'productCombos'])
             ->scopeQuery(function($q) use ($slug, $sku) {
                 $q->where('slug', $slug)
                     ->orWhere('sku', $sku);

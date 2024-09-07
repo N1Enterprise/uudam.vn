@@ -1,11 +1,11 @@
 @extends('frontend.layouts.profile')
 
 @section('page_title')
-Quản lí địa chỉ | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('profile_manage_address') }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => 'Quản lí địa chỉ']) !!}
+{!! generate_static_page_seo_html('profile_manage_address') !!}
 @endsection
 
 @section('profile_style')
@@ -50,10 +50,10 @@ Quản lí địa chỉ | {{ config('app.user_domain') }}
                     @endif
                 </div>
                 <div class="action">
-                    <div>
-                        <a class="edit" href="{{ route('fe.web.user.localization.address.edit', data_get($address, 'code')) }}" style="display: block; text-align: right; font-size: 12px;">Chỉnh sửa</a>
+                    <div class="action-address">
+                        <a class="edit action-address-item" href="{{ route('fe.web.user.localization.address.edit', data_get($address, 'code')) }}">Chỉnh sửa</a>
                         @if (!data_get($address, 'is_default'))
-                        <a class="mark-as-default-address" data-method="PUT" href="{{ route('fe.api.user.address.mark-as-default', data_get($address, 'code')) }}" style="display: block; text-align: right; font-size: 12px;">Đặt làm mặt định</a>
+                        <a class="mark-as-default-address action-address-item" data-method="PUT" href="{{ route('fe.api.user.address.mark-as-default', data_get($address, 'code')) }}">Đặt làm mặt định</a>
                         @endif
                     </div>
                 </div>

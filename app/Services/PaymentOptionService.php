@@ -56,7 +56,8 @@ class PaymentOptionService extends BaseService
                 if ($currencyCode = data_get($data, 'currency_code')) {
                     $q->where('currency_code', $currencyCode);
                 }
-            });
+            })
+            ->addSort('order', 'asc');
 
         $result = $result->search([], null, ['*'], false);
 

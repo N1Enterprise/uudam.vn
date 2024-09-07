@@ -137,6 +137,14 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $paymentOption->order) }}">
+                                    @error('order')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+								</div>
+
 								<div class="form-group">
 									<label>{{ __('Số tiền tối thiểu') }}</label>
                                     <x-number-input

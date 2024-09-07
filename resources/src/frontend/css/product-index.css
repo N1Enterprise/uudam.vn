@@ -800,6 +800,16 @@ a.product__text {
     width: 100%;
 }
 
+.product-media-modal__content img {
+    width: 60%;
+}
+
+@media screen and (max-width: 900px) {
+    .product-media-modal__content img {
+        width: 100%;
+    }
+}
+
 .product-media-modal__content .media {
     background: none;
 }
@@ -1531,7 +1541,7 @@ a.product__text {
 }
 
 .article__content-posts {
-    max-height: 310px;
+    max-height: calc(315px + 100px);
     overflow: scroll;
     transition: .3s;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

@@ -2,11 +2,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>{{ data_get($SYSTEM_SETTING, 'page_settings.app_name') }} | {{ config('app.user_domain') }}</title>
+<title>
+{{ get_static_page_seo_title('maintenance') }}
+</title>
 @foreach (data_get($SYSTEM_SETTING, 'page_settings.favicon', []) as $favicon)
 <link rel="icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
 @endforeach
-{!! generate_seo_html(['page_name' => 'Hệ thống đang bảo trì']) !!}
+{!! generate_static_page_seo_html('maintenance') !!}
 <link rel="stylesheet" id="flatsome-main-css" href="{{ asset_with_version('frontend/bundle/css/maintenance-index.min.css') }}" type="text/css" media="all">
 <style id="custom-css" type="text/css">
 .sticky-add-to-cart--active, #wrapper, #main, #main.dark {background-color: #025b50;}body {color: #fff;background-color: #025b50;overflow: hidden;}h1, h2, h3, h4, h5, h6, .heading-font {color: #faaf40;}a {color: #faaf40!important;}.link-pay {background: #fff;display: flex;justify-content: center;flex-direction: column;align-items: center;padding: 8px;width: 100%;border-radius: 3px;margin: 0 auto;}.master-image {width: 100%!important;}.allow-ip-button {padding: 4px 10px;background: #fff;border-radius: 3px;margin-top: 10px;font-weight: bold;color: #025b50!important;}

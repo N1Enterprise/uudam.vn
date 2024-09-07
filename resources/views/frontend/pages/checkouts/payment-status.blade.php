@@ -1,11 +1,11 @@
 @extends('frontend.layouts.checkout')
 
 @section('page_title')
-Trạng thái đơn hàng #{{ $order->order_code }} | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('payment_status', [':order_code' => $order->order_code]) }}
 @endsection
 
 @section('page_seo')
-{!! generate_seo_html(['page_name' => "Trạng thái đơn hàng #" . $order->order_code]) !!}
+{!! generate_static_page_seo_html('payment_status', [':order_code' => $order->order_code]) !!}
 @endsection
 
 @section('style')
