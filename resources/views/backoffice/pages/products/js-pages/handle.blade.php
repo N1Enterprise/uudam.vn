@@ -110,6 +110,7 @@
                 inventories: $form.find('[name="suggested_relationships[inventories][]"]').val(),
                 posts: $form.find('[name="suggested_relationships[posts][]"]').val(),
             };
+            const __linkedPosts = $form.find('[name="linked_posts[]"]').val();
             const __categories = $form.find('[name="categories[]"]').val();
             const __type = $form.find('[name="type"]').val();
             const __branch = $form.find('[name="branch"]').val();
@@ -145,6 +146,10 @@
 
             $.each(__categories, function(index, item) {
                 formData.append(`categories[${index}]`, item);
+            });
+
+            $.each(__linkedPosts, function(index, item) {
+                formData.append(`linked_posts[${index}]`, item);
             });
 
             formData.append('type', __type);

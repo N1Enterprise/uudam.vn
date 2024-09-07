@@ -65,7 +65,7 @@ class ProductController extends BaseController
 
     public function edit($id)
     {
-        $product = $this->productService->show($id, ['with' => 'categories']);
+        $product = $this->productService->show($id, ['with' => 'categories', 'linkedPosts']);
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
 

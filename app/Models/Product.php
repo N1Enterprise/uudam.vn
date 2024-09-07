@@ -79,5 +79,10 @@ class Product extends BaseModel
     {
         return $this->hasMany(ProductReview::class);
     }
+
+    public function linkedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'product_post_linkeds', 'product_id', 'post_id')->withTimestamps();
+    }
 }
 
