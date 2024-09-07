@@ -79,7 +79,9 @@ class ProductController extends BaseController
 
         $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 
-        $suggestedPosts = $this->postService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.posts'));
+        $suggestedPosts = collect(optional($inventory->product)->linkedPosts ?? []);
+
+        // $suggestedPosts = $this->postService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.posts'));
 
         $suggestedInventories = $this->inventoryService->getAvailableByIds(data_get($inventory->product, 'suggested_relationships.inventories'), ['scope' => ['feDisplay']]);
 

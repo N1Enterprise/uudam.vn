@@ -401,15 +401,16 @@
 
                                 <div class="form-group">
                                     <label>{{ __('Bài viết liên quan') }}</label>
-                                    <select data-actions-box="true" name="suggested_relationships[posts][]" title="-- {{ __('Bài viết liên quan') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
+                                    <select data-actions-box="true" name="linked_posts[]" title="-- {{ __('Bài viết liên quan') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Post_Selector" multiple data-selected-text-format="count > 5">
                                         @foreach($categoryRelatedPosts as $category)
                                         <optgroup label="{{ $category->name }}">
                                             @foreach($category->posts as $post)
                                             <option
-                                                {{ in_array($post->id, old("suggested_relationships.posts", data_get($product, 'suggested_relationships.posts', []))) ? 'selected' : '' }}
+                                                {{ in_array($post->id, old("linked_posts", $product->linkedPosts->pluck('id')->toArray())) ? 'selected' : '' }}
                                                 data-tokens="{{ $post->id }} | {{ $post->name }} | {{ $post->code }} | {{ $category->name }}"
+                                                data-subtext="[{{ $post->id }}-{{ $post->code }}]"
                                                 data-post-id="{{ $post->id }}"
-                                                data-post-name="{{ $post->name }}"
+                                                data-post-name="{{ $post->code }} - {{ $post->name }}"
                                                 value="{{ $post->id }}">{{ $post->name }}</option>
                                             @endforeach
                                         </optgroup>

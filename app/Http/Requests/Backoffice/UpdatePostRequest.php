@@ -8,6 +8,8 @@ use App\Contracts\Requests\Backoffice\UpdatePostRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\Product;
+use Illuminate\Support\Arr;
 
 class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestContract
 {
@@ -32,6 +34,8 @@ class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestCont
             'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
             'allow_frontend_search' => ['required', Rule::in(ActivationStatusEnum::all())],
             'author' => ['required', 'string', 'max:255'],
+            'linked_products' => ['nullable', 'array'],
+            'linked_products.*' => ['required', Rule::exists(Product::class, 'id')],
         ];
     }
 
@@ -46,6 +50,7 @@ class UpdatePostRequest extends BaseFormRequest implements UpdatePostRequestCont
             'allow_frontend_search' => boolean($this->allow_frontend_search) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'image' => empty(array_filter($this->image)) ? null : array_filter($this->image),
             'author' => !empty($this->author) ? $this->author : $admin->name,
+            'linked_products' => array_map('intval', Arr::wrap($this->linked_products))
         ]);
     }
 }

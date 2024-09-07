@@ -66,6 +66,7 @@ class ProductService extends BaseService
             $product = $this->productRepository->create($attributes);
 
             $this->syncCategories($product, data_get($attributes, 'categories', []));
+            $this->syncPosts($product, data_get($attributes, 'linked_posts', []));
 
             return $product;
         });
@@ -94,6 +95,7 @@ class ProductService extends BaseService
             $product = $this->productRepository->update($attributes, $product->getKey());
 
             $this->syncCategories($product, data_get($attributes, 'categories', []));
+            $this->syncPosts($product, data_get($attributes, 'linked_posts', []));
 
             return $product;
         });
@@ -102,6 +104,11 @@ class ProductService extends BaseService
     protected function syncCategories(Product $product, $categories = [])
     {
         return $product->categories()->sync($categories);
+    }
+
+    public function syncPosts(Product $product, $posts = [])
+    {
+        $product->linkedPosts()->sync($posts);
     }
 
     protected function convertMediaImage($mediaImages = [])

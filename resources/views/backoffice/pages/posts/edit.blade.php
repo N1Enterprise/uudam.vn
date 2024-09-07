@@ -49,6 +49,12 @@
 									{{ __('Thông tin chung') }}
 								</a>
 							</li>
+
+                            <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#linkTab">
+									{{ __('Thông tin liên kết') }}
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -235,6 +241,27 @@
 									</div>
 								</div>
 							</div>
+
+                            <div class="tab-pane" id="linkTab">
+                                <div class="form-group">
+                                    <label>{{ __('Sản phẩm liên kết') }}</label>
+                                    <select data-actions-box="true" name="linked_products[]" title="-- {{ __('Sản phẩm liên kết') }} --" data-size="5" data-live-search="true" class="form-control k_selectpicker Related_Product_Linked_Selector" multiple data-selected-text-format="count > 5">
+                                        @foreach($products as $product)
+                                        <option
+                                            {{ in_array($product->id, old('linked_products', $post->linkedProducts->pluck('id')->toArray())) ? 'selected' : '' }}
+                                            data-tokens="{{ $product->id }} | {{ $product->name }} | {{ $product->code }}"
+                                            data-subtext="[{{ $product->id }}-{{ $product->code }}]"
+                                            data-product-id="{{ $product->id }}"
+                                            data-product-name="{{ $product->name }}"
+                                            value="{{ $product->id }}"
+                                        >{{ $product->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="form-group Related_Product_Linked_Allowed_Holder mb-0 mt-2">
+                                        <div class="Related_Product_Linked_Holder_Content"></div>
+                                    </div>
+                                </div>
+							</div>
 						</div>
 					</div>
 					<div class="k-portlet__foot">
@@ -253,4 +280,5 @@
 
 @section('js_script')
 @include('backoffice.pages.posts.js-pages.handle')
+@include('backoffice.pages.posts.js-pages.products-linked')
 @endsection
