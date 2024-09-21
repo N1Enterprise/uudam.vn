@@ -82,7 +82,9 @@ class Product extends BaseModel
 
     public function linkedPosts()
     {
-        return $this->belongsToMany(Post::class, 'product_post_linkeds', 'product_id', 'post_id')->withTimestamps();
+        return $this->belongsToMany(Post::class, 'product_post_linkeds', 'product_id', 'post_id')->withTimestamps()
+            ->where('status', 1)
+            ->where('display_on_frontend', 1);
     }
 }
 
