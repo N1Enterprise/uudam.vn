@@ -1,4 +1,5 @@
 <slideshow-component>
+    @if (count($homeBanners) > 1)
     <div class="slideshow__controls slideshow__controls--top slider-buttons no-js-hidden banner-home-control">
         <button type="button" class="slider-button slider-button--prev" data-owl-prev="Slider_Home_Banner" aria-label="Button Prev">
             <svg focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
@@ -11,6 +12,7 @@
             </svg>
         </button>
     </div>
+    @endif
     <div class="slideshow banner banner--medium grid grid--1-col slider slider--everywhere" data-autoplay="true" data-speed="9" data-owl-id="Slider_Home_Banner" data-owl-ignore-nav="true" data-owl-items="1">
         @foreach ($homeBanners as $banner)
         <div class="slideshow__slide grid__item grid--1-col slider__slide" tabindex="-1">
