@@ -1,6 +1,7 @@
 <?php
 
 use App\Enum\ActivationStatusEnum;
+use App\Enum\InventoryConditionEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +24,6 @@ class CreateInventoriesTable extends Migration
             $table->string('slug')->unique();
             $table->string('sku')->unique()->nullable();
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
-            $table->tinyInteger('featured')->comment(ActivationStatusEnum::class)->default(0);
             $table->json('key_features')->nullable();
             $table->decimal('purchase_price', 27, 8)->nullable();
             $table->decimal('sale_price', 27, 8)->nullable();

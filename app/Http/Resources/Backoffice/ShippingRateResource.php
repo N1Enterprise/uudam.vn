@@ -3,12 +3,26 @@
 namespace App\Http\Resources\Backoffice;
 
 use App\Common\Money;
+use App\Enum\ShippingRateTypeEnum;
 use Illuminate\Support\Facades\Route;
 
 class ShippingRateResource extends BaseJsonResource
 {
     public function toArray($request)
     {
+        $minimumFormatted = null;
+        $maximumFormatted = null;
+
+        if ($this->type == ShippingRateTypeEnum::PRICE) {
+            $minimumFormatted = $this->minimum != null ? $this->toMoney('minimum')->format() : null;
+            $maximumFormatted = $this->maximum != null ? $this->toMoney('maximum')->format() : null;
+        }
+
+        if ($this->type == ShippingRateTypeEnum::WEIGHT) {
+            $minimumFormatted = $this->minimum != null ?  round($this->minimum, 2).'(g)' : null;
+            $maximumFormatted = $this->maximum != null ?  round($this->maximum, 2).'(g)' : null;
+        }
+
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
@@ -18,10 +32,11 @@ class ShippingRateResource extends BaseJsonResource
             'type' => $this->type,
             'type_name' => $this->type_name,
             'minimum' => $this->minimum,
-            'minimum_formatted' => Money::format($this->minimum),
+            'minimum_formatted' => $minimumFormatted,
             'maximum' => $this->maximum,
-            'maximum_formatted' => Money::format($this->maximum),
+            'maximum_formatted' => $maximumFormatted,
             'rate' => $this->rate,
+            'rate_formatted' => $this->rate == 0 ? __('Free Ship') : $this->toMoney('rate')->format(),
             'status' => $this->status,
             'status_name' => $this->status_name,
             'created_at' => $this->created_at,

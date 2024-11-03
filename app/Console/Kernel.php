@@ -2,11 +2,21 @@
 
 namespace App\Console;
 
+use App\Enum\SystemSettingKeyEnum;
+use App\Models\SystemSetting;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+    ];
+
     /**
      * Define the application's command schedule.
      *
@@ -15,7 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $queueNames = SystemSetting::from(SystemSettingKeyEnum::QUEUE_NAMES)->get(null, ['default']);
+
+        $queueNames = implode(',', $queueNames);
+
+        $schedule->command("queue:work --stop-when-empty --tries=3 --queue=$queueNames")
+            ->everyMinute()
+            ->withoutOverlapping(5);
     }
 
     /**

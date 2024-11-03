@@ -23,7 +23,6 @@ class UpdateCategoryRequest extends BaseFormRequest implements UpdateCategoryReq
             'primary_image.path' => ['nullable', 'string'],
             'order' => ['nullable', 'integer', 'gt:0'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'featured' => ['required', Rule::in(ActivationStatusEnum::all())],
             'meta_title' => ['nullable', 'max:255'],
             'meta_description' => ['nullable', 'max:255'],
         ];
@@ -33,7 +32,6 @@ class UpdateCategoryRequest extends BaseFormRequest implements UpdateCategoryReq
     {
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
-            'featured' => boolean($this->featured) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'primary_image' => empty(array_filter($this->primary_image)) ? null : array_filter($this->primary_image),
         ]);
     }

@@ -6,6 +6,7 @@ use App\Common\ImageHelper;
 use App\Models\Collection;
 use App\Repositories\Contracts\CollectionRepositoryContract;
 use App\Services\BaseService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class CollectionService extends BaseService
@@ -22,18 +23,54 @@ class CollectionService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->collectionRepository
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['name', 'slug', 'cta_label'])
             ->search([]);
 
         return $result;
     }
 
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $paginate = data_get($data, 'paginate', true);
+
+        $result = $this->collectionRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                if (array_key_exists('filter_ids', $data)) {
+                    $q->whereIn('id', Arr::wrap(data_get($data, 'filter_ids', [])));
+                }
+            })
+            ->orderBy('order');
+
+        return $paginate
+            ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
+            : $result->all();
+    }
+
     public function allAvailable($data = [])
     {
         return $this->collectionRepository
-            ->modelScopes(['active'])
+            ->modelScopes(array_merge(['active'], data_get($data, 'scopes', [])))
             ->with(data_get($data, 'with', []))
+            ->orderBy('order')
             ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function findBySlugForGuest($slug, $data = [])
+    {
+        $id = data_get($data, 'id');
+
+        return $this->collectionRepository
+            ->modelScopes(['active', 'feDisplay'])
+            ->selectColumns(data_get($data, 'columns', ['*']))
+            ->scopeQuery(function($q) use ($slug, $id) {
+                $q->where('slug', $slug)
+                    ->orWhere('id', $id);
+            })
+            ->first();
     }
 
     public function showBySlug($slug, $data = [])
@@ -49,7 +86,7 @@ class CollectionService extends BaseService
 
         $linkedInventories = data_get($collection, 'linked_inventories', []);
 
-        $inventories = $this->inventoryService->searchByUser(array_merge(['filter_ids' => $linkedInventories], $data));
+        $inventories = $this->inventoryService->searchForGuest(array_merge(['filter_ids' => $linkedInventories], $data));
 
         return $inventories;
     }

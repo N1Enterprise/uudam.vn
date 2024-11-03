@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-    $title = __('Users');
+    $title = __('Danh sách khách hàng');
 
     $breadcrumbs = [
         [
-            'label' => $title,
+            'label' => __('Khách Hàng'),
         ],
         [
-            'label' => __('User Manage'),
+            'label' => $title,
         ],
     ];
 @endphp
@@ -29,7 +29,7 @@
                     <div class="row filter_content">
                         <div class="col-lg-3 form-group">
                             <div class="input-group pull-right">
-                                <input type="daterangepicker" placeholder="{{ __('Registration Date') }}" class="form-control" readonly>
+                                <input type="daterangepicker" placeholder="{{ __('Ngày đăng ký') }}" class="form-control" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="la la-calendar-check-o"></i>
@@ -40,15 +40,15 @@
                             </div>
                         </div>
                         <div class="col-lg-3 form-group">
-                            <input type="text" name="phone_number" class="form-control" placeholder="{{ __('Phone Number') }}">
+                            <input type="text" name="phone_number" class="form-control" placeholder="{{ __('Số điện thoại') }}">
                         </div>
                         <div class="col-lg-3 form-group">
-                            <input type="text" class="form-control" data-original-title="{{ __('User Email') }}" data-toggle="tooltip" placeholder="{{ __('User Email') }}" name="email" id="email">
+                            <input type="text" class="form-control" data-original-title="{{ __('E-mail khách hàng') }}" data-toggle="tooltip" placeholder="{{ __('E-mail khách hàng') }}" name="email" id="email">
                         </div>
 
-                        <div class="form-group col-lg-3"  data-original-title="{{ __('Status') }}" data-toggle="tooltip">
-                            <select name="status " class="form-control k_selectpicker" aria-placeholder="{{ __('Status') }}">
-                                <option value="">--{{ __('Select Status') }}--</option>
+                        <div class="form-group col-lg-3"  data-original-title="{{ __('Trạng thái khách hàng') }}" data-toggle="tooltip">
+                            <select name="status " class="form-control k_selectpicker">
+                                <option value="">-- {{ __('Trạng thái khách hàng') }} --</option>
                                 @foreach($userStatus as $key => $label)
                                 <option value="{{ $key }}">{{ $label }}</option>
                                 @endforeach
@@ -58,8 +58,8 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Search') }}</button>
-                        <button type="reset" class="btn btn-secondary">{{ __('Reset') }}</button>
+                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Tìm kiếm') }}</button>
+                        <button type="reset" class="btn btn-secondary">{{ __('Làm mới') }}</button>
                     </div>
                 </div>
             </div>
@@ -71,25 +71,38 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Users Manage') }}
+                    {{ $title }}
                 </h3>
             </div>
+            @canAny(['users.store'])
+            <div class="k-portlet__head-toolbar">
+                <div class="k-portlet__head-toolbar-wrapper">
+                    @can('users.store')
+                    <a href="{{ route('bo.web.users.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
+                        <i class="la la-plus"></i>
+                        {{ __('Tạo mới') }}
+                    </a>
+                    @endcan
+                </div>
+            </div>
+            @endcan
         </div>
         <div class="k-portlet__body">
             <!--begin: Datatable -->
             <table id="table_user-list-index" data-searching="true" data-request-url="{{ route('bo.api.users.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable fs-table-object">
                 <thead>
                     <tr>
-                        <th data-property="id">{{ __('User ID') }}</th>
-                        <th data-property="username">{{ __('User Name') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
-                        <th data-property="phone_number">{{ __('Phone Number') }}</th>
-                        <th data-property="email">{{ __('Email') }}</th>
-                        <th data-name="status" data-badge data-property="serialized_status_name">{{ __('Status') }}</th>
-                        <th data-property="last_logged_in_at">{{ __('Last Logged At') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Actions') }}</th>
+                        <th data-property="id">{{ __('ID') }}</th>
+                        <th data-property="username">{{ __('Tên tài khoản') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
+                        <th data-property="phone_number">{{ __('SĐT') }}</th>
+                        <th data-property="email">{{ __('E-mail') }}</th>
+                        <th data-name="access_channel_type" data-badge data-property="access_channel_type_name">{{ __('Kênh truy cập') }}</th>
+                        <th data-name="status" data-badge data-property="serialized_status_name">{{ __('Trạng thái') }}</th>
+                        <th data-property="last_logged_in_at">{{ __('Đăng nhập lần cuối') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

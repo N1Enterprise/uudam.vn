@@ -13,5 +13,13 @@ class FrontendResponseServiceProvider extends ServiceProvider
         Contracts\ListLinkedInventoryResponseContract::class => Responses\ListLinkedInventoryResponse::class,
         Contracts\UserUpdateCartItemQuantityResponseContract::class => Responses\UserUpdateCartItemQuantityResponse::class,
         Contracts\UserOrderResponseContract::class => Responses\UserOrderResponse::class,
+        Contracts\ListLinkedCollectionResponseContract::class => Responses\ListLinkedCollectionResponse::class,
+        Contracts\ListLinkedPostResponseContract::class => Responses\ListLinkedPostResponse::class,
+        Contracts\ListLinkedBlogResponseContract::class => Responses\ListLinkedBlogResponse::class,
+        Contracts\ListLinkedBannerResponseContract::class => Responses\ListLinkedBannerResponse::class,
+        Contracts\StoreUserAddressResponseContract::class => Responses\StoreUserAddressResponse::class,
+        Contracts\ShowUserAddressResponseContract::class => Responses\ShowUserAddressResponse::class,
+        Contracts\UserCheckoutShippingFeeHistoryResponseContract::class => Responses\UserCheckoutShippingFeeHistoryResponse::class,
+        Contracts\ListPostResponseContract::class => Responses\ListPostResponse::class,
     ];
 }

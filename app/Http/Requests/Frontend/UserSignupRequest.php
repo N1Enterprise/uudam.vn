@@ -16,8 +16,14 @@ class UserSignupRequest extends BaseFormRequest implements UserSignupRequestCont
         return [
             'name' => ['required', 'string', 'max:20'],
             'username' => ['required', 'string', 'max:255', Rule::unique(User::class, 'username')],
-            'phone_number' => ['required', 'string', 'max:15', Rule::unique(User::class, 'phone_number'), new PhoneNumberValidate()],
-            'email' => ['required', 'email', 'string', 'max:255', Rule::unique(User::class, 'email')],
+            'phone_number' => [
+                'required',
+                'string',
+                'max:15',
+                // Rule::unique(User::class, 'phone_number'),
+                new PhoneNumberValidate()
+            ],
+            'email' => ['nullable', 'email', 'string', 'max:255', Rule::unique(User::class, 'email')],
             'password' => ['required', 'string', 'min:6', 'max:255'],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];

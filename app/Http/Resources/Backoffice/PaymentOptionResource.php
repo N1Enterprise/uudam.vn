@@ -25,6 +25,7 @@ class PaymentOptionResource extends BaseJsonResource
             'status_name' => $this->status_name,
             'type_name' => $this->type_name,
             'display_on_frontend' => $this->display_on_frontend,
+            'order' => $this->order,
 
         ], $this->generateActionPermissions());
     }

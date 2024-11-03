@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Attribute Value');
+	$title = __('Biến thể');
 
 	$breadcrumbs = [
 		[
@@ -18,11 +18,14 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
+
+    @include('backoffice.pages.attribute-values.partials.search-form')
+
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Attribute Value') }}
+                    {{ __('Danh sách biến thể') }}
                 </h3>
             </div>
             @canAny(['attribute-values.store'])
@@ -31,7 +34,7 @@
                     @can('attribute-values.store')
                     <a href="{{ route('bo.web.attribute-values.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Attribute Value') }}
+                        {{ __('Tạo biến thẻ') }}
                     </a>
                     @endcan
                 </div>
@@ -43,13 +46,13 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="value">{{ __('Value') }}</th>
-                        <th data-property="order">{{ __('Order') }}</th>
-                        <th data-orderable="false" data-property="attribute.name">{{ __('Attribute Name') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="value">{{ __('Giá trị') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
+                        <th data-orderable="false" data-property="attribute.name">{{ __('Thuộc tính') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,7 +91,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this attribute value?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa giá trị thuộc tính này ?') }}");
 
             if(! confirmation) {
                 return;

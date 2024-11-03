@@ -1,27 +1,15 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($post, 'meta_title', $post, 'name') }}
+{{ data_get($post, 'name') }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-<meta name="description" content="{{ data_get($post, 'meta_description') }}">
-<meta name="keywords" content="{{ data_get($post, 'name') }}">
-<meta property="og:title" content="{{ data_get($post, 'meta_title', $post, 'name') }}">
-<meta property="og:description" content="{{ data_get($post, 'meta_description') }}">
-<meta property="og:image" content="{{ data_get($post, 'image') }}">
-<meta property="og:image:secure_url" content="{{ data_get($post, 'image') }}">
-<meta property="og:url" content="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+{!! $post->toHtmlSEO() !!}
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/blog-news/index.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/page.min.css') }}">
 @endpush
 
 @section('content_body')
@@ -29,27 +17,39 @@
     <article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="article-template__hero-container">
             <div class="article-template__hero-large media" itemprop="image">
-                <img srcset="{{ $post->image }}" src="{{ $post->image }}" loading="lazy" width="4472" height="3578" alt="{{ $post->title }}">
+                <img srcset="{{ data_get($post, 'image') }}" src="{{ data_get($post, 'image') }}" loading="lazy" width="4472" height="3578" alt="{{ data_get($post, 'name') }}">
             </div>
         </div>
         <header class="page-width page-width--narrow">
-            <h1 class="article-template__title" itemprop="headline">{{ $post->title }}</h1>
+            <div class="nav-breadcrumbs">
+                <a href="{{ route('fe.web.news.index') }}" class="nav-breadcrumbs-item">Bài viết</a>
+                <a href="{{ route('fe.web.news.show-post-categories', data_get($postCategory, 'slug')) }}" class="nav-breadcrumbs-item">{{ data_get($postCategory, 'name') }}</a>
+            </div>
+            <h1 class="article-template__title" itemprop="headline">{{ data_get($post, 'name') }}</h1>
             <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-                <span>Cập nhật lần cuối vào lúc: </span>
-                <time datetime="{{ $post->post_at }}">{{ format_datetime($post->updated_at) }}</time>
+                <span>Đăng lúc: </span>
+                <time datetime="{{ data_get($post, 'post_at') }}">
+                    <b>{{ format_datetime(data_get($post, 'post_at')) }}</b>
+                </time>
             </span>
+            <div class="caption-with-letter-spacing" style="margin-top: 10px;">
+                <span>Tác giả:</span>
+                <time>
+                    <b>{{ data_get($post, 'author') }}</b>
+                </time>
+            </div>
         </header>
         <div class="article-template__social-sharing page-width page-width--narrow">
             <share-button class="share-button">
                 <button class="share-button__button hidden">
-                    <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
                         <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"></path>
                     </svg> Share </button>
                 <details>
-                    <summary class="share-button__button" role="button" aria-expanded="false" aria-controls="Article-share-template--16599720231162__main">
-                        <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <summary class="share-button__button">
+                        <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
                             <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"></path>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"></path>
@@ -57,18 +57,18 @@
                     </summary>
                     <div class="share-button__fallback motion-reduce">
                         <div class="field">
-                            <span class="share-button__message hidden" role="status"></span>
-                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.pages.index', $post->slug) }}" placeholder="Link" onclick="this.select();" readonly="">
+                            <span class="share-button__message hidden"></span>
+                            <input type="text" class="field__input" id="url" value="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}" placeholder="Link" onclick="this.select();" readonly="">
                             <label class="field__label" for="url">Link</label>
                         </div>
                         <button class="share-button__close hidden no-js-hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+                            <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-close" fill="none" viewBox="0 0 18 17">
                                 <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
                             </svg>
                             <span class="visually-hidden">Close share</span>
                         </button>
-                        <button class="share-button__copy no-js-hidden">
-                            <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 11 13">
+                        <button class="share-button__copy no-js-hidden" data-copy-content="{{ route('fe.web.posts.index', ['slug' => data_get($post, 'slug'), 'code' => data_get($post, 'code')]) }}">
+                            <svg class="icon icon-clipboard" width="11" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 11 13">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z" fill="currentColor"></path>
                             </svg>
                             <span class="visually-hidden">Copy link</span>
@@ -77,17 +77,22 @@
                 </details>
             </share-button>
         </div>
-        <div class="article-template__content page-width page-width--narrow rte" itemprop="articleBody">
-            {!! $post->content !!}
+        <div class="article-template__content page-width page-width--narrow rte contentview article-contentview" itemprop="articleBody">
+            {!! data_get($post, 'content') !!}
         </div>
+
+        @if (has_data($postCategory->posts))
+        @include('frontend.pages.posts.partials.related-category')
+        @endif
+
         <div class="article-template__back element-margin-top center">
             <a href="{{ route('fe.web.home') }}" class="article-template__link link animate-arrow">
                 <span class="icon-wrap">
-                    <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 14 10" fill="none" focusable="false" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
                     </svg>
                 </span>
-                Trở Lại Trang Chủ
+                Trở lại trang chủ
             </a>
         </div>
     </article>

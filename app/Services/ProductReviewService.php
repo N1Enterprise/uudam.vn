@@ -2,10 +2,15 @@
 
 namespace App\Services;
 
+use App\Cms\ProductReviewCms;
+use App\Common\ImageHelper;
+use App\Enum\ProductReviewStatusEnum;
 use App\Exceptions\BusinessLogicException;
+use App\Models\ProductReview;
 use App\Repositories\Contracts\ProductReviewRepositoryContract;
 use App\Services\BaseService;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class ProductReviewService extends BaseService
 {
@@ -55,7 +60,34 @@ class ProductReviewService extends BaseService
 
     public function create($attributes = [])
     {
-        return $this->productReviewRepository->create($attributes);
+        return DB::transaction(function() use ($attributes) {
+            $attributes['images'] = $this->convertImages(data_get($attributes, 'images', []));
+
+            $model =  $this->productReviewRepository->create($attributes);
+
+            ProductReviewCms::flushByProductId($model->product_id);
+
+            return $model;
+        });
+    }
+
+    protected function convertImages($mediaImages = [])
+    {
+        $counter = 0;
+
+        return array_map(function($image) use (&$counter) {
+            try {
+                return [
+                    'order' => $counter++,
+                    'path' => ImageHelper::make('catalog')
+                        ->hasOptimization()
+                        ->setConfigKey([ProductReview::class, 'image'])
+                        ->uploadImage($image),
+                ];
+            } catch (\Throwable $th) {
+                return [];
+            }
+        }, $mediaImages);
     }
 
     public function show($id, $columns = ['*'])
@@ -65,7 +97,15 @@ class ProductReviewService extends BaseService
 
     public function update($attributes = [], $id)
     {
-        return $this->productReviewRepository->update($attributes, $id);
+        return DB::transaction(function() use ($attributes, $id) {
+            $attributes['images'] = $this->convertImages(data_get($attributes, 'images', []));
+
+            $model = $this->productReviewRepository->update($attributes, $id);
+
+            ProductReviewCms::flushByProductId($model->product_id);
+
+            return $model;
+        });
     }
 
     public function delete($id)
@@ -76,15 +116,26 @@ class ProductReviewService extends BaseService
             throw new BusinessLogicException('Your registration request is pending.');
         }
 
+        ProductReviewCms::flushByProductId($productReview->product_id);
+
         return $this->productReviewRepository->delete($id);
     }
 
-    public function allAvailable($data = [])
+    public function approve($id)
     {
-        return $this->productReviewRepository
-            ->modelScopes(['approved'])
-            ->with(data_get($data, 'with', []))
-            ->orderBy('created_at', 'desc')
-            ->all(data_get($data, 'columns', ['*']));
+        $productReview = $this->show($id);
+
+        ProductReviewCms::flushByProductId($productReview->product_id);
+
+        $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::APPROVED], $productReview);
+    }
+
+    public function decline($id)
+    {
+        $productReview = $this->show($id);
+
+        ProductReviewCms::flushByProductId($productReview->product_id);
+
+        return $this->productReviewRepository->update(['status' => ProductReviewStatusEnum::DECLINED], $productReview);
     }
 }

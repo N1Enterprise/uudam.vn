@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enum\ActivationStatusEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
+use App\Models\Traits\HasHtmlSEO;
 use App\Models\Traits\HasImpactor;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,6 +14,8 @@ class Post extends BaseModel
     use Activatable;
     use SoftDeletes;
     use HasImpactor;
+    use HasFeUsage;
+    use HasHtmlSEO;
 
     protected $fillable = [
         'name',
@@ -28,9 +32,13 @@ class Post extends BaseModel
         'order',
         'status',
         'display_on_frontend',
+        'allow_frontend_search',
         'meta',
+        'code',
         'meta_title',
         'meta_description',
+        'view_count',
+        'author'
     ];
 
     protected $casts = [
@@ -47,8 +55,18 @@ class Post extends BaseModel
         return $this->belongsTo(PostCategory::class, 'post_category_id');
     }
 
-    public function scopeFeatured($query)
+    public function htmlSEOProperties()
     {
-        return $query->where('featured', ActivationStatusEnum::ACTIVE);
+        return [
+            'title'  => $this->meta_title ?? $this->name,
+            'desc'   => $this->meta_description ?? ($this->meta_title ?? $this->name),
+            'url'    => route('fe.web.posts.index', $this->slug),
+            'image'  => $this->image,
+        ];
+    }
+
+    public function linkedProducts()
+    {
+        return $this->belongsToMany(Product::class, 'product_post_linkeds', 'post_id', 'product_id')->withTimestamps();
     }
 }

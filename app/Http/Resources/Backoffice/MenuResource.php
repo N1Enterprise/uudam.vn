@@ -11,6 +11,7 @@ class MenuResource extends BaseJsonResource
         return array_merge([
             'id' => $this->id,
             'name' => $this->name,
+            'label' => $this->label,
             'is_new' => $this->is_new,
             'type' => $this->type,
             'type_name' => $this->type_name,
@@ -20,6 +21,8 @@ class MenuResource extends BaseJsonResource
             'meta' => $this->meta,
             'status' => $this->status,
             'status_name' => $this->status_name,
+            'display_on_frontend' => $this->display_on_frontend,
+            'display_on_frontend_name' => $this->display_on_frontend_name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'catalogs' => $this->whenLoaded('menuCatalogs', function() {

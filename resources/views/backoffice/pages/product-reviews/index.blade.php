@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Product Review');
+	$title = __('Đánh giá sản phẩm');
 
 	$breadcrumbs = [
 		[
@@ -18,12 +18,12 @@
 
 @section('content_body')
 <div class="k-content__body	k-grid__item k-grid__item--fluid" id="k_content_body">
-    @include('backoffice.pages.product-reviews.partials.search-form');
+    @include('backoffice.pages.product-reviews.partials.search-form')
     <div class="k-portlet k-portlet--mobile">
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Product Review') }}
+                    {{ __('Danh sách đánh giá sản phẩm') }}
                 </h3>
             </div>
             @canAny(['product-reviews.store'])
@@ -32,7 +32,7 @@
                     @can('product-reviews.store')
                     <a href="{{ route('bo.web.product-reviews.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Product Review') }}
+                        {{ __('Tạo đánh giá') }}
                     </a>
                     @endcan
                 </div>
@@ -44,17 +44,18 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="user_name" data-render-callback="renderCallbackUserName">{{ __('User Name') }}</th>
-                        <th data-property="user_phone">{{ __('User Phone') }}</th>
-                        <th data-property="user_email">{{ __('User Email') }}</th>
-                        <th data-property="product.name" data-render-callback="renderCallbackProductName">{{ __('Product Name') }}</th>
-                        <th data-orderable="false" data-badge data-name="rating_type" data-property="rating_type_name">{{ __('Rating Type') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="user_name" data-render-callback="renderCallbackUserName">{{ __('Tên khách hàng') }}</th>
+                        <th data-property="user_phone">{{ __('Số điện thoại') }}</th>
+                        <th data-property="user_email">{{ __('E-mail') }}</th>
+                        <th data-property="product.name" data-render-callback="renderCallbackProductName">{{ __('Tên sản phẩm') }}</th>
+                        <th data-orderable="false" data-badge data-name="rating_type" data-property="rating_type_name">{{ __('Loại xếp hạng') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-property="post_at">{{ __('Review lúc') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,7 +95,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Product Review?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa Đánh giá sản phẩm này ?') }}");
 
             if(!confirmation) {
                 return;

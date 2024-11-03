@@ -212,7 +212,7 @@ var fscommon = {
 			self.initDateRangePicker($(this), config);
 		});
 	},
-    formatPrice: function(money, symbol = 'VND') {
+    formatPrice: function(money, symbol = '₫') {
         return this.formatNumber(money, '.', ',') + ' ' + symbol;
     },
 	formatMoney: function(value, currency = null, includeSymbol = true, fixedDecimals = true, minDecimals = 2, codeAsSymbol = true) {
@@ -1124,3 +1124,13 @@ function copyToClipboard(text) {
 	document.execCommand("copy");
 	$temp.remove();
 }
+
+$('[data-copy-clipboard]').each(function(_, element) {
+    $(element).on('click', function() {
+        const content = $(this).attr('data-copy-clipboard-content');
+
+        copyToClipboard(content);
+
+        fstoast.success('Copy to Clipboard success!');
+    });
+});

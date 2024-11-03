@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductReviewRatingEnum;
 use App\Enum\ProductReviewStatusEnum;
 use App\Models\Traits\HasImpactor;
@@ -25,6 +24,13 @@ class ProductReview extends BaseModel
         'created_by_type',
         'updated_by_type',
         'updated_by_id',
+        'is_purchased',
+        'images',
+        'post_at'
+    ];
+
+    protected $casts = [
+        'images' => 'json'
     ];
 
     public function getStatusNameAttribute()
@@ -40,6 +46,29 @@ class ProductReview extends BaseModel
     public function scopeApproved($query)
     {
         return $query->where('status', ProductReviewStatusEnum::APPROVED);
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', ProductReviewStatusEnum::PENDING);
+    }
+
+    public function isApproved()
+    {
+        return $this->status == ProductReviewStatusEnum::APPROVED;
+    }
+
+    public function isDeclined()
+    {
+        return $this->status == ProductReviewStatusEnum::DECLINED;
+    }
+
+    public function isPositive()
+    {
+        return in_array($this->rating_type, [
+            ProductReviewRatingEnum::VERY_GOOD,
+            ProductReviewRatingEnum::GOOD,
+        ]);
     }
 
     public function product()

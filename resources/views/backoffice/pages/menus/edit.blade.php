@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Menu');
+	$title = __('Chỉnh sửa tạo menu');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Menu'),
 		],
 		[
-			'label' => __('Edit Menu'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Menu') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin menu') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -48,35 +48,35 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $menu->name) }}" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $menu->name) }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order', $menu->order) }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $menu->order) }}">
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Menu Type') }}</label>
+                                    <label>{{ __('Loại menu') }} *</label>
+									<input type="hidden" name="type" value="{{ $menu->type }}">
                                     <div class="k-radio-inline">
-                                        @foreach ($menuTypeEnumLabels as $key => $label)
-                                        <label class="k-radio">
-                                            <input type="radio" name="type" {{ (old('type', $menu->type) == $key ? 'checked' : $loop->index == 0 ? 'checked' : '') }} value="{{ $key }}"> {{ $label }}
-                                            <span></span>
-                                        </label>
-                                        @endforeach
+										<select class="form-control" disabled>
+											@foreach ($menuTypeEnumLabels as $key => $label)
+											<option value="{{ $key }}" {{ (old('type', $menu->type) == $key ? 'selected' : $loop->index == 0 ? 'selected' : '') }}>{{ $label }}</option>
+											@endforeach
+										</select>
                                     </div>
                                 </div>
 
                                 <div data-menu-type-tab-key="1" data-menu-type="Collection">
                                     <div class="form-group">
-                                        <label>{{ __('Collection') }} *</label>
-                                        <select name="collection_id" title="--{{ __('Select Collection') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                        <label>{{ __('Bộ sưu tập') }} *</label>
+                                        <select name="collection_id" title="-- {{ __('Chọn bộ sưu tập') }} --" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($collections as $collection)
-                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id', $collection->id) == $collection->id ? 'selected' : '' }}>{{ $collection->name }}</option>
+                                            <option value="{{ $collection->id }}" data-slug="{{ $collection->slug }}" {{ old('collection_id', $collection->id) == $collection->id ? 'selected' : '' }} data-label="{{ $collection->name }}">{{ $collection->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('collection_id')
@@ -87,10 +87,10 @@
 
                                 <div data-menu-type-tab-key="2" data-menu-type="Inventory" class="d-none">
                                     <div class="form-group">
-                                        <label>{{ __('Inventory') }} *</label>
-                                        <select name="inventory_id" title="--{{ __('Select Inventory') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                        <label>{{ __('Sản phẩm trong kho') }} *</label>
+                                        <select name="inventory_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($inventories as $inventory)
-                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id', $menu->inventory_id) == $inventory->id ? 'selected' : '' }}>{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
+                                            <option value="{{ $inventory->id }}" data-slug="{{ $inventory->slug }}" {{ old('inventory_id', $menu->inventory_id) == $inventory->id ? 'selected' : '' }} data-label="{{ $inventory->title }}">{{ $inventory->title }} (SKU: {{ $inventory->sku }})</option>
                                             @endforeach
                                         </select>
                                         @error('inventory_id')
@@ -102,9 +102,9 @@
                                 <div data-menu-type-tab-key="3" data-menu-type="Post" class="d-none">
                                     <div class="form-group">
                                         <label>{{ __('Post') }} *</label>
-                                        <select name="post_id" title="--{{ __('Select Post') }}--" class="form-control k_selectpicker" data-live-search="true">
+                                        <select name="post_id" title="-- {{ __('Chọn Post') }} --" class="form-control k_selectpicker" data-live-search="true">
                                             @foreach($posts as $post)
-                                            <option value="{{ $post->id }}" data-slug="{{ $post->slug }}" {{ old('post_id', $menu->post_id) == $post->id ? 'selected' : '' }}>{{ $post->name }}</option>
+                                            <option value="{{ $post->id }}" data-slug="{{ $post->slug }}" {{ old('post_id', $menu->post_id) == $post->id ? 'selected' : '' }} data-label="{{ $post->name }}">{{ $post->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('post_id')
@@ -113,9 +113,14 @@
                                     </div>
                                 </div>
 
+								<div class="form-group">
+									<label>{{ __('Nhãn') }}</label>
+									<input type="text" class="form-control" name="label" placeholder="{{ __('Nhập nhãn') }}" value="{{ old('label', $menu->label) }}">
+								</div>
+
                                 <div class="form-group">
-                                    <label>{{ __('Groups') }} *</label>
-                                    <select name="menu_catalogs[]" title="--{{ __('Select Group') }}--" class="form-control k_selectpicker" data-size="5" multiple required>
+                                    <label>{{ __('Nhóm') }} *</label>
+                                    <select name="menu_catalogs[]" title="-- {{ __('Chọn nhóm') }} --" class="form-control k_selectpicker" data-size="5" multiple required data-live-search="true">
                                         @foreach($menuGroups as $menuGroup)
                                         <optgroup label="{{ $menuGroup->name }}">
                                             @foreach($menuGroup->menuSubGroups as $subGroup)
@@ -130,7 +135,7 @@
                                 </div>
 
                                 <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Is New') }}</label>
+									<label class="col-2 col-form-label">{{ __('Đánh dấu mới') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -141,12 +146,24 @@
 									</div>
 								</div>
 
-								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+                                <div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Hiển thị FE') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
-												<input type="checkbox" {{ old('status', boolean($menu->status) ? '1' : '0') == '1'  ? 'checked' : '' }} value="1" name="status"/>
+												<input type="checkbox" {{ old('display_on_frontend', boolean($menu->display_on_frontend)) == '1'  ? 'checked' : ''}} value="1" name="display_on_frontend" />
+												<span></span>
+											</label>
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
+									<div class="col-3">
+										<span class="k-switch">
+											<label>
+												<input type="checkbox" {{ old('status', boolean($menu->status)) == '1'  ? 'checked' : '' }} value="1" name="status"/>
 												<span></span>
 											</label>
 										</span>
@@ -157,8 +174,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>
@@ -171,15 +188,27 @@
 
 @section('js_script')
 <script>
-    onChangeMenuType();
+    $(document).ready(function() {
+		onChangeMenuType();
 
-    function onChangeMenuType() {
-        $('[name="type"]').on('change', function() {
-            const type = $(this).val();
-            $('[data-menu-type-tab-key]').addClass('d-none');
-            $(`[data-menu-type-tab-key="${type}"]`).removeClass('d-none');
-        });
-    }
-    FORM_PRIMARY_IMAGE_PATH.triggerChange();
+		$('[name="type"]').trigger('change');
+		$(`[data-menu-type-tab-key="{{ $menu->type }}"] select`).trigger('change');
+
+		function onChangeMenuType() {
+			$('[name="type"]').on('change', function() {
+				const type = $(this).val();
+				$('[data-menu-type-tab-key]').addClass('d-none');
+				$(`[data-menu-type-tab-key="${type}"]`).removeClass('d-none');
+			});
+		}
+
+
+		$(`[data-menu-type-tab-key="{{ $menu->type }}"] select`).on('change', function() {
+			const value = $(this).val();
+			const label = $(`[data-menu-type-tab-key="{{ $menu->type }}"] select`).find(`option[value="${value}"]`).attr('data-label');
+
+			$('[name="label"]').val(label);
+		});
+	})
 </script>
 @endsection

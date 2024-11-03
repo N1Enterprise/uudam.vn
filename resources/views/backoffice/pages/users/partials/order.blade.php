@@ -1,7 +1,7 @@
 <div class="k-portlet">
     <div class="k-portlet__head">
         <div class="k-portlet__head-label">
-            <h3 class="k-portlet__head-title">{{ __('Orders') }}</h3>
+            <h3 class="k-portlet__head-title">{{ __('Danh sách đơn hàng') }}</h3>
         </div>
     </div>
 
@@ -12,7 +12,7 @@
                     <div class="col-md-8 form-group">
                         <div class="input-group">
                             <input
-                                data-original-title="{{ __('Order Date') }}"
+                                data-original-title="{{ __('Ngày đặt hàng') }}"
                                 data-toggle="tooltip"
                                 start="{{ now()->startOfMonth()->toDateTimeString() }}"
                                 end="{{ now()->endOfMonth()->toDateTimeString() }}"
@@ -21,7 +21,7 @@
                                 class="form-control"
                                 value=""
                                 readonly
-                                placeholder="{{ __('Select Date Range') }}"
+                                placeholder="{{ __('Chọn ngày đặt hàng') }}"
                             >
                             <div class="input-group-append">
                                 <span class="input-group-text">
@@ -43,19 +43,19 @@
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-property="order_code">{{ __('Order Code') }}</th>
-                            <th data-property="fullname">{{ __('Full Name') }}</th>
+                            <th data-property="order_code">{{ __('Mã đơn hàng') }}</th>
+                            <th data-property="fullname">{{ __('Họ và tên') }}</th>
                             <th data-property="email">{{ __('E-mail') }}</th>
-                            <th data-property="phone">{{ __('Phone Number') }}</th>
-                            <th data-property="total_item">{{ __('Total Item') }}</th>
-                            <th data-property="total_quantity">{{ __('Total Quantity') }}</th>
-                            <th data-orderable="false" data-badge data-name="payment_status" data-property="payment_status_name">{{ __('Payment Status') }}</th>
-                            <th data-orderable="false" data-badge data-name="order_status" data-property="order_status_name">{{ __('Order Status') }}</th>
-                            <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                            <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                            <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="updated_at">{{ __('Updated At') }}</th>
-                            <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                            <th data-property="phone">{{ __('Số điện thoại') }}</th>
+                            <th data-property="total_item">{{ __('Tổng sản phẩm') }}</th>
+                            <th data-property="total_quantity">{{ __('Tổng số lượng') }}</th>
+                            <th data-orderable="false" data-badge data-name="payment_status" data-property="payment_status_name">{{ __('Trạng thái thanh toán') }}</th>
+                            <th data-orderable="false" data-badge data-name="order_status" data-property="order_status_name">{{ __('Trạng thái đơn hàng') }}</th>
+                            <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                            <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                         </tr>
                     </thead>
                 </table>

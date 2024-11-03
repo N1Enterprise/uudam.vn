@@ -6,6 +6,7 @@ use App\Contracts\Requests\Backoffice\StoreProductRequestContract;
 use App\Contracts\Requests\Backoffice\UpdateProductRequestContract;
 use App\Contracts\Responses\Backoffice\StoreProductResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateProductResponseContract;
+use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductTypeEnum;
 use App\Services\CategoryGroupService;
 use App\Services\CategoryService;
@@ -37,14 +38,18 @@ class ProductController extends BaseController
 
     public function index()
     {
-        return view('backoffice.pages.products.index');
+        $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
+        $statusLabels = ActivationStatusEnum::labels();
+        $productTypeLabels = ProductTypeEnum::labels();
+
+        return view('backoffice.pages.products.index', compact('categoryGroups', 'statusLabels', 'productTypeLabels'));
     }
 
     public function create()
     {
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
-        $relatedInventories = $this->inventoryService->allAvailable(['columns' => ['id', 'title']]);
+        $relatedInventories = $this->inventoryService->allAvailableForGuest(['columns' => ['id', 'title']]);
 
         $categoryRelatedPosts = $this->postCategoryService
             ->allAvailable(['with' => ['posts'], 'columns' => ['id', 'name']])
@@ -60,14 +65,14 @@ class ProductController extends BaseController
 
     public function edit($id)
     {
-        $product = $this->productService->show($id, ['with' => 'categories']);
+        $product = $this->productService->show($id, ['with' => 'categories', 'linkedPosts']);
         $productTypeLabels = ProductTypeEnum::labels();
         $categoryGroups = $this->categoryGroupService->allAvailable(['with' => 'categories']);
 
-        $relatedInventories = $this->inventoryService->allAvailable(['columns' => ['id', 'title']]);
+        $relatedInventories = $this->inventoryService->allAvailableForGuest();
 
         $categoryRelatedPosts = $this->postCategoryService
-            ->allAvailable(['with' => ['posts'], 'columns' => ['id', 'name']])
+            ->allAvailable(['with' => ['posts']])
             ->filter(fn($category) => !$category->posts->isEmpty());
 
         return view('backoffice.pages.products.edit', compact('product', 'productTypeLabels', 'categoryGroups', 'relatedInventories', 'categoryRelatedPosts'));

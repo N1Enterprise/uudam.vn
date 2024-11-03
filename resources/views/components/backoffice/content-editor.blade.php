@@ -28,6 +28,23 @@
     const instance = element.summernote({
         height: 300,
         ...config,
+        toolbar: [
+            ['style', ['style'],],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+        styleTags: ['h2', 'h3', 'h4'],
+        popover: {
+            image: [
+                ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']]
+            ],
+        },
         callbacks: {
             onImageUpload: (files) => {
                 uploadFiles(files, function({ index, data }) {

@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Faq Topic');
+	$title = __('Chỉnh sửa chủ đề hỏi đáp');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Chủ đề hỏi đáp'),
 		],
 		[
-			'label' => __('Edit Faq Topic'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Faq Topic') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin chủ đề hỏi đáp') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -48,19 +48,19 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name', $faqTopic->name) }}" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name', $faqTopic->name) }}" required>
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order', $faqTopic->order) }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $faqTopic->order) }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -75,8 +75,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

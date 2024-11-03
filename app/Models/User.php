@@ -2,23 +2,31 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Casts\Hash;
+use App\Common\RequestHelper;
+use App\Enum\AccessChannelType;
+use App\Enum\SystemSettingKeyEnum;
 use App\Enum\UserStatusEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasCurrency;
+use App\Models\Traits\HasImpactor;
+use App\Notifications\SendUserResetPassword;
 use Carbon\Carbon;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\URL;
 
-class User extends Authenticatable
+class User extends BaseAuthenticateModel implements MustVerifyEmail
 {
     use Activatable;
     use SoftDeletes;
     use Notifiable;
     use HasCurrency;
+    use CanResetPassword;
+    use HasImpactor;
 
     protected $fillable = [
         'username',
@@ -32,6 +40,13 @@ class User extends Authenticatable
         'phone_number',
         'birthday',
         'email_verified_at',
+        'access_channel_type',
+        'meta',
+        'created_by_id',
+        'created_by_type',
+        'updated_by_id',
+        'updated_by_type',
+        'allow_login'
     ];
 
     protected $hidden = [
@@ -41,7 +56,22 @@ class User extends Authenticatable
 
     protected $casts = [
         'password' => Hash::class,
+        'meta' => 'json'
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $link = parse_expression(
+            SystemSetting::from(SystemSettingKeyEnum::USER_FE_RESET_PASSWORD_LINK)->get(),
+            [
+                'fe_host' => RequestHelper::getClientDomain(request()) ?? config('user.host'),
+                'token' => urlencode($token),
+                'email' => urlencode($this->getEmailForPasswordReset()),
+            ]
+        );
+
+        return $this->notify(new SendUserResetPassword($this, $link));
+    }
 
     public function generateEmailVerificationUrl($verificationUrl = null)
     {
@@ -74,6 +104,11 @@ class User extends Authenticatable
         }
 
         return $status;
+    }
+
+    public function getAccessChannelTypeNameAttribute()
+    {
+        return AccessChannelType::findConstantLabel($this->access_channel_type);
     }
 
     public function getSerializedStatusNameAttribute()

@@ -1,20 +1,23 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Category');
+	$title = __('Quản lí danh mục');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Kho sản phẩm'),
+        ],
+        [
+			'label' => __('Danh mục'),
+        ],
+        [
 			'label' => $title,
-		],
-		[
-			'label' => __('Add Category'),
-		]
+        ],
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -39,13 +42,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Category') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Tạo danh mục') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -58,26 +61,26 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
 								<div class="form-group">
-									<label>{{ __('Name') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Enter name') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
+									<label>{{ __('Tên') }} *</label>
+									<input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" placeholder="{{ __('Nhập tên') }}" value="{{ old('name') }}" data-reference-slug="slug" required>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Slug') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" name="slug" placeholder="{{ __('Enter Slug') }}" value="{{ old('slug') }}" required>
+									<label>{{ __('Đường dẫn') }} *</label>
+									<input type="text" class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" name="slug" placeholder="{{ __('Nhập đường dẫn') }}" value="{{ old('slug') }}" required>
                                     @error('slug')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Category Group') }} *</label>
-                                    <select name="category_group_id" title="--{{ __('Select Category Group') }}--" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
+                                    <label>{{ __('Nhóm danh mục') }} *</label>
+                                    <select name="category_group_id" title="-- {{ __('Chọn nhóm danh mục') }} --" data-toggle="tooltip" data-live-search="true" class="form-control k_selectpicker  {{ $errors->has('category_group_id') ? 'is-invalid' : '' }}" required>
                                         @foreach($categoryGroups as $cat)
                                         <option value="{{ $cat->id }}" {{ old('category_group_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                         @endforeach
@@ -88,29 +91,29 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
                                     @error('order')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Primary Image') }} *</label>
+                                    <label>{{ __('Hình ảnh') }} *</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="upload_image_custom position-relative">
-                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Upload Image or Input URL') }}" style="padding-right: 104px;">
+                                                <input type="text" data-image-ref-path="primary" data-image-ref-index="0" class="form-control image_primary_image_url" name="primary_image[path]" value="{{ old('primary_image.path') }}" placeholder="{{ __('Tải ảnh lên hoặc nhập URL ảnh') }}" style="padding-right: 104px;">
                                                 <div data-image-ref-wrapper="primary" data-image-ref-index="0" class="d-none w-100 position-absolute d-none" style="top: 50%; left: 4px; transform: translateY(-50%); height: 90%; background-color: #fff;">
                                                     <div class="d-flex align-items-center h-100">
                                                         <img data-image-ref-img="primary" data-image-ref-index="0" src="" alt="Image preview" class="mr-2" style="height: 100%; width: 100px;">
-                                                        <span data-image-ref-delete="primary" data-image-ref-index="0" aria-hidden="true" style="font-size: 16px; cursor: pointer;">&times;</span>
+                                                        <span data-image-ref-delete="primary" data-image-ref-index="0" style="font-size: 16px; cursor: pointer;">&times;</span>
                                                     </div>
                                                 </div>
                                                 <label for="image_primary_image" class="btn position-absolute btn-secondary upload_image_custom_append_icon btn-sm d-flex">
                                                     <input type="file" id="image_primary_image" data-image-ref-path="file" data-image-ref-index="0" name="primary_image[file]" class="d-none image_primary_image_file">
                                                     <i class="flaticon2-image-file"></i>
-                                                    <span>{{ __('Upload') }}</span>
+                                                    <span>{{ __('Tải lên') }}</span>
                                                 </label>
                                             </div>
                                             <input type="hidden" class="form-control @anyerror('primary_image, primary_image.file, primary_image.path') is-invalid @endanyerror">
@@ -129,39 +132,27 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <x-content-editor id="description" label="Description" name="description" value="{{ old('description') }}" />
+                                    <x-content-editor id="description" label="{{ __('Mô tả') }}" name="description" value="{{ old('description') }}" />
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Title') }}</label>
-									<input type="text" class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}" name="meta_title" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_title') }}">
+									<label>{{ __('[SEO] Tiêu đề') }}</label>
+									<input type="text" class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}" name="meta_title" placeholder="{{ __('Nhập [SEO] tiêu đề') }}" value="{{ old('meta_title') }}">
                                     @error('meta_title')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Meta Description') }}</label>
-									<input type="text" class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" name="meta_description" placeholder="{{ __('Enter Slug') }}" value="{{ old('meta_description') }}">
+									<label>{{ __('[SEO] Mô tả') }}</label>
+									<input type="text" class="form-control {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" name="meta_description" placeholder="{{ __('Nhập [SEO] mô tả') }}" value="{{ old('meta_description') }}">
                                     @error('meta_description')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
-                                <div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Feature') }}</label>
-									<div class="col-3">
-										<span class="k-switch">
-											<label>
-												<input type="checkbox" {{ old('featured', '0') == '1'  ? 'checked' : ''}} value="1" name="featured"/>
-												<span></span>
-											</label>
-										</span>
-									</div>
-								</div>
-
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -176,8 +167,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

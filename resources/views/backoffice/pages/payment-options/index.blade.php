@@ -1,18 +1,15 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Payments';
+	$title = __('Tuỳ chọn thanh toán');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Cài đặt thanh toán'),
+		],
+		[
 			'label' => $title,
 		],
-		[
-			'label' => __('Payment Settings'),
-		],
-		[
-			'label' => __('Payment Option List'),
-		]
 	];
 @endphp
 
@@ -28,7 +25,7 @@
 		<div class="k-portlet__head">
 			<div class="k-portlet__head-label">
 				<h3 class="k-portlet__head-title">
-					{{__('Payment Option List')}}
+					{{__('Danh sách tuỳ chọn thanh toán')}}
 				</h3>
 			</div>
 
@@ -37,7 +34,7 @@
                 <div class="k-portlet__head-toolbar-wrapper">
                     <a href="{{ route('bo.web.payment-options.create') }}" class="btn btn-default btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-add-1"></i>
-                        {{__('Add New Payment Option')}}
+                        {{__('Tạo tuỳ chọn thanh toán')}}
                     </a>
 
                 </div>
@@ -51,14 +48,15 @@
 					<tr>
 						<th data-property="id">{{ __('ID') }}</th>
                         <th data-orderable="false" data-property="logo" data-render-callback="renderLogoImage">{{ __('Logo') }}</th>
-						<th data-property="name">{{ __('Name') }}</th>
-						<th data-name="type" data-property="type_name">{{ __('Option Type') }}</th>
-						<th data-property="payment_provider.name">{{ __('Payment Provider') }}</th>
-						<th data-name="currency_code" data-property="currency.code">{{ __('Currency') }}</th>
-						<th data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-						<th data-property="created_at">{{ __('Created At') }}</th>
-						<th data-property="updated_at">{{ __('Updated At') }}</th>
-						<th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+						<th data-property="name">{{ __('Tên') }}</th>
+						<th data-name="type" data-property="type_name" width="100">{{ __('Loại tùy chọn') }}</th>
+						<th data-property="payment_provider.name" width="100">{{ __('Nhà cung cấp') }}</th>
+						<th data-name="currency_code" data-property="currency.code" width="100">{{ __('Tiền tệ') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
+						<th data-badge data-name="status" data-property="status_name" width="100">{{ __('Trạng thái') }}</th>
+						<th data-property="created_at" width="100">{{ __('Ngày tạo') }}</th>
+						<th data-property="updated_at" width="100">{{ __('Ngày cập nhật') }}</th>
+						<th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,7 +78,7 @@
         const image = $('<img>', {
             src: data,
             width: 80,
-            height: 80,
+            height: 'auto',
         });
 
         return image.prop('outerHTML');

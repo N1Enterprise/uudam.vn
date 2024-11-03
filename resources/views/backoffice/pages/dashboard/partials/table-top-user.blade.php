@@ -1,8 +1,8 @@
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="k-portlet k-portlet--height-fluid">
         <div class="k-portlet__head ">
             <div class="k-portlet__head-label">
-                <h3 class="k-portlet__head-title">{{ __('Top Users') }}</h3>
+                <h3 class="k-portlet__head-title">{{ __('Khách hàng nổi bật') }}</h3>
             </div>
         </div>
         <div class="k-portlet__body">
@@ -10,13 +10,12 @@
                 <thead>
                     <tr>
                         <th data-type="num" data-property="rank">#</th>
-                        <th data-property="id">{{ __('id') }}</th>
-                        <th data-property="username">{{ __('Username') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
-                        <th data-property="email">{{ __('E-mail') }}</th>
-                        <th data-property="phone_number">{{ __('Phone') }}</th>
-                        <th data-property="total_turnover">{{ __('Turnover') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Actions') }}</th>
+                        <th data-property="id">{{ __('ID') }}</th>
+                        <th data-property="username">{{ __('Tên tài khoản') }}</th>
+                        <th data-property="name">{{ __('Tên hiển thị') }}</th>
+                        <th data-property="email">{{ __('E mail') }}</th>
+                        <th data-property="phone_number">{{ __('SĐT') }}</th>
+                        <th data-property="total_turnover">{{ __('Doanh số') }}</th>
                     </tr>
                 </thead>
                 <tbody></tbody>

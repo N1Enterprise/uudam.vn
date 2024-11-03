@@ -1,0 +1,143 @@
+.master-mobile-menu .tabs {
+    -webkit-overflow-scrolling: touch;
+    align-items: stretch;
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.master-mobile-menu #menu-bottom-tabs {
+    display: none;
+}
+
+.master-mobile-menu #layout-desktop .menu-mobile-reponsive {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #layout-desktop .menu-mobile-reponsive {
+        display: flex;
+    }
+    .shopify-section-group-footer-group {
+        margin-bottom: 60px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs {
+        background: #fff;
+        border-radius: 10px 10px 0 0;
+        bottom: 0;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,.1), 0 2px 6px 2px rgba(60,64,67,.15);
+        display: flex;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+    }
+}
+
+.master-mobile-menu .tabs ul {
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.master-mobile-menu .tabs.is-centered ul {
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul {
+        background: #fff;
+        border: none;
+        border-radius: 10px 10px 0 0;
+        z-index: 130;
+    }
+}
+
+.master-mobile-menu .tabs li {
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item {
+        width: 20%;
+    }
+}
+
+.master-mobile-menu .tabs a {
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
+    color: #4a4a4a;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -1px;
+    padding: .5em 1em;
+    vertical-align: top;
+}
+
+.master-mobile-menu .tabs li.is-active a,
+.master-mobile-menu .tabs li.is-active .a-link {
+    border-bottom-color: #485fc7;
+    color: #485fc7;
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>.a-link {
+        align-items: center;
+        border: none;
+        color: #707070;
+        display: flex;
+        flex-flow: column;
+        font-size: 12px;
+        font-weight: 700;
+        justify-content: center;
+        padding: 5px;
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item.is-active a,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item.is-active .a-link {
+        border-bottom-color: #d70018;
+        color: #d70018;
+    }
+}
+
+.master-mobile-menu .icon {
+    align-items: center;
+    display: inline-flex;
+    height: 1.5rem;
+    justify-content: center;
+    width: 1.5rem;
+}
+
+.master-mobile-menu .tabs .icon:first-child {
+    margin-right: .5em;
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a .icon,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>.a-link .icon {
+        height: 25px;
+        margin: auto;
+        width: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>a .icon svg,
+    .master-mobile-menu #menu-bottom-tabs.tabs ul li.menu-bottom-item>.a-link .icon svg {
+        height: 20px;
+        margin: 5px 0;
+    }
+}

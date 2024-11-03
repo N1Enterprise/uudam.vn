@@ -1,20 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Faq');
+	$title = __('Tạo câu hỏi thường gặp');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Câu hỏi thường gặp'),
 		],
 		[
-			'label' => __('Add Faq'),
+			'label' => $title,
 		]
 	];
 @endphp
 
 @section('header')
-	{{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -28,13 +28,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Add Faq') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin câu hỏi thường gặp') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -47,19 +47,19 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
                                 <div class="form-group">
-									<label>{{ __('Question') }} *</label>
-									<input type="text" class="form-control" name="question" placeholder="{{ __('Enter question') }}" value="{{ old('question') }}" required>
+									<label>{{ __('Câu hỏi') }} *</label>
+									<input type="text" class="form-control" name="question" placeholder="{{ __('Nhập câu hỏi') }}" value="{{ old('question') }}" required>
 								</div>
 
                                 <div class="form-group">
-                                    <x-content-editor id="faq_answer" label="Answer" name="answer" value="{{ old('answer') }}" />
+                                    <x-content-editor id="faq_answer" label="{{ __('Câu trả lời') }}" name="answer" value="{{ old('answer') }}" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ __('Topic') }} *</label>
-                                    <select name="faq_topic_id" title="--{{ __('Select Topic') }}--" class="form-control k_selectpicker">
+                                    <label>{{ __('Chủ đề') }} *</label>
+                                    <select name="faq_topic_id" title="-- {{ __('Chọn chủ đề') }} --" class="form-control k_selectpicker">
                                         @foreach($faqTopics as $faqTopic)
                                         <option value="{{ $faqTopic->id }}" {{ old('faq_topic_id') == $faqTopic->id ? 'selected' : '' }}>{{ $faqTopic->name }}</option>
                                         @endforeach
@@ -70,12 +70,12 @@
                                 </div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order') }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order') }}">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -90,8 +90,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

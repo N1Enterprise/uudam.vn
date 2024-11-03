@@ -14,6 +14,9 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
         Contracts\UserSigninRequestContract::class => Requests\UserSigninRequest::class,
         Contracts\UserUpdateInfoRequestContract::class => Requests\UserUpdateInfoRequest::class,
         Contracts\UserPasswordRequestContract::class => Requests\UserPasswordRequest::class,
+        Contracts\UserForgotPasswordRequestContract::class => Requests\UserForgotPasswordRequest::class,
+        Contracts\UserResetPasswordRequestContract::class => Requests\UserResetPasswordRequest::class,
+        Contracts\UserOauthSigninRequestContract::class => Requests\UserOauthSigninRequest::class,
 
         // Catalog
         Contracts\StoreUserProductReviewRequestContract::class => Requests\StoreUserProductReviewRequest::class,
@@ -24,5 +27,12 @@ class FrontendFormRequestServiceProvider extends ServiceProvider
 
         // Order
         Contracts\UserOrderRequestContract::class => Requests\UserOrderRequest::class,
+        Contracts\UserCancelOrderRequestContract::class => Requests\UserCancelOrderRequest::class,
+
+        // Address
+        Contracts\StoreUserAddressRequestContract::class => Requests\StoreUserAddressRequest::class,
+        Contracts\UpdateUserAddressRequestContract::class => Requests\UpdateUserAddressRequest::class,
+
+        Contracts\GetProviderShippingFreeContract::class => Requests\GetProviderShippingFree::class
     ];
 }

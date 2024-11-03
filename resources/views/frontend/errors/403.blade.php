@@ -1,10 +1,10 @@
 @extends('frontend.layouts.master')
 
-{{-- @section('page_title')
-404 Not Found
-@endsection --}}
-
 @section('page_title')
+403 vui lòng đăng nhập | {{ config('app.user_domain') }}
+@endsection
+
+@section('style_pages')
 <style type="text/css">
     .template-404 .title + * {
         margin-top: 1rem;
@@ -22,7 +22,7 @@
     <div class="template-404 page-width page-margin center">
         <p>403</p>
         <h1 class="title">Vui lòng đăng nhập!</h1>
-        <a href="?overlay=signin" class="button" data-overlay-action-button="signin">Đăng Nhập</a>
+        <span class="button" data-overlay-action-button="signin">Đăng nhập</span>
     </div>
 </div>
 @endsection

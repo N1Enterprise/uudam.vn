@@ -1,66 +1,30 @@
-<div class="blog color-background-1 gradient">
-    <div class="page-width section-template__main-padding">
-        <div class="title-wrapper-with-link title-wrapper--self-padded-tablet-down title-wrapper--no-top-margin" style="margin-bottom: 10px;">
-            <h2 class="blog__title h2">Bài Viết Liên Quan</h2>
-        </div>
-        <div class="slider-mobile-gutter">
-            <div class="owl-carousel owl-theme blog__posts articles-wrapper contains-card contains-card--standard grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet" style="margin: 0 0;" data-owl-id="Inventory_Related_Post" data-owl-items="3">
+<div class="product-review-posts">
+    <div class="rte">
+        <div class="spr-container">
+
+            <div class="spr-content product-description-content article__content-posts">
+                <h2 class="spr-header-title" style="text-align: left; text-transform: uppercase; font-weight: bold; color: #025B50; font-size: 17px; display: flex; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" style="margin-right: 5px; transform: translateY(-1px);">
+                        <path id="newspaper" d="M17.5,6.5V4H0V17.75A1.25,1.25,0,0,0,1.25,19H18.125A1.875,1.875,0,0,0,20,17.125V6.5ZM16.25,17.75h-15V5.25h15ZM2.5,7.75H15V9H2.5Zm7.5,2.5h5V11.5H10Zm0,2.5h5V14H10Zm0,2.5h3.75V16.5H10Zm-7.5-5H8.75V16.5H2.5Z" transform="translate(0 -4)" fill="#025B50"></path>
+                    </svg>
+                    <span>Bài viết liên quan</span>
+                </h2>
                 @foreach ($suggestedPosts as $post)
-                <div class="blog__post article slider__slide slider__slide--full-width" style="padding: 0 5px;">
-                    <div class="card-wrapper underline-links-hover">
-                        <div class="card article-card card--standard card--media">
-                            <div class="card__inner  color-background-2 gradient ratio" style="--ratio-percent: 60.24096385542169%;">
-                                <div class="article-card__image-wrapper card__media">
-                                    <div class="article-card__image media media--hover-effect">
-                                        <img srcset="{{ $post->image }}" src="{{ $post->image }}" sizes="(min-width: 1600px) 750px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="What Do You Think About All Day? - Koun Franz" class="motion-reduce" loading="lazy" width="2727" height="1818">
-                                    </div>
-                                </div>
-                                <div class="card__content">
-                                    <div class="card__information">
-                                        <h3 class="card__heading h2">
-                                            <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
-                                        </h3>
-                                        <div class="article-card__info caption-with-letter-spacing h5">
-                                            <span class="circle-divider">
-                                                <time datetime="{{ $post->post_at }}">{{ format_datetime($post->post_at) }}</time>
-                                            </span>
-                                        </div>
-                                        <p class="article-card__excerpt rte-width">{{ $post->description }}</p>
-                                        <div class="article-card__footer"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card__content">
-                                <div class="card__information">
-                                    <h3 class="card__heading h2">
-                                        <a href="{{ route('fe.web.posts.index', $post->slug) }}" class="full-unstyled-link">{{ $post->name }}</a>
-                                    </h3>
-                                    <div class="article-card__info caption-with-letter-spacing h5">
-                                        <span class="circle-divider">
-                                            <time datetime="{{ $post->post_at }}">{{ format_datetime($post->post_at) }}</time>
-                                        </span>
-                                    </div>
-                                    <p class="article-card__excerpt rte-width">{{ $post->description }}</p>
-                                    <div class="article-card__footer"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <article>
+                    <a target="_blank" href="{{ route('fe.web.posts.index', data_get($post, 'slug')) }}" class="suggested_post__content-item button__link">
+                        <img src="{{ data_get($post, 'image') }}" alt="{{ data_get($post, 'name') }}" loading="lazy" class="content-item__img">
+                        <div class="content-item__text">{{ data_get($post, 'name') }}</div>
+                    </a>
+                </article>
                 @endforeach
             </div>
-            <div class="slider-buttons no-js-hidden medium-hide">
-                <button data-owl-prev="Inventory_Related_Post" type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left">
-                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                    </svg>
-                </button>
-                <button data-owl-next="Inventory_Related_Post" type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right">
-                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                    </svg>
-                </button>
-            </div>
+
+            {{-- <a href="" class="act-button btn jsArticle btn-show-more-posts-related-product">
+                <span>Xem tất cả bài viết</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="10" height="10" class="icon-view-more">
+                    <path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path>
+                </svg>
+            </a> --}}
         </div>
     </div>
 </div>

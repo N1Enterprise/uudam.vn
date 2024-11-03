@@ -23,7 +23,9 @@ class AttributeValueController extends BaseController
 
     public function index()
     {
-        return view('backoffice.pages.attribute-values.index');
+        $attributes = $this->attributeService->allAvailable();
+
+        return view('backoffice.pages.attribute-values.index', compact('attributes'));
     }
 
     public function create()

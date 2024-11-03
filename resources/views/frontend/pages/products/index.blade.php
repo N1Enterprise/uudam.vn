@@ -1,86 +1,39 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-{{ data_get($inventory, 'meta_title', $inventory, 'title') }}
+{{ data_get($inventory, 'title') }} | {{ config('app.user_domain') }}
 @endsection
 
 @section('page_seo')
-<meta name="description" content="{{ data_get($inventory, 'meta_description') }}">
-<meta name="keywords" content="{{ data_get($inventory, 'title') }}">
-<meta property="og:title" content="{{ data_get($inventory, 'meta_title', $inventory, 'title') }}">
-<meta property="og:description" content="{{ data_get($inventory, 'meta_description') }}">
-<meta property="og:image" content="{{ data_get($inventory, 'product_image') }}">
-<meta property="og:image:secure_url" content="{{ data_get($inventory, 'product_image') }}">
-<meta property="og:url" content="{{ route('fe.web.products.index', data_get($inventory, 'slug')) }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }}) }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:price:amount" content="{{ round_money($inventory->sale_price) }}">
-<meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="brand" content="{{ data_get($inventory, 'product.branch') }}">
-<meta name="product" content="{{ data_get($inventory, 'product.id') }}">
+{!! $inventory->toHtmlSEO() !!}
 @endsection
 
 @push('style_pages')
-<style>
-    .section-template__main-padding {
-        padding-top: 27px;
-        padding-bottom: 9px;
-    }
-
-    @media screen and (min-width: 750px) {
-        .section-template__main-padding {
-            padding-top: 36px;
-            padding-bottom: 12px;
-        }
-    }
-</style>
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/pages/products/index.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-slider-2.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-price.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/spr.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/recommendation.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/product-attribute.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-article-card.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/dist/assets/owl.carousel.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-loading-overlay.css') }}">
-@endpush
-
-@push('style_pages')
-<style>
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail {
-    padding: 5px!important;
-    border: none;
-}
-
-[data-owl-id="Slider_Product_Thumnail"] button.thumbnail[aria-current] img {
-    border: 2px solid #000;
-}
-.confirm-buy-with-combo {
-    background-color: #fff;
-    border: 1px solid #000;
-    padding: 4px 9px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    width: 173px;
-    justify-content: space-between;
-}
-</style>
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/product.min.css') }}">
 @endpush
 
 @section('content_body')
-<section class="shopify-section section">
+<section class="shopify-section section" style="margin-top: 10px;">
     <section class="page-width section-template__main-padding">
+        <div class="product product--large product--info">
+            <div class="product__title">
+                <div class="product__title-wrapper">
+                    <h1 data-title>{{ $inventory->title }}</h1>
+                    <span class="data-sku-wrapper">
+                        SKU: <span data-sku>{{ $inventory->sku }}</span>
+                        @if (($inventory->final_sold_count))
+                        <span class="sold_count sold_count_mobile">
+                            <span style="padding: 0 10px;">|</span>
+                            Đã bán {{ $inventory->final_sold_count }}
+                        </span>
+                        @endif
+                    </span>
+                </div>
+            </div>
+        </div>
         <div class="product product--large product--thumbnail_slider grid grid--1-col grid--2-col-tablet">
             <div class="media-gallery grid__item product__media-wrapper">
-                <div class="product__media-gallery" aria-label="Gallery Viewer">
+                <div class="product__media-gallery">
                     <div class="visually-hidden"></div>
                     @if(! empty($imageGalleries))
                     @include('frontend.pages.products.partials.gallery-viewer')
@@ -99,7 +52,7 @@
     <div class="multicolumn color-background-1 gradient background-primary no-heading">
         <div class="page-width section-template-padding isolate">
             <div class="slider-component slider-mobile-gutter">
-                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop" role="list">
+                <ul class="multicolumn-list contains-content-container grid grid--1-col-tablet-down grid--1-col-desktop">
                     <li class="multicolumn-list__item grid__item multicolumn-list__item--empty">
                         <div class="multicolumn-card content-container">
                             <div class="multicolumn-card__info"></div>
@@ -114,45 +67,61 @@
 
 <section class="shopify-section section review-section">
     <div class="page-width">
-        <div class="product__description rte quick-add-hidden">
-            <div class="editorjs-content product-description"></div>
-        </div>
+       <div class="product-bottom-section">
+            @if (has_data(data_get($inventory, 'product.description')))
+            <div class="product-review-section" style="{{ !has_data($suggestedPosts) ? 'flex: 0 0 100%; max-width: 100%;' : '' }}">
+                <div class="rte quick-add-hidden" tagable>
+                    <div class="spr-container">
+                        <div class="spr-header">
+                            <h2 class="spr-header-title" style="text-align: left; text-transform: uppercase; font-weight: bold; color: #025B50; font-size: 17px; margin-top: 3px;">Mô tả sản phẩm</h2>
+                        </div>
+                        <div class="spr-content product-description-content article__content">
+                            {!! data_get($inventory, 'product.description') !!}
+                        </div>
+                        <div class="bg-article"></div>
+                        <button type="button" id="see-product-description" class="act-button btn jsArticle" data-description-modal-open>
+                            <span>Xem chi tiết mô tả sản phẩm</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="10" height="10" class="icon-view-more">
+                                <path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @if (has_data($suggestedPosts))
+            @include('frontend.pages.products.partials.suggested-posts')
+            @endif
+       </div>
     </div>
 </section>
 
 <section class="shopify-section section review-section">
-    @include('frontend.pages.products.partials.product-review')
+@include('frontend.pages.products.partials.product-review')
 </section>
 
-@if(! empty($suggestedInventories))
-<limespot>
-    <limespot-container>
-        @include('frontend.pages.products.partials.suggested-products')
-    </limespot-container>
-</limespot>
+@if (has_data($suggestedInventories))
+<section class="shopify-section section review-section">
+@include('frontend.pages.products.partials.suggested-products')
+</section>
 @endif
 
-@if(! empty($suggestedPosts))
-<section class="shopify-section section">
-    @include('frontend.pages.products.partials.suggested-posts')
+@if (has_data($recentInventories))
+<section class="shopify-section section review-section">
+@include('frontend.pages.products.partials.recent-products')
 </section>
 @endif
 
 @include('frontend.pages.products.partials.gallery-image-modal')
+@include('frontend.pages.products.partials.product-description-modal')
+@include('frontend.pages.products.partials.product-review-modal')
+@include('frontend.pages.products.partials.mobile-sale-actions')
 @endsection
 
-@push('js_pages')
-@include('frontend.pages.products.js-pages.index')
-<script src="{{ asset('frontend/vendors/owl-carousel/dist/owl.carousel.js') }}" type="text/javascript"></script>
-<script src="{{ asset('frontend/assets/js/components/owl-slider.js') }}"></script>
-<script>
-    $('.thumbnail-list__item').on('click', function() {
-        const index = $(this).attr('data-owl-index');
-
-        $('[data-owl-id="Slider_Product_Detail"]').trigger('to.owl.carousel', index);
-
-        $('.thumbnail-list__item').find('button.thumbnail').removeAttr('aria-current');
-        $(this).find('button.thumbnail').attr('aria-current', 'true');
-    });
-</script>
-@endpush
+@section('js_script')
+<script src="{{ asset_with_version('frontend/vendors/owl-carousel/dist/owl.carousel.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/assets/js/components/owl-slider.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/product-index.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset_with_version('frontend/bundle/js/flash-sale.min.js') }}" type="text/javascript"></script>
+@endsection

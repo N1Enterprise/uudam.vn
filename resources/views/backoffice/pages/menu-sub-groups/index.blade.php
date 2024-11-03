@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Menu Sub Group');
+	$title = __('Nhóm menu phụ');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -23,7 +23,7 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Menu Sub Group') }}
+                        {{ __('Danh sách nhóm menu phụ') }}
                     </h3>
                 </div>
                 @canAny(['menu-sub-groups.store'])
@@ -32,7 +32,7 @@
                         @can('menu-sub-groups.store')
                         <a href="{{ route('bo.web.menu-sub-groups.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Menu Sub Group') }}
+                            {{ __('Tạo nhóm menu phụ') }}
                         </a>
                         @endcan
                     </div>
@@ -44,14 +44,15 @@
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-property="name">{{ __('Name') }}</th>
-                            <th data-orderable="false" data-property="menu_group.name">{{ __('Group') }}</th>
-                            <th data-link="redirect_url" data-link-target="_blank" data-property="redirect_url">{{ __('Redirect Url') }}</th>
-                            <th data-property="order">{{ __('Order') }}</th>
-                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                            <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="updated_at">{{ __('Updated At') }}</th>
-                            <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                            <th data-property="name">{{ __('Tên') }}</th>
+                            <th data-orderable="false" data-property="menu_group.name">{{ __('Nhóm') }}</th>
+                            <th data-link="redirect_url" data-link-target="_blank" data-property="redirect_url">{{ __('Chuyển hướng URL') }}</th>
+                            <th data-property="order">{{ __('Thứ tự') }}</th>
+                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                            <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
+                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,9 +74,9 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Menu Sub Group?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa?') }}");
 
-            if(!confirmation) {
+            if (! confirmation) {
                 return;
             }
 
@@ -84,7 +85,7 @@
                 method: 'delete',
                 preventRedirectOnComplete: 1,
                 success: function(res) {
-                    $('#table_mennu_sub_groups_index').DataTable().ajax.reload()
+                    $('#table_mennu_sub_groups_index').DataTable().ajax.reload();
                 }
             });
         });

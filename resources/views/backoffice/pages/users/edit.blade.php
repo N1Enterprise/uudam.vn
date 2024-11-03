@@ -2,18 +2,14 @@
 
 @php
 
-$title = __('Users');
+$title = __('Thông tin khách hàng');
 
 $breadcrumbs = [
     [
+        'label' => __('Khách hàng'),
+    ],
+    [
         'label' => $title,
-    ],
-    [
-        'label' => __('Search Users'),
-        'href'  =>  route('bo.web.users.index')
-    ],
-    [
-        'label' => __('Detail User'),
     ],
 ];
 @endphp
@@ -29,12 +25,12 @@ $breadcrumbs = [
     <div class="row">
         <div class="col-lg-8 col-sm-8">
             @if (session('actionMessage'))
-            <div class="alert alert-success fade show" role="alert">
+            <div class="alert alert-success fade show">
                 @php $msg = 'The user was ' . __(session('actionMessage')); @endphp
                 <div class="alert-text">{{ __($msg) }}</div>
                 <div class="alert-close">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span><i class="la la-close"></i></span>
                     </button>
                 </div>
             </div>
@@ -50,18 +46,18 @@ $breadcrumbs = [
             </div>
             @endif
             <div class="tab-content">
-                <div class="tab-pane active show" id="tab_general_information" role="tabpanel">
+                <div class="tab-pane active show" id="tab_general_information">
                     @include("backoffice.pages.users.partials.info")
                 </div>
 
                 @can('carts.index')
-                <div class="tab-pane" id="tab_cart" role="tabpanel">
+                <div class="tab-pane" id="tab_cart">
                     @include("backoffice.pages.users.partials.cart")
                 </div>
                 @endcan
 
                 @can('orders.index')
-                <div class="tab-pane" id="tab_order" role="tabpanel">
+                <div class="tab-pane" id="tab_order">
                     @include("backoffice.pages.users.partials.order")
                 </div>
                 @endcan
@@ -73,25 +69,25 @@ $breadcrumbs = [
                 <div class="k-portlet__body">
                     <div class="k-section" id="tabItemSection">
                         <div class="k-section__content">
-                            <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font" role="tablist">
+                            <ul class="nav nav-tabs k-nav k-nav--v2 k-nav--lg-space k-nav--bold k-nav--lg-font">
                                 <li class="k-nav__item k-nav__item--active">
-                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab" role="tab" aria-selected="true">
-                                        <span class="k-nav__link-text">{{ __('General Information') }}</span>
+                                    <a href="#tab_general_information" class="k-nav__link" data-toggle="tab">
+                                        <span class="k-nav__link-text">{{ __('Thông tin chung') }}</span>
                                     </a>
                                 </li>
 
                                 @can('carts.index')
                                 <li class="k-nav__item">
-                                    <a href="#tab_cart" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="cart">
-                                        <span class="k-nav__link-text">{{ __('Cart') }}</span>
+                                    <a href="#tab_cart" class="k-nav__link" data-toggle="tab"  data-tab="cart">
+                                        <span class="k-nav__link-text">{{ __('Giỏ hàng') }}</span>
                                     </a>
                                 </li>
                                 @endcan
 
                                 @can('orders.index')
                                 <li class="k-nav__item">
-                                    <a href="#tab_order" class="k-nav__link" data-toggle="tab" role="tab"  data-tab="order">
-                                        <span class="k-nav__link-text">{{ __('Order') }}</span>
+                                    <a href="#tab_order" class="k-nav__link" data-toggle="tab"  data-tab="order">
+                                        <span class="k-nav__link-text">{{ __('Đơn hàng') }}</span>
                                     </a>
                                 </li>
                                 @endcan
@@ -101,13 +97,13 @@ $breadcrumbs = [
                     <div class="k-separator k-separator--border-dashed k-separator--height-xs"></div>
                     <div class="k-section__content action mt-4">
                         @if(! boolean($user->is_test_user))
-                        <button type="button" data-modal="#modal_set_test_user" class="btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Mark as test account') }}</button>
+                        <button type="button" data-modal="#modal_set_test_user" class="btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Đánh dấu tài khoản thử nghiệm') }}</button>
                         @endif
 
                         @if($user->status == enum('ActivationStatusEnum')::ACTIVE)
-                        <button action-url="{{ route('bo.web.users.action.deactivate', $user->id) }}" type-action="DEACTIVATE" class="actionBtn btn_user_action btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Deactivate') }}</button>
+                        <button action-url="{{ route('bo.web.users.action.deactivate', $user->id) }}" type-action="DEACTIVATE" class="actionBtn btn_user_action btn btn-outline-danger btn-block btn-pill btn-label-danger">{{ __('Vô hiệu hóa') }}</button>
                         @elseif($user->status == enum('ActivationStatusEnum')::INACTIVE)
-                        <button action-url="{{ route('bo.web.users.action.active', $user->id) }}" type-action="ACTIVE" class="actionBtn btn_user_action btn btn-outline-success btn-block btn-label-success btn-pill">{{ __('Activate') }}</button>
+                        <button action-url="{{ route('bo.web.users.action.active', $user->id) }}" type-action="ACTIVE" class="actionBtn btn_user_action btn btn-outline-success btn-block btn-label-success btn-pill">{{ __('Kích hoạt') }}</button>
                         @endif
                     </div>
                 </div>
@@ -121,13 +117,13 @@ $breadcrumbs = [
 
 @push('modals')
 @if(! boolean($user->is_test_user))
-<div class="modal fade" id="modal_set_test_user" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="modal_set_test_user" tabindex="-1">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Mark test account') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
                 </button>
             </div>
             <form method="POST" action="{{ route('bo.web.users.set-test-user', $user->id) }}">
@@ -135,11 +131,11 @@ $breadcrumbs = [
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ __("Upon marking this as test accounts you're unable to revert the action, are you sure?") }}</label>
+                        <label>{{ __("Khi đánh dấu đây là tài khoản thử nghiệm, bạn không thể hoàn nguyên hành động này, bạn có chắc chắn không?") }}</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
                     <button type="submit" class="btn btn-primary" id="submitSetTestPlayer">{{ __('Submit') }}</button>
                 </div>
             </form>
@@ -148,26 +144,26 @@ $breadcrumbs = [
 </div>
 @endif
 
-<div class="modal fade" id="modal_user_action" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="modal_user_action" tabindex="-1">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
                 </button>
             </div>
             <form id="form_player_action" method="POST" action="">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <label>{{ __('Reason') }}</label>
+                        <label>{{ __('Lí do') }}</label>
                         <textarea name="reason" class="form-control" rows="10"></textarea>
                         <input type="text" name="type" value="" hidden>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
                     <button type="submit" class="btn btn-primary" id="submitActionBtn">{{ __('Submit') }}</button>
                 </div>
             </form>

@@ -1,7 +1,7 @@
 <div class="k-portlet">
     <div class="k-portlet__head">
         <div class="k-portlet__head-label">
-            <h3 class="k-portlet__head-title">{{ __('Search') }}</h3>
+            <h3 class="k-portlet__head-title">{{ __('Tìm kiếm') }}</h3>
         </div>
     </div>
     <!--begin::Form-->
@@ -9,8 +9,8 @@
         <div class="k-portlet__body">
             <div class="form-group row">
                 <div class="col-lg-4">
-                    <label>{{ __('Product') }}</label>
-                    <select name="product_id" title="--{{ __('Select Product') }}--" class="form-control k_selectpicker" data-size="5" data-live-search="true">
+                    <label>{{ __('Sản phẩm') }}</label>
+                    <select name="product_id" title="-- {{ __('Chọn sản phẩm') }} --" class="form-control k_selectpicker" data-size="5" data-live-search="true">
                         @foreach($categories as $category)
                         <optgroup label="{{ $category->name }}">
                             @foreach($category->products as $product)
@@ -21,9 +21,9 @@
                     </select>
                 </div>
                 <div class="col-lg-4">
-                    <label>{{ __('Status') }}</label>
+                    <label>{{ __('Trạng thái') }}</label>
                     <div class="form-group">
-                        <select name="status[]" title="--{{ __('Select Status') }}--" class="form-control k_selectpicker" multiple>
+                        <select name="status[]" title="-- {{ __('Chọn trạng thái') }} --" class="form-control k_selectpicker" multiple>
                             @foreach($productReviewStatusEnumLabels as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach
@@ -32,9 +32,9 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{{ __('Rating Type') }}</label>
+                    <label>{{ __('Loại xếp hạng') }}</label>
                     <div class="form-group">
-                        <select name="rating_type[]" title="--{{ __('Select Rating Type') }}--" class="form-control k_selectpicker" multiple>
+                        <select name="rating_type[]" title="-- {{ __('Chọn loại xếp hạng') }} --" class="form-control k_selectpicker" multiple>
                             @foreach($productReviewRatingEnumLabels as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach
@@ -47,8 +47,8 @@
             <div class="k-form__actions">
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Search') }}</button>
-                        <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Reset') }}</button>
+                        <button type="submit" class="btn btn-primary" id="btnSearch">{{ __('Tìm kiếm') }}</button>
+                        <button type="reset" class="btn btn-secondary" onclick="setFilterParams()">{{ __('Làm mới') }}</button>
                     </div>
                 </div>
             </div>

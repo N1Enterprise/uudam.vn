@@ -1,21 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = 'Roles';
+	$title = __('Tạo quyền truy cập');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Quyền truy cập'),
+        ],
+        [
 			'label' => $title,
-            'href'  => route('bo.web.roles.index'),
-		],
-		[
-			'label' => 'Create Role',
 		]
 	];
 @endphp
 
 @section('header')
-    {{ __('Roles') }}
+{{ $title }}
 @endsection
 
 @section('style')
@@ -53,7 +52,7 @@
             <div class="k-portlet">
                 <div class="k-portlet__head">
                     <div class="k-portlet__head-label">
-                        <h3 class="k-portlet__head-title">{{ __('Create Role') }}</h3>
+                        <h3 class="k-portlet__head-title">{{ __('Thông tin quyền truy cập') }}</h3>
                     </div>
                 </div>
                 <!--begin::Form-->
@@ -63,20 +62,20 @@
                         @include('backoffice.partials.message')
 
                         <div class="form-group">
-                            <label>{{ __('Role Name') }} *</label>
-                            <input type="text" class="form-control" name="name" placeholder="{{ __('Enter Role Name') }}" value="{{ old('name') }}" required>
+                            <label>{{ __('Tên') }} *</label>
+                            <input type="text" class="form-control" name="name" placeholder="{{ __('Nhập tên role') }}" value="{{ old('name') }}" required>
                         </div>
 
                         <div class="form-group">
                             <div class="k-section">
                                 <label>{{ __('Permissions') }}</label>
-                                <ul id="m_nav" class="k-nav k-nav--active-bg" role="tablist">
+                                <ul id="m_nav" class="k-nav k-nav--active-bg">
                                     <li class="k-nav__item custom">
                                         <span class="k-nav__link-bullet">
                                             <input class="permission-checkbox" type="checkbox" id="checkable_checkall" />
                                         </span>
                                         <label for="all" class="k-nav__link permission-navlink">
-                                            <span class="k-nav__link-text">--{{ __('Select All') }}--</span>
+                                            <span class="k-nav__link-text">-- {{ __('Select All') }} --</span>
                                         </label>
                                     </li>
                                     @foreach($groups as $key1 => $group1)
@@ -94,7 +93,7 @@
                                                     <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key1}") }}</span>
                                                     <span class="k-nav__link-arrow"></span>
                                                 </a>
-                                                <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey1 }}" role="tabpanel">
+                                                <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey1 }}">
                                                 @foreach($group1 as $key2 => $group2)
                                                     @if(is_array($group2))
                                                         @php
@@ -110,7 +109,7 @@
                                                                 <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key2}") }}</span>
                                                                 <span class="k-nav__link-arrow"></span>
                                                             </a>
-                                                            <ul class="k-nav__sub collapse mt-2" role="tabpanel" id="co_{{ $idKey2 }}">
+                                                            <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey2 }}">
                                                             @foreach($group2 as $key3 => $group3)
                                                                 @if(is_array($group3))
                                                                     @php
@@ -126,7 +125,7 @@
                                                                             <span class="k-nav__link-text">{{ __("backoffice::permissions.{$key3}") }}</span>
                                                                             <span class="k-nav__link-arrow"></span>
                                                                         </a>
-                                                                        <ul class="k-nav__sub collapse mt-2" role="tabpanel" id="co_{{ $idKey3 }}">
+                                                                        <ul class="k-nav__sub collapse mt-2" id="co_{{ $idKey3 }}">
                                                                             @foreach($group3 as $key4 => $group4)
                                                                             <li class="custom k-nav__item">
                                                                                 <input class="permission-checkbox" parent-key="{{ $key3 }}" name="permissions[{{ $group4 }}]" type="checkbox" id="{{ $group4 }}" />
@@ -178,8 +177,8 @@
                     </div>
                     <div class="k-portlet__foot">
                         <div class="k-form__actions">
-                            <button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                            <button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                         </div>
                     </div>
                 </form>

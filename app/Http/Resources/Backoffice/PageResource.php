@@ -17,6 +17,8 @@ class PageResource extends BaseJsonResource
             'order' => $this->order,
             'status' => $this->status,
             'status_name' => $this->status_name,
+            'display_on_frontend' => $this->display_on_frontend,
+            'display_on_frontend_name' => $this->display_on_frontend_name,
             'content' => $this->content,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
@@ -40,6 +42,7 @@ class PageResource extends BaseJsonResource
             'actions' => array_filter([
                 'update' => $updatePermission ? Route::findByName('bo.web.pages.edit', ['id' => $this->getKey()]) : null,
                 'delete' => $deletePermission ? Route::findByName('bo.web.pages.delete', ['id' => $this->getKey()]) : null,
+                'fe_link' => Route::findByName('fe.web.pages.index', ['slug' => $this->slug, 'id' => $this->id]),
             ]),
         ]);
     }

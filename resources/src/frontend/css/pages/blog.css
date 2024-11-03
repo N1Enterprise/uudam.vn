@@ -1,0 +1,17 @@
+.section-template__main-padding {
+    padding-top: 27px;
+    padding-bottom: 9px;
+}
+
+@media screen and (min-width: 750px) {
+    .section-template__main-padding {
+        padding-top: 36px;
+        padding-bottom: 12px;
+    }
+}
+
+@import url('../../../../../public/frontend/bundle/css/master.min.css');
+@import url('../../../../../public/frontend/bundle/css/component-article-card.min.css');
+@import url('../../../../../public/frontend/bundle/css/component-card.min.css');
+@import url('../../../../../public/frontend/bundle/css/component-pagination.min.css');
+@import url('../../../../../public/frontend/bundle/css/section-main-blog.min.css');

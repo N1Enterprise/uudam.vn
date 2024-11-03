@@ -25,4 +25,9 @@ class PaymentProvider extends BaseModel
     {
         return PaymentTypeEnum::findConstantLabel($this->payment_type);
     }
+
+    public function isDeposit()
+    {
+        return $this->payment_type == PaymentTypeEnum::DEPOSIT;
+    }
 }

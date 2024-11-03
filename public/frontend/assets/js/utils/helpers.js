@@ -80,8 +80,8 @@ const utils_helper = {
 
             return x1 + (! !Object.keys(x2).length ? dec_point + x2 : '');
     },
-    formatPrice: (money, symbol = 'VND') => {
-        return utils_helper.formatNumber(money) + ' ' + symbol;
+    formatPrice: (money, symbol = '₫') => {
+        return utils_helper.formatNumber(money) + '' + symbol;
     },
     appendErrorMessages: ($parent, errorMessages) => {
         $parent.find('.form-errors').removeClass('show');
@@ -137,7 +137,18 @@ const utils_helper = {
     },
     reload: () => {
         window.location.reload();
-    }
+    },
+    boDataShared: () => {
+        const BO_DATA_SHARED = JSON.parse($('input[type="hidden"][data-bo-shared]').attr('data-bo-shared') || '{}');
+
+        return {
+            bo_host: BO_DATA_SHARED?.bo_host,
+            fe_host: BO_DATA_SHARED?.fe_host,
+            app_id: BO_DATA_SHARED?.app_id,
+            app_env: BO_DATA_SHARED?.app_env,
+            fe_view_only_mode: BO_DATA_SHARED?.fe_view_only_mode
+        };
+    },
 };
 
 const utils_quantity = (selector, config = {}) => {
@@ -161,6 +172,14 @@ const utils_quantity = (selector, config = {}) => {
         ELEMENT_INPUT.val(value);
         FINAL_CONFIG.callbacks.onChange(value);
     }
+
+    ELEMENT_INCREASE.on('dblclick', function(e) {
+        e.preventDefault();
+    });
+
+    ELEMENT_DECREASE.on('dblclick', function(e) {
+        e.preventDefault();
+    });
 
     ELEMENT_INCREASE.on('click', function() {
         const value    = +ELEMENT_INPUT.val();
@@ -202,3 +221,90 @@ const utils_quantity = (selector, config = {}) => {
         changeValue(value);
     });
 };
+
+/**
+ * Open window
+ * @param {Sting} url
+ * @param {Sting} title
+ * @param {Number} w
+ * @param {Number} h
+ */
+const openWindow = (url, title, w, h) => {
+    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+
+    const width = window.innerWidth
+        ? window.innerWidth
+        : document.documentElement.clientWidth
+        ? document.documentElement.clientWidth
+        : screen.width;
+    const height = window.innerHeight
+        ? window.innerHeight
+        : document.documentElement.clientHeight
+        ? document.documentElement.clientHeight
+        : screen.height;
+
+    const left = width / 2 - w / 2 + dualScreenLeft;
+    const top = height / 2 - h / 2 + dualScreenTop;
+    const windowInstance = window.open(
+        url,
+        title,
+        'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' +
+            w +
+            ', height=' +
+            h +
+            ', top=' +
+            top +
+            ', left=' +
+        left
+    );
+
+    // Puts focus on the windowInstance
+    if (window.focus && windowInstance) {
+        windowInstance.focus();
+    }
+
+    return windowInstance;
+}
+
+const fstoast = {
+    options: {
+        closeButton: true
+    },
+    success: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.success(message, title);
+    },
+
+    error: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.error(message, title);
+    },
+    info: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.info(message, title);
+    },
+    warning: function(message, title = '', options = { ...fstoast.options }) {
+        toastr.options = options;
+        toastr.warning(message, title);
+    }
+}
+
+function copyToClipboard(text) {
+	var $temp = $("<input>");
+
+	if ($('.modal.show').length) {
+		fscommon.unblockUI('.modal.show');
+		$(".modal.show").append($temp);
+		$temp.val(text).select();
+		document.execCommand("copy");
+		$temp.remove();
+
+		return;
+	}
+
+	$("body").append($temp);
+	$temp.val(text).select();
+	document.execCommand("copy");
+	$temp.remove();
+}

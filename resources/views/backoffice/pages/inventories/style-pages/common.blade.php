@@ -14,10 +14,11 @@
     }
 
     [data-repeater-list-custom=variants] .repeater-head {
-        border: 1px solid #ebedf2;
-        background-color: #fcfcfc;
+        border: 1px solid #b4b4b4;
+        background-color: #f7eece;
         cursor: pointer;
-        text-transform: uppercase;
+        text-transform: lowercase;
+        border-radius: 3px;
     }
 
     [data-repeater-list-custom=variants] .repeater-head [data-toggle] {
@@ -26,12 +27,23 @@
 
     [data-repeater-list-custom=variants] .repeater-body {
         padding: 20px;
+        border: 1px solid #e0e0e0;
+        background-color: #fdfdfd;
+        border-radius: 3px;
+        margin-bottom: 30px;
     }
 
     [data-repeater-list-custom=variants] [data-repeater-delete-custom] {
         position: absolute;
-        top: 0;
-        right: 20px;
-        transform: translate(0, 50%)
+        top: -4px !important;
+        right: 14px;
+        transform: translate(0, 50%);
+        border: 1px solid #ccc;
+        background-color: #fff !important;
+    }
+
+    [data-repeater-list-custom=variants] [data-repeater-delete-custom]:hover {
+        background-color: #fff !important;
+        border: 1px solid #ccc;
     }
 </style>

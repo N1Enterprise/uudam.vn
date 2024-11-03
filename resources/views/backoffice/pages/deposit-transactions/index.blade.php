@@ -1,15 +1,12 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Deposit List');
+	$title = __('Giao dịch gửi tiền');
 
 	$breadcrumbs = [
 		[
-			'label' => __('Payment'),
+			'label' => $title,
         ],
-        [
-            'label' => $title,
-        ]
 	];
 @endphp
 
@@ -37,7 +34,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Deposit Transactions') }}
+                    {{ __('Danh sách giao dịch tiền gửi') }}
                 </h3>
             </div>
         </div>
@@ -46,15 +43,15 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="user.name" data-link="user.edit_link" data-link-target="_blank">{{ __('User Name') }}</th>
-                        <th data-property="amount">{{ __('Amount') }}</th>
-                        <th data-property="payment_option.name" data-link="payment_option.edit_link" data-link-target="_blank">{{ __('Deposit Method') }}</th>
-                        <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Order Code') }}</th>
-                        <th data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-property="reference_id" >{{ __('Reference Id') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Processed At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="user.name" data-link="user.edit_link" data-link-target="_blank">{{ __('Khách hàng') }}</th>
+                        <th data-property="amount">{{ __('Số tiền') }}</th>
+                        <th data-property="payment_option.name" data-link="payment_option.edit_link" data-link-target="_blank">{{ __('Phương thức') }}</th>
+                        <th data-orderable="false" data-property="order.order_code" data-render-callback="renderCallbackOrder">{{ __('Mã đơn hàng') }}</th>
+                        <th data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-property="reference_id" >{{ __('Tham chiếu') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Xử lý lúc') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +62,7 @@
     </div>
 </div>
 
-<div class="modal fade" data-model="deposit-transaction" role="dialog" aria-hidden="true">
+<div class="modal fade" data-model="deposit-transaction">
 
 </div>
 @endsection
@@ -194,7 +191,7 @@
                     $table.find('tfoot').remove();
 
                     const tfoot = $('<tfoot>');
-                    const tfootTotalCol = $('<td>').attr('colspan', 2).attr('rowspan', Object.keys(response).length).text("{{ __('Total') }}");
+                    const tfootTotalCol = $('<td>').attr('colspan', 2).attr('rowspan', Object.keys(response).length).text("{{ __('Tổng cộng') }}");
 
                     $.each(response, function(currency, total) {
                         const tfootRow = $('<tr>').append(
@@ -222,10 +219,11 @@
 
         removeRequestParams('table_deposit_transactions_index', 'reset_form');
 
-        $form.find('input[name="order_status"]').val(orderStatus);
+        $form.find('input[name="status"]').val(orderStatus);
 
         $table.DataTable().ajax.reload(function(data) {
             $form.find(':submit').prop('disabled', false);
+            DEPOSIT_TRANSACTION.loadTotalDeposit();
         });
     }
 
@@ -233,7 +231,7 @@
         $(document).ready(function() {
             const data = $('#table_deposit_transactions_index').DataTable().ajax.params();
 
-            $(`[data-status="${data?.order_status}"]`).addClass('active');
+            $(`[data-status="${data?.status}"]`).addClass('active');
         });
     }
 

@@ -17,7 +17,7 @@
         <meta charset="utf-8" />
 		<title>{{ __($APP_NAME) }}</title>
 		<meta name="description" content="Latest updates and statistic charts">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="app-locale" content="{{ \App::currentLocale() }}">
@@ -55,10 +55,9 @@
 		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/general/summernote/dist/summernote.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('backoffice/assets/vendors/general/animate.css/animate.css') }}" rel="stylesheet" type="text/css" />
+		{{-- <link href="{{ asset('backoffice/assets/vendors/general/animate.css/animate.css') }}" rel="stylesheet" type="text/css" /> --}}
 		<link href="{{ asset('backoffice/assets/vendors/general/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('backoffice/assets/vendors/general/socicon/css/socicon.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/flaticon/flaticon.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/vendors/custom/vendors/flaticon2/flaticon.css') }}" rel="stylesheet" type="text/css" />
@@ -75,16 +74,17 @@
 		<link href="{{ asset('backoffice/assets/demo/default/skins/brand/navy.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('backoffice/assets/demo/default/skins/aside/navy.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Skins -->
-		<link rel="shortcut icon" href="{{ asset('backoffice/assets/img/logos/stevephamhi_favicon.png') }}" />
+
+		@foreach (data_get($SYSTEM_SETTING, 'shop_favicons', []) as $favicon)
+		<link rel="shortcut icon" type="image/png" sizes="{{ data_get($favicon, 'sizes') }}" href="{{ data_get($favicon, 'image') }}">
+		@endforeach
     </head>
 
     <body class="k-header--fixed k-header-mobile--fixed k-aside--enabled k-aside--fixed">
         <!-- begin:: Header Mobile -->
 		<div id="k_header_mobile" class="k-header-mobile  k-header-mobile--fixed ">
 			<div class="k-header-mobile__logo">
-				<a href="{{ route('bo.web.dashboard') }}">
-					<img alt="Logo" src="{{ asset('backoffice/assets/img/logos/stevephamhi_logo.png') }}" style="max-width: 100%; padding-right: 8px; max-height:50px" />
-				</a>
+				<a href="{{ route('bo.web.dashboard') }}"></a>
 			</div>
 			<div class="k-header-mobile__toolbar">
 				<button class="k-header-mobile__toolbar-toggler k-header-mobile__toolbar-toggler--left" id="k_aside_mobile_toggler"><span></span></button>
@@ -104,7 +104,7 @@
 					<div class="k-aside__brand	k-grid__item " id="k_aside_brand">
 						<div class="k-aside__brand-logo">
 							<a href="{{ route('bo.web.dashboard') }}">
-								<img alt="Logo" src="{{ data_get($LOGO, 'image') }}" style="width: {{ data_get($LOGO, 'width', '0px') }}; height: {{ data_get($LOGO, 'height', '0px') }}" style="max-width: 100%; padding-right: 8px" />
+								<img alt="Logo" src="{{ data_get($SYSTEM_SETTING, 'shop_logos.master.image') }}" style="width: {{ data_get($SYSTEM_SETTING, 'shop_logos.master.width', '0px') }}; height: {{ data_get($SYSTEM_SETTING, 'shop_logos.master.height', '0px') }}" style="max-width: 100%; padding-right: 8px" />
 							</a>
 						</div>
 						<div class="k-aside__brand-tools">
@@ -128,7 +128,7 @@
                             <ul class="k-menu__nav ">
                                 <li class="k-menu__item k-menu__item--submenu k-menu__item--rel">
                                     <a href="{{ route('fe.web.home') }}" target="_blank" class="k-menu__link" style="background-color: #fff;">
-                                        <span class="k-menu__link-text" style="text-transform: uppercase;">{{ __('Store Front') }}</span>
+                                        <span class="k-menu__link-text" style="text-transform: uppercase;">{{ __('Cửa Hàng') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -143,7 +143,7 @@
 							<div class="k-header__topbar-item k-header__topbar-item--user">
 								<div class="k-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px -2px">
 									<div class="k-header__topbar-user" style="background-color: #fff;">
-										<span class="k-header__topbar-welcome k-hidden-mobile">{{__('Hi')}},</span>
+										<span class="k-header__topbar-welcome k-hidden-mobile">{{ __('Xin Chào') }},</span>
 										<span class="k-header__topbar-username k-hidden-mobile">{{ $AUTHENTICATED_ADMIN->name }}</span>
 										<img alt="Pic" src="{{ asset('backoffice/assets/img/users/ninja.png') }}" />
 									</div>
@@ -257,7 +257,6 @@
 		<script src="{{ asset('backoffice/assets/vendors/general/chart.js/dist/Chart.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js') }}" type="text/javascript"></script>
-		<script src="{{ asset('backoffice/assets/vendors/general/counterup/jquery.counterup.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/general/es6-promise-polyfill/promise.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/assets/vendors/custom/theme/framework/vendors/sweetalert2/init.js') }}" type="text/javascript"></script>
@@ -271,7 +270,6 @@
 		<!--end::Global Theme Bundle -->
 
         <!--begin::Page Vendors -->
-		<script src="{{ asset('backoffice/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('backoffice/js/common/constant.js') }}" type="text/javascript"></script>
         <script src="{{ asset('backoffice/js/common/main.js') }}" type="text/javascript"></script>
         <script src="{{ asset('backoffice/js/common/fscommon.js') }}" type="text/javascript"></script>

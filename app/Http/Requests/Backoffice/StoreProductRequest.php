@@ -7,7 +7,9 @@ use App\Contracts\Requests\Backoffice\StoreProductRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductTypeEnum;
 use App\Models\Inventory;
+use App\Models\Post;
 use App\Models\Product;
+use Illuminate\Support\Arr;
 
 class StoreProductRequest extends BaseFormRequest implements StoreProductRequestContract
 {
@@ -38,6 +40,8 @@ class StoreProductRequest extends BaseFormRequest implements StoreProductRequest
             'suggested_relationships.*.inventories.*' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
             'suggested_relationships.*.posts' => ['nullable', 'array'],
             'suggested_relationships.*.posts.*' => ['required', 'integer', Rule::exists(Post::class, 'id')],
+            'linked_posts' => ['nullable', 'array'],
+            'linked_posts.*' => ['required', Rule::exists(Post::class, 'id')],
         ];
     }
 
@@ -59,6 +63,7 @@ class StoreProductRequest extends BaseFormRequest implements StoreProductRequest
                 'inventories' => array_filter(array_map('intval', data_get($this->suggested_relationships, 'inventories', []))),
                 'posts' => array_filter(array_map('intval', data_get($this->suggested_relationships, 'posts', []))),
             ],
+            'linked_posts' => array_map('intval', Arr::wrap($this->linked_posts))
         ]);
     }
 }

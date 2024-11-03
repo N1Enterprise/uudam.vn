@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enum\ProductReviewRatingEnum;
+use App\Enum\ProductReviewStatusEnum;
 use App\Enum\ProductTypeEnum;
 use App\Models\Traits\Activatable;
 use App\Models\Traits\HasImpactor;
@@ -35,6 +37,11 @@ class Product extends BaseModel
         'suggested_relationships' => 'json'
     ];
 
+    protected $appends = [
+        'review_count',
+        'positive_review_count'
+    ];
+
     public function getTypeNameAttribute()
     {
         return ProductTypeEnum::findConstantLabel($this->type);
@@ -48,6 +55,34 @@ class Product extends BaseModel
     public function inventories()
     {
         return $this->hasMany(Inventory::class);
+    }
+
+    public function getReviewCountAttribute()
+    {
+        return $this->reviews
+            ->where('status', ProductReviewStatusEnum::APPROVED)
+            ->count();
+    }
+
+    public function getPositiveReviewCountAttribute()
+    {
+        return $this->reviews
+            ->where('status', ProductReviewStatusEnum::APPROVED)
+            ->whereIn('rating_type', [
+                ProductReviewRatingEnum::VERY_GOOD,
+                ProductReviewRatingEnum::GOOD,
+            ])
+            ->count();
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function linkedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'product_post_linkeds', 'product_id', 'post_id')->withTimestamps();
     }
 }
 

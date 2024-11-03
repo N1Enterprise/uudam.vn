@@ -31,6 +31,7 @@ class Order extends BaseModel
         'postal_code',
         'shipping_rate_id',
         'payment_option_id',
+        'shipping_option_id',
         'total_item',
         'total_quantity',
         'taxrate',
@@ -54,11 +55,30 @@ class Order extends BaseModel
         'created_by_type',
         'updated_by_id',
         'updated_by_type',
+        'footprint',
+        'province_name',
+        'district_name',
+        'ward_name',
+        'transport_fee',
+        'total_weight',
+        'order_channel'
     ];
 
     protected $casts = [
-        'log' => 'json'
+        'log' => 'json',
+        'footprint' => 'json',
+        'order_channel' => 'json'
     ];
+
+    public function getFullAddressAttribute()
+    {
+        return vsprintf('%s, %s, %s, %s', [
+            $this->address_line,
+            $this->ward_name,
+            $this->district_name,
+            $this->province_name,
+        ]);
+    }
 
     public function getPaymentStatusNameAttribute()
     {
@@ -105,6 +125,16 @@ class Order extends BaseModel
         return $this->hasOne(Cart::class);
     }
 
+    public function isPending()
+    {
+        return $this->order_status == OrderStatusEnum::WAITING_FOR_PAYMENT;
+    }
+
+    public function isDelivery()
+    {
+        return $this->order_status == OrderStatusEnum::DELIVERY;
+    }
+
     public function isProcessing()
     {
         return $this->order_status == OrderStatusEnum::PROCESSING;
@@ -113,6 +143,11 @@ class Order extends BaseModel
     public function isPendingPayment()
     {
         return $this->payment_status == PaymentStatusEnum::PENDING;
+    }
+
+    public function isApprovedPayment()
+    {
+        return $this->payment_status == PaymentStatusEnum::APPROVED;
     }
 
     public function isSucceed()
@@ -134,11 +169,47 @@ class Order extends BaseModel
         ]);
     }
 
+    public function canDelivery()
+    {
+        return in_array($this->order_status, [
+            OrderStatusEnum::WAITING_FOR_PAYMENT,
+            OrderStatusEnum::PROCESSING,
+        ]);
+    }
+
+    public function canComplete()
+    {
+        $canOrder = in_array($this->order_status, [
+            OrderStatusEnum::WAITING_FOR_PAYMENT,
+            OrderStatusEnum::DELIVERY,
+            OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::CANCELED,
+            OrderStatusEnum::REFUNDED,
+        ]);
+
+        $canPayment = in_array($this->payment_status, [
+            PaymentStatusEnum::PENDING,
+            PaymentStatusEnum::APPROVED,
+        ]);
+
+        return $canOrder && $canPayment;
+    }
+
     public function canCancel()
     {
         return in_array($this->order_status, [
             OrderStatusEnum::WAITING_FOR_PAYMENT,
             OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::DELIVERY,
+            OrderStatusEnum::REFUNDED,
+        ]);
+    }
+
+    public function canRefund()
+    {
+        return in_array($this->order_status, [
+            OrderStatusEnum::PROCESSING,
+            OrderStatusEnum::COMPLETED,
         ]);
     }
 
@@ -162,5 +233,29 @@ class Order extends BaseModel
     public function isPaymentError()
     {
         return $this->order_status == OrderStatusEnum::PAYMENT_ERROR;
+    }
+
+    public function getDescribingPaymentContent()
+    {
+        return vsprintf('PAY FOR ORDER CODE %s. AMOUNT IS %s %s', [
+            $this->order_code,
+            $this->toMoney('grand_total')->__toString(),
+            $this->currency_code,
+        ]);
+    }
+
+    public function shippingOption()
+    {
+        return $this->belongsTo(ShippingOption::class);
+    }
+
+    public function userOrderShippingHistory()
+    {
+        return $this->hasMany(UserOrderShippingHistory::class);
+    }
+
+    public function latestUserOrderShippingHistory()
+    {
+        return $this->hasOne(UserOrderShippingHistory::class)->latest();
     }
 }

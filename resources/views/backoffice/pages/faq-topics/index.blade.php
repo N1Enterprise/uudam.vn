@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Faq Topic');
+	$title = __('Chủ đề hỏi đáp');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -23,7 +23,7 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Faq Topic') }}
+                        {{ __('Danh sách chủ đề hỏi đáp') }}
                     </h3>
                 </div>
                 @canAny(['faq-topics.store'])
@@ -32,7 +32,7 @@
                         @can('faq-topics.store')
                         <a href="{{ route('bo.web.faq-topics.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                             <i class="la la-plus"></i>
-                            {{ __('Create Faq Topic') }}
+                            {{ __('Tạo chủ đề hỏi đáp') }}
                         </a>
                         @endcan
                     </div>
@@ -44,12 +44,12 @@
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-property="name">{{ __('Name') }}</th>
-                            <th data-property="order">{{ __('Order') }}</th>
-                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                            <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="updated_at">{{ __('Updated At') }}</th>
-                            <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                            <th data-property="name">{{ __('Tên') }}</th>
+                            <th data-property="order">{{ __('Thứ tự') }}</th>
+                            <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,7 @@
         $(document).on('click', '[data-action=delete]', function(e) {
             e.preventDefault();
 
-            let confirmation = confirm("{{ __('Are you sure you want to delete this Faq Topic?') }}");
+            let confirmation = confirm("{{ __('Bạn có chắc chắn muốn xóa chủ đề Câu hỏi thường gặp này ?') }}");
 
             if(!confirmation) {
                 return;

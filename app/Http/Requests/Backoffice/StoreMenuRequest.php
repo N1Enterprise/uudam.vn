@@ -16,14 +16,16 @@ class StoreMenuRequest extends BaseFormRequest implements StoreMenuRequestContra
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'label' => ['nullable', 'string', 'max:255'],
             'order' => ['nullable', 'integer'],
             'type' => ['required', 'integer', Rule::in(MenuTypeEnum::all())],
             'menu_catalogs' => ['required', 'array'],
             'menu_catalogs.*' => ['required', 'integer', Rule::exists(MenuSubGroup::class, 'id')],
             'is_new' => ['required', Rule::in(ActivationStatusEnum::all())],
             'status' => ['required', Rule::in(ActivationStatusEnum::all())],
-            'meta' => ['required', 'array']
+            'meta' => ['nullable', 'array'],
+            'display_on_frontend' => ['required', Rule::in(ActivationStatusEnum::all())],
         ];
 
         if ($this->type == MenuTypeEnum::COLLECTION) {
@@ -48,6 +50,7 @@ class StoreMenuRequest extends BaseFormRequest implements StoreMenuRequestContra
         $this->merge([
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
             'is_new' => boolean($this->is_new) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
         ]);
     }
 }

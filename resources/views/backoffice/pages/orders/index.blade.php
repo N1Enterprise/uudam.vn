@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Orders');
+	$title = __('Quản lí đơn hàng');
 
 	$breadcrumbs = [
 		[
@@ -34,29 +34,40 @@
             <div class="k-portlet__head">
                 <div class="k-portlet__head-label">
                     <h3 class="k-portlet__head-title">
-                        {{ __('Order') }}
+                        {{ __('Danh sách đơn hàng') }}
                     </h3>
                 </div>
+
+                @can('orders.manage')
+                <div class="k-portlet__head-toolbar">
+                    <div class="k-portlet__head-toolbar-wrapper">
+                        <a href="{{ route('bo.web.orders.create') }}" class="btn btn-default btn-bold btn-upper btn-font-sm">
+                            <i class="flaticon2-add-1"></i>
+                            {{__('Tạo đơn hàng mới')}}
+                        </a>
+                    </div>
+                </div>
+                @endcan
+                
             </div>
             <div class="k-portlet__body">
                 <table id="table_orders_index" data-searching="true" data-request-url="{{ route('bo.api.orders.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                     <thead>
                         <tr>
                             <th data-property="id">{{ __('ID') }}</th>
-                            <th data-property="order_code">{{ __('Order Code') }}</th>
-                            <th data-orderable="false" data-property="user.name">{{ __('User Name') }}</th>
-                            <th data-property="fullname">{{ __('Full Name') }}</th>
-                            <th data-property="email">{{ __('E-mail') }}</th>
-                            <th data-property="phone">{{ __('Phone Number') }}</th>
-                            <th data-property="total_item">{{ __('Total Item') }}</th>
-                            <th data-property="total_quantity">{{ __('Total Quantity') }}</th>
-                            <th data-orderable="false" data-badge data-name="payment_status" data-property="payment_status_name">{{ __('Payment Status') }}</th>
-                            <th data-orderable="false" data-badge data-name="order_status" data-property="order_status_name">{{ __('Order Status') }}</th>
-                            <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                            <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                            <th data-property="created_at">{{ __('Created At') }}</th>
-                            <th data-property="updated_at">{{ __('Updated At') }}</th>
-                            <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                            <th data-property="order_code">{{ __('Mã đơn hàng') }}</th>
+                            <th data-property="fullname">{{ __('Tên KH') }}</th>
+                            <th data-property="email">{{ __('E-mail KH') }}</th>
+                            <th data-property="phone">{{ __('SĐT KH') }}</th>
+                            <th data-property="total_item">{{ __('Tổng sản phẩm') }}</th>
+                            <th data-property="total_quantity">{{ __('Tổng số lượng') }}</th>
+                            <th data-orderable="false" data-badge data-name="payment_status" data-property="payment_status_name">{{ __('Trạng thái thanh toán') }}</th>
+                            <th data-orderable="false" data-badge data-name="order_status" data-property="order_status_name">{{ __('Trạng thái đơn') }}</th>
+                            <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                            <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                            <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                            <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                            <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                         </tr>
                     </thead>
                     <tbody>

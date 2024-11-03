@@ -6,7 +6,6 @@ use App\Contracts\Requests\Backoffice\StoreProductReviewRequestContract;
 use App\Enum\ProductReviewRatingEnum;
 use App\Enum\ProductReviewStatusEnum;
 use App\Models\Product;
-use App\Models\ProductReview;
 use Illuminate\Validation\Rule;
 
 class StoreProductReviewRequest extends BaseFormRequest implements StoreProductReviewRequestContract
@@ -15,12 +14,18 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
     {
         return [
             'user_name' => ['required', 'string', 'max:255'],
-            'user_phone' => ['nullable', 'max:15', Rule::unique(ProductReview::class, 'user_phone')],
-            'user_email' => ['nullable', 'email', 'string', 'max:255', Rule::unique(ProductReview::class, 'user_email')],
+            'user_phone' => ['nullable', 'max:15'],
+            'user_email' => ['nullable', 'email', 'string', 'max:255'],
             'rating_type' => ['required', Rule::in(ProductReviewRatingEnum::all())],
             'content' => ['required'],
             'status' => ['required', 'integer', Rule::in(ProductReviewStatusEnum::all())],
             'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
+            'is_purchased' => ['required', 'boolean'],
+            'images' => ['nullable', 'array'],
+            'post_at' => ['required', 'date'],
+            'images.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+            'images.*.path' => ['nullable', 'string'],
+            'images.*.order' => ['nullable', 'string'],
         ];
     }
 
@@ -28,6 +33,11 @@ class StoreProductReviewRequest extends BaseFormRequest implements StoreProductR
     {
         $this->merge([
             'status' => ProductReviewStatusEnum::PENDING,
+            'is_purchased' => boolean($this->is_purchased),
+            'images' => collect(data_get($this, 'image'))
+                    ->filter(fn($item) => data_get($item, 'path') || data_get($item, 'file'))
+                    ->toArray(),
+            'post_at' => $this->post_at ? $this->post_at : now()
         ]);
     }
 }

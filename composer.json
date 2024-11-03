@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "brick/money": "^0.5.3",
+        "doctrine/dbal": "^3.8",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
@@ -17,12 +18,16 @@
         "laravel/telescope": "^4.10",
         "laravel/tinker": "^2.5",
         "league/flysystem-sftp": "^1.1",
-        "predis/predis": "^2.2",
+        "predis/predis": "*",
         "propaganistas/laravel-phone": "^4.4",
+        "roumen/sitemap": "^8.0",
         "spatie/laravel-permission": "^5.11",
-        "spatie/laravel-responsecache": "^6.6"
+        "spatie/laravel-responsecache": "^6.6",
+        "symfony/expression-language": "^5.4",
+        "voku/anti-xss": "^4.1"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",

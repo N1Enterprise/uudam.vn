@@ -41,13 +41,18 @@ Route::prefix('v1')->group(function () {
 
     /* ======================== SUPPORT DESKS ======================== */
     Route::get('product-reviews', [Api\ProductReviewController::class, 'index'])->name('product-reviews.index')->middleware(['can:product-reviews.index']);
+    Route::put('product-reviews/{id}/approve', [Api\ProductReviewController::class, 'approve'])->name('product-reviews.approve')->middleware(['can:product-reviews.update']);
+    Route::put('product-reviews/{id}/decline', [Api\ProductReviewController::class, 'decline'])->name('product-reviews.decline')->middleware(['can:product-reviews.update']);
+    Route::get('subscribers', [Api\SubscriberController::class, 'index'])->name('subscribers.index')->middleware(['can:subscribers.index']);
 
     /* ======================== APPEARANCE ======================== */
-    Route::get('display-inventories', [Api\DisplayInventoryController::class, 'index'])->name('display-inventories.index')->middleware(['can:display-inventories.index']);
     Route::get('banners', [Api\BannerController::class, 'index'])->name('banners.index')->middleware(['can:banners.index']);
     Route::get('menu-groups', [Api\MenuGroupController::class, 'index'])->name('menu-groups.index')->middleware(['can:menu-groups.index']);
     Route::get('menu-sub-groups', [Api\MenuSubGroupController::class, 'index'])->name('menu-sub-groups.index')->middleware(['can:menu-sub-groups.index']);
     Route::get('menus', [Api\MenuController::class, 'index'])->name('menus.index')->middleware(['can:menus.index']);
+
+    Route::get('homepage-display-orders', [Api\HomePageDisplayOrderController::class, 'index'])->name('home-page-display-orders.index')->middleware(['can:home-page-display-orders.index']);
+    Route::get('homepage-display-items', [Api\HomePageDisplayItemController::class, 'index'])->name('home-page-display-items.index')->middleware(['can:home-page-display-items.index']);
 
     /* ======================== UTILITIES ======================== */
     Route::get('post-categories', [Api\PostCategoryController::class, 'index'])->name('post-categories.index')->middleware(['can:post-categories.index']);
@@ -58,9 +63,11 @@ Route::prefix('v1')->group(function () {
     Route::get('faqs', [Api\FaqController::class, 'index'])->name('faqs.index')->middleware(['can:faqs.index']);
 
     /* ======================== SHIPPINGS ======================== */
-    Route::get('carriers', [Api\CarrierController::class, 'index'])->name('carriers.index')->middleware(['can:carriers.index']);
     Route::get('shipping-zones', [Api\ShippingZoneController::class, 'index'])->name('shipping-zones.index')->middleware(['can:shipping-zones.index']);
     Route::get('shipping-rates', [Api\ShippingRateController::class, 'index'])->name('shipping-rates.index')->middleware(['can:shipping-rates.index']);
+    Route::get('shipping-providers', [Api\ShippingProviderController::class, 'index'])->name('shipping-providers.index')->middleware(['can:shipping-providers.index']);
+    Route::get('shipping-options', [Api\ShippingOptionController::class, 'index'])->name('shipping-options.index')->middleware(['can:shipping-options.index']);
+    Route::get('shipping-options/available', [Api\ShippingOptionController::class, 'getAvailable'])->name('shipping-options.available')->middleware(['can:shipping-options.index']);
 
     /* ======================== LOCALIZATION ======================== */
     Route::get('countries', [Api\CountryController::class, 'index'])->name('countries.index')->middleware(['can:countries.index']);
@@ -81,15 +88,24 @@ Route::prefix('v1')->group(function () {
     Route::post('orders/{id}/change-status', [Api\OrderController::class, 'changeStatus'])->name('orders.change-status')->middleware('can:orders.manage');
     Route::get('orders/statistic/order-status/{orderStatus}', [Api\OrderController::class, 'statisticOrderStatus'])->name('orders.statistic.order-status')->middleware(['can:orders.index']);
 
+    Route::put('orders/{id}/delivery', [Api\OrderController::class, 'delivery'])->name('orders.delivery')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/complete', [Api\OrderController::class, 'complete'])->name('orders.complete')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/cancel', [Api\OrderController::class, 'cancel'])->name('orders.cancel')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/refund', [Api\OrderController::class, 'refund'])->name('orders.refund')->middleware(['can:orders.manage']);
+    Route::put('orders/{id}/update-shipping', [Api\OrderController::class, 'updateShipping'])->name('orders.update-shipping')->middleware(['can:orders.manage']);
+
     Route::get('order-items', [Api\OrderItemController::class, 'index'])->name('order-items.index')->middleware(['can:orders.index']);
 
     Route::get('carts', [Api\CartController::class, 'index'])->name('carts.index')->middleware(['can:carts.index']);
     Route::get('cart-items', [Api\CartItemController::class, 'index'])->name('cart-items.index')->middleware(['can:carts.index']);
 
     /* ======================== DASHBOARD REPORT ======================== */
-    Route::get('dashboard/total-new-users', [Api\DashboardController::class, 'getTotalNewUsers'])->name('dashboard.new-users');
-    Route::get('dashboard/total-new-orders', [Api\DashboardController::class, 'getTotalNewOrders'])->name('dashboard.new-orders');
-    Route::get('dashboard/total-deposit', [Api\DashboardController::class, 'getTotalDeposit'])->name('dashboard.total-deposit');
-    Route::get('dashboard/top-users', [Api\DashboardController::class, 'getTopUsers'])->name('dashboard.top-users');
+    Route::get('dashboard/total-new-users', [Api\DashboardController::class, 'getTotalNewUsers'])->name('dashboard.new-users')->middleware(['can:reports.view-new-users']);
+    Route::get('dashboard/total-new-orders', [Api\DashboardController::class, 'getTotalNewOrders'])->name('dashboard.new-orders')->middleware(['can:reports.view-new-orders']);
+    Route::get('dashboard/total-turnover', [Api\DashboardController::class, 'getTotalTurnover'])->name('dashboard.total-turnover')->middleware(['can:reports.view-turnover']);
+    Route::get('dashboard/top-users', [Api\DashboardController::class, 'getTopUsers'])->name('dashboard.top-users')->middleware(['can:reports.view-top-users']);
     Route::get('dashboard/top-orders', [Api\DashboardController::class, 'getTopOrders'])->name('dashboard.top-orders');
+
+    Route::get('video-categories', [Api\VideoCategoryController::class, 'index'])->name('video-categories.index')->middleware(['can:video-categories.index']);
+    Route::get('videos', [Api\VideoController::class, 'index'])->name('videos.index')->middleware(['can:videos.index']);
 });

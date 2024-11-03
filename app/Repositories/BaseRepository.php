@@ -769,7 +769,17 @@ abstract class BaseRepository implements BaseRepositoryContract
      */
     public function updateOrCreate(array $attributes, array $values = [])
     {
+        $this->applyScope();
 
+        // event(new RepositoryModelCreating($this, $attributes));
+
+        $model = $this->model->updateOrCreate($attributes, $values);
+
+        $this->resetRepository();
+
+        // event(new RepositoryEntityUpdated($this, $model));
+
+        return $this->parserResult($model);
     }
 
     /**

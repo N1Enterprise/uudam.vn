@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
+use App\Cms\MenuCms;
 use App\Enum\MenuTypeEnum;
 use App\Models\Traits\Activatable;
+use App\Models\Traits\HasFeUsage;
 
 class Menu extends BaseModel
 {
     use Activatable;
+    use HasFeUsage;
+
+    public const CACHE_TAG = 'menu';
 
     protected $fillable = [
         'name',
+        'label',
         'is_new',
         'type',
         'collection_id',
@@ -19,6 +25,7 @@ class Menu extends BaseModel
         'order',
         'meta',
         'status',
+        'display_on_frontend'
     ];
 
     protected $casts = [
@@ -48,5 +55,12 @@ class Menu extends BaseModel
     public function menuCatalogs()
     {
         return $this->belongsToMany(MenuSubGroup::class, 'menu_sub_group_menus');
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            MenuCms::flush();
+        });
     }
 }

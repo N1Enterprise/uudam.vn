@@ -1,10 +1,10 @@
-<div class="modal fade" id="modal_editSetting" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="modal_editSetting" tabindex="-1">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ __('Edit Setting') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
                 </button>
             </div>
             <form id="form_editSetting" method="POST" action="{{ route('bo.web.system-settings.update', ['id' => $systemSetting->id]) }}">
@@ -30,8 +30,8 @@
                         <input type="text" class="form-control" name="label" value="{{ $systemSetting->label }}" placeholder="{{ __('Label') }}">
                     </div>
                     <div class="form-group">
-                        <label>{{ __('Index') }} *</label>
-                        <input type="number" min="0" class="form-control" name="order" value="{{ $systemSetting->order }}" placeholder="{{ __('Index') }}" required>
+                        <label>{{ __('Index') }}</label>
+                        <input type="number" min="0" class="form-control" name="order" value="{{ $systemSetting->order }}" placeholder="{{ __('Index') }}">
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between align-items-center">
@@ -44,8 +44,8 @@
                         data-url="{{ route('bo.api.system-settings.delete', ['id' => $systemSetting->id, 'tab' => $systemSetting->group_id]) }}"
                     >{{ __('Delete') }}</button>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Đóng') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
                     </div>
                 </div>
             </form>

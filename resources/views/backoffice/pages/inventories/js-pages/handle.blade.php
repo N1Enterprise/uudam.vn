@@ -37,6 +37,44 @@
         onDelete: () => {},
     };
 
+    var VARIANT_BORDER_IMAGE_IMAGE_PATH = {
+        element_list: $('.variant_border_image_image_path'),
+        onChange: () => {
+            $.each(VARIANT_BORDER_IMAGE_IMAGE_PATH.element_list, function(index, element) {
+                $(element).on('change', function() {
+                    __IMAGE_MANAGER__.reviewPathOn($(this).val(), 'variant_border_image', index);
+                });
+            });
+        },
+        triggerChange: () => {
+            $(document).ready(function() {
+                $.each(VARIANT_BORDER_IMAGE_IMAGE_PATH.element_list, function(index, element) {
+                    $(element).trigger('change');
+                });
+            });
+        },
+        onDelete: () => {},
+    };
+
+    var VARIANT_BORDER_IMAGE_IMAGE_FILE = {
+        element_list: $('.variant_border_image_image_file'),
+        elemen_del_list: $('[data-image-ref-delete="variant_border_image"]'),
+        onChange: () => {
+            $.each(VARIANT_BORDER_IMAGE_IMAGE_FILE.element_list, function(index, element) {
+                $(element).on('change', function() {
+                    __IMAGE_MANAGER__.reviewFileOn($(this)[0].files[0], 'variant_border_image', index);
+                });
+            });
+        },
+        onDelete: () => {
+            $.each(VARIANT_BORDER_IMAGE_IMAGE_FILE.elemen_del_list, function(index, element) {
+                $(element).on('click', function() {
+                    __IMAGE_MANAGER__.deleteRef('variant_border_image', index);
+                });
+            });
+        },
+    };
+
     var FORM_MASTER = {
         init: () => {
             FORM_MASTER.onChange();
@@ -44,8 +82,13 @@
         onChange: () => {
             FORM_MEDIA_IMAGE_FILE.onChange();
             FORM_MEDIA_IMAGE_PATH.onChange();
+            VARIANT_BORDER_IMAGE_IMAGE_FILE.onChange();
+            VARIANT_BORDER_IMAGE_IMAGE_PATH.onChange();
+
             FORM_MEDIA_IMAGE_FILE.onDelete();
             FORM_MEDIA_IMAGE_PATH.onDelete();
+            VARIANT_BORDER_IMAGE_IMAGE_FILE.onDelete();
+            VARIANT_BORDER_IMAGE_IMAGE_PATH.onDelete();
         },
     };
 
@@ -74,9 +117,12 @@
                 FORM_MEDIA_IMAGE_FILE.onChange();
                 FORM_MEDIA_IMAGE_PATH.onChange();
                 FORM_MEDIA_IMAGE_FILE.onDelete();
+
+                VARIANT_BORDER_IMAGE_IMAGE_PATH.element_list = $('[data-repeater-item] .variant_border_image_image_path');
+                VARIANT_BORDER_IMAGE_IMAGE_PATH.onChange();
             },
             hide: function(deleteElement) {
-                if (confirm('Are you sure you want to delete this element?')) {
+                if (confirm('Bạn có chắc chắn muốn xóa phần tử này ?')) {
                     $(this).slideUp(deleteElement);
                 }
             },
@@ -90,7 +136,7 @@
                 $(this).slideDown();
             },
             hide: function(deleteElement) {
-                if (confirm('Are you sure you want to delete this element?')) {
+                if (confirm('Bạn có chắc chắn muốn xóa phần tử này ?')) {
                     $(this).slideUp(deleteElement);
                 }
             },
@@ -105,7 +151,7 @@
                 $(this).find('select.Product_Combo_Selector').selectpicker('refresh');
             },
             hide: function(deleteElement) {
-                if (confirm('Are you sure you want to delete this element?')) {
+                if (confirm('Bạn có chắc chắn muốn xóa phần tử này ?')) {
                     $(this).slideUp(deleteElement);
                 }
             },
@@ -118,7 +164,7 @@
 
     $(document).ready(function() {
         $('[data-repeater-delete-custom]').on('click', function() {
-            if (confirm("{{ __('Confirm delete this variant?') }}")) {
+            if (confirm("{{ __('Xác nhận xóa biến thể này ?') }}")) {
                 $(this).parents('[data-repeater-item-custom]').remove();
             }
         });
@@ -143,6 +189,40 @@
             $('[data-toggle-reference="offer_date_setup"]').toggleClass('d-none', !hasOfferPrice);
             $('[data-toggle-reference="offer_date_setup"] input').toggleClass('d-none', !hasOfferPrice);
             $('[data-toggle-reference="offer_date_setup"] input').prop('disabled', !hasOfferPrice);
+        });
+
+        $('[copy-inventory-selection]').each(function(_, element) {
+            $(element).on('change', function() {
+                const index = $(this).parents('[data-repeater-index]').attr('data-repeater-index');
+                const targetIndex = $(this).val();
+
+                const targetValues = {
+                    title: $(`[name="variants[title][${targetIndex}]"]`).val(),
+                    weight: $(`[name="variants[weight][${targetIndex}]"]`).val(),
+                    sku: $(`[name="variants[sku][${targetIndex}]"]`).val(),
+                    condition: $(`[name="variants[condition][${targetIndex}]"]`).val(),
+                    stock_quantity: $(`[name="variants[stock_quantity][${targetIndex}]"]`).val(),
+                    purchase_price: $(`[name="variants[purchase_price][${targetIndex}]"]`).val(),
+                    sale_price: $(`[name="variants[sale_price][${targetIndex}]"]`).val(),
+                    offer_price: $(`[name="variants[offer_price][${targetIndex}]"]`).val()
+                };
+
+                $(`[name="variants[title][${index}]"]`).val(targetValues.title);
+                $(`[name="variants[weight][${index}]"]`).val(targetValues.weight);
+                $(`[name="variants[sku][${index}]"]`).val(targetValues.sku);
+                $(`[name="variants[condition][${index}]"]`).val(targetValues.condition);
+
+                $(`[name="variants[stock_quantity][${index}]"]`).val(targetValues.stock_quantity);
+                $(`[name="variants[purchase_price][${index}]"]`).val(targetValues.purchase_price);
+                $(`[name="variants[sale_price][${index}]"]`).val(targetValues.sale_price);
+                $(`[name="variants[offer_price][${index}]"]`).val(targetValues.offer_price);
+
+                $(`[data-key="variants[weight][${index}]"]`).val(targetValues.weight);
+                $(`[data-key="variants[stock_quantity][${index}]"]`).val(targetValues.stock_quantity);
+                $(`[data-key="variants[purchase_price][${index}]"]`).val(targetValues.purchase_price);
+                $(`[data-key="variants[sale_price][${index}]"]`).val(targetValues.sale_price);
+                $(`[data-key="variants[offer_price][${index}]"]`).val(targetValues.offer_price);
+            });
         });
     });
 </script>

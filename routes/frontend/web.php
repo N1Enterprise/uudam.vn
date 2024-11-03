@@ -3,33 +3,49 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend as Controllers;
 
-Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['feweb'])->group(function() {
+    Route::redirect('/home', '/');
+    Route::redirect('/index', '/');
 
-Route::get('products/{slug}', [Controllers\ProductController::class, 'index'])->name('products.index');
+    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('blogs', [Controllers\BlogController::class, 'index']);
+    Route::get('san-pham/{slug}.html', [Controllers\ProductController::class, 'index'])->name('products.index');
 
-Route::get('blogs/posts/{slug}', [Controllers\PostController::class, 'index'])->name('posts.index');
+    Route::get('bai-viet/{slug}.html', [Controllers\PostController::class, 'index'])->name('posts.index');
 
-Route::get('collections/{slug}', [Controllers\CollectionController::class, 'index'])->name('collections.index');
+    Route::get('video/{slug}.html', [Controllers\VideoController::class, 'index'])->name('videos.index');
 
-Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');
+    Route::get('bo-suu-tap/{slug}.html', [Controllers\CollectionController::class, 'index'])->name('collections.index');
 
-Route::get('pages/{slug}', [Controllers\PageController::class, 'index'])->name('pages.index');
+    Route::get('trang/{slug}.html', [Controllers\PageController::class, 'index'])->name('pages.index');
 
-Route::get('maintenance', [Controllers\MaintenanceController::class, 'index'])->name('maintenance');
+    Route::get('dang-bao-tri.html', [Controllers\MaintenanceController::class, 'index'])->name('maintenance');
 
-Route::middleware(['auth:user'])->group(function() {
-    Route::get('cart', [Controllers\UserCartController::class, 'index'])->name('cart.index');
-    Route::get('profile/info', [Controllers\UserProfileController::class, 'profile'])->name('user.profile.info');
-    Route::get('profile/order-history', [Controllers\UserOrderController::class, 'orderHistory'])->name('user.profile.order-history');
-    Route::get('profile/order-history/{orderCode}', [Controllers\UserOrderController::class, 'orderHistoryDetail'])->name('user.profile.order-history-detail');
-    Route::get('profile/change-password', [Controllers\UserProfileController::class, 'changePassword'])->name('user.profile.change-password');
+    Route::get('tim-kiem.html', [Controllers\UserSearchController::class, 'index'])->name('search');
 
-    Route::get('checkout-confirmation', [Controllers\UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');
-    Route::get('checkout/{cartUuid}', [Controllers\UserCheckoutController::class, 'checkout'])->name('user.checkout.index');
-    Route::get('checkout/repayment/{orderCode}', [Controllers\UserCheckoutController::class, 'rePayment'])->name('user.checkout.repayment');
+    Route::get('tin-tuc.html', [Controllers\NewsController::class, 'index'])->name('news.index');
 
-    Route::get('checkout/payment/failure/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentFailure'])->name('user.checkout.payment.failure');
-    Route::get('checkout/payment/success/{orderCode}', [Controllers\UserCheckoutController::class, 'paymentSuccess'])->name('user.checkout.payment.success');
+    Route::get('tin-tuc/{slug}.html', [Controllers\NewsController::class, 'showPostCategory'])->name('news.show-post-categories');
+
+    Route::middleware(['auth:user'])->group(function() {
+        Route::get('gio-hang.html', [Controllers\UserCartController::class, 'index'])->name('cart.index');
+
+        Route::get('hoan-thanh-ho-so.html', [Controllers\UserProfileController::class, 'profileComplete'])->name('user.complete-infomation');
+
+        Route::get('ho-so.html', [Controllers\UserProfileController::class, 'account'])->name('user.profile');
+        Route::get('mat-khau.html', [Controllers\UserProfileController::class, 'passwordChange'])->name('user.security.password-change');
+        Route::get('lich-su-don-hang.html', [Controllers\UserOrderController::class, 'orderHistory'])->name('user.profile.order-histories');
+        Route::get('lich-su-don-hang/{orderCode}.html', [Controllers\UserOrderController::class, 'orderHistoryDetail'])->name('user.profile.order-history-detail');
+        Route::get('quan-ly-dia-chi.html', [Controllers\UserAddressController::class, 'address'])->name('user.localization.address');
+        Route::get('cap-nhat-dia-chi/{code}.html', [Controllers\UserAddressController::class, 'edit'])->name('user.localization.address.edit');
+        Route::get('them-dia-chi.html', [Controllers\UserAddressController::class, 'create'])->name('user.localization.address.create');
+
+        Route::get('don-hang.html', [Controllers\UserCheckoutController::class, 'index'])->name('user.checkout.confirmation');
+        Route::get('don-hang/{cartUuid}.html', [Controllers\UserCheckoutController::class, 'checkout'])->name('user.checkout.index');
+        Route::get('thanh-toan-lai-don-hang/{orderCode}.html', [Controllers\UserCheckoutController::class, 'rePayment'])->name('user.checkout.repayment');
+
+        Route::get('trang-thai-don-hang/{cartUuid}.html', [Controllers\UserCheckoutController::class, 'checkoutStatus'])->name('user.checkout.payment.status');
+    });
+
+    Route::get('/{code}', [Controllers\ShortenedLinkController::class, 'handleRedirect']);
 });

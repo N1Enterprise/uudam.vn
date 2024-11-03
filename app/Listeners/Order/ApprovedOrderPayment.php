@@ -3,11 +3,12 @@
 namespace App\Listeners\Order;
 
 use App\Events\Deposit\DepositApproved;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\DepositTransaction;
-use App\Services\OrderService;
+use App\Services\OrderPaymentService;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Order;
 
-class ApprovedOrderPayment implements ShouldQueue
+class ApprovedOrderPayment
 {
     public $timeout = 300;
 
@@ -28,13 +29,13 @@ class ApprovedOrderPayment implements ShouldQueue
         /** @var DepositTransaction */
         $transaction = $event->transaction;
 
-        OrderService::make()->approvePayment($transaction->order->id);
-    }
+        /** @var Order */
+        $order = $transaction->order;
 
-    public function shouldQueue($event)
-    {
-        $transaction = $event->transaction;
+        if (! $order->isPendingPayment()) {
+            return;
+        }
 
-        return $transaction->order_id;
+        OrderPaymentService::make()->approve($transaction->order);
     }
 }

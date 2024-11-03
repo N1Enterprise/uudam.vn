@@ -16,7 +16,6 @@ class ShippingRate extends BaseModel
     protected $fillable = [
         'name',
         'shipping_zone_id',
-        'carrier_id',
         'delivery_takes',
         'type',
         'minimum',
@@ -34,11 +33,6 @@ class ShippingRate extends BaseModel
     public function shippingZone()
     {
         return $this->belongsTo(ShippingZone::class);
-    }
-
-    public function carrier()
-    {
-        return $this->belongsTo(Carrier::class);
     }
 
     public function isFreeShipping()

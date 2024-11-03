@@ -53,6 +53,7 @@ class OrderResource extends BaseJsonResource
             'admin_note' => $this->admin_note,
             'user_note' => $this->user_note,
             'retry_order_times' => $this->retry_order_times,
+            'order_channel' => $this->order_channel,
             'created_by' => $this->whenLoaded('createdBy', function() {
                 return new CreatedByResource($this->createdBy);
             }),

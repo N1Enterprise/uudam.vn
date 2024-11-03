@@ -1,0 +1,323 @@
+.align-items-center {
+	-ms-flex-align: center!important;
+	align-items: center!important;
+}
+.justify-content-between {
+	-ms-flex-pack: justify!important;
+	justify-content: space-between!important;
+}
+.flex-wrap {
+	-ms-flex-wrap: wrap!important;
+	flex-wrap: wrap!important;
+}
+.flashsale__header {
+	width: 100%;
+}
+.ega-badge-ctd {
+	display: flex;
+	align-items: center;
+}
+.ega-badge-ctd > div:not(.ega-badge-ctd__colon) {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 3px;
+	font-size: 14px;
+	background-color: #fff;
+}
+.ega-badge-ctd__item {
+	border-radius: 3px;
+	color: #025B50;
+	text-align: center;
+	display: flex;
+	place-items: center;
+	place-content: center;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 20px;
+}
+.ega-badge-ctd__item + span {
+	font-size: 10px;
+	line-height: 1.3;
+	color: var(--countdown-color);
+}
+.ega-badge-ctd__colon {
+	font-weight: bold;
+	font-size: 10px;
+	color: #fff!important;
+	margin: auto 3px;
+}
+.ega-badge-ctd__s {
+	margin-right: 0px;
+}
+.flashsale {
+	--background-color: #f4ebc1;
+	--countdown-background: #d3232a;
+	--countdown-color: #fff;
+}
+.flashsale__container {
+	padding: 10px;
+}
+.flashsale .heading-bar {
+	background-color: transparent;
+	margin-bottom: 5px;
+}
+.flashsale__title h5 {
+	margin-bottom: 0
+}
+.flashsale__item .item_product_main {
+	border-radius: 8px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+@media (max-width: 575px) {
+	.flashsale__title {
+		text-align: center;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+@media (max-width: 575px) {
+	.flashsale__header {
+		justify-content: center;
+		margin: auto;
+	}
+}
+.flashsale__news a {
+	margin: auto 10px;
+	font-size: 14px;
+	font-weight: 500;
+}
+.flashsale__news a:hover {
+	color: var(--primary-color)
+}
+.flashsale__news-list {
+	max-width: 100%;
+	overflow: hidden;
+}
+.flashsale__countdown-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-left: 15px;
+}
+@media (max-width: 767px) {
+	.flashsale .heading-bar {
+		margin-bottom: 0;
+	}
+	.flashsale__countdown-wrapper {
+		flex-direction: column;
+		margin: 0;
+	}
+	.ega-badge-ctd__item + span {
+		display: none;
+	}
+	.ega-badge-ctd > div:not(.ega-badge-ctd__colon) {
+		width: 24px;
+		height: 24px;
+	}
+	.ega-badge-ctd__item {
+		font-size: 14px;
+	}
+}
+.flashsale__countdown-label {
+	color: var(--heading-color);
+	font-size: 16px;
+}
+@media (max-width: 767px) {
+	.flashsale__countdown-label {
+		display: none!important;
+	}
+}
+.flashsale__bottom {
+	padding: 0 10px 10px 10px;
+}
+@media (max-width: 767px) {
+	.flashsale__bottom {
+		padding: 0 8px 8px 8px;
+		font-size: 12px;
+	}
+}
+
+.flashsale__progressbar {
+	display: block;
+	width: 100%;
+	height: 10px;
+	background: var(--process-background);
+	margin-top: 2px;
+	border-radius: 9999px;
+	position: relative;
+	overflow: hidden;
+}
+.flashsale__progressbar.style2 {
+	height: 18px;
+}
+.flashsale___percent {
+	width: 0%;
+	height: 100%;
+	background:linear-gradient(270deg,var(--process-color2),var(--process-color1));
+	border-radius: 9999px;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+    display: block!important;
+}
+.flashsale__label{
+	color: var(--stock-color);
+	font-size: 12px;
+}
+.flashsale__label img {
+	vertical-align: top;
+}
+.flashsale__progressbar .flashsale__label {
+	font-size: 12px;
+	position: relative;
+	left: 0;
+	z-index: 2;
+	text-align: center;
+	margin: auto;
+}
+.flashsale__title, .flashsale__title a.link {
+	color: var(--heading-color);
+}
+h2.heading-bar__title {
+	font-size: 23px;
+	font-weight: bold;
+	margin: 0px;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+.flashsale__countdown-wrapper .flashsale__countdown-label {
+	display: none;
+}
+
+.htp-tabcontent {
+	display: none;
+}
+.htp-tabcontent.active {
+	display: block;
+}
+
+.heading-title {
+	padding: 30px 0;
+}.row.heading-title {}
+
+
+.heading-title .htp-tablinks button.htp-tablink {
+	border: 0;
+	padding: 10px 15px;
+	background: unset;
+	color: var(--heading-color_tit);
+	font-size: 16px;
+	text-transform: capitalize;
+	font-weight: 600;
+	margin: 0;
+	outline: 0;
+	border-bottom: 2px solid transparent;
+}
+
+.heading-title .htp-tablinks button.htp-tablink.active {
+	border-color: var(--heading-color_titac);;
+	color: var(--heading-color_titac);;
+}
+
+@media (min-width:768px){
+	.flashsale__countdown-label {
+		margin-right: 0.5rem!important;
+	}
+}
+@media (max-width:767px){
+	h2.heading-bar__title {
+		font-size: 19px;
+	}
+	.heading-title .htp-tablinks {
+		text-align: center;
+	}
+	.heading-title .htp-tablinks button.htp-tablink {
+		padding: 7px 5px;
+		font-size: 13px;
+	}
+	.flashsale-owl .slick-list {
+		margin: 0 -5px;
+	}
+
+	.flashsale-owl .slick-list .flashsale__item.slick-slide {
+		margin: 0 5px;
+		border: 1px solid #e6e6e6;
+	}
+	.flashsale-owl .slick-list .flashsale__item.slick-slide .product-info {
+		padding: 10px 5px 5px;
+	}
+}
+.flashsale-owl .col-item .product-info h3.title {
+	min-height: 55px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.flashsale__label .flashsale__sold-qty {
+	color: #621a10;
+}
+.details-pro .flashsale__header {
+	background: #aa3333;
+	border-radius: 5px 5px 0 0;
+	padding:  7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media screen and (max-width: 800px){
+    .details-pro .flashsale__header {
+        flex-direction: column;
+    }
+
+    .details-pro .flashsale__header .flashsale__title {
+        margin-bottom: 5px;
+    }
+}
+.details-pro .flashsale__header .flashsale__title h5 {
+	color: #fff;
+	text-transform: uppercase;
+	margin: 0;align-items: center;
+}
+.details-pro .flashsale__countdown-label {
+	font-size: 13px;
+	color: #fff;
+}
+.details-pro .flashsale__countdown-wrapper .flashsale__countdown .ega-badge-ctd__item {
+	font-size: 13px;
+}
+.details-pro .flashsale__countdown-wrapper .ega-badge-ctd__colon {
+	 color:transparent;
+     display: block;
+}
+.details-pro .flashsale {
+    border: none;
+    border-radius: 6px;
+}
+.details-pro .flashsale__product {
+    padding-top: 7px;
+}
+.details-pro .flashsale__countdown-wrapper .flashsale__countdown .ega-badge-ctd > div:not(.ega-badge-ctd__colon) {
+	width: 30px;
+	height: 30px;
+}
+
+.flashsale-price {
+    margin: 0;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: 8px;
+}

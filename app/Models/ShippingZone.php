@@ -11,10 +11,15 @@ class ShippingZone extends BaseModel
     protected $fillable = [
         'name',
         'supported_countries',
-        'status'
+        'status',
+        'supported_provinces',
+        'supported_districts',
+        'supported_wards'
     ];
 
     protected $casts = [
-        'supported_countries' => 'json'
+        'supported_countries' => 'json',
+        'supported_provinces' => 'json',
+        'supported_districts' => 'json',
     ];
 }

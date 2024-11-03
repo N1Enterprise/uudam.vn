@@ -366,7 +366,7 @@ class Money
 
         $formatted = $formatIntegralPart . (!empty($fractionalPart) ? $decimalsSeparator . $fractionalPart : '');
 
-        return $currencyCodeSuffix ? $formatted . ' ' . $this->getCurrencyCode() : $formatted;
+        return $currencyCodeSuffix ? $formatted . '₫' : $formatted;
     }
 
     public function __call($method, $arguments)

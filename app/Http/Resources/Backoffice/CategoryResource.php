@@ -17,12 +17,13 @@ class CategoryResource extends BaseJsonResource
             'status' => $this->status,
             'status_name' => $this->status_name,
             'order' => $this->order,
-            'featured' => $this->featured,
-            'featured_name' => $this->featured_name,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'products_count' => $this->whenLoaded('products', function() {
+                return optional($this->products)->count();
+            }),
             'category_group' => $this->whenLoaded('categoryGroup', function() {
                 return [
                     'id' => $this->categoryGroup->id,

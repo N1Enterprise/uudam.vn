@@ -5,10 +5,12 @@ namespace App\Http\Requests\Backoffice;
 use App\Contracts\Requests\Backoffice\UpdateProductRequestContract;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\ProductTypeEnum;
+use App\Models\Inventory;
 use App\Models\Post;
 use App\Services\ProductService;
 use Illuminate\Validation\Rule;
 use App\Models\Product;
+use Illuminate\Support\Arr;
 
 class UpdateProductRequest extends BaseFormRequest implements UpdateProductRequestContract
 {
@@ -39,6 +41,8 @@ class UpdateProductRequest extends BaseFormRequest implements UpdateProductReque
             'suggested_relationships.*.inventories.*' => ['required', 'integer', Rule::exists(Inventory::class, 'id')],
             'suggested_relationships.*.posts' => ['nullable', 'array'],
             'suggested_relationships.*.posts.*' => ['required', 'integer', Rule::exists(Post::class, 'id')],
+            'linked_posts' => ['nullable', 'array'],
+            'linked_posts.*' => ['required', Rule::exists(Post::class, 'id')],
         ];
     }
 
@@ -60,6 +64,7 @@ class UpdateProductRequest extends BaseFormRequest implements UpdateProductReque
                 'inventories' => array_filter(array_map('intval', data_get($this->suggested_relationships, 'inventories', []))),
                 'posts' => array_filter(array_map('intval', data_get($this->suggested_relationships, 'posts', []))),
             ],
+            'linked_posts' => array_map('intval', Arr::wrap($this->linked_posts))
         ]);
     }
 }

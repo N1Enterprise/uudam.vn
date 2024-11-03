@@ -15,6 +15,8 @@ class RoleService extends BaseService
     public static $groupedPermissions = [
         'users' => [
             'users.index',
+            'users.store',
+            'users.change_password',
             'label_users_detail' => [
                 'users.show',
                 'users.update',
@@ -60,8 +62,12 @@ class RoleService extends BaseService
                     'attribute-values.delete',
                 ],
             ],
-        ],
-        'stocks' => [
+            'collections' => [
+                'collections.index',
+                'collections.store',
+                'collections.update',
+                'collections.delete',
+            ],
             'inventories' => [
                 'inventories.index',
                 'inventories.store',
@@ -140,6 +146,18 @@ class RoleService extends BaseService
                 'display-inventories.update',
                 'display-inventories.delete',
             ],
+            'home-page-display-orders' => [
+                'home-page-display-orders.index',
+                'home-page-display-orders.store',
+                'home-page-display-orders.update',
+                'home-page-display-orders.delete',
+            ],
+            'home-page-display-items' => [
+                'home-page-display-items.index',
+                'home-page-display-items.store',
+                'home-page-display-items.update',
+                'home-page-display-items.delete',
+            ],
             'banners' => [
                 'banners.index',
                 'banners.store',
@@ -164,18 +182,22 @@ class RoleService extends BaseService
                     'menu-sub-groups.delete',
                 ],
             ],
-            'collections' => [
-                'collections.index',
-                'collections.store',
-                'collections.update',
-                'collections.delete',
-            ],
         ],
         'shippings' => [
-            'carriers' => [
-                'carriers.index',
-                'carriers.store',
-                'carriers.update',
+            // 'carriers' => [
+            //     'carriers.index',
+            //     'carriers.store',
+            //     'carriers.update',
+            // ],
+            'shipping-providers' => [
+                'shipping-providers.index',
+                'shipping-providers.store',
+                'shipping-providers.update',
+            ],
+            'shipping-options' => [
+                'shipping-options.index',
+                'shipping-options.store',
+                'shipping-options.update',
             ],
             'shipping-zones' => [
                 'shipping-zones.index',
@@ -234,7 +256,25 @@ class RoleService extends BaseService
                     'faq-topics.delete',
                 ],
             ],
+            'videos' => [
+                'video-categories' => [
+                    'video-categories.index',
+                    'video-categories.store',
+                    'video-categories.update',
+                    'video-categories.delete',
+                ],
+                'videos.index',
+                'videos.store',
+                'videos.update',
+                'videos.delete',
+            ],
         ],
+        'reports' => [
+            'reports.view-new-users',
+            'reports.view-new-orders',
+            'reports.view-turnover',
+            'reports.view-top-users',
+        ]
     ];
 
     public function __construct(RoleRepositoryContract $roleRepository)

@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-    $title = 'Systems Manage';
+    $title = __('Quản lý hệ thống');
 
     $breadcrumbs = [
         [
             'label' => $title,
         ],
         [
-            'label' => 'System Setting',
+            'label' => __('Thiết lập hệ thống'),
         ],
     ];
 @endphp
@@ -18,6 +18,7 @@
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
+
 @section('style')
 <link href="{{ asset('backoffice/assets/vendors/custom/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css" />
 <style>

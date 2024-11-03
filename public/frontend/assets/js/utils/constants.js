@@ -1,3 +1,5 @@
-const COOKIES_KEY = {
-    SHOPPING_CART: 'uudam__shopping_cart',
+var appId = utils_helper.boDataShared().app_id;
+
+const COOKIE_KEYS = {
+    CURRENT_URL: appId + '_current_url'
 };

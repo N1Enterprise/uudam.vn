@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backoffice;
 
+use App\Classes\AdminAuth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -12,6 +13,14 @@ class BaseController extends Controller
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
+
+    /**
+     * @return \App\Models\Admin
+     */
+    public function user()
+    {
+        return AdminAuth::user();
+    }
 
     public function view($view, $data = [], $mergeData = [])
     {

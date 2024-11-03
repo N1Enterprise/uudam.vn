@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\BaseModel;
 use App\Repositories\Contracts\ShippingRateRepositoryContract;
 use App\Services\BaseService;
-use Illuminate\Support\Facades\DB;
 
 class ShippingRateService extends BaseService
 {
@@ -18,36 +18,12 @@ class ShippingRateService extends BaseService
     public function searchByAdmin($data = [])
     {
         $result = $this->shippingRateRepository
-            ->with(['shippingZone', 'carrier'])
+            ->with(['shippingZone'])
             ->whereColumnsLike(data_get($data, 'query') ?? null, ['name'])
             ->whereColumnsLike(data_get($data, 'shipping_zone_id') ?? null, ['shipping_zone_id'])
             ->whereColumnsLike(data_get($data, 'carrier_id') ?? null, ['carrier_id'])
             ->whereColumnsLike(data_get($data, 'type') ?? null, ['type'])
             ->search([]);
-
-        return $result;
-    }
-
-    public function searchByUser($data = [])
-    {
-        $result = $this->shippingRateRepository
-            ->with(['shippingZone', 'carrier'])
-            ->modelScopes(['active', 'feDisplay'])
-            ->scopeQuery(function($q) use ($data) {
-                if ($type = data_get($data, 'type')) {
-                    $q->where('type', $type);
-                }
-
-                if ($value = data_get($data, 'value')) {
-                    $q->where('minimum', '<=', $value);
-                    $q->where(function($q) use ($value) {
-                        $q->where('maximum', '>=', $value)
-                            ->orWhereNull('maximum');
-                    });
-                }
-            });
-
-        $result = $result->search([], null, ['*'], false);
 
         return $result;
     }
@@ -80,5 +56,23 @@ class ShippingRateService extends BaseService
     public function delete($id)
     {
         return $this->shippingRateRepository->delete($id);
+    }
+
+    public function getByShippingZone($shippingZoneId, $type, $value)
+    {
+        return $this->shippingRateRepository
+            ->modelScopes(['active'])
+            ->scopeQuery(function($q) use ($shippingZoneId, $type, $value) {
+                $q->where('shipping_zone_id', BaseModel::getModelKey($shippingZoneId))
+                    ->where('type', $type);
+
+                $q->where('minimum', '<=', $value)
+                    ->where(function($q) use ($value) {
+                        $q->whereNull('maximum')
+                            ->orWhere('maximum', '>=', $value);
+                    });
+            })
+            ->addSort('created_at')
+            ->first();
     }
 }

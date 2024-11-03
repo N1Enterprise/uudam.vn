@@ -1,27 +1,24 @@
 <div class="header__icons">
     <details-modal class="header__search">
         <details>
-            <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" aria-label="Search" role="button">
+            <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle">
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 24 24" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                        <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </span>
             </summary>
-            <div class="search-modal modal__content gradient" role="dialog" aria-modal="true" aria-label="Search" style="z-index: 10000;">
+            <div class="search-modal modal__content gradient" style="z-index: 10000;">
                 <div class="modal-overlay" close-modal-search></div>
                 <div class="search-modal__content search-modal__content-bottom" tabindex="-1">
                     <predictive-search class="search-modal__form" data-loading-text="Loading..." results="true">
-                        <form id="Form_Search_Master" action="/search" method="get" role="search" class="search search-modal__form" data-search-setting='@json($SEARCH_SETTING)'>
+                        <form id="Form_Search_Master" action="{{ route('fe.web.search') }}" method="get" class="search search-modal__form" data-search-setting='@json(data_get($SYSTEM_SETTING, 'search_setting'))'>
                             <div class="field">
-                                <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Search" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" aria-activedescendant="">
-                                <label class="field__label" for="Search-In-Modal">{{ data_get($SEARCH_SETTING, 'placeholder', 'Tìm kiếm...') }}</label>
-                                <input type="hidden" name="options[prefix]" value="last">
-                                <button class="search__button field__button" aria-label="Search">
+                                <input class="search__input field__input Search-In-Modal" type="search" name="q" value="" placeholder="Search" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false">
+                                <label class="field__label" for="Search-In-Modal">{{ data_get($SYSTEM_SETTING, 'search_setting.placeholder', 'Tìm kiếm...') }}</label>
+                                <button class="search__button field__button">
                                     <svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 32 32" version="1.1">
-                                        <title>search</title>
-                                        <desc>Created with Sketch Beta.</desc>
+                                        <title>Tìm kiếm</title>
                                         <defs></defs>
                                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                                             <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-256.000000, -1139.000000)" fill="#000000">
@@ -35,21 +32,29 @@
                                 <div id="predictive-search-results">
                                     <div id="Predictive_Search_Product_Results" class="d-none">
                                         <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Sản phẩm</h2>
-                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
+                                        <ul class="predictive-search__results-list list-unstyled"></ul>
                                     </div>
                                     <div id="Predictive_Search_Post_Results" class="d-none">
                                         <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Bài viết</h2>
-                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
+                                        <ul class="predictive-search__results-list list-unstyled"></ul>
                                     </div>
                                     <div id="Predictive_Search_Collection_Results" class="d-none">
                                         <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Bộ sưu tập</h2>
-                                        <ul class="predictive-search__results-list list-unstyled" role="listbox"></ul>
+                                        <ul class="predictive-search__results-list list-unstyled"></ul>
+                                    </div>
+                                    <div id="Predictive_Search_Video_Results" class="d-none">
+                                        <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Video</h2>
+                                        <ul class="predictive-search__results-list list-unstyled"></ul>
+                                    </div>
+                                    <div id="Predictive_Search_Other_Results" class="d-none">
+                                        <h2 class="predictive-search__heading text-body caption-with-letter-spacing">Kết quả khác</h2>
+                                        <ul class="predictive-search__results-list list-unstyled"></ul>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </predictive-search>
-                    <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="Close" close-modal-search>
+                    <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" close-modal-search>
                         <svg xmlns="http://www.w3.org/2000/svg"  class="icon icon-close" viewBox="-0.5 0 25 25" fill="none">
                             <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -60,27 +65,27 @@
         </details>
     </details-modal>
     @if(empty($AUTHENTICATED_USER))
-    <a href="?overlay=signin" class="header__icon header__icon--account link focus-inset small-hide" data-overlay-action-button="signin">
-        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
+    <span class="header__icon header__icon--account link focus-inset small-hide" data-overlay-action-button="signin">
+        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-account" fill="none" viewBox="0 0 18 19">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"></path>
         </svg>
         <span class="visually-hidden">Log in</span>
-    </a>
+    </span>
     @else
-    <a href="{{ route('fe.web.user.profile.info') }}" class="header__icon header__icon--account link focus-inset small-hide" >
-        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-account" fill="none" viewBox="0 0 18 19">
+    <a href="{{ route('fe.web.user.profile') }}" class="header__icon header__icon--account link focus-inset small-hide" >
+        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" class="icon icon-account" fill="none" viewBox="0 0 18 19">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"></path>
         </svg>
         <span class="visually-hidden">Profile</span>
     </a>
     @endif
     <a href="{{ route('fe.web.cart.index') }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        <svg class="icon icon-cart" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+        <svg class="icon icon-cart" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" style="width: 40px; height: 40px;">
             <path fill="currentColor" fill-rule="evenodd" d="M20.5 6.5a4.75 4.75 0 00-4.75 4.75v.56h-3.16l-.77 11.6a5 5 0 004.99 5.34h7.38a5 5 0 004.99-5.33l-.77-11.6h-3.16v-.57A4.75 4.75 0 0020.5 6.5zm3.75 5.31v-.56a3.75 3.75 0 10-7.5 0v.56h7.5zm-7.5 1h7.5v.56a3.75 3.75 0 11-7.5 0v-.56zm-1 0v.56a4.75 4.75 0 109.5 0v-.56h2.22l.71 10.67a4 4 0 01-3.99 4.27h-7.38a4 4 0 01-4-4.27l.72-10.67h2.22z"></path>
         </svg>
         <span class="visually-hidden">Cart</span>
         <div class="cart-count-bubble">
-            <span aria-hidden="true">
+            <span>
                 <span data-value-cart-total-quantity>0</span>
             </span>
             <span class="visually-hidden">

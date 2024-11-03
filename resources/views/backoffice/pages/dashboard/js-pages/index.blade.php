@@ -6,6 +6,10 @@ $(document).ready(function() {
         statisticUser: (params) => {
             const route = $('#report_total_user').attr('data-request-url');
 
+            if (! route) {
+                return;
+            }
+
             $.ajax({
                 url: route,
                 method: 'GET',
@@ -25,6 +29,10 @@ $(document).ready(function() {
         statisticOrder: (params) => {
             const route = $('#report_total_order').attr('data-request-url');
 
+            if (! route) {
+                return;
+            }
+
             $.ajax({
                 url: route,
                 method: 'GET',
@@ -43,6 +51,10 @@ $(document).ready(function() {
         },
         statisticDeposit: (params) => {
             const route = $('#report_total_deposit').attr('data-request-url');
+
+            if (! route) {
+                return;
+            }
 
             $.ajax({
                 url: route,
@@ -71,6 +83,8 @@ $(document).ready(function() {
 
             DASHBOARD.setupDateRangeFilter();
             DASHBOARD.loadDataTable();
+
+            DASHBOARD.fetchData();
         },
         fetchData: () => {
             const fromId = 'form_dashboard_filter';
@@ -110,13 +124,6 @@ $(document).ready(function() {
                 const labelId = $(this).attr('date-range-label');
                 const start   = picker.startDate;
                 const end     = picker.endDate;
-
-                console.log({
-                    fromId,
-                    labelId,
-                    start,
-                    end,
-                });
 
                 $(this).parent().find('input[data-daterangepicker-catch=start]').val(start.format(APP_CONSTANT.DATE_TIME_FORMAT));
                 $(this).parent().find('input[data-daterangepicker-catch=end]').val(end.format(APP_CONSTANT.DATE_TIME_FORMAT));

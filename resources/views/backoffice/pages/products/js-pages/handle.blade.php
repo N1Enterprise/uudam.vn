@@ -88,6 +88,7 @@
 
             const __name = $form.find('[name="name"]').val();
             const __code = $form.find('[name="code"]').val();
+            const __slug = $form.find('[name="slug"]').val();
             const __primaryImage = {
                 file: $form.find('[name="primary_image[file]"]')[0].files[0] ?? '',
                 path: $form.find('[name="primary_image[path]"]').val()
@@ -109,6 +110,7 @@
                 inventories: $form.find('[name="suggested_relationships[inventories][]"]').val(),
                 posts: $form.find('[name="suggested_relationships[posts][]"]').val(),
             };
+            const __linkedPosts = $form.find('[name="linked_posts[]"]').val();
             const __categories = $form.find('[name="categories[]"]').val();
             const __type = $form.find('[name="type"]').val();
             const __branch = $form.find('[name="branch"]').val();
@@ -118,6 +120,7 @@
 
             formData.append('name', __name);
             formData.append('code', __code);
+            formData.append('slug', __slug);
             formData.append('primary_image[file]', __primaryImage.file);
             formData.append('primary_image[path]', __primaryImage.path);
 
@@ -145,6 +148,10 @@
                 formData.append(`categories[${index}]`, item);
             });
 
+            $.each(__linkedPosts, function(index, item) {
+                formData.append(`linked_posts[${index}]`, item);
+            });
+
             formData.append('type', __type);
             formData.append('branch', __branch);
             formData.append('status', __status);
@@ -152,10 +159,6 @@
             for (var p of formData) {
                 let name = p[0];
                 let value = p[1];
-
-                console.log({
-                    [name]: value
-                });
             }
 
             return formData;
@@ -189,7 +192,7 @@
                 FORM_MEDIA_IMAGE_FILE.onDelete();
             },
             hide: function(deleteElement) {
-                if (confirm('Are you sure you want to delete this element?')) {
+                if (confirm('Bạn có chắc chắn muốn xóa phần tử này ?')) {
                     $(this).slideUp(deleteElement);
                 }
             },

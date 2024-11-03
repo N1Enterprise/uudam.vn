@@ -45,10 +45,6 @@ class CartService extends BaseService
                     $q->where('user_id', $userId);
                 }
 
-                if ($createdAtRange = data_get($data, 'created_at_range', [])) {
-                    $q->whereBetween('created_at', $createdAtRange);
-                }
-
                 $q->whereRelation('user', function($q) use ($data) {
                     $userUsernameOrEmail = data_get($data, 'user_username_or_email');
 
@@ -65,24 +61,22 @@ class CartService extends BaseService
                     }
                 });
 
-                $q->whereRelation('order', function($q) use ($data) {
-                    $orderCode = data_get($data, 'order_code');
-
-                    if (! empty($orderCode)) {
+                if ($orderCode = data_get($data, 'order_code')) {
+                    $q->whereRelation('order', function($q) use ($orderCode) {
                         $q->where('order_code', $orderCode)
                             ->orWhere('uuid', $orderCode);
-                    }
-                });
+                    });
+                }
             })
             ->search([]);
 
         return $result;
     }
 
-    public function findByUser($userId, $data = [])
+    public function findByUser($userId, $data = [], $ignoreOrdered = true)
     {
         return $this->cartRepository
-            ->modelScopes(['notOrdered'])
+            ->modelScopes($ignoreOrdered ? ['notOrdered'] : [])
             ->with(data_get($data, 'with', []))
             ->scopeQuery(function($q) use ($data) {
                 if ($currencyCode = data_get($data, 'currency_code')) {
@@ -93,7 +87,7 @@ class CartService extends BaseService
                     $q->where('uuid', $uuid);
                 }
             })
-            ->firstWhere([ 'user_id' => $userId ]);
+            ->firstWhere([ 'user_id' => BaseModel::getModelKey($userId) ]);
     }
 
     public function show($id)
@@ -104,6 +98,40 @@ class CartService extends BaseService
     public function update($attributes = [], $id)
     {
         return $this->cartRepository->update($attributes, $id);
+    }
+
+    public function cloneByUser($cart, $user)
+    {
+        return DB::transaction(function() use ($cart, $user) {
+            $user = $this->userService->show($user);
+
+            $cart = $this->show($cart);
+
+            $clonedCart = $cart->replicate();
+
+            $retryTimes = ++$cart->retry_times;
+
+            $cart->retry_times = $retryTimes;
+
+            $clonedCart->retry_parent_id = $cart->id;
+            $clonedCart->uuid = $cart->uuid.'-retry-'.$retryTimes;
+            $clonedCart->user_id = get_model_key($user);
+            $clonedCart->order_id = null;
+            $clonedCart->retry_times = null;
+
+            $cart->save();
+            $clonedCart->save();
+
+            $cartItems = $cart->availableItems;
+
+            foreach ($cartItems as $cartItem) {
+                $clonedCartItem = $cartItem->replicate();
+                $clonedCartItem->uuid = (string) Str::uuid();
+                $clonedCartItem->save();
+            }
+
+            return $clonedCart;
+        });
     }
 
     public function createByUser($userId, $attributes = [])
@@ -120,9 +148,9 @@ class CartService extends BaseService
                 'currency_code' => $currency->getKey(),
                 'order_id' => null,
             ], [
-                'ip_address' => data_get($attributes, 'ip_address'),
                 'total_quantity' => 0,
                 'total_price' => 0,
+                'ip_address' => data_get($attributes, 'ip_address'),
                 'uuid' => Str::uuid(),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -141,6 +169,7 @@ class CartService extends BaseService
             ], [
                 'quantity' => 0,
                 'price' => 0,
+                'total_price' => 0,
                 'uuid' => Str::uuid(),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -148,20 +177,20 @@ class CartService extends BaseService
 
             $quantity = (int) data_get($attributes, 'quantity', 0);
 
-            $totalPrice = Money::make($inventory->sale_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
+            $totalPrice = Money::make($inventory->final_price, SystemCurrency::getDefaultCurrency())->multipliedBy($quantity);
 
             $cartItem->update([
-                'quantity' => DB::raw('quantity + ' . $quantity),
-                'price' => $inventory->sale_price,
-                'total_price' => DB::raw('total_price + ' . (string) $totalPrice),
+                'quantity' => (int) $cartItem->quantity + $quantity,
+                'price' => $inventory->final_price,
+                'total_price' => $totalPrice->plus($cartItem->total_price),
             ]);
 
             $items = $cart->availableItems;
 
             $cart->update([
-                'total_item'     => $items->count('id'),
+                'total_item' => $items->count('id'),
                 'total_quantity' => $items->sum('quantity'),
-                'total_price'    => $items->sum('total_price'),
+                'total_price' => $items->sum('total_price'),
             ]);
 
             return $cart;

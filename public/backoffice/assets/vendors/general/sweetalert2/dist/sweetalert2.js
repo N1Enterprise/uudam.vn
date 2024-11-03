@@ -865,7 +865,7 @@ var undoIEfix = function undoIEfix() {
   }
 };
 
-// Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
+// Adding to elements outside of the active modal dialog ensures that
 // elements not within the active modal dialog will not be surfaced if a user opens a screen
 // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 

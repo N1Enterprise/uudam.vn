@@ -130,7 +130,9 @@ const changeToSlug = (str) => {
         .replace(/[&]/g, "-and-")
         .replace(/[^a-zA-Z0-9._-]/g, "-")
         .replace(/[-]+/g, "-")
+        .replace(/[.]/g, "_")
         .replace(/-$/, "");
+
     return str;
 }
 
@@ -177,3 +179,47 @@ var __IMAGE_MANAGER__ = {
         __IMAGE_MANAGER__.reviewFileOn(null, ref, index);
     },
 };
+
+$('[data-generate]').each(function(_, element) {
+    $(element).on('click', function() {
+        const isUppercase = $(element).attr('data-generate-uppercase') == 'true';
+        const isLowercase = $(element).attr('data-generate-lowercase') == 'true';
+        const length = $(element).attr('data-generate-length') || 6;
+        const prefix = $(element).attr('data-generate-prefix');
+        const $ref = $(element).attr('data-generate-ref');
+
+        let generatedString = makeid(length);
+
+        if (prefix) {
+            generatedString = prefix + generatedString;
+        }
+
+        if (isUppercase) {
+            generatedString = (generatedString).toUpperCase();
+        }
+
+        if (isLowercase) {
+            generatedString = (generatedString).toLowerCase();
+        }
+
+        $($ref).val(generatedString);
+    });
+});
+
+
+function makeid(length) {
+    let result = '';
+
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    const charactersLength = characters.length;
+
+    let counter = 0;
+
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+
+    return result;
+}

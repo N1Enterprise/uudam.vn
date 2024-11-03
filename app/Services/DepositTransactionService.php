@@ -13,6 +13,7 @@ use App\Models\PaymentOption;
 use App\Models\User;
 use App\Models\Order;
 use App\Vendors\Localization\SystemCurrency;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -38,6 +39,11 @@ class DepositTransactionService extends BaseService
     public function show($id)
     {
         return $this->depositTransactionRepository->findOrFail($id);
+    }
+
+    public function find($id)
+    {
+        return $this->depositTransactionRepository->find($id);
     }
 
     public function update($attributes, $id)
@@ -123,16 +129,12 @@ class DepositTransactionService extends BaseService
         $amount,
         $currencyCode,
         $paymentOptionId,
-        $orderId,
         $createdBy,
         $bankTransferInfo = [],
         $meta = []
     ) {
         /** @var PaymentOption */
         $paymentOption = $this->paymentOptionService->show($paymentOptionId);
-
-        /** @var Order */
-        $order = $this->orderService->show($orderId);
 
         /** @var User */
         $user = $this->userService->show($user);
@@ -145,14 +147,15 @@ class DepositTransactionService extends BaseService
 
         $bankTransferInfo = array_filter($bankTransferInfo ?? []);
 
+        $status = $paymentOption->isNoneAmount() ? DepositStatusEnum::WAIT_FOR_CONFIRMATION : DepositStatusEnum::PENDING;
+
         $depositTransaction = $this->depositTransactionRepository->create(
             array_merge([
                 'user_id' => $user->getKey(),
                 'uuid' => (string) Str::uuid(),
                 'amount' => (string) $amount,
-                'status' => DepositStatusEnum::PENDING,
+                'status' => $status,
                 'payment_option_id' => $paymentOption->getKey(),
-                'order_id' => $order->getKey(),
                 'currency_code' => $currencyCode,
             ],
             array_filter(['bank_transfer_info' => $bankTransferInfo]),

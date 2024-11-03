@@ -18,7 +18,7 @@ class PageService extends BaseService
     {
         $result = $this->pageRepository
             ->with(['createdBy', 'updatedBy'])
-            ->whereColumnsLike($data['query'] ?? null, ['name'])
+            ->whereColumnsLike($data['query'] ?? null, ['name', 'slug', 'title'])
             ->search([]);
 
         return $result;
@@ -31,6 +31,28 @@ class PageService extends BaseService
             ->with(data_get($data, 'with', []))
             ->addSort('order', 'asc')
             ->all(data_get($data, 'columns', ['*']));
+    }
+
+    public function searchForGuest($data = [])
+    {
+        $where = [];
+
+        $paginate = data_get($data, 'paginate', true);
+
+        $result = $this->pageRepository
+            ->with(data_get($data, 'with', []))
+            ->modelScopes(['active', 'feDisplay'])
+            ->scopeQuery(function($q) use ($data) {
+                $filterIds = data_get($data, 'filter_ids', []);
+
+                if (! empty($filterIds)) {
+                    $q->whereIn('id', $filterIds);
+                }
+            });
+
+        return $paginate
+            ? $result->search($where, null, ['*'], true, data_get($data, 'paging', 'paginate'))
+            : $result->all();
     }
 
     public function listByUser($data = [])
@@ -62,13 +84,17 @@ class PageService extends BaseService
         return $this->pageRepository->delete($id);
     }
 
-    public function findBySlugByUser($slug, $data = [])
+    public function findBySlugForGuest($slug, $data = [])
     {
+        $id = data_get($data, 'id');
+
         return $this->pageRepository
             ->modelScopes(['active', 'feDisplay'])
             ->selectColumns(data_get($data, 'columns', ['*']))
-            ->firstWhere([
-                'slug' => $slug
-            ]);
+            ->scopeQuery(function($q) use ($slug, $id) {
+                $q->where('slug', $slug)
+                    ->orWhere('id', $id);
+            })
+            ->first();
     }
 }

@@ -7,6 +7,7 @@ use App\Enum\ActivationStatusEnum;
 use App\Models\BaseAuthenticateModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Str;
 
@@ -15,6 +16,7 @@ class Admin extends BaseAuthenticateModel
     use HasFactory;
     use SoftDeletes;
     use HasRoles;
+    use Notifiable;
 
     protected $guard = 'admin';
 

@@ -14,16 +14,16 @@ class Attribute extends BaseModel
         'attribute_type',
         'order',
         'status',
+        'supported_categories',
+    ];
+
+    protected $casts = [
+        'supported_categories' => 'json'
     ];
 
     public function getAttributeTypeNameAttribute()
     {
         return ProductAttributeTypeEnum::findConstantLabel($this->attribute_type);
-    }
-
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class, 'attribute_categories');
     }
 
     public function attributeValues()

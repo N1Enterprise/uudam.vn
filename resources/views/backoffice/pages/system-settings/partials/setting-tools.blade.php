@@ -5,7 +5,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('System Setting')}}
+                    {{ __('Thiết lập hệ thống')}}
                 </h3>
             </div>
             <div class="k-portlet__head-toolbar">
@@ -13,21 +13,21 @@
                     @can('system-settings.clear-cache')
                     <button id="btn_clearCache" type="button" class="btn btn-danger btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-trash"></i>
-                        {{ __('Clear Cache') }}
+                        {{ __('Xóa bộ nhớ đệm') }}
                     </button>
                     @endcan
 
                     @can('system-settings.create-group')
                     <button id="btn_create_group" data-toggle="modal" data-target="#modal_storeGroup" class="btn btn-success btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-add-1"></i>
-                        {{ __('Create Group') }}
+                        {{ __('Tạo nhóm') }}
                     </button>
                     @endcan
 
                     @can('system-settings.create-key')
                     <button id="btn_create_setting" data-toggle="modal" data-target="#modal_storeSettingKey" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="flaticon2-add-1"></i>
-                        {{ __('Create Setting') }}
+                        {{ __('Tạo cài đặt') }}
                     </button>
                     @endcan
 
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="p-3">
-            <input type="search" id="input_searchSystemSetting" class="form-control" placeholder="{{ __("Search System Setting") }}">
+            <input type="search" id="input_searchSystemSetting" class="form-control" placeholder="{{ __('Tìm kiếm cài đặt hệ thống') }}">
         </div>
     </div>
 </div>

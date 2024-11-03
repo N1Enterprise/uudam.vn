@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Contracts\Requests\Backoffice\UploadFileManagerRequestContract;
-use App\Contracts\Responses\Backoffice\UploadFileManagerResponseContract;
 use App\Services\FileManagerService;
 
 class FileManagerController extends BaseController
@@ -17,8 +16,8 @@ class FileManagerController extends BaseController
 
     public function upload(UploadFileManagerRequestContract $request)
     {
-        $fileManager = $this->fileManagerService->upload($request->file, $request->disk);
+        $fileManager = $this->fileManagerService->upload($request->file);
 
-        return $this->response(UploadFileManagerResponseContract::class, $fileManager);
+        return response()->json(['path' => $fileManager]);
     }
 }

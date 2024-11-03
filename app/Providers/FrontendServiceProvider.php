@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
 
 class FrontendServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,14 @@ class FrontendServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerMiddleware();
+    }
+
+    public function registerMiddleware()
+    {
+        /** @var Router */
+        $router = $this->app['router'];
+
+        $router->middlewareGroup('user_api', ['security.xss_prevention']);
     }
 }

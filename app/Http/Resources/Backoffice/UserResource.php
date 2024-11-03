@@ -20,6 +20,8 @@ class UserResource extends BaseJsonResource
             'phone_number' => $this->phone_number,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'access_channel_type' => $this->access_channel_type,
+            'access_channel_type_name' => $this->access_channel_type_name,
         ], $this->generateActionPermissions());
     }
 

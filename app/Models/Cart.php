@@ -21,6 +21,8 @@ class Cart extends BaseModel
         'total_quantity',
         'total_price',
         'order_id',
+        'retry_parent_id',
+        'retry_times'
     ];
 
     public function availableItems()

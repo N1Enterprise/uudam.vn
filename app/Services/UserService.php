@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Common\RequestHelper;
+use App\Enum\AccessChannelType;
 use App\Enum\ActivationStatusEnum;
 use App\Enum\UserActionEnum;
+use App\Enum\UserStatusEnum;
 use App\Enum\UserWalletTypeEnum;
 use App\Events\User\UserCreated;
 use App\Events\User\UserCreating;
@@ -11,7 +14,6 @@ use App\Events\User\UserPasswordChanged;
 use App\Events\User\UserProfileUpdated;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Services\BaseService;
-use App\Services\UserDetailService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -20,16 +22,13 @@ use App\Models\User;
 class UserService extends BaseService
 {
     public $userRepository;
-    public $userDetailService;
     public $userActionLogService;
 
     public function __construct(
         UserRepositoryContract $userRepository,
-        UserDetailService $userDetailService,
         UserActionLogService $userActionLogService
     ) {
         $this->userRepository = $userRepository;
-        $this->userDetailService = $userDetailService;
         $this->userActionLogService = $userActionLogService;
     }
 
@@ -60,6 +59,15 @@ class UserService extends BaseService
         return $builder->search([]);
     }
 
+    public function allAvailable($data = [])
+    {
+        return $this->userRepository
+            ->scopeQuery(function($q) {
+                $q->where('status', UserStatusEnum::ACTIVE);
+            })
+            ->all();
+    }
+
     public function create($attributes = [])
     {
         $attributes['status'] = ActivationStatusEnum::ACTIVE;
@@ -69,11 +77,11 @@ class UserService extends BaseService
             $user = $this->userRepository->create($attributes);
 
             $user->userWallets()->create([
-                'balance'       => 0,
-                'status'        => ActivationStatusEnum::ACTIVE,
-                'type'          => UserWalletTypeEnum::SHOPPING,
+                'balance' => 0,
+                'status' => ActivationStatusEnum::ACTIVE,
+                'type' => UserWalletTypeEnum::SHOPPING,
                 'currency_code' => $user->currency_code,
-                'activated'     => true,
+                'activated' => true,
             ]);
 
             UserCreating::dispatch($user);
@@ -81,7 +89,7 @@ class UserService extends BaseService
             return $user;
         });
 
-        $userEmailVerificationLink = $user->generateEmailVerificationUrl(data_get($attributes, 'email_verification_url'));
+        $userEmailVerificationLink = !empty($user->email) ? $user->generateEmailVerificationUrl(data_get($attributes, 'email_verification_url')) : null;
 
         UserCreated::dispatch($user, $attributes, $userEmailVerificationLink);
 
@@ -122,7 +130,16 @@ class UserService extends BaseService
         return DB::transaction(function () use ($attributes, $id) {
             $user = $this->show($id);
 
-            $userData = Arr::only($attributes ?? [], ['email', 'username', 'name', 'phone_number', 'birthday']);
+            $userData = Arr::only($attributes ?? [], [
+                'email',
+                'username',
+                'name',
+                'phone_number',
+                'birthday',
+                'access_channel_type',
+                'meta',
+                'allow_login'
+            ]);
 
             // TODO: should separate update phone_number/email to another flow.
             if (! empty($userData)) {
@@ -172,8 +189,8 @@ class UserService extends BaseService
     {
         $attributes = [
             'user_id' => $userId,
-            'type'    => UserActionEnum::constant(data_get($data, 'type')),
-            'reason'  => data_get($data, 'reason'),
+            'type' => UserActionEnum::constant(data_get($data, 'type')),
+            'reason' => data_get($data, 'reason'),
         ];
 
         $user = DB::transaction(function () use ($attributes, $userId) {

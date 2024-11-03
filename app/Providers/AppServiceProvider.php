@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Http\Middleware\MaintenanceMiddleware;
 use App\Http\Middleware\ToggleFeatureMiddleware;
-use Illuminate\Support\Facades\App;
+use App\Http\Middleware\XssPreventionMiddleware;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->registerUtils();
         $this->aliasMiddleware();
+
+        $this->app['router']->aliasMiddleware('security.xss_prevention', XssPreventionMiddleware::class);
     }
 
     protected function registerUtils()

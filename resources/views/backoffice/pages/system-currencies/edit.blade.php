@@ -1,24 +1,20 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('System Setting');
+	$title = __('Chỉnh sửa thiết lập hệ thống');
 
 	$breadcrumbs = [
 		[
+			'label' => __('Tiền tệ hệ thống'),
+		],
+		[
 			'label' => $title,
-		],
-		[
-			'label' => __('Manage Currency'),
-			'href' => route('bo.web.system-currencies.index')
-		],
-		[
-			'label' => __('Edit Currency'),
 		]
 	];
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -42,13 +38,13 @@
 						@include('backoffice.partials.message')
 
 						<div class="form-group">
-							<label>{{ __('Name') }} *</label>
+							<label>{{ __('Tên') }} *</label>
 							<input type="text" class="form-control" name="name" value="{{ old('name', $systemCurrency->name) }}" required>
 						</div>
 
 						<div class="form-group row">
 							<div class="col-md-6">
-								<label>{{ __('Order') }}</label>
+								<label>{{ __('Thứ tự') }}</label>
 								<input type="number" class="form-control" name="order" value="{{ old('order', $systemCurrency->order) }}">
 							</div>
 
@@ -71,7 +67,7 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-2 col-form-label">{{ __('Status') }}</label>
+							<label class="col-2 col-form-label">{{ __('Trạng thái') }}</label>
 							<div class="col-3">
 								<span class="k-switch">
 									<label>
@@ -86,8 +82,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

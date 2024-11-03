@@ -22,7 +22,6 @@ class CreateCollectionsTable extends Migration
             $table->text('cover_image')->nullable();
             $table->string('cta_label')->nullable();
             $table->text('description')->nullable();
-            $table->tinyInteger('featured')->comment(ActivationStatusEnum::class);
             $table->tinyInteger('status')->comment(ActivationStatusEnum::class);
             $table->tinyInteger('display_on_frontend')->comment(ActivationStatusEnum::class);
             $table->integer('order')->nullable();

@@ -1,0 +1,504 @@
+limespot-box,limespot-container {
+    display: block
+}
+
+div.ls-recommendation-box .limespot-recommendation-box-item {
+    float: left
+}
+
+div.ls-recommendation-box ul:after,div.ls-recommendation-box ul:before {
+    clear: both;
+    content: "";
+    display: table;
+    font-size: 0;
+    line-height: 0
+}
+
+div.ls-recommendation-box,limespot-box {
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+    clear: both;
+    direction: ltr!important;
+    display: block;
+    padding: 20px 0 0;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    width: 100%
+}
+
+@media screen and (max-width: 780px) {
+    div.ls-recommendation-box,limespot-box {
+        padding: 10px 0 0;
+    }
+}
+
+div.ls-recommendation-box .limespot-recommendation-box-item,limespot-box .limespot-recommendation-box-item {
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 0;
+    max-width: 200px;
+    position: relative;
+    transition: transform .5s;
+    -webkit-transition: -webkit-transform .5s;
+    width: 200px
+}
+
+div.ls-recommendation-box .limespot-recommendation-box-item .ls-link,limespot-box .limespot-recommendation-box-item .ls-link {
+    border: 0;
+    display: inline-block;
+    position: relative;
+    text-decoration: none!important
+}
+
+div.ls-recommendation-box:not(.no-zoom) .limespot-recommendation-box-item:hover .ls-image,limespot-box:not(.no-zoom) .limespot-recommendation-box-item:hover .ls-image {
+    opacity: .9;
+    transform: scale(1.03);
+    transition: all .3s ease
+}
+
+div.ls-recommendation-box div.limespot-recommendation-box-carousel,limespot-box div.limespot-recommendation-box-carousel {
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    font-size: 9pt;
+    margin: 0!important;
+    overflow-x: auto!important;
+    overflow-y: hidden;
+    position: relative;
+    width: 100%
+}
+
+div.ls-recommendation-box div.limespot-recommendation-box-carousel-container,limespot-box div.limespot-recommendation-box-carousel-container {
+    display: block;
+    position: relative;
+    width: 100%
+}
+
+div.ls-recommendation-box ul.limespot-recommendation-box-carousel-shelf,limespot-box ul.limespot-recommendation-box-carousel-shelf {
+    word-wrap: break-word;
+    left: 0!important;
+    margin: 0!important;
+    overflow-x: visible;
+    padding: 0!important;
+    transition: transform .7s cubic-bezier(.45,.03,.51,.95);
+    -webkit-transition: transform .7s cubic-bezier(.45,.03,.51,.95)
+}
+
+@media(min-width: 768px) {
+    div.ls-recommendation-box .limespot-recommendation-box-carousel,limespot-box .limespot-recommendation-box-carousel {
+        scrollbar-width:none
+    }
+
+    div.ls-recommendation-box .limespot-recommendation-box-carousel::-webkit-scrollbar,limespot-box .limespot-recommendation-box-carousel::-webkit-scrollbar {
+        -webkit-appearance: none;
+        display: none
+    }
+}
+
+@media(max-device-width: 768px),(max-width:768px) {
+    div.ls-recommendation-box .limespot-recommendation-box-carousel::-webkit-scrollbar,limespot-box .limespot-recommendation-box-carousel::-webkit-scrollbar {
+        -webkit-appearance:none;
+        display: block;
+        height: 2px;
+        width: 2px
+    }
+
+    div.ls-recommendation-box .limespot-recommendation-box-carousel::-webkit-scrollbar-thumb,limespot-box .limespot-recommendation-box-carousel::-webkit-scrollbar-thumb {
+        background-color: hsla(0,0%,4%,.5);
+        border-radius: 1px
+    }
+
+    div.ls-recommendation-box .limespot-recommendation-box-carousel::-webkit-scrollbar-track,limespot-box .limespot-recommendation-box-carousel::-webkit-scrollbar-track {
+        background-color: hsla(0,0%,78%,.5);
+        border-radius: 2px
+    }
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link {
+    display: inline-flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-image-wrap {
+    line-height: 0
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image {
+    border: 0;
+    border-radius: 5px;
+    height: 100%;
+    min-height: 100px;
+    min-width: 100px;
+    object-fit: contain;
+    -o-object-fit: contain;
+    object-position: center;
+    -o-object-position: center;
+    transition: .3s ease-in-out;
+    width: 100%
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap,limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
+    padding: 3px 0
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item:hover .ls-link .ls-image-wrap:not(.disable-secondary-image) img.ls-image:not(:only-of-type):not(.ls-image-secondary),limespot-box[data-box-style=grid] .limespot-recommendation-box-item:hover .ls-link .ls-image-wrap:not(.disable-secondary-image) img.ls-image:not(:only-of-type):not(.ls-image-secondary) {
+    opacity: 0;
+    visibility: hidden
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+    display: inline-flex;
+    flex-direction: column
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item:last-child {
+    margin-right: 0!important
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap {
+    align-items: stretch;
+    display: inline-flex;
+    flex: auto;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    overflow: hidden;
+    margin: -1px;
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image {
+    width: 100%
+}
+
+limespot-box[data-box-style=carousel] .limespot-recommendation-box-item .ls-link .ls-info-wrap {
+    display: inline-flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+limespot-box[data-box-style=carousel] ul.limespot-recommendation-box-carousel-shelf {
+    align-items: stretch;
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: row
+}
+
+limespot-box[data-box-style=carousel] ul:after,limespot-box[data-box-style=carousel] ul:before {
+    clear: both;
+    content: "";
+    display: table;
+    font-size: 0;
+    line-height: 0
+}
+
+limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link {
+    justify-content: space-between
+}
+
+limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-image-wrap {
+    position: relative
+}
+
+limespot-box[data-box-style=grid] .limespot-recommendation-box-item .ls-link .ls-image-wrap .ls-image {
+    max-width: 100%;
+    min-width: 100%
+}
+
+.ls-original-price.ls-original-price {
+    margin-right: 5px;
+    text-decoration: line-through!important
+}
+
+.ls-title {
+    line-height: 1.3em;
+    margin: 0 0 2px;
+    padding-top: 5px;
+    text-decoration: none;
+    height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.ls-vendor {
+    display: none
+}
+
+.ls-reviewer {
+    color: #626262;
+    font-size: 13px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.limespot-recommendation-box-carousel-indicator {
+    display: inline;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: .2s cubic-bezier(.175,.885,.32,1.275);
+    width: 40px;
+    z-index: 10
+}
+
+.limespot-recommendation-box-carousel-indicator img {
+    height: 40px!important;
+    margin: 50% 0!important;
+    width: 40px!important
+}
+
+.limespot-recommendation-box-carousel-indicator.indicator-left {
+    left: 0
+}
+
+.limespot-recommendation-box-carousel-indicator.indicator-right {
+    right: 0
+}
+
+.limespot-recommendation-box-carousel-indicator .recomm-arrow {
+    background-color: hsla(0,0%,94%,.5);
+    cursor: pointer!important;
+    display: inline-block;
+    margin-top: 60px;
+    padding: 20px 0
+}
+
+.limespot-recommendation-box-carousel-indicator .recomm-arrow svg {
+    display: block;
+    height: 40px;
+    margin: auto;
+    width: 40px
+}
+
+.limespot-recommendation-box-carousel-indicator .recomm-arrow svg path {
+    fill: gray
+}
+
+.limespot-recommendation-box-carousel-indicator .recomm-arrow.arrow-left svg {
+    transform: rotate(180deg)
+}
+
+.limespot-recommendation-box:hover .limespot-recommendation-box-carousel-indicator.indicator-left {
+    transform: translateX(-40px);
+    transition-delay: 0s
+}
+
+.limespot-recommendation-box:hover .limespot-recommendation-box-carousel-indicator.indicator-right {
+    transform: translateX(40px);
+    transition-delay: 0s
+}
+
+.limespot-recommendation-box:hover .limespot-recommendation-box-carousel-indicator.static-arrow {
+    transform: none
+}
+
+@media(max-device-width: 768px),(max-width:768px) {
+    .limespot-recommendation-box-carousel-indicator {
+        display:none
+    }
+}
+
+.limespot-recommendation-box-carousel-indicator .arrow-left,.limespot-recommendation-box-carousel-indicator:not(.static-arrow) .arrow-right {
+    border-radius: 0 5px 5px 0
+}
+
+.limespot-recommendation-box-carousel-indicator .arrow-right,.limespot-recommendation-box-carousel-indicator:not(.static-arrow) .arrow-left {
+    border-radius: 5px 0 0 5px
+}
+
+.v-align {
+    display: inline-block;
+    float: none;
+    vertical-align: middle!important
+}
+
+.ls-animate {
+    transition: all .2s ease-out
+}
+
+@media screen and (max-width: 749px) {
+    .ls-original-price.ls-original-price {
+        order:1
+    }
+
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+        flex: 1;
+        margin-right: 10px!important;
+        /* max-width: 150px!important; */
+        /* min-width: 190px!important */
+    }
+}
+
+@media screen and (max-width: 400px) {
+    limespot-box[data-box-style=carousel] .limespot-recommendation-box-item {
+        flex:1;
+        margin-right: 10px!important;
+        /* max-width: 150px!important; */
+        /* min-width: 180px!important */
+    }
+}
+
+.price-discount-percent {
+    align-items: center;
+    background: #025B50;
+    border-radius: 4px;
+    color: #ffffff;
+    display: inline-flex;
+    font-size: 14px;
+    justify-content: center;
+    margin-left: 7px;
+    letter-spacing: 1px;
+    padding: 2px 4px;
+}
+
+.price-for-saving {
+    color: #3c3c3c;
+    font-size: 13px;
+    width: 100%
+}
+
+.price-for-saving span {
+    color: #e30000;
+    font-weight: bold;
+}
+
+.price-item--sub {
+    color: #025B50 !important;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.ls-box-title,.ls-info-wrap {
+    text-align: left
+}
+
+.ls-box-title {
+    font-family: Poppins,sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 10px 0;
+    color: #000;
+}
+
+.recommendation-items {
+    margin: 0 0px
+}
+
+.recommendation-target {
+    margin: 0px 10px;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.limespot-recommendation-box-item .recommendation-target {
+    border: 1px solid rgb(235, 235, 240);
+}
+
+[has-frontend-custom] .recommendation-target {
+    margin: 0px 8px;
+    background: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .recommendation-target {
+        margin: 0px 4px;
+    }
+
+    [has-frontend-custom] .recommendation-target {
+        margin: 0px 4px;
+        background: #fff;
+        padding: 0;
+    }
+}
+
+
+.ls-price {
+    font-weight: bold;
+}
+
+.ls-price {
+    color: #121212;
+}
+
+.ls-price {
+    letter-spacing: 1px;
+    margin-right: 5px;
+}
+
+.ls-price-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.sold-count {
+    color: #181818 !important;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+@media screen and (max-width: 414px) {
+    .sold-count {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+}
+
+.section-template-padding {
+    padding-bottom: 20px!important;
+    padding-top: 20px!important;
+}
+
+@media screen and (max-width: 600px) {
+    .section-template-padding {
+        padding-bottom:10px!important;
+        padding-top: 10px!important
+    }
+}
+
+[has-frontend-custom] {
+    padding: 10px 10px 20px 10px;
+}
+
+[has-frontend-custom] .__frontend_custom_header_image {
+    width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    [has-frontend-custom] .__frontend_custom_header_image {
+        width: 100%;
+    }
+}
+
+[has-frontend-custom] .custom-ls-box-title {
+    font-weight: bold;
+}
+
+.collection .card-wrapper {
+    padding: 10px;
+    border: 1px solid rgb(235, 235, 240);
+    border-radius: 3px;
+}
+
+.collection .card__information .card__heading a {
+    font-size: 14px;
+}

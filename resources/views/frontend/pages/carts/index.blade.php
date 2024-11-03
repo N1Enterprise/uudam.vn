@@ -1,25 +1,15 @@
 @extends('frontend.layouts.master')
 
 @section('page_title')
-Giỏ hàng | {{ config('app.user_domain') }}
+{{ get_static_page_seo_title('cart') }}
 @endsection
 
 @push('style_pages')
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/upsell.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/common/component-cart.css') }}">
+<link rel="stylesheet" href="{{ asset_with_version('frontend/bundle/css/pages/cart.min.css') }}">
 @endpush
 
 @section('page_seo')
-<meta property="og:title" content="Giỏ hàng | {{ config('app.user_domain') }}">
-<meta property="og:description" content="Giỏ hàng | {{ config('app.user_domain') }}">
-<meta property="og:url" content="{{ request()->url() }}">
-<meta property="og:site_name" content="{{ config('app.user_domain') }} }}">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:price:currency" content="VND">
-<meta name="al:ios:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:iphone:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
-<meta name="al:ipad:app_name" content="{{ data_get($PAGE_SETTINGS, 'app_name') }}">
+{!! generate_static_page_seo_html('cart') !!}
 @endsection
 
 @section('content_body')
@@ -34,5 +24,5 @@ Giỏ hàng | {{ config('app.user_domain') }}
 @endsection
 
 @section('js_script')
-@include('frontend.pages.carts.js-pages.my-cart')
+<script src="{{ asset_with_version('frontend/bundle/js/cart-index.min.js') }}" type="text/javascript"></script>
 @endsection

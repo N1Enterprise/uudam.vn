@@ -47,7 +47,7 @@ class PaymentOptionService extends BaseService
         })->groupBy('type_name')->all();
     }
 
-    public function searchByUser($data = [])
+    public function searchForGuest($data = [])
     {
         $result = $this->paymentOptionRepository
             ->modelScopes(['active', 'feDisplay'])
@@ -56,7 +56,8 @@ class PaymentOptionService extends BaseService
                 if ($currencyCode = data_get($data, 'currency_code')) {
                     $q->where('currency_code', $currencyCode);
                 }
-            });
+            })
+            ->addSort('order', 'asc');
 
         $result = $result->search([], null, ['*'], false);
 
@@ -119,11 +120,11 @@ class PaymentOptionService extends BaseService
             throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
         }
 
-        if (! in_array($currencyCode, $paymentProvider->supported_currencies)) {
-            throw new BusinessLogicException('Invalid Payment Provider.', ExceptionCode::INVALID_PAYMENT_PROVIDER);
-        }
-
         return $paymentProvider;
     }
 
+    public function firstWhere($where, $scopes = [])
+    {
+        return $this->paymentOptionRepository->modelScopes($scopes)->firstWhere($where);
+    }
 }

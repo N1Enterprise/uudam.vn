@@ -1,14 +1,14 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Attribute Value');
+	$title = __('Chỉnh sửa biến thể');
 
 	$breadcrumbs = [
 		[
-			'label' => $title,
+			'label' => __('Biến thể'),
 		],
 		[
-			'label' => __('Edit Attribute Value'),
+			'label' => $title,
 		]
 	];
 @endphp
@@ -29,13 +29,13 @@
 			<div class="k-portlet k-portlet--tabs">
 				<div class="k-portlet__head">
 					<div class="k-portlet__head-label">
-						<h3 class="k-portlet__head-title">{{ __('Edit Attribute Value') }}</h3>
+						<h3 class="k-portlet__head-title">{{ __('Thông tin biến thể') }}</h3>
 					</div>
 					<div class="k-portlet__head-toolbar">
-						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand" role="tablist">
+						<ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand">
 							<li class="nav-item">
-								<a class="nav-link active show" data-toggle="tab" href="#mainTab" role="tab" aria-selected="true">
-									{{ __('Main') }}
+								<a class="nav-link active show" data-toggle="tab" href="#mainTab">
+									{{ __('Thông tin chung') }}
 								</a>
 							</li>
 						</ul>
@@ -49,10 +49,10 @@
 					<div class="k-portlet__body">
 						@include('backoffice.partials.message')
 						<div class="tab-content">
-							<div class="tab-pane active show" id="mainTab" role="tabpanel">
+							<div class="tab-pane active show" id="mainTab">
                                 <div class="form-group">
-                                    <label>{{ __('Attribute Type') }} *</label>
-                                    <select name="attribute_id" title="--{{ __('Select Attribute Type') }}--" class="form-control k_selectpicker {{ $errors->has('attribute_id') ? 'is-invalid' : '' }}" required>
+                                    <label>{{ __('Thuộc tính') }} *</label>
+                                    <select name="attribute_id" title="-- {{ __('Chọn thuộc tính') }} --" class="form-control k_selectpicker {{ $errors->has('attribute_id') ? 'is-invalid' : '' }}" required data-live-search="true">
                                         @foreach($attributes as $attribute)
                                         <option value="{{ $attribute->id }}" {{ old('attribute_id', $attributeValue->attribute_id) == $attribute->id ? 'selected' : '' }}>{{ $attribute->name }}</option>
                                         @endforeach
@@ -63,23 +63,23 @@
                                 </div>
 
 								<div class="form-group">
-									<label>{{ __('Value') }} *</label>
-									<input type="text" class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" placeholder="{{ __('Enter value') }}" value="{{ old('value', $attributeValue->value) }}" required>
+									<label>{{ __('Giá trị') }} *</label>
+									<input type="text" class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" placeholder="{{ __('Nhập giá trị') }}" value="{{ old('value', $attributeValue->value) }}" required>
                                     @error('value')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
                                 <div class="form-group">
-									<label>{{ __('Order') }}</label>
-									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Enter Order') }}" value="{{ old('order', $attributeValue->order) }}">
+									<label>{{ __('Thứ tự') }}</label>
+									<input type="number" class="form-control {{ $errors->has('order') ? 'is-invalid' : '' }}" name="order" placeholder="{{ __('Nhập thứ tự ưu tiên') }}" value="{{ old('order', $attributeValue->order) }}">
                                     @error('order')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
 								</div>
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">{{ __('Active') }}</label>
+									<label class="col-2 col-form-label">{{ __('Hoạt động') }}</label>
 									<div class="col-3">
 										<span class="k-switch">
 											<label>
@@ -94,8 +94,8 @@
 					</div>
 					<div class="k-portlet__foot">
 						<div class="k-form__actions">
-							<button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-							<button type="redirect" class="btn btn-secondary">{{ __('Cancel') }}</button>
+							<button type="submit" class="btn btn-primary">{{ __('Lưu') }}</button>
+							<button type="redirect" class="btn btn-secondary">{{ __('Huỷ') }}</button>
 						</div>
 					</div>
 				</form>

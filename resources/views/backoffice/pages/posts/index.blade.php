@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Post');
+	$title = __('Bài viết');
 
 	$breadcrumbs = [
 		[
@@ -11,7 +11,7 @@
 @endphp
 
 @section('header')
-    {{ __($title) }}
+{{ __($title) }}
 @endsection
 
 @component('backoffice.partials.breadcrumb', ['items' => $breadcrumbs]) @endcomponent
@@ -22,7 +22,7 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Post') }}
+                    {{ __('Danh sách bài viết') }}
                 </h3>
             </div>
             @canAny(['posts.store'])
@@ -31,7 +31,7 @@
                     @can('posts.store')
                     <a href="{{ route('bo.web.posts.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Post') }}
+                        {{ __('Tạo bài viết') }}
                     </a>
                     @endcan
                 </div>
@@ -43,19 +43,22 @@
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="name">{{ __('Name') }}</th>
-                        <th data-property="slug">{{ __('Slug') }}</th>
-                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Image') }}</th>
-                        <th data-property="order">{{ __('Order') }}</th>
-                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Status') }}</th>
-                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Display On FE') }}</th>
-                        <th data-orderable="false" data-property="post_category.name">{{ __('Category') }}</th>
-                        <th data-orderable="false" data-property="created_by.name">{{ __('Created By') }}</th>
-                        <th data-orderable="false" data-property="updated_by.name">{{ __('Updated By') }}</th>
-                        <th data-property="post_at">{{ __('Post At') }}</th>
-                        <th data-property="created_at">{{ __('Created At') }}</th>
-                        <th data-property="updated_at">{{ __('Updated At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="name">{{ __('Tên') }}</th>
+                        <th data-property="slug">{{ __('Đường dẫn') }}</th>
+                        <th data-orderable="false" data-property="image" data-render-callback="renderCallbackImage">{{ __('Hình ảnh') }}</th>
+                        <th data-property="author">{{ __('Người viết') }}</th>
+                        <th data-property="order">{{ __('Thứ tự') }}</th>
+                        <th data-property="code">{{ __('Code') }}</th>
+                        <th data-orderable="false" data-badge data-name="status" data-property="status_name">{{ __('Trạng thái') }}</th>
+                        <th data-orderable="false" data-badge data-name="display_on_frontend" data-property="display_on_frontend_name">{{ __('Hiển thị FE') }}</th>
+                        <th data-orderable="false" data-badge data-name="allow_frontend_search" data-property="allow_frontend_search_name">{{ __('FE Search') }}</th>
+                        <th data-orderable="false" data-property="post_category.name">{{ __('Danh mục') }}</th>
+                        <th data-orderable="false" data-property="created_by.name">{{ __('Người tạo') }}</th>
+                        <th data-orderable="false" data-property="updated_by.name">{{ __('Người cập nhật') }}</th>
+                        <th data-property="post_at">{{ __('Viết lúc') }}</th>
+                        <th data-property="created_at">{{ __('Ngày tạo') }}</th>
+                        <th data-property="updated_at">{{ __('Ngày cập nhật') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,6 +74,20 @@
 
 @section('js_script')
 <script>
+    $('.datatable').find('th.datatable-action').attr('data-action-icon-pack', JSON.stringify({
+        fe_link: '<i class="flaticon2-link-programing-symbol-of-interface"></i>',
+    }))
+
+    $(document).on('click', '[data-action="fe_link"]', function(e) {
+        e.preventDefault();
+
+        const dataLink = $(this).attr('href');
+
+        copyToClipboard(dataLink);
+
+        fstoast.success("{{ __('Đã sao chép !') }}");
+    });
+
     function renderCallbackImage(data, type, full) {
         const image = $('<img>', {
             src: data,

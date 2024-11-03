@@ -22,38 +22,37 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             [
                 'title' => ['nullable', 'max:255'],
                 'product_id' => ['required', 'integer', Rule::exists(Product::class, 'id')],
-                'product_slug' => ['required', 'max:255', 'alpha-dash', Rule::unique(Inventory::class, 'slug')],
+                // 'product_slug' => ['required', 'max:255', Rule::unique(Inventory::class, 'slug')],
                 'available_from' => ['nullable', 'date'],
                 'status' => ['required', Rule::in(ActivationStatusEnum::all())],
+                'display_on_frontend' => ['required'],
+                'allow_frontend_search' => ['required'],
                 'min_order_quantity' => ['required', 'integer', 'gt:0'],
                 'condition_note' => ['nullable'],
                 'key_features' => ['nullable', 'array'],
                 'key_features.*' => ['nullable', 'array'],
                 'key_features.*.title' => ['required', 'string'],
-                'meta_title' => ['nullable'],
-                'meta_description' => ['nullable'],
-                'featured' => ['required', 'integer'],
-                'offer_start' => [
-                    Rule::requiredIf(function() {
-                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
 
-                        return boolean(count($offerPrices));
-                    }),
+                'meta_title' => ['nullable', 'string', 'max:255'],
+                'meta_description' => ['nullable'],
+                'meta_keywords' => ['nullable', 'string', 'max:255'],
+
+                'init_sold_count' => ['nullable'],
+                'meta' => ['nullable', 'array'],
+                'weight' => ['nullable', 'gt:0'],
+                'offer_start' => [
                     'nullable',
                     'date'
                 ],
                 'offer_end' => [
-                    Rule::requiredIf(function() {
-                        $offerPrices = array_filter(data_get($this->variants, 'offer_price', []));
-
-                        return boolean(count($offerPrices));
-                    }),
                     'nullable',
                     'date',
                     'after:offer_start'
                 ],
+                'hasvariant' => ['required', 'boolean'],
             ],
-            $product->type == ProductTypeEnum::VARIABLE
+
+            $product->type == ProductTypeEnum::VARIABLE && boolean($this->hasvariant)
                 ? $this->defineVariantRules() ?? []
                 : $this->defineSimpleRules() ?? []
         );
@@ -64,11 +63,15 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
     public function prepareForValidation()
     {
         $this->merge([
-            'featured' => 0,
             'status' => boolean($this->status) ? ActivationStatusEnum::ACTIVE : ActivationStatusEnum::INACTIVE,
+            'display_on_frontend' => boolean($this->display_on_frontend),
+            'allow_frontend_search' => boolean($this->allow_frontend_search),
             'available_from' => $this->available_from ? $this->available_from : now(),
             'min_order_quantity' => $this->min_order_quantity ?? 1,
-            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, '0.title'))->toArray()
+            'key_features' => collect($this->key_features)->filter(fn($item) => data_get($item, 'title'))->toArray(),
+            'meta' => !empty($this->meta) ? json_decode($this->meta, true) : null,
+            'init_sold_count' => $this->init_sold_count ?? 0,
+            'hasvariant' => boolean($this->hasvariant)
         ]);
     }
 
@@ -78,9 +81,23 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants' => ['required', 'array'],
             'variants.attribute' => ['required', 'array'],
             'variants.attribute.*' => ['required', 'array'],
+
             'variants.image' => ['nullable', 'array'],
             'variants.image.*.path' => ['nullable', 'string'],
             'variants.image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+
+            'variants.border_image' => ['nullable', 'array'],
+            'variants.border_image.*.path' => ['nullable', 'string'],
+            'variants.border_image.*.file' => ['nullable', 'file', 'image', 'max:5200'],
+
+            'variants.title' => ['nullable', 'array'],
+            'variants.title.*' => ['nullable', 'string', 'max:255'],
+
+            'variants.slug' => ['nullable', 'array'],
+            'variants.slug.*' => ['required', 'string', 'max:255', Rule::unique(Inventory::class, 'slug')],
+
+            'variants.weight' => ['nullable', 'array'],
+            'variants.weight.*' => ['nullable', 'gt:0'],
             'variants.sku' => ['required', 'array'],
             'variants.sku.*' => ['required', 'distinct', Rule::unique(Inventory::class, 'sku')],
             'variants.stock_quantity' => ['required', 'array'],
@@ -93,12 +110,15 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'variants.offer_price.*' => ['nullable', 'numeric', 'gt:0'],
             'variants.condition' => ['required', 'array'],
             'variants.condition.*' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
+            'variants.sale_channels' => ['nullable', 'array'],
         ];
     }
 
     protected function defineSimpleRules()
     {
         return [
+            'title' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique(Inventory::class, 'slug')],
             'condition' => ['required', 'integer', Rule::in(InventoryConditionEnum::all())],
             'sku' => ['required', Rule::unique(Inventory::class, 'sku')],
             'purchase_price' => ['nullable', 'numeric', 'gt:0'],
@@ -107,6 +127,8 @@ class StoreInventoryRequest extends BaseFormRequest implements StoreInventoryReq
             'stock_quantity' => ['required', 'integer'],
             'image.file' => ['nullable', 'file', 'image', 'max:5200'],
             'image.path' => ['nullable', 'string'],
+            'sale_channels' => ['nullable', 'array'],
+            'sale_channels.*' => ['nullable', 'string'],
         ];
     }
 }

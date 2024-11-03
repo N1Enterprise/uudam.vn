@@ -17,6 +17,7 @@ class ProductReviewResource extends BaseJsonResource
             'rating_type_name' => $this->rating_type_name,
             'content' => $this->content,
             'status' => $this->status,
+            'post_at' => $this->post_at,
             'status_name' => $this->status_name,
             'product_id' => $this->product_id,
             'created_at' => $this->created_at,

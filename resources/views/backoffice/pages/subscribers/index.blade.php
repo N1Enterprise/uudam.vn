@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.master')
 
 @php
-	$title = __('Subscribers');
+	$title = __('Người đăng ký');
 
 	$breadcrumbs = [
 		[
@@ -22,31 +22,31 @@
         <div class="k-portlet__head">
             <div class="k-portlet__head-label">
                 <h3 class="k-portlet__head-title">
-                    {{ __('Subscribers') }}
+                    {{ __('Danh sách người đăng ký') }}
                 </h3>
             </div>
-            @canAny(['subscribers.store'])
+            {{-- @canAny(['subscribers.store'])
             <div class="k-portlet__head-toolbar">
                 <div class="k-portlet__head-toolbar-wrapper">
                     @can('subscribers.store')
                     <a href="{{ route('bo.web.subscribers.create') }}" class="btn btn-brand btn-bold btn-upper btn-font-sm">
                         <i class="la la-plus"></i>
-                        {{ __('Create Subscribers') }}
+                        {{ __('Tạo người đăng ký') }}
                     </a>
                     @endcan
                 </div>
             </div>
-            @endcan
+            @endcan --}}
         </div>
         <div class="k-portlet__body">
             <table id="table_subscribers_index" data-searching="true" data-request-url="{{ route('bo.api.subscribers.index') }}" class="datatable table table-striped table-bordered table-hover table-checkable">
                 <thead>
                     <tr>
                         <th data-property="id">{{ __('ID') }}</th>
-                        <th data-property="email">{{ __('Email') }}</th>
-                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Source') }}</th>
-                        <th data-property="created_at">{{ __('Subscribed At') }}</th>
-                        <th class="datatable-action" data-property="actions">{{ __('Action') }}</th>
+                        <th data-property="email">{{ __('E-mail') }}</th>
+                        <th data-orderable="false" data-badge data-name="type" data-property="type_name">{{ __('Loại') }}</th>
+                        <th data-property="created_at">{{ __('Đã đăng ký lúc') }}</th>
+                        <th class="datatable-action" data-property="actions">{{ __('Hành động') }}</th>
                     </tr>
                 </thead>
                 <tbody>

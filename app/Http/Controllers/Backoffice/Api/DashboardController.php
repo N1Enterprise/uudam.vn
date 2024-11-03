@@ -30,11 +30,11 @@ class DashboardController extends BaseApiController
         return response()->json(['total_count' => $result]);
     }
 
-    public function getTotalDeposit(Request $request)
+    public function getTotalTurnover(Request $request)
     {
-        $result = $this->dashboardService->getTotalDeposit($request->all());
+        $result = $this->dashboardService->getTotalTurnover($request->all());
 
-        return response()->json(['total_count' => $result]);
+        return response()->json(['total_count' => format_price($result)]);
     }
 
     public function getTopUsers(Request $request)

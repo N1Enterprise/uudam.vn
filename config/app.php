@@ -59,6 +59,14 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'build_version' => env('BUILD_VERSION'),
+
+    'app_id' => env('APP_ID'),
+
+    'fe_view_only_mode' => env('FE_VIEW_ONLY_MODE', false),
+
+    'enable_force_https' => env('ENABLE_FORCE_HTTPS', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -70,7 +78,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'Asia/Ho_Chi_Minh'),
 
     /*
     |--------------------------------------------------------------------------
@@ -181,6 +189,7 @@ return [
         App\Providers\MacroServiceProvider::class,
         App\Providers\BackofficeServiceProvider::class,
         App\Providers\FrontendServiceProvider::class,
+        App\Providers\PaymentServiceProvider::class,
     ],
 
     /*

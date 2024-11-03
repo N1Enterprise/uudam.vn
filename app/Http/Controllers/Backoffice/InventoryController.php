@@ -7,9 +7,12 @@ use App\Contracts\Requests\Backoffice\UpdateInventoryRequestContract;
 use App\Contracts\Responses\Backoffice\DeleteInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\StoreInventoryResponseContract;
 use App\Contracts\Responses\Backoffice\UpdateInventoryResponseContract;
+use App\Enum\ActivationStatusEnum;
 use App\Enum\InventoryConditionEnum;
 use App\Enum\ProductTypeEnum;
+use App\Enum\SystemSettingKeyEnum;
 use App\Models\Inventory;
+use App\Models\SystemSetting;
 use App\Services\AttributeService;
 use App\Services\CategoryService;
 use App\Services\ProductComboService;
@@ -42,14 +45,17 @@ class InventoryController extends BaseController
     public function index()
     {
         $categories = $this->categoryService
-            ->allAvailable(['with' => 'products', 'columns' => ['id', 'name']])
+            ->allAvailable(['with' => ['products', 'categoryGroup'], 'columns' => ['id', 'name', 'category_group_id']])
             ->filter(fn($category) => !$category->products->isEmpty());
 
         $attributes = $this->attributeService
-            ->allAvailable(['with' => 'attributeValues', 'columns' => ['id', 'name']])
+            ->allAvailable(['with' => 'attributeValues', 'columns' => ['id', 'name', 'supported_categories', 'order']])
+            ->sortBy('order')
             ->filter(fn($attribute) => !$attribute->attributeValues->isEmpty());
 
-        return view('backoffice.pages.inventories.index', compact('categories', 'attributes'));
+        $statusLabels = ActivationStatusEnum::labels();
+
+        return view('backoffice.pages.inventories.index', compact('categories', 'attributes', 'statusLabels'));
     }
 
     public function create(Request $request)
@@ -63,12 +69,20 @@ class InventoryController extends BaseController
         $hasVariant = $product->type == ProductTypeEnum::VARIABLE;
 
         if ($hasVariant) {
-            $variants = $this->attributeService->confirmAttributes($request->input('attribute_values'));
+            $variants = $this->attributeService->confirmAttributes($request->input('attribute_values') ?? []);
             $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
             $combinations = generate_combinations($variants);
         }
 
+        if (empty(array_filter($combinations))) {
+            $hasVariant = false;
+        }
+
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
+
+        $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
+
+        $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
@@ -76,7 +90,9 @@ class InventoryController extends BaseController
             'hasVariant',
             'attributes',
             'combinations',
-            'inventoryConditionEnumLabels'
+            'inventoryConditionEnumLabels',
+            'commonInventoryKeyFeatured',
+            'affiliateSalesChannels'
         ));
     }
 
@@ -104,13 +120,17 @@ class InventoryController extends BaseController
                 })
                 ->toArray();
 
-            $variants = $this->attributeService->confirmAttributes($attributeValues);
+            $variants = $this->attributeService->confirmAttributes($attributeValues ?? []);
             $attributes = $this->attributeService->allAvailable(['columns' => ['id', 'name']])->pluck('name', 'id');
             $combinations = generate_combinations($variants);
         }
 
         $inventoryConditionEnumLabels = InventoryConditionEnum::labels();
         $productCombos = $this->productComboService->allAvailable(['columns' => ['id', 'name', 'unit', 'sale_price']]);
+
+        $commonInventoryKeyFeatured = collect(SystemSetting::from(SystemSettingKeyEnum::COMMON_INVENTORY_KEY_FEATURED)->get(null, []))->filter(fn($item) => boolean(data_get($item, 'enable')));
+
+        $affiliateSalesChannels = SystemSetting::from(SystemSettingKeyEnum::AFFILIATE_SALES_CHANNELS)->get(null, []);
 
         return view('backoffice.pages.inventories.create', compact(
             'inventory',
@@ -120,6 +140,8 @@ class InventoryController extends BaseController
             'combinations',
             'inventoryConditionEnumLabels',
             'productCombos',
+            'commonInventoryKeyFeatured',
+            'affiliateSalesChannels'
         ));
     }
 
@@ -127,7 +149,7 @@ class InventoryController extends BaseController
     {
         $product = $this->productService->show($request->product_id);
 
-        if ($product->type == ProductTypeEnum::VARIABLE) {
+        if ($product->type == ProductTypeEnum::VARIABLE && boolean($request->hasvariant)) {
             $inventory = $this->inventoryService->createWithVariants($request->validated());
         } else {
             $inventory = $this->inventoryService->create($request->validated());

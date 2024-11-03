@@ -3,46 +3,54 @@
 namespace App\Services;
 
 use App\Common\Cache;
+use App\Enum\AccessChannelType;
 use App\Enum\OrderCacheKeyEnum;
 use App\Enum\OrderStatusEnum;
 use App\Enum\PaymentStatusEnum;
-use App\Events\Order\OrderDeclined;
-use App\Events\Order\OrderPaymentApproved;
+use App\Events\Order\OrderCanceled;
+use App\Events\Order\OrderCompleted;
+use App\Events\Order\OrderDelivered;
+use App\Events\Order\OrderRefuned;
 use App\Exceptions\BusinessLogicException;
 use App\Exceptions\ExceptionCode;
 use App\Models\BaseModel;
 use App\Repositories\Contracts\OrderRepositoryContract;
 use App\Services\BaseService;
 use App\Models\PaymentOption;
-use App\Models\ShippingRate;
+use App\Models\ShippingOption;
 use App\Models\User;
 use App\Models\Cart;
 use App\Vendors\Localization\Money;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Order;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class OrderService extends BaseService
 {
     public $orderRepository;
     public $paymentOptionService;
-    public $shippingRateService;
+    public $shippingOptionService;
     public $cartService;
     public $userService;
+    public $userOrderShippingHistoryService;
+    public $inventoryService;
 
     public function __construct(
         OrderRepositoryContract $orderRepository,
         PaymentOptionService $paymentOptionService,
-        ShippingRateService $shippingRateService,
+        ShippingOptionService $shippingOptionService,
         CartService $cartService,
-        UserService $userService
+        UserService $userService,
+        UserOrderShippingHistoryService $userOrderShippingHistoryService,
+        InventoryService $inventoryService
     ) {
         $this->orderRepository = $orderRepository;
         $this->paymentOptionService = $paymentOptionService;
-        $this->shippingRateService = $shippingRateService;
+        $this->shippingOptionService = $shippingOptionService;
         $this->cartService = $cartService;
         $this->userService = $userService;
+        $this->userOrderShippingHistoryService = $userOrderShippingHistoryService;
+        $this->inventoryService = $inventoryService;
     }
 
     public function searchByAdmin($data = [])
@@ -98,6 +106,12 @@ class OrderService extends BaseService
                 if (!empty($paymentStatuses)) {
                     $q->whereIn('payment_status', $paymentStatuses);
                 }
+
+                $orderChannelType = data_get($data, 'order_channel_type');
+
+                if ($orderChannelType) {
+                    $q->whereJsonContains('order_channel->type', (int) $orderChannelType);
+                }
             })
             ->search([]);
 
@@ -146,7 +160,64 @@ class OrderService extends BaseService
             ->findOrFail($id);
     }
 
-    public function createFromCartByUser($user, $cart, $paymentOption, $shippingRate, $createdBy, $meta = [])
+    public function find($id, $data = [])
+    {
+        return $this->orderRepository
+            ->with(data_get($data, 'with', []))
+            ->find($id);
+    }
+
+    public function createFromInventoryDataByUser($user, $items, $paymentOption, $shippingOption, $createdBy, $data = [])
+    {
+       /** @var User */
+       $user = $this->userService->show($user);
+
+       /** @var ShippingOption */
+       $shippingOption = $this->shippingOptionService->show($shippingOption);
+
+       /** @var PaymentOption */
+       $paymentOption = $this->paymentOptionService->show($paymentOption);
+
+       $orderCode = $this->generateOrderCode();
+
+        if ($user->currency_code != $paymentOption->currency_code) {
+            throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_USER);
+        }
+
+        $grandTotal = $items->reduce(function($curr, $item) use ($user) {
+            return Money::make(data_get($item, 'final_price'), $user->currency_code)
+                ->multipliedBy(data_get($item, ['quantity'], 0))
+                ->plus($curr);
+        }, 0);
+
+        $orderData = array_merge(
+            [
+                'order_code' => $orderCode,
+                'uuid' => (string) Str::uuid(),
+                'user_id' => $user->getKey(),
+                'currency_code' => $user->currency_code,
+                'total_item' => $items->count(),
+                'total_price' => (string) $grandTotal,
+                'total_quantity' => $items->sum('quantity'),
+                'grand_total' => (string) $grandTotal,
+                'payment_status' => PaymentStatusEnum::PENDING,
+                'order_status' => OrderStatusEnum::WAITING_FOR_PAYMENT,
+                'is_sent_invoice_to_user' => 0,
+                'payment_option_id'  => $paymentOption->getKey(),
+                'shipping_option_id' => $shippingOption->getKey(),
+                'order_channel' => data_get($data, 'order_channel', [])
+            ],
+            BaseModel::getMorphProperty('created_by', $createdBy),
+            BaseModel::getMorphProperty('updated_by', $createdBy),
+            []
+        );
+
+        $order = $this->orderRepository->create($orderData);
+
+        return $order;
+    }
+
+    public function createFromCartByUser($user, $cart, $paymentOption, $shippingOption, $createdBy, $data = [])
     {
         /** @var Cart */
         $cart = $this->cartService->show($cart);
@@ -154,8 +225,8 @@ class OrderService extends BaseService
         /** @var User */
         $user = $this->userService->show($user);
 
-        /** @var ShippingRate */
-        $shippingRate = $this->shippingRateService->show($shippingRate);
+        /** @var ShippingOption */
+        $shippingOption = $this->shippingOptionService->show($shippingOption);
 
         /** @var PaymentOption */
         $paymentOption = $this->paymentOptionService->show($paymentOption);
@@ -170,14 +241,13 @@ class OrderService extends BaseService
             throw new BusinessLogicException('[Payment] Invalid User.', ExceptionCode::INVALID_USER);
         }
 
-        $grandTotal = Money::make($cart->total_price, $cart->currency_code)->plus($shippingRate->rate);
+        $grandTotal = Money::make($cart->total_price, $cart->currency_code);
 
-        $meta = array_merge($meta, [
-            'payment_option_id' => $paymentOption->getKey(),
-            'shipping_rate_id'  => $shippingRate->getKey()
-        ]);
+        $meta = [
+            'footprint' => data_get($data, 'footprint', []),
+        ];
 
-        $data = array_merge(
+        $orderData = array_merge(
             [
                 'order_code' => $orderCode,
                 'uuid' => (string) Str::uuid(),
@@ -190,13 +260,16 @@ class OrderService extends BaseService
                 'payment_status' => PaymentStatusEnum::PENDING,
                 'order_status' => OrderStatusEnum::WAITING_FOR_PAYMENT,
                 'is_sent_invoice_to_user' => 0,
+                'payment_option_id'  => $paymentOption->getKey(),
+                'shipping_option_id' => $shippingOption->getKey(),
+                'order_channel' => ['type' => AccessChannelType::WEBSITE]
             ],
             BaseModel::getMorphProperty('created_by', $createdBy),
             BaseModel::getMorphProperty('updated_by', $createdBy),
             $meta
         );
 
-        $order = $this->orderRepository->create($data);
+        $order = $this->orderRepository->create($orderData);
 
         return $order;
     }
@@ -229,51 +302,125 @@ class OrderService extends BaseService
             ->count();
     }
 
-    public function declined($id, $data = [])
+    public function delivery($orderId, $data = [])
     {
-        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, $id);
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
 
-        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
-            ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($id, $data) {
-                /** @var Order */
-                $order = $this->show($id);
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
 
-                if (! $order->isProcessing()) {
-                    throw new BusinessLogicException("Unable to update order #{$order->id}.", ExceptionCode::INVALID_ORDER);
-                }
+            if (! $order->canDelivery()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
 
-                $updateResource = array_merge(['order_status' => OrderStatusEnum::DECLINED], [
-                    'log' => array_merge($order->log ?? [], Arr::wrap(data_get($data, 'log', [])))
-                ], $data);
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::DELIVERY,
+                    'admin_note'   => data_get($data, 'admin_note', '')
+                ], $order->getKey());
 
-                $order = $this->orderRepository->update($updateResource, $order);
-
-                OrderDeclined::dispatch($order);
+                OrderDelivered::dispatch($order);
 
                 return $order;
             });
+        });
     }
 
-    public function approvePayment($id, $data = [])
+    public function complete($orderId, $data = [])
     {
-        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, $id);
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
 
-        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)
-            ->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($id, $data) {
-                /** @var Order */
-                $order = $this->show($id);
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
 
-                if (! $order->isPendingPayment()) {
-                    throw new BusinessLogicException("Unable to update order payment #{$order->id}.", ExceptionCode::INVALID_ORDER);
+            if (! $order->canComplete()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::COMPLETED,
+                    'admin_note' => data_get($data, 'admin_note', ''),
+                    'log' => implode(PHP_EOL, array_filter_empty([data_get($data, 'log'), $order->log])),
+                ], $order->getKey());
+
+                if ($order->isPendingPayment()) {
+                    DepositService::make()
+                        ->allowForceApproved()
+                        ->approve($order->deposit_transaction_id);
                 }
 
-                $updateResource = array_merge(['payment_status' => PaymentStatusEnum::APPROVED], $data);
-
-                $order = $this->orderRepository->update($updateResource, $order);
-
-                OrderPaymentApproved::dispatch($order);
+                OrderCompleted::dispatch($order);
 
                 return $order;
             });
+        });
+    }
+
+    public function cancel($orderId, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
+
+            if (! $order->canCancel()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::CANCELED,
+                    'admin_note' => data_get($data, 'admin_note', ''),
+                    'log' => implode(PHP_EOL, array_filter_empty([data_get($data, 'log'), $order->log])),
+                ], $order->getKey());
+
+                OrderCanceled::dispatch($order);
+
+                return $order;
+            });
+        });
+    }
+
+    public function refund($orderId, $data = [])
+    {
+        $cacheKey = OrderCacheKeyEnum::getOrderCacheKey(OrderCacheKeyEnum::ORDER, BaseModel::getModelKey($orderId));
+
+        return Cache::lock($cacheKey, OrderCacheKeyEnum::TTL)->block(OrderCacheKeyEnum::MAXIMUM_WAIT, function() use ($orderId, $data) {
+            /** @var Order */
+            $order = $this->show($orderId);
+
+            if (! $order->canRefund()) {
+                throw new BusinessLogicException('Unable to update this order.', ExceptionCode::INVALID_ORDER);
+            }
+
+            return DB::transaction(function() use ($order, $data) {
+                $order = $this->orderRepository->update([
+                    'order_status' => OrderStatusEnum::REFUNDED,
+                    'admin_note'   => data_get($data, 'admin_note', '')
+                ], $order->getKey());
+
+                OrderRefuned::dispatch($order);
+
+                return $order;
+            });
+        });
+    }
+
+    public function updateShipping($orderId, $userOrderShippingHistoryId, $shippingProviderId, $transportFee = 0, $referenceId = null)
+    {
+        return DB::transaction(function() use ($orderId, $userOrderShippingHistoryId, $shippingProviderId, $transportFee, $referenceId) {
+            $this->userOrderShippingHistoryService
+                ->update([
+                    'shipping_provider_id' => $shippingProviderId,
+                    'transport_fee' => $transportFee,
+                    'reference_id' => $referenceId,
+                ], $userOrderShippingHistoryId);
+
+            return $this->update(['transport_fee' => $transportFee], $orderId);
+        });
     }
 }

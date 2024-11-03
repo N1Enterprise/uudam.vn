@@ -3,10 +3,9 @@
     <div class="tab-content" id="content_systemSetting">
         @foreach ($groups as $group)
         <div
-            role="tabpanel"
+
             id="tab_{{ data_get($group, 'id') }}"
             class="system-setting-tab-pane tab-pane fade {{ empty($tab) ? ( $loop->index + 1 == $loop->first ? 'active show' : '') : ($tab == data_get($group, 'id') ? 'active show' : '') }}"
-            aria-labelledby="{{ data_get($group, 'id') }}-tab"
         >
             <div class="k-portlet">
                 <div class="k-portlet__head">

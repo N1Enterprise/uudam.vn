@@ -12,4 +12,7 @@ class ExceptionCode
     public const INVALID_PAYMENT_PROVIDER = 'invalid_payment_provider';
     public const INVALID_TRANSACTION = 'invalid_transaction';
     public const INVALID_USER_CURRENCY = 'invalid_user_currency';
+    public const DEACTIVATED_ACCOUNT = 'deactivated_account';
+    public const INVALID_PAYMENT_OPTION = 'invalid_payment_option';
+    public const INVALID_SHIPPING_OPTION = 'invalid_shipping_option';
 }
