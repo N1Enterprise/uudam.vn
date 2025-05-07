@@ -18,7 +18,7 @@ class RoleResource extends BaseJsonResource
 
     public function generateActionPermissions()
     {
-        $updatePermission = $this->getPermissionByAction('update');
+        $updatePermission = true;
 
         return array_filter([
             'actions' => array_filter([

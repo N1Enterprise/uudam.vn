@@ -322,12 +322,12 @@ class BackofficeMenuService extends BaseService
                     [
                         'name' => 'Quản trị viên',
                         'link' => route('bo.web.admins.index'),
-                        'permissions' => ['admins.index'],
+                        'permissions' => [],
                     ],
                     [
                         'name' => 'Quyền truy cập',
                         'link' => route('bo.web.roles.index'),
-                        'permissions' => ['roles.index'],
+                        'permissions' => [],
                     ],
                 ],
             ],

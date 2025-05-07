@@ -8,11 +8,11 @@ Route::prefix('v1')->group(function () {
     Route::get('users', [Api\UserController::class, 'index'])->name('users.index')->middleware(['can:users.index']);
 
     /* ======================== ADMIN USERS ======================== */
-    Route::get('admins', [Api\AdminController::class, 'index'])->name('admins.index')->middleware(['can:admins.index']);
+    Route::get('admins', [Api\AdminController::class, 'index'])->name('admins.index');
     Route::put('my-profile', [Api\AdminController::class, 'updateCurrentUserProfile'])->name('admins.current.update-profile');
     Route::put('my-profile/change-password', [Api\AdminController::class, 'updateCurrentUserPassword'])->name('admins.current.change-password');
 
-    Route::get('roles', [Api\RoleController::class, 'index'])->name('roles.index')->middleware(['can:roles.index']);
+    Route::get('roles', [Api\RoleController::class, 'index'])->name('roles.index');
 
     /* ======================== SYSTEM ======================== */
     Route::post('system-settings/clear-cache', [Api\SystemSettingController::class, 'clearCache'])->name('system-settings.clear-cache')->middleware(['can:system-settings.clear-cache']);

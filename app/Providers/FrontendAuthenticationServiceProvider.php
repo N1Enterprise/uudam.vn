@@ -24,7 +24,7 @@ class FrontendAuthenticationServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('fe.api.user.signin', function($request) {
-           
+
         });
     }
 }

@@ -18,19 +18,19 @@ Route::put('users/{id}/set-test-user', [Controllers\UserController::class, 'setT
 Route::put('users/{id}/update-password', [Controllers\UserController::class, 'updatePassword'])->name('users.update-password')->middleware(['can:users.change_password']);
 
 /* ======================== ADMIN USER ======================== */
-Route::get('admins', [Controllers\AdminController::class, 'index'])->name('admins.index')->middleware(['can:admins.index']);
-Route::get('admins/create', [Controllers\AdminController::class, 'create'])->name('admins.create')->middleware(['can:admins.store']);
-Route::post('admins', [Controllers\AdminController::class, 'store'])->name('admins.store')->middleware(['can:admins.store']);
-Route::get('admins/{id}', [Controllers\AdminController::class, 'edit'])->name('admins.edit')->middleware(['can:admins.update']);
-Route::put('admins/{id}', [Controllers\AdminController::class, 'update'])->name('admins.update')->middleware(['can:admins.update']);
-Route::put('admins/{id}/active', [Controllers\AdminController::class, 'active'])->name('admins.active')->middleware(['can:admins.update']);
-Route::put('admins/{id}/deactivate', [Controllers\AdminController::class, 'deactivate'])->name('admins.deactivate')->middleware(['can:admins.update']);
+Route::get('admins', [Controllers\AdminController::class, 'index'])->name('admins.index');
+Route::get('admins/create', [Controllers\AdminController::class, 'create'])->name('admins.create');
+Route::post('admins', [Controllers\AdminController::class, 'store'])->name('admins.store');
+Route::get('admins/{id}', [Controllers\AdminController::class, 'edit'])->name('admins.edit');
+Route::put('admins/{id}', [Controllers\AdminController::class, 'update'])->name('admins.update');
+Route::put('admins/{id}/active', [Controllers\AdminController::class, 'active'])->name('admins.active');
+Route::put('admins/{id}/deactivate', [Controllers\AdminController::class, 'deactivate'])->name('admins.deactivate');
 
-Route::get('roles', [Controllers\RoleController::class, 'index'])->name('roles.index')->middleware(['can:roles.index']);
-Route::get('roles/create', [Controllers\RoleController::class, 'create'])->name('roles.create')->middleware(['can:roles.store']);
-Route::post('roles', [Controllers\RoleController::class, 'store'])->name('roles.store')->middleware(['can:roles.store']);
-Route::get('roles/{id}', [Controllers\RoleController::class, 'edit'])->name('roles.edit')->middleware(['can:roles.update']);
-Route::put('roles/{id}', [Controllers\RoleController::class, 'update'])->name('roles.update')->middleware(['can:roles.update']);
+Route::get('roles', [Controllers\RoleController::class, 'index'])->name('roles.index');
+Route::get('roles/create', [Controllers\RoleController::class, 'create'])->name('roles.create');
+Route::post('roles', [Controllers\RoleController::class, 'store'])->name('roles.store');
+Route::get('roles/{id}', [Controllers\RoleController::class, 'edit'])->name('roles.edit');
+Route::put('roles/{id}', [Controllers\RoleController::class, 'update'])->name('roles.update');
 
 /* ======================== SYSTEM ======================== */
 Route::get('system-settings', [Controllers\SystemSettingController::class, 'index'])->name('system-settings.index')->middleware(['can:system-settings.index']);
